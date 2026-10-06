@@ -84,6 +84,8 @@ for cls in TARGETS:
         if refs:
             rec['_managedRefs'] = refs
         left = len(raw) - end
+        if 0 < left <= 3 and not any(raw[end:]):
+            left = 0  # Unity 对象尾部 4 字节对齐零填充，不算残留
         if left:
             rec['_trailing_bytes'] = left
             leftover[left] += 1

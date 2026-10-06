@@ -27,7 +27,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 876
@@ -109,7 +108,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 2,
    "pathID": 5556
@@ -170,7 +168,13 @@
   "_name": "DivineSword1_HarvestOfSouls",
   "_pathid": 5247,
   "_file": "resources.assets",
-  "_trailing_bytes": 8,
+  "_managedRefs": {
+   "__header__": [
+    2,
+    0
+   ],
+   "__items__": []
+  },
   "Icon": {
    "fileID": 0,
    "pathID": 798
@@ -224,7 +228,13 @@
   "_name": "Focus",
   "_pathid": 5248,
   "_file": "resources.assets",
-  "_trailing_bytes": 8,
+  "_managedRefs": {
+   "__header__": [
+    2,
+    0
+   ],
+   "__items__": []
+  },
   "Icon": {
    "fileID": 0,
    "pathID": 943
@@ -350,7 +360,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 702
@@ -452,7 +461,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 783
@@ -554,7 +562,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 749
@@ -651,7 +658,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 959
@@ -756,7 +762,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 793
@@ -861,7 +866,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 958
@@ -963,7 +967,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 778
@@ -1121,7 +1124,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 748
@@ -1267,7 +1269,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 2,
    "pathID": 5359
@@ -1372,7 +1373,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 2,
    "pathID": 5743
@@ -1474,7 +1474,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 2,
    "pathID": 5806
@@ -1604,7 +1603,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 1005
@@ -1662,7 +1660,13 @@
   "_name": "WarriorFractured",
   "_pathid": 5263,
   "_file": "resources.assets",
-  "_trailing_bytes": 8,
+  "_managedRefs": {
+   "__header__": [
+    2,
+    0
+   ],
+   "__items__": []
+  },
   "Icon": {
    "fileID": 0,
    "pathID": 989
@@ -1740,7 +1744,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5503
@@ -1895,7 +1898,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5352
@@ -2028,7 +2030,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5465
@@ -2130,7 +2131,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5471
@@ -2232,7 +2232,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5694
@@ -2334,7 +2333,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5706
@@ -2436,7 +2434,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5392
@@ -2538,7 +2535,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5751
@@ -2640,7 +2636,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5823
@@ -2742,7 +2737,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5443
@@ -2844,7 +2838,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5259
@@ -2946,7 +2939,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5764
@@ -3048,7 +3040,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5275
@@ -3150,7 +3141,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5818
@@ -3252,7 +3242,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5231
@@ -3354,7 +3343,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5383
@@ -3456,7 +3444,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5509
@@ -3558,7 +3545,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5390
@@ -3660,7 +3646,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5342
@@ -3762,7 +3747,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5787
@@ -3864,7 +3848,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5357
@@ -3994,7 +3977,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5577
@@ -4099,7 +4081,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5578
@@ -4204,7 +4185,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5347
@@ -4286,7 +4266,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5503
@@ -4413,7 +4392,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5546
@@ -4518,7 +4496,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5607
@@ -4674,7 +4651,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5256
@@ -4779,7 +4755,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5885
@@ -4877,7 +4852,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5491
@@ -5004,7 +4978,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5737
@@ -5177,7 +5150,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5512
@@ -5279,7 +5251,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5740
@@ -5377,7 +5348,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5793
@@ -5607,7 +5577,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5256
@@ -5740,7 +5709,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5946
@@ -6041,7 +6009,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5310
@@ -6146,7 +6113,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5448
@@ -6273,7 +6239,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5359
@@ -6378,7 +6343,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5232
@@ -6515,7 +6479,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5408
@@ -6673,7 +6636,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5589
@@ -6847,7 +6809,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5872
@@ -6952,7 +6913,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5347
@@ -7054,7 +7014,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5490
@@ -7159,7 +7118,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5734
@@ -7330,7 +7288,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5467
@@ -7438,7 +7395,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5599
@@ -7543,7 +7499,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5262
@@ -7644,7 +7599,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5769
@@ -7823,7 +7777,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5222
@@ -7881,7 +7834,13 @@
   "_name": "ArcaneCorrosion",
   "_pathid": 60533,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 8,
+  "_managedRefs": {
+   "__header__": [
+    2,
+    0
+   ],
+   "__items__": []
+  },
   "Icon": {
    "fileID": 0,
    "pathID": 5846
@@ -7935,7 +7894,13 @@
   "_name": "MonkGatheredForce",
   "_pathid": 60534,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 8,
+  "_managedRefs": {
+   "__header__": [
+    2,
+    0
+   ],
+   "__items__": []
+  },
   "Icon": {
    "fileID": 0,
    "pathID": 5322
@@ -8029,7 +7994,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5320
@@ -8127,7 +8091,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5226
@@ -8229,7 +8192,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5734
@@ -8331,7 +8293,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5899
@@ -8433,7 +8394,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5454
@@ -8529,7 +8489,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5746
@@ -8631,7 +8590,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5514
@@ -8760,7 +8718,13 @@
   "_name": "WarriorBloodlust",
   "_pathid": 60543,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 8,
+  "_managedRefs": {
+   "__header__": [
+    2,
+    0
+   ],
+   "__items__": []
+  },
   "Icon": {
    "fileID": 0,
    "pathID": 5714
@@ -8886,7 +8850,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5857
@@ -8988,7 +8951,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5798
@@ -9046,7 +9008,13 @@
   "_name": "WarriorChargedStacks",
   "_pathid": 60546,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 8,
+  "_managedRefs": {
+   "__header__": [
+    2,
+    0
+   ],
+   "__items__": []
+  },
   "Icon": {
    "fileID": 0,
    "pathID": 5798
@@ -9172,7 +9140,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5940
@@ -9342,7 +9309,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5696
@@ -9445,7 +9411,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5467
@@ -9575,7 +9540,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5940
@@ -9680,7 +9644,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 5589

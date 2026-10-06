@@ -3,7 +3,6 @@
   "_name": "PotionPlaceholder",
   "_pathid": 5240,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -25,7 +24,6 @@
   "_name": "UpgradeRecipeUncommon",
   "_pathid": 5241,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -44,7 +42,6 @@
   "_name": "GemUpgradeAmethyst2",
   "_pathid": 60344,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -66,7 +63,6 @@
   "_name": "GemUpgradeAmethyst3",
   "_pathid": 60345,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -88,7 +84,6 @@
   "_name": "GemUpgradeAmethyst4",
   "_pathid": 60346,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -110,7 +105,6 @@
   "_name": "GemUpgradeAmethyst5",
   "_pathid": 60347,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -132,7 +126,6 @@
   "_name": "GemUpgradeAmethyst6",
   "_pathid": 60348,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -154,7 +147,6 @@
   "_name": "GemUpgradeDiamond2",
   "_pathid": 60349,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -176,7 +168,6 @@
   "_name": "GemUpgradeDiamond3",
   "_pathid": 60350,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -198,7 +189,6 @@
   "_name": "GemUpgradeDiamond4",
   "_pathid": 60351,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -220,7 +210,6 @@
   "_name": "GemUpgradeDiamond5",
   "_pathid": 60352,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -242,7 +231,6 @@
   "_name": "GemUpgradeDiamond6",
   "_pathid": 60353,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -264,7 +252,6 @@
   "_name": "GemUpgradeEmerald2",
   "_pathid": 60354,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -286,7 +273,6 @@
   "_name": "GemUpgradeEmerald3",
   "_pathid": 60355,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -308,7 +294,6 @@
   "_name": "GemUpgradeEmerald4",
   "_pathid": 60356,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -330,7 +315,6 @@
   "_name": "GemUpgradeEmerald5",
   "_pathid": 60357,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -352,7 +336,6 @@
   "_name": "GemUpgradeEmerald6",
   "_pathid": 60358,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -374,7 +357,6 @@
   "_name": "GemUpgradeRuby2",
   "_pathid": 60359,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -396,7 +378,6 @@
   "_name": "GemUpgradeRuby3",
   "_pathid": 60360,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -418,7 +399,6 @@
   "_name": "GemUpgradeRuby4",
   "_pathid": 60361,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -440,7 +420,6 @@
   "_name": "GemUpgradeRuby5",
   "_pathid": 60362,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -462,7 +441,6 @@
   "_name": "GemUpgradeRuby6",
   "_pathid": 60363,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -484,7 +462,6 @@
   "_name": "GemUpgradeSapphire2",
   "_pathid": 60364,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -506,7 +483,6 @@
   "_name": "GemUpgradeSapphire3",
   "_pathid": 60365,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -528,7 +504,6 @@
   "_name": "GemUpgradeSapphire4",
   "_pathid": 60366,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -550,7 +525,6 @@
   "_name": "GemUpgradeSapphire5",
   "_pathid": 60367,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -572,7 +546,6 @@
   "_name": "GemUpgradeSapphire6",
   "_pathid": 60368,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -594,7 +567,6 @@
   "_name": "GemUpgradeTopaz2",
   "_pathid": 60369,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -616,7 +588,6 @@
   "_name": "GemUpgradeTopaz3",
   "_pathid": 60370,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -638,7 +609,6 @@
   "_name": "GemUpgradeTopaz4",
   "_pathid": 60371,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -660,7 +630,6 @@
   "_name": "GemUpgradeTopaz5",
   "_pathid": 60372,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -682,7 +651,6 @@
   "_name": "GemUpgradeTopaz6",
   "_pathid": 60373,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -704,7 +672,6 @@
   "_name": "ArmorPotionLv1",
   "_pathid": 60374,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -733,7 +700,6 @@
   "_name": "AttackSpeedPotionLv1",
   "_pathid": 60375,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -762,7 +728,6 @@
   "_name": "AttackSpeedPotionLv2",
   "_pathid": 60376,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -791,7 +756,6 @@
   "_name": "CinderbloodPotionRecipe",
   "_pathid": 60377,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -820,7 +784,6 @@
   "_name": "CrimsonHuntPotionRecipe",
   "_pathid": 60378,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -849,7 +812,6 @@
   "_name": "CritPotionLv1",
   "_pathid": 60379,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -878,7 +840,6 @@
   "_name": "CritPotionLv2",
   "_pathid": 60380,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -907,7 +868,6 @@
   "_name": "DodgePotionLv1",
   "_pathid": 60381,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -936,7 +896,6 @@
   "_name": "ExpPotionLv1",
   "_pathid": 60382,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -958,7 +917,6 @@
   "_name": "FrostmindPotionRecipe",
   "_pathid": 60383,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -987,7 +945,6 @@
   "_name": "GoldPotionLv1",
   "_pathid": 60384,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -1016,7 +973,6 @@
   "_name": "MovementPotiontLv1",
   "_pathid": 60385,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -1038,7 +994,6 @@
   "_name": "StormheartPotionRecipe",
   "_pathid": 60386,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -1067,7 +1022,6 @@
   "_name": "WyrmwardPotionRecipe",
   "_pathid": 60387,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -1096,7 +1050,6 @@
   "_name": "UpgradeRecipeCommon",
   "_pathid": 60388,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -1115,7 +1068,6 @@
   "_name": "UpgradeRecipeDivine",
   "_pathid": 60389,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -1148,7 +1100,6 @@
   "_name": "UpgradeRecipeLegendary",
   "_pathid": 60390,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -1181,7 +1132,6 @@
   "_name": "UpgradeRecipeRare",
   "_pathid": 60391,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {
@@ -1207,7 +1157,6 @@
   "_name": "UpgradeRecipeSpecial",
   "_pathid": 60392,
   "_file": "sharedassets0.assets",
-  "_trailing_bytes": 3,
   "Ingredients": [
    {
     "Item": {

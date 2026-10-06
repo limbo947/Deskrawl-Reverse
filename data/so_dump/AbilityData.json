@@ -62,7 +62,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Enemy Basic Attack",
   "Icon": null,
   "Tags": [
@@ -340,7 +339,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Fire Meteor",
   "Icon": {
    "fileID": 2,
@@ -602,7 +600,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Fire Ball",
   "Icon": {
    "fileID": 2,
@@ -850,7 +847,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Soul Impact",
   "Icon": {
    "fileID": 0,
@@ -1168,7 +1164,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Venom Burst",
   "Icon": null,
   "Tags": [
@@ -1361,7 +1356,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Flame Armor",
   "Icon": {
    "fileID": 2,
@@ -1559,7 +1553,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Burning Breath",
   "Icon": {
    "fileID": 2,
@@ -1752,7 +1745,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Enemy Basic Attack",
   "Icon": null,
   "Tags": [
@@ -2170,7 +2162,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Beach Serpent Spit",
   "Icon": null,
   "Tags": [
@@ -2362,7 +2353,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Squid Explode on death",
   "Icon": null,
   "Tags": [
@@ -2609,7 +2599,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Turtle Boss Spit",
   "Icon": null,
   "Tags": [
@@ -2860,7 +2849,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Caustic Spew",
   "Icon": null,
   "Tags": [
@@ -3050,7 +3038,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Everliving Blood",
   "Icon": null,
   "Tags": [
@@ -3308,7 +3295,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Reaping Strike",
   "Icon": null,
   "Tags": [
@@ -3512,7 +3498,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Storm Call",
   "Icon": null,
   "Tags": [
@@ -3703,7 +3688,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Carrion Burst",
   "Icon": null,
   "Tags": [
@@ -3920,7 +3904,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Dark Communion",
   "Icon": {
    "fileID": 0,
@@ -4172,7 +4155,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Spear Throw",
   "Icon": null,
   "Tags": [
@@ -4421,7 +4403,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Fire Ball",
   "Icon": null,
   "Tags": [
@@ -4613,7 +4594,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Enemy Basic Attack",
   "Icon": null,
   "Tags": [
@@ -4811,7 +4791,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Enemy Basic Attack Frost",
   "Icon": null,
   "Tags": [
@@ -5006,7 +4985,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Enemy Basic Attack",
   "Icon": null,
   "Tags": [
@@ -5216,7 +5194,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Enemy Heal",
   "Icon": {
    "fileID": 0,
@@ -5414,7 +5391,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Burning Breath",
   "Icon": {
    "fileID": 0,
@@ -5607,7 +5583,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Bloodmoon Howl",
   "Icon": {
    "fileID": 0,
@@ -5862,7 +5837,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Shoot Arrow",
   "Icon": null,
   "Tags": [
@@ -6114,7 +6088,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Arcane Ball",
   "Icon": null,
   "Tags": [
@@ -6366,7 +6339,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Fire Ball",
   "Icon": null,
   "Tags": [
@@ -6665,7 +6637,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Fire Ball",
   "Icon": null,
   "Tags": [
@@ -6855,7 +6826,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Blood Frenzy",
   "Icon": {
    "fileID": 0,
@@ -7113,7 +7083,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Fire Ball",
   "Icon": null,
   "Tags": [
@@ -7357,7 +7326,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Poison Sting",
   "Icon": null,
   "Tags": [
@@ -7607,7 +7575,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Enemy Basic Attack",
   "Icon": null,
   "Tags": [
@@ -7862,7 +7829,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Earth Spike",
   "Icon": null,
   "Tags": [
@@ -8051,7 +8017,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Dash",
   "Icon": {
    "fileID": 0,
@@ -8341,7 +8306,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Earth Spikes",
   "Icon": {
    "fileID": 0,
@@ -8599,7 +8563,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Boulder Throw",
   "Icon": null,
   "Tags": [
@@ -8843,7 +8806,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Enemy Basic Attack",
   "Icon": null,
   "Tags": [
@@ -9147,7 +9109,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Snowhill dragon Ice Bolt",
   "Icon": null,
   "Tags": [
@@ -9342,7 +9303,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Enemy Basic Attack",
   "Icon": null,
   "Tags": [
@@ -9592,7 +9552,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Charge",
   "Icon": {
    "fileID": 0,
@@ -9839,7 +9798,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "lightning attack",
   "Icon": null,
   "Tags": [
@@ -10040,7 +9998,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "lightning attack",
   "Icon": null,
   "Tags": [
@@ -10238,7 +10195,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "snow whelp spit",
   "Icon": null,
   "Tags": [
@@ -10496,7 +10452,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Poison Spit",
   "Icon": null,
   "Tags": [
@@ -10774,7 +10729,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Infernal Ray",
   "Icon": null,
   "Tags": [
@@ -11056,7 +11010,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Skyfire Ray",
   "Icon": null,
   "Tags": [
@@ -11255,7 +11208,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Wing Slam",
   "Icon": null,
   "Tags": [
@@ -11508,7 +11460,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Molten Spit",
   "Icon": null,
   "Tags": [
@@ -11829,7 +11780,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Magma Burst",
   "Icon": null,
   "Tags": [
@@ -12136,7 +12086,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Poison Spit",
   "Icon": null,
   "Tags": [
@@ -12434,7 +12383,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Poison Shot",
   "Icon": {
    "fileID": 0,
@@ -12696,7 +12644,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Arcane Bomb",
   "Icon": {
    "fileID": 0,
@@ -12979,7 +12926,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Knife Barrage",
   "Icon": {
    "fileID": 0,
@@ -13265,7 +13211,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "hunter basic attack4",
   "Icon": {
    "fileID": 0,
@@ -13527,7 +13472,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Steady Shot",
   "Icon": {
    "fileID": 0,
@@ -13732,7 +13676,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Multishot",
   "Icon": {
    "fileID": 0,
@@ -13994,7 +13937,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Rapid Fire",
   "Icon": {
    "fileID": 0,
@@ -14302,7 +14244,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "hunter heavy attack 4",
   "Icon": {
    "fileID": 0,
@@ -14655,7 +14596,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Poison Trap",
   "Icon": {
    "fileID": 0,
@@ -14945,7 +14885,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Shockwave",
   "Icon": {
    "fileID": 0,
@@ -15304,7 +15243,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Frost Trap",
   "Icon": {
    "fileID": 0,
@@ -15543,7 +15481,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Rain of Arrows",
   "Icon": {
    "fileID": 0,
@@ -15737,7 +15674,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "hunter special 5",
   "Icon": {
    "fileID": 0,
@@ -16036,7 +15972,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "hunter special 6",
   "Icon": {
    "fileID": 0,
@@ -16319,7 +16254,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Monk Basic Attack 1",
   "Icon": {
    "fileID": 0,
@@ -16578,7 +16512,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Monk Basic Attack 2",
   "Icon": {
    "fileID": 0,
@@ -16903,7 +16836,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Monk Basic Attack 3",
   "Icon": {
    "fileID": 0,
@@ -17378,7 +17310,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Chi Bolt",
   "Icon": {
    "fileID": 0,
@@ -17680,7 +17611,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Monk Heavy Attack 1",
   "Icon": {
    "fileID": 0,
@@ -17888,7 +17818,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Monk Heavy Attack 2",
   "Icon": {
    "fileID": 0,
@@ -18151,7 +18080,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Monk Heavy Attack 3",
   "Icon": {
    "fileID": 0,
@@ -18394,7 +18322,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Golden Palms",
   "Icon": {
    "fileID": 0,
@@ -18661,7 +18588,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Monk Special 1",
   "Icon": {
    "fileID": 0,
@@ -18855,7 +18781,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Monk Special 2",
   "Icon": {
    "fileID": 0,
@@ -19161,7 +19086,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Charge",
   "Icon": {
    "fileID": 0,
@@ -19376,7 +19300,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Spirit Twin",
   "Icon": {
    "fileID": 0,
@@ -19571,7 +19494,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Wind Steps",
   "Icon": {
    "fileID": 0,
@@ -19856,7 +19778,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Divine Thunder",
   "Icon": {
    "fileID": 0,
@@ -20119,7 +20040,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Fire Ball",
   "Icon": {
    "fileID": 0,
@@ -20378,7 +20298,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Ice Shards",
   "Icon": {
    "fileID": 0,
@@ -20580,7 +20499,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Lightning Attack",
   "Icon": {
    "fileID": 0,
@@ -20836,7 +20754,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Flame Lightning",
   "Icon": {
    "fileID": 0,
@@ -21091,7 +21008,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Ice Nova",
   "Icon": {
    "fileID": 0,
@@ -21311,7 +21227,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Fire Elemental",
   "Icon": {
    "fileID": 0,
@@ -21502,7 +21417,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Ice Block",
   "Icon": {
    "fileID": 0,
@@ -21784,7 +21698,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Fire Meteor",
   "Icon": {
    "fileID": 0,
@@ -21978,7 +21891,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Flame Aura",
   "Icon": {
    "fileID": 0,
@@ -22275,7 +22187,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Lightning Cloud",
   "Icon": {
    "fileID": 0,
@@ -22523,7 +22434,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Flame Breathe",
   "Icon": {
    "fileID": 0,
@@ -22814,7 +22724,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Ice Meteor",
   "Icon": {
    "fileID": 0,
@@ -23040,7 +22949,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Lightning Storm",
   "Icon": {
    "fileID": 0,
@@ -23270,7 +23178,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "mage strong attack 4",
   "Icon": {
    "fileID": 0,
@@ -23518,7 +23425,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Valiant Strike",
   "Icon": {
    "fileID": 0,
@@ -23728,7 +23634,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Cleave",
   "Icon": {
    "fileID": 0,
@@ -23982,7 +23887,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Bloodblade",
   "Icon": {
    "fileID": 0,
@@ -24237,7 +24141,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Steady Blow",
   "Icon": {
    "fileID": 0,
@@ -24447,7 +24350,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Spreading Flame",
   "Icon": {
    "fileID": 0,
@@ -24647,7 +24549,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Flame Strike",
   "Icon": {
    "fileID": 0,
@@ -24906,7 +24807,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Half Moon Slash",
   "Icon": {
    "fileID": 0,
@@ -25112,7 +25012,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Whirlwind",
   "Icon": {
    "fileID": 0,
@@ -25396,7 +25295,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Rending Onslaught",
   "Icon": {
    "fileID": 0,
@@ -25593,7 +25491,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Rage Shield",
   "Icon": {
    "fileID": 0,
@@ -25787,7 +25684,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Rage Shout",
   "Icon": {
    "fileID": 0,
@@ -26363,7 +26259,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Earthstrike",
   "Icon": {
    "fileID": 0,
@@ -26564,7 +26459,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Iron Thorn",
   "Icon": {
    "fileID": 0,
@@ -26832,7 +26726,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Molten Might",
   "Icon": {
    "fileID": 0,
@@ -27033,7 +26926,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Turtle slave Spit",
   "Icon": {
    "fileID": 0,
@@ -27229,7 +27121,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Power of Redrock Lord",
   "Icon": {
    "fileID": 0,
@@ -27445,7 +27336,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Recover",
   "Icon": {
    "fileID": 0,
@@ -27638,7 +27528,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Ashen Wrath",
   "Icon": {
    "fileID": 0,
@@ -27925,7 +27814,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Earth Spikes",
   "Icon": {
    "fileID": 0,
@@ -28232,7 +28120,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Ember Breath",
   "Icon": {
    "fileID": 0,
@@ -28490,7 +28377,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Glacial Shard",
   "Icon": {
    "fileID": 0,
@@ -28779,7 +28665,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Club Smash",
   "Icon": {
    "fileID": 0,
@@ -28981,7 +28866,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Tailwind",
   "Icon": {
    "fileID": 0,
@@ -29174,7 +29058,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Capacitor Shell",
   "Icon": {
    "fileID": 0,
@@ -29481,7 +29364,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Poison Sting",
   "Icon": {
    "fileID": 0,
@@ -29709,7 +29591,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Soul Arc",
   "Icon": {
    "fileID": 0,
@@ -29933,7 +29814,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Mana Injection",
   "Icon": {
    "fileID": 0,
@@ -30126,7 +30006,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Mana Monsoon",
   "Icon": {
    "fileID": 0,
@@ -30319,7 +30198,6 @@
     }
    ]
   },
-  "_trailing_bytes": 3,
   "AbilityName": "Bloodmoon Howl",
   "Icon": {
    "fileID": 0,

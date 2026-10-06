@@ -260,6 +260,9 @@ def decode_managed_section(dec, r, end):
             [payload = serialised fields of typeName]
 
     Type names are stored in plaintext, so the concrete managed type is exact.
+    Note: the 8-byte header [A][N] is also written when N == 0 (SR list empty),
+    so this section must be attempted even when no SR element was seen in the
+    main stream.  The object's tail is zero-padded to 4-byte alignment afterwards.
     """
     r.align(4)
     a = r.i32()
@@ -294,20 +297,23 @@ def decode_object_ex(raw, cls):
     name, off = read_header(raw)
     r = Reader(raw, off)
     obj = {}
-    has_sr = False
     for f in serialized_fields(cls):
         if any('SerializeReference' in a for a in f['attrs']):
-            v = decode_sr(dec, f, r)
-            obj[f['name']] = v
-            if v:
-                has_sr = True
+            obj[f['name']] = decode_sr(dec, f, r)
         else:
             obj[f['name']] = decode_value(dec, f['type'], r, 0)
     refs = None
-    if has_sr and r.o < len(raw):
+    if r.o < len(raw):
+        # 托管段即使为空（N=0）也会写出 8 字节头；解析成功且尾部只剩 ≤3 字节
+        # 零填充（Unity 4 字节对齐）才算命中，否则回退（防止把别类尾部数据误读）。
+        save = r.o
         try:
-            save = r.o
-            refs = decode_managed_section(dec, r, len(raw))
+            cand = decode_managed_section(dec, r, len(raw))
+            tail = raw[r.o:]
+            if len(tail) <= 3 and not any(tail):
+                refs = cand
+            else:
+                r.o = save
         except Exception:
             r.o = save
             refs = None

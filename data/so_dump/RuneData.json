@@ -3,7 +3,6 @@
   "_name": "HunterSetRune1_1",
   "_pathid": 5041,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 902
@@ -65,7 +64,6 @@
   "_name": "HunterSetRune1_2",
   "_pathid": 5042,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 881
@@ -127,7 +125,6 @@
   "_name": "HunterSetRune1_3",
   "_pathid": 5043,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 1013
@@ -202,7 +199,6 @@
   "_name": "HunterSetRune1_4",
   "_pathid": 5044,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 974
@@ -277,7 +273,6 @@
   "_name": "HunterSetRune1_5",
   "_pathid": 5045,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 794
@@ -352,7 +347,6 @@
   "_name": "HunterSetRune1_6",
   "_pathid": 5046,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 698
@@ -427,7 +421,6 @@
   "_name": "HunterSetRune2_1",
   "_pathid": 5047,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 795
@@ -489,7 +482,6 @@
   "_name": "HunterSetRune2_2",
   "_pathid": 5048,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 980
@@ -564,7 +556,6 @@
   "_name": "HunterSetRune2_3",
   "_pathid": 5049,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 936
@@ -639,7 +630,6 @@
   "_name": "HunterSetRune2_4",
   "_pathid": 5050,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 880
@@ -714,7 +704,6 @@
   "_name": "HunterSetRune2_5",
   "_pathid": 5051,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 967
@@ -789,7 +778,6 @@
   "_name": "HunterSetRune2_6",
   "_pathid": 5052,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 807
@@ -864,7 +852,6 @@
   "_name": "HunterSetRune3_1",
   "_pathid": 5053,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 811
@@ -926,7 +913,6 @@
   "_name": "HunterSetRune3_2",
   "_pathid": 5054,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 892
@@ -988,7 +974,6 @@
   "_name": "HunterSetRune3_3",
   "_pathid": 5055,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 957
@@ -1063,7 +1048,6 @@
   "_name": "HunterSetRune3_4",
   "_pathid": 5056,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 716
@@ -1138,7 +1122,6 @@
   "_name": "HunterSetRune3_5",
   "_pathid": 5057,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 686
@@ -1213,7 +1196,6 @@
   "_name": "HunterSetRune3_6",
   "_pathid": 5058,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 925
@@ -1288,7 +1270,6 @@
   "_name": "LegendaryRune_HunterBasicAttack1",
   "_pathid": 5059,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 816
@@ -1370,7 +1351,6 @@
   "_name": "LegendaryRune_HunterBasicAttack2",
   "_pathid": 5060,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 948
@@ -1452,7 +1432,6 @@
   "_name": "LegendaryRune_HunterBasicAttack3",
   "_pathid": 5061,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 777
@@ -1534,7 +1513,6 @@
   "_name": "LegendaryRune_HunterHeavyAttack1",
   "_pathid": 5062,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 883
@@ -1616,7 +1594,6 @@
   "_name": "LegendaryRune_HunterHeavyAttack2",
   "_pathid": 5063,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 739
@@ -1698,7 +1675,6 @@
   "_name": "LegendaryRune_HunterHeavyAttack3",
   "_pathid": 5064,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 734
@@ -1780,7 +1756,6 @@
   "_name": "LegendaryRune_HunterSpecial1",
   "_pathid": 5065,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 743
@@ -1862,7 +1837,6 @@
   "_name": "LegendaryRune_HunterSpecial2",
   "_pathid": 5066,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 725
@@ -1944,7 +1918,6 @@
   "_name": "LegendaryRune_MonkBasicAttack1",
   "_pathid": 5067,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 733
@@ -2026,7 +1999,6 @@
   "_name": "LegendaryRune_MonkBasicAttack2",
   "_pathid": 5068,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 1010
@@ -2108,7 +2080,6 @@
   "_name": "LegendaryRune_MonkBasicAttack3",
   "_pathid": 5069,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 887
@@ -2190,7 +2161,6 @@
   "_name": "LegendaryRune_MonkHeavyAttack1",
   "_pathid": 5070,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 963
@@ -2272,7 +2242,6 @@
   "_name": "LegendaryRune_MonkHeavyAttack2",
   "_pathid": 5071,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 909
@@ -2354,7 +2323,6 @@
   "_name": "LegendaryRune_MonkHeavyAttack3",
   "_pathid": 5072,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 912
@@ -2436,7 +2404,6 @@
   "_name": "LegendaryRune_MonkSpecial1",
   "_pathid": 5073,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 956
@@ -2518,7 +2485,6 @@
   "_name": "LegendaryRune_MonkSpecial2",
   "_pathid": 5074,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 1001
@@ -2600,7 +2566,6 @@
   "_name": "LegendaryRune_SorcererBasicAttack1",
   "_pathid": 5075,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 937
@@ -2682,7 +2647,6 @@
   "_name": "LegendaryRune_SorcererBasicAttack2",
   "_pathid": 5076,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 931
@@ -2764,7 +2728,6 @@
   "_name": "LegendaryRune_SorcererBasicAttack3",
   "_pathid": 5077,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 924
@@ -2846,7 +2809,6 @@
   "_name": "LegendaryRune_SorcererSpecial1",
   "_pathid": 5078,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 801
@@ -2928,7 +2890,6 @@
   "_name": "LegendaryRune_SorcererSpecial2",
   "_pathid": 5079,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 940
@@ -3010,7 +2971,6 @@
   "_name": "LegendaryRune_SorcererStrongAttack1",
   "_pathid": 5080,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 802
@@ -3092,7 +3052,6 @@
   "_name": "LegendaryRune_SorcererStrongAttack2",
   "_pathid": 5081,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 706
@@ -3174,7 +3133,6 @@
   "_name": "LegendaryRune_SorcererStrongAttack3",
   "_pathid": 5082,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 833
@@ -3256,7 +3214,6 @@
   "_name": "LegendaryRune_WarriorBasicAttack",
   "_pathid": 5083,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 736
@@ -3338,7 +3295,6 @@
   "_name": "LegendaryRune_WarriorBasicAttack2",
   "_pathid": 5084,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 1003
@@ -3420,7 +3376,6 @@
   "_name": "LegendaryRune_WarriorBasicAttack3",
   "_pathid": 5085,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 780
@@ -3502,7 +3457,6 @@
   "_name": "LegendaryRune_WarriorHeavyAttack1",
   "_pathid": 5086,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 772
@@ -3584,7 +3538,6 @@
   "_name": "LegendaryRune_WarriorHeavyAttack2",
   "_pathid": 5087,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 1016
@@ -3666,7 +3619,6 @@
   "_name": "LegendaryRune_WarriorHeavyAttack3",
   "_pathid": 5088,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 1024
@@ -3748,7 +3700,6 @@
   "_name": "LegendaryRune_WarriorRageShield",
   "_pathid": 5089,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 737
@@ -3830,7 +3781,6 @@
   "_name": "LegendaryRune_WarriorRageShout",
   "_pathid": 5090,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 939
@@ -3912,7 +3862,6 @@
   "_name": "MonkSetRune1_1",
   "_pathid": 5091,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 769
@@ -3974,7 +3923,6 @@
   "_name": "MonkSetRune1_2",
   "_pathid": 5092,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 1029
@@ -4059,7 +4007,6 @@
   "_name": "MonkSetRune1_3",
   "_pathid": 5093,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 935
@@ -4134,7 +4081,6 @@
   "_name": "MonkSetRune1_4",
   "_pathid": 5094,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 884
@@ -4209,7 +4155,6 @@
   "_name": "MonkSetRune1_5",
   "_pathid": 5095,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 697
@@ -4284,7 +4229,6 @@
   "_name": "MonkSetRune1_6",
   "_pathid": 5096,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 1023
@@ -4359,7 +4303,6 @@
   "_name": "MonkSetRune2_1",
   "_pathid": 5097,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 870
@@ -4421,7 +4364,6 @@
   "_name": "MonkSetRune2_2",
   "_pathid": 5098,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 758
@@ -4506,7 +4448,6 @@
   "_name": "MonkSetRune2_3",
   "_pathid": 5099,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 726
@@ -4581,7 +4522,6 @@
   "_name": "MonkSetRune2_4",
   "_pathid": 5100,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 897
@@ -4656,7 +4596,6 @@
   "_name": "MonkSetRune2_5",
   "_pathid": 5101,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 718
@@ -4731,7 +4670,6 @@
   "_name": "MonkSetRune2_6",
   "_pathid": 5102,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 767
@@ -4806,7 +4744,6 @@
   "_name": "MonkSetRune3_1",
   "_pathid": 5103,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 954
@@ -4868,7 +4805,6 @@
   "_name": "MonkSetRune3_2",
   "_pathid": 5104,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 708
@@ -4953,7 +4889,6 @@
   "_name": "MonkSetRune3_3",
   "_pathid": 5105,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 933
@@ -5028,7 +4963,6 @@
   "_name": "MonkSetRune3_4",
   "_pathid": 5106,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 942
@@ -5103,7 +5037,6 @@
   "_name": "MonkSetRune3_5",
   "_pathid": 5107,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 775
@@ -5178,7 +5111,6 @@
   "_name": "MonkSetRune3_6",
   "_pathid": 5108,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 849
@@ -5253,7 +5185,6 @@
   "_name": "RareRune_HunterBasicAttack1",
   "_pathid": 5109,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 816
@@ -5335,7 +5266,6 @@
   "_name": "RareRune_HunterBasicAttack2",
   "_pathid": 5110,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 948
@@ -5417,7 +5347,6 @@
   "_name": "RareRune_HunterBasicAttack3",
   "_pathid": 5111,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 777
@@ -5499,7 +5428,6 @@
   "_name": "RareRune_HunterHeavyAttack1",
   "_pathid": 5112,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 883
@@ -5581,7 +5509,6 @@
   "_name": "RareRune_HunterHeavyAttack2",
   "_pathid": 5113,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 739
@@ -5663,7 +5590,6 @@
   "_name": "RareRune_HunterHeavyAttack3",
   "_pathid": 5114,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 734
@@ -5745,7 +5671,6 @@
   "_name": "RareRune_HunterSpecial1",
   "_pathid": 5115,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 743
@@ -5827,7 +5752,6 @@
   "_name": "RareRune_HunterSpecial2",
   "_pathid": 5116,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 725
@@ -5909,7 +5833,6 @@
   "_name": "RareRune_MonkBasicAttack1",
   "_pathid": 5117,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 733
@@ -5991,7 +5914,6 @@
   "_name": "RareRune_MonkBasicAttack2",
   "_pathid": 5118,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 1010
@@ -6073,7 +5995,6 @@
   "_name": "RareRune_MonkBasicAttack3",
   "_pathid": 5119,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 887
@@ -6155,7 +6076,6 @@
   "_name": "RareRune_MonkHeavyAttack1",
   "_pathid": 5120,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 963
@@ -6237,7 +6157,6 @@
   "_name": "RareRune_MonkHeavyAttack2",
   "_pathid": 5121,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 909
@@ -6319,7 +6238,6 @@
   "_name": "RareRune_MonkHeavyAttack3",
   "_pathid": 5122,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 912
@@ -6401,7 +6319,6 @@
   "_name": "RareRune_MonkSpecial1",
   "_pathid": 5123,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 956
@@ -6483,7 +6400,6 @@
   "_name": "RareRune_MonkSpecial2",
   "_pathid": 5124,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 1001
@@ -6565,7 +6481,6 @@
   "_name": "RareRune_SorcererBasicAttack1",
   "_pathid": 5125,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 937
@@ -6647,7 +6562,6 @@
   "_name": "RareRune_SorcererBasicAttack2",
   "_pathid": 5126,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 931
@@ -6729,7 +6643,6 @@
   "_name": "RareRune_SorcererBasicAttack3",
   "_pathid": 5127,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 924
@@ -6811,7 +6724,6 @@
   "_name": "RareRune_SorcererSpecial1",
   "_pathid": 5128,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 801
@@ -6893,7 +6805,6 @@
   "_name": "RareRune_SorcererSpecial2",
   "_pathid": 5129,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 940
@@ -6975,7 +6886,6 @@
   "_name": "RareRune_SorcererStrongAttack1",
   "_pathid": 5130,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 802
@@ -7057,7 +6967,6 @@
   "_name": "RareRune_SorcererStrongAttack2",
   "_pathid": 5131,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 706
@@ -7139,7 +7048,6 @@
   "_name": "RareRune_SorcererStrongAttack3",
   "_pathid": 5132,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 833
@@ -7221,7 +7129,6 @@
   "_name": "RareRune_WarriorBasicAttack",
   "_pathid": 5133,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 736
@@ -7303,7 +7210,6 @@
   "_name": "RareRune_WarriorBasicAttack2",
   "_pathid": 5134,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 1003
@@ -7385,7 +7291,6 @@
   "_name": "RareRune_WarriorBasicAttack3",
   "_pathid": 5135,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 780
@@ -7467,7 +7372,6 @@
   "_name": "RareRune_WarriorHeavyAttack1",
   "_pathid": 5136,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 772
@@ -7549,7 +7453,6 @@
   "_name": "RareRune_WarriorHeavyAttack2",
   "_pathid": 5137,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 1016
@@ -7631,7 +7534,6 @@
   "_name": "RareRune_WarriorHeavyAttack3",
   "_pathid": 5138,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 1024
@@ -7713,7 +7615,6 @@
   "_name": "RareRune_WarriorRageShield",
   "_pathid": 5139,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 737
@@ -7795,7 +7696,6 @@
   "_name": "RareRune_WarriorRageShout",
   "_pathid": 5140,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 939
@@ -7877,7 +7777,6 @@
   "_name": "SorcererSetRune1_1",
   "_pathid": 5186,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 1026
@@ -7939,7 +7838,6 @@
   "_name": "SorcererSetRune1_2",
   "_pathid": 5187,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 848
@@ -8001,7 +7899,6 @@
   "_name": "SorcererSetRune1_3",
   "_pathid": 5188,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 999
@@ -8076,7 +7973,6 @@
   "_name": "SorcererSetRune1_4",
   "_pathid": 5189,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 993
@@ -8151,7 +8047,6 @@
   "_name": "SorcererSetRune1_5",
   "_pathid": 5190,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 756
@@ -8226,7 +8121,6 @@
   "_name": "SorcererSetRune1_6",
   "_pathid": 5191,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 800
@@ -8301,7 +8195,6 @@
   "_name": "SorcererSetRune2_1",
   "_pathid": 5192,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 919
@@ -8363,7 +8256,6 @@
   "_name": "SorcererSetRune2_2",
   "_pathid": 5193,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 1017
@@ -8425,7 +8317,6 @@
   "_name": "SorcererSetRune2_3",
   "_pathid": 5194,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 982
@@ -8500,7 +8391,6 @@
   "_name": "SorcererSetRune2_4",
   "_pathid": 5195,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 1031
@@ -8575,7 +8465,6 @@
   "_name": "SorcererSetRune2_5",
   "_pathid": 5196,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 691
@@ -8650,7 +8539,6 @@
   "_name": "SorcererSetRune2_6",
   "_pathid": 5197,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 765
@@ -8725,7 +8613,6 @@
   "_name": "SorcererSetRune3_1",
   "_pathid": 5198,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 760
@@ -8787,7 +8674,6 @@
   "_name": "SorcererSetRune3_2",
   "_pathid": 5199,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 817
@@ -8849,7 +8735,6 @@
   "_name": "SorcererSetRune3_3",
   "_pathid": 5200,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 717
@@ -8924,7 +8809,6 @@
   "_name": "SorcererSetRune3_4",
   "_pathid": 5201,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 819
@@ -8999,7 +8883,6 @@
   "_name": "SorcererSetRune3_5",
   "_pathid": 5202,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 846
@@ -9074,7 +8957,6 @@
   "_name": "SorcererSetRune3_6",
   "_pathid": 5203,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 961
@@ -9149,7 +9031,6 @@
   "_name": "UncommonRune_DamageVsBleeding",
   "_pathid": 5204,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 841
@@ -9221,7 +9102,6 @@
   "_name": "UncommonRune_DamageVsDistant",
   "_pathid": 5205,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 873
@@ -9293,7 +9173,6 @@
   "_name": "UncommonRune_DamageVsElite",
   "_pathid": 5206,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 845
@@ -9365,7 +9244,6 @@
   "_name": "UncommonRune_DamageVsHealthy",
   "_pathid": 5207,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 1006
@@ -9437,7 +9315,6 @@
   "_name": "UncommonRune_DamageVsInjured",
   "_pathid": 5208,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 992
@@ -9509,7 +9386,6 @@
   "_name": "UncommonRune_DamageVsPoisoned",
   "_pathid": 5209,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 864
@@ -9581,7 +9457,6 @@
   "_name": "UncommonRune_DamageVsSlowed",
   "_pathid": 5210,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 856
@@ -9653,7 +9528,6 @@
   "_name": "UncommonRune_DamageVsStunned",
   "_pathid": 5211,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 752
@@ -9725,7 +9599,6 @@
   "_name": "UncommonRune_VulnerableDamage",
   "_pathid": 5212,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 889
@@ -9797,7 +9670,6 @@
   "_name": "WarriorSetRune1_1",
   "_pathid": 5213,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 977
@@ -9859,7 +9731,6 @@
   "_name": "WarriorSetRune1_2",
   "_pathid": 5214,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 908
@@ -9956,7 +9827,6 @@
   "_name": "WarriorSetRune1_3",
   "_pathid": 5215,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 766
@@ -10041,7 +9911,6 @@
   "_name": "WarriorSetRune1_4",
   "_pathid": 5216,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 975
@@ -10138,7 +10007,6 @@
   "_name": "WarriorSetRune1_5",
   "_pathid": 5217,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 851
@@ -10213,7 +10081,6 @@
   "_name": "WarriorSetRune1_6",
   "_pathid": 5218,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 997
@@ -10288,7 +10155,6 @@
   "_name": "WarriorSetRune2_1",
   "_pathid": 5219,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 1014
@@ -10350,7 +10216,6 @@
   "_name": "WarriorSetRune2_2",
   "_pathid": 5220,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 1011
@@ -10435,7 +10300,6 @@
   "_name": "WarriorSetRune2_3",
   "_pathid": 5221,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 805
@@ -10510,7 +10374,6 @@
   "_name": "WarriorSetRune2_4",
   "_pathid": 5222,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 1025
@@ -10585,7 +10448,6 @@
   "_name": "WarriorSetRune2_5",
   "_pathid": 5223,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 890
@@ -10660,7 +10522,6 @@
   "_name": "WarriorSetRune2_6",
   "_pathid": 5224,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 986
@@ -10735,7 +10596,6 @@
   "_name": "WarriorSetRune3_1",
   "_pathid": 5225,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 852
@@ -10797,7 +10657,6 @@
   "_name": "WarriorSetRune3_2",
   "_pathid": 5226,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 790
@@ -10882,7 +10741,6 @@
   "_name": "WarriorSetRune3_3",
   "_pathid": 5227,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 789
@@ -10957,7 +10815,6 @@
   "_name": "WarriorSetRune3_4",
   "_pathid": 5228,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 858
@@ -11032,7 +10889,6 @@
   "_name": "WarriorSetRune3_5",
   "_pathid": 5229,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 779
@@ -11107,7 +10963,6 @@
   "_name": "WarriorSetRune3_6",
   "_pathid": 5230,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 829
@@ -11182,7 +11037,6 @@
   "_name": "WarriorSetRune4_1",
   "_pathid": 5231,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 806
@@ -11244,7 +11098,6 @@
   "_name": "WarriorSetRune4_2",
   "_pathid": 5232,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 994
@@ -11329,7 +11182,6 @@
   "_name": "WarriorSetRune4_3",
   "_pathid": 5233,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 755
@@ -11404,7 +11256,6 @@
   "_name": "WarriorSetRune4_4",
   "_pathid": 5234,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 1027
@@ -11479,7 +11330,6 @@
   "_name": "WarriorSetRune4_5",
   "_pathid": 5235,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 709
@@ -11554,7 +11404,6 @@
   "_name": "WarriorSetRune4_6",
   "_pathid": 5236,
   "_file": "resources.assets",
-  "_trailing_bytes": 3,
   "Icon": {
    "fileID": 0,
    "pathID": 1007

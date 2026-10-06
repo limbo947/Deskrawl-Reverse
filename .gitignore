@@ -1,3 +1,28 @@
+# ---- Trae IDE ----
 .trae/
-.venv-gui/
+
+# ---- Python ----
 __pycache__/
+*.py[cod]
+*$py.class
+.venv/
+.venv-gui/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ---- 打包/构建产物 ----
+build/
+dist/
+*.egg-info/
+
+# ---- IDE / 编辑器 ----
+.idea/
+.vscode/
+*.swp
+
+# ---- 操作系统 ----
+Thumbs.db
+desktop.ini
+.DS_Store

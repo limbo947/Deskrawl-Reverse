@@ -1,0 +1,5095 @@
+[
+ {
+  "_name": "HunterTalent14",
+  "_pathid": 5264,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 923
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 0,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 5268
+   }
+  ]
+ },
+ {
+  "_name": "HunterTalent15",
+  "_pathid": 5265,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 704
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 0,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 5269
+   }
+  ]
+ },
+ {
+  "_name": "HunterTalent19",
+  "_pathid": 5266,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 970
+  },
+  "MaxPoints": 5,
+  "LevelRequirement": 0,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [
+   {
+    "Stat": 27,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1496042271,
+      "hiddenValue": 1114595952,
+      "cryptoKey": 2135013498,
+      "value": 0.04268840700387955,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1496042271,
+      "hiddenValue": 1263137366,
+      "cryptoKey": 1993449052,
+      "value": 0.07442481815814972,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value",
+     "Format": "0%",
+     "Suffix": "",
+     "Highlight": true
+    }
+   },
+   {
+    "Stat": 11,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1797618913,
+      "hiddenValue": 839635672,
+      "cryptoKey": 1926368216,
+      "value": 6.8077392578125,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1797618913,
+      "hiddenValue": 313270602,
+      "cryptoKey": 1377938506,
+      "value": 4.4234619140625,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "lifeOnHit",
+     "Format": "0.#",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ],
+  "Effects": []
+ },
+ {
+  "_name": "HunterTalent25",
+  "_pathid": 5267,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 695
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 0,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 5270
+   }
+  ]
+ },
+ {
+  "_name": "MonkTalent35",
+  "_pathid": 5273,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 2,
+   "pathID": 5760
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 100,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": []
+ },
+ {
+  "_name": "SorcererTalent13",
+  "_pathid": 5274,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 923
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 15,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 5271
+   }
+  ]
+ },
+ {
+  "_name": "SorcererTalent14",
+  "_pathid": 5275,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 704
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 15,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 5272
+   }
+  ]
+ },
+ {
+  "_name": "WarriorTalent19",
+  "_pathid": 5276,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 1018
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 40,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 5292
+   }
+  ]
+ },
+ {
+  "_name": "WarriorTalent50",
+  "_pathid": 5277,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 2,
+   "pathID": 5760
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 100,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": []
+ },
+ {
+  "_name": "WarriorTalent51",
+  "_pathid": 5278,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 2,
+   "pathID": 5760
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 100,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": []
+ },
+ {
+  "_name": "WarriorTalent52",
+  "_pathid": 5279,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 2,
+   "pathID": 5760
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 100,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": []
+ },
+ {
+  "_name": "WarriorTalent53",
+  "_pathid": 5280,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 2,
+   "pathID": 5760
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 100,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": []
+ },
+ {
+  "_name": "WarriorTalent54",
+  "_pathid": 5281,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 2,
+   "pathID": 5760
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 100,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": []
+ },
+ {
+  "_name": "WarriorTalent55",
+  "_pathid": 5282,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 2,
+   "pathID": 5760
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 100,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": []
+ },
+ {
+  "_name": "WarriorTalent56",
+  "_pathid": 5283,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 2,
+   "pathID": 5760
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 100,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": []
+ },
+ {
+  "_name": "WarriorTalent57",
+  "_pathid": 5284,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 2,
+   "pathID": 5760
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 100,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": []
+ },
+ {
+  "_name": "WarriorTalent58",
+  "_pathid": 5285,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 2,
+   "pathID": 5760
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 100,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": []
+ },
+ {
+  "_name": "WarriorTalent59",
+  "_pathid": 5286,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 2,
+   "pathID": 5760
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 100,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": []
+ },
+ {
+  "_name": "HunterTalent0",
+  "_pathid": 60552,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5919
+  },
+  "MaxPoints": 10,
+  "LevelRequirement": 0,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [
+   {
+    "Stat": 1,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1782053473,
+      "hiddenValue": 323441533,
+      "cryptoKey": 1408452477,
+      "value": 5.62744140625,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1782053473,
+      "hiddenValue": 2065461895,
+      "cryptoKey": 1003625607,
+      "value": 6.450927734375,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value",
+     "Format": "0.#",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ],
+  "Effects": []
+ },
+ {
+  "_name": "HunterTalent1",
+  "_pathid": 60553,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5636
+  },
+  "MaxPoints": 8,
+  "LevelRequirement": 0,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [
+   {
+    "Stat": 22,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 557103469,
+      "hiddenValue": 1885103393,
+      "cryptoKey": 1276157614,
+      "value": 0.012511148117482662,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 557103469,
+      "hiddenValue": 1262941183,
+      "cryptoKey": 2005304432,
+      "value": 0.023494509980082512,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value",
+     "Format": "0.#%",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ],
+  "Effects": []
+ },
+ {
+  "_name": "HunterTalent10",
+  "_pathid": 60554,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5420
+  },
+  "MaxPoints": 6,
+  "LevelRequirement": 20,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60617
+   }
+  ]
+ },
+ {
+  "_name": "HunterTalent11",
+  "_pathid": 60555,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5813
+  },
+  "MaxPoints": 8,
+  "LevelRequirement": 5,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60625
+   }
+  ]
+ },
+ {
+  "_name": "HunterTalent12",
+  "_pathid": 60556,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5293
+  },
+  "MaxPoints": 6,
+  "LevelRequirement": 20,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60628
+   }
+  ]
+ },
+ {
+  "_name": "HunterTalent13",
+  "_pathid": 60557,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5247
+  },
+  "MaxPoints": 10,
+  "LevelRequirement": 5,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [
+   {
+    "Stat": 28,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1594215147,
+      "hiddenValue": 1802391079,
+      "cryptoKey": 1443013354,
+      "value": 0.05784301832318306,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1594215147,
+      "hiddenValue": 1130735699,
+      "cryptoKey": 2128914846,
+      "value": 0.06299171596765518,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value1",
+     "Format": "0%",
+     "Suffix": "",
+     "Highlight": true
+    }
+   },
+   {
+    "Stat": 59,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1458579341,
+      "hiddenValue": 1801180928,
+      "cryptoKey": 1467255818,
+      "value": 0.010702857747673988,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1458579341,
+      "hiddenValue": 1792612646,
+      "cryptoKey": 1455033900,
+      "value": 0.013860473409295082,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value2",
+     "Format": "0%",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ],
+  "Effects": []
+ },
+ {
+  "_name": "HunterTalent16",
+  "_pathid": 60558,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5388
+  },
+  "MaxPoints": 5,
+  "LevelRequirement": 15,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60622
+   }
+  ]
+ },
+ {
+  "_name": "HunterTalent17",
+  "_pathid": 60559,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5301
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 60,
+  "Prerequisite": null,
+  "ExclusiveGroup": "Capstone60",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60627
+   }
+  ]
+ },
+ {
+  "_name": "HunterTalent18",
+  "_pathid": 60560,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5604
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 30,
+  "Prerequisite": null,
+  "ExclusiveGroup": "Capstone30",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60598
+   }
+  ]
+ },
+ {
+  "_name": "HunterTalent2",
+  "_pathid": 60561,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5865
+  },
+  "MaxPoints": 10,
+  "LevelRequirement": 0,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [
+   {
+    "Stat": 6,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1556752217,
+      "hiddenValue": 1208583384,
+      "cryptoKey": 1950926101,
+      "value": 0.011795473285019398,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1556752217,
+      "hiddenValue": 1432374828,
+      "cryptoKey": 1770171617,
+      "value": 0.0276960376650095,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value1",
+     "Format": "0%",
+     "Suffix": "",
+     "Highlight": true
+    }
+   },
+   {
+    "Stat": 3,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 170189967,
+      "hiddenValue": 1077159631,
+      "cryptoKey": 2133210319,
+      "value": 0.570587158203125,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 170189967,
+      "hiddenValue": 1077159631,
+      "cryptoKey": 2133210319,
+      "value": 0.570587158203125,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value2",
+     "Format": "0.#",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ],
+  "Effects": []
+ },
+ {
+  "_name": "HunterTalent20",
+  "_pathid": 60562,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5319
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 60,
+  "Prerequisite": null,
+  "ExclusiveGroup": "Capstone60",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60618
+   }
+  ]
+ },
+ {
+  "_name": "HunterTalent21",
+  "_pathid": 60563,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5341
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 10,
+  "Prerequisite": null,
+  "ExclusiveGroup": "Capstone10",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60624
+   }
+  ]
+ },
+ {
+  "_name": "HunterTalent22",
+  "_pathid": 60564,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5588
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 10,
+  "Prerequisite": null,
+  "ExclusiveGroup": "Capstone10",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60621
+   }
+  ]
+ },
+ {
+  "_name": "HunterTalent23",
+  "_pathid": 60565,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5690
+  },
+  "MaxPoints": 8,
+  "LevelRequirement": 15,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60619
+   }
+  ]
+ },
+ {
+  "_name": "HunterTalent24",
+  "_pathid": 60566,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5356
+  },
+  "MaxPoints": 6,
+  "LevelRequirement": 15,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60615
+   }
+  ]
+ },
+ {
+  "_name": "HunterTalent26",
+  "_pathid": 60567,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5520
+  },
+  "MaxPoints": 6,
+  "LevelRequirement": 20,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60611
+   }
+  ]
+ },
+ {
+  "_name": "HunterTalent27",
+  "_pathid": 60568,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5883
+  },
+  "MaxPoints": 6,
+  "LevelRequirement": 15,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60607
+   }
+  ]
+ },
+ {
+  "_name": "HunterTalent28",
+  "_pathid": 60569,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5746
+  },
+  "MaxPoints": 6,
+  "LevelRequirement": 40,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60604
+   }
+  ]
+ },
+ {
+  "_name": "HunterTalent29",
+  "_pathid": 60570,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5557
+  },
+  "MaxPoints": 8,
+  "LevelRequirement": 50,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60626
+   }
+  ]
+ },
+ {
+  "_name": "HunterTalent3",
+  "_pathid": 60571,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5807
+  },
+  "MaxPoints": 8,
+  "LevelRequirement": 0,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [
+   {
+    "Stat": 58,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": -649440399,
+      "hiddenValue": 50608468,
+      "cryptoKey": 1025547726,
+      "value": 0.16078415513038635,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": -649440399,
+      "hiddenValue": 1166706183,
+      "cryptoKey": 2074022813,
+      "value": 0.14607849717140198,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value",
+     "Format": "0%",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ],
+  "Effects": []
+ },
+ {
+  "_name": "HunterTalent30",
+  "_pathid": 60572,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5597
+  },
+  "MaxPoints": 6,
+  "LevelRequirement": 40,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60609
+   }
+  ]
+ },
+ {
+  "_name": "HunterTalent31",
+  "_pathid": 60573,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5801
+  },
+  "MaxPoints": 3,
+  "LevelRequirement": 50,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60610
+   }
+  ]
+ },
+ {
+  "_name": "HunterTalent32",
+  "_pathid": 60574,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5663
+  },
+  "MaxPoints": 6,
+  "LevelRequirement": 50,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60630
+   },
+   {
+    "fileID": 0,
+    "pathID": 60629
+   }
+  ]
+ },
+ {
+  "_name": "HunterTalent33",
+  "_pathid": 60575,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5290
+  },
+  "MaxPoints": 8,
+  "LevelRequirement": 20,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60623
+   }
+  ]
+ },
+ {
+  "_name": "HunterTalent34",
+  "_pathid": 60576,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5946
+  },
+  "MaxPoints": 8,
+  "LevelRequirement": 50,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60603
+   }
+  ]
+ },
+ {
+  "_name": "HunterTalent35",
+  "_pathid": 60577,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5901
+  },
+  "MaxPoints": 8,
+  "LevelRequirement": 15,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60620
+   }
+  ]
+ },
+ {
+  "_name": "HunterTalent36",
+  "_pathid": 60578,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5595
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 30,
+  "Prerequisite": null,
+  "ExclusiveGroup": "Capstone30",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60602
+   }
+  ]
+ },
+ {
+  "_name": "HunterTalent37",
+  "_pathid": 60579,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5603
+  },
+  "MaxPoints": 8,
+  "LevelRequirement": 40,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60612
+   },
+   {
+    "fileID": 0,
+    "pathID": 60613
+   }
+  ]
+ },
+ {
+  "_name": "HunterTalent38",
+  "_pathid": 60580,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5430
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 60,
+  "Prerequisite": null,
+  "ExclusiveGroup": "Capstone60",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60601
+   }
+  ]
+ },
+ {
+  "_name": "HunterTalent39",
+  "_pathid": 60581,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5846
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 60,
+  "Prerequisite": null,
+  "ExclusiveGroup": "Capstone60",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60597
+   },
+   {
+    "fileID": 0,
+    "pathID": 60593
+   },
+   {
+    "fileID": 0,
+    "pathID": 60594
+   },
+   {
+    "fileID": 0,
+    "pathID": 60595
+   },
+   {
+    "fileID": 0,
+    "pathID": 60596
+   }
+  ]
+ },
+ {
+  "_name": "HunterTalent4",
+  "_pathid": 60582,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5819
+  },
+  "MaxPoints": 6,
+  "LevelRequirement": 0,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [
+   {
+    "Stat": 57,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1496042271,
+      "hiddenValue": 1153079195,
+      "cryptoKey": 2041867665,
+      "value": 0.03490642458200455,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1496042271,
+      "hiddenValue": 1925878267,
+      "cryptoKey": 1337073137,
+      "value": 0.06068042665719986,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value",
+     "Format": "0%",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ],
+  "Effects": []
+ },
+ {
+  "_name": "HunterTalent40",
+  "_pathid": 60583,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5912
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 10,
+  "Prerequisite": null,
+  "ExclusiveGroup": "Capstone10",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60600
+   }
+  ]
+ },
+ {
+  "_name": "HunterTalent41",
+  "_pathid": 60584,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5458
+  },
+  "MaxPoints": 8,
+  "LevelRequirement": 50,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60599
+   }
+  ]
+ },
+ {
+  "_name": "HunterTalent42",
+  "_pathid": 60585,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5487
+  },
+  "MaxPoints": 5,
+  "LevelRequirement": 40,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60605
+   }
+  ]
+ },
+ {
+  "_name": "HunterTalent43",
+  "_pathid": 60586,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5222
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 30,
+  "Prerequisite": null,
+  "ExclusiveGroup": "Capstone30",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60592
+   }
+  ]
+ },
+ {
+  "_name": "HunterTalent5",
+  "_pathid": 60587,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5455
+  },
+  "MaxPoints": 6,
+  "LevelRequirement": 5,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60614
+   },
+   {
+    "fileID": 0,
+    "pathID": 60608
+   }
+  ]
+ },
+ {
+  "_name": "HunterTalent6",
+  "_pathid": 60588,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5556
+  },
+  "MaxPoints": 6,
+  "LevelRequirement": 5,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60606
+   }
+  ]
+ },
+ {
+  "_name": "HunterTalent7",
+  "_pathid": 60589,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5256
+  },
+  "MaxPoints": 8,
+  "LevelRequirement": 5,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [
+   {
+    "Stat": 46,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1475356959,
+      "hiddenValue": 1280842645,
+      "cryptoKey": 1907920799,
+      "value": 0.10965736210346222,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1475356959,
+      "hiddenValue": 1722905658,
+      "cryptoKey": 1540843056,
+      "value": 0.0561695471405983,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value1",
+     "Format": "0%",
+     "Suffix": "",
+     "Highlight": true
+    }
+   },
+   {
+    "Stat": 49,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1458579341,
+      "hiddenValue": 1801180928,
+      "cryptoKey": 1467255818,
+      "value": 0.010702857747673988,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1458579341,
+      "hiddenValue": 1792612646,
+      "cryptoKey": 1455033900,
+      "value": 0.013860473409295082,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value2",
+     "Format": "0%",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ],
+  "Effects": []
+ },
+ {
+  "_name": "HunterTalent8",
+  "_pathid": 60590,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5243
+  },
+  "MaxPoints": 8,
+  "LevelRequirement": 40,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [
+   {
+    "Stat": 60,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 573881087,
+      "hiddenValue": 1333012331,
+      "cryptoKey": 1918023396,
+      "value": 0.040666159242391586,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 573881087,
+      "hiddenValue": 1406909393,
+      "cryptoKey": 1859000670,
+      "value": 0.03653198108077049,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value",
+     "Format": "0%",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ],
+  "Effects": []
+ },
+ {
+  "_name": "HunterTalent9",
+  "_pathid": 60591,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5636
+  },
+  "MaxPoints": 8,
+  "LevelRequirement": 20,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60616
+   }
+  ]
+ },
+ {
+  "_name": "MonkTalent0",
+  "_pathid": 60667,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5355
+  },
+  "MaxPoints": 10,
+  "LevelRequirement": 0,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [
+   {
+    "Stat": 1,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1782053473,
+      "hiddenValue": 135097172,
+      "cryptoKey": 1221266772,
+      "value": 6.199951171875,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1782053473,
+      "hiddenValue": 150569958,
+      "cryptoKey": 1210317286,
+      "value": 6.827392578125,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value",
+     "Format": "0.#",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ],
+  "Effects": []
+ },
+ {
+  "_name": "MonkTalent1",
+  "_pathid": 60668,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5636
+  },
+  "MaxPoints": 8,
+  "LevelRequirement": 0,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [
+   {
+    "Stat": 22,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 557103469,
+      "hiddenValue": 1921729977,
+      "cryptoKey": 1311787318,
+      "value": 0.022833136841654778,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 557103469,
+      "hiddenValue": 1180135486,
+      "cryptoKey": 2047186353,
+      "value": 0.012872113846242428,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value",
+     "Format": "0.#%",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ],
+  "Effects": []
+ },
+ {
+  "_name": "MonkTalent10",
+  "_pathid": 60669,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5612
+  },
+  "MaxPoints": 8,
+  "LevelRequirement": 15,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60724
+   }
+  ]
+ },
+ {
+  "_name": "MonkTalent11",
+  "_pathid": 60670,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5214
+  },
+  "MaxPoints": 10,
+  "LevelRequirement": 5,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [
+   {
+    "Stat": 26,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1475356959,
+      "hiddenValue": 1457918459,
+      "cryptoKey": 1806840305,
+      "value": 0.051788367331027985,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1475356959,
+      "hiddenValue": 1233247387,
+      "cryptoKey": 1954502289,
+      "value": 0.1242867261171341,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value",
+     "Format": "0%",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ],
+  "Effects": []
+ },
+ {
+  "_name": "MonkTalent12",
+  "_pathid": 60671,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5743
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 10,
+  "Prerequisite": null,
+  "ExclusiveGroup": "Capstone10",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60736
+   }
+  ]
+ },
+ {
+  "_name": "MonkTalent13",
+  "_pathid": 60672,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5500
+  },
+  "MaxPoints": 8,
+  "LevelRequirement": 40,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60711
+   }
+  ]
+ },
+ {
+  "_name": "MonkTalent16",
+  "_pathid": 60673,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5771
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 10,
+  "Prerequisite": null,
+  "ExclusiveGroup": "Capstone10",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60725
+   }
+  ]
+ },
+ {
+  "_name": "MonkTalent17",
+  "_pathid": 60674,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5410
+  },
+  "MaxPoints": 5,
+  "LevelRequirement": 15,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60729
+   }
+  ]
+ },
+ {
+  "_name": "MonkTalent18",
+  "_pathid": 60675,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5734
+  },
+  "MaxPoints": 5,
+  "LevelRequirement": 50,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60739
+   }
+  ]
+ },
+ {
+  "_name": "MonkTalent2",
+  "_pathid": 60676,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5339
+  },
+  "MaxPoints": 5,
+  "LevelRequirement": 5,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [
+   {
+    "Stat": 57,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1594215147,
+      "hiddenValue": 1766860409,
+      "cryptoKey": 1416273076,
+      "value": 0.04558830335736275,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1594215147,
+      "hiddenValue": 1945955509,
+      "cryptoKey": 1319121016,
+      "value": 0.05392150953412056,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value",
+     "Format": "0%",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ],
+  "Effects": []
+ },
+ {
+  "_name": "MonkTalent20",
+  "_pathid": 60677,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5877
+  },
+  "MaxPoints": 8,
+  "LevelRequirement": 20,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60738
+   }
+  ]
+ },
+ {
+  "_name": "MonkTalent21",
+  "_pathid": 60678,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5220
+  },
+  "MaxPoints": 5,
+  "LevelRequirement": 15,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60718
+   }
+  ]
+ },
+ {
+  "_name": "MonkTalent22",
+  "_pathid": 60679,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5559
+  },
+  "MaxPoints": 10,
+  "LevelRequirement": 50,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60723
+   }
+  ]
+ },
+ {
+  "_name": "MonkTalent23",
+  "_pathid": 60680,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5226
+  },
+  "MaxPoints": 5,
+  "LevelRequirement": 20,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60732
+   }
+  ]
+ },
+ {
+  "_name": "MonkTalent25",
+  "_pathid": 60681,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5815
+  },
+  "MaxPoints": 8,
+  "LevelRequirement": 20,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60722
+   }
+  ]
+ },
+ {
+  "_name": "MonkTalent26",
+  "_pathid": 60682,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5570
+  },
+  "MaxPoints": 10,
+  "LevelRequirement": 15,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60730
+   }
+  ]
+ },
+ {
+  "_name": "MonkTalent28",
+  "_pathid": 60683,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5810
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 30,
+  "Prerequisite": null,
+  "ExclusiveGroup": "Capstone30",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60712
+   }
+  ]
+ },
+ {
+  "_name": "MonkTalent29",
+  "_pathid": 60684,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5528
+  },
+  "MaxPoints": 5,
+  "LevelRequirement": 20,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60735
+   }
+  ]
+ },
+ {
+  "_name": "MonkTalent3",
+  "_pathid": 60685,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5601
+  },
+  "MaxPoints": 8,
+  "LevelRequirement": 0,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [
+   {
+    "Stat": 7,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": -2083492771,
+      "hiddenValue": 53335696,
+      "cryptoKey": 1094725008,
+      "value": 59.4951171875,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": -2083492771,
+      "hiddenValue": 507887403,
+      "cryptoKey": 1546208555,
+      "value": 59.244140625,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value",
+     "Format": "0.#",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ],
+  "Effects": []
+ },
+ {
+  "_name": "MonkTalent30",
+  "_pathid": 60686,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5495
+  },
+  "MaxPoints": 6,
+  "LevelRequirement": 40,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60713
+   }
+  ]
+ },
+ {
+  "_name": "MonkTalent31",
+  "_pathid": 60687,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5268
+  },
+  "MaxPoints": 6,
+  "LevelRequirement": 40,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60733
+   }
+  ]
+ },
+ {
+  "_name": "MonkTalent32",
+  "_pathid": 60688,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5926
+  },
+  "MaxPoints": 8,
+  "LevelRequirement": 15,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60727
+   }
+  ]
+ },
+ {
+  "_name": "MonkTalent33",
+  "_pathid": 60689,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5910
+  },
+  "MaxPoints": 10,
+  "LevelRequirement": 20,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60710
+   }
+  ]
+ },
+ {
+  "_name": "MonkTalent34",
+  "_pathid": 60690,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5411
+  },
+  "MaxPoints": 8,
+  "LevelRequirement": 50,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60721
+   },
+   {
+    "fileID": 0,
+    "pathID": 60720
+   }
+  ]
+ },
+ {
+  "_name": "MonkTalent36",
+  "_pathid": 60691,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5621
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 60,
+  "Prerequisite": null,
+  "ExclusiveGroup": "Capstone60",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60717
+   }
+  ]
+ },
+ {
+  "_name": "MonkTalent37",
+  "_pathid": 60692,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5873
+  },
+  "MaxPoints": 6,
+  "LevelRequirement": 50,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60715
+   }
+  ]
+ },
+ {
+  "_name": "MonkTalent38",
+  "_pathid": 60693,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5278
+  },
+  "MaxPoints": 5,
+  "LevelRequirement": 50,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60716
+   }
+  ]
+ },
+ {
+  "_name": "MonkTalent39",
+  "_pathid": 60694,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5747
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 30,
+  "Prerequisite": null,
+  "ExclusiveGroup": "Capstone30",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60709
+   }
+  ]
+ },
+ {
+  "_name": "MonkTalent4",
+  "_pathid": 60695,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5476
+  },
+  "MaxPoints": 5,
+  "LevelRequirement": 0,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [
+   {
+    "Stat": 14,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1787276257,
+      "hiddenValue": 555341780,
+      "cryptoKey": 1628903892,
+      "value": 2.2313232421875,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1787276257,
+      "hiddenValue": 816555861,
+      "cryptoKey": 1885842261,
+      "value": 6.37646484375,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value",
+     "Format": "0.#",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ],
+  "Effects": []
+ },
+ {
+  "_name": "MonkTalent41",
+  "_pathid": 60696,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5484
+  },
+  "MaxPoints": 8,
+  "LevelRequirement": 40,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60731
+   }
+  ]
+ },
+ {
+  "_name": "MonkTalent42",
+  "_pathid": 60697,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5496
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 60,
+  "Prerequisite": null,
+  "ExclusiveGroup": "Capstone60",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60734
+   }
+  ]
+ },
+ {
+  "_name": "MonkTalent43",
+  "_pathid": 60698,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5899
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 10,
+  "Prerequisite": null,
+  "ExclusiveGroup": "Capstone10",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60719
+   }
+  ]
+ },
+ {
+  "_name": "MonkTalent44",
+  "_pathid": 60699,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5320
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 60,
+  "Prerequisite": null,
+  "ExclusiveGroup": "Capstone60",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60714
+   }
+  ]
+ },
+ {
+  "_name": "MonkTalent45",
+  "_pathid": 60700,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5887
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 30,
+  "Prerequisite": null,
+  "ExclusiveGroup": "Capstone30",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60726
+   }
+  ]
+ },
+ {
+  "_name": "MonkTalent46",
+  "_pathid": 60701,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5422
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 60,
+  "Prerequisite": null,
+  "ExclusiveGroup": "Capstone60",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60728
+   }
+  ]
+ },
+ {
+  "_name": "MonkTalent47",
+  "_pathid": 60702,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5326
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 10,
+  "Prerequisite": null,
+  "ExclusiveGroup": "Capstone10",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60737
+   }
+  ]
+ },
+ {
+  "_name": "MonkTalent5",
+  "_pathid": 60703,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5535
+  },
+  "MaxPoints": 6,
+  "LevelRequirement": 5,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [
+   {
+    "Stat": 6,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1496042271,
+      "hiddenValue": 2007707133,
+      "cryptoKey": 1242463479,
+      "value": 0.08072097599506378,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1496042271,
+      "hiddenValue": 1405235818,
+      "cryptoKey": 1846613344,
+      "value": 0.10310180485248566,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value",
+     "Format": "0%",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ],
+  "Effects": []
+ },
+ {
+  "_name": "MonkTalent6",
+  "_pathid": 60704,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5234
+  },
+  "MaxPoints": 10,
+  "LevelRequirement": 0,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [
+   {
+    "Stat": 23,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1475356959,
+      "hiddenValue": 1903989354,
+      "cryptoKey": 1278323552,
+      "value": 0.05010322481393814,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1475356959,
+      "hiddenValue": 1207175823,
+      "cryptoKey": 2057905029,
+      "value": 0.05399421602487564,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value",
+     "Format": "0%",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ],
+  "Effects": []
+ },
+ {
+  "_name": "MonkTalent7",
+  "_pathid": 60705,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5402
+  },
+  "MaxPoints": 8,
+  "LevelRequirement": 5,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [
+   {
+    "Stat": 56,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1594215147,
+      "hiddenValue": 1518857681,
+      "cryptoKey": 1738623772,
+      "value": 0.04068641737103462,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1594215147,
+      "hiddenValue": 1526487580,
+      "cryptoKey": 1729507537,
+      "value": 0.1144615188241005,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value",
+     "Format": "0%",
+     "Suffix": "",
+     "Highlight": true
+    }
+   },
+   {
+    "Stat": 9,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1836294021,
+      "hiddenValue": 141368843,
+      "cryptoKey": 1245605131,
+      "value": 52.8623046875,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1836294021,
+      "hiddenValue": 317129466,
+      "cryptoKey": 1344464890,
+      "value": 98.947265625,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "resistance",
+     "Format": "0.#",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ],
+  "Effects": []
+ },
+ {
+  "_name": "MonkTalent8",
+  "_pathid": 60706,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5283
+  },
+  "MaxPoints": 5,
+  "LevelRequirement": 5,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [
+   {
+    "Stat": 35,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1797618913,
+      "hiddenValue": 2091352077,
+      "cryptoKey": 1015064333,
+      "value": 2.61175537109375,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1797618913,
+      "hiddenValue": 528228416,
+      "cryptoKey": 1595964480,
+      "value": 3.443115234375,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value",
+     "Format": "0.#",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ],
+  "Effects": []
+ },
+ {
+  "_name": "MonkTalent9",
+  "_pathid": 60707,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5645
+  },
+  "MaxPoints": 10,
+  "LevelRequirement": 40,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60708
+   }
+  ]
+ },
+ {
+  "_name": "SorcererTalent0",
+  "_pathid": 60740,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5381
+  },
+  "MaxPoints": 10,
+  "LevelRequirement": 0,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [
+   {
+    "Stat": 2,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1782053473,
+      "hiddenValue": 323441533,
+      "cryptoKey": 1408452477,
+      "value": 5.62744140625,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1782053473,
+      "hiddenValue": 2065461895,
+      "cryptoKey": 1003625607,
+      "value": 6.450927734375,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value",
+     "Format": "0.#",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ],
+  "Effects": []
+ },
+ {
+  "_name": "SorcererTalent1",
+  "_pathid": 60741,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5476
+  },
+  "MaxPoints": 8,
+  "LevelRequirement": 0,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [
+   {
+    "Stat": 14,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1776933601,
+      "hiddenValue": 957088688,
+      "cryptoKey": 2038631600,
+      "value": 4.4705810546875,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1776933601,
+      "hiddenValue": 445797467,
+      "cryptoKey": 1523880539,
+      "value": 3.1058349609375,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value",
+     "Format": "0.#",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ],
+  "Effects": []
+ },
+ {
+  "_name": "SorcererTalent10",
+  "_pathid": 60742,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5914
+  },
+  "MaxPoints": 8,
+  "LevelRequirement": 20,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60657
+   }
+  ]
+ },
+ {
+  "_name": "SorcererTalent11",
+  "_pathid": 60743,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5562
+  },
+  "MaxPoints": 6,
+  "LevelRequirement": 5,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [
+   {
+    "Stat": 47,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 149504655,
+      "hiddenValue": 1543559116,
+      "cryptoKey": 1666646220,
+      "value": 0.8431243896484375,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 149504655,
+      "hiddenValue": 1174748414,
+      "cryptoKey": 2042365438,
+      "value": 1.447052001953125,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value",
+     "Format": "0.#",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ],
+  "Effects": []
+ },
+ {
+  "_name": "SorcererTalent12",
+  "_pathid": 60744,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5534
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 30,
+  "Prerequisite": null,
+  "ExclusiveGroup": "Capstone30",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60633
+   }
+  ]
+ },
+ {
+  "_name": "SorcererTalent15",
+  "_pathid": 60745,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5352
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 60,
+  "Prerequisite": null,
+  "ExclusiveGroup": "Capstone60",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60632
+   }
+  ]
+ },
+ {
+  "_name": "SorcererTalent16",
+  "_pathid": 60746,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5330
+  },
+  "MaxPoints": 8,
+  "LevelRequirement": 15,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60666
+   }
+  ]
+ },
+ {
+  "_name": "SorcererTalent17",
+  "_pathid": 60747,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5936
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 10,
+  "Prerequisite": null,
+  "ExclusiveGroup": "Capstone10",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60662
+   }
+  ]
+ },
+ {
+  "_name": "SorcererTalent18",
+  "_pathid": 60748,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5762
+  },
+  "MaxPoints": 6,
+  "LevelRequirement": 5,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60631
+   }
+  ]
+ },
+ {
+  "_name": "SorcererTalent19",
+  "_pathid": 60749,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5602
+  },
+  "MaxPoints": 8,
+  "LevelRequirement": 15,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [
+   {
+    "Stat": 44,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1458579341,
+      "hiddenValue": 1345029047,
+      "cryptoKey": 1814101181,
+      "value": 0.008514175191521645,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1458579341,
+      "hiddenValue": 1624071106,
+      "cryptoKey": 1559763656,
+      "value": 0.011062869802117348,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "armor",
+     "Format": "0%",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60650
+   }
+  ]
+ },
+ {
+  "_name": "SorcererTalent2",
+  "_pathid": 60750,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5433
+  },
+  "MaxPoints": 8,
+  "LevelRequirement": 0,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [
+   {
+    "Stat": 8,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1562040821,
+      "hiddenValue": 854784694,
+      "cryptoKey": 1895232182,
+      "value": 33.0078125,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1562040821,
+      "hiddenValue": 603956008,
+      "cryptoKey": 1638924072,
+      "value": 52.08984375,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value",
+     "Format": "0.#",
+     "Suffix": "",
+     "Highlight": true
+    }
+   },
+   {
+    "Stat": 44,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 536418157,
+      "hiddenValue": 27791615,
+      "cryptoKey": 1038445168,
+      "value": 0.01254142727702856,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 536418157,
+      "hiddenValue": 1584402303,
+      "cryptoKey": 1660596976,
+      "value": 0.01693609170615673,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "armor",
+     "Format": "0%",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ],
+  "Effects": []
+ },
+ {
+  "_name": "SorcererTalent20",
+  "_pathid": 60751,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5218
+  },
+  "MaxPoints": 10,
+  "LevelRequirement": 5,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [
+   {
+    "Stat": 32,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 536418157,
+      "hiddenValue": 1838661986,
+      "cryptoKey": 1362384365,
+      "value": 0.019968299195170403,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 536418157,
+      "hiddenValue": 1286181272,
+      "cryptoKey": 1885629207,
+      "value": 0.02514388971030712,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "elite",
+     "Format": "0%",
+     "Suffix": "",
+     "Highlight": true
+    }
+   },
+   {
+    "Stat": 26,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1496042271,
+      "hiddenValue": 1858950121,
+      "cryptoKey": 1399855843,
+      "value": 0.09242446720600128,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1496042271,
+      "hiddenValue": 1949034928,
+      "cryptoKey": 1238039738,
+      "value": 0.10990341007709503,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "lightning",
+     "Format": "0%",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ],
+  "Effects": []
+ },
+ {
+  "_name": "SorcererTalent21",
+  "_pathid": 60752,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5311
+  },
+  "MaxPoints": 8,
+  "LevelRequirement": 5,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [
+   {
+    "Stat": 9,
+    "Type": 1,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1496042271,
+      "hiddenValue": 1856972535,
+      "cryptoKey": 1392867581,
+      "value": 0.08318717777729034,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1496042271,
+      "hiddenValue": 2005145585,
+      "cryptoKey": 1244943355,
+      "value": 0.08606727421283722,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "magicResist",
+     "Format": "0%",
+     "Suffix": "",
+     "Highlight": true
+    }
+   },
+   {
+    "Stat": 24,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1594215147,
+      "hiddenValue": 2098851997,
+      "cryptoKey": 1086117200,
+      "value": 0.08063850551843643,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1594215147,
+      "hiddenValue": 1851930353,
+      "cryptoKey": 1400548924,
+      "value": 0.037255097180604935,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "fire",
+     "Format": "0%",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ],
+  "Effects": []
+ },
+ {
+  "_name": "SorcererTalent22",
+  "_pathid": 60753,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5725
+  },
+  "MaxPoints": 8,
+  "LevelRequirement": 20,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60658
+   }
+  ]
+ },
+ {
+  "_name": "SorcererTalent23",
+  "_pathid": 60754,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5248
+  },
+  "MaxPoints": 6,
+  "LevelRequirement": 40,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60637
+   }
+  ]
+ },
+ {
+  "_name": "SorcererTalent24",
+  "_pathid": 60755,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5750
+  },
+  "MaxPoints": 8,
+  "LevelRequirement": 20,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60653
+   }
+  ]
+ },
+ {
+  "_name": "SorcererTalent25",
+  "_pathid": 60756,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5763
+  },
+  "MaxPoints": 6,
+  "LevelRequirement": 15,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60645
+   }
+  ]
+ },
+ {
+  "_name": "SorcererTalent26",
+  "_pathid": 60757,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5766
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 60,
+  "Prerequisite": null,
+  "ExclusiveGroup": "Capstone60",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60635
+   }
+  ]
+ },
+ {
+  "_name": "SorcererTalent27",
+  "_pathid": 60758,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5769
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 30,
+  "Prerequisite": null,
+  "ExclusiveGroup": "Capstone30",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60659
+   }
+  ]
+ },
+ {
+  "_name": "SorcererTalent28",
+  "_pathid": 60759,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5454
+  },
+  "MaxPoints": 6,
+  "LevelRequirement": 15,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60648
+   }
+  ]
+ },
+ {
+  "_name": "SorcererTalent29",
+  "_pathid": 60760,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5881
+  },
+  "MaxPoints": 8,
+  "LevelRequirement": 50,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60646
+   },
+   {
+    "fileID": 0,
+    "pathID": 60647
+   }
+  ]
+ },
+ {
+  "_name": "SorcererTalent3",
+  "_pathid": 60761,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5933
+  },
+  "MaxPoints": 6,
+  "LevelRequirement": 0,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60656
+   }
+  ]
+ },
+ {
+  "_name": "SorcererTalent30",
+  "_pathid": 60762,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5284
+  },
+  "MaxPoints": 5,
+  "LevelRequirement": 50,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60649
+   }
+  ]
+ },
+ {
+  "_name": "SorcererTalent31",
+  "_pathid": 60763,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5287
+  },
+  "MaxPoints": 8,
+  "LevelRequirement": 40,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60654
+   }
+  ]
+ },
+ {
+  "_name": "SorcererTalent32",
+  "_pathid": 60764,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5738
+  },
+  "MaxPoints": 6,
+  "LevelRequirement": 15,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60640
+   }
+  ]
+ },
+ {
+  "_name": "SorcererTalent33",
+  "_pathid": 60765,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5303
+  },
+  "MaxPoints": 5,
+  "LevelRequirement": 40,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60652
+   }
+  ]
+ },
+ {
+  "_name": "SorcererTalent34",
+  "_pathid": 60766,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5323
+  },
+  "MaxPoints": 8,
+  "LevelRequirement": 40,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60642
+   },
+   {
+    "fileID": 0,
+    "pathID": 60641
+   }
+  ]
+ },
+ {
+  "_name": "SorcererTalent35",
+  "_pathid": 60767,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5310
+  },
+  "MaxPoints": 8,
+  "LevelRequirement": 50,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60644
+   }
+  ]
+ },
+ {
+  "_name": "SorcererTalent36",
+  "_pathid": 60768,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5242
+  },
+  "MaxPoints": 8,
+  "LevelRequirement": 50,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60660
+   }
+  ]
+ },
+ {
+  "_name": "SorcererTalent37",
+  "_pathid": 60769,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5581
+  },
+  "MaxPoints": 6,
+  "LevelRequirement": 40,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60639
+   }
+  ]
+ },
+ {
+  "_name": "SorcererTalent38",
+  "_pathid": 60770,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5215
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 60,
+  "Prerequisite": null,
+  "ExclusiveGroup": "Capstone60",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60638
+   }
+  ]
+ },
+ {
+  "_name": "SorcererTalent39",
+  "_pathid": 60771,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5831
+  },
+  "MaxPoints": 8,
+  "LevelRequirement": 20,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60663
+   }
+  ]
+ },
+ {
+  "_name": "SorcererTalent4",
+  "_pathid": 60772,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5804
+  },
+  "MaxPoints": 6,
+  "LevelRequirement": 0,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60655
+   }
+  ]
+ },
+ {
+  "_name": "SorcererTalent40",
+  "_pathid": 60773,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5428
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 10,
+  "Prerequisite": null,
+  "ExclusiveGroup": "Capstone10",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60665
+   }
+  ]
+ },
+ {
+  "_name": "SorcererTalent41",
+  "_pathid": 60774,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5214
+  },
+  "MaxPoints": 5,
+  "LevelRequirement": 50,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60636
+   }
+  ]
+ },
+ {
+  "_name": "SorcererTalent42",
+  "_pathid": 60775,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5627
+  },
+  "MaxPoints": 8,
+  "LevelRequirement": 20,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": true,
+  "StatModifiers": [
+   {
+    "Stat": 54,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 536418157,
+      "hiddenValue": 1824334810,
+      "cryptoKey": 1356234581,
+      "value": 0.014365329407155514,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 536418157,
+      "hiddenValue": 1632343600,
+      "cryptoKey": 1566804415,
+      "value": 0.010261430405080318,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "resistance",
+     "Format": "0%",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60661
+   }
+  ]
+ },
+ {
+  "_name": "SorcererTalent5",
+  "_pathid": 60776,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5292
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 30,
+  "Prerequisite": null,
+  "ExclusiveGroup": "Capstone30",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60634
+   }
+  ]
+ },
+ {
+  "_name": "SorcererTalent6",
+  "_pathid": 60777,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5465
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 10,
+  "Prerequisite": null,
+  "ExclusiveGroup": "Capstone10",
+  "IsLockedInDemo": false,
+  "StatModifiers": [
+   {
+    "Stat": 44,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1573529835,
+      "hiddenValue": 1827677419,
+      "cryptoKey": 1374174246,
+      "value": 0.037133026868104935,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 723851361,
+      "hiddenValue": 2144218499,
+      "cryptoKey": 2133708419,
+      "value": 2.092808988422285e-38,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "armor",
+     "Format": "0%",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60664
+   }
+  ]
+ },
+ {
+  "_name": "SorcererTalent7",
+  "_pathid": 60778,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5829
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 60,
+  "Prerequisite": null,
+  "ExclusiveGroup": "Capstone60",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60651
+   }
+  ]
+ },
+ {
+  "_name": "SorcererTalent8",
+  "_pathid": 60779,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5859
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 10,
+  "Prerequisite": null,
+  "ExclusiveGroup": "Capstone10",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60643
+   }
+  ]
+ },
+ {
+  "_name": "SorcererTalent9",
+  "_pathid": 60780,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5295
+  },
+  "MaxPoints": 10,
+  "LevelRequirement": 5,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [
+   {
+    "Stat": 25,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 315170343,
+      "hiddenValue": 2045738225,
+      "cryptoKey": 1156821976,
+      "value": 0.03828350082039833,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 315170343,
+      "hiddenValue": 1340022980,
+      "cryptoKey": 1924105197,
+      "value": 0.058749351650476456,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value",
+     "Format": "0%",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ],
+  "Effects": []
+ },
+ {
+  "_name": "WarriorTalent0",
+  "_pathid": 60781,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5720
+  },
+  "MaxPoints": 10,
+  "LevelRequirement": 0,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [
+   {
+    "Stat": 0,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1782053473,
+      "hiddenValue": 323441533,
+      "cryptoKey": 1408452477,
+      "value": 5.62744140625,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1782053473,
+      "hiddenValue": 2065461895,
+      "cryptoKey": 1003625607,
+      "value": 6.450927734375,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value",
+     "Format": "0.#",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ],
+  "Effects": []
+ },
+ {
+  "_name": "WarriorTalent1",
+  "_pathid": 60782,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5601
+  },
+  "MaxPoints": 6,
+  "LevelRequirement": 0,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [
+   {
+    "Stat": 7,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1303353061,
+      "hiddenValue": 983824648,
+      "cryptoKey": 2024907528,
+      "value": 36.587890625,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1303353061,
+      "hiddenValue": 1008055433,
+      "cryptoKey": 2130449801,
+      "value": 116.814453125,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value",
+     "Format": "0.#",
+     "Suffix": "",
+     "Highlight": true
+    }
+   },
+   {
+    "Stat": 36,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1807961569,
+      "hiddenValue": 654360668,
+      "cryptoKey": 1736441948,
+      "value": 4.0234375,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1807961569,
+      "hiddenValue": 253669186,
+      "cryptoKey": 1341070914,
+      "value": 7.5528564453125,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "regen",
+     "Format": "0.#",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ],
+  "Effects": []
+ },
+ {
+  "_name": "WarriorTalent10",
+  "_pathid": 60783,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5514
+  },
+  "MaxPoints": 6,
+  "LevelRequirement": 5,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60827
+   }
+  ]
+ },
+ {
+  "_name": "WarriorTalent11",
+  "_pathid": 60784,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5726
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 30,
+  "Prerequisite": null,
+  "ExclusiveGroup": "Capstone30",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60861
+   }
+  ]
+ },
+ {
+  "_name": "WarriorTalent12",
+  "_pathid": 60785,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5377
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 10,
+  "Prerequisite": null,
+  "ExclusiveGroup": "Capstone10",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60834
+   }
+  ]
+ },
+ {
+  "_name": "WarriorTalent13",
+  "_pathid": 60786,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5606
+  },
+  "MaxPoints": 10,
+  "LevelRequirement": 5,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [
+   {
+    "Stat": 39,
+    "Type": 1,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1573529835,
+      "hiddenValue": 1611869053,
+      "cryptoKey": 1575477168,
+      "value": 0.11960754543542862,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1573529835,
+      "hiddenValue": 1435068183,
+      "cryptoKey": 1756055002,
+      "value": 0.039583969861269,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value",
+     "Format": "0%",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ],
+  "Effects": []
+ },
+ {
+  "_name": "WarriorTalent14",
+  "_pathid": 60787,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5612
+  },
+  "MaxPoints": 5,
+  "LevelRequirement": 15,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60855
+   }
+  ]
+ },
+ {
+  "_name": "WarriorTalent15",
+  "_pathid": 60788,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5684
+  },
+  "MaxPoints": 10,
+  "LevelRequirement": 50,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60846
+   },
+   {
+    "fileID": 0,
+    "pathID": 60847
+   }
+  ]
+ },
+ {
+  "_name": "WarriorTalent16",
+  "_pathid": 60789,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5539
+  },
+  "MaxPoints": 6,
+  "LevelRequirement": 20,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60856
+   }
+  ]
+ },
+ {
+  "_name": "WarriorTalent17",
+  "_pathid": 60790,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5872
+  },
+  "MaxPoints": 8,
+  "LevelRequirement": 15,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60854
+   }
+  ]
+ },
+ {
+  "_name": "WarriorTalent2",
+  "_pathid": 60791,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5600
+  },
+  "MaxPoints": 5,
+  "LevelRequirement": 0,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [
+   {
+    "Stat": 8,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1836294021,
+      "hiddenValue": 521517101,
+      "cryptoKey": 1570247981,
+      "value": 70.837890625,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1836294021,
+      "hiddenValue": 947141010,
+      "cryptoKey": 2048488594,
+      "value": 59.3251953125,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value1",
+     "Format": "0.#",
+     "Suffix": "",
+     "Highlight": true
+    }
+   },
+   {
+    "Stat": 9,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1836294021,
+      "hiddenValue": 142731383,
+      "cryptoKey": 1254654327,
+      "value": 50.3525390625,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1836294021,
+      "hiddenValue": 546116613,
+      "cryptoKey": 1647611141,
+      "value": 92.798828125,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value2",
+     "Format": "0.#",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ],
+  "Effects": []
+ },
+ {
+  "_name": "WarriorTalent20",
+  "_pathid": 60792,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5806
+  },
+  "MaxPoints": 10,
+  "LevelRequirement": 15,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [
+   {
+    "Stat": 8,
+    "Type": 1,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1573529835,
+      "hiddenValue": 1964273544,
+      "cryptoKey": 1218697285,
+      "value": 0.08970604091882706,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1594215147,
+      "hiddenValue": 1260376144,
+      "cryptoKey": 1989989277,
+      "value": 0.0639720931649208,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value",
+     "Format": "0%",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ],
+  "Effects": []
+ },
+ {
+  "_name": "WarriorTalent22",
+  "_pathid": 60793,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5677
+  },
+  "MaxPoints": 5,
+  "LevelRequirement": 50,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60851
+   }
+  ]
+ },
+ {
+  "_name": "WarriorTalent23",
+  "_pathid": 60794,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5624
+  },
+  "MaxPoints": 5,
+  "LevelRequirement": 20,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60828
+   }
+  ]
+ },
+ {
+  "_name": "WarriorTalent24",
+  "_pathid": 60795,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5559
+  },
+  "MaxPoints": 8,
+  "LevelRequirement": 40,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60844
+   }
+  ]
+ },
+ {
+  "_name": "WarriorTalent25",
+  "_pathid": 60796,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5925
+  },
+  "MaxPoints": 10,
+  "LevelRequirement": 20,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60837
+   }
+  ]
+ },
+ {
+  "_name": "WarriorTalent26",
+  "_pathid": 60797,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5802
+  },
+  "MaxPoints": 8,
+  "LevelRequirement": 15,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60848
+   }
+  ]
+ },
+ {
+  "_name": "WarriorTalent28",
+  "_pathid": 60798,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5564
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 10,
+  "Prerequisite": null,
+  "ExclusiveGroup": "Capstone10",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60835
+   }
+  ]
+ },
+ {
+  "_name": "WarriorTalent29",
+  "_pathid": 60799,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5633
+  },
+  "MaxPoints": 2,
+  "LevelRequirement": 30,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": []
+ },
+ {
+  "_name": "WarriorTalent3",
+  "_pathid": 60800,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5537
+  },
+  "MaxPoints": 5,
+  "LevelRequirement": 5,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60859
+   }
+  ]
+ },
+ {
+  "_name": "WarriorTalent30",
+  "_pathid": 60801,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5335
+  },
+  "MaxPoints": 10,
+  "LevelRequirement": 40,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60829
+   }
+  ]
+ },
+ {
+  "_name": "WarriorTalent31",
+  "_pathid": 60802,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5505
+  },
+  "MaxPoints": 5,
+  "LevelRequirement": 30,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60842
+   }
+  ]
+ },
+ {
+  "_name": "WarriorTalent32",
+  "_pathid": 60803,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5760
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 100,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": []
+ },
+ {
+  "_name": "WarriorTalent33",
+  "_pathid": 60804,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5589
+  },
+  "MaxPoints": 5,
+  "LevelRequirement": 15,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60836
+   }
+  ]
+ },
+ {
+  "_name": "WarriorTalent34",
+  "_pathid": 60805,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5722
+  },
+  "MaxPoints": 10,
+  "LevelRequirement": 20,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60845
+   },
+   {
+    "fileID": 0,
+    "pathID": 60840
+   }
+  ]
+ },
+ {
+  "_name": "WarriorTalent35",
+  "_pathid": 60806,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5760
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 100,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": []
+ },
+ {
+  "_name": "WarriorTalent37",
+  "_pathid": 60807,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5855
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 30,
+  "Prerequisite": null,
+  "ExclusiveGroup": "Capstone30",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60832
+   }
+  ]
+ },
+ {
+  "_name": "WarriorTalent38",
+  "_pathid": 60808,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5467
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 60,
+  "Prerequisite": null,
+  "ExclusiveGroup": "Capstone60",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60858
+   }
+  ]
+ },
+ {
+  "_name": "WarriorTalent39",
+  "_pathid": 60809,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5233
+  },
+  "MaxPoints": 5,
+  "LevelRequirement": 40,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60841
+   }
+  ]
+ },
+ {
+  "_name": "WarriorTalent4",
+  "_pathid": 60810,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5930
+  },
+  "MaxPoints": 5,
+  "LevelRequirement": 0,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [
+   {
+    "Stat": 4,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1458579341,
+      "hiddenValue": 1954544119,
+      "cryptoKey": 1213901053,
+      "value": 0.010090121999382973,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1458579341,
+      "hiddenValue": 1326975044,
+      "cryptoKey": 1940639566,
+      "value": 0.021945495158433914,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value",
+     "Format": "0%",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ],
+  "Effects": []
+ },
+ {
+  "_name": "WarriorTalent40",
+  "_pathid": 60811,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5760
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 100,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": []
+ },
+ {
+  "_name": "WarriorTalent41",
+  "_pathid": 60812,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5760
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 100,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": []
+ },
+ {
+  "_name": "WarriorTalent42",
+  "_pathid": 60813,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5744
+  },
+  "MaxPoints": 6,
+  "LevelRequirement": 50,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60830
+   }
+  ]
+ },
+ {
+  "_name": "WarriorTalent43",
+  "_pathid": 60814,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5797
+  },
+  "MaxPoints": 5,
+  "LevelRequirement": 5,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60849
+   }
+  ]
+ },
+ {
+  "_name": "WarriorTalent44",
+  "_pathid": 60815,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5776
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 30,
+  "Prerequisite": null,
+  "ExclusiveGroup": "Capstone30",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60853
+   }
+  ]
+ },
+ {
+  "_name": "WarriorTalent45",
+  "_pathid": 60816,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5792
+  },
+  "MaxPoints": 3,
+  "LevelRequirement": 50,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60857
+   }
+  ]
+ },
+ {
+  "_name": "WarriorTalent46",
+  "_pathid": 60817,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5926
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 10,
+  "Prerequisite": null,
+  "ExclusiveGroup": "Capstone10",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60838
+   },
+   {
+    "fileID": 0,
+    "pathID": 60839
+   }
+  ]
+ },
+ {
+  "_name": "WarriorTalent47",
+  "_pathid": 60818,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5940
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 60,
+  "Prerequisite": null,
+  "ExclusiveGroup": "Capstone60",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60850
+   }
+  ]
+ },
+ {
+  "_name": "WarriorTalent48",
+  "_pathid": 60819,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5638
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 60,
+  "Prerequisite": null,
+  "ExclusiveGroup": "Capstone60",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60831
+   },
+   {
+    "fileID": 0,
+    "pathID": 60843
+   }
+  ]
+ },
+ {
+  "_name": "WarriorTalent49",
+  "_pathid": 60820,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5485
+  },
+  "MaxPoints": 1,
+  "LevelRequirement": 60,
+  "Prerequisite": null,
+  "ExclusiveGroup": "Capstone60",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60833
+   }
+  ]
+ },
+ {
+  "_name": "WarriorTalent5",
+  "_pathid": 60821,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5877
+  },
+  "MaxPoints": 8,
+  "LevelRequirement": 5,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [
+   {
+    "Stat": 5,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1573529835,
+      "hiddenValue": 1919225358,
+      "cryptoKey": 1338157507,
+      "value": 0.08186302334070206,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1573529835,
+      "hiddenValue": 2052608707,
+      "cryptoKey": 1201574926,
+      "value": 0.09705886989831924,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value",
+     "Format": "0%",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ],
+  "Effects": []
+ },
+ {
+  "_name": "WarriorTalent6",
+  "_pathid": 60822,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5780
+  },
+  "MaxPoints": 8,
+  "LevelRequirement": 0,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [
+   {
+    "Stat": 39,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1814396531,
+      "hiddenValue": 546047271,
+      "cryptoKey": 1627753511,
+      "value": 17.19189453125,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1814396531,
+      "hiddenValue": 745194067,
+      "cryptoKey": 1841457747,
+      "value": 21.08203125,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value",
+     "Format": "0.#",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ],
+  "Effects": []
+ },
+ {
+  "_name": "WarriorTalent60",
+  "_pathid": 60823,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5240
+  },
+  "MaxPoints": 10,
+  "LevelRequirement": 50,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60852
+   }
+  ]
+ },
+ {
+  "_name": "WarriorTalent61",
+  "_pathid": 60824,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5418
+  },
+  "MaxPoints": 10,
+  "LevelRequirement": 40,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": true,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60862
+   },
+   {
+    "fileID": 0,
+    "pathID": 60863
+   }
+  ]
+ },
+ {
+  "_name": "WarriorTalent8",
+  "_pathid": 60825,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5607
+  },
+  "MaxPoints": 6,
+  "LevelRequirement": 40,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [],
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60860
+   }
+  ]
+ },
+ {
+  "_name": "WarriorTalent9",
+  "_pathid": 60826,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5445
+  },
+  "MaxPoints": 8,
+  "LevelRequirement": 20,
+  "Prerequisite": null,
+  "ExclusiveGroup": "",
+  "IsLockedInDemo": false,
+  "StatModifiers": [
+   {
+    "Stat": 40,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1573529835,
+      "hiddenValue": 45471367,
+      "cryptoKey": 1058699594,
+      "value": 0.08578453212976456,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1573529835,
+      "hiddenValue": 1787620343,
+      "cryptoKey": 1462190138,
+      "value": 0.0838237777352333,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value",
+     "Format": "0%",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ],
+  "Effects": []
+ }
+]

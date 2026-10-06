@@ -1,0 +1,106 @@
+[
+ {
+  "_name": "HpPotion1",
+  "_pathid": 60017,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5522
+  },
+  "InstantHealAmount": 25.0,
+  "HotMaxHPFraction": 0.30000001192092896,
+  "HotDuration": 3.0,
+  "Cooldown": 5.0
+ },
+ {
+  "_name": "HpPotion2",
+  "_pathid": 60018,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5462
+  },
+  "InstantHealAmount": 75.0,
+  "HotMaxHPFraction": 0.30000001192092896,
+  "HotDuration": 3.0,
+  "Cooldown": 5.0
+ },
+ {
+  "_name": "HpPotion3",
+  "_pathid": 60019,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5474
+  },
+  "InstantHealAmount": 150.0,
+  "HotMaxHPFraction": 0.3499999940395355,
+  "HotDuration": 3.0,
+  "Cooldown": 5.0
+ },
+ {
+  "_name": "HpPotion4",
+  "_pathid": 60020,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5213
+  },
+  "InstantHealAmount": 300.0,
+  "HotMaxHPFraction": 0.3499999940395355,
+  "HotDuration": 3.0,
+  "Cooldown": 5.0
+ },
+ {
+  "_name": "HpPotion5",
+  "_pathid": 60021,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5697
+  },
+  "InstantHealAmount": 600.0,
+  "HotMaxHPFraction": 0.4000000059604645,
+  "HotDuration": 3.0,
+  "Cooldown": 5.0
+ },
+ {
+  "_name": "HpPotion6",
+  "_pathid": 60022,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5461
+  },
+  "InstantHealAmount": 1000.0,
+  "HotMaxHPFraction": 0.4000000059604645,
+  "HotDuration": 3.0,
+  "Cooldown": 5.0
+ },
+ {
+  "_name": "HpPotion7",
+  "_pathid": 60023,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5629
+  },
+  "InstantHealAmount": 1500.0,
+  "HotMaxHPFraction": 0.44999998807907104,
+  "HotDuration": 3.0,
+  "Cooldown": 5.0
+ },
+ {
+  "_name": "HpPotion8",
+  "_pathid": 60024,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5751
+  },
+  "InstantHealAmount": 2000.0,
+  "HotMaxHPFraction": 0.44999998807907104,
+  "HotDuration": 3.0,
+  "Cooldown": 5.0
+ }
+]

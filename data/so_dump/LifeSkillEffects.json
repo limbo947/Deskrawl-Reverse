@@ -1,0 +1,771 @@
+[
+ {
+  "_name": "IncreasePotionCharge1",
+  "_pathid": 5238,
+  "_file": "resources.assets",
+  "_class": "LifeSkillEffect_StatModifier",
+  "StatModifiers": [
+   {
+    "Stat": 38,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 149504655,
+      "hiddenValue": 1669639356,
+      "cryptoKey": 1546421436,
+      "value": 1.313720703125,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 149504655,
+      "hiddenValue": 1669639356,
+      "cryptoKey": 1546421436,
+      "value": 1.313720703125,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value",
+     "Format": "0.#",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ]
+ },
+ {
+  "_name": "CapacityNotable",
+  "_pathid": 60118,
+  "_file": "sharedassets0.assets",
+  "_class": "LifeSkillEffect_StatModifier",
+  "StatModifiers": [
+   {
+    "Stat": 18,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1797618913,
+      "hiddenValue": 472880994,
+      "cryptoKey": 1553411938,
+      "value": 5.7724609375,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 723851361,
+      "hiddenValue": 1789317213,
+      "cryptoKey": 1792058973,
+      "value": 1.0878918970653287e-38,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value",
+     "Format": "0",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ]
+ },
+ {
+  "_name": "DecreaseFishingTime1",
+  "_pathid": 60119,
+  "_file": "sharedassets0.assets",
+  "_class": "LifeSkillEffect_FishingTime",
+  "TimeReduction": 0.10000000149011612,
+  "Token": {
+   "Name": "value",
+   "Format": "0%",
+   "Suffix": "",
+   "Highlight": true
+  }
+ },
+ {
+  "_name": "DecreaseFishingTime2",
+  "_pathid": 60120,
+  "_file": "sharedassets0.assets",
+  "_class": "LifeSkillEffect_FishingTime",
+  "TimeReduction": 0.15000000596046448,
+  "Token": {
+   "Name": "value",
+   "Format": "0%",
+   "Suffix": "",
+   "Highlight": true
+  }
+ },
+ {
+  "_name": "DecreaseFishingTime3",
+  "_pathid": 60121,
+  "_file": "sharedassets0.assets",
+  "_class": "LifeSkillEffect_FishingTime",
+  "TimeReduction": 0.25,
+  "Token": {
+   "Name": "value",
+   "Format": "0%",
+   "Suffix": "",
+   "Highlight": true
+  }
+ },
+ {
+  "_name": "DecreaseReviveCooldown",
+  "_pathid": 60122,
+  "_file": "sharedassets0.assets",
+  "_class": "LifeSkillEffect_ReviveCooldown",
+  "SecondsReduced": {
+   "Base": {
+    "__type__": "ObscuredFloat",
+    "hash": 149504655,
+    "hiddenValue": 1593985705,
+    "cryptoKey": 1623851689,
+    "value": 1.564697265625,
+    "__tail__": "00000000000000000000000000000000"
+   },
+   "PerLevel": {
+    "__type__": "ObscuredFloat",
+    "hash": 723851361,
+    "hiddenValue": 1455423963,
+    "cryptoKey": 1442955483,
+    "value": 1.7793486113017664e-38,
+    "__tail__": "00000000000000000000000000000000"
+   }
+  },
+  "Token": {
+   "Name": "value",
+   "Format": "0.#",
+   "Suffix": "s",
+   "Highlight": true
+  }
+ },
+ {
+  "_name": "EnableAutoRecover",
+  "_pathid": 60123,
+  "_file": "sharedassets0.assets",
+  "_class": "LifeSkillEffect_FeatureFlag",
+  "Features": [
+   0
+  ]
+ },
+ {
+  "_name": "EnableAutoRefill",
+  "_pathid": 60124,
+  "_file": "sharedassets0.assets",
+  "_class": "LifeSkillEffect_FeatureFlag",
+  "Features": [
+   1
+  ]
+ },
+ {
+  "_name": "EnableCarriageAutoFillInventory",
+  "_pathid": 60125,
+  "_file": "sharedassets0.assets",
+  "_class": "LifeSkillEffect_FeatureFlag",
+  "Features": [
+   3
+  ]
+ },
+ {
+  "_name": "EnableCarriageAutoSalvage",
+  "_pathid": 60126,
+  "_file": "sharedassets0.assets",
+  "_class": "LifeSkillEffect_FeatureFlag",
+  "Features": [
+   6
+  ]
+ },
+ {
+  "_name": "EnableCarriageAutoSell",
+  "_pathid": 60127,
+  "_file": "sharedassets0.assets",
+  "_class": "LifeSkillEffect_FeatureFlag",
+  "Features": [
+   4
+  ]
+ },
+ {
+  "_name": "EnableOfflineRewards",
+  "_pathid": 60128,
+  "_file": "sharedassets0.assets",
+  "_class": "LifeSkillEffect_FeatureFlag",
+  "Features": [
+   5
+  ]
+ },
+ {
+  "_name": "GoldFindNotable",
+  "_pathid": 60129,
+  "_file": "sharedassets0.assets",
+  "_class": "LifeSkillEffect_StatModifier",
+  "StatModifiers": [
+   {
+    "Stat": 15,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": -649440399,
+      "hiddenValue": 1115208092,
+      "cryptoKey": 2090918150,
+      "value": 0.4225509762763977,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 723851361,
+      "hiddenValue": 1586892781,
+      "cryptoKey": 1578079981,
+      "value": 1.410571697042333e-38,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value",
+     "Format": "0%",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ]
+ },
+ {
+  "_name": "IncreaseCapacity1",
+  "_pathid": 60130,
+  "_file": "sharedassets0.assets",
+  "_class": "LifeSkillEffect_StatModifier",
+  "StatModifiers": [
+   {
+    "Stat": 18,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 149504655,
+      "hiddenValue": 1216725914,
+      "cryptoKey": 2000913818,
+      "value": 1.54901123046875,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 723851361,
+      "hiddenValue": 1945864490,
+      "cryptoKey": 1938422570,
+      "value": 1.0510142056393854e-38,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value",
+     "Format": "0.#",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ]
+ },
+ {
+  "_name": "IncreaseFishingSuccess1",
+  "_pathid": 60131,
+  "_file": "sharedassets0.assets",
+  "_class": "LifeSkillEffect_FishingSuccess",
+  "SuccessBonus": 0.25,
+  "Token": {
+   "Name": "value",
+   "Format": "0%",
+   "Suffix": "",
+   "Highlight": true
+  }
+ },
+ {
+  "_name": "IncreaseFishingSuccess2",
+  "_pathid": 60132,
+  "_file": "sharedassets0.assets",
+  "_class": "LifeSkillEffect_FishingSuccess",
+  "SuccessBonus": 0.3499999940395355,
+  "Token": {
+   "Name": "value",
+   "Format": "0%",
+   "Suffix": "",
+   "Highlight": true
+  }
+ },
+ {
+  "_name": "IncreaseGoldFind1",
+  "_pathid": 60133,
+  "_file": "sharedassets0.assets",
+  "_class": "LifeSkillEffect_StatModifier",
+  "StatModifiers": [
+   {
+    "Stat": 15,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1573529835,
+      "hiddenValue": 1640226155,
+      "cryptoKey": 1544621990,
+      "value": 0.102941133081913,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 723851361,
+      "hiddenValue": 1483225585,
+      "cryptoKey": 1480157425,
+      "value": 7.467732513753528e-39,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value",
+     "Format": "0%",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ]
+ },
+ {
+  "_name": "IncreaseMagicFind1",
+  "_pathid": 60134,
+  "_file": "sharedassets0.assets",
+  "_class": "LifeSkillEffect_StatModifier",
+  "StatModifiers": [
+   {
+    "Stat": 16,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1573529835,
+      "hiddenValue": 1644151884,
+      "cryptoKey": 1544041345,
+      "value": 0.12107811123132706,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 723851361,
+      "hiddenValue": 1409175954,
+      "cryptoKey": 1397882514,
+      "value": 1.6133989998850214e-38,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value",
+     "Format": "0%",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ]
+ },
+ {
+  "_name": "IncreaseMaterialFind1",
+  "_pathid": 60135,
+  "_file": "sharedassets0.assets",
+  "_class": "LifeSkillEffect_StatModifier",
+  "StatModifiers": [
+   {
+    "Stat": 19,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1445709417,
+      "hiddenValue": 1542398232,
+      "cryptoKey": 1694644242,
+      "value": 0.4630816578865051,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 723851361,
+      "hiddenValue": 2132717064,
+      "cryptoKey": 2142117384,
+      "value": 1.6226184227415072e-38,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value",
+     "Format": "0%",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ]
+ },
+ {
+  "_name": "IncreaseOfflineCap1",
+  "_pathid": 60136,
+  "_file": "sharedassets0.assets",
+  "_class": "LifeSkillEffect_OfflineTimeCap",
+  "HoursAdded": 2.0,
+  "Token": {
+   "Name": "value",
+   "Format": "0.#",
+   "Suffix": "",
+   "Highlight": true
+  }
+ },
+ {
+  "_name": "IncreasePotionFind1",
+  "_pathid": 60137,
+  "_file": "sharedassets0.assets",
+  "_class": "LifeSkillEffect_StatModifier",
+  "StatModifiers": [
+   {
+    "Stat": 17,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 536418157,
+      "hiddenValue": 1832677971,
+      "cryptoKey": 1367867100,
+      "value": 0.022894171997904778,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 723851361,
+      "hiddenValue": 2135562090,
+      "cryptoKey": 2132232810,
+      "value": 8.574063256531828e-39,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value",
+     "Format": "0%",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ]
+ },
+ {
+  "_name": "IncreaseSoulCap1",
+  "_pathid": 60138,
+  "_file": "sharedassets0.assets",
+  "_class": "LifeSkillEffect_MaterialCarryCap",
+  "Material": {
+   "fileID": 0,
+   "pathID": 60036
+  },
+  "CapAdded": 100,
+  "Token": {
+   "Name": "value",
+   "Format": "0",
+   "Suffix": "",
+   "Highlight": true
+  }
+ },
+ {
+  "_name": "IncreaseSoulCap2",
+  "_pathid": 60139,
+  "_file": "sharedassets0.assets",
+  "_class": "LifeSkillEffect_MaterialCarryCap",
+  "Material": {
+   "fileID": 0,
+   "pathID": 60036
+  },
+  "CapAdded": 200,
+  "Token": {
+   "Name": "value",
+   "Format": "0",
+   "Suffix": "",
+   "Highlight": true
+  }
+ },
+ {
+  "_name": "IncreaseSoulCap3",
+  "_pathid": 60140,
+  "_file": "sharedassets0.assets",
+  "_class": "LifeSkillEffect_MaterialCarryCap",
+  "Material": {
+   "fileID": 0,
+   "pathID": 60036
+  },
+  "CapAdded": 300,
+  "Token": {
+   "Name": "value",
+   "Format": "0",
+   "Suffix": "",
+   "Highlight": true
+  }
+ },
+ {
+  "_name": "IncreaseSoulCap4",
+  "_pathid": 60141,
+  "_file": "sharedassets0.assets",
+  "_class": "LifeSkillEffect_MaterialCarryCap",
+  "Material": {
+   "fileID": 0,
+   "pathID": 60036
+  },
+  "CapAdded": 400,
+  "Token": {
+   "Name": "value",
+   "Format": "0",
+   "Suffix": "",
+   "Highlight": true
+  }
+ },
+ {
+  "_name": "IncreaseXPGain1",
+  "_pathid": 60142,
+  "_file": "sharedassets0.assets",
+  "_class": "LifeSkillEffect_StatModifier",
+  "StatModifiers": [
+   {
+    "Stat": 41,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1573529835,
+      "hiddenValue": 39411248,
+      "cryptoKey": 1066571261,
+      "value": 0.0995098128914833,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 723851361,
+      "hiddenValue": 1041955436,
+      "cryptoKey": 1056578156,
+      "value": 2.0651507198528274e-38,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value",
+     "Format": "0%",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ]
+ },
+ {
+  "_name": "MagicFindNotable",
+  "_pathid": 60143,
+  "_file": "sharedassets0.assets",
+  "_class": "LifeSkillEffect_StatModifier",
+  "StatModifiers": [
+   {
+    "Stat": 16,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1610992765,
+      "hiddenValue": 1812177111,
+      "cryptoKey": 1391251226,
+      "value": 0.4676498472690582,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 723851361,
+      "hiddenValue": 1032562090,
+      "cryptoKey": 1034259370,
+      "value": 4.240934513983485e-39,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value",
+     "Format": "0%",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ]
+ },
+ {
+  "_name": "MaterialFindNotable",
+  "_pathid": 60144,
+  "_file": "sharedassets0.assets",
+  "_class": "LifeSkillEffect_StatModifier",
+  "StatModifiers": [
+   {
+    "Stat": 19,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": -628755087,
+      "hiddenValue": 1503364762,
+      "cryptoKey": 1730085376,
+      "value": 0.2588241696357727,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 723851361,
+      "hiddenValue": 1802654362,
+      "cryptoKey": 1800565402,
+      "value": 2.9502153140754677e-39,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value",
+     "Format": "0%",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ]
+ },
+ {
+  "_name": "OfflineCapNotable",
+  "_pathid": 60145,
+  "_file": "sharedassets0.assets",
+  "_class": "LifeSkillEffect_OfflineTimeCap",
+  "HoursAdded": 4.0,
+  "Token": {
+   "Name": "value",
+   "Format": "0.#",
+   "Suffix": "",
+   "Highlight": true
+  }
+ },
+ {
+  "_name": "PotionFindNotable",
+  "_pathid": 60146,
+  "_file": "sharedassets0.assets",
+  "_class": "LifeSkillEffect_StatModifier",
+  "StatModifiers": [
+   {
+    "Stat": 17,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1573529835,
+      "hiddenValue": 1958098675,
+      "cryptoKey": 1241152062,
+      "value": 0.04987793043255806,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 723851361,
+      "hiddenValue": 1517067284,
+      "cryptoKey": 1520200724,
+      "value": 2.2126614855566008e-38,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value",
+     "Format": "0%",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ]
+ },
+ {
+  "_name": "ReviveNotable",
+  "_pathid": 60147,
+  "_file": "sharedassets0.assets",
+  "_class": "LifeSkillEffect_ReviveCooldown",
+  "SecondsReduced": {
+   "Base": {
+    "__type__": "ObscuredFloat",
+    "hash": 1807961569,
+    "hiddenValue": 518586998,
+    "cryptoKey": 1581443446,
+    "value": 5.3724365234375,
+    "__tail__": "00000000000000000000000000000000"
+   },
+   "PerLevel": {
+    "__type__": "ObscuredFloat",
+    "hash": 723851361,
+    "hiddenValue": 1827673927,
+    "cryptoKey": 1813508167,
+    "value": 2.1296866798482282e-38,
+    "__tail__": "00000000000000000000000000000000"
+   }
+  },
+  "Token": {
+   "Name": "value",
+   "Format": "0.#",
+   "Suffix": "s",
+   "Highlight": true
+  }
+ },
+ {
+  "_name": "UnlockCombatPotionSlot",
+  "_pathid": 60148,
+  "_file": "sharedassets0.assets",
+  "_class": "LifeSkillEffect_UnlockConsumableSlot",
+  "Category": 1
+ },
+ {
+  "_name": "UnlockFoodSlot",
+  "_pathid": 60149,
+  "_file": "sharedassets0.assets",
+  "_class": "LifeSkillEffect_UnlockConsumableSlot",
+  "Category": 3
+ },
+ {
+  "_name": "UnlockStoragePage",
+  "_pathid": 60150,
+  "_file": "sharedassets0.assets",
+  "_class": "LifeSkillEffect_UnlockStoragePage",
+  "Pages": 1
+ },
+ {
+  "_name": "UnlockUtilityPotionSlot",
+  "_pathid": 60151,
+  "_file": "sharedassets0.assets",
+  "_class": "LifeSkillEffect_UnlockConsumableSlot",
+  "Category": 2
+ },
+ {
+  "_name": "XPGainNotable",
+  "_pathid": 60152,
+  "_file": "sharedassets0.assets",
+  "_class": "LifeSkillEffect_StatModifier",
+  "StatModifiers": [
+   {
+    "Stat": 41,
+    "Type": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": -649440399,
+      "hiddenValue": 1782227587,
+      "cryptoKey": 1421583129,
+      "value": 0.25196534395217896,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 723851361,
+      "hiddenValue": 1881570021,
+      "cryptoKey": 1887053541,
+      "value": 8.48186902796697e-39,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    },
+    "Token": {
+     "Name": "value",
+     "Format": "0%",
+     "Suffix": "",
+     "Highlight": true
+    }
+   }
+  ]
+ }
+]

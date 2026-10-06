@@ -1,0 +1,355 @@
+[
+ {
+  "_name": "Fishing-Beach",
+  "_pathid": 60275,
+  "_file": "sharedassets0.assets",
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60263
+  },
+  "IsLockedInDemo": false,
+  "IsUnavailable": false,
+  "EnvironmentPrefab": {
+   "fileID": 0,
+   "pathID": 14349
+  },
+  "NothingChance": 0.5,
+  "CatchEnemyLevel": 35,
+  "Fish": [
+   {
+    "Fish": {
+     "fileID": 0,
+     "pathID": 59965
+    },
+    "Weight": 1.0
+   },
+   {
+    "Fish": {
+     "fileID": 0,
+     "pathID": 59966
+    },
+    "Weight": 1.0
+   },
+   {
+    "Fish": {
+     "fileID": 0,
+     "pathID": 59976
+    },
+    "Weight": 0.20000000298023224
+   },
+   {
+    "Fish": {
+     "fileID": 0,
+     "pathID": 59977
+    },
+    "Weight": 0.20000000298023224
+   },
+   {
+    "Fish": {
+     "fileID": 0,
+     "pathID": 59972
+    },
+    "Weight": 0.009999999776482582
+   },
+   {
+    "Fish": {
+     "fileID": 0,
+     "pathID": 59973
+    },
+    "Weight": 0.009999999776482582
+   },
+   {
+    "Fish": {
+     "fileID": 0,
+     "pathID": 59968
+    },
+    "Weight": 0.019999999552965164
+   },
+   {
+    "Fish": {
+     "fileID": 0,
+     "pathID": 59969
+    },
+    "Weight": 0.019999999552965164
+   },
+   {
+    "Fish": {
+     "fileID": 0,
+     "pathID": 59935
+    },
+    "Weight": 0.004999999888241291
+   },
+   {
+    "Fish": {
+     "fileID": 0,
+     "pathID": 59936
+    },
+    "Weight": 0.003000000026077032
+   },
+   {
+    "Fish": {
+     "fileID": 0,
+     "pathID": 60038
+    },
+    "Weight": 0.001500000013038516
+   },
+   {
+    "Fish": {
+     "fileID": 0,
+     "pathID": 60078
+    },
+    "Weight": 0.0001500000071246177
+   }
+  ],
+  "MusicClip": {
+   "fileID": 0,
+   "pathID": 4843
+  },
+  "MusicVolume": 1.0,
+  "MusicClip2": {
+   "fileID": 0,
+   "pathID": 4811
+  },
+  "MusicVolume2": 0.6000000238418579
+ },
+ {
+  "_name": "Fishing-SnowLake",
+  "_pathid": 60276,
+  "_file": "sharedassets0.assets",
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60304
+  },
+  "IsLockedInDemo": false,
+  "IsUnavailable": false,
+  "EnvironmentPrefab": {
+   "fileID": 0,
+   "pathID": 14307
+  },
+  "NothingChance": 0.5,
+  "CatchEnemyLevel": 55,
+  "Fish": [
+   {
+    "Fish": {
+     "fileID": 0,
+     "pathID": 59965
+    },
+    "Weight": 1.0
+   },
+   {
+    "Fish": {
+     "fileID": 0,
+     "pathID": 59967
+    },
+    "Weight": 1.0
+   },
+   {
+    "Fish": {
+     "fileID": 0,
+     "pathID": 59978
+    },
+    "Weight": 0.20000000298023224
+   },
+   {
+    "Fish": {
+     "fileID": 0,
+     "pathID": 59977
+    },
+    "Weight": 0.20000000298023224
+   },
+   {
+    "Fish": {
+     "fileID": 0,
+     "pathID": 59972
+    },
+    "Weight": 0.009999999776482582
+   },
+   {
+    "Fish": {
+     "fileID": 0,
+     "pathID": 59974
+    },
+    "Weight": 0.009999999776482582
+   },
+   {
+    "Fish": {
+     "fileID": 0,
+     "pathID": 59970
+    },
+    "Weight": 0.019999999552965164
+   },
+   {
+    "Fish": {
+     "fileID": 0,
+     "pathID": 59969
+    },
+    "Weight": 0.019999999552965164
+   },
+   {
+    "Fish": {
+     "fileID": 0,
+     "pathID": 59935
+    },
+    "Weight": 0.004999999888241291
+   },
+   {
+    "Fish": {
+     "fileID": 0,
+     "pathID": 59936
+    },
+    "Weight": 0.003000000026077032
+   },
+   {
+    "Fish": {
+     "fileID": 0,
+     "pathID": 60038
+    },
+    "Weight": 0.001500000013038516
+   },
+   {
+    "Fish": {
+     "fileID": 0,
+     "pathID": 60078
+    },
+    "Weight": 0.0002500000118743628
+   },
+   {
+    "Fish": {
+     "fileID": 0,
+     "pathID": 59920
+    },
+    "Weight": 0.0003499999875202775
+   }
+  ],
+  "MusicClip": {
+   "fileID": 0,
+   "pathID": 4843
+  },
+  "MusicVolume": 1.0,
+  "MusicClip2": {
+   "fileID": 0,
+   "pathID": 4811
+  },
+  "MusicVolume2": 0.6000000238418579
+ },
+ {
+  "_name": "Fishing-VolcanoLake",
+  "_pathid": 60277,
+  "_file": "sharedassets0.assets",
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60316
+  },
+  "IsLockedInDemo": false,
+  "IsUnavailable": false,
+  "EnvironmentPrefab": {
+   "fileID": 0,
+   "pathID": 17745
+  },
+  "NothingChance": 0.5,
+  "CatchEnemyLevel": 65,
+  "Fish": [
+   {
+    "Fish": {
+     "fileID": 0,
+     "pathID": 59965
+    },
+    "Weight": 1.0
+   },
+   {
+    "Fish": {
+     "fileID": 0,
+     "pathID": 59966
+    },
+    "Weight": 1.0
+   },
+   {
+    "Fish": {
+     "fileID": 0,
+     "pathID": 59979
+    },
+    "Weight": 0.20000000298023224
+   },
+   {
+    "Fish": {
+     "fileID": 0,
+     "pathID": 59977
+    },
+    "Weight": 0.20000000298023224
+   },
+   {
+    "Fish": {
+     "fileID": 0,
+     "pathID": 59972
+    },
+    "Weight": 0.009999999776482582
+   },
+   {
+    "Fish": {
+     "fileID": 0,
+     "pathID": 59975
+    },
+    "Weight": 0.009999999776482582
+   },
+   {
+    "Fish": {
+     "fileID": 0,
+     "pathID": 59971
+    },
+    "Weight": 0.019999999552965164
+   },
+   {
+    "Fish": {
+     "fileID": 0,
+     "pathID": 59969
+    },
+    "Weight": 0.019999999552965164
+   },
+   {
+    "Fish": {
+     "fileID": 0,
+     "pathID": 59935
+    },
+    "Weight": 0.004999999888241291
+   },
+   {
+    "Fish": {
+     "fileID": 0,
+     "pathID": 59936
+    },
+    "Weight": 0.003000000026077032
+   },
+   {
+    "Fish": {
+     "fileID": 0,
+     "pathID": 60038
+    },
+    "Weight": 0.001500000013038516
+   },
+   {
+    "Fish": {
+     "fileID": 0,
+     "pathID": 60078
+    },
+    "Weight": 0.0002500000118743628
+   },
+   {
+    "Fish": {
+     "fileID": 0,
+     "pathID": 59920
+    },
+    "Weight": 0.0003499999875202775
+   }
+  ],
+  "MusicClip": {
+   "fileID": 0,
+   "pathID": 4843
+  },
+  "MusicVolume": 1.0,
+  "MusicClip2": {
+   "fileID": 0,
+   "pathID": 4811
+  },
+  "MusicVolume2": 0.6000000238418579
+ }
+]

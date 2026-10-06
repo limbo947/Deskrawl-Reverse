@@ -1,0 +1,1103 @@
+[
+ {
+  "_name": "BetaGameConfig",
+  "_pathid": 4789,
+  "_file": "resources.assets",
+  "DlcSlave": null,
+  "DlcBackEquipment": null,
+  "IsDemo": true,
+  "InteractableLayer": 128,
+  "GroundLayerMask": 1,
+  "PotionUpgradeData": {
+   "fileID": 2,
+   "pathID": 60016
+  },
+  "Itemization": {
+   "fileID": 2,
+   "pathID": 59919
+  },
+  "Loot": {
+   "fileID": 0,
+   "pathID": 4790
+  },
+  "UpgradeRecipes": [
+   {
+    "Rarity": 0,
+    "Recipe": {
+     "fileID": 2,
+     "pathID": 60388
+    }
+   },
+   {
+    "Rarity": 1,
+    "Recipe": {
+     "fileID": 2,
+     "pathID": 60388
+    }
+   },
+   {
+    "Rarity": 2,
+    "Recipe": {
+     "fileID": 2,
+     "pathID": 60391
+    }
+   },
+   {
+    "Rarity": 3,
+    "Recipe": {
+     "fileID": 2,
+     "pathID": 60390
+    }
+   },
+   {
+    "Rarity": 4,
+    "Recipe": {
+     "fileID": 2,
+     "pathID": 60389
+    }
+   }
+  ],
+  "ExtraUpgradeMaterials": [
+   {
+    "Slot": 1,
+    "Material": {
+     "fileID": 2,
+     "pathID": 60025
+    }
+   },
+   {
+    "Slot": 2,
+    "Material": {
+     "fileID": 2,
+     "pathID": 60040
+    }
+   },
+   {
+    "Slot": 3,
+    "Material": {
+     "fileID": 2,
+     "pathID": 60027
+    }
+   },
+   {
+    "Slot": 4,
+    "Material": {
+     "fileID": 2,
+     "pathID": 60026
+    }
+   },
+   {
+    "Slot": 5,
+    "Material": {
+     "fileID": 2,
+     "pathID": 60030
+    }
+   },
+   {
+    "Slot": 6,
+    "Material": {
+     "fileID": 2,
+     "pathID": 60028
+    }
+   },
+   {
+    "Slot": 7,
+    "Material": {
+     "fileID": 2,
+     "pathID": 60031
+    }
+   },
+   {
+    "Slot": 8,
+    "Material": {
+     "fileID": 2,
+     "pathID": 60035
+    }
+   },
+   {
+    "Slot": 9,
+    "Material": {
+     "fileID": 2,
+     "pathID": 60029
+    }
+   },
+   {
+    "Slot": 10,
+    "Material": {
+     "fileID": 2,
+     "pathID": 60032
+    }
+   }
+  ],
+  "SpecialUpgradeRecipe": {
+   "fileID": 2,
+   "pathID": 60392
+  },
+  "MaxEquipmentUpgradeLevel": 12,
+  "SocketMaterial": {
+   "fileID": 2,
+   "pathID": 60043
+  },
+  "SocketMaterialAmount": 100,
+  "SocketGoldPerItemLevel": 400,
+  "SalvageYields": [
+   {
+    "Rarity": 0,
+    "Material": {
+     "fileID": 2,
+     "pathID": 60041
+    },
+    "BaseAmount": 1,
+    "AmountPerItemLevel": 0.019999999552965164,
+    "Chance": 1.0
+   },
+   {
+    "Rarity": 0,
+    "Material": {
+     "fileID": 2,
+     "pathID": 60036
+    },
+    "BaseAmount": 1,
+    "AmountPerItemLevel": 0.003000000026077032,
+    "Chance": 0.10000000149011612
+   },
+   {
+    "Rarity": 1,
+    "Material": {
+     "fileID": 2,
+     "pathID": 60041
+    },
+    "BaseAmount": 2,
+    "AmountPerItemLevel": 0.05000000074505806,
+    "Chance": 1.0
+   },
+   {
+    "Rarity": 1,
+    "Material": {
+     "fileID": 2,
+     "pathID": 60036
+    },
+    "BaseAmount": 1,
+    "AmountPerItemLevel": 0.004999999888241291,
+    "Chance": 0.20000000298023224
+   },
+   {
+    "Rarity": 2,
+    "Material": {
+     "fileID": 2,
+     "pathID": 60041
+    },
+    "BaseAmount": 1,
+    "AmountPerItemLevel": 0.05000000074505806,
+    "Chance": 1.0
+   },
+   {
+    "Rarity": 2,
+    "Material": {
+     "fileID": 2,
+     "pathID": 60042
+    },
+    "BaseAmount": 2,
+    "AmountPerItemLevel": 0.02500000037252903,
+    "Chance": 1.0
+   },
+   {
+    "Rarity": 2,
+    "Material": {
+     "fileID": 2,
+     "pathID": 60036
+    },
+    "BaseAmount": 1,
+    "AmountPerItemLevel": 0.00800000037997961,
+    "Chance": 0.4000000059604645
+   },
+   {
+    "Rarity": 3,
+    "Material": {
+     "fileID": 2,
+     "pathID": 60042
+    },
+    "BaseAmount": 10,
+    "AmountPerItemLevel": 0.05000000074505806,
+    "Chance": 1.0
+   },
+   {
+    "Rarity": 3,
+    "Material": {
+     "fileID": 2,
+     "pathID": 60043
+    },
+    "BaseAmount": 5,
+    "AmountPerItemLevel": 0.02500000037252903,
+    "Chance": 1.0
+   },
+   {
+    "Rarity": 3,
+    "Material": {
+     "fileID": 2,
+     "pathID": 60036
+    },
+    "BaseAmount": 2,
+    "AmountPerItemLevel": 0.019999999552965164,
+    "Chance": 0.699999988079071
+   },
+   {
+    "Rarity": 4,
+    "Material": {
+     "fileID": 2,
+     "pathID": 60042
+    },
+    "BaseAmount": 25,
+    "AmountPerItemLevel": 0.5,
+    "Chance": 1.0
+   },
+   {
+    "Rarity": 4,
+    "Material": {
+     "fileID": 2,
+     "pathID": 60043
+    },
+    "BaseAmount": 10,
+    "AmountPerItemLevel": 0.15000000596046448,
+    "Chance": 1.0
+   },
+   {
+    "Rarity": 4,
+    "Material": {
+     "fileID": 2,
+     "pathID": 60036
+    },
+    "BaseAmount": 4,
+    "AmountPerItemLevel": 0.03999999910593033,
+    "Chance": 1.0
+   }
+  ],
+  "UpgradeSuccessChances": [
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   0.75,
+   0.5,
+   0.4000000059604645,
+   0.30000001192092896,
+   0.20000000298023224,
+   0.10000000149011612,
+   1.0,
+   1.0
+  ],
+  "GatherableConfigs": [
+   {
+    "Type": 0,
+    "GatherRange": 0.6000000238418579,
+    "Mode": 0,
+    "InstantStopDuration": 0.5,
+    "GatherDuration": 0.0,
+    "AnimationTrigger": "Pickup",
+    "GatherSound": {
+     "fileID": 2,
+     "pathID": 4982
+    }
+   },
+   {
+    "Type": 1,
+    "GatherRange": 0.6000000238418579,
+    "Mode": 1,
+    "InstantStopDuration": 0.0,
+    "GatherDuration": 0.8999999761581421,
+    "AnimationTrigger": "Mine",
+    "GatherSound": {
+     "fileID": 2,
+     "pathID": 4907
+    }
+   }
+  ],
+  "TalentRefundCostPerPointSpent": 8,
+  "EliteHealthMultiplier": 3.0,
+  "EliteDamageMultiplier": 1.5,
+  "EliteScaleMultiplier": 1.100000023841858,
+  "BossTenacityStatus": {
+   "fileID": 2,
+   "pathID": 60475
+  },
+  "MythicBossEnrageCountdownStatus": {
+   "fileID": 2,
+   "pathID": 60520
+  },
+  "MythicBossEnragedStatus": {
+   "fileID": 2,
+   "pathID": 60521
+  },
+  "DifficultyTiers": [
+   {
+    "Difficulty": 0,
+    "Icon": {
+     "fileID": 2,
+     "pathID": 5711
+    },
+    "EnemyHealthMultiplier": 1.0,
+    "EnemyDamageMultiplier": 1.0,
+    "LootBonusPerMapLevel": 0.0,
+    "GoldBonusPerMapLevel": 0.0,
+    "ExpMultiplier": 1.0,
+    "ItemLevelsPerMapLevel": 0,
+    "BossMaterialMultiplier": 1.0
+   },
+   {
+    "Difficulty": 1,
+    "Icon": {
+     "fileID": 2,
+     "pathID": 5386
+    },
+    "EnemyHealthMultiplier": 2.0,
+    "EnemyDamageMultiplier": 1.25,
+    "LootBonusPerMapLevel": 0.004999999888241291,
+    "GoldBonusPerMapLevel": 0.004999999888241291,
+    "ExpMultiplier": 1.2999999523162842,
+    "ItemLevelsPerMapLevel": 1,
+    "BossMaterialMultiplier": 1.5
+   }
+  ],
+  "WorldFinalBossMap": null,
+  "MinMythicDifficulty": 2,
+  "EnemyHealthGrowthPerLevel0To30": 0.11999999731779099,
+  "EnemyDamageGrowthPerLevel0To30": 0.10000000149011612,
+  "EnemyHealthGrowthPerLevel31To50": 0.11999999731779099,
+  "EnemyDamageGrowthPerLevel31To50": 0.10000000149011612,
+  "EnemyHealthGrowthPerLevel51To70": 0.11999999731779099,
+  "EnemyDamageGrowthPerLevel51To70": 0.10000000149011612,
+  "MobsToLevelAtLevel1": 2,
+  "MobsToLevelAtLevel5": 10,
+  "MobsToLevelAtLevel15": 200,
+  "MobsToLevelAtLevel50": 5273,
+  "MobsToLevelAtMaxLevel": 500,
+  "MaxPlayerLevel": 35,
+  "XpPerBaseHealth": 1.0,
+  "XpPerLevelScale": 0.10000000149011612,
+  "XpZeroUnderLevel": 6,
+  "ParagonMobsToLevelKnots": [
+   [
+    1,
+    56063
+   ],
+   [
+    10,
+    63212
+   ],
+   [
+    20,
+    184023
+   ],
+   [
+    50,
+    242191
+   ],
+   [
+    200,
+    242191
+   ],
+   [
+    300,
+    568377
+   ],
+   [
+    400,
+    779240
+   ],
+   [
+    475,
+    1745254
+   ]
+  ],
+  "ParagonMobsGrowthPastLastKnot": 12880,
+  "ParagonPointsPerLevel": 1,
+  "ParagonStats": [
+   {
+    "Stat": 0,
+    "Category": 0,
+    "ValuePerPoint": 1.0,
+    "MaxPoints": 0
+   },
+   {
+    "Stat": 1,
+    "Category": 0,
+    "ValuePerPoint": 1.0,
+    "MaxPoints": 0
+   },
+   {
+    "Stat": 2,
+    "Category": 0,
+    "ValuePerPoint": 1.0,
+    "MaxPoints": 0
+   },
+   {
+    "Stat": 57,
+    "Category": 0,
+    "ValuePerPoint": 0.004999999888241291,
+    "MaxPoints": 50
+   },
+   {
+    "Stat": 14,
+    "Category": 0,
+    "ValuePerPoint": 2.0,
+    "MaxPoints": 50
+   },
+   {
+    "Stat": 4,
+    "Category": 1,
+    "ValuePerPoint": 0.0010000000474974513,
+    "MaxPoints": 50
+   },
+   {
+    "Stat": 5,
+    "Category": 1,
+    "ValuePerPoint": 0.019999999552965164,
+    "MaxPoints": 50
+   },
+   {
+    "Stat": 6,
+    "Category": 1,
+    "ValuePerPoint": 0.004000000189989805,
+    "MaxPoints": 50
+   },
+   {
+    "Stat": 13,
+    "Category": 1,
+    "ValuePerPoint": 0.0020000000949949026,
+    "MaxPoints": 50
+   },
+   {
+    "Stat": 44,
+    "Category": 2,
+    "ValuePerPoint": 0.009999999776482582,
+    "MaxPoints": 50
+   },
+   {
+    "Stat": 59,
+    "Category": 2,
+    "ValuePerPoint": 0.009999999776482582,
+    "MaxPoints": 50
+   },
+   {
+    "Stat": 42,
+    "Category": 2,
+    "ValuePerPoint": 0.004999999888241291,
+    "MaxPoints": 50
+   },
+   {
+    "Stat": 36,
+    "Category": 2,
+    "ValuePerPoint": 4.0,
+    "MaxPoints": 50
+   },
+   {
+    "Stat": 11,
+    "Category": 3,
+    "ValuePerPoint": 5.0,
+    "MaxPoints": 25
+   },
+   {
+    "Stat": 17,
+    "Category": 3,
+    "ValuePerPoint": 0.05000000074505806,
+    "MaxPoints": 0
+   }
+  ],
+  "OfflineMobsPerHourKnots": [
+   [
+    5,
+    70
+   ],
+   [
+    20,
+    470
+   ],
+   [
+    40,
+    470
+   ],
+   [
+    60,
+    690
+   ]
+  ],
+  "OfflineMobsPerGoldRoll": 4.0,
+  "OfflineTimeCapHours": 8.0,
+  "MaxAbilityLevel": 10,
+  "AbilityBaseXPToLevel": 135,
+  "AbilityXPGrowthPerLevel": 1.5,
+  "RuneSlotUnlockLevels": [
+   30,
+   35,
+   40,
+   45,
+   50,
+   55
+  ],
+  "MaxRuneLevel": 6,
+  "RuneBaseXPToLevel": 450,
+  "RuneXPGrowthPerLevel": 1.7999999523162842
+ },
+ {
+  "_name": "GameConfig",
+  "_pathid": 59856,
+  "_file": "sharedassets0.assets",
+  "DlcSlave": {
+   "fileID": 0,
+   "pathID": 60408
+  },
+  "DlcBackEquipment": {
+   "fileID": 0,
+   "pathID": 59940
+  },
+  "IsDemo": false,
+  "InteractableLayer": 128,
+  "GroundLayerMask": 1,
+  "PotionUpgradeData": {
+   "fileID": 0,
+   "pathID": 60016
+  },
+  "Itemization": {
+   "fileID": 0,
+   "pathID": 59919
+  },
+  "Loot": {
+   "fileID": 0,
+   "pathID": 60238
+  },
+  "UpgradeRecipes": [
+   {
+    "Rarity": 0,
+    "Recipe": {
+     "fileID": 0,
+     "pathID": 60388
+    }
+   },
+   {
+    "Rarity": 1,
+    "Recipe": {
+     "fileID": 0,
+     "pathID": 60388
+    }
+   },
+   {
+    "Rarity": 2,
+    "Recipe": {
+     "fileID": 0,
+     "pathID": 60391
+    }
+   },
+   {
+    "Rarity": 3,
+    "Recipe": {
+     "fileID": 0,
+     "pathID": 60390
+    }
+   },
+   {
+    "Rarity": 4,
+    "Recipe": {
+     "fileID": 0,
+     "pathID": 60389
+    }
+   }
+  ],
+  "ExtraUpgradeMaterials": [
+   {
+    "Slot": 1,
+    "Material": {
+     "fileID": 0,
+     "pathID": 60025
+    }
+   },
+   {
+    "Slot": 2,
+    "Material": {
+     "fileID": 0,
+     "pathID": 60040
+    }
+   },
+   {
+    "Slot": 3,
+    "Material": {
+     "fileID": 0,
+     "pathID": 60027
+    }
+   },
+   {
+    "Slot": 4,
+    "Material": {
+     "fileID": 0,
+     "pathID": 60026
+    }
+   },
+   {
+    "Slot": 5,
+    "Material": {
+     "fileID": 0,
+     "pathID": 60030
+    }
+   },
+   {
+    "Slot": 6,
+    "Material": {
+     "fileID": 0,
+     "pathID": 60028
+    }
+   },
+   {
+    "Slot": 7,
+    "Material": {
+     "fileID": 0,
+     "pathID": 60031
+    }
+   },
+   {
+    "Slot": 8,
+    "Material": {
+     "fileID": 0,
+     "pathID": 60035
+    }
+   },
+   {
+    "Slot": 9,
+    "Material": {
+     "fileID": 0,
+     "pathID": 60029
+    }
+   },
+   {
+    "Slot": 10,
+    "Material": {
+     "fileID": 0,
+     "pathID": 60032
+    }
+   }
+  ],
+  "SpecialUpgradeRecipe": {
+   "fileID": 0,
+   "pathID": 60392
+  },
+  "MaxEquipmentUpgradeLevel": 12,
+  "SocketMaterial": {
+   "fileID": 0,
+   "pathID": 60043
+  },
+  "SocketMaterialAmount": 100,
+  "SocketGoldPerItemLevel": 400,
+  "SalvageYields": [
+   {
+    "Rarity": 0,
+    "Material": {
+     "fileID": 0,
+     "pathID": 60041
+    },
+    "BaseAmount": 1,
+    "AmountPerItemLevel": 0.019999999552965164,
+    "Chance": 1.0
+   },
+   {
+    "Rarity": 0,
+    "Material": {
+     "fileID": 0,
+     "pathID": 60036
+    },
+    "BaseAmount": 1,
+    "AmountPerItemLevel": 0.003000000026077032,
+    "Chance": 0.10000000149011612
+   },
+   {
+    "Rarity": 1,
+    "Material": {
+     "fileID": 0,
+     "pathID": 60041
+    },
+    "BaseAmount": 2,
+    "AmountPerItemLevel": 0.05000000074505806,
+    "Chance": 1.0
+   },
+   {
+    "Rarity": 1,
+    "Material": {
+     "fileID": 0,
+     "pathID": 60036
+    },
+    "BaseAmount": 1,
+    "AmountPerItemLevel": 0.004999999888241291,
+    "Chance": 0.20000000298023224
+   },
+   {
+    "Rarity": 2,
+    "Material": {
+     "fileID": 0,
+     "pathID": 60041
+    },
+    "BaseAmount": 1,
+    "AmountPerItemLevel": 0.05000000074505806,
+    "Chance": 1.0
+   },
+   {
+    "Rarity": 2,
+    "Material": {
+     "fileID": 0,
+     "pathID": 60042
+    },
+    "BaseAmount": 2,
+    "AmountPerItemLevel": 0.02500000037252903,
+    "Chance": 1.0
+   },
+   {
+    "Rarity": 2,
+    "Material": {
+     "fileID": 0,
+     "pathID": 60036
+    },
+    "BaseAmount": 1,
+    "AmountPerItemLevel": 0.00800000037997961,
+    "Chance": 0.4000000059604645
+   },
+   {
+    "Rarity": 3,
+    "Material": {
+     "fileID": 0,
+     "pathID": 60042
+    },
+    "BaseAmount": 10,
+    "AmountPerItemLevel": 0.05000000074505806,
+    "Chance": 1.0
+   },
+   {
+    "Rarity": 3,
+    "Material": {
+     "fileID": 0,
+     "pathID": 60043
+    },
+    "BaseAmount": 5,
+    "AmountPerItemLevel": 0.02500000037252903,
+    "Chance": 1.0
+   },
+   {
+    "Rarity": 3,
+    "Material": {
+     "fileID": 0,
+     "pathID": 60036
+    },
+    "BaseAmount": 2,
+    "AmountPerItemLevel": 0.019999999552965164,
+    "Chance": 0.699999988079071
+   },
+   {
+    "Rarity": 4,
+    "Material": {
+     "fileID": 0,
+     "pathID": 60042
+    },
+    "BaseAmount": 25,
+    "AmountPerItemLevel": 0.5,
+    "Chance": 1.0
+   },
+   {
+    "Rarity": 4,
+    "Material": {
+     "fileID": 0,
+     "pathID": 60043
+    },
+    "BaseAmount": 10,
+    "AmountPerItemLevel": 0.15000000596046448,
+    "Chance": 1.0
+   },
+   {
+    "Rarity": 4,
+    "Material": {
+     "fileID": 0,
+     "pathID": 60036
+    },
+    "BaseAmount": 4,
+    "AmountPerItemLevel": 0.03999999910593033,
+    "Chance": 1.0
+   }
+  ],
+  "UpgradeSuccessChances": [
+   1.0,
+   1.0,
+   1.0,
+   1.0,
+   0.75,
+   0.5,
+   0.4000000059604645,
+   0.30000001192092896,
+   0.20000000298023224,
+   0.10000000149011612,
+   1.0,
+   1.0
+  ],
+  "GatherableConfigs": [
+   {
+    "Type": 0,
+    "GatherRange": 0.6000000238418579,
+    "Mode": 0,
+    "InstantStopDuration": 0.5,
+    "GatherDuration": 0.0,
+    "AnimationTrigger": "Pickup",
+    "GatherSound": {
+     "fileID": 0,
+     "pathID": 4982
+    }
+   },
+   {
+    "Type": 1,
+    "GatherRange": 0.6000000238418579,
+    "Mode": 1,
+    "InstantStopDuration": 0.0,
+    "GatherDuration": 0.8999999761581421,
+    "AnimationTrigger": "Mine",
+    "GatherSound": {
+     "fileID": 0,
+     "pathID": 4907
+    }
+   }
+  ],
+  "TalentRefundCostPerPointSpent": 8,
+  "EliteHealthMultiplier": 3.0,
+  "EliteDamageMultiplier": 1.5,
+  "EliteScaleMultiplier": 1.100000023841858,
+  "BossTenacityStatus": {
+   "fileID": 0,
+   "pathID": 60475
+  },
+  "MythicBossEnrageCountdownStatus": {
+   "fileID": 0,
+   "pathID": 60520
+  },
+  "MythicBossEnragedStatus": {
+   "fileID": 0,
+   "pathID": 60521
+  },
+  "DifficultyTiers": [
+   {
+    "Difficulty": 0,
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5711
+    },
+    "EnemyHealthMultiplier": 1.0,
+    "EnemyDamageMultiplier": 1.0,
+    "LootBonusPerMapLevel": 0.0,
+    "GoldBonusPerMapLevel": 0.0,
+    "ExpMultiplier": 1.0,
+    "ItemLevelsPerMapLevel": 0,
+    "BossMaterialMultiplier": 1.0
+   },
+   {
+    "Difficulty": 1,
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5386
+    },
+    "EnemyHealthMultiplier": 3.5,
+    "EnemyDamageMultiplier": 1.350000023841858,
+    "LootBonusPerMapLevel": 0.004999999888241291,
+    "GoldBonusPerMapLevel": 0.004999999888241291,
+    "ExpMultiplier": 1.5,
+    "ItemLevelsPerMapLevel": 1,
+    "BossMaterialMultiplier": 1.5
+   },
+   {
+    "Difficulty": 2,
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5575
+    },
+    "EnemyHealthMultiplier": 6.0,
+    "EnemyDamageMultiplier": 1.7999999523162842,
+    "LootBonusPerMapLevel": 0.009999999776482582,
+    "GoldBonusPerMapLevel": 0.009999999776482582,
+    "ExpMultiplier": 2.0,
+    "ItemLevelsPerMapLevel": 2,
+    "BossMaterialMultiplier": 2.0
+   }
+  ],
+  "WorldFinalBossMap": {
+   "fileID": 0,
+   "pathID": 60319
+  },
+  "MinMythicDifficulty": 2,
+  "EnemyHealthGrowthPerLevel0To30": 0.11999999731779099,
+  "EnemyDamageGrowthPerLevel0To30": 0.10000000149011612,
+  "EnemyHealthGrowthPerLevel31To50": 0.07999999821186066,
+  "EnemyDamageGrowthPerLevel31To50": 0.03999999910593033,
+  "EnemyHealthGrowthPerLevel51To70": 0.05999999865889549,
+  "EnemyDamageGrowthPerLevel51To70": 0.029999999329447746,
+  "MobsToLevelAtLevel1": 2,
+  "MobsToLevelAtLevel5": 35,
+  "MobsToLevelAtLevel15": 900,
+  "MobsToLevelAtLevel50": 20000,
+  "MobsToLevelAtMaxLevel": 50000,
+  "MaxPlayerLevel": 70,
+  "XpPerBaseHealth": 1.0,
+  "XpPerLevelScale": 0.10000000149011612,
+  "XpZeroUnderLevel": 6,
+  "ParagonMobsToLevelKnots": [
+   [
+    1,
+    56063
+   ],
+   [
+    10,
+    63212
+   ],
+   [
+    20,
+    184023
+   ],
+   [
+    50,
+    242191
+   ],
+   [
+    200,
+    242191
+   ],
+   [
+    300,
+    568377
+   ],
+   [
+    400,
+    779240
+   ],
+   [
+    475,
+    1745254
+   ]
+  ],
+  "ParagonMobsGrowthPastLastKnot": 12880,
+  "ParagonPointsPerLevel": 1,
+  "ParagonStats": [
+   {
+    "Stat": 0,
+    "Category": 0,
+    "ValuePerPoint": 1.0,
+    "MaxPoints": 0
+   },
+   {
+    "Stat": 1,
+    "Category": 0,
+    "ValuePerPoint": 1.0,
+    "MaxPoints": 0
+   },
+   {
+    "Stat": 2,
+    "Category": 0,
+    "ValuePerPoint": 1.0,
+    "MaxPoints": 0
+   },
+   {
+    "Stat": 57,
+    "Category": 0,
+    "ValuePerPoint": 0.004999999888241291,
+    "MaxPoints": 50
+   },
+   {
+    "Stat": 14,
+    "Category": 0,
+    "ValuePerPoint": 2.0,
+    "MaxPoints": 50
+   },
+   {
+    "Stat": 4,
+    "Category": 1,
+    "ValuePerPoint": 0.0010000000474974513,
+    "MaxPoints": 50
+   },
+   {
+    "Stat": 5,
+    "Category": 1,
+    "ValuePerPoint": 0.019999999552965164,
+    "MaxPoints": 50
+   },
+   {
+    "Stat": 6,
+    "Category": 1,
+    "ValuePerPoint": 0.004000000189989805,
+    "MaxPoints": 50
+   },
+   {
+    "Stat": 13,
+    "Category": 1,
+    "ValuePerPoint": 0.0020000000949949026,
+    "MaxPoints": 50
+   },
+   {
+    "Stat": 44,
+    "Category": 2,
+    "ValuePerPoint": 0.009999999776482582,
+    "MaxPoints": 50
+   },
+   {
+    "Stat": 59,
+    "Category": 2,
+    "ValuePerPoint": 0.009999999776482582,
+    "MaxPoints": 50
+   },
+   {
+    "Stat": 42,
+    "Category": 2,
+    "ValuePerPoint": 0.004999999888241291,
+    "MaxPoints": 50
+   },
+   {
+    "Stat": 36,
+    "Category": 2,
+    "ValuePerPoint": 4.0,
+    "MaxPoints": 50
+   },
+   {
+    "Stat": 11,
+    "Category": 3,
+    "ValuePerPoint": 5.0,
+    "MaxPoints": 25
+   },
+   {
+    "Stat": 17,
+    "Category": 3,
+    "ValuePerPoint": 0.05000000074505806,
+    "MaxPoints": 0
+   }
+  ],
+  "OfflineMobsPerHourKnots": [
+   [
+    5,
+    70
+   ],
+   [
+    20,
+    470
+   ],
+   [
+    40,
+    470
+   ],
+   [
+    60,
+    690
+   ]
+  ],
+  "OfflineMobsPerGoldRoll": 4.0,
+  "OfflineTimeCapHours": 8.0,
+  "MaxAbilityLevel": 10,
+  "AbilityBaseXPToLevel": 135,
+  "AbilityXPGrowthPerLevel": 1.5,
+  "RuneSlotUnlockLevels": [
+   40,
+   45,
+   50,
+   55,
+   60,
+   65
+  ],
+  "MaxRuneLevel": 6,
+  "RuneBaseXPToLevel": 450,
+  "RuneXPGrowthPerLevel": 1.7999999523162842
+ }
+]

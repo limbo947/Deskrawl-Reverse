@@ -1,0 +1,4581 @@
+[
+ {
+  "_name": "Bull",
+  "_pathid": 5244,
+  "_file": "resources.assets",
+  "Species": 1,
+  "Rarity": 1,
+  "IsLockedInDemo": false,
+  "Location": "Reward",
+  "Capacity": 25,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 2085
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 666
+   },
+   "Volume": 0.699999988079071,
+   "Pitch": 1.0
+  },
+  "ZoomOutDistance": 0.5,
+  "RunAnimSpeedMultiplier": 0.8999999761581421,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 2,
+     "pathID": 5302
+    },
+    "Title": "Fast Travel I",
+    "Modifier": {
+     "Stat": 57,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 1594215147,
+       "hiddenValue": 1183492929,
+       "cryptoKey": 2078754444,
+       "value": 0.058088112622499466,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 1086064954,
+       "cryptoKey": 1074379834,
+       "value": 1.6687155370239364e-38,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "ArmoredHorse",
+  "_pathid": 60408,
+  "_file": "sharedassets0.assets",
+  "Species": 1,
+  "Rarity": 3,
+  "IsLockedInDemo": false,
+  "Location": "Reward",
+  "Capacity": 35,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 14645
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4878
+   },
+   "Volume": 1.0,
+   "Pitch": 0.8999999761581421
+  },
+  "ZoomOutDistance": 0.800000011920929,
+  "RunAnimSpeedMultiplier": 0.8999999761581421,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5302
+    },
+    "Title": "Fast Travel III",
+    "Modifier": {
+     "Stat": 57,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": -649440399,
+       "hiddenValue": 1899363181,
+       "cryptoKey": 1340255479,
+       "value": 0.42059022188186646,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 1185095126,
+       "cryptoKey": 1176347606,
+       "value": 1.751690342732309e-38,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   },
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5431
+    },
+    "Title": "Thick Skin I",
+    "Modifier": {
+     "Stat": 44,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 1594215147,
+       "hiddenValue": 2074170681,
+       "cryptoKey": 1176071668,
+       "value": 0.08995208889245987,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 1253789416,
+       "cryptoKey": 1246673896,
+       "value": 2.25875859983903e-38,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "BeachCrabBoss",
+  "_pathid": 60409,
+  "_file": "sharedassets0.assets",
+  "Species": 1,
+  "Rarity": 3,
+  "IsLockedInDemo": true,
+  "Location": "Beach",
+  "Capacity": 32,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 20313
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4983
+   },
+   "Volume": 1.0,
+   "Pitch": 1.0
+  },
+  "ZoomOutDistance": 1.0,
+  "RunAnimSpeedMultiplier": 2.5999999046325684,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5563
+    },
+    "Title": "Massive Crab Claws",
+    "Modifier": {
+     "Stat": 5,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 1590307453,
+       "hiddenValue": 1458946240,
+       "cryptoKey": 1745631501,
+       "value": 0.4882339537143707,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 1976143468,
+       "cryptoKey": 1972291948,
+       "value": 6.545790228104944e-39,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   },
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5282
+    },
+    "Title": "Thicker Shell",
+    "Modifier": {
+     "Stat": 53,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 1610992765,
+       "hiddenValue": 1494969116,
+       "cryptoKey": 1730664401,
+       "value": 0.18431396782398224,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 1080260281,
+       "cryptoKey": 1081500601,
+       "value": 1.9360787998620257e-39,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "BeachHermitCrab",
+  "_pathid": 60410,
+  "_file": "sharedassets0.assets",
+  "Species": 1,
+  "Rarity": 1,
+  "IsLockedInDemo": true,
+  "Location": "Beach",
+  "Capacity": 20,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 20298
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4858
+   },
+   "Volume": 0.5,
+   "Pitch": 0.699999988079071
+  },
+  "ZoomOutDistance": 1.0,
+  "RunAnimSpeedMultiplier": 1.399999976158142,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5282
+    },
+    "Title": "Thick Shell",
+    "Modifier": {
+     "Stat": 53,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": -649440399,
+       "hiddenValue": 1784845846,
+       "cryptoKey": 1418722188,
+       "value": 0.46372681856155396,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 1080260281,
+       "cryptoKey": 1081500601,
+       "value": 1.9360787998620257e-39,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "BeachNaga",
+  "_pathid": 60411,
+  "_file": "sharedassets0.assets",
+  "Species": 0,
+  "Rarity": 2,
+  "IsLockedInDemo": true,
+  "Location": "Beach",
+  "Capacity": 25,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 20286
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 5000
+   },
+   "Volume": 0.800000011920929,
+   "Pitch": 1.2000000476837158
+  },
+  "ZoomOutDistance": 0.800000011920929,
+  "RunAnimSpeedMultiplier": 1.2000000476837158,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5476
+    },
+    "Title": "Mana Regen",
+    "Modifier": {
+     "Stat": 47,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 1787276257,
+       "hiddenValue": 398126770,
+       "cryptoKey": 1462680242,
+       "value": 4.63525390625,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 1898385449,
+       "cryptoKey": 1896884009,
+       "value": 5.07068257106721e-39,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0.#",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "BeachSerpent",
+  "_pathid": 60412,
+  "_file": "sharedassets0.assets",
+  "Species": 3,
+  "Rarity": 2,
+  "IsLockedInDemo": true,
+  "Location": "Beach",
+  "Capacity": 25,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 20345
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4775
+   },
+   "Volume": 0.5,
+   "Pitch": 1.2000000476837158
+  },
+  "ZoomOutDistance": 1.0,
+  "RunAnimSpeedMultiplier": 1.2000000476837158,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5276
+    },
+    "Title": "Frost Tongue",
+    "Modifier": {
+     "Stat": 25,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 1610992765,
+       "hiddenValue": 1761821363,
+       "cryptoKey": 1460588414,
+       "value": 0.13823623955249786,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 1080260281,
+       "cryptoKey": 1081500601,
+       "value": 1.9360787998620257e-39,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "BeachSquid",
+  "_pathid": 60413,
+  "_file": "sharedassets0.assets",
+  "Species": 1,
+  "Rarity": 1,
+  "IsLockedInDemo": true,
+  "Location": "Beach",
+  "Capacity": 22,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 20363
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4857
+   },
+   "Volume": 0.5,
+   "Pitch": 0.800000011920929
+  },
+  "ZoomOutDistance": 1.0,
+  "RunAnimSpeedMultiplier": 1.399999976158142,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5299
+    },
+    "Title": "Ink Siphon",
+    "Modifier": {
+     "Stat": 35,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 1787276257,
+       "hiddenValue": 398126770,
+       "cryptoKey": 1462680242,
+       "value": 4.63525390625,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 1898385449,
+       "cryptoKey": 1896884009,
+       "value": 5.07068257106721e-39,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0.#",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "BeachTurtleBoss",
+  "_pathid": 60414,
+  "_file": "sharedassets0.assets",
+  "Species": 1,
+  "Rarity": 3,
+  "IsLockedInDemo": true,
+  "Location": "Beach",
+  "Capacity": 35,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 20317
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4983
+   },
+   "Volume": 1.0,
+   "Pitch": 1.0
+  },
+  "ZoomOutDistance": 0.800000011920929,
+  "RunAnimSpeedMultiplier": 2.4000000953674316,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5431
+    },
+    "Title": "Thick Skin III",
+    "Modifier": {
+     "Stat": 44,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": -649440399,
+       "hiddenValue": 1812162432,
+       "cryptoKey": 1384028698,
+       "value": 0.24803772568702698,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 1253789416,
+       "cryptoKey": 1246673896,
+       "value": 2.25875859983903e-38,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   },
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5286
+    },
+    "Title": "Turtle Speed",
+    "Modifier": {
+     "Stat": 57,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": -573902357,
+       "hiddenValue": -65361307,
+       "cryptoKey": 1097258664,
+       "value": -0.06164245679974556,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 1590760550,
+       "cryptoKey": 1578422630,
+       "value": 1.8162263027277098e-38,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": [
+   {
+    "fileID": 0,
+    "pathID": 60393
+   }
+  ]
+ },
+ {
+  "_name": "BigTreant",
+  "_pathid": 60415,
+  "_file": "sharedassets0.assets",
+  "Species": 0,
+  "Rarity": 3,
+  "IsLockedInDemo": false,
+  "Location": "CorruptForest",
+  "Capacity": 30,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 20337
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4983
+   },
+   "Volume": 1.0,
+   "Pitch": 0.6000000238418579
+  },
+  "ZoomOutDistance": 1.2999999523162842,
+  "RunAnimSpeedMultiplier": 2.5,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5601
+    },
+    "Title": "Health Increase",
+    "Modifier": {
+     "Stat": 42,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 1573529835,
+       "hiddenValue": 2069662922,
+       "cryptoKey": 1178636295,
+       "value": 0.03811340406537056,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 1573065164,
+       "cryptoKey": 1561445324,
+       "value": 1.9360787998620257e-38,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": [
+   {
+    "fileID": 0,
+    "pathID": 60395
+   }
+  ]
+ },
+ {
+  "_name": "BlackHorse",
+  "_pathid": 60416,
+  "_file": "sharedassets0.assets",
+  "Species": 1,
+  "Rarity": 2,
+  "IsLockedInDemo": false,
+  "Location": "Merchant",
+  "Capacity": 25,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 26179
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4878
+   },
+   "Volume": 1.0,
+   "Pitch": 1.0
+  },
+  "ZoomOutDistance": 0.5,
+  "RunAnimSpeedMultiplier": 0.8999999761581421,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5302
+    },
+    "Title": "Fast Travel III",
+    "Modifier": {
+     "Stat": 57,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": -649440399,
+       "hiddenValue": 1784845846,
+       "cryptoKey": 1418722188,
+       "value": 0.46372681856155396,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 1080260281,
+       "cryptoKey": 1081500601,
+       "value": 1.9360787998620257e-39,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "BlueMammoth",
+  "_pathid": 60417,
+  "_file": "sharedassets0.assets",
+  "Species": 1,
+  "Rarity": 3,
+  "IsLockedInDemo": false,
+  "Location": "Merchant",
+  "Capacity": 35,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 26181
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 5009
+   },
+   "Volume": 0.15000000596046448,
+   "Pitch": 1.0
+  },
+  "ZoomOutDistance": 1.0,
+  "RunAnimSpeedMultiplier": 1.0,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5431
+    },
+    "Title": "Thick Skin III",
+    "Modifier": {
+     "Stat": 44,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": -649440399,
+       "hiddenValue": 1812162432,
+       "cryptoKey": 1384028698,
+       "value": 0.24803772568702698,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 1253789416,
+       "cryptoKey": 1246673896,
+       "value": 2.25875859983903e-38,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   },
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5302
+    },
+    "Title": "Fast Travel I",
+    "Modifier": {
+     "Stat": 57,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 1594215147,
+       "hiddenValue": 524049,
+       "cryptoKey": 1035193308,
+       "value": 0.08799133449792862,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 1185095126,
+       "cryptoKey": 1176347606,
+       "value": 1.751690342732309e-38,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "Boar",
+  "_pathid": 60418,
+  "_file": "sharedassets0.assets",
+  "Species": 1,
+  "Rarity": 1,
+  "IsLockedInDemo": false,
+  "Location": "Forest",
+  "Capacity": 25,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 13948
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 5004
+   },
+   "Volume": 0.800000011920929,
+   "Pitch": 0.8999999761581421
+  },
+  "ZoomOutDistance": 0.30000001192092896,
+  "RunAnimSpeedMultiplier": 1.0,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5601
+    },
+    "Title": "Vitality I",
+    "Modifier": {
+     "Stat": 7,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": -2046029841,
+       "hiddenValue": 954060064,
+       "cryptoKey": 2078006560,
+       "value": 134.0625,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 2131099265,
+       "cryptoKey": 2147353985,
+       "value": 2.314075136977945e-38,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0.#",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "BrownPony",
+  "_pathid": 60419,
+  "_file": "sharedassets0.assets",
+  "Species": 1,
+  "Rarity": 1,
+  "IsLockedInDemo": false,
+  "Location": "Merchant",
+  "Capacity": 22,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 26180
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4878
+   },
+   "Volume": 0.800000011920929,
+   "Pitch": 1.2000000476837158
+  },
+  "ZoomOutDistance": 0.5,
+  "RunAnimSpeedMultiplier": 1.0,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5302
+    },
+    "Title": "Fast Travel II",
+    "Modifier": {
+     "Stat": 57,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 1573529835,
+       "hiddenValue": 1396066796,
+       "cryptoKey": 1854274081,
+       "value": 0.0877452865242958,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 1145680281,
+       "cryptoKey": 1152469401,
+       "value": 2.2864168684084874e-38,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "DarkElfMage",
+  "_pathid": 60420,
+  "_file": "sharedassets0.assets",
+  "Species": 0,
+  "Rarity": 3,
+  "IsLockedInDemo": false,
+  "Location": "Dungeon",
+  "Capacity": 25,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 20331
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4912
+   },
+   "Volume": 1.0,
+   "Pitch": 1.0
+  },
+  "ZoomOutDistance": 1.0,
+  "RunAnimSpeedMultiplier": 1.0,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5407
+    },
+    "Title": "Mana Increase",
+    "Modifier": {
+     "Stat": 14,
+     "Type": 1,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 170189967,
+       "hiddenValue": 47259600,
+       "cryptoKey": 1025495504,
+       "value": 1.61566162109375,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 1898385449,
+       "cryptoKey": 1896884009,
+       "value": 5.07068257106721e-39,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   },
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5718
+    },
+    "Title": "Fire Damage III",
+    "Modifier": {
+     "Stat": 24,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": -628755087,
+       "hiddenValue": -645729549,
+       "cryptoKey": -412411031,
+       "value": 0.45686036348342896,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": -1316661082,
+       "cryptoKey": -1319598682,
+       "value": 2.0374924512833699e-38,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "DefaultHorse",
+  "_pathid": 60421,
+  "_file": "sharedassets0.assets",
+  "Species": 1,
+  "Rarity": 0,
+  "IsLockedInDemo": false,
+  "Location": "Merchant",
+  "Capacity": 20,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 26183
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4878
+   },
+   "Volume": 1.0,
+   "Pitch": 1.0
+  },
+  "ZoomOutDistance": 0.5,
+  "RunAnimSpeedMultiplier": 1.0,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5302
+    },
+    "Title": "Fast Travel I",
+    "Modifier": {
+     "Stat": 57,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 1594215147,
+       "hiddenValue": 1764061898,
+       "cryptoKey": 1413409031,
+       "value": 0.03799038007855415,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 1590760550,
+       "cryptoKey": 1578422630,
+       "value": 1.8162263027277098e-38,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "DefiledKeepAxemaster",
+  "_pathid": 60422,
+  "_file": "sharedassets0.assets",
+  "Species": 2,
+  "Rarity": 2,
+  "IsLockedInDemo": true,
+  "Location": "DefiledKeep",
+  "Capacity": 27,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 6282
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4924
+   },
+   "Volume": 0.8999999761581421,
+   "Pitch": 0.800000011920929
+  },
+  "ZoomOutDistance": 1.0,
+  "RunAnimSpeedMultiplier": 1.0,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5449
+    },
+    "Title": "Grave Cleaver",
+    "Modifier": {
+     "Stat": 23,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 1610992765,
+       "hiddenValue": 1041981083,
+       "cryptoKey": 1234774,
+       "value": 0.13431473076343536,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 14029454,
+       "cryptoKey": 1234574,
+       "value": 1.807006879871224e-38,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "DefiledKeepDragon",
+  "_pathid": 60423,
+  "_file": "sharedassets0.assets",
+  "Species": 4,
+  "Rarity": 3,
+  "IsLockedInDemo": true,
+  "Location": "DefiledKeep",
+  "Capacity": 34,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 6787
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4847
+   },
+   "Volume": 1.0,
+   "Pitch": 0.8500000238418579
+  },
+  "ZoomOutDistance": 2.0,
+  "RunAnimSpeedMultiplier": 1.2999999523162842,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5289
+    },
+    "Title": "Everliving Blood",
+    "Modifier": {
+     "Stat": 36,
+     "Type": 1,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 149504655,
+       "hiddenValue": 1071092410,
+       "cryptoKey": 1234874,
+       "value": 1.541168212890625,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 14160614,
+       "cryptoKey": 1235174,
+       "value": 1.862323417010139e-38,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   },
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5338
+    },
+    "Title": "Sepulchral Scales",
+    "Modifier": {
+     "Stat": 59,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 170189967,
+       "hiddenValue": 1071059492,
+       "cryptoKey": 1234724,
+       "value": 1.545074462890625,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 14160464,
+       "cryptoKey": 1235024,
+       "value": 1.862323417010139e-38,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "DefiledKeepOoze",
+  "_pathid": 60424,
+  "_file": "sharedassets0.assets",
+  "Species": 5,
+  "Rarity": 1,
+  "IsLockedInDemo": true,
+  "Location": "DefiledKeep",
+  "Capacity": 22,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 6248
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4965
+   },
+   "Volume": 0.6000000238418579,
+   "Pitch": 1.0
+  },
+  "ZoomOutDistance": 0.8999999761581421,
+  "RunAnimSpeedMultiplier": 1.2000000476837158,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5282
+    },
+    "Title": "Viscous Hide",
+    "Modifier": {
+     "Stat": 51,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 1610992765,
+       "hiddenValue": 1338116201,
+       "cryptoKey": 1900285604,
+       "value": 0.261770635843277,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 1556623381,
+       "cryptoKey": 1546700821,
+       "value": 2.2864168684084874e-38,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "DefiledKeepReaper",
+  "_pathid": 60425,
+  "_file": "sharedassets0.assets",
+  "Species": 2,
+  "Rarity": 3,
+  "IsLockedInDemo": true,
+  "Location": "DefiledKeep",
+  "Capacity": 30,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 6269
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4960
+   },
+   "Volume": 1.0,
+   "Pitch": 1.0
+  },
+  "ZoomOutDistance": 1.2999999523162842,
+  "RunAnimSpeedMultiplier": 1.100000023841858,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5218
+    },
+    "Title": "Storm of Souls",
+    "Modifier": {
+     "Stat": 26,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": -628755087,
+       "hiddenValue": 1397128555,
+       "cryptoKey": 1843716081,
+       "value": 0.3176468014717102,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 1754014876,
+       "cryptoKey": 1747225756,
+       "value": 1.5488630398896205e-38,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": [
+   {
+    "fileID": 0,
+    "pathID": 60404
+   }
+  ]
+ },
+ {
+  "_name": "DefiledKeepScarab",
+  "_pathid": 60426,
+  "_file": "sharedassets0.assets",
+  "Species": 1,
+  "Rarity": 1,
+  "IsLockedInDemo": true,
+  "Location": "DefiledKeep",
+  "Capacity": 25,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 6399
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4858
+   },
+   "Volume": 0.699999988079071,
+   "Pitch": 0.699999988079071
+  },
+  "ZoomOutDistance": 1.0,
+  "RunAnimSpeedMultiplier": 1.399999976158142,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5666
+    },
+    "Title": "Gravedigger",
+    "Modifier": {
+     "Stat": 16,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": -649440399,
+       "hiddenValue": 1633932146,
+       "cryptoKey": 1607138024,
+       "value": 0.33039551973342896,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 1459817381,
+       "cryptoKey": 1460339621,
+       "value": 7.375538285188669e-40,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "DefiledKeepSuccubus",
+  "_pathid": 60427,
+  "_file": "sharedassets0.assets",
+  "Species": 3,
+  "Rarity": 2,
+  "IsLockedInDemo": true,
+  "Location": "DefiledKeep",
+  "Capacity": 27,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 6281
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 5000
+   },
+   "Volume": 0.699999988079071,
+   "Pitch": 2.0
+  },
+  "ZoomOutDistance": 0.8999999761581421,
+  "RunAnimSpeedMultiplier": 1.2000000476837158,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5312
+    },
+    "Title": "Beguiling Whisper",
+    "Modifier": {
+     "Stat": 58,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 1610992765,
+       "hiddenValue": 2059743487,
+       "cryptoKey": 1148979506,
+       "value": 0.3617691099643707,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 14029454,
+       "cryptoKey": 1234574,
+       "value": 1.807006879871224e-38,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "DesertEagle",
+  "_pathid": 60428,
+  "_file": "sharedassets0.assets",
+  "Species": 1,
+  "Rarity": 2,
+  "IsLockedInDemo": false,
+  "Location": "Desert",
+  "Capacity": 25,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 20370
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4840
+   },
+   "Volume": 0.800000011920929,
+   "Pitch": 1.0
+  },
+  "ZoomOutDistance": 1.0,
+  "RunAnimSpeedMultiplier": 1.2000000476837158,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5550
+    },
+    "Title": "DesertEagle",
+    "Modifier": {
+     "Stat": 22,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 1594215147,
+       "hiddenValue": 1168697681,
+       "cryptoKey": 2024105116,
+       "value": 0.034559059888124466,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 0,
+       "hiddenValue": 0,
+       "cryptoKey": 0,
+       "value": 0.0,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "DesertHarpy",
+  "_pathid": 60429,
+  "_file": "sharedassets0.assets",
+  "Species": 3,
+  "Rarity": 3,
+  "IsLockedInDemo": false,
+  "Location": "Desert",
+  "Capacity": 27,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 20272
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4973
+   },
+   "Volume": 0.6000000238418579,
+   "Pitch": 1.0
+  },
+  "ZoomOutDistance": 1.399999976158142,
+  "RunAnimSpeedMultiplier": 1.0,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5252
+    },
+    "Title": "DesertHarpy",
+    "Modifier": {
+     "Stat": 31,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": -628755087,
+       "hiddenValue": 2122941428,
+       "cryptoKey": 1075449966,
+       "value": 0.28823548555374146,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 0,
+       "hiddenValue": 0,
+       "cryptoKey": 0,
+       "value": 0.0,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": [
+   {
+    "fileID": 0,
+    "pathID": 60401
+   }
+  ]
+ },
+ {
+  "_name": "DesertKoboldThief",
+  "_pathid": 60430,
+  "_file": "sharedassets0.assets",
+  "Species": 0,
+  "Rarity": 1,
+  "IsLockedInDemo": false,
+  "Location": "Desert",
+  "Capacity": 20,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 20320
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4924
+   },
+   "Volume": 0.800000011920929,
+   "Pitch": 1.0
+  },
+  "ZoomOutDistance": 1.0,
+  "RunAnimSpeedMultiplier": 1.0,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5651
+    },
+    "Title": "DesertKoboldThief",
+    "Modifier": {
+     "Stat": 45,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 1610992765,
+       "hiddenValue": 1914615738,
+       "cryptoKey": 1291571831,
+       "value": 0.4480423033237457,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 0,
+       "hiddenValue": 0,
+       "cryptoKey": 0,
+       "value": 0.0,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "DesertKoboldWarrior",
+  "_pathid": 60431,
+  "_file": "sharedassets0.assets",
+  "Species": 0,
+  "Rarity": 1,
+  "IsLockedInDemo": false,
+  "Location": "Desert",
+  "Capacity": 25,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 20318
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4924
+   },
+   "Volume": 0.800000011920929,
+   "Pitch": 1.0
+  },
+  "ZoomOutDistance": 1.0,
+  "RunAnimSpeedMultiplier": 1.0,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5431
+    },
+    "Title": "DesertKoboldWarrior",
+    "Modifier": {
+     "Stat": 44,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": -649440399,
+       "hiddenValue": 1858455360,
+       "cryptoKey": 1356750042,
+       "value": 0.15196076035499573,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 0,
+       "hiddenValue": 0,
+       "cryptoKey": 0,
+       "value": 0.0,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "DesertManticoraBoss",
+  "_pathid": 60432,
+  "_file": "sharedassets0.assets",
+  "Species": 3,
+  "Rarity": 3,
+  "IsLockedInDemo": false,
+  "Location": "Desert",
+  "Capacity": 35,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 20340
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4793
+   },
+   "Volume": 0.6000000238418579,
+   "Pitch": 1.0
+  },
+  "ZoomOutDistance": 1.0,
+  "RunAnimSpeedMultiplier": 1.600000023841858,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5682
+    },
+    "Title": "DesertManticora",
+    "Modifier": {
+     "Stat": 27,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": -628755087,
+       "hiddenValue": 1502624143,
+       "cryptoKey": 1738541333,
+       "value": 0.17206040024757385,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 0,
+       "hiddenValue": 0,
+       "cryptoKey": 0,
+       "value": 0.0,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": [
+   {
+    "fileID": 0,
+    "pathID": 60403
+   }
+  ]
+ },
+ {
+  "_name": "DesertWasp",
+  "_pathid": 60433,
+  "_file": "sharedassets0.assets",
+  "Species": 1,
+  "Rarity": 1,
+  "IsLockedInDemo": false,
+  "Location": "Desert",
+  "Capacity": 20,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 20278
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4787
+   },
+   "Volume": 0.800000011920929,
+   "Pitch": 1.0
+  },
+  "ZoomOutDistance": 1.0,
+  "RunAnimSpeedMultiplier": 2.0,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5532
+    },
+    "Title": "DesertWasp",
+    "Modifier": {
+     "Stat": 46,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": -649440399,
+       "hiddenValue": 1322773275,
+       "cryptoKey": 1894928001,
+       "value": 0.16176453232765198,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 0,
+       "hiddenValue": 0,
+       "cryptoKey": 0,
+       "value": 0.0,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "FishingWaterDragon",
+  "_pathid": 60434,
+  "_file": "sharedassets0.assets",
+  "Species": 4,
+  "Rarity": 3,
+  "IsLockedInDemo": false,
+  "Location": "Fishing-Beach",
+  "Capacity": 30,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 20309
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4847
+   },
+   "Volume": 1.0,
+   "Pitch": 0.8999999761581421
+  },
+  "ZoomOutDistance": 0.5,
+  "RunAnimSpeedMultiplier": 1.0,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5753
+    },
+    "Title": "Ocean's Providence",
+    "Modifier": {
+     "Stat": 37,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 1573529835,
+       "hiddenValue": 1275484092,
+       "cryptoKey": 1906035313,
+       "value": 0.07696113735437393,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 0,
+       "hiddenValue": 0,
+       "cryptoKey": 0,
+       "value": 0.0,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": [
+   {
+    "fileID": 0,
+    "pathID": 60406
+   }
+  ]
+ },
+ {
+  "_name": "ForestSpiderKing",
+  "_pathid": 60435,
+  "_file": "sharedassets0.assets",
+  "Species": 1,
+  "Rarity": 3,
+  "IsLockedInDemo": false,
+  "Location": "CorruptForest",
+  "Capacity": 27,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 20325
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4871
+   },
+   "Volume": 0.6000000238418579,
+   "Pitch": 1.2000000476837158
+  },
+  "ZoomOutDistance": 0.699999988079071,
+  "RunAnimSpeedMultiplier": 1.600000023841858,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5480
+    },
+    "Title": "PoisonArmor",
+    "Modifier": {
+     "Stat": 49,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": -628755087,
+       "hiddenValue": 1553183522,
+       "cryptoKey": 1646922424,
+       "value": 0.36274415254592896,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 0,
+       "hiddenValue": 0,
+       "cryptoKey": 0,
+       "value": 0.0,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": [
+   {
+    "fileID": 0,
+    "pathID": 60405
+   }
+  ]
+ },
+ {
+  "_name": "GoblinWarrior",
+  "_pathid": 60436,
+  "_file": "sharedassets0.assets",
+  "Species": 0,
+  "Rarity": 1,
+  "IsLockedInDemo": false,
+  "Location": "Dungeon",
+  "Capacity": 25,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 20274
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4917
+   },
+   "Volume": 0.699999988079071,
+   "Pitch": 1.2000000476837158
+  },
+  "ZoomOutDistance": -0.30000001192092896,
+  "RunAnimSpeedMultiplier": 1.0,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5306
+    },
+    "Title": "Gold Increase I",
+    "Modifier": {
+     "Stat": 15,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": -649440399,
+       "hiddenValue": 1868252551,
+       "cryptoKey": 1365033501,
+       "value": 0.13235321640968323,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 1746748395,
+       "cryptoKey": 1749229035,
+       "value": 8.666257485096686e-39,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "Ogre",
+  "_pathid": 60437,
+  "_file": "sharedassets0.assets",
+  "Species": 0,
+  "Rarity": 3,
+  "IsLockedInDemo": false,
+  "Location": "DungeonL",
+  "Capacity": 30,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 20301
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4924
+   },
+   "Volume": 1.0,
+   "Pitch": 1.0
+  },
+  "ZoomOutDistance": 1.0,
+  "RunAnimSpeedMultiplier": 2.0999999046325684,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5466
+    },
+    "Title": "Damage to Stunned III",
+    "Modifier": {
+     "Stat": 43,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": -628755087,
+       "hiddenValue": 1885448316,
+       "cryptoKey": 1311897830,
+       "value": 0.20343247056007385,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 1335822738,
+       "cryptoKey": 1326030738,
+       "value": 1.3829134284728755e-38,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   },
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5431
+    },
+    "Title": "Iron Hide",
+    "Modifier": {
+     "Stat": 51,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 1610992765,
+       "hiddenValue": -1732128006,
+       "cryptoKey": -1499591369,
+       "value": 0.2186271697282791,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 648323920,
+       "cryptoKey": 648258640,
+       "value": 6.4535959995400855e-40,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "OrcWarrior",
+  "_pathid": 60438,
+  "_file": "sharedassets0.assets",
+  "Species": 0,
+  "Rarity": 2,
+  "IsLockedInDemo": false,
+  "Location": "DungeonL",
+  "Capacity": 30,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 20366
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 5010
+   },
+   "Volume": 0.800000011920929,
+   "Pitch": 0.8999999761581421
+  },
+  "ZoomOutDistance": 0.800000011920929,
+  "RunAnimSpeedMultiplier": 1.0,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5261
+    },
+    "Title": "Strength I",
+    "Modifier": {
+     "Stat": 0,
+     "Type": 1,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 1573529835,
+       "hiddenValue": 1322669966,
+       "cryptoKey": 1939544643,
+       "value": 0.050123024731874466,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 1703834620,
+       "cryptoKey": 1702072060,
+       "value": 2.3325139826909166e-38,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "PoisonSpider",
+  "_pathid": 60439,
+  "_file": "sharedassets0.assets",
+  "Species": 1,
+  "Rarity": 1,
+  "IsLockedInDemo": false,
+  "Location": "CorruptForest",
+  "Capacity": 16,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 20358
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4871
+   },
+   "Volume": 0.6000000238418579,
+   "Pitch": 1.2000000476837158
+  },
+  "ZoomOutDistance": 0.30000001192092896,
+  "RunAnimSpeedMultiplier": 1.600000023841858,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5476
+    },
+    "Title": "Mana I",
+    "Modifier": {
+     "Stat": 14,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 1265890131,
+       "hiddenValue": 425688639,
+       "cryptoKey": 1488346943,
+       "value": 29.14111328125,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 1437409949,
+       "cryptoKey": 1428336029,
+       "value": 1.3183774684774746e-38,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0.#",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "Raptor",
+  "_pathid": 60440,
+  "_file": "sharedassets0.assets",
+  "Species": 1,
+  "Rarity": 3,
+  "IsLockedInDemo": false,
+  "Location": "Forest",
+  "Capacity": 35,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 26182
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4792
+   },
+   "Volume": 0.800000011920929,
+   "Pitch": 1.2999999523162842
+  },
+  "ZoomOutDistance": 0.4000000059604645,
+  "RunAnimSpeedMultiplier": 1.2000000476837158,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5335
+    },
+    "Title": "Serrated Talons",
+    "Modifier": {
+     "Stat": 62,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": -628755087,
+       "hiddenValue": -1011889412,
+       "cryptoKey": -44878234,
+       "value": 0.4941146969795227,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": -1293445245,
+       "cryptoKey": -1298667645,
+       "value": 1.0325753599264137e-38,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   },
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5847
+    },
+    "Title": "Keen Instinct",
+    "Modifier": {
+     "Stat": 4,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 536418157,
+       "hiddenValue": 1110240931,
+       "cryptoKey": 2115759660,
+       "value": 0.01116956677287817,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 1976143468,
+       "cryptoKey": 1972291948,
+       "value": 6.545790228104944e-39,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   },
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5907
+    },
+    "Title": "Killing Precision",
+    "Modifier": {
+     "Stat": 5,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 132727037,
+       "hiddenValue": -299464929,
+       "cryptoKey": -804837857,
+       "value": 0.15784072875976562,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": -1805414115,
+       "cryptoKey": -1802411235,
+       "value": 2.2311003312695724e-38,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "RedDesertAirWarlord",
+  "_pathid": 60441,
+  "_file": "sharedassets0.assets",
+  "Species": 5,
+  "Rarity": 3,
+  "IsLockedInDemo": true,
+  "Location": "RedDesert",
+  "Capacity": 25,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 20355
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4938
+   },
+   "Volume": 0.800000011920929,
+   "Pitch": 1.0
+  },
+  "ZoomOutDistance": 1.0,
+  "RunAnimSpeedMultiplier": 1.2000000476837158,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5367
+    },
+    "Title": "RedDesertAirWarlord",
+    "Modifier": {
+     "Stat": 34,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": -628755087,
+       "hiddenValue": 1104593963,
+       "cryptoKey": 2136821681,
+       "value": 0.27254945039749146,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 0,
+       "hiddenValue": 0,
+       "cryptoKey": 0,
+       "value": 0.0,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": [
+   {
+    "fileID": 0,
+    "pathID": 60394
+   }
+  ]
+ },
+ {
+  "_name": "RedDesertCrocodile",
+  "_pathid": 60442,
+  "_file": "sharedassets0.assets",
+  "Species": 1,
+  "Rarity": 1,
+  "IsLockedInDemo": true,
+  "Location": "RedDesert",
+  "Capacity": 25,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 20319
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4805
+   },
+   "Volume": 0.800000011920929,
+   "Pitch": 1.0
+  },
+  "ZoomOutDistance": 1.0,
+  "RunAnimSpeedMultiplier": 1.2000000476837158,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5586
+    },
+    "Title": "RedDesertCrocodile",
+    "Modifier": {
+     "Stat": 30,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 1610992765,
+       "hiddenValue": 1085813157,
+       "cryptoKey": 2122151016,
+       "value": 0.3852981626987457,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 0,
+       "hiddenValue": 0,
+       "cryptoKey": 0,
+       "value": 0.0,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "RedDesertImp",
+  "_pathid": 60443,
+  "_file": "sharedassets0.assets",
+  "Species": 3,
+  "Rarity": 1,
+  "IsLockedInDemo": true,
+  "Location": "RedDesert",
+  "Capacity": 25,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 20277
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4979
+   },
+   "Volume": 0.800000011920929,
+   "Pitch": 1.0
+  },
+  "ZoomOutDistance": 1.0,
+  "RunAnimSpeedMultiplier": 1.2000000476837158,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5718
+    },
+    "Title": "RedDesertImp",
+    "Modifier": {
+     "Stat": 24,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 1610992765,
+       "hiddenValue": 1284461752,
+       "cryptoKey": 1914192757,
+       "value": 0.2951034605503082,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 0,
+       "hiddenValue": 0,
+       "cryptoKey": 0,
+       "value": 0.0,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "RedDesertRockGolem",
+  "_pathid": 60444,
+  "_file": "sharedassets0.assets",
+  "Species": 5,
+  "Rarity": 1,
+  "IsLockedInDemo": true,
+  "Location": "RedDesert",
+  "Capacity": 25,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 20326
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4853
+   },
+   "Volume": 0.800000011920929,
+   "Pitch": 1.0
+  },
+  "ZoomOutDistance": 1.0,
+  "RunAnimSpeedMultiplier": 1.2000000476837158,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5338
+    },
+    "Title": "RedDesertRockGolem",
+    "Modifier": {
+     "Stat": 60,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 1610992765,
+       "hiddenValue": 1338116201,
+       "cryptoKey": 1900285604,
+       "value": 0.261770635843277,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 0,
+       "hiddenValue": 0,
+       "cryptoKey": 0,
+       "value": 0.0,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "RedDesertSatyr",
+  "_pathid": 60445,
+  "_file": "sharedassets0.assets",
+  "Species": 3,
+  "Rarity": 1,
+  "IsLockedInDemo": true,
+  "Location": "RedDesert",
+  "Capacity": 25,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 20327
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4955
+   },
+   "Volume": 0.800000011920929,
+   "Pitch": 1.0
+  },
+  "ZoomOutDistance": 1.0,
+  "RunAnimSpeedMultiplier": 1.2000000476837158,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5314
+    },
+    "Title": "RedDesertSatyr",
+    "Modifier": {
+     "Stat": 33,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 1610992765,
+       "hiddenValue": 1303580380,
+       "cryptoKey": 1933737745,
+       "value": 0.4715713560581207,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 0,
+       "hiddenValue": 0,
+       "cryptoKey": 0,
+       "value": 0.0,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "RedDesertSerparmat",
+  "_pathid": 60446,
+  "_file": "sharedassets0.assets",
+  "Species": 1,
+  "Rarity": 3,
+  "IsLockedInDemo": true,
+  "Location": "RedDesert",
+  "Capacity": 30,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 20353
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4815
+   },
+   "Volume": 0.800000011920929,
+   "Pitch": 1.0
+  },
+  "ZoomOutDistance": 1.0,
+  "RunAnimSpeedMultiplier": 1.2000000476837158,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5638
+    },
+    "Title": "RedDesertSerparmat1",
+    "Modifier": {
+     "Stat": 45,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": -628755087,
+       "hiddenValue": 1658204490,
+       "cryptoKey": 1554534352,
+       "value": 0.2485298216342926,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 0,
+       "hiddenValue": 0,
+       "cryptoKey": 0,
+       "value": 0.0,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   },
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5315
+    },
+    "Title": "RedDesertSerparmat2",
+    "Modifier": {
+     "Stat": 12,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 732846259,
+       "hiddenValue": 1217453867,
+       "cryptoKey": 154112043,
+       "value": 23.91357421875,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 21948405,
+       "cryptoKey": 31936245,
+       "value": 1.5580824627461064e-38,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "RedForestBear",
+  "_pathid": 60447,
+  "_file": "sharedassets0.assets",
+  "Species": 1,
+  "Rarity": 1,
+  "IsLockedInDemo": true,
+  "Location": "RedForest",
+  "Capacity": 25,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 20344
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4793
+   },
+   "Volume": 0.8999999761581421,
+   "Pitch": 0.8500000238418579
+  },
+  "ZoomOutDistance": 1.0,
+  "RunAnimSpeedMultiplier": 1.2000000476837158,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5289
+    },
+    "Title": "Deep Slumber",
+    "Modifier": {
+     "Stat": 36,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 1814396531,
+       "hiddenValue": 52110568,
+       "cryptoKey": 1109662696,
+       "value": 11.952880859375,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 595343825,
+       "cryptoKey": 590970065,
+       "value": 6.361401770975227e-39,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0.#",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "RedForestDragon",
+  "_pathid": 60448,
+  "_file": "sharedassets0.assets",
+  "Species": 4,
+  "Rarity": 3,
+  "IsLockedInDemo": true,
+  "Location": "RedForest",
+  "Capacity": 30,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 20304
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4847
+   },
+   "Volume": 0.800000011920929,
+   "Pitch": 0.75
+  },
+  "ZoomOutDistance": 2.0,
+  "RunAnimSpeedMultiplier": 1.2000000476837158,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5768
+    },
+    "Title": "Crimson Dominion",
+    "Modifier": {
+     "Stat": 40,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": -628755087,
+       "hiddenValue": -1011889412,
+       "cryptoKey": -44878234,
+       "value": 0.4941146969795227,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": -1293445245,
+       "cryptoKey": -1298667645,
+       "value": 1.0325753599264137e-38,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": [
+   {
+    "fileID": 0,
+    "pathID": 60397
+   }
+  ]
+ },
+ {
+  "_name": "RedForestFaeDragon",
+  "_pathid": 60449,
+  "_file": "sharedassets0.assets",
+  "Species": 4,
+  "Rarity": 2,
+  "IsLockedInDemo": true,
+  "Location": "RedForest",
+  "Capacity": 25,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 20276
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4888
+   },
+   "Volume": 0.6000000238418579,
+   "Pitch": 2.0
+  },
+  "ZoomOutDistance": 1.0,
+  "RunAnimSpeedMultiplier": 1.2000000476837158,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5312
+    },
+    "Title": "Arcane Wing",
+    "Modifier": {
+     "Stat": 28,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 132727037,
+       "hiddenValue": -299464929,
+       "cryptoKey": -804837857,
+       "value": 0.15784072875976562,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": -1805414115,
+       "cryptoKey": -1802411235,
+       "value": 2.2311003312695724e-38,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "RedForestGiant",
+  "_pathid": 60450,
+  "_file": "sharedassets0.assets",
+  "Species": 5,
+  "Rarity": 1,
+  "IsLockedInDemo": true,
+  "Location": "RedForest",
+  "Capacity": 25,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 20300
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4853
+   },
+   "Volume": 0.800000011920929,
+   "Pitch": 0.8500000238418579
+  },
+  "ZoomOutDistance": 1.0,
+  "RunAnimSpeedMultiplier": 1.2000000476837158,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5227
+    },
+    "Title": "Stoneheart",
+    "Modifier": {
+     "Stat": 38,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 149504655,
+       "hiddenValue": 937787009,
+       "cryptoKey": 150922625,
+       "value": 0.6078338623046875,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 893972856,
+       "cryptoKey": 905005176,
+       "value": 1.7055932284498797e-38,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "RedForestHobgoblin",
+  "_pathid": 60451,
+  "_file": "sharedassets0.assets",
+  "Species": 0,
+  "Rarity": 3,
+  "IsLockedInDemo": true,
+  "Location": "RedForest",
+  "Capacity": 25,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 20352
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4917
+   },
+   "Volume": 0.8999999761581421,
+   "Pitch": 0.75
+  },
+  "ZoomOutDistance": 1.0,
+  "RunAnimSpeedMultiplier": 1.2000000476837158,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5306
+    },
+    "Title": "Goblin Hoard",
+    "Modifier": {
+     "Stat": 15,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 1590307453,
+       "hiddenValue": 1374969514,
+       "cryptoKey": 1871853671,
+       "value": 0.2250015288591385,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 1642989495,
+       "cryptoKey": 1627909815,
+       "value": 2.1481255255612e-38,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": [
+   {
+    "fileID": 0,
+    "pathID": 60400
+   }
+  ]
+ },
+ {
+  "_name": "RedForestTiger",
+  "_pathid": 60452,
+  "_file": "sharedassets0.assets",
+  "Species": 1,
+  "Rarity": 1,
+  "IsLockedInDemo": true,
+  "Location": "RedForest",
+  "Capacity": 25,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 20297
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4805
+   },
+   "Volume": 0.8999999761581421,
+   "Pitch": 1.149999976158142
+  },
+  "ZoomOutDistance": 1.0,
+  "RunAnimSpeedMultiplier": 1.2000000476837158,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5876
+    },
+    "Title": "Ambush",
+    "Modifier": {
+     "Stat": 29,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": -649440399,
+       "hiddenValue": -103534519,
+       "cryptoKey": -953594413,
+       "value": 0.49509888887405396,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": -1512082783,
+       "cryptoKey": -1519198303,
+       "value": 1.5949601541720497e-38,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "SkeletonArcher",
+  "_pathid": 60453,
+  "_file": "sharedassets0.assets",
+  "Species": 2,
+  "Rarity": 1,
+  "IsLockedInDemo": false,
+  "Location": "Dungeon",
+  "Capacity": 25,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 20328
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4909
+   },
+   "Volume": 0.6000000238418579,
+   "Pitch": 1.2000000476837158
+  },
+  "ZoomOutDistance": 0.0,
+  "RunAnimSpeedMultiplier": 1.0,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5319
+    },
+    "Title": "Critical Hit Chance I",
+    "Modifier": {
+     "Stat": 4,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 536418157,
+       "hiddenValue": 1110240931,
+       "cryptoKey": 2115759660,
+       "value": 0.01116956677287817,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 1976143468,
+       "cryptoKey": 1972291948,
+       "value": 6.545790228104944e-39,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "SkeletonWarrior",
+  "_pathid": 60454,
+  "_file": "sharedassets0.assets",
+  "Species": 2,
+  "Rarity": 1,
+  "IsLockedInDemo": true,
+  "Location": "Dungeon",
+  "Capacity": 30,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 20339
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4909
+   },
+   "Volume": 0.6000000238418579,
+   "Pitch": 1.2000000476837158
+  },
+  "ZoomOutDistance": 0.0,
+  "RunAnimSpeedMultiplier": 1.0,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5449
+    },
+    "Title": "Physical Damage I",
+    "Modifier": {
+     "Stat": 23,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 1573529835,
+       "hiddenValue": 1221952741,
+       "cryptoKey": 1967659304,
+       "value": 0.07696113735437393,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 1944101079,
+       "cryptoKey": 1939923159,
+       "value": 5.900430628150935e-39,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "SnowHillFrostDragon",
+  "_pathid": 60455,
+  "_file": "sharedassets0.assets",
+  "Species": 4,
+  "Rarity": 3,
+  "IsLockedInDemo": true,
+  "Location": "SnowHill",
+  "Capacity": 35,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 20307
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4793
+   },
+   "Volume": 0.8999999761581421,
+   "Pitch": 0.75
+  },
+  "ZoomOutDistance": 2.0,
+  "RunAnimSpeedMultiplier": 1.0,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5807
+    },
+    "Title": "Frozen Reach",
+    "Modifier": {
+     "Stat": 58,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": -628755087,
+       "hiddenValue": -1011889412,
+       "cryptoKey": -44878234,
+       "value": 0.4941146969795227,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": -1293445245,
+       "cryptoKey": -1298667645,
+       "value": 1.0325753599264137e-38,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": [
+   {
+    "fileID": 0,
+    "pathID": 60399
+   }
+  ]
+ },
+ {
+  "_name": "SnowHillIceHound",
+  "_pathid": 60456,
+  "_file": "sharedassets0.assets",
+  "Species": 1,
+  "Rarity": 3,
+  "IsLockedInDemo": true,
+  "Location": "SnowHill",
+  "Capacity": 35,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 20349
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4793
+   },
+   "Volume": 0.800000011920929,
+   "Pitch": 0.8500000238418579
+  },
+  "ZoomOutDistance": 0.800000011920929,
+  "RunAnimSpeedMultiplier": 1.100000023841858,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5218
+    },
+    "Title": "Thunderfang",
+    "Modifier": {
+     "Stat": 26,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": -628755087,
+       "hiddenValue": 1397128555,
+       "cryptoKey": 1843716081,
+       "value": 0.3176468014717102,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 1754014876,
+       "cryptoKey": 1747225756,
+       "value": 1.5488630398896205e-38,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": [
+   {
+    "fileID": 0,
+    "pathID": 60402
+   }
+  ]
+ },
+ {
+  "_name": "SnowHillRockElemental",
+  "_pathid": 60457,
+  "_file": "sharedassets0.assets",
+  "Species": 5,
+  "Rarity": 2,
+  "IsLockedInDemo": true,
+  "Location": "SnowHill",
+  "Capacity": 30,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 20302
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4793
+   },
+   "Volume": 0.8999999761581421,
+   "Pitch": 0.699999988079071
+  },
+  "ZoomOutDistance": 1.2999999523162842,
+  "RunAnimSpeedMultiplier": 0.8999999761581421,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5308
+    },
+    "Title": "Grounded Core",
+    "Modifier": {
+     "Stat": 54,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 1610992765,
+       "hiddenValue": -833534403,
+       "cryptoKey": -267739664,
+       "value": 0.2147056609392166,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": -494466330,
+       "cryptoKey": -502626330,
+       "value": 1.299938622764503e-38,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "SnowHillSlime",
+  "_pathid": 60458,
+  "_file": "sharedassets0.assets",
+  "Species": 5,
+  "Rarity": 1,
+  "IsLockedInDemo": true,
+  "Location": "SnowHill",
+  "Capacity": 20,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 20281
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4892
+   },
+   "Volume": 0.699999988079071,
+   "Pitch": 1.2000000476837158
+  },
+  "ZoomOutDistance": 0.4000000059604645,
+  "RunAnimSpeedMultiplier": 1.100000023841858,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5334
+    },
+    "Title": "Reconstituting Gel",
+    "Modifier": {
+     "Stat": 56,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 1573529835,
+       "hiddenValue": 2023378801,
+       "cryptoKey": 1166235324,
+       "value": 0.03737812116742134,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 17597192,
+       "cryptoKey": 25365512,
+       "value": 1.3183774684774746e-38,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "SnowHillWhelp",
+  "_pathid": 60459,
+  "_file": "sharedassets0.assets",
+  "Species": 4,
+  "Rarity": 2,
+  "IsLockedInDemo": true,
+  "Location": "SnowHill",
+  "Capacity": 25,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 20287
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4793
+   },
+   "Volume": 0.800000011920929,
+   "Pitch": 1.149999976158142
+  },
+  "ZoomOutDistance": 0.800000011920929,
+  "RunAnimSpeedMultiplier": 1.100000023841858,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5404
+    },
+    "Title": "Budding Sorcery",
+    "Modifier": {
+     "Stat": 61,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": -649440399,
+       "hiddenValue": 1230897401,
+       "cryptoKey": 1998178147,
+       "value": 0.19509735703468323,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 1080260281,
+       "cryptoKey": 1081500601,
+       "value": 1.9360787998620257e-39,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "SnowHillZombieWarrior",
+  "_pathid": 60460,
+  "_file": "sharedassets0.assets",
+  "Species": 2,
+  "Rarity": 1,
+  "IsLockedInDemo": true,
+  "Location": "SnowHill",
+  "Capacity": 25,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 20306
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4793
+   },
+   "Volume": 0.800000011920929,
+   "Pitch": 0.8999999761581421
+  },
+  "ZoomOutDistance": 0.800000011920929,
+  "RunAnimSpeedMultiplier": 1.0,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5299
+    },
+    "Title": "Frozen Might",
+    "Modifier": {
+     "Stat": 65,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 536418157,
+       "hiddenValue": 1796078577,
+       "cryptoKey": 1460588414,
+       "value": 0.008008136413991451,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 1080260281,
+       "cryptoKey": 1081500601,
+       "value": 1.9360787998620257e-39,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "Spider",
+  "_pathid": 60461,
+  "_file": "sharedassets0.assets",
+  "Species": 1,
+  "Rarity": 1,
+  "IsLockedInDemo": false,
+  "Location": "Forest",
+  "Capacity": 15,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 13946
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4871
+   },
+   "Volume": 0.6000000238418579,
+   "Pitch": 1.399999976158142
+  },
+  "ZoomOutDistance": 0.30000001192092896,
+  "RunAnimSpeedMultiplier": 1.0,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5699
+    },
+    "Title": "Poison Damage I",
+    "Modifier": {
+     "Stat": 27,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": -649440399,
+       "hiddenValue": 1230897401,
+       "cryptoKey": 1998178147,
+       "value": 0.19509735703468323,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 1656963028,
+       "cryptoKey": 1648346068,
+       "value": 2.3232945598344308e-38,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "Stumplin",
+  "_pathid": 60462,
+  "_file": "sharedassets0.assets",
+  "Species": 1,
+  "Rarity": 1,
+  "IsLockedInDemo": false,
+  "Location": "CorruptForest",
+  "Capacity": 16,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 20316
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4920
+   },
+   "Volume": 0.800000011920929,
+   "Pitch": 1.7999999523162842
+  },
+  "ZoomOutDistance": 1.2000000476837158,
+  "RunAnimSpeedMultiplier": 1.7999999523162842,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5653
+    },
+    "Title": "Thorn I",
+    "Modifier": {
+     "Stat": 39,
+     "Type": 1,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 1573529835,
+       "hiddenValue": 1630819015,
+       "cryptoKey": 1553922058,
+       "value": 0.0833335891366005,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 2130905255,
+       "cryptoKey": 2131231655,
+       "value": 1.014136514213442e-39,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "TazanCamel",
+  "_pathid": 60463,
+  "_file": "sharedassets0.assets",
+  "Species": 1,
+  "Rarity": 2,
+  "IsLockedInDemo": false,
+  "Location": "Merchant",
+  "Capacity": 32,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 16582
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4841
+   },
+   "Volume": 0.8999999761581421,
+   "Pitch": 0.75
+  },
+  "ZoomOutDistance": 1.0,
+  "RunAnimSpeedMultiplier": 1.2000000476837158,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5644
+    },
+    "Title": "Caravan Bearer",
+    "Modifier": {
+     "Stat": 19,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": -628755087,
+       "hiddenValue": 1088466752,
+       "cryptoKey": 2117499354,
+       "value": 0.4196060299873352,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 1658785656,
+       "cryptoKey": 1645207416,
+       "value": 1.917639954149054e-38,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "VolcanoCinderlash",
+  "_pathid": 60464,
+  "_file": "sharedassets0.assets",
+  "Species": 3,
+  "Rarity": 2,
+  "IsLockedInDemo": true,
+  "Location": "Volcano",
+  "Capacity": 28,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 20341
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4955
+   },
+   "Volume": 0.800000011920929,
+   "Pitch": 0.8999999761581421
+  },
+  "ZoomOutDistance": 0.8999999761581421,
+  "RunAnimSpeedMultiplier": 1.0,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5369
+    },
+    "Title": "Lash of Cinders",
+    "Modifier": {
+     "Stat": 24,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 132727037,
+       "hiddenValue": 789059855,
+       "cryptoKey": 295241743,
+       "value": 0.28333282470703125,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 66230277,
+       "cryptoKey": 60355077,
+       "value": 9.772588227874987e-39,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "VolcanoDemonLord",
+  "_pathid": 60465,
+  "_file": "sharedassets0.assets",
+  "Species": 3,
+  "Rarity": 3,
+  "IsLockedInDemo": true,
+  "Location": "Volcano",
+  "Capacity": 35,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 20354
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4938
+   },
+   "Volume": 0.8999999761581421,
+   "Pitch": 0.800000011920929
+  },
+  "ZoomOutDistance": 0.5,
+  "RunAnimSpeedMultiplier": 1.350000023841858,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5416
+    },
+    "Title": "Cinder Sovereign",
+    "Modifier": {
+     "Stat": 13,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 553195775,
+       "hiddenValue": -835225743,
+       "cryptoKey": -209521154,
+       "value": 0.08862792700529099,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 17597192,
+       "cryptoKey": 25365512,
+       "value": 1.3183774684774746e-38,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": [
+   {
+    "fileID": 0,
+    "pathID": 60396
+   }
+  ]
+ },
+ {
+  "_name": "VolcanoDragon",
+  "_pathid": 60466,
+  "_file": "sharedassets0.assets",
+  "Species": 4,
+  "Rarity": 3,
+  "IsLockedInDemo": true,
+  "Location": "Volcano",
+  "Capacity": 30,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 20322
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4847
+   },
+   "Volume": 1.0,
+   "Pitch": 0.8500000238418579
+  },
+  "ZoomOutDistance": 2.0,
+  "RunAnimSpeedMultiplier": 1.2000000476837158,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5944
+    },
+    "Title": "Tyrant's Bane",
+    "Modifier": {
+     "Stat": 32,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": -628755087,
+       "hiddenValue": -1197080458,
+       "cryptoKey": -2036776980,
+       "value": 0.18676605820655823,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": -1738761918,
+       "cryptoKey": -1734779838,
+       "value": 1.8162263027277098e-38,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": [
+   {
+    "fileID": 0,
+    "pathID": 60398
+   }
+  ]
+ },
+ {
+  "_name": "VolcanoEmberBat",
+  "_pathid": 60467,
+  "_file": "sharedassets0.assets",
+  "Species": 1,
+  "Rarity": 1,
+  "IsLockedInDemo": true,
+  "Location": "Volcano",
+  "Capacity": 25,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 20285
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4973
+   },
+   "Volume": 0.699999988079071,
+   "Pitch": 1.5
+  },
+  "ZoomOutDistance": 1.0,
+  "RunAnimSpeedMultiplier": 1.2999999523162842,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5920
+    },
+    "Title": "Cinder Hide",
+    "Modifier": {
+     "Stat": 52,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 1610992765,
+       "hiddenValue": -833534403,
+       "cryptoKey": -267739664,
+       "value": 0.2147056609392166,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": -494466330,
+       "cryptoKey": -502626330,
+       "value": 1.299938622764503e-38,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "VolcanoHellguard",
+  "_pathid": 60468,
+  "_file": "sharedassets0.assets",
+  "Species": 3,
+  "Rarity": 2,
+  "IsLockedInDemo": true,
+  "Location": "Volcano",
+  "Capacity": 28,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 20292
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4853
+   },
+   "Volume": 0.800000011920929,
+   "Pitch": 0.8500000238418579
+  },
+  "ZoomOutDistance": 1.0,
+  "RunAnimSpeedMultiplier": 1.0,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5398
+    },
+    "Title": "Infernal Bulwark",
+    "Modifier": {
+     "Stat": 44,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 1610992765,
+       "hiddenValue": 346170735,
+       "cryptoKey": 711552674,
+       "value": 0.3970626890659332,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 408054092,
+       "cryptoKey": 409555532,
+       "value": 5.4394594853266435e-39,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "VolcanoMagmaGolem",
+  "_pathid": 60469,
+  "_file": "sharedassets0.assets",
+  "Species": 5,
+  "Rarity": 2,
+  "IsLockedInDemo": true,
+  "Location": "Volcano",
+  "Capacity": 28,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 20332
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4983
+   },
+   "Volume": 0.8999999761581421,
+   "Pitch": 0.699999988079071
+  },
+  "ZoomOutDistance": 0.8999999761581421,
+  "RunAnimSpeedMultiplier": 1.2000000476837158,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5661
+    },
+    "Title": "Molten Core",
+    "Modifier": {
+     "Stat": 42,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 1610992765,
+       "hiddenValue": -628361056,
+       "cryptoKey": -457947283,
+       "value": 0.1872550994157791,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": -768887785,
+       "cryptoKey": -759944425,
+       "value": 1.465888234181248e-38,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "Werewolf",
+  "_pathid": 60470,
+  "_file": "sharedassets0.assets",
+  "Species": 3,
+  "Rarity": 3,
+  "IsLockedInDemo": false,
+  "Location": "Forest",
+  "Capacity": 25,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 23946
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4983
+   },
+   "Volume": 1.0,
+   "Pitch": 1.0
+  },
+  "ZoomOutDistance": 0.0,
+  "RunAnimSpeedMultiplier": 1.0,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5225
+    },
+    "Title": "Bloodthirst I",
+    "Modifier": {
+     "Stat": 11,
+     "Type": 1,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 1573529835,
+       "hiddenValue": 1332739131,
+       "cryptoKey": 1915790326,
+       "value": 0.05453472211956978,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 1435503722,
+       "cryptoKey": 1426886762,
+       "value": 1.4382299656117905e-38,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": [
+   {
+    "fileID": 0,
+    "pathID": 60407
+   }
+  ]
+ },
+ {
+  "_name": "WhiteHorse",
+  "_pathid": 60471,
+  "_file": "sharedassets0.assets",
+  "Species": 1,
+  "Rarity": 2,
+  "IsLockedInDemo": false,
+  "Location": "Merchant",
+  "Capacity": 25,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 25409
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4878
+   },
+   "Volume": 1.0,
+   "Pitch": 1.100000023841858
+  },
+  "ZoomOutDistance": 0.5,
+  "RunAnimSpeedMultiplier": 0.8999999761581421,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5302
+    },
+    "Title": "Fast Travel III",
+    "Modifier": {
+     "Stat": 57,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": -649440399,
+       "hiddenValue": 1627668841,
+       "cryptoKey": 1599643123,
+       "value": 0.21568527817726135,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 1162354914,
+       "cryptoKey": 1159743714,
+       "value": 9.58819977074527e-39,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "Wolf",
+  "_pathid": 60472,
+  "_file": "sharedassets0.assets",
+  "Species": 1,
+  "Rarity": 1,
+  "IsLockedInDemo": false,
+  "Location": "Forest",
+  "Capacity": 15,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 13947
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4790
+   },
+   "Volume": 0.800000011920929,
+   "Pitch": 1.0
+  },
+  "ZoomOutDistance": 1.2000000476837158,
+  "RunAnimSpeedMultiplier": 1.0,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5544
+    },
+    "Title": "Attack Speed I",
+    "Modifier": {
+     "Stat": 6,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 1594215147,
+       "hiddenValue": 2033906693,
+       "cryptoKey": 1152972488,
+       "value": 0.063481904566288,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 1036539929,
+       "cryptoKey": 1029228569,
+       "value": 1.3275968913339605e-38,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ },
+ {
+  "_name": "ZombieWolf",
+  "_pathid": 60473,
+  "_file": "sharedassets0.assets",
+  "Species": 1,
+  "Rarity": 2,
+  "IsLockedInDemo": false,
+  "Location": "CorruptForest",
+  "Capacity": 20,
+  "Prefab": {
+   "fileID": 0,
+   "pathID": 20368
+  },
+  "SummonSound": {
+   "Clip": {
+    "fileID": 0,
+    "pathID": 4795
+   },
+   "Volume": 0.800000011920929,
+   "Pitch": 1.0
+  },
+  "ZoomOutDistance": 1.0,
+  "RunAnimSpeedMultiplier": 2.0,
+  "Passives": [
+   {
+    "Icon": {
+     "fileID": 0,
+     "pathID": 5315
+    },
+    "Title": "Life On Hit I",
+    "Modifier": {
+     "Stat": 11,
+     "Type": 0,
+     "Value": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 753531571,
+       "hiddenValue": 180629866,
+       "cryptoKey": 1262601322,
+       "value": 16.74462890625,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 1527365410,
+       "cryptoKey": 1539246370,
+       "value": 1.6779349598804222e-38,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "Token": {
+      "Name": "value",
+      "Format": "0.#",
+      "Suffix": "",
+      "Highlight": true
+     }
+    }
+   }
+  ],
+  "Abilities": []
+ }
+]

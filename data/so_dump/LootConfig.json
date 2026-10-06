@@ -1,0 +1,350 @@
+[
+ {
+  "_name": "BetaLootConfig",
+  "_pathid": 4790,
+  "_file": "resources.assets",
+  "NormalDropSettings": {
+   "PotionChargeDropChance": 0.30000001192092896,
+   "GoldDropChance": 0.30000001192092896,
+   "GoldMultiplier": 2.0,
+   "RollAttempts": 1,
+   "MinLootVector": {
+    "NoDrop": 87.4000015258789,
+    "Common": 9.0,
+    "Uncommon": 3.0,
+    "Rare": 0.6000000238418579,
+    "Legendary": 0.0
+   },
+   "MaxLootVector": {
+    "NoDrop": 90.0,
+    "Common": 4.900000095367432,
+    "Uncommon": 3.5,
+    "Rare": 1.399999976158142,
+    "Legendary": 0.20000000298023224
+   },
+   "DivineChance": 0.0,
+   "GemDropChance": 0.009999999776482582
+  },
+  "EliteDropSettings": {
+   "PotionChargeDropChance": 1.0,
+   "GoldDropChance": 1.0,
+   "GoldMultiplier": 2.0,
+   "RollAttempts": 3,
+   "MinLootVector": {
+    "NoDrop": 40.20000076293945,
+    "Common": 29.299999237060547,
+    "Uncommon": 23.0,
+    "Rare": 6.0,
+    "Legendary": 1.5
+   },
+   "MaxLootVector": {
+    "NoDrop": 19.600000381469727,
+    "Common": 27.899999618530273,
+    "Uncommon": 30.0,
+    "Rare": 20.0,
+    "Legendary": 2.5
+   },
+   "DivineChance": 0.0,
+   "GemDropChance": 0.05999999865889549
+  },
+  "MiniBossDropSettings": {
+   "PotionChargeDropChance": 1.0,
+   "GoldDropChance": 1.0,
+   "GoldMultiplier": 4.0,
+   "RollAttempts": 2,
+   "MinLootVector": {
+    "NoDrop": 35.20000076293945,
+    "Common": 33.79999923706055,
+    "Uncommon": 22.0,
+    "Rare": 7.0,
+    "Legendary": 2.0
+   },
+   "MaxLootVector": {
+    "NoDrop": 10.600000381469727,
+    "Common": 28.399999618530273,
+    "Uncommon": 32.0,
+    "Rare": 25.0,
+    "Legendary": 4.0
+   },
+   "DivineChance": 0.0,
+   "GemDropChance": 0.10000000149011612
+  },
+  "BossDropSettings": {
+   "PotionChargeDropChance": 1.0,
+   "GoldDropChance": 1.0,
+   "GoldMultiplier": 5.0,
+   "RollAttempts": 3,
+   "MinLootVector": {
+    "NoDrop": 0.0,
+    "Common": 53.79999923706055,
+    "Uncommon": 30.0,
+    "Rare": 13.199999809265137,
+    "Legendary": 3.0
+   },
+   "MaxLootVector": {
+    "NoDrop": 0.0,
+    "Common": 19.0,
+    "Uncommon": 31.0,
+    "Rare": 40.0,
+    "Legendary": 10.0
+   },
+   "DivineChance": 0.0,
+   "GemDropChance": 0.11999999731779099
+  },
+  "MythicBossDropSettings": {
+   "PotionChargeDropChance": 1.0,
+   "GoldDropChance": 1.0,
+   "GoldMultiplier": 5.0,
+   "RollAttempts": 3,
+   "MinLootVector": {
+    "NoDrop": 0.0,
+    "Common": 53.79999923706055,
+    "Uncommon": 30.0,
+    "Rare": 13.199999809265137,
+    "Legendary": 3.0
+   },
+   "MaxLootVector": {
+    "NoDrop": 0.0,
+    "Common": 19.0,
+    "Uncommon": 31.0,
+    "Rare": 40.0,
+    "Legendary": 10.0
+   },
+   "DivineChance": 0.0,
+   "GemDropChance": 0.11999999731779099,
+   "SpecialDrops": [],
+   "SpecialDropChanceMultiplierPerTier": 1.0099999904632568,
+   "ItemLevelBonus": 1,
+   "ItemFindBonusPerTier": 0.009999999776482582
+  },
+  "RandomEquipmentLootVector": {
+   "Common": 50.0,
+   "Uncommon": 32.5,
+   "Rare": 15.300000190734863,
+   "Legendary": 2.200000047683716,
+   "DivineChance": 0.0
+  },
+  "BossMaterial": {
+   "fileID": 2,
+   "pathID": 60036
+  },
+  "BossMaterialLevelsPerUnit": 5,
+  "TreasureNodeMaterial": {
+   "fileID": 2,
+   "pathID": 60037
+  },
+  "TreasureNodeMaterialNightmare": {
+   "fileID": 2,
+   "pathID": 60039
+  },
+  "TreasureNodeMaterialInferno": {
+   "fileID": 2,
+   "pathID": 60038
+  },
+  "TreasureNodeMaterialChance": 0.0010000000474974513,
+  "RuneDrops": {
+   "DropChance": 0.019999999552965164,
+   "MiniBossChanceMultiplier": 0.5,
+   "MinDropLevel": 27,
+   "RarityWeights": {
+    "Common": 0.0,
+    "Uncommon": 60.0,
+    "Rare": 30.0,
+    "Legendary": 10.0,
+    "Divine": 0.0,
+    "Set": 0.0
+   }
+  },
+  "MinLegendaryLevel": 10,
+  "AncientChance": 0.10000000149011612,
+  "BlackMistChance": 0.029999999329447746,
+  "MinBlackMistDifficulty": 1,
+  "MinDivineDifficulty": 2,
+  "MinSetDifficulty": 2
+ },
+ {
+  "_name": "LootConfig",
+  "_pathid": 60238,
+  "_file": "sharedassets0.assets",
+  "NormalDropSettings": {
+   "PotionChargeDropChance": 0.30000001192092896,
+   "GoldDropChance": 0.30000001192092896,
+   "GoldMultiplier": 2.0,
+   "RollAttempts": 1,
+   "MinLootVector": {
+    "NoDrop": 87.4000015258789,
+    "Common": 9.0,
+    "Uncommon": 3.0,
+    "Rare": 0.6000000238418579,
+    "Legendary": 0.0
+   },
+   "MaxLootVector": {
+    "NoDrop": 95.0,
+    "Common": 2.5,
+    "Uncommon": 1.75,
+    "Rare": 0.6000000238418579,
+    "Legendary": 0.15000000596046448
+   },
+   "DivineChance": 0.0,
+   "GemDropChance": 0.009999999776482582
+  },
+  "EliteDropSettings": {
+   "PotionChargeDropChance": 1.0,
+   "GoldDropChance": 1.0,
+   "GoldMultiplier": 2.0,
+   "RollAttempts": 1,
+   "MinLootVector": {
+    "NoDrop": 0.0,
+    "Common": 69.5,
+    "Uncommon": 23.0,
+    "Rare": 6.5,
+    "Legendary": 1.0
+   },
+   "MaxLootVector": {
+    "NoDrop": 0.0,
+    "Common": 47.5,
+    "Uncommon": 36.0,
+    "Rare": 15.0,
+    "Legendary": 1.5
+   },
+   "DivineChance": 3.000000106112566e-06,
+   "GemDropChance": 0.05999999865889549
+  },
+  "MiniBossDropSettings": {
+   "PotionChargeDropChance": 1.0,
+   "GoldDropChance": 1.0,
+   "GoldMultiplier": 4.0,
+   "RollAttempts": 2,
+   "MinLootVector": {
+    "NoDrop": 35.20000076293945,
+    "Common": 33.79999923706055,
+    "Uncommon": 22.5,
+    "Rare": 7.0,
+    "Legendary": 1.5
+   },
+   "MaxLootVector": {
+    "NoDrop": 10.600000381469727,
+    "Common": 32.400001525878906,
+    "Uncommon": 35.0,
+    "Rare": 20.0,
+    "Legendary": 2.0
+   },
+   "DivineChance": 9.999999747378752e-06,
+   "GemDropChance": 0.10000000149011612
+  },
+  "BossDropSettings": {
+   "PotionChargeDropChance": 1.0,
+   "GoldDropChance": 1.0,
+   "GoldMultiplier": 5.0,
+   "RollAttempts": 3,
+   "MinLootVector": {
+    "NoDrop": 0.0,
+    "Common": 60.0,
+    "Uncommon": 30.0,
+    "Rare": 8.0,
+    "Legendary": 2.0
+   },
+   "MaxLootVector": {
+    "NoDrop": 0.0,
+    "Common": 38.0,
+    "Uncommon": 35.0,
+    "Rare": 24.0,
+    "Legendary": 3.0
+   },
+   "DivineChance": 9.999999747378752e-06,
+   "GemDropChance": 0.11999999731779099
+  },
+  "MythicBossDropSettings": {
+   "PotionChargeDropChance": 1.0,
+   "GoldDropChance": 1.0,
+   "GoldMultiplier": 5.0,
+   "RollAttempts": 3,
+   "MinLootVector": {
+    "NoDrop": 0.0,
+    "Common": 51.79999923706055,
+    "Uncommon": 30.0,
+    "Rare": 16.200000762939453,
+    "Legendary": 2.0
+   },
+   "MaxLootVector": {
+    "NoDrop": 0.0,
+    "Common": 24.0,
+    "Uncommon": 37.5,
+    "Rare": 35.0,
+    "Legendary": 3.5
+   },
+   "DivineChance": 1.9999999494757503e-05,
+   "GemDropChance": 0.11999999731779099,
+   "SpecialDrops": [
+    {
+     "Item": {
+      "fileID": 0,
+      "pathID": 59937
+     },
+     "Chance": 0.10000000149011612
+    },
+    {
+     "Item": {
+      "fileID": 0,
+      "pathID": 59920
+     },
+     "Chance": 0.0020000000949949026
+    },
+    {
+     "Item": {
+      "fileID": 0,
+      "pathID": 59921
+     },
+     "Chance": 0.0013000000035390258
+    }
+   ],
+   "SpecialDropChanceMultiplierPerTier": 1.0099999904632568,
+   "ItemLevelBonus": 10,
+   "ItemFindBonusPerTier": 0.009999999776482582
+  },
+  "RandomEquipmentLootVector": {
+   "Common": 50.0,
+   "Uncommon": 32.5,
+   "Rare": 15.300000190734863,
+   "Legendary": 2.200000047683716,
+   "DivineChance": 7.000000186963007e-05
+  },
+  "BossMaterial": {
+   "fileID": 0,
+   "pathID": 60036
+  },
+  "BossMaterialLevelsPerUnit": 10,
+  "TreasureNodeMaterial": {
+   "fileID": 0,
+   "pathID": 60037
+  },
+  "TreasureNodeMaterialNightmare": {
+   "fileID": 0,
+   "pathID": 60039
+  },
+  "TreasureNodeMaterialInferno": {
+   "fileID": 0,
+   "pathID": 60038
+  },
+  "TreasureNodeMaterialChance": 0.0005000000237487257,
+  "RuneDrops": {
+   "DropChance": 0.019999999552965164,
+   "MiniBossChanceMultiplier": 0.75,
+   "MinDropLevel": 40,
+   "RarityWeights": {
+    "Common": 0.0,
+    "Uncommon": 54.5,
+    "Rare": 43.29999923706055,
+    "Legendary": 1.5,
+    "Divine": 0.0,
+    "Set": 0.699999988079071
+   }
+  },
+  "MinLegendaryLevel": 10,
+  "AncientChance": 0.10000000149011612,
+  "BlackMistChance": 0.0020000000949949026,
+  "MinBlackMistDifficulty": 1,
+  "MinDivineDifficulty": 2,
+  "MinSetDifficulty": 2
+ }
+]

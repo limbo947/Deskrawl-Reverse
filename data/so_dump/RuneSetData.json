@@ -1,0 +1,634 @@
+[
+ {
+  "_name": "HunterSetRune1",
+  "_pathid": 5141,
+  "_file": "resources.assets",
+  "Bonuses": [
+   {
+    "RequiredCount": 2,
+    "Modifiers": [],
+    "Effects": [
+     {
+      "fileID": 0,
+      "pathID": 5142
+     }
+    ],
+    "AbilityLevels": []
+   },
+   {
+    "RequiredCount": 4,
+    "Modifiers": [],
+    "Effects": [
+     {
+      "fileID": 0,
+      "pathID": 5143
+     }
+    ],
+    "AbilityLevels": []
+   },
+   {
+    "RequiredCount": 6,
+    "Modifiers": [],
+    "Effects": [
+     {
+      "fileID": 0,
+      "pathID": 5144
+     }
+    ],
+    "AbilityLevels": []
+   }
+  ]
+ },
+ {
+  "_name": "HunterSetRune2",
+  "_pathid": 5145,
+  "_file": "resources.assets",
+  "Bonuses": [
+   {
+    "RequiredCount": 2,
+    "Modifiers": [
+     {
+      "Stat": 23,
+      "Type": 0,
+      "Value": {
+       "__type__": "ObscuredFloat",
+       "hash": 170189967,
+       "hiddenValue": 80386561,
+       "cryptoKey": 1000000001,
+       "value": 0.813720703125,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     }
+    ],
+    "Effects": [],
+    "AbilityLevels": []
+   },
+   {
+    "RequiredCount": 4,
+    "Modifiers": [],
+    "Effects": [
+     {
+      "fileID": 0,
+      "pathID": 5146
+     }
+    ],
+    "AbilityLevels": []
+   },
+   {
+    "RequiredCount": 6,
+    "Modifiers": [],
+    "Effects": [
+     {
+      "fileID": 0,
+      "pathID": 5147
+     },
+     {
+      "fileID": 0,
+      "pathID": 5148
+     }
+    ],
+    "AbilityLevels": []
+   }
+  ]
+ },
+ {
+  "_name": "HunterSetRune3",
+  "_pathid": 5149,
+  "_file": "resources.assets",
+  "Bonuses": [
+   {
+    "RequiredCount": 2,
+    "Modifiers": [
+     {
+      "Stat": 46,
+      "Type": 0,
+      "Value": {
+       "__type__": "ObscuredFloat",
+       "hash": -2119459477,
+       "hiddenValue": 83470642,
+       "cryptoKey": 1000000001,
+       "value": 0.888232409954071,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     }
+    ],
+    "Effects": [],
+    "AbilityLevels": []
+   },
+   {
+    "RequiredCount": 4,
+    "Modifiers": [],
+    "Effects": [
+     {
+      "fileID": 0,
+      "pathID": 5150
+     }
+    ],
+    "AbilityLevels": []
+   },
+   {
+    "RequiredCount": 6,
+    "Modifiers": [],
+    "Effects": [
+     {
+      "fileID": 0,
+      "pathID": 5151
+     }
+    ],
+    "AbilityLevels": []
+   }
+  ]
+ },
+ {
+  "_name": "MonkSetRune1",
+  "_pathid": 5153,
+  "_file": "resources.assets",
+  "Bonuses": [
+   {
+    "RequiredCount": 2,
+    "Modifiers": [
+     {
+      "Stat": 33,
+      "Type": 0,
+      "Value": {
+       "__type__": "ObscuredFloat",
+       "hash": 149504655,
+       "hiddenValue": 1476627700,
+       "cryptoKey": 1728840692,
+       "value": 0.5607757568359375,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     }
+    ],
+    "Effects": [],
+    "AbilityLevels": []
+   },
+   {
+    "RequiredCount": 4,
+    "Modifiers": [],
+    "Effects": [
+     {
+      "fileID": 0,
+      "pathID": 5154
+     }
+    ],
+    "AbilityLevels": []
+   },
+   {
+    "RequiredCount": 6,
+    "Modifiers": [],
+    "Effects": [
+     {
+      "fileID": 0,
+      "pathID": 5155
+     }
+    ],
+    "AbilityLevels": []
+   }
+  ]
+ },
+ {
+  "_name": "MonkSetRune2",
+  "_pathid": 5156,
+  "_file": "resources.assets",
+  "Bonuses": [
+   {
+    "RequiredCount": 2,
+    "Modifiers": [
+     {
+      "Stat": 61,
+      "Type": 0,
+      "Value": {
+       "__type__": "ObscuredFloat",
+       "hash": 149504655,
+       "hiddenValue": 745234272,
+       "cryptoKey": 333409120,
+       "value": 1.4078369140625,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     }
+    ],
+    "Effects": [],
+    "AbilityLevels": []
+   },
+   {
+    "RequiredCount": 4,
+    "Modifiers": [],
+    "Effects": [
+     {
+      "fileID": 0,
+      "pathID": 5157
+     }
+    ],
+    "AbilityLevels": []
+   },
+   {
+    "RequiredCount": 6,
+    "Modifiers": [],
+    "Effects": [
+     {
+      "fileID": 0,
+      "pathID": 5158
+     }
+    ],
+    "AbilityLevels": []
+   }
+  ]
+ },
+ {
+  "_name": "MonkSetRune3",
+  "_pathid": 5159,
+  "_file": "resources.assets",
+  "Bonuses": [
+   {
+    "RequiredCount": 2,
+    "Modifiers": [
+     {
+      "Stat": 34,
+      "Type": 0,
+      "Value": {
+       "__type__": "ObscuredFloat",
+       "hash": 170189967,
+       "hiddenValue": 745267040,
+       "cryptoKey": 333409120,
+       "value": 1.4117431640625,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     }
+    ],
+    "Effects": [],
+    "AbilityLevels": []
+   },
+   {
+    "RequiredCount": 4,
+    "Modifiers": [],
+    "Effects": [
+     {
+      "fileID": 0,
+      "pathID": 5160
+     }
+    ],
+    "AbilityLevels": []
+   },
+   {
+    "RequiredCount": 6,
+    "Modifiers": [],
+    "Effects": [
+     {
+      "fileID": 0,
+      "pathID": 5161
+     },
+     {
+      "fileID": 0,
+      "pathID": 5162
+     },
+     {
+      "fileID": 0,
+      "pathID": 5163
+     }
+    ],
+    "AbilityLevels": []
+   }
+  ]
+ },
+ {
+  "_name": "SorcererSetRune1",
+  "_pathid": 5164,
+  "_file": "resources.assets",
+  "Bonuses": [
+   {
+    "RequiredCount": 2,
+    "Modifiers": [
+     {
+      "Stat": 63,
+      "Type": 0,
+      "Value": {
+       "__type__": "ObscuredFloat",
+       "hash": 1297653319,
+       "hiddenValue": 1877191525,
+       "cryptoKey": 1351451907,
+       "value": 0.9303954839706421,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     }
+    ],
+    "Effects": [],
+    "AbilityLevels": []
+   },
+   {
+    "RequiredCount": 4,
+    "Modifiers": [],
+    "Effects": [
+     {
+      "fileID": 0,
+      "pathID": 5165
+     }
+    ],
+    "AbilityLevels": []
+   },
+   {
+    "RequiredCount": 6,
+    "Modifiers": [],
+    "Effects": [
+     {
+      "fileID": 0,
+      "pathID": 5166
+     }
+    ],
+    "AbilityLevels": []
+   }
+  ]
+ },
+ {
+  "_name": "SorcererSetRune2",
+  "_pathid": 5167,
+  "_file": "resources.assets",
+  "Bonuses": [
+   {
+    "RequiredCount": 2,
+    "Modifiers": [
+     {
+      "Stat": 31,
+      "Type": 0,
+      "Value": {
+       "__type__": "ObscuredFloat",
+       "hash": 1297653319,
+       "hiddenValue": 1427356577,
+       "cryptoKey": 1788704199,
+       "value": 1.1156737804412842,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     }
+    ],
+    "Effects": [],
+    "AbilityLevels": []
+   },
+   {
+    "RequiredCount": 4,
+    "Modifiers": [],
+    "Effects": [
+     {
+      "fileID": 0,
+      "pathID": 5168
+     }
+    ],
+    "AbilityLevels": []
+   },
+   {
+    "RequiredCount": 6,
+    "Modifiers": [],
+    "Effects": [
+     {
+      "fileID": 0,
+      "pathID": 5169
+     }
+    ],
+    "AbilityLevels": []
+   }
+  ]
+ },
+ {
+  "_name": "SorcererSetRune3",
+  "_pathid": 5170,
+  "_file": "resources.assets",
+  "Bonuses": [
+   {
+    "RequiredCount": 2,
+    "Modifiers": [
+     {
+      "Stat": 26,
+      "Type": 0,
+      "Value": {
+       "__type__": "ObscuredFloat",
+       "hash": 170189967,
+       "hiddenValue": 952982293,
+       "cryptoKey": 123456789,
+       "value": 1.17645263671875,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     }
+    ],
+    "Effects": [],
+    "AbilityLevels": []
+   },
+   {
+    "RequiredCount": 4,
+    "Modifiers": [],
+    "Effects": [
+     {
+      "fileID": 0,
+      "pathID": 5171
+     }
+    ],
+    "AbilityLevels": []
+   },
+   {
+    "RequiredCount": 6,
+    "Modifiers": [],
+    "Effects": [
+     {
+      "fileID": 0,
+      "pathID": 5172
+     }
+    ],
+    "AbilityLevels": []
+   }
+  ]
+ },
+ {
+  "_name": "WarriorSetRune1",
+  "_pathid": 5173,
+  "_file": "resources.assets",
+  "Bonuses": [
+   {
+    "RequiredCount": 2,
+    "Modifiers": [
+     {
+      "Stat": 4,
+      "Type": 0,
+      "Value": {
+       "__type__": "ObscuredFloat",
+       "hash": 1573529835,
+       "hiddenValue": 1371744058,
+       "cryptoKey": 1827344375,
+       "value": 0.041054535657167435,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     }
+    ],
+    "Effects": [],
+    "AbilityLevels": []
+   },
+   {
+    "RequiredCount": 4,
+    "Modifiers": [],
+    "Effects": [
+     {
+      "fileID": 0,
+      "pathID": 5174
+     }
+    ],
+    "AbilityLevels": []
+   },
+   {
+    "RequiredCount": 6,
+    "Modifiers": [],
+    "Effects": [
+     {
+      "fileID": 0,
+      "pathID": 5175
+     }
+    ],
+    "AbilityLevels": []
+   }
+  ]
+ },
+ {
+  "_name": "WarriorSetRune2",
+  "_pathid": 5176,
+  "_file": "resources.assets",
+  "Bonuses": [
+   {
+    "RequiredCount": 2,
+    "Modifiers": [
+     {
+      "Stat": 23,
+      "Type": 0,
+      "Value": {
+       "__type__": "ObscuredFloat",
+       "hash": 170189967,
+       "hiddenValue": 80386561,
+       "cryptoKey": 1000000001,
+       "value": 0.813720703125,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     }
+    ],
+    "Effects": [],
+    "AbilityLevels": []
+   },
+   {
+    "RequiredCount": 4,
+    "Modifiers": [],
+    "Effects": [
+     {
+      "fileID": 0,
+      "pathID": 5177
+     }
+    ],
+    "AbilityLevels": []
+   },
+   {
+    "RequiredCount": 6,
+    "Modifiers": [],
+    "Effects": [
+     {
+      "fileID": 0,
+      "pathID": 5178
+     }
+    ],
+    "AbilityLevels": []
+   }
+  ]
+ },
+ {
+  "_name": "WarriorSetRune3",
+  "_pathid": 5179,
+  "_file": "resources.assets",
+  "Bonuses": [
+   {
+    "RequiredCount": 2,
+    "Modifiers": [
+     {
+      "Stat": 61,
+      "Type": 0,
+      "Value": {
+       "__type__": "ObscuredFloat",
+       "hash": 149504655,
+       "hiddenValue": 745234272,
+       "cryptoKey": 333409120,
+       "value": 1.4078369140625,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     }
+    ],
+    "Effects": [],
+    "AbilityLevels": []
+   },
+   {
+    "RequiredCount": 4,
+    "Modifiers": [],
+    "Effects": [
+     {
+      "fileID": 0,
+      "pathID": 5180
+     }
+    ],
+    "AbilityLevels": []
+   },
+   {
+    "RequiredCount": 6,
+    "Modifiers": [],
+    "Effects": [
+     {
+      "fileID": 0,
+      "pathID": 5181
+     },
+     {
+      "fileID": 0,
+      "pathID": 5182
+     }
+    ],
+    "AbilityLevels": []
+   }
+  ]
+ },
+ {
+  "_name": "WarriorSetRune4",
+  "_pathid": 5183,
+  "_file": "resources.assets",
+  "Bonuses": [
+   {
+    "RequiredCount": 2,
+    "Modifiers": [
+     {
+      "Stat": 34,
+      "Type": 0,
+      "Value": {
+       "__type__": "ObscuredFloat",
+       "hash": 170189967,
+       "hiddenValue": 1766450825,
+       "cryptoKey": 1457932681,
+       "value": 1.372528076171875,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     }
+    ],
+    "Effects": [],
+    "AbilityLevels": []
+   },
+   {
+    "RequiredCount": 4,
+    "Modifiers": [],
+    "Effects": [
+     {
+      "fileID": 0,
+      "pathID": 5184
+     }
+    ],
+    "AbilityLevels": []
+   },
+   {
+    "RequiredCount": 6,
+    "Modifiers": [],
+    "Effects": [
+     {
+      "fileID": 0,
+      "pathID": 5185
+     }
+    ],
+    "AbilityLevels": []
+   }
+  ]
+ }
+]

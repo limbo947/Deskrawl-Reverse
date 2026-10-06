@@ -1,0 +1,611 @@
+[
+ {
+  "_name": "QuestAuctionTradable",
+  "_pathid": 60320,
+  "_file": "sharedassets0.assets",
+  "Requirements": [],
+  "Dialogue": "Quest.AuctionTradable",
+  "DialogueArgs": [
+   {
+    "Key": "UI.Tradable",
+    "Color": [
+     0.10000000149011612,
+     0.7099999785423279,
+     0.9399999976158142,
+     1.0
+    ]
+   },
+   {
+    "Key": "UI.BlackMist",
+    "Color": [
+     0.8039083480834961,
+     0.6078166961669922,
+     1.0,
+     1.0
+    ]
+   },
+   {
+    "Key": "Rarity.Divine",
+    "Color": [
+     1.0,
+     0.860675573348999,
+     0.6039215922355652,
+     1.0
+    ]
+   },
+   {
+    "Key": "UI.SetRunes",
+    "Color": [
+     0.20000000298023224,
+     1.0,
+     0.2980392277240753,
+     1.0
+    ]
+   },
+   {
+    "Key": "Rarity.Legendary",
+    "Color": [
+     1.0,
+     0.5,
+     0.0,
+     1.0
+    ]
+   }
+  ]
+ },
+ {
+  "_name": "QuestFinalBossInferno",
+  "_pathid": 60321,
+  "_file": "sharedassets0.assets",
+  "Requirements": [
+   {
+    "Type": 2,
+    "Level": 1,
+    "Map": null,
+    "Difficulty": 2
+   }
+  ],
+  "Dialogue": "Quest.FinalBossInferno",
+  "DialogueArgs": [
+   {
+    "Key": "UI.Difficulty.Inferno1",
+    "Color": [
+     1.0,
+     0.5,
+     0.30000001192092896,
+     1.0
+    ]
+   }
+  ]
+ },
+ {
+  "_name": "QuestFinalBossNightmare",
+  "_pathid": 60322,
+  "_file": "sharedassets0.assets",
+  "Requirements": [
+   {
+    "Type": 2,
+    "Level": 1,
+    "Map": null,
+    "Difficulty": 1
+   }
+  ],
+  "Dialogue": "Quest.FinalBossNightmare",
+  "DialogueArgs": [
+   {
+    "Key": "UI.Difficulty.Inferno1",
+    "Color": [
+     1.0,
+     0.5,
+     0.30000001192092896,
+     1.0
+    ]
+   }
+  ]
+ },
+ {
+  "_name": "QuestFinalBossNormal",
+  "_pathid": 60323,
+  "_file": "sharedassets0.assets",
+  "Requirements": [
+   {
+    "Type": 2,
+    "Level": 1,
+    "Map": null,
+    "Difficulty": 0
+   }
+  ],
+  "Dialogue": "Quest.FinalBossNormal",
+  "DialogueArgs": [
+   {
+    "Key": "UI.Difficulty.Nightmare",
+    "Color": [
+     1.0,
+     0.5,
+     0.30000001192092896,
+     1.0
+    ]
+   }
+  ]
+ },
+ {
+  "_name": "QuestFishingBeach",
+  "_pathid": 60324,
+  "_file": "sharedassets0.assets",
+  "Requirements": [
+   {
+    "Type": 1,
+    "Level": 1,
+    "Map": {
+     "fileID": 0,
+     "pathID": 60263
+    },
+    "Difficulty": 0
+   }
+  ],
+  "Dialogue": "Quest.NewFishingSpot",
+  "DialogueArgs": [
+   {
+    "Key": "Fishing-Beach",
+    "Color": [
+     0.44999998807907104,
+     0.800000011920929,
+     1.0,
+     1.0
+    ]
+   }
+  ]
+ },
+ {
+  "_name": "QuestFishingSnowLake",
+  "_pathid": 60325,
+  "_file": "sharedassets0.assets",
+  "Requirements": [
+   {
+    "Type": 1,
+    "Level": 1,
+    "Map": {
+     "fileID": 0,
+     "pathID": 60304
+    },
+    "Difficulty": 0
+   }
+  ],
+  "Dialogue": "Quest.NewFishingSpot",
+  "DialogueArgs": [
+   {
+    "Key": "Fishing-SnowLake",
+    "Color": [
+     0.44999998807907104,
+     0.800000011920929,
+     1.0,
+     1.0
+    ]
+   }
+  ]
+ },
+ {
+  "_name": "QuestFishingVolcanoLake",
+  "_pathid": 60326,
+  "_file": "sharedassets0.assets",
+  "Requirements": [
+   {
+    "Type": 1,
+    "Level": 1,
+    "Map": {
+     "fileID": 0,
+     "pathID": 60316
+    },
+    "Difficulty": 0
+   }
+  ],
+  "Dialogue": "Quest.NewFishingSpot",
+  "DialogueArgs": [
+   {
+    "Key": "Fishing-VolcanoLake",
+    "Color": [
+     0.44999998807907104,
+     0.800000011920929,
+     1.0,
+     1.0
+    ]
+   }
+  ]
+ },
+ {
+  "_name": "QuestJewelerRunes",
+  "_pathid": 60327,
+  "_file": "sharedassets0.assets",
+  "Requirements": [
+   {
+    "Type": 0,
+    "Level": 40,
+    "Map": null,
+    "Difficulty": 0
+   }
+  ],
+  "Dialogue": "Quest.JewelerRunes",
+  "DialogueArgs": [
+   {
+    "Key": "UI.SetRunes",
+    "Color": [
+     0.20000000298023224,
+     1.0,
+     0.2980392277240753,
+     1.0
+    ]
+   }
+  ]
+ },
+ {
+  "_name": "QuestMysteryBlackMist",
+  "_pathid": 60328,
+  "_file": "sharedassets0.assets",
+  "Requirements": [
+   {
+    "Type": 2,
+    "Level": 1,
+    "Map": null,
+    "Difficulty": 0
+   }
+  ],
+  "Dialogue": "Quest.MysteryBlackMist",
+  "DialogueArgs": [
+   {
+    "Key": "UI.Difficulty.Nightmare",
+    "Color": [
+     1.0,
+     0.5,
+     0.30000001192092896,
+     1.0
+    ]
+   },
+   {
+    "Key": "UI.BlackMist",
+    "Color": [
+     0.8039083480834961,
+     0.6078166961669922,
+     1.0,
+     1.0
+    ]
+   }
+  ]
+ },
+ {
+  "_name": "QuestMysteryDivine",
+  "_pathid": 60329,
+  "_file": "sharedassets0.assets",
+  "Requirements": [
+   {
+    "Type": 2,
+    "Level": 1,
+    "Map": null,
+    "Difficulty": 1
+   }
+  ],
+  "Dialogue": "Quest.MysteryDivine",
+  "DialogueArgs": [
+   {
+    "Key": "UI.Difficulty.Inferno1",
+    "Color": [
+     1.0,
+     0.5,
+     0.30000001192092896,
+     1.0
+    ]
+   },
+   {
+    "Key": "Rarity.Divine",
+    "Color": [
+     1.0,
+     0.860675573348999,
+     0.6039215922355652,
+     1.0
+    ]
+   }
+  ]
+ },
+ {
+  "_name": "QuestPotionUpgrade15",
+  "_pathid": 60330,
+  "_file": "sharedassets0.assets",
+  "Requirements": [
+   {
+    "Type": 0,
+    "Level": 15,
+    "Map": null,
+    "Difficulty": 0
+   }
+  ],
+  "Dialogue": "Quest.PotionUpgrade",
+  "DialogueArgs": [
+   {
+    "Key": "HpPotion3",
+    "Color": [
+     0.550000011920929,
+     0.949999988079071,
+     0.550000011920929,
+     1.0
+    ]
+   }
+  ]
+ },
+ {
+  "_name": "QuestPotionUpgrade25",
+  "_pathid": 60331,
+  "_file": "sharedassets0.assets",
+  "Requirements": [
+   {
+    "Type": 0,
+    "Level": 25,
+    "Map": null,
+    "Difficulty": 0
+   }
+  ],
+  "Dialogue": "Quest.PotionUpgrade",
+  "DialogueArgs": [
+   {
+    "Key": "HpPotion4",
+    "Color": [
+     0.550000011920929,
+     0.949999988079071,
+     0.550000011920929,
+     1.0
+    ]
+   }
+  ]
+ },
+ {
+  "_name": "QuestPotionUpgrade35",
+  "_pathid": 60332,
+  "_file": "sharedassets0.assets",
+  "Requirements": [
+   {
+    "Type": 0,
+    "Level": 35,
+    "Map": null,
+    "Difficulty": 0
+   }
+  ],
+  "Dialogue": "Quest.PotionUpgrade",
+  "DialogueArgs": [
+   {
+    "Key": "HpPotion5",
+    "Color": [
+     0.550000011920929,
+     0.949999988079071,
+     0.550000011920929,
+     1.0
+    ]
+   }
+  ]
+ },
+ {
+  "_name": "QuestPotionUpgrade45",
+  "_pathid": 60333,
+  "_file": "sharedassets0.assets",
+  "Requirements": [
+   {
+    "Type": 0,
+    "Level": 45,
+    "Map": null,
+    "Difficulty": 0
+   }
+  ],
+  "Dialogue": "Quest.PotionUpgrade",
+  "DialogueArgs": [
+   {
+    "Key": "HpPotion6",
+    "Color": [
+     0.550000011920929,
+     0.949999988079071,
+     0.550000011920929,
+     1.0
+    ]
+   }
+  ]
+ },
+ {
+  "_name": "QuestPotionUpgrade5",
+  "_pathid": 60334,
+  "_file": "sharedassets0.assets",
+  "Requirements": [
+   {
+    "Type": 0,
+    "Level": 5,
+    "Map": null,
+    "Difficulty": 0
+   }
+  ],
+  "Dialogue": "Quest.PotionUpgrade",
+  "DialogueArgs": [
+   {
+    "Key": "HpPotion2",
+    "Color": [
+     0.550000011920929,
+     0.949999988079071,
+     0.550000011920929,
+     1.0
+    ]
+   }
+  ]
+ },
+ {
+  "_name": "QuestPotionUpgrade55",
+  "_pathid": 60335,
+  "_file": "sharedassets0.assets",
+  "Requirements": [
+   {
+    "Type": 0,
+    "Level": 55,
+    "Map": null,
+    "Difficulty": 0
+   }
+  ],
+  "Dialogue": "Quest.PotionUpgrade",
+  "DialogueArgs": [
+   {
+    "Key": "HpPotion7",
+    "Color": [
+     0.550000011920929,
+     0.949999988079071,
+     0.550000011920929,
+     1.0
+    ]
+   }
+  ]
+ },
+ {
+  "_name": "QuestPotionUpgrade65",
+  "_pathid": 60336,
+  "_file": "sharedassets0.assets",
+  "Requirements": [
+   {
+    "Type": 0,
+    "Level": 65,
+    "Map": null,
+    "Difficulty": 0
+   }
+  ],
+  "Dialogue": "Quest.PotionUpgrade",
+  "DialogueArgs": [
+   {
+    "Key": "HpPotion8",
+    "Color": [
+     0.550000011920929,
+     0.949999988079071,
+     0.550000011920929,
+     1.0
+    ]
+   }
+  ]
+ },
+ {
+  "_name": "QuestRoadToTazan",
+  "_pathid": 60337,
+  "_file": "sharedassets0.assets",
+  "Requirements": [
+   {
+    "Type": 1,
+    "Level": 1,
+    "Map": {
+     "fileID": 0,
+     "pathID": 60266
+    },
+    "Difficulty": 0
+   }
+  ],
+  "Dialogue": "Quest.RoadToTazan",
+  "DialogueArgs": [
+   {
+    "Key": "DesertTown",
+    "Color": [
+     0.44999998807907104,
+     0.800000011920929,
+     1.0,
+     1.0
+    ]
+   }
+  ]
+ },
+ {
+  "_name": "QuestRoadToVeldak",
+  "_pathid": 60338,
+  "_file": "sharedassets0.assets",
+  "Requirements": [
+   {
+    "Type": 1,
+    "Level": 1,
+    "Map": {
+     "fileID": 0,
+     "pathID": 60300
+    },
+    "Difficulty": 0
+   }
+  ],
+  "Dialogue": "Quest.RoadToVeldak",
+  "DialogueArgs": [
+   {
+    "Key": "SnowTown",
+    "Color": [
+     0.44999998807907104,
+     0.800000011920929,
+     1.0,
+     1.0
+    ]
+   }
+  ]
+ },
+ {
+  "_name": "QuestWelcomeAldenreach",
+  "_pathid": 60339,
+  "_file": "sharedassets0.assets",
+  "Requirements": [],
+  "Dialogue": "Quest.WelcomeAldenreach",
+  "DialogueArgs": []
+ },
+ {
+  "_name": "QuestWelcomeTazan",
+  "_pathid": 60340,
+  "_file": "sharedassets0.assets",
+  "Requirements": [
+   {
+    "Type": 1,
+    "Level": 1,
+    "Map": {
+     "fileID": 0,
+     "pathID": 60266
+    },
+    "Difficulty": 0
+   }
+  ],
+  "Dialogue": "Quest.WelcomeTazan",
+  "DialogueArgs": [
+   {
+    "Key": "DesertManticoraBoss",
+    "Color": [
+     0.44999998807907104,
+     0.800000011920929,
+     1.0,
+     1.0
+    ]
+   },
+   {
+    "Key": "DesertTown",
+    "Color": [
+     0.44999998807907104,
+     0.800000011920929,
+     1.0,
+     1.0
+    ]
+   }
+  ]
+ },
+ {
+  "_name": "QuestWelcomeVeldak",
+  "_pathid": 60341,
+  "_file": "sharedassets0.assets",
+  "Requirements": [],
+  "Dialogue": "Quest.WelcomeVeldak",
+  "DialogueArgs": [
+   {
+    "Key": "SnowTown",
+    "Color": [
+     0.44999998807907104,
+     0.800000011920929,
+     1.0,
+     1.0
+    ]
+   },
+   {
+    "Key": "Volcano",
+    "Color": [
+     0.44999998807907104,
+     0.800000011920929,
+     1.0,
+     1.0
+    ]
+   }
+  ]
+ }
+]

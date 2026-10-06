@@ -1,0 +1,2342 @@
+[
+ {
+  "_name": "GemAmethyst1",
+  "_pathid": 59980,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5228
+  },
+  "Type": 6,
+  "Rarity": 0,
+  "SellPrice": 2000,
+  "MinDropLevel": 30,
+  "MaxDropLevel": 34,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 50,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 15,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "ArmorBonuses": [
+   {
+    "Stat": 2,
+    "Modifier": 0,
+    "Value": 5.0
+   }
+  ],
+  "AccessoryBonuses": [
+   {
+    "Stat": 55,
+    "Modifier": 0,
+    "Value": 0.05000000074505806
+   }
+  ],
+  "WeaponBonuses": [
+   {
+    "Stat": 28,
+    "Modifier": 0,
+    "Value": 0.10000000149011612
+   }
+  ]
+ },
+ {
+  "_name": "GemAmethyst2",
+  "_pathid": 59981,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5774
+  },
+  "Type": 6,
+  "Rarity": 0,
+  "SellPrice": 4000,
+  "MinDropLevel": 35,
+  "MaxDropLevel": 39,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 50,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 15,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "ArmorBonuses": [
+   {
+    "Stat": 2,
+    "Modifier": 0,
+    "Value": 10.0
+   }
+  ],
+  "AccessoryBonuses": [
+   {
+    "Stat": 55,
+    "Modifier": 0,
+    "Value": 0.07000000029802322
+   }
+  ],
+  "WeaponBonuses": [
+   {
+    "Stat": 28,
+    "Modifier": 0,
+    "Value": 0.15000000596046448
+   }
+  ]
+ },
+ {
+  "_name": "GemAmethyst3",
+  "_pathid": 59982,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5384
+  },
+  "Type": 6,
+  "Rarity": 0,
+  "SellPrice": 6000,
+  "MinDropLevel": 40,
+  "MaxDropLevel": 44,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 50,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 15,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "ArmorBonuses": [
+   {
+    "Stat": 2,
+    "Modifier": 0,
+    "Value": 15.0
+   }
+  ],
+  "AccessoryBonuses": [
+   {
+    "Stat": 55,
+    "Modifier": 0,
+    "Value": 0.09000000357627869
+   }
+  ],
+  "WeaponBonuses": [
+   {
+    "Stat": 28,
+    "Modifier": 0,
+    "Value": 0.20000000298023224
+   }
+  ]
+ },
+ {
+  "_name": "GemAmethyst4",
+  "_pathid": 59983,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5549
+  },
+  "Type": 6,
+  "Rarity": 0,
+  "SellPrice": 8000,
+  "MinDropLevel": 45,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 50,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 15,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "ArmorBonuses": [
+   {
+    "Stat": 2,
+    "Modifier": 0,
+    "Value": 20.0
+   }
+  ],
+  "AccessoryBonuses": [
+   {
+    "Stat": 55,
+    "Modifier": 0,
+    "Value": 0.10999999940395355
+   }
+  ],
+  "WeaponBonuses": [
+   {
+    "Stat": 28,
+    "Modifier": 0,
+    "Value": 0.25
+   }
+  ]
+ },
+ {
+  "_name": "GemAmethyst5",
+  "_pathid": 59984,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5502
+  },
+  "Type": 6,
+  "Rarity": 0,
+  "SellPrice": 10000,
+  "MinDropLevel": 999,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 50,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 15,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "ArmorBonuses": [
+   {
+    "Stat": 2,
+    "Modifier": 0,
+    "Value": 25.0
+   }
+  ],
+  "AccessoryBonuses": [
+   {
+    "Stat": 55,
+    "Modifier": 0,
+    "Value": 0.12999999523162842
+   }
+  ],
+  "WeaponBonuses": [
+   {
+    "Stat": 28,
+    "Modifier": 0,
+    "Value": 0.3499999940395355
+   }
+  ]
+ },
+ {
+  "_name": "GemAmethyst6",
+  "_pathid": 59985,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5838
+  },
+  "Type": 6,
+  "Rarity": 0,
+  "SellPrice": 12000,
+  "MinDropLevel": 999,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 50,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 15,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "ArmorBonuses": [
+   {
+    "Stat": 2,
+    "Modifier": 0,
+    "Value": 30.0
+   }
+  ],
+  "AccessoryBonuses": [
+   {
+    "Stat": 55,
+    "Modifier": 0,
+    "Value": 0.15000000596046448
+   }
+  ],
+  "WeaponBonuses": [
+   {
+    "Stat": 28,
+    "Modifier": 0,
+    "Value": 0.5
+   }
+  ]
+ },
+ {
+  "_name": "GemDiamond1",
+  "_pathid": 59986,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5542
+  },
+  "Type": 6,
+  "Rarity": 0,
+  "SellPrice": 2000,
+  "MinDropLevel": 30,
+  "MaxDropLevel": 34,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 50,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 15,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "ArmorBonuses": [
+   {
+    "Stat": 13,
+    "Modifier": 0,
+    "Value": 0.009999999776482582
+   }
+  ],
+  "AccessoryBonuses": [
+   {
+    "Stat": 51,
+    "Modifier": 0,
+    "Value": 0.03999999910593033
+   }
+  ],
+  "WeaponBonuses": [
+   {
+    "Stat": 23,
+    "Modifier": 0,
+    "Value": 0.10000000149011612
+   }
+  ]
+ },
+ {
+  "_name": "GemDiamond2",
+  "_pathid": 59987,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5567
+  },
+  "Type": 6,
+  "Rarity": 0,
+  "SellPrice": 4000,
+  "MinDropLevel": 35,
+  "MaxDropLevel": 39,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 50,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 15,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "ArmorBonuses": [
+   {
+    "Stat": 13,
+    "Modifier": 0,
+    "Value": 0.014999999664723873
+   }
+  ],
+  "AccessoryBonuses": [
+   {
+    "Stat": 51,
+    "Modifier": 0,
+    "Value": 0.054999999701976776
+   }
+  ],
+  "WeaponBonuses": [
+   {
+    "Stat": 23,
+    "Modifier": 0,
+    "Value": 0.15000000596046448
+   }
+  ]
+ },
+ {
+  "_name": "GemDiamond3",
+  "_pathid": 59988,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5585
+  },
+  "Type": 6,
+  "Rarity": 0,
+  "SellPrice": 6000,
+  "MinDropLevel": 40,
+  "MaxDropLevel": 44,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 50,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 15,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "ArmorBonuses": [
+   {
+    "Stat": 13,
+    "Modifier": 0,
+    "Value": 0.019999999552965164
+   }
+  ],
+  "AccessoryBonuses": [
+   {
+    "Stat": 51,
+    "Modifier": 0,
+    "Value": 0.07000000029802322
+   }
+  ],
+  "WeaponBonuses": [
+   {
+    "Stat": 23,
+    "Modifier": 0,
+    "Value": 0.20000000298023224
+   }
+  ]
+ },
+ {
+  "_name": "GemDiamond4",
+  "_pathid": 59989,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5264
+  },
+  "Type": 6,
+  "Rarity": 0,
+  "SellPrice": 8000,
+  "MinDropLevel": 45,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 50,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 15,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "ArmorBonuses": [
+   {
+    "Stat": 13,
+    "Modifier": 0,
+    "Value": 0.02500000037252903
+   }
+  ],
+  "AccessoryBonuses": [
+   {
+    "Stat": 51,
+    "Modifier": 0,
+    "Value": 0.08500000089406967
+   }
+  ],
+  "WeaponBonuses": [
+   {
+    "Stat": 23,
+    "Modifier": 0,
+    "Value": 0.25
+   }
+  ]
+ },
+ {
+  "_name": "GemDiamond5",
+  "_pathid": 59990,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5828
+  },
+  "Type": 6,
+  "Rarity": 0,
+  "SellPrice": 10000,
+  "MinDropLevel": 999,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 50,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 15,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "ArmorBonuses": [
+   {
+    "Stat": 13,
+    "Modifier": 0,
+    "Value": 0.029999999329447746
+   }
+  ],
+  "AccessoryBonuses": [
+   {
+    "Stat": 51,
+    "Modifier": 0,
+    "Value": 0.10000000149011612
+   }
+  ],
+  "WeaponBonuses": [
+   {
+    "Stat": 23,
+    "Modifier": 0,
+    "Value": 0.3499999940395355
+   }
+  ]
+ },
+ {
+  "_name": "GemDiamond6",
+  "_pathid": 59991,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5473
+  },
+  "Type": 6,
+  "Rarity": 0,
+  "SellPrice": 12000,
+  "MinDropLevel": 999,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 50,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 15,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "ArmorBonuses": [
+   {
+    "Stat": 13,
+    "Modifier": 0,
+    "Value": 0.03999999910593033
+   }
+  ],
+  "AccessoryBonuses": [
+   {
+    "Stat": 51,
+    "Modifier": 0,
+    "Value": 0.11500000208616257
+   }
+  ],
+  "WeaponBonuses": [
+   {
+    "Stat": 23,
+    "Modifier": 0,
+    "Value": 0.5
+   }
+  ]
+ },
+ {
+  "_name": "GemEmerald1",
+  "_pathid": 59992,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5395
+  },
+  "Type": 6,
+  "Rarity": 0,
+  "SellPrice": 2000,
+  "MinDropLevel": 30,
+  "MaxDropLevel": 34,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 50,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 15,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "ArmorBonuses": [
+   {
+    "Stat": 39,
+    "Modifier": 0,
+    "Value": 10.0
+   }
+  ],
+  "AccessoryBonuses": [
+   {
+    "Stat": 49,
+    "Modifier": 0,
+    "Value": 0.05000000074505806
+   }
+  ],
+  "WeaponBonuses": [
+   {
+    "Stat": 27,
+    "Modifier": 0,
+    "Value": 0.10000000149011612
+   }
+  ]
+ },
+ {
+  "_name": "GemEmerald2",
+  "_pathid": 59993,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5779
+  },
+  "Type": 6,
+  "Rarity": 0,
+  "SellPrice": 4000,
+  "MinDropLevel": 35,
+  "MaxDropLevel": 39,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 50,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 15,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "ArmorBonuses": [
+   {
+    "Stat": 39,
+    "Modifier": 0,
+    "Value": 20.0
+   }
+  ],
+  "AccessoryBonuses": [
+   {
+    "Stat": 49,
+    "Modifier": 0,
+    "Value": 0.07000000029802322
+   }
+  ],
+  "WeaponBonuses": [
+   {
+    "Stat": 27,
+    "Modifier": 0,
+    "Value": 0.15000000596046448
+   }
+  ]
+ },
+ {
+  "_name": "GemEmerald3",
+  "_pathid": 59994,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5854
+  },
+  "Type": 6,
+  "Rarity": 0,
+  "SellPrice": 6000,
+  "MinDropLevel": 40,
+  "MaxDropLevel": 44,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 50,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 15,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "ArmorBonuses": [
+   {
+    "Stat": 39,
+    "Modifier": 0,
+    "Value": 40.0
+   }
+  ],
+  "AccessoryBonuses": [
+   {
+    "Stat": 49,
+    "Modifier": 0,
+    "Value": 0.09000000357627869
+   }
+  ],
+  "WeaponBonuses": [
+   {
+    "Stat": 27,
+    "Modifier": 0,
+    "Value": 0.20000000298023224
+   }
+  ]
+ },
+ {
+  "_name": "GemEmerald4",
+  "_pathid": 59995,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5594
+  },
+  "Type": 6,
+  "Rarity": 0,
+  "SellPrice": 8000,
+  "MinDropLevel": 45,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 50,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 15,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "ArmorBonuses": [
+   {
+    "Stat": 39,
+    "Modifier": 0,
+    "Value": 80.0
+   }
+  ],
+  "AccessoryBonuses": [
+   {
+    "Stat": 49,
+    "Modifier": 0,
+    "Value": 0.10999999940395355
+   }
+  ],
+  "WeaponBonuses": [
+   {
+    "Stat": 27,
+    "Modifier": 0,
+    "Value": 0.25
+   }
+  ]
+ },
+ {
+  "_name": "GemEmerald5",
+  "_pathid": 59996,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5825
+  },
+  "Type": 6,
+  "Rarity": 0,
+  "SellPrice": 10000,
+  "MinDropLevel": 999,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 50,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 15,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "ArmorBonuses": [
+   {
+    "Stat": 39,
+    "Modifier": 0,
+    "Value": 105.0
+   }
+  ],
+  "AccessoryBonuses": [
+   {
+    "Stat": 49,
+    "Modifier": 0,
+    "Value": 0.12999999523162842
+   }
+  ],
+  "WeaponBonuses": [
+   {
+    "Stat": 27,
+    "Modifier": 0,
+    "Value": 0.3499999940395355
+   }
+  ]
+ },
+ {
+  "_name": "GemEmerald6",
+  "_pathid": 59997,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5749
+  },
+  "Type": 6,
+  "Rarity": 0,
+  "SellPrice": 12000,
+  "MinDropLevel": 999,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 50,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 15,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "ArmorBonuses": [
+   {
+    "Stat": 39,
+    "Modifier": 0,
+    "Value": 130.0
+   }
+  ],
+  "AccessoryBonuses": [
+   {
+    "Stat": 49,
+    "Modifier": 0,
+    "Value": 0.15000000596046448
+   }
+  ],
+  "WeaponBonuses": [
+   {
+    "Stat": 27,
+    "Modifier": 0,
+    "Value": 0.5
+   }
+  ]
+ },
+ {
+  "_name": "GemRuby1",
+  "_pathid": 59998,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5332
+  },
+  "Type": 6,
+  "Rarity": 0,
+  "SellPrice": 2000,
+  "MinDropLevel": 30,
+  "MaxDropLevel": 34,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 50,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 15,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "ArmorBonuses": [
+   {
+    "Stat": 0,
+    "Modifier": 0,
+    "Value": 5.0
+   }
+  ],
+  "AccessoryBonuses": [
+   {
+    "Stat": 52,
+    "Modifier": 0,
+    "Value": 0.05000000074505806
+   }
+  ],
+  "WeaponBonuses": [
+   {
+    "Stat": 24,
+    "Modifier": 0,
+    "Value": 0.10000000149011612
+   }
+  ]
+ },
+ {
+  "_name": "GemRuby2",
+  "_pathid": 59999,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5246
+  },
+  "Type": 6,
+  "Rarity": 0,
+  "SellPrice": 4000,
+  "MinDropLevel": 35,
+  "MaxDropLevel": 39,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 50,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 15,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "ArmorBonuses": [
+   {
+    "Stat": 0,
+    "Modifier": 0,
+    "Value": 10.0
+   }
+  ],
+  "AccessoryBonuses": [
+   {
+    "Stat": 52,
+    "Modifier": 0,
+    "Value": 0.07000000029802322
+   }
+  ],
+  "WeaponBonuses": [
+   {
+    "Stat": 24,
+    "Modifier": 0,
+    "Value": 0.15000000596046448
+   }
+  ]
+ },
+ {
+  "_name": "GemRuby3",
+  "_pathid": 60000,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5656
+  },
+  "Type": 6,
+  "Rarity": 0,
+  "SellPrice": 6000,
+  "MinDropLevel": 40,
+  "MaxDropLevel": 44,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 50,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 15,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "ArmorBonuses": [
+   {
+    "Stat": 0,
+    "Modifier": 0,
+    "Value": 15.0
+   }
+  ],
+  "AccessoryBonuses": [
+   {
+    "Stat": 52,
+    "Modifier": 0,
+    "Value": 0.09000000357627869
+   }
+  ],
+  "WeaponBonuses": [
+   {
+    "Stat": 24,
+    "Modifier": 0,
+    "Value": 0.20000000298023224
+   }
+  ]
+ },
+ {
+  "_name": "GemRuby4",
+  "_pathid": 60001,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5258
+  },
+  "Type": 6,
+  "Rarity": 0,
+  "SellPrice": 8000,
+  "MinDropLevel": 45,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 50,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 15,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "ArmorBonuses": [
+   {
+    "Stat": 0,
+    "Modifier": 0,
+    "Value": 20.0
+   }
+  ],
+  "AccessoryBonuses": [
+   {
+    "Stat": 52,
+    "Modifier": 0,
+    "Value": 0.10999999940395355
+   }
+  ],
+  "WeaponBonuses": [
+   {
+    "Stat": 24,
+    "Modifier": 0,
+    "Value": 0.25
+   }
+  ]
+ },
+ {
+  "_name": "GemRuby5",
+  "_pathid": 60002,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5817
+  },
+  "Type": 6,
+  "Rarity": 0,
+  "SellPrice": 10000,
+  "MinDropLevel": 999,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 50,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 15,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "ArmorBonuses": [
+   {
+    "Stat": 0,
+    "Modifier": 0,
+    "Value": 25.0
+   }
+  ],
+  "AccessoryBonuses": [
+   {
+    "Stat": 52,
+    "Modifier": 0,
+    "Value": 0.12999999523162842
+   }
+  ],
+  "WeaponBonuses": [
+   {
+    "Stat": 24,
+    "Modifier": 0,
+    "Value": 0.3499999940395355
+   }
+  ]
+ },
+ {
+  "_name": "GemRuby6",
+  "_pathid": 60003,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5703
+  },
+  "Type": 6,
+  "Rarity": 0,
+  "SellPrice": 12000,
+  "MinDropLevel": 999,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 50,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 15,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "ArmorBonuses": [
+   {
+    "Stat": 0,
+    "Modifier": 0,
+    "Value": 30.0
+   }
+  ],
+  "AccessoryBonuses": [
+   {
+    "Stat": 52,
+    "Modifier": 0,
+    "Value": 0.15000000596046448
+   }
+  ],
+  "WeaponBonuses": [
+   {
+    "Stat": 24,
+    "Modifier": 0,
+    "Value": 0.5
+   }
+  ]
+ },
+ {
+  "_name": "GemSapphire1",
+  "_pathid": 60004,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5934
+  },
+  "Type": 6,
+  "Rarity": 0,
+  "SellPrice": 2000,
+  "MinDropLevel": 30,
+  "MaxDropLevel": 34,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 50,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 15,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "ArmorBonuses": [
+   {
+    "Stat": 42,
+    "Modifier": 0,
+    "Value": 0.05000000074505806
+   }
+  ],
+  "AccessoryBonuses": [
+   {
+    "Stat": 53,
+    "Modifier": 0,
+    "Value": 0.05000000074505806
+   }
+  ],
+  "WeaponBonuses": [
+   {
+    "Stat": 25,
+    "Modifier": 0,
+    "Value": 0.10000000149011612
+   }
+  ]
+ },
+ {
+  "_name": "GemSapphire2",
+  "_pathid": 60005,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5452
+  },
+  "Type": 6,
+  "Rarity": 0,
+  "SellPrice": 4000,
+  "MinDropLevel": 35,
+  "MaxDropLevel": 39,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 50,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 15,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "ArmorBonuses": [
+   {
+    "Stat": 42,
+    "Modifier": 0,
+    "Value": 0.07999999821186066
+   }
+  ],
+  "AccessoryBonuses": [
+   {
+    "Stat": 53,
+    "Modifier": 0,
+    "Value": 0.07000000029802322
+   }
+  ],
+  "WeaponBonuses": [
+   {
+    "Stat": 25,
+    "Modifier": 0,
+    "Value": 0.15000000596046448
+   }
+  ]
+ },
+ {
+  "_name": "GemSapphire3",
+  "_pathid": 60006,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5889
+  },
+  "Type": 6,
+  "Rarity": 0,
+  "SellPrice": 6000,
+  "MinDropLevel": 40,
+  "MaxDropLevel": 44,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 50,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 15,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "ArmorBonuses": [
+   {
+    "Stat": 42,
+    "Modifier": 0,
+    "Value": 0.10000000149011612
+   }
+  ],
+  "AccessoryBonuses": [
+   {
+    "Stat": 53,
+    "Modifier": 0,
+    "Value": 0.09000000357627869
+   }
+  ],
+  "WeaponBonuses": [
+   {
+    "Stat": 25,
+    "Modifier": 0,
+    "Value": 0.20000000298023224
+   }
+  ]
+ },
+ {
+  "_name": "GemSapphire4",
+  "_pathid": 60007,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5691
+  },
+  "Type": 6,
+  "Rarity": 0,
+  "SellPrice": 8000,
+  "MinDropLevel": 45,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 50,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 15,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "ArmorBonuses": [
+   {
+    "Stat": 42,
+    "Modifier": 0,
+    "Value": 0.11999999731779099
+   }
+  ],
+  "AccessoryBonuses": [
+   {
+    "Stat": 53,
+    "Modifier": 0,
+    "Value": 0.10999999940395355
+   }
+  ],
+  "WeaponBonuses": [
+   {
+    "Stat": 25,
+    "Modifier": 0,
+    "Value": 0.25
+   }
+  ]
+ },
+ {
+  "_name": "GemSapphire5",
+  "_pathid": 60008,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5941
+  },
+  "Type": 6,
+  "Rarity": 0,
+  "SellPrice": 10000,
+  "MinDropLevel": 999,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 50,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 15,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "ArmorBonuses": [
+   {
+    "Stat": 42,
+    "Modifier": 0,
+    "Value": 0.15000000596046448
+   }
+  ],
+  "AccessoryBonuses": [
+   {
+    "Stat": 53,
+    "Modifier": 0,
+    "Value": 0.12999999523162842
+   }
+  ],
+  "WeaponBonuses": [
+   {
+    "Stat": 25,
+    "Modifier": 0,
+    "Value": 0.3499999940395355
+   }
+  ]
+ },
+ {
+  "_name": "GemSapphire6",
+  "_pathid": 60009,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5277
+  },
+  "Type": 6,
+  "Rarity": 0,
+  "SellPrice": 12000,
+  "MinDropLevel": 999,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 50,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 15,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "ArmorBonuses": [
+   {
+    "Stat": 42,
+    "Modifier": 0,
+    "Value": 0.18000000715255737
+   }
+  ],
+  "AccessoryBonuses": [
+   {
+    "Stat": 53,
+    "Modifier": 0,
+    "Value": 0.15000000596046448
+   }
+  ],
+  "WeaponBonuses": [
+   {
+    "Stat": 25,
+    "Modifier": 0,
+    "Value": 0.5
+   }
+  ]
+ },
+ {
+  "_name": "GemTopaz1",
+  "_pathid": 60010,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5340
+  },
+  "Type": 6,
+  "Rarity": 0,
+  "SellPrice": 2000,
+  "MinDropLevel": 30,
+  "MaxDropLevel": 34,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 50,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 15,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "ArmorBonuses": [
+   {
+    "Stat": 1,
+    "Modifier": 0,
+    "Value": 5.0
+   }
+  ],
+  "AccessoryBonuses": [
+   {
+    "Stat": 54,
+    "Modifier": 0,
+    "Value": 0.05000000074505806
+   }
+  ],
+  "WeaponBonuses": [
+   {
+    "Stat": 26,
+    "Modifier": 0,
+    "Value": 0.10000000149011612
+   }
+  ]
+ },
+ {
+  "_name": "GemTopaz2",
+  "_pathid": 60011,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5309
+  },
+  "Type": 6,
+  "Rarity": 0,
+  "SellPrice": 4000,
+  "MinDropLevel": 35,
+  "MaxDropLevel": 39,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 50,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 15,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "ArmorBonuses": [
+   {
+    "Stat": 1,
+    "Modifier": 0,
+    "Value": 10.0
+   }
+  ],
+  "AccessoryBonuses": [
+   {
+    "Stat": 54,
+    "Modifier": 0,
+    "Value": 0.07000000029802322
+   }
+  ],
+  "WeaponBonuses": [
+   {
+    "Stat": 26,
+    "Modifier": 0,
+    "Value": 0.15000000596046448
+   }
+  ]
+ },
+ {
+  "_name": "GemTopaz3",
+  "_pathid": 60012,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5705
+  },
+  "Type": 6,
+  "Rarity": 0,
+  "SellPrice": 6000,
+  "MinDropLevel": 40,
+  "MaxDropLevel": 44,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 50,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 15,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "ArmorBonuses": [
+   {
+    "Stat": 1,
+    "Modifier": 0,
+    "Value": 15.0
+   }
+  ],
+  "AccessoryBonuses": [
+   {
+    "Stat": 54,
+    "Modifier": 0,
+    "Value": 0.09000000357627869
+   }
+  ],
+  "WeaponBonuses": [
+   {
+    "Stat": 26,
+    "Modifier": 0,
+    "Value": 0.20000000298023224
+   }
+  ]
+ },
+ {
+  "_name": "GemTopaz4",
+  "_pathid": 60013,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5486
+  },
+  "Type": 6,
+  "Rarity": 0,
+  "SellPrice": 8000,
+  "MinDropLevel": 45,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 50,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 15,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "ArmorBonuses": [
+   {
+    "Stat": 1,
+    "Modifier": 0,
+    "Value": 20.0
+   }
+  ],
+  "AccessoryBonuses": [
+   {
+    "Stat": 54,
+    "Modifier": 0,
+    "Value": 0.10999999940395355
+   }
+  ],
+  "WeaponBonuses": [
+   {
+    "Stat": 26,
+    "Modifier": 0,
+    "Value": 0.25
+   }
+  ]
+ },
+ {
+  "_name": "GemTopaz5",
+  "_pathid": 60014,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5439
+  },
+  "Type": 6,
+  "Rarity": 0,
+  "SellPrice": 10000,
+  "MinDropLevel": 999,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 50,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 15,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "ArmorBonuses": [
+   {
+    "Stat": 1,
+    "Modifier": 0,
+    "Value": 25.0
+   }
+  ],
+  "AccessoryBonuses": [
+   {
+    "Stat": 54,
+    "Modifier": 0,
+    "Value": 0.12999999523162842
+   }
+  ],
+  "WeaponBonuses": [
+   {
+    "Stat": 26,
+    "Modifier": 0,
+    "Value": 0.3499999940395355
+   }
+  ]
+ },
+ {
+  "_name": "GemTopaz6",
+  "_pathid": 60015,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5397
+  },
+  "Type": 6,
+  "Rarity": 0,
+  "SellPrice": 12000,
+  "MinDropLevel": 999,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 50,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 15,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "ArmorBonuses": [
+   {
+    "Stat": 1,
+    "Modifier": 0,
+    "Value": 30.0
+   }
+  ],
+  "AccessoryBonuses": [
+   {
+    "Stat": 54,
+    "Modifier": 0,
+    "Value": 0.15000000596046448
+   }
+  ],
+  "WeaponBonuses": [
+   {
+    "Stat": 26,
+    "Modifier": 0,
+    "Value": 0.5
+   }
+  ]
+ }
+]

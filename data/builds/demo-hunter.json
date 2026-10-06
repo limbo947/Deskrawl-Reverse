@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "name": "示例构建·猎人",
+  "level": 70,
+  "damage_type": 0,
+  "base": {
+    "20": 0.0
+  },
+  "paragon": {
+    "4": 50
+  },
+  "assembled": [
+    {
+      "kind": "gem",
+      "name": "GemAmethyst3",
+      "level": 1,
+      "category": 2
+    },
+    {
+      "kind": "rune",
+      "name": "HunterSetRune1_4",
+      "level": 3,
+      "category": 2
+    },
+    {
+      "kind": "talent",
+      "name": "HunterTalent19",
+      "level": 5,
+      "category": 2
+    }
+  ],
+  "weapon_current": {
+    "name": "旧武器·双手剑",
+    "base_damage": 100.0,
+    "base_speed": 1.0,
+    "skill_multiplier": 1.0,
+    "affixes": [
+      [
+        23,
+        0,
+        0.5
+      ]
+    ]
+  },
+  "weapon_candidate": {
+    "name": "新武器·战斧",
+    "base_damage": 110.0,
+    "base_speed": 0.95,
+    "skill_multiplier": 1.0,
+    "affixes": [
+      [
+        23,
+        0,
+        0.3
+      ],
+      [
+        5,
+        0,
+        0.2
+      ],
+      [
+        32,
+        0,
+        0.25
+      ]
+    ]
+  },
+  "target": {
+    "level": 70,
+    "hp_fraction": 1.0,
+    "armor": 0.0,
+    "magic_resist": 0.0,
+    "damage_reduction": 0.0,
+    "elite": true,
+    "vulnerable": true,
+    "slowed": false,
+    "immobilized": false,
+    "bleeding": false,
+    "poisoned": false,
+    "burned": false,
+    "distant": false
+  },
+  "skill_name": "",
+  "skill_level": 1
+}

@@ -1,0 +1,57 @@
+/* Deskrawl 暗色主题 —— 调色板集中在此：底 #1e1f22 / 面 #2b2d30 / 边 #3c3f41 / 字 #dfe1e5 / 主色 #4e9feb / 次要字 #9aa0a6 */
+QWidget {
+    background-color: #1e1f22;
+    color: #dfe1e5;
+    font-family: "Microsoft YaHei UI", "Segoe UI", sans-serif;
+    font-size: 13px;
+}
+QMainWindow::separator { background: #3c3f41; width: 1px; height: 1px; }
+QDockWidget { titlebar-close-icon: none; titlebar-normal-icon: none; }
+QDockWidget::title { background: #2b2d30; padding: 6px 8px; border-bottom: 1px solid #3c3f41; }
+QTabWidget::pane { border: 1px solid #3c3f41; background: #1e1f22; top: -1px; }
+QTabBar::tab { background: #2b2d30; padding: 6px 14px; border: 1px solid #3c3f41; border-bottom: none; }
+QTabBar::tab:selected { background: #1e1f22; color: #4e9feb; }
+QGroupBox { border: 1px solid #3c3f41; border-radius: 4px; margin-top: 10px; padding-top: 8px; }
+QGroupBox::title { subcontrol-origin: margin; left: 8px; padding: 0 4px; color: #9aa0a6; }
+QPushButton { background: #2b2d30; border: 1px solid #3c3f41; border-radius: 4px; padding: 4px 12px; }
+QPushButton:hover { background: #35373b; }
+QPushButton:pressed { background: #40434a; }
+QPushButton:disabled { color: #6b6f76; }
+QLineEdit, QSpinBox, QDoubleSpinBox, QComboBox {
+    background: #2b2d30; border: 1px solid #3c3f41; border-radius: 3px; padding: 3px 6px;
+    selection-background-color: #2f5d8a;
+}
+QLineEdit:focus, QSpinBox:focus, QDoubleSpinBox:focus, QComboBox:focus { border-color: #4e9feb; }
+QComboBox QAbstractItemView { background: #2b2d30; border: 1px solid #3c3f41; selection-background-color: #2f5d8a; }
+QHeaderView::section {
+    background: #2b2d30; border: none; border-right: 1px solid #3c3f41;
+    border-bottom: 1px solid #3c3f41; padding: 4px 6px; color: #9aa0a6;
+}
+QTableView, QTreeView, QListView {
+    background: #1e1f22; alternate-background-color: #232529;
+    gridline-color: #3c3f41; border: 1px solid #3c3f41; selection-background-color: #2f5d8a;
+}
+QTableView::item:selected, QListView::item:selected { background: #2f5d8a; }
+QMenuBar { background: #2b2d30; }
+QMenuBar::item:selected { background: #3c3f41; }
+QMenu { background: #2b2d30; border: 1px solid #3c3f41; }
+QMenu::item:selected { background: #3c3f41; }
+QMenu::item:disabled { color: #6b6f76; }
+QStatusBar { background: #2b2d30; color: #9aa0a6; }
+QProgressBar { background: #2b2d30; border: 1px solid #3c3f41; border-radius: 3px; text-align: center; }
+QProgressBar::chunk { background: #4e9feb; }
+QScrollBar:vertical { background: #1e1f22; width: 12px; margin: 0; }
+QScrollBar::handle:vertical { background: #3c3f41; border-radius: 6px; min-height: 24px; }
+QScrollBar:horizontal { background: #1e1f22; height: 12px; margin: 0; }
+QScrollBar::handle:horizontal { background: #3c3f41; border-radius: 6px; min-width: 24px; }
+QScrollBar::add-line, QScrollBar::sub-line { height: 0; width: 0; }
+QScrollBar::add-page, QScrollBar::sub-page { background: none; }
+QCheckBox, QRadioButton { spacing: 6px; }
+QToolTip { background: #2b2d30; color: #dfe1e5; border: 1px solid #3c3f41; }
+QSlider::groove:horizontal { background: #2b2d30; height: 4px; border-radius: 2px; }
+QSlider::handle:horizontal { background: #4e9feb; width: 12px; margin: -5px 0; border-radius: 6px; }
+
+/* 对比结果强调字：涨绿跌红，颜色只在这里定义，代码只切 objectName */
+QLabel#dpsBig { font-size: 22px; font-weight: bold; color: #4e9feb; }
+QLabel#deltaUp { font-size: 20px; font-weight: bold; color: #4cc06a; }
+QLabel#deltaDown { font-size: 20px; font-weight: bold; color: #e05a4f; }

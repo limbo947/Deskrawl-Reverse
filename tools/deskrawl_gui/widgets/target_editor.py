@@ -1,0 +1,118 @@
+# -*- coding: utf-8 -*-
+"""右 dock 页：目标（受击方）设置。
+
+10 项条件伤害里「对健康/对受伤」由生命百分比滑条隐式决定（>80% / <30%），
+其余 8 项用勾选框显式控制——与内核 Target.conditional_stats() 的分档一致。
+控件直接写回 profile，改动发 changed 由主窗口统一刷新。
+"""
+from PySide6.QtCore import Qt, Signal
+from PySide6.QtWidgets import (QCheckBox, QComboBox, QDoubleSpinBox, QFormLayout,
+                               QGridLayout, QGroupBox, QHBoxLayout, QLabel, QSlider,
+                               QSpinBox, QVBoxLayout, QWidget)
+
+from deskrawl_calc import DamageType
+
+_CONDITIONS = [('elite', '精英'), ('vulnerable', '易伤'), ('slowed', '减速'),
+               ('immobilized', '定身'), ('bleeding', '流血'), ('poisoned', '中毒'),
+               ('burned', '灼烧'), ('distant', '远处')]
+
+_DAMAGE_TYPES = [(DamageType.Physical, '物理'), (DamageType.Fire, '火焰'), (DamageType.Cold, '冰霜'),
+                 (DamageType.Lightning, '闪电'), (DamageType.Poison, '毒素'), (DamageType.Arcane, '奥术')]
+
+
+class TargetEditor(QWidget):
+    changed = Signal()
+
+    def __init__(self, profile, parent=None):
+        super().__init__(parent)
+        self.profile = profile
+        self._loading = False
+        self._cond_checks = {}
+        root = QVBoxLayout(self)
+        root.setContentsMargins(6, 6, 6, 6)
+        root.addWidget(self._build_basic_group())
+        root.addWidget(self._build_condition_group())
+        root.addStretch(1)
+        self.reload()
+
+    def _build_basic_group(self) -> QGroupBox:
+        box = QGroupBox('目标基础')
+        form = QFormLayout(box)
+
+        self.level_spin = QSpinBox()
+        self.level_spin.setRange(1, 200)
+        self.level_spin.valueChanged.connect(lambda v: self._set_target('level', int(v)))
+        form.addRow('等级', self.level_spin)
+
+        self.hp_slider = QSlider(Qt.Horizontal)
+        self.hp_slider.setRange(0, 100)
+        self.hp_slider.valueChanged.connect(self._on_hp)
+        self.hp_label = QLabel('100%')
+        hp_row = QHBoxLayout()
+        hp_row.addWidget(self.hp_slider, 1)
+        hp_row.addWidget(self.hp_label)
+        form.addRow('生命百分比', hp_row)
+
+        self.armor_spin = self._double(form, '护甲', 'armor')
+        self.mr_spin = self._double(form, '魔抗', 'magic_resist')
+        self.dr_spin = self._double(form, '全局减伤', 'damage_reduction', hi=1.0, step=0.01)
+
+        self.dtype_combo = QComboBox()
+        for dt, label in _DAMAGE_TYPES:
+            self.dtype_combo.addItem(label, int(dt))
+        self.dtype_combo.currentIndexChanged.connect(
+            lambda: self._set_damage_type(int(self.dtype_combo.currentData())))
+        form.addRow('伤害类型', self.dtype_combo)
+        return box
+
+    def _double(self, form, label, attr, hi=1e6, step=0.1) -> QDoubleSpinBox:
+        sp = QDoubleSpinBox()
+        sp.setRange(0.0, hi)
+        sp.setDecimals(3)
+        sp.setSingleStep(step)
+        sp.valueChanged.connect(lambda v, a=attr: self._set_target(a, float(v)))
+        form.addRow(label, sp)
+        return sp
+
+    def _build_condition_group(self) -> QGroupBox:
+        box = QGroupBox('目标状态（条件伤害）')
+        grid = QGridLayout(box)
+        for i, (attr, label) in enumerate(_CONDITIONS):
+            cb = QCheckBox(label)
+            cb.toggled.connect(lambda v, a=attr: self._set_target(a, bool(v)))
+            self._cond_checks[attr] = cb
+            grid.addWidget(cb, i // 2, i % 2)
+        return box
+
+    # ---------------- 写回 ----------------
+    def _on_hp(self, v):
+        self.hp_label.setText(f'{v}%')
+        self._set_target('hp_fraction', v / 100.0)
+
+    def _set_target(self, attr, value):
+        if self._loading:
+            return
+        setattr(self.profile.target, attr, value)
+        self.changed.emit()
+
+    def _set_damage_type(self, value):
+        if self._loading:
+            return
+        self.profile.damage_type = int(value)
+        self.changed.emit()
+
+    def reload(self):
+        self._loading = True
+        t = self.profile.target
+        self.level_spin.setValue(int(t.level))
+        pct = int(round(t.hp_fraction * 100))
+        self.hp_slider.setValue(pct)
+        self.hp_label.setText(f'{pct}%')
+        self.armor_spin.setValue(float(t.armor))
+        self.mr_spin.setValue(float(t.magic_resist))
+        self.dr_spin.setValue(float(t.damage_reduction))
+        idx = self.dtype_combo.findData(int(self.profile.damage_type))
+        self.dtype_combo.setCurrentIndex(idx if idx >= 0 else 0)
+        for attr, cb in self._cond_checks.items():
+            cb.setChecked(bool(getattr(t, attr)))
+        self._loading = False

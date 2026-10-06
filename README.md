@@ -4,8 +4,8 @@
 > **只读**数值逆向 —— 已还原完整伤害公式、全部静态数值数据、装备词条生成规则与存档加解密，
 > 并据此做了一个「装备/技能/宝石 数值对比」计算内核（UI 待做）。
 >
-> **状态**：数据与公式层已完成，工具内核可运行；剩余 4 项零星待确认。
-> **最近更新**：2026-10-07（回填 MythicBand2 实测值并销项）
+> **状态**：全部遗留项已清零（4 项硬骨头 + MythicBand2 均已闭环）；数据层 1333 条 0 残留，工具内核可运行。
+> **最近更新**：2026-10-07（闭环 bkl/bgm、ItemizationConfig 三表、te 合成链路、托管段 95/95）
 
 ---
 
@@ -80,6 +80,24 @@ print(f'{r["delta_pct"]:+.2f}%')
 > 依赖：Python 3.10+；存档解密额外需要 `cryptography` 或 `pycryptodome`。
 > 逆向脚本（`tools/scripts/`）额外需要 `UnityPy`、`capstone`。
 
+### 2.1 桌面 GUI（PySide6）
+
+手动录入角色面板 → 对比两把武器谁强 → 宝石/符文/天赋/套装候选按收益排序，结果实时刷新。
+
+```powershell
+cd D:\workspace\Deskrawl-Reverse
+python -m venv .venv-gui
+.\.venv-gui\Scripts\python.exe -m pip install -r requirements-gui.txt
+cd tools
+..\.venv-gui\Scripts\python.exe -m deskrawl_gui              # 启动主窗口
+..\.venv-gui\Scripts\python.exe -m deskrawl_gui --selftest   # 内核 8 项 + GUI 服务层对拍
+..\.venv-gui\Scripts\python.exe -m deskrawl_gui --smoke      # 无显示环境下的骨架冒烟
+```
+
+界面为暗色主题（`tools/deskrawl_gui/resources/style.qss`）：左 dock 角色面板，中央三 Tab
+（装备对比 / 候选排序 / 装配浏览器），右 dock 目标设置与属性明细（三层聚合分解）。构建可存为
+`data/builds/*.json` 后重新加载。GUI 只依赖 PySide6 与 `deskrawl_calc` 内核，不依赖逆向脚本的重依赖。
+
 ---
 
 ## 3. 已完成成果
@@ -106,7 +124,7 @@ Final(stat) = (Base + ΣFlat) × (1 + ΣPercentAdd) × Π(1 + PercentMult)      
 |---|---|---|
 | ScriptableObject 实例（21 类） | **1333 条** | `data/so_dump/*.json` |
 | 技能效果（`DamageEffect` 等） | 124 / 124 | `AbilityData.json` 的 `_managedRefs` |
-| 状态行为 | 88 / 95 | `StatusEffectData.json` |
+| 状态行为 | 95 / 95 | `StatusEffectData.json`（全库 1333 条 **0 残留**） |
 | 装备传奇特效 | 92 | `EquipmentEffects.json` |
 | 天赋特效 / 生活技能特效 | 157 / 36 | `TalentEffects.json` / `LifeSkillEffects.json` |
 | 词条每级系数表 | 55 项 | `AffixRollTable.json` |
@@ -116,6 +134,9 @@ Final(stat) = (Base + ΣFlat) × (1 + ΣPercentAdd) × Π(1 + PercentMult)      
 | 突破 | 说明 |
 |---|---|
 | **技能伤害倍率** | `DamageEffect.AttackScaling`：`Base + (lv−1)×PerLevel`（例：陨石 `4.2196 + 0.06115×(lv−1)`） |
+| **伤害合成链路（te/tc/bjr）** | `te` 仅描述/Token 收集；`tc`(0x4980F0) 逐目标：`bjr = trunc((Base + 倍率×(trunc(武器伤害)+Damage))×(1+主属性/100))`（Player 0x509D80），全程单次截断 |
+| **条件暴击接口 bkl/bgm** | `bgm`=Σ 状态行为 Slot16 `yi` 覆写；`bkl`=Player 条件暴击表（`nub`/`nud`，TargetStateCondition 7 条件），基类桩返回 0 |
+| **ItemizationConfig 三表** | `Core=[0,1,2]`、`AllElements=[23..28]`、`ConditionalDamage=[29,30,31,32,40,43,45,46,62,63]`（元数据字段默认值 + SHA-256 自校验） |
 | **装备词条 Roll** | `值 = (1+稀有度系数) × 等级 × 每级系数[属性] × Random(0.85,1.15)`；稀有度系数 `+.2/.4/.5/.6` |
 | **`[SerializeReference]` 载荷** | 布局：主数据流只存 `count + 8B 键`；真实对象在**字段区之后**的托管引用段（类型名**明文**） |
 | **传奇特效** | `EquipmentEffect_*` 是独立 SO 资产，按 `m_Script` 反查类名后可直接解码 |
@@ -147,13 +168,13 @@ Final(stat) = (Base + ΣFlat) × (1 + ΣPercentAdd) × Π(1 + PercentMult)      
 
 | 项 | 状态 | 说明 |
 |---|---|---|
-| `bkl` / `bgm` 等虚接口实现 | ⚠️ | 基类默认返回 0，实际由敌人/玩家子类覆写 |
-| `ItemizationConfig` 三张属性表的逐项值 | 🔶 | 长度与成员已交叉验证，`.rdata` 源表未逐项读取 |
+| `bkl` / `bgm` 等虚接口实现 | ✅ 已销项 | 基类桩 0x4B0C40 返回 0；`Player.bkl`(0x505860) 条件暴击表 + `SEC.bgm`(0x4D65B0) 状态行为 Slot16 `yi`，详见 08 篇 §11.5 |
+| `ItemizationConfig` 三张属性表的逐项值 | ✅ 已销项 | 元数据字段默认值逐项读出 + SHA-256 自校验：`[0,1,2]` / `[23..28]` / `[29,30,31,32,40,43,45,46,62,63]`（第 9 项 62 修正了此前 58 的推断） |
 | `MythicBand2*` 分段阈值 | ✅ 已销项 | `MythicDungeon` 全字段已补读并归档（07 篇 §8A.13）：`Band1EndTier=50`、HP 倍率 1.16/1.17、DMG 倍率 1.03/1.025、Gold/Exp 每 tier +0.02/+0.015 |
-| `AbilityData.te()` 中「倍率 × 攻强」合成顺序 | 🔶 | 待逐指令复核 |
-| 7 条 `StatusEffectData` 托管段 | ⚠️ | 多出 8 字节，个别行为类型未对齐 |
+| `AbilityData.te()` 中「倍率 × 攻强」合成顺序 | ✅ 已销项 | `te` 实为描述/Token 收集；合成在 `tc`→`bjr`（Player 0x509D80），全程 double 单次截断，详见 04 篇 §6.2.0 |
+| 7 条 `StatusEffectData` 托管段 | ✅ 已销项 | 空 `Behaviors` 也会写 `[A=2][N=0]` 段头；解码器修复后 95/95、全库 1333 条 0 残留 |
 | **角色运行时数据** | ⬜ | 联机模式角色数据**不在本地**（服务器托管）；仅本地(Local)模式存档含完整角色数据 |
-| 工具 UI | ⬜ | 已定方案：桌面 GUI，UI 后置 |
+| 工具 UI | ✅ 已完成 | 桌面 GUI（PySide6，`tools/deskrawl_gui/`）：面板录入 + 装备对比 + 候选排序，见 §2.1 |
 
 ---
 
@@ -181,6 +202,6 @@ Final(stat) = (Base + ΣFlat) × (1 + ΣPercentAdd) × Π(1 + PercentMult)      
 
 ## 7. 建议的下一步
 
-1. **补完最后 4 项**（`bkl/bgm`、`ItemizationConfig` 三表、`te()` 合成顺序、7 条状态行为）→ 文档中 `⚠️/🔶` 清零。
-2. **桌面 GUI**：把 `deskrawl_calc` 接到界面（角色面板输入 + 新旧装备对比 + 宝石/技能候选排序）。
-3. **角色数据接入**（三选一）：本地模式存档解析 / 运行时读内存（可读联机角色）/ 手动输入面板。
+1. **桌面 GUI**：把 `deskrawl_calc` 接到界面（角色面板输入 + 新旧装备对比 + 宝石/技能候选排序）。
+   > 前置遗留项（`bkl/bgm`、`ItemizationConfig` 三表、`te()` 合成顺序、7 条状态行为）已于 2026-10-07 全部闭环，文档中无 `⚠️/🔶` 残留。
+2. **角色数据接入**（三选一）：本地模式存档解析 / 运行时读内存（可读联机角色）/ 手动输入面板。

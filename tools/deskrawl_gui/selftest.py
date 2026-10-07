@@ -123,6 +123,26 @@ def _gui_behavior_checks(win) -> bool:
     editor.draft.affixes = saved
     editor.reload()
 
+    # 1b) 类型由属性自动决定且不可改：全部属性锁「加法」，百分比类属性附小数填写提示
+    saved = copy.deepcopy(editor.draft.affixes)
+    editor.affixes.append_row()
+    r = editor.affixes.rowCount() - 1
+    s_combo = editor.affixes.cellWidget(r, 0)
+    t_combo = editor.affixes.cellWidget(r, 1)
+    v_spin = editor.affixes.cellWidget(r, 2)
+
+    def locked():
+        return (not t_combo.isEnabled() and t_combo.count() == 1
+                and int(t_combo.currentData()) == 0)
+
+    pct_ok = locked() and '小数' in t_combo.toolTip() and '小数' in v_spin.toolTip()
+    s_combo.setCurrentIndex(s_combo.findData(int(StatType.Strength)))
+    num_ok = locked() and '加法' in t_combo.toolTip()
+    check(pct_ok and num_ok, '词条类型自动决定且不可改（全部锁加法）',
+          f'物理伤害%：锁加法+小数提示={pct_ok}；力量：锁加法={num_ok}')
+    editor.draft.affixes = saved
+    editor.reload()
+
     # 2) 面板改动 → 属性表实时刷新
     spin = win.panel_editor._base_spins[int(StatType.WeaponDamage)]
     before = stat_final('武器伤害')

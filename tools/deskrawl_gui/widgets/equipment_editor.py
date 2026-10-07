@@ -16,6 +16,25 @@ from ..core import calc_service
 from .compare_view import CompareView
 
 _MOD_TYPES = [(0, '加法'), (1, '百分比加算'), (2, '连乘')]
+_MOD_LABELS = dict(_MOD_TYPES)
+
+# 装备词条的入池方式在游戏里是固定的「加法」：ItemData 固定属性 43 条、宝石/符文/套装加成
+# 255 条实测 100% 为 Type 0（仅 3 条天赋在护甲/魔抗/荆棘上用百分比加算，且不来自装备）。
+# 故类型完全由属性自动决定、下拉一律禁用，用户没有填错的余地。
+_ALLOWED_TYPES = [0]
+
+# 百分比类属性：数值本身是小数形式的百分比（0.30 = 30%）。这类属性必须提示「按小数填写」，
+# 否则很容易把 30% 填成 30 —— 差 100 倍且不报错。
+_PERCENT_STATS = frozenset(
+    {4, 5, 6, 13, 15, 16, 17, 19, 22, 37, 41, 56, 57, 65}     # 暴击/攻速/冷却/掉落/闪避等
+    | set(range(23, 35))                                       # 元素乘区23–28 + 条件29–32 + 普攻·强攻33–34
+    | {40, 42, 43, 44, 45, 46, 48, 49, 51, 52, 53, 54, 55, 58,
+       59, 60, 61, 62, 63, 64}                                 # 其余条件/技能/生存百分比项
+)
+
+_TIP_PERCENT = '百分比类属性：数值按小数填写（0.3000 = 30%）；入池方式由游戏固定为「加法」'
+_TIP_FLAT = '数值属性：直接填数值；入池方式由游戏固定为「加法」'
+_TIP_VALUE_PERCENT = '按小数填写，例：0.3000 = 30%'
 
 
 class AffixTable(QTableWidget):
@@ -59,31 +78,61 @@ class AffixTable(QTableWidget):
         stat_combo = QComboBox()
         for st in StatType:
             stat_combo.addItem(stat_name(st), int(st))
-        idx = stat_combo.findData(int(stat))
-        stat_combo.setCurrentIndex(idx if idx >= 0 else 0)
-        stat_combo.currentIndexChanged.connect(self._emit)
 
         type_combo = QComboBox()
-        for t, label in _MOD_TYPES:
-            type_combo.addItem(label, t)
-        idx = type_combo.findData(int(mtype))
-        type_combo.setCurrentIndex(idx if idx >= 0 else 0)
-        type_combo.currentIndexChanged.connect(self._emit)
-
         spin = QDoubleSpinBox()
         spin.setRange(-1e6, 1e6)
         spin.setDecimals(4)
-        spin.setValue(float(value))
-        spin.valueChanged.connect(self._emit)
 
         btn = QPushButton('×')
         btn.setFixedWidth(28)
-        btn.clicked.connect(lambda: self._remove_row(btn))
 
         self.setCellWidget(row, 0, stat_combo)
         self.setCellWidget(row, 1, type_combo)
         self.setCellWidget(row, 2, spin)
         self.setCellWidget(row, 3, btn)
+
+        # 先填初值再接信号：构造期的索引/数值变化既不该触发刷新，也不能被误当作用户改属性
+        idx = stat_combo.findData(int(stat))
+        stat_combo.setCurrentIndex(idx if idx >= 0 else 0)
+        self._fill_types(type_combo, int(mtype))
+        self._apply_hints(int(stat_combo.currentData()), type_combo, spin)
+        spin.setValue(float(value))
+
+        stat_combo.currentIndexChanged.connect(
+            lambda *_, sc=stat_combo, tc=type_combo, sp=spin: self._on_stat_changed(sc, tc, sp))
+        type_combo.currentIndexChanged.connect(self._emit)
+        spin.valueChanged.connect(self._emit)
+        btn.clicked.connect(lambda: self._remove_row(btn))
+
+    def _on_stat_changed(self, stat_combo, type_combo, spin):
+        """属性切换 → 类型自动回到该属性的规范值（物品词条在游戏里恒为加法），并刷新填写提示。"""
+        if self._loading:
+            return
+        stat = int(stat_combo.currentData())
+        self._fill_types(type_combo, 0)
+        self._apply_hints(stat, type_combo, spin)
+        self._emit()
+
+    def _fill_types(self, combo, keep):
+        """类型栏固定展示游戏唯一入池方式「加法」并禁用；旧构建里的非常规组合原样只读展示，
+        避免静默改写数据（保存时仍原样写回）。"""
+        types = list(_ALLOWED_TYPES)
+        if int(keep) not in types:
+            types = [int(keep)]
+        combo.blockSignals(True)
+        combo.clear()
+        for t in types:
+            combo.addItem(_MOD_LABELS[t], t)
+        combo.setCurrentIndex(0)
+        combo.blockSignals(False)
+        combo.setEnabled(False)
+
+    def _apply_hints(self, stat, type_combo, spin):
+        """百分比类属性必须明示「按小数填写」，否则很容易把 30% 填成 30。"""
+        frac = int(stat) in _PERCENT_STATS
+        type_combo.setToolTip(_TIP_PERCENT if frac else _TIP_FLAT)
+        spin.setToolTip(_TIP_VALUE_PERCENT if frac else '')
 
     def _remove_row(self, btn):
         for r in range(self.rowCount()):

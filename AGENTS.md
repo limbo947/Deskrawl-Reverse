@@ -120,7 +120,7 @@ tools/scripts/         逆向脚本（UnityPy/capstone，面向游戏文件）
 - `data/so_dump/`：25 个 JSON、1333 条 SO 实例（字节级精确，0 残留），是全部静态数值的事实源。JSON 里 `_name`/`_pathID`/`_managedRefs` 是导出器附加的元字段。
 - `data/schema/`：Il2CppDumper(v39) 产物 `dump.cs`/`script.json`/`stringliteral.json`，是 schema.py 与反汇编符号的输入；外加 `aliases.json`（**语义别名表**，37 条：伤害链/面板口径/ACTk 解码器/存档加解密链/Roll 表）与 `rva_audit*.json`（体检机读结果）。
 - 注意存在**两套同名 GameConfig**：`MaxPlayerLevel` 35（Beta，resources.assets）与 70（正式，sharedassets0.assets），查配置时先确认哪套（`dump.cs` 里只有一个 `GameConfig` 类）。
-- `docs/00-索引.md` 是文档入口（含目录结构说明）；docs/04 是公式圣经（engine.py docstring 引用其章节号）；docs/08 §11 存硬结论、§12 存补丁后重锚定结果；docs/plan/ 存计划、调研、进度/阻塞档与清单（**当时状态的证词，地址不随补丁回改**）；docs/reports/ 存**脚本产出的报告**（勿手改，重跑命令见 `docs/plan/补丁回归清单.md`）。文档置信度标注：✅ 指令/字节级证据、🔶 高置信推断（**当前正文已无在用条目**）、⚠️ 待确认（「暂缓」条目必须写明复核条件）——引用数值时沿用此标注，不要把 🔶 或暂缓写成定论。
+- `docs/00-索引.md` 是文档入口（含分类地图与按需阅读路径）；docs/01–05 是**机制与结构篇**（架构/属性/数据结构/公式/配置字段）、06–09 是**实测与工具篇**（成长曲线/内容数值/常量与地址/存档），编号即阅读顺序；docs/08 §11 存硬结论、§12 存补丁后重锚定结果；docs/plan/ 存**现行**计划/清单/进度档，已完结的历史证词移入 `docs/plan/archive/`（**地址不随补丁回改**）；docs/reports/ 存**脚本产出的报告**（勿手改，重跑命令见 `docs/plan/补丁回归清单.md`）。文档置信度标注：✅ 指令/字节级证据、🔶 高置信推断（**当前正文已无在用条目**）、⚠️ 待确认（「暂缓」条目必须写明复核条件）——引用数值时沿用此标注，不要把 🔶 或暂缓写成定论。
 
 ### 编码约定
 

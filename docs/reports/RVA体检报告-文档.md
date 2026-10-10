@@ -3,14 +3,14 @@
 - 命令：`python rva_audit.py --check --falsify`
 - 当期 GameAssembly.dll SHA-256：`d46f0a321e8e07646cca37c7460e58fbfecc47ade5027ea2e00fc71f0fec0565`
 - 旧构建 dump.cs 来源：`git show 8660446:data/schema/dump.cs`
-- 扫描：40 个文件 / 428 条地址字面量
+- 扫描：43 个文件 / 439 条地址字面量
 
 ## 0. 结论摘要
 
 | 判定 | 条数 |
 |---|---|
-| 非地址（白名单/自动规则） | 66 |
-| 仍有效（方法） | 144 |
+| 非地址（白名单/自动规则） | 68 |
+| 仍有效（方法） | 153 |
 | 仍有效（注释里的方法名已过期） | 0 |
 | 仍有效（数据地址） | 13 |
 | 已失效（已给出重算值） | 0 |
@@ -21,7 +21,7 @@
 | 无法判定（人工确认） | 0 |
 | 历史对照（有意保留的旧地址） | 176 |
 | 弃用探针（理由已写入文档） | 29 |
-| **合计** | **428** |
+| **合计** | **439** |
 
 ## 1. 已失效与重算值（写回源码前需人工复核）
 
@@ -60,13 +60,13 @@
 | `docs/08-常量设计要点与待办.md:202` | `0x363DA58` | §12.2 表的**新文件偏移**列（新 VA 减去节基址），是偏移不是地址 |
 | `docs/08-常量设计要点与待办.md:203` | `0x363DB20` | §12.2 表的**新文件偏移**列（新 VA 减去节基址），是偏移不是地址 |
 | `docs/08-常量设计要点与待办.md:204` | `0x363DB38` | §12.2 表的**新文件偏移**列（新 VA 减去节基址），是偏移不是地址 |
-| `docs/plan/PROGRESS-P1P2.md:257` | `0x0410` | 四位以内的微常量（位掩码/计数/标志），不可能是地址 |
-| `docs/plan/PROGRESS-P1P2.md:446` | `0xC0000409` | 值 0xC0000409 超出映像范围（max_rva=0x4190000），是掩码/哨兵而非地址 |
-| `docs/plan/内存导入P1-P2工程实施计划.md:28` | `0x0410` | 四位以内的微常量（位掩码/计数/标志），不可能是地址 |
-| `docs/plan/联机角色数据内存导入可行性调研.md:14` | `0x0410` | 四位以内的微常量（位掩码/计数/标志），不可能是地址 |
-| `docs/plan/联机角色数据内存导入可行性调研.md:111` | `0x811C9DC6` | 值 0x811C9DC6 超出映像范围（max_rva=0x4190000），是掩码/哨兵而非地址 |
-| `docs/plan/联机角色数据内存导入可行性调研.md:130` | `0x0410` | 四位以内的微常量（位掩码/计数/标志），不可能是地址 |
-| `docs/plan/联机角色数据内存导入可行性调研.md:226` | `0x0410` | 四位以内的微常量（位掩码/计数/标志），不可能是地址 |
+| `docs/plan/archive/PROGRESS-P1P2.md:257` | `0x0410` | 四位以内的微常量（位掩码/计数/标志），不可能是地址 |
+| `docs/plan/archive/PROGRESS-P1P2.md:446` | `0xC0000409` | 值 0xC0000409 超出映像范围（max_rva=0x4190000），是掩码/哨兵而非地址 |
+| `docs/plan/archive/内存导入P1-P2工程实施计划.md:28` | `0x0410` | 四位以内的微常量（位掩码/计数/标志），不可能是地址 |
+| `docs/plan/archive/联机角色数据内存导入可行性调研.md:15` | `0x0410` | 四位以内的微常量（位掩码/计数/标志），不可能是地址 |
+| `docs/plan/archive/联机角色数据内存导入可行性调研.md:112` | `0x811C9DC6` | 值 0x811C9DC6 超出映像范围（max_rva=0x4190000），是掩码/哨兵而非地址 |
+| `docs/plan/archive/联机角色数据内存导入可行性调研.md:131` | `0x0410` | 四位以内的微常量（位掩码/计数/标志），不可能是地址 |
+| `docs/plan/archive/联机角色数据内存导入可行性调研.md:227` | `0x0410` | 四位以内的微常量（位掩码/计数/标志），不可能是地址 |
 | `docs/plan/补丁回归清单.md:51` | `0x180000000` | PE ImageBase 本身（节表换算基准），不是可寻址目标 |
 | `docs/plan/补丁回归清单.md:104` | `0x4A08` | 弃用探针 `xref.py` 的偏移**差值**（「`password` 项差 0x4A08」），是两处地址之差不是地址 |
 | `tools/deskrawl_calc/stattype.py:125` | `0x402010` | 封顶属性的**位掩码**（注释原文「掩码 0x402010 + 特判 37」），是 4 项封顶属性的位集，不是地址；与之配对的 0x4A9C30 才是代码地址 |
@@ -100,6 +100,8 @@
 | `tools/scripts/mem_probe.py:558` | `0x0410` | 四位以内的微常量（位掩码/计数/标志），不可能是地址 |
 | `tools/scripts/obs_solve3.py:42` | `0xffffffff` | 值 0xffffffff 超出映像范围（max_rva=0x4190000），是掩码/哨兵而非地址 |
 | `tools/scripts/pe_file.py:8` | `0x180000000` | PE ImageBase 本身（节表换算基准），不是可寻址目标 |
+| `tools/scripts/probe_skill_levels.py:9` | `0x0410` | 四位以内的微常量（位掩码/计数/标志），不可能是地址 |
+| `tools/scripts/rea_call.py:60` | `0x180000000` | PE ImageBase 本身（节表换算基准），不是可寻址目标 |
 | `tools/scripts/read_const.py:6` | `0x180000000` | PE ImageBase 本身（节表换算基准），不是可寻址目标 |
 | `tools/scripts/rva_audit.py:479` | `0x1000` | 本脚本的「微常量上限」判定阈值（低于它的字面量直接归入非地址），是规则参数不是地址 |
 | `tools/scripts/xref.py:7` | `0x180000000` | PE ImageBase 本身（节表换算基准），不是可寻址目标 |
@@ -154,7 +156,7 @@
 | `docs/04-伤害计算与属性关联.md:275` | `0x771590` | 已失效（已给出重算值） | `0x180782e90` | ` `0x76F5F0` / `gg.dnt` RVA `` |
 | `docs/04-伤害计算与属性关联.md:275` | `0x771DC0` | 已失效（已给出重算值） | `0x1807836c0` | `x771590` / `gg..cctor` RVA `` |
 | `docs/04-伤害计算与属性关联.md:288` | `0x4A9D80` | 已失效（已给出重算值） | `0x1804a9370` | `ackScaling.PerLevel   ← wo()` |
-| `docs/07-实测数值-内容数据.md:72` | `0x6F6360` | 已失效（已给出重算值） | `0x180706a50` | `or`（补丁后 RVA `0x706A50`，补丁前 `` |
+| `docs/07-实测数值-内容数据.md:74` | `0x6F6360` | 已失效（已给出重算值） | `0x180706a50` | `or`（补丁后 RVA `0x706A50`，补丁前 `` |
 | `docs/08-常量设计要点与待办.md:19` | `0x4A9C30` | 已失效（已给出重算值） | `0x1804a91c0` | `| 属性数值封顶 | `0.85` | `` |
 | `docs/08-常量设计要点与待办.md:19` | `0x18362A250` | 已失效（已给出重算值） | `0x18363f020` | `封顶 | `0.85` | `0x4A9C30` / `` |
 | `docs/08-常量设计要点与待办.md:20` | `0x681AC0` | 已失效（已给出重算值） | `0x18067dbb0` | `| 易伤乘区 | `1.3` | `` |
@@ -215,68 +217,68 @@
 | `docs/08-常量设计要点与待办.md:222` | `0x505860` | 已失效（已给出重算值） | `0x18050a060` | `| `0x1804B0C40`（+Player 覆写 `` |
 | `docs/08-常量设计要点与待办.md:223` | `0x4D65B0` | 已失效（已给出重算值） | `0x1804d5e40` | ` `bgm(Character a)` 状态累加 | `` |
 | `docs/08-常量设计要点与待办.md:224` | `0x506060` | 已失效（已给出重算值） | `0x18050a860` | `ata, Character)` 是另一个方法） | `` |
-| `docs/plan/BLOCKED-P1P2.md:82` | `0x4F5E10` | 已失效（已给出重算值） | `0x1804fa2b0` | `性明细改为**游戏面板口径**：`Player.bjd@` |
-| `docs/plan/PROGRESS-P1P2.md:105` | `0x753370` | 已失效（已给出重算值） | `0x1807649d0` | `` 单例 | getter `dbz()` RVA **` |
-| `docs/plan/PROGRESS-P1P2.md:114` | `0x7731B0` | 已失效（已给出重算值） | `0x180784ab0` | `*：静态类 `gi` 的 `myk`（`doj()` @` |
-| `docs/plan/PROGRESS-P1P2.md:360` | `0x4F5E10` | 已失效（已给出重算值） | `0x1804fa2b0` | `页显示的是 `Player.bjd(StatType)@` |
-| `docs/plan/PROGRESS-P1P2.md:363` | `0x67FDE0` | 已失效（已给出重算值） | `0x18067b470` | `1. **基础字段层**（`Char.bje@` |
-| `docs/plan/PROGRESS-P1P2.md:363` | `0x4F64F0` | 已失效（已给出重算值） | `0x1804fa9d0` | `bje@0x67FDE0` / `Player.bje@` |
-| `docs/plan/PROGRESS-P1P2.md:365` | `0x4F3760` | 已失效（已给出重算值） | `0x1804f7bd0` | `；BasePrimaryStat 归到主属性（`fak@` |
-| `docs/plan/PROGRESS-P1P2.md:371` | `0x4F6620` | 已失效（已给出重算值） | `0x1804fab00` | `5. **far**（`Player.far@` |
-| `docs/plan/PROGRESS-P1P2.md:372` | `0x4F6720` | 已失效（已给出重算值） | `0x1804fac90` | `6. **条件表**（`Player.fat@` |
-| `docs/plan/PROGRESS-P1P2.md:372` | `0x506060` | 已失效（已给出重算值） | `0x18050a860` | `layer.fat@0x4F6720`，求值 `fgp@` |
-| `docs/plan/PROGRESS-P1P2.md:375` | `0x4D5E10` | 已失效（已给出重算值） | `0x1804d56a0` | ``StatusEffectController.bgh@` |
-| `docs/plan/PROGRESS-P1P2.md:376` | `0x67FC80` | 已失效（已给出重算值） | `0x18067b310` | `8. **封顶**（`Char.bjc@` |
-| `docs/plan/PROGRESS-P1P2.md:376` | `0x4A9C30` | 已失效（已给出重算值） | `0x1804a91c0` | `*封顶**（`Char.bjc@0x67FC80` 尾跳` |
-| `docs/plan/PROGRESS-P1P2.md:458` | `0x509D80` | 已失效（已给出重算值） | `0x18050e400` | `  - `Player.bjr@` |
-| `docs/plan/PROGRESS-P1P2.md:459` | `0x18362A270` | 无法判定（人工确认） | — | `    常量 `1.0`@` |
-| `docs/plan/PROGRESS-P1P2.md:459` | `0x18362A370` | 已失效（已给出重算值） | `0x18363f138` | `量 `1.0`@0x18362A270、`100.0`@` |
-| `docs/plan/PROGRESS-P1P2.md:460` | `0x4F3760` | 已失效（已给出重算值） | `0x1804f7bd0` | `  - `Player.fak@` |
-| `docs/plan/PROGRESS-补丁回归.md:36` | `0x18362A350` | 已失效（已给出重算值） | `0x18363f120` | `,6}` 扫描，该模式**漏掉 7–9 位 VA**（`` |
-| `docs/plan/PROGRESS-补丁回归.md:36` | `0x1839E44C8` | 无法判定（人工确认） | — | `掉 7–9 位 VA**（`0x18362A350`、`` |
-| `docs/plan/PROGRESS-补丁回归.md:82` | `0x452340` | 已失效（已给出重算值） | `0x180451340` | `3. **多类共享同一 RVA**：`` |
-| `docs/plan/PROGRESS-补丁回归.md:118` | `0x18067BD01` | 已失效（内联数据，只能改成方法级引用） | `0x1806ad190` | `| `` |
-| `docs/plan/PROGRESS-补丁回归.md:119` | `0x18050E401` | 已失效（内联数据，只能改成方法级引用） | `0x180510b50` | `| `` |
-| `docs/plan/PROGRESS-补丁回归.md:120` | `0x7B6671` | 已失效（内联数据，只能改成方法级引用） | `0x1807c8690` | `| `` |
-| `docs/plan/PROGRESS-补丁回归.md:121` | `0x18363F021` | 无法判定（人工确认） | — | `| `` |
-| `docs/plan/PROGRESS-补丁回归.md:171` | `0x498340` | 已失效（内联数据，只能改成方法级引用） | `0x1804975d0` | `| `docs/08 §9.1` 的 `` |
-| `docs/plan/PROGRESS-补丁回归.md:200` | `0x18363F121` | 无法判定（人工确认） | — | `/deskrawl_calc/engine.py:149` |
-| `docs/plan/PROGRESS-补丁回归.md:200` | `0x363f121` | 无法判定（人工确认） | — | `9  0x18363F121  落在 .rdata 节（` |
-| `docs/plan/PROGRESS-补丁回归.md:208` | `0x50e401` | 已失效（内联数据，只能改成方法级引用） | `0x180510b50` | `✗ Player.CalcDamage: 表内 bkn@` |
-| `docs/plan/PROGRESS-补丁回归.md:280` | `0x4A08` | 无法判定（人工确认） | — | `2.2 的偏移列、§12.5 的 dumper 指针、`` |
-| `docs/plan/PROGRESS-补丁回归.md:280` | `0x1000` | 无法判定（人工确认） | — | `5 的 dumper 指针、`0x4A08`（差值）、`` |
-| `docs/plan/PROGRESS-补丁回归.md:310` | `0x1000` | 无法判定（人工确认） | — | `crypt` | **三重一致**：组序 + 类位移 −` |
-| `docs/plan/PROGRESS-补丁回归.md:310` | `0x452340` | 已失效（已给出重算值） | `0x180451340` | `/`ObscuredDateTime.jxz`，与旧 `` |
-| `docs/plan/内存导入P1-P2工程实施计划.md:30` | `0x75B860` | 已失效（已给出重算值） | `0x18076cee0` | `VA | ✅ | `GameManager.diw()=` |
-| `docs/plan/内存导入P1-P2工程实施计划.md:30` | `0x4EFDA0` | 已失效（已给出重算值） | `0x1804f4100` | `=0x75B860`、`Inventory.eyy()=` |
-| `docs/plan/内存导入P1-P2工程实施计划.md:30` | `0x51CA20` | 已失效（已给出重算值） | `0x180520f80` | `()=0x4EFDA0`、`Storage.fmq()=` |
-| `docs/plan/内存导入P1-P2工程实施计划.md:30` | `0x79DBC0` | 已失效（已给出重算值） | `0x1807afed0` | `0x51CA20`、`SaveSystem.ebr()=` |
-| `docs/plan/内存导入P1-P2工程实施计划.md:32` | `0x453B70` | 已失效（已给出重算值） | `0x180452b70` | ` + 4→5→7→4 三循环）后 `^key`（jxh@` |
-| `docs/plan/文档置信度待核清单.md:46` | `0x498340` | 已失效（内联数据，只能改成方法级引用） | `0x1804975d0` | `s/08` §9.1 | 「命中浮动」的位置标注（旧 `` |
-| `docs/plan/文档置信度待核清单.md:46` | `0x4980F0` | 已失效（已给出重算值） | `0x1804975d0` | `在 `DamageEffect.tc` 的内联段（旧 `` |
-| `docs/plan/文档置信度待核清单.md:51` | `0x505300` | 已失效（已给出重算值） | `0x180509b00` | `sEffectData, Character)`（旧 `` |
-| `docs/plan/文档置信度待核清单.md:51` | `0x506060` | 已失效（已给出重算值） | `0x18050a860` | `PlayerCondition, float)`@旧 `` |
-| `docs/plan/联机角色数据内存导入可行性调研.md:69` | `0x75B860` | 已失效（已给出重算值） | `0x18076cee0` | `     GameManager.diw()   RVA` |
-| `docs/plan/联机角色数据内存导入可行性调研.md:70` | `0x4EFDA0` | 已失效（已给出重算值） | `0x1804f4100` | `     Inventory.eyy()     RVA` |
-| `docs/plan/联机角色数据内存导入可行性调研.md:71` | `0x51CA20` | 已失效（已给出重算值） | `0x180520f80` | `     Storage.fmq()       RVA` |
-| `docs/plan/联机角色数据内存导入可行性调研.md:78` | `0x7A3EE0` | 已失效（已给出重算值） | `0x1807b61f0` | `SaveSystem.eea/eed/edy/eeu`（` |
-| `docs/plan/联机角色数据内存导入可行性调研.md:78` | `0x7A4360` | 已失效（已给出重算值） | `0x1807b6670` | `m.eea/eed/edy/eeu`（0x7A3EE0/` |
-| `docs/plan/联机角色数据内存导入可行性调研.md:78` | `0x7A3AC0` | 已失效（已给出重算值） | `0x1807b5dd0` | `/edy/eeu`（0x7A3EE0/0x7A4360/` |
-| `docs/plan/联机角色数据内存导入可行性调研.md:78` | `0x7A5C60` | 已失效（已给出重算值） | `0x1807b7f80` | `（0x7A3EE0/0x7A4360/0x7A3AC0/` |
-| `docs/plan/联机角色数据内存导入可行性调研.md:105` | `0x4558A0` | 已失效（已给出重算值） | `0x1804548a0` | `dden − key) ^ key`（`kah()` @` |
-| `docs/plan/联机角色数据内存导入可行性调研.md:105` | `0x455700` | 已失效（已给出重算值） | `0x180454700` | `key + (value ^ key)`（`jzy` @` |
-| `docs/plan/联机角色数据内存导入可行性调研.md:106` | `0x452340` | 已失效（已给出重算值） | `0x180451340` | `hidden − key) ^ key`（`kas` @` |
-| `docs/plan/联机角色数据内存导入可行性调研.md:106` | `0x452330` | 已失效（已给出重算值） | `0x180451330` | `key + (value ^ key)`（`kar` @` |
-| `docs/plan/联机角色数据内存导入可行性调研.md:107` | `0x454810` | 已失效（已给出重算值） | `0x180453810` | `wap12(hidden) ^ key`（`jyi` @` |
-| `docs/plan/联机角色数据内存导入可行性调研.md:107` | `0x4547E0` | 已失效（已给出重算值） | `0x1804537e0` | `bswap12(bits ^ key)`（`jyh` @` |
-| `docs/plan/联机角色数据内存导入可行性调研.md:108` | `0x453B70` | 已失效（已给出重算值） | `0x180452b70` | `ouble | 字节置换后 `^key`（`jxh` @` |
-| `docs/plan/联机角色数据内存导入可行性调研.md:108` | `0x453B30` | 已失效（已给出重算值） | `0x180452b30` | `permute(bits ^ key)`（`jxg` @` |
-| `docs/plan/联机角色数据内存导入可行性调研.md:213` | `0x4558A0` | 已失效（已给出重算值） | `0x1804548a0` | `k`、Float `bswap12(h)^k`（kah@` |
-| `docs/plan/联机角色数据内存导入可行性调研.md:213` | `0x452340` | 已失效（已给出重算值） | `0x180451340` | `ap12(h)^k`（kah@0x4558A0、kas@` |
-| `docs/plan/联机角色数据内存导入可行性调研.md:213` | `0x454810` | 已失效（已给出重算值） | `0x180453810` | `h@0x4558A0、kas@0x452340、jyi@` |
-| `docs/plan/联机角色数据内存导入可行性调研.md:213` | `0x4547E0` | 已失效（已给出重算值） | `0x1804537e0` | `s@0x452340、jyi@0x454810、jyh@` |
-| `docs/plan/补丁后地址重锚定与回归固化计划.md:54` | `0x18362A350` | 已失效（已给出重算值） | `0x18363f120` | `> （如旧 `` |
-| `docs/plan/补丁后地址重锚定与回归固化计划.md:54` | `0x18362A1F8` | 已失效（已给出重算值） | `0x18363efc8` | `> （如旧 `0x18362A350`、旧 `` |
+| `docs/plan/PROGRESS-补丁回归.md:37` | `0x18362A350` | 已失效（已给出重算值） | `0x18363f120` | `,6}` 扫描，该模式**漏掉 7–9 位 VA**（`` |
+| `docs/plan/PROGRESS-补丁回归.md:37` | `0x1839E44C8` | 无法判定（人工确认） | — | `掉 7–9 位 VA**（`0x18362A350`、`` |
+| `docs/plan/PROGRESS-补丁回归.md:83` | `0x452340` | 已失效（已给出重算值） | `0x180451340` | `3. **多类共享同一 RVA**：`` |
+| `docs/plan/PROGRESS-补丁回归.md:119` | `0x18067BD01` | 已失效（内联数据，只能改成方法级引用） | `0x1806ad190` | `| `` |
+| `docs/plan/PROGRESS-补丁回归.md:120` | `0x18050E401` | 已失效（内联数据，只能改成方法级引用） | `0x180510b50` | `| `` |
+| `docs/plan/PROGRESS-补丁回归.md:121` | `0x7B6671` | 已失效（内联数据，只能改成方法级引用） | `0x1807c8690` | `| `` |
+| `docs/plan/PROGRESS-补丁回归.md:122` | `0x18363F021` | 无法判定（人工确认） | — | `| `` |
+| `docs/plan/PROGRESS-补丁回归.md:172` | `0x498340` | 已失效（内联数据，只能改成方法级引用） | `0x1804975d0` | `| `docs/08 §9.1` 的 `` |
+| `docs/plan/PROGRESS-补丁回归.md:201` | `0x18363F121` | 无法判定（人工确认） | — | `/deskrawl_calc/engine.py:149` |
+| `docs/plan/PROGRESS-补丁回归.md:201` | `0x363f121` | 无法判定（人工确认） | — | `9  0x18363F121  落在 .rdata 节（` |
+| `docs/plan/PROGRESS-补丁回归.md:209` | `0x50e401` | 已失效（内联数据，只能改成方法级引用） | `0x180510b50` | `✗ Player.CalcDamage: 表内 bkn@` |
+| `docs/plan/PROGRESS-补丁回归.md:281` | `0x4A08` | 无法判定（人工确认） | — | `2.2 的偏移列、§12.5 的 dumper 指针、`` |
+| `docs/plan/PROGRESS-补丁回归.md:281` | `0x1000` | 无法判定（人工确认） | — | `5 的 dumper 指针、`0x4A08`（差值）、`` |
+| `docs/plan/PROGRESS-补丁回归.md:311` | `0x1000` | 无法判定（人工确认） | — | `crypt` | **三重一致**：组序 + 类位移 −` |
+| `docs/plan/PROGRESS-补丁回归.md:311` | `0x452340` | 已失效（已给出重算值） | `0x180451340` | `/`ObscuredDateTime.jxz`，与旧 `` |
+| `docs/plan/archive/BLOCKED-P1P2.md:82` | `0x4F5E10` | 已失效（已给出重算值） | `0x1804fa2b0` | `性明细改为**游戏面板口径**：`Player.bjd@` |
+| `docs/plan/archive/PROGRESS-P1P2.md:105` | `0x753370` | 已失效（已给出重算值） | `0x1807649d0` | `` 单例 | getter `dbz()` RVA **` |
+| `docs/plan/archive/PROGRESS-P1P2.md:114` | `0x7731B0` | 已失效（已给出重算值） | `0x180784ab0` | `*：静态类 `gi` 的 `myk`（`doj()` @` |
+| `docs/plan/archive/PROGRESS-P1P2.md:360` | `0x4F5E10` | 已失效（已给出重算值） | `0x1804fa2b0` | `页显示的是 `Player.bjd(StatType)@` |
+| `docs/plan/archive/PROGRESS-P1P2.md:363` | `0x67FDE0` | 已失效（已给出重算值） | `0x18067b470` | `1. **基础字段层**（`Char.bje@` |
+| `docs/plan/archive/PROGRESS-P1P2.md:363` | `0x4F64F0` | 已失效（已给出重算值） | `0x1804fa9d0` | `bje@0x67FDE0` / `Player.bje@` |
+| `docs/plan/archive/PROGRESS-P1P2.md:365` | `0x4F3760` | 已失效（已给出重算值） | `0x1804f7bd0` | `；BasePrimaryStat 归到主属性（`fak@` |
+| `docs/plan/archive/PROGRESS-P1P2.md:371` | `0x4F6620` | 已失效（已给出重算值） | `0x1804fab00` | `5. **far**（`Player.far@` |
+| `docs/plan/archive/PROGRESS-P1P2.md:372` | `0x4F6720` | 已失效（已给出重算值） | `0x1804fac90` | `6. **条件表**（`Player.fat@` |
+| `docs/plan/archive/PROGRESS-P1P2.md:372` | `0x506060` | 已失效（已给出重算值） | `0x18050a860` | `layer.fat@0x4F6720`，求值 `fgp@` |
+| `docs/plan/archive/PROGRESS-P1P2.md:375` | `0x4D5E10` | 已失效（已给出重算值） | `0x1804d56a0` | ``StatusEffectController.bgh@` |
+| `docs/plan/archive/PROGRESS-P1P2.md:376` | `0x67FC80` | 已失效（已给出重算值） | `0x18067b310` | `8. **封顶**（`Char.bjc@` |
+| `docs/plan/archive/PROGRESS-P1P2.md:376` | `0x4A9C30` | 已失效（已给出重算值） | `0x1804a91c0` | `*封顶**（`Char.bjc@0x67FC80` 尾跳` |
+| `docs/plan/archive/PROGRESS-P1P2.md:458` | `0x509D80` | 已失效（已给出重算值） | `0x18050e400` | `  - `Player.bjr@` |
+| `docs/plan/archive/PROGRESS-P1P2.md:459` | `0x18362A270` | 无法判定（人工确认） | — | `    常量 `1.0`@` |
+| `docs/plan/archive/PROGRESS-P1P2.md:459` | `0x18362A370` | 已失效（已给出重算值） | `0x18363f138` | `量 `1.0`@0x18362A270、`100.0`@` |
+| `docs/plan/archive/PROGRESS-P1P2.md:460` | `0x4F3760` | 已失效（已给出重算值） | `0x1804f7bd0` | `  - `Player.fak@` |
+| `docs/plan/archive/内存导入P1-P2工程实施计划.md:30` | `0x75B860` | 已失效（已给出重算值） | `0x18076cee0` | `VA | ✅ | `GameManager.diw()=` |
+| `docs/plan/archive/内存导入P1-P2工程实施计划.md:30` | `0x4EFDA0` | 已失效（已给出重算值） | `0x1804f4100` | `=0x75B860`、`Inventory.eyy()=` |
+| `docs/plan/archive/内存导入P1-P2工程实施计划.md:30` | `0x51CA20` | 已失效（已给出重算值） | `0x180520f80` | `()=0x4EFDA0`、`Storage.fmq()=` |
+| `docs/plan/archive/内存导入P1-P2工程实施计划.md:30` | `0x79DBC0` | 已失效（已给出重算值） | `0x1807afed0` | `0x51CA20`、`SaveSystem.ebr()=` |
+| `docs/plan/archive/内存导入P1-P2工程实施计划.md:32` | `0x453B70` | 已失效（已给出重算值） | `0x180452b70` | ` + 4→5→7→4 三循环）后 `^key`（jxh@` |
+| `docs/plan/archive/联机角色数据内存导入可行性调研.md:70` | `0x75B860` | 已失效（已给出重算值） | `0x18076cee0` | `     GameManager.diw()   RVA` |
+| `docs/plan/archive/联机角色数据内存导入可行性调研.md:71` | `0x4EFDA0` | 已失效（已给出重算值） | `0x1804f4100` | `     Inventory.eyy()     RVA` |
+| `docs/plan/archive/联机角色数据内存导入可行性调研.md:72` | `0x51CA20` | 已失效（已给出重算值） | `0x180520f80` | `     Storage.fmq()       RVA` |
+| `docs/plan/archive/联机角色数据内存导入可行性调研.md:79` | `0x7A3EE0` | 已失效（已给出重算值） | `0x1807b61f0` | `SaveSystem.eea/eed/edy/eeu`（` |
+| `docs/plan/archive/联机角色数据内存导入可行性调研.md:79` | `0x7A4360` | 已失效（已给出重算值） | `0x1807b6670` | `m.eea/eed/edy/eeu`（0x7A3EE0/` |
+| `docs/plan/archive/联机角色数据内存导入可行性调研.md:79` | `0x7A3AC0` | 已失效（已给出重算值） | `0x1807b5dd0` | `/edy/eeu`（0x7A3EE0/0x7A4360/` |
+| `docs/plan/archive/联机角色数据内存导入可行性调研.md:79` | `0x7A5C60` | 已失效（已给出重算值） | `0x1807b7f80` | `（0x7A3EE0/0x7A4360/0x7A3AC0/` |
+| `docs/plan/archive/联机角色数据内存导入可行性调研.md:106` | `0x4558A0` | 已失效（已给出重算值） | `0x1804548a0` | `dden − key) ^ key`（`kah()` @` |
+| `docs/plan/archive/联机角色数据内存导入可行性调研.md:106` | `0x455700` | 已失效（已给出重算值） | `0x180454700` | `key + (value ^ key)`（`jzy` @` |
+| `docs/plan/archive/联机角色数据内存导入可行性调研.md:107` | `0x452340` | 已失效（已给出重算值） | `0x180451340` | `hidden − key) ^ key`（`kas` @` |
+| `docs/plan/archive/联机角色数据内存导入可行性调研.md:107` | `0x452330` | 已失效（已给出重算值） | `0x180451330` | `key + (value ^ key)`（`kar` @` |
+| `docs/plan/archive/联机角色数据内存导入可行性调研.md:108` | `0x454810` | 已失效（已给出重算值） | `0x180453810` | `wap12(hidden) ^ key`（`jyi` @` |
+| `docs/plan/archive/联机角色数据内存导入可行性调研.md:108` | `0x4547E0` | 已失效（已给出重算值） | `0x1804537e0` | `bswap12(bits ^ key)`（`jyh` @` |
+| `docs/plan/archive/联机角色数据内存导入可行性调研.md:109` | `0x453B70` | 已失效（已给出重算值） | `0x180452b70` | `ouble | 字节置换后 `^key`（`jxh` @` |
+| `docs/plan/archive/联机角色数据内存导入可行性调研.md:109` | `0x453B30` | 已失效（已给出重算值） | `0x180452b30` | `permute(bits ^ key)`（`jxg` @` |
+| `docs/plan/archive/联机角色数据内存导入可行性调研.md:214` | `0x4558A0` | 已失效（已给出重算值） | `0x1804548a0` | `k`、Float `bswap12(h)^k`（kah@` |
+| `docs/plan/archive/联机角色数据内存导入可行性调研.md:214` | `0x452340` | 已失效（已给出重算值） | `0x180451340` | `ap12(h)^k`（kah@0x4558A0、kas@` |
+| `docs/plan/archive/联机角色数据内存导入可行性调研.md:214` | `0x454810` | 已失效（已给出重算值） | `0x180453810` | `h@0x4558A0、kas@0x452340、jyi@` |
+| `docs/plan/archive/联机角色数据内存导入可行性调研.md:214` | `0x4547E0` | 已失效（已给出重算值） | `0x1804537e0` | `s@0x452340、jyi@0x454810、jyh@` |
+| `docs/plan/archive/补丁后地址重锚定与回归固化计划.md:54` | `0x18362A350` | 已失效（已给出重算值） | `0x18363f120` | `> （如旧 `` |
+| `docs/plan/archive/补丁后地址重锚定与回归固化计划.md:54` | `0x18362A1F8` | 已失效（已给出重算值） | `0x18363efc8` | `> （如旧 `0x18362A350`、旧 `` |
+| `docs/plan/文档置信度待核清单.md:47` | `0x498340` | 已失效（内联数据，只能改成方法级引用） | `0x1804975d0` | `s/08` §9.1 | 「命中浮动」的位置标注（旧 `` |
+| `docs/plan/文档置信度待核清单.md:47` | `0x4980F0` | 已失效（已给出重算值） | `0x1804975d0` | `在 `DamageEffect.tc` 的内联段（旧 `` |
+| `docs/plan/文档置信度待核清单.md:52` | `0x505300` | 已失效（已给出重算值） | `0x180509b00` | `sEffectData, Character)`（旧 `` |
+| `docs/plan/文档置信度待核清单.md:52` | `0x506060` | 已失效（已给出重算值） | `0x18050a860` | `PlayerCondition, float)`@旧 `` |
 | `tools/deskrawl_calc/cli.py:58` | `0x509D80` | 已失效（已给出重算值） | `0x18050e400` | `CalcDamage@0x50E400，补丁前 bjr@` |
 | `tools/deskrawl_calc/engine.py:149` | `0x18362A350` | 已失效（已给出重算值） | `0x18363f120` | `el))。常量 50 @ 0x18363F120（补丁前` |
 | `tools/deskrawl_calc/stattype.py:106` | `0x6F6360` | 已失效（已给出重算值） | `0x180706a50` | `nit @ 0x706A50，补丁前 ..cctor @` |

@@ -11,11 +11,11 @@
   "doc_policy": {
     "$comment": "文档侧分区。①次机器产出的报告按设计就是地址陈列柜，不扫；②进度档/计划书/调研报告是**当时状态的证词**，整篇登记为历史证词（改了就不是证词），每条必须写明理由；③参考文档 docs/01-09 默认必须写当期地址，例外只有被 `<!-- rva-audit:historical 理由 -->` … `<!-- /rva-audit:historical -->` 显式圈定的区块。分区只对「本来会判失效」的地址生效：区块/整篇里的当期地址照常判「仍有效」，不会被掩盖。",
     "historical_docs": [
-      {"file": "docs/plan/PROGRESS-P1P2.md", "reason": "内存导入 P1–P2 的进度档，记录当时的地址与判定，改了就失去证词价值"},
-      {"file": "docs/plan/BLOCKED-P1P2.md", "reason": "同上（阻塞档，含当时的地址）"},
+      {"file": "docs/plan/archive/PROGRESS-P1P2.md", "reason": "内存导入 P1–P2 的进度档，记录当时的地址与判定，改了就失去证词价值"},
+      {"file": "docs/plan/archive/BLOCKED-P1P2.md", "reason": "同上（阻塞档，含当时的地址）"},
       {"file": "docs/plan/PROGRESS-补丁回归.md", "reason": "本轮补丁回归的进度档，含反向验证原文里的旧地址"},
-      {"file": "docs/plan/内存导入P1-P2工程实施计划.md", "reason": "补丁前写的工程计划，地址是当时的现状描述"},
-      {"file": "docs/plan/联机角色数据内存导入可行性调研.md", "reason": "补丁前的可行性调研（调研当时的地址与判定）"},
+      {"file": "docs/plan/archive/内存导入P1-P2工程实施计划.md", "reason": "补丁前写的工程计划，地址是当时的现状描述"},
+      {"file": "docs/plan/archive/联机角色数据内存导入可行性调研.md", "reason": "补丁前的可行性调研（调研当时的地址与判定）"},
       {"file": "docs/04-伤害计算与属性关联.md", "reason": "补丁前反汇编证据的存档：§6.2 顶部已声明地址失效并指向 §12.3/aliases.json；正文里的旧地址是推导链本身，就地改写会毁掉证据"}
     ],
     "marker_begin": "rva-audit:historical",

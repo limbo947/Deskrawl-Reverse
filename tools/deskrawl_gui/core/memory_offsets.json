@@ -106,7 +106,38 @@
   "item_data": {"klass": "ItemData", "type": "0x20", "rarity": "0x24", "equip_slot": "0x90"},
   "generated_item_klass": "GeneratedItemData",
   "entry_steps": {"stat_double": "0x38", "ptr": "0x18"},
+  "paragon": {
+    "$comment": "巅峰点数分配（2026-10-10 活体实测）。静态管理器（dump.cs hh，混淆名不校验）static_fields +0x40 = Dictionary<StatType,int>（dyt(StatType) 反汇编定位）；条目 stride 0x10：hashCode@0/next@4/key(StatType id)@8/value(点数)@C，数据区 @+0x20。定位走锚点方法用法槽 + 容器形状/值域双校验（类名每版混淆不可用）。读「当前角色」运行时分配；云端槽位 rec_profile 只是 GUID。",
+    "anchor_rvas": ["0x7A39C0", "0x7A51E0"],
+    "static_dict": "0x40",
+    "entries": "0x18",
+    "count": "0x20",
+    "data": "0x20",
+    "stride": "0x10",
+    "key": "0x8",
+    "value": "0xC"
+  },
+  "rune_manager": {
+    "$comment": "符文槽（RuneManager，类名未混淆；单例 getter eaq@0x7A8B30，2026-10-10 实测）：runes = RuneData[]（6 槽，元素为 ItemData 子类，名称走 SaveSystem 名称倒排 name_map）；uids = string[]（6 槽实例 UID，经 uid2gid → rune_level@0x28 取符文等级）。符文同时提供属性（RuneData.Attributes）与「技能等级+N」（AbilityLevels）——旋风斩 10+8=18 级的唯一来源。",
+    "getter_rva": "0x7A8B30",
+    "klass": "RuneManager",
+    "runes": "0x30",
+    "uids": "0x38",
+    "set_counts": "0x40",
+    "max_slots": 6
+  },
   "stat_key_range": [0, 65],
+  "dps_meter": {
+    "$comment": "训练假人 DPS 计实测值（TrainingDpsMeterUI，只读）。定位链：TrainingDummy.bmj 用法槽 → 事件总线类（混淆名不校验，走链即可）→ static_fields[+0x20] 处理器对象 → 委托数组字段（实测 +0x78）→ 委托 target(+0x20) 中 klass==TrainingDpsMeterUI 自校验收尾。显示 DPS = total / max(last_tick−start_time, 1.0)（hww() 同式；last_tick 是 UI 0.2s 节流缓存的时钟 now，无需另读时钟）。2026-10-10 活体实测（PID 12620）：total=28,114,694,480（画面 28.1B）、复算 DPS≈22.93M（画面 23M）。",
+    "anchor_rva": "0x52B0B0",
+    "anchor_method": "TrainingDummy.bmj(long, bool) Slot 26",
+    "handler_field": "0x20",
+    "delegate_target": "0x20",
+    "total": "0x50",
+    "start_time": "0x58",
+    "last_tick": "0x60",
+    "klass": "TrainingDpsMeterUI"
+  },
   "player_level_range": [1, 70],
   "equip_slot_id_to_type": {
     "0": 1, "1": 2, "2": 3, "3": 4, "4": 5, "5": 6, "6": 7,

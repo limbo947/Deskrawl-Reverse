@@ -7,10 +7,15 @@
 """
 from PySide6.QtCore import Qt, Signal
 from PySide6.QtWidgets import (QCheckBox, QComboBox, QDoubleSpinBox, QFormLayout,
-                               QGridLayout, QGroupBox, QHBoxLayout, QLabel, QSlider,
-                               QSpinBox, QVBoxLayout, QWidget)
+                               QGridLayout, QGroupBox, QHBoxLayout, QLabel, QPushButton,
+                               QSlider, QSpinBox, QVBoxLayout, QWidget)
 
 from deskrawl_calc import DamageType
+
+# 训练假人预设（2026-10-10 反汇编 TrainingDummy.bka@0x18052B160：StatType.MaxHealth → 1e17，
+# 其余属性走基座且假人无 Enemy 静态数据 → 护甲/魔抗/减伤全 0；血量近无限故生命百分比不影响计伤）
+_DUMMY_PRESET = {'level': 70, 'hp_fraction': 1.0, 'armor': 0.0,
+                 'magic_resist': 0.0, 'damage_reduction': 0.0}
 
 _CONDITIONS = [('elite', '精英'), ('vulnerable', '易伤'), ('slowed', '减速'),
                ('immobilized', '定身'), ('bleeding', '流血'), ('poisoned', '中毒'),
@@ -38,6 +43,17 @@ class TargetEditor(QWidget):
     def _build_basic_group(self) -> QGroupBox:
         box = QGroupBox('目标基础')
         form = QFormLayout(box)
+
+        # 预设行：训练假人是装备对比的主场景（与游戏 DPS 计同口径），一键到位
+        preset_row = QHBoxLayout()
+        dummy_btn = QPushButton('训练假人')
+        dummy_btn.setToolTip(
+            '训练假人（Lv.70）：无护甲/魔抗/减伤、无状态、血量近无限。\n'
+            '若你的装备会施加易伤等状态并被计伤，请再勾选对应条件。')
+        dummy_btn.clicked.connect(self._apply_dummy_preset)
+        preset_row.addWidget(dummy_btn)
+        preset_row.addStretch(1)
+        form.addRow('预设', preset_row)
 
         self.level_spin = QSpinBox()
         self.level_spin.setRange(1, 200)
@@ -85,6 +101,21 @@ class TargetEditor(QWidget):
         return box
 
     # ---------------- 写回 ----------------
+    def _apply_dummy_preset(self):
+        """一键设为训练假人口径：改 profile.target 后统一走 changed 刷新。"""
+        self._loading = True
+        t = self.profile.target
+        t.level = _DUMMY_PRESET['level']
+        t.hp_fraction = _DUMMY_PRESET['hp_fraction']
+        t.armor = _DUMMY_PRESET['armor']
+        t.magic_resist = _DUMMY_PRESET['magic_resist']
+        t.damage_reduction = _DUMMY_PRESET['damage_reduction']
+        for attr, _label in _CONDITIONS:
+            setattr(t, attr, False)
+        self._loading = False
+        self.reload()
+        self.changed.emit()
+
     def _on_hp(self, v):
         self.hp_label.setText(f'{v}%')
         self._set_target('hp_fraction', v / 100.0)

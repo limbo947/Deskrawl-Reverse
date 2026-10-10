@@ -45,6 +45,41 @@ def _gem_category(equip_slot_type) -> int:
     return _GEM_CATEGORY_BY_EQUIP_TYPE.get(int(equip_slot_type or 0), 0)
 
 
+def _panel_finals(payload: dict) -> dict:
+    """游戏面板最终值 {stat: final}（build_panel 复算，与「属性」页逐行一致）。
+
+    基座必须用面板最终值而非 nsq 单字典：nsq 只是平坦层的一部分，其余值散在 nsu/ntc/nte/nsr
+    字典、BasePrimaryStat 基础字段与条件表里。实测（2026-10-10 ExampleHeroB，武器 A/B 两轮）：若拿 nsq
+    当基座，暴伤少 230%、暴击率少 15%、物理伤害少 75%、对易伤少 80%、全伤害少 75%（且与武器无关），
+    旋风斩单跳因此系统性偏低数倍。
+    """
+    from . import calc_service          # 延迟导入：calc_service 顶层引 profile，避免循环导入
+    try:
+        rows = calc_service.build_panel(payload)['rows']
+    except Exception:
+        return {}
+    return {int(r[0]): float(r[5]) for r in rows if r[5] is not None}
+
+
+def _rune_items(player, gd, warns) -> list:
+    """符文槽 → [AssemblyItem('rune', 名称, 等级)]。
+
+    符文属性走 gd.rune_modifiers（与 RuneData.Attributes 同源）；「技能等级+N」由
+    skill_service.ability_level_bonuses 直接按名称+等级读 RuneData.AbilityLevels，
+    因此即使属性解析不到（名称形态异常）也仍计入条目——等级加成不能丢。
+    """
+    out = []
+    for r in player.get('runes') or []:
+        name = str(r.get('name') or '')
+        if not name:
+            continue
+        item = AssemblyItem('rune', name, max(1, int(r.get('level') or 1)))
+        if gd is not None and not item.modifiers(gd):
+            warns.append(f'符文 {name} 未在 RuneData 命中属性（等级加成仍生效）')
+        out.append(item)
+    return out
+
+
 def _align_primary_stat(prof, payload, gd):
     """把职业主属性键位的 base 对准游戏面板口径（bjr 伤害公式读 Final(主属性)＝bjd 复合值）。
 
@@ -340,6 +375,8 @@ class CharacterProfile:
         player = payload.get('player') or {}
         equip = payload.get('equipment')
         nsq = {int(k): float(v) for k, v in (player.get('base') or {}).items()}
+        # 基座 = 面板最终值（nsq 单字典只是平坦层，会系统性少读；build_panel 失败时回落 nsq）
+        panel_final = _panel_finals(payload) or dict(nsq)
         warns = meta.setdefault('warnings', [])   # 映射告警并回写 meta，随导入对话框一并展示
         hero = meta.get('hero') or {}
         ps = player.get('primary_stat')
@@ -350,11 +387,28 @@ class CharacterProfile:
                    import_time=str(meta.get('time') or ''),
                    primary_stat=(int(ps) if ps is not None else None),
                    hero_class=(int(cls_raw) if cls_raw is not None else None))
-        prof.base = dict(nsq)                     # α 即终态；β 在此基础上扣减可分解项
+        prof.base = dict(panel_final)             # α 即终态；β 在此基础上扣减可分解项
         # 天赋「按技能修正」（技能频次）：与 α/β 无关，先于早退分支落位（技能表两侧都要用）
         prof.ability_mods = _talent_ability_mods(player.get('hero_abilities') or [],
                                                  player.get('talent_ability_mods') or [],
                                                  prof.hero_class, gd)
+        # 巅峰点数分配：面板 base 已含其贡献，这里落 allocation 供展示/编辑，
+        # 并把贡献从 base 反向扣除（paragon_modifiers 恒为 Flat，可精确逆运算）——
+        # 否则 to_sheet 再叠加一次会重复计伤；用户随后改点数时按新 allocation 全量重算，语义仍正确。
+        paragon = player.get('paragon') or {}
+        if paragon and gd is not None:
+            prof.paragon = {int(k): int(v) for k, v in paragon.items()}
+            for m in gd.paragon_modifiers(prof.paragon):
+                prof.base[int(m.stat)] = prof.base.get(int(m.stat), 0.0) - float(m.value)
+        # 符文槽（RuneManager）：与 α/β 无关——「技能等级+N」只能来自符文（旋风斩 10+8=18），
+        # 所以 α 也必须计入。β 的残差反解（步骤 4）会自动扣减其贡献；α 无残差步骤，这里手工扣 Flat。
+        rune_items = _rune_items(player, gd, warns)
+        prof.assembled.extend(rune_items)
+        if not equip and gd is not None:
+            for item in rune_items:
+                for m in item.modifiers(gd):
+                    if int(m.type) == 0:
+                        prof.base[int(m.stat)] = prof.base.get(int(m.stat), 0.0) - float(m.value)
         if not equip:
             _align_primary_stat(prof, payload, gd)
             return prof
@@ -441,7 +495,7 @@ class CharacterProfile:
                 _acc(item.modifiers(gd))
         _acc(prof.weapon_current.to_weapon().modifiers)
         for s in flat:
-            base_v = nsq.get(s, 0.0) - flat[s]
+            base_v = panel_final.get(s, 0.0) - flat[s]
             factor = (1.0 + add.get(s, 0.0)) * mult.get(s, 1.0)
             prof.base[s] = (base_v / factor) if factor != 1.0 else base_v
 

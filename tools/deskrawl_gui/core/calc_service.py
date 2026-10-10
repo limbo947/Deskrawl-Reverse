@@ -177,8 +177,9 @@ def candidate_modifiers(gd, kind: str, name: str, *, level: int = 1, category: i
     return []
 
 
-# 修饰符类型的界面用中文名（内核 Modifier.describe() 用的是 Flat/%Add/%Mult）
-_MOD_TYPE_CN = {0: '加法', 1: '百分比加算', 2: '连乘'}
+# 修饰符类型的界面用中文名（内核 Modifier.describe() 用的是 Flat/%Add/%Mult）；
+# 词条摘要与词条编辑表共用这一份，避免两处定义漂移
+MOD_TYPE_CN = {0: '加法', 1: '百分比加算', 2: '连乘'}
 
 
 def describe_mods(mods) -> str:
@@ -186,7 +187,7 @@ def describe_mods(mods) -> str:
     if not mods:
         return '（无属性词条）'
     return '；'.join(f'{stat_name(m.stat)} {m.value:+.3f}'
-                     f'（{_MOD_TYPE_CN.get(int(m.type), m.type)}）' for m in mods)
+                     f'（{MOD_TYPE_CN.get(int(m.type), m.type)}）' for m in mods)
 
 
 def _dps_with(profile: CharacterProfile, gd, extra_mods) -> float:
@@ -389,4 +390,4 @@ def build_panel(payload: dict) -> dict:
 __all__ = ['StatRow', 'CompareResult', 'CandidateRow', 'stat_rows', 'compare',
            'candidate_names', 'candidate_modifiers', 'describe_mods',
            'baseline_dps', 'rank_candidates', 'KIND_LABELS',
-           'build_panel', 'PANEL_ORDER']
+           'build_panel', 'PANEL_ORDER', 'MOD_TYPE_CN']

@@ -1,7 +1,12 @@
 # -*- coding: utf-8 -*-
-"""主窗口组装：左 dock 角色面板 / 右 dock(Tab 化) 目标+属性 / 中央三 Tab；暗色主题。
+"""主窗口：左侧导航栏 + 页面堆栈（角色 / 装备对比 / 装配中心）；暗色主题。
 
-布局与《桌面GUI开发计划》§3.4 一致；主窗口只做装配与信号中转，编辑控件下沉到 widgets/。
+主窗口只做三件事：装配页面、持有唯一事实源 profile、中转刷新信号。
+页面内部组合见 widgets/role_page、compare_page、assembly_center；编辑控件下沉到 widgets/。
+
+刷新协议（对称，重构自旧「部分 reload」的不对称链）：
+- 编辑（词条/属性/目标等）→ 页面 changed → profileChanged → _refresh_all（轻量：重算视图，不全量重排排序表）；
+- 换数据源（导入/加载构建）→ _reload_pages（每页 reload 回填输入 + 各自的深度重算）。
 """
 import os
 import sys
@@ -9,23 +14,25 @@ import time
 
 from PySide6.QtCore import Qt, Signal
 from PySide6.QtGui import QAction
-from PySide6.QtWidgets import (QApplication, QDockWidget, QFileDialog, QLabel, QMainWindow,
-                               QMessageBox, QStatusBar, QTabWidget)
+from PySide6.QtWidgets import (QApplication, QFileDialog, QHBoxLayout, QLabel,
+                               QMainWindow, QMessageBox, QStackedWidget,
+                               QStatusBar, QWidget)
 
 from deskrawl_calc import GameData, stat_name
 
 from .core import calc_service
 from .core.memory_import import MemoryImportError, check_fingerprints, import_snapshot
 from .core.profile import BUILDS_DIR, CharacterProfile, load_build, save_build
-from .widgets.assembly_browser import AssemblyBrowser
-from .widgets.candidate_rank_view import CandidateRankView
-from .widgets.equipment_editor import EquipmentEditor
-from .widgets.panel_editor import PanelEditor
-from .widgets.stat_table import StatTable
-from .widgets.target_editor import TargetEditor
+from .widgets.assembly_center import AssemblyCenter
+from .widgets.compare_page import ComparePage
+from .widgets.navigation import SidebarNav
+from .widgets.role_page import RolePage
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
 QSS_PATH = os.path.join(_HERE, 'resources', 'style.qss')
+
+# 页面注册表：key 供快捷键/编程切页用，顺序即堆栈顺序
+PAGES = [('role', '角色'), ('compare', '装备对比'), ('assembly', '装配中心')]
 
 # 六类错误态 → 中文文案。code 由 MemoryImportError 携带（不靠消息子串猜），
 # 未识别的情况一律回落到「读取校验失败」，保证任何异常都不会裸抛英文堆栈给用户。
@@ -63,7 +70,7 @@ def load_qss(path: str = QSS_PATH) -> str:
 
 
 class MainWindow(QMainWindow):
-    """主窗口：只负责 dock/tab 布局、持有唯一事实源 profile，并中转刷新信号。"""
+    """主窗口：侧边导航 + 页面堆栈，持有 profile 并中转刷新信号。"""
 
     profileChanged = Signal()
 
@@ -71,31 +78,30 @@ class MainWindow(QMainWindow):
         super().__init__(parent)
         self.setWindowTitle('Deskrawl 数值计算台')
         self.resize(1360, 860)
+        self.setMinimumSize(960, 640)
 
         self.gd = GameData()
         self.profile = CharacterProfile.demo()
         self._last_import_mono = float('-inf')   # 手动导入节流（≥1s）
 
-        self.panel_editor = PanelEditor(self.profile, self.gd)
-        self.addDockWidget(Qt.LeftDockWidgetArea,
-                           self._make_dock('角色面板', 'dockPanel', self.panel_editor))
+        # 页面装配：每页自带标题头部，导航只切页
+        self.nav = SidebarNav(PAGES)
+        self.stack = QStackedWidget()
+        self.role_page = RolePage(self.profile, self.gd)
+        self.compare_page = ComparePage(self.profile, self.gd)
+        self.assembly_center = AssemblyCenter(self.profile, self.gd)
+        for page in (self.role_page, self.compare_page, self.assembly_center):
+            self.stack.addWidget(page)
 
-        self.target_editor = TargetEditor(self.profile)
-        self.stat_table = StatTable()
-        right_tabs = QTabWidget()
-        right_tabs.addTab(self.target_editor, '目标设置')
-        right_tabs.addTab(self.stat_table, '属性明细')
-        self.addDockWidget(Qt.RightDockWidgetArea,
-                           self._make_dock('目标 / 属性', 'dockRight', right_tabs))
-
-        self.tabs = QTabWidget()
-        self.equipment_editor = EquipmentEditor(self.profile, self.gd)
-        self.candidate_rank_view = CandidateRankView(self.profile, self.gd)
-        self.assembly_browser = AssemblyBrowser(self.profile, self.gd)
-        self.tabs.addTab(self.equipment_editor, '装备对比')
-        self.tabs.addTab(self.candidate_rank_view, '候选排序')
-        self.tabs.addTab(self.assembly_browser, '装配浏览器')
-        self.setCentralWidget(self.tabs)
+        central = QWidget()
+        lay = QHBoxLayout(central)
+        lay.setContentsMargins(0, 0, 0, 0)
+        lay.setSpacing(0)
+        lay.addWidget(self.nav)
+        lay.addWidget(self.stack, 1)
+        self.setCentralWidget(central)
+        self.nav.pageChanged.connect(self.stack.setCurrentIndex)
+        self._bind_page_shortcuts()
 
         self.setStatusBar(QStatusBar(self))
         # 快照时间戳常驻状态栏（普通提示消息仍走临时消息区，互不覆盖）
@@ -104,19 +110,37 @@ class MainWindow(QMainWindow):
         self.statusBar().addPermanentWidget(self._snapshot_label)
         self._build_menus()
 
-        # 任何编辑 → profileChanged → 统一刷新（同步，实测 <50ms）
-        self.panel_editor.changed.connect(self.profileChanged)
-        self.target_editor.changed.connect(self.profileChanged)
-        self.assembly_browser.changed.connect(self.profileChanged)
-        self.candidate_rank_view.changed.connect(self.profileChanged)
+        # 任何编辑 → profileChanged → 统一轻量刷新（同步；全量重排只在装配中心内部按需触发）
+        self.role_page.changed.connect(self.profileChanged)
+        self.compare_page.changed.connect(self.profileChanged)
+        self.assembly_center.changed.connect(self.profileChanged)
         self.profileChanged.connect(self._refresh_all)
         self._refresh_all()
 
-    def _make_dock(self, title: str, obj_name: str, widget) -> QDockWidget:
-        dock = QDockWidget(title, self)
-        dock.setObjectName(obj_name)
-        dock.setWidget(widget)
-        return dock
+    def _bind_page_shortcuts(self):
+        """Ctrl+1/2/3 直达对应页面；挂 QAction 以便菜单外也能生效。"""
+        for i, (_key, _label) in enumerate(PAGES):
+            act = QAction(self)
+            act.setShortcut(f'Ctrl+{i + 1}')
+            act.triggered.connect(lambda _=False, row=i: self.nav.setCurrentRow(row))
+            self.addAction(act)
+
+    # ---- 旧布局时代的控件别名（保持对外属性稳定，selftest 与脚本可继续用）----
+    @property
+    def panel_editor(self):
+        return self.role_page.panel_editor
+
+    @property
+    def stat_table(self):
+        return self.role_page.stat_table
+
+    @property
+    def target_editor(self):
+        return self.compare_page.target_editor
+
+    @property
+    def equipment_editor(self):
+        return self.compare_page.equipment_editor
 
     # ---------------- 菜单 ----------------
     def _build_menus(self):
@@ -151,7 +175,7 @@ class MainWindow(QMainWindow):
         """主线程同步导入（实测 0.37s 级；等待光标即可，不引入线程/异步框架）。
 
         节流 ≥1s：连点/快捷键连发不会重复触发昂贵的内存双读与指纹哈希；
-        导入成功即完成 ``profile.from_snapshot`` 并走既有 profileChanged 刷新链。
+        导入成功即完成 ``profile.from_snapshot`` 并走 _reload_pages 全页回填。
         """
         now = time.monotonic()
         if now - self._last_import_mono < 1.0:
@@ -179,12 +203,21 @@ class MainWindow(QMainWindow):
         except Exception as exc:                                # noqa: BLE001 边界兜底
             self.profile.panel = None
             self.statusBar().showMessage(f'游戏面板口径复算失败（属性明细退回计算口径）：{exc}', 8000)
-        self.panel_editor.reload()
-        self.target_editor.reload()
-        self.equipment_editor.reload()
-        self._refresh_all()
+        self._reload_pages()
         mode_cn = 'β 逐件' if res.mode == 'beta' else 'α 聚合'
         self._snapshot_label.setText(f'快照：{res.time}（{mode_cn}）')
+        msg = self._import_summary(res, payload, mode_cn)
+        # 详情放 DetailedText：内容长且可整段复制（旧版只有正文，长告警列表不便留存）
+        box = QMessageBox(self)
+        box.setIcon(QMessageBox.Information)
+        box.setWindowTitle('导入成功')
+        box.setText(f'已从运行中的游戏导入（{mode_cn}）')
+        box.setDetailedText(msg)
+        box.exec()
+        self.statusBar().showMessage(f'已从运行中的游戏导入（{mode_cn}）')
+
+    def _import_summary(self, res, payload, mode_cn) -> str:
+        """导入结果摘要（放 DetailedText，可复制）。"""
         counts = (f"装备 {len(payload.get('equipment') or [])} 件 / "
                   f"仓库 {len(payload.get('storage') or [])} 件 / "
                   f"背包 {len(payload.get('inventory') or [])} 件 / "
@@ -208,8 +241,7 @@ class MainWindow(QMainWindow):
             msg += '\n- ' + '\n- '.join(warns[:5])
         if pw:
             msg += f'\n面板复算说明：{len(pw)} 条\n- ' + '\n- '.join(pw[:5])
-        QMessageBox.information(self, '导入成功', msg)
-        self.statusBar().showMessage(f'已从运行中的游戏导入（{mode_cn}）')
+        return msg
 
     def _add_action(self, menu, label, slot, shortcut=None) -> QAction:
         action = QAction(label, self)
@@ -244,10 +276,7 @@ class MainWindow(QMainWindow):
             QMessageBox.warning(self, '加载失败', str(exc))
             return
         self.profile.replace_with(loaded)      # 就地替换，widget 引用不失效
-        self.panel_editor.reload()
-        self.target_editor.reload()
-        self.equipment_editor.reload()
-        self._refresh_all()
+        self._reload_pages()
         self.statusBar().showMessage(f'已加载：{path}')
 
     def _kernel_selftest_message(self) -> tuple:
@@ -266,20 +295,19 @@ class MainWindow(QMainWindow):
         box.setDetailedText(detail.strip())
         box.exec()
 
+    # ---------------- 刷新协议 ----------------
     def _refresh_all(self):
-        """单一刷新入口：属性表 / 对比结果 / 排序表 / 已装配清单一次到位。
-
-        属性明细口径：内存导入的构建显示「游戏面板口径」（导入时冻结，与游戏属性页一致）；
-        手工构建无面板数据，退回既有「计算口径」聚合分解。
-        """
-        if self.profile.panel:
-            self.stat_table.set_panel_view(self.profile.panel)
-        else:
-            self.stat_table.set_sheet(self.profile.to_sheet(self.gd))
-        self.equipment_editor.refresh()
-        self.candidate_rank_view.refresh()
-        self.assembly_browser.refresh()
+        """轻量刷新：属性表 / 对比结果 / 已装配清单一次到位；排序表不全量重排。"""
+        self.role_page.refresh()
+        self.compare_page.refresh()
+        self.assembly_center.refresh()
         self.statusBar().showMessage(f'构建「{self.profile.name}」已刷新')
+
+    def _reload_pages(self):
+        """换数据源后的全页回填（导入/加载构建），各页 reload 内含深度重算。"""
+        self.role_page.reload()
+        self.compare_page.reload()
+        self.assembly_center.reload()
 
 
 def build_application(argv=None) -> QApplication:

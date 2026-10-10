@@ -30,3 +30,6 @@ dist/
 Thumbs.db
 desktop.ini
 .DS_Store
+
+# ---- CodeBuddy IDE（项目个人配置，不入库）----
+.codebuddy/

@@ -276,6 +276,40 @@ class SnapshotBuilder:
         first, n = self.il.array_items(arr)
         return [self.il.wstr(self.pr.u64(first + 8 * i)) for i in range(n)]
 
+    def _read_runes(self) -> list:
+        """符文槽：RuneManager（单例）6 槽 → [{'name','uid','level'}]。
+
+        为什么单独读：符文不在装备链里（RuneManager 直接持有 RuneData[] + 实例 UID 数组），
+        而它是「技能等级+N」的唯一来源（旋风斩 2×6/6 符文 = +8 级 → tooltip 185%），
+        也带自身属性。定位失败只告警（降级为无符文，技能等级按基础值算）。
+        """
+        ro = self.off.get('rune_manager') or {}
+        if not ro:
+            return []
+        rm = self.loc.find_singleton(ro['getter_rva'], ro['klass'])
+        if not valid_ptr(rm):
+            self._warn('RuneManager 未定位：符文槽未计入（技能等级加成缺失）')
+            return []
+        fn, nn = self.il.array_items(self.pr.u64(rm + ro['runes']))
+        fu, nu = self.il.array_items(self.pr.u64(rm + ro['uids']))
+        out = []
+        for i in range(min(nn, nu, int(ro.get('max_slots') or 6))):
+            rdata = self.pr.u64(fn + 8 * i)
+            uidp = self.pr.u64(fu + 8 * i)
+            uid = self.il.wstr(uidp) if valid_ptr(uidp) else ''
+            name = self.name_map.get(rdata) if valid_ptr(rdata) else None
+            if not name:
+                if valid_ptr(rdata):
+                    self._warn(f'符文槽 {i} 名称未在名称索引命中（UID {uid}），未计入')
+                continue
+            level = 0
+            if uid and uid in self.uid2gid:
+                inst = self._read_instance(uid)
+                if inst:
+                    level = int(inst.get('rune_level') or 0)
+            out.append({'name': str(name), 'uid': uid or '', 'level': level})
+        return out
+
     def _read_instance(self, uid):
         """按 UID 读 GeneratedItemData 逐件实例数据（词条/强化/宝石），与装备槽同构。
 
@@ -485,6 +519,56 @@ class SnapshotBuilder:
                 out.append([int(stat), ability, val])
         return out
 
+    def _read_paragon(self) -> dict:
+        """读巅峰点数分配：静态管理器（混淆类，dump.cs hh）static_fields[+0x40] 的
+        Dictionary<StatType,int>。
+
+        定位（2026-10-10 活体实测，dyt(StatType) 反汇编）：扫 dyt/dzg 用法槽 → 候选类 →
+        static_fields[+0x40] 须为合法字典（count≤80、全键在 stat_key_range、点数 (0,999]），
+        形状+值域双校验替代类名校验（类名每版混淆）。容器不可用只告警不阻断：
+        巅峰对面板是增量信息，base 已含其贡献，读不到就维持旧口径。
+        """
+        po = self.off.get('paragon') or {}
+        if not po.get('anchor_rvas'):
+            return {}
+        klo, khi = self.off['stat_key_range']
+        seen = set()
+        for rva in po['anchor_rvas']:
+            for slot in self.loc.scan_usage_slots(rva, span=256):
+                try:
+                    klass = self.pr.u64(slot)
+                except MemoryReadError:
+                    continue
+                if not valid_ptr(klass) or klass in seen:
+                    continue
+                seen.add(klass)
+                try:
+                    sf = self.il.static_fields(klass)
+                    d = self.pr.u64(sf + po['static_dict'])
+                    entries = self.pr.u64(d + po['entries']) if valid_ptr(d) else None
+                    count = self.pr.i32(d + po['count']) if valid_ptr(d) else None
+                except MemoryReadError:
+                    continue
+                if not valid_ptr(entries) or count is None or not 0 <= count <= 80:
+                    continue
+                out, ok = {}, True
+                for i in range(count):
+                    ent = entries + po['data'] + i * po['stride']
+                    try:
+                        stat = self.pr.i32(ent + po['key'])
+                        pts = self.pr.i32(ent + po['value'])
+                    except MemoryReadError:
+                        ok = False
+                        break
+                    if not (klo <= stat <= khi and 0 < pts <= 999):
+                        ok = False
+                        break
+                    out[int(stat)] = int(pts)
+                if ok:
+                    return out
+        self._warn('巅峰容器未定位（结构漂移？读数维持不含巅峰的旧口径）')
+        return {}
+
     def _read_hero(self):
         """SaveSystem：nfk 槽位索引 → SaveContainer.OnlineSlots[nfk] 摘要。
         快照带槽位摘要（名字/等级/profile），防切角色后用过期快照静默错配构建。"""
@@ -543,6 +627,8 @@ class SnapshotBuilder:
             'hero_class': self._read_hero_class(),
             'hero_abilities': self._read_hero_abilities(),
             'talent_ability_mods': self._read_talent_ability_mods(player),
+            'paragon': self._read_paragon(),
+            'runes': self._read_runes(),
             'inventory': self._read_slots(self.pr.u64(self.inv + self.off['inventory']['slots'])),
             'storage': self._read_slots(self.pr.u64(self.sto + self.off['storage']['slots'])),
             'equipment': self._read_equipment(),
@@ -592,6 +678,13 @@ class SnapshotBuilder:
         hc = payload.get('hero_class')
         if hc is not None and hc not in (1, 2, 4, 8):
             raise MemoryImportError(f'hero_class 值域异常：{hc}')
+        for k, v in (payload.get('paragon') or {}).items():
+            if not klo <= k <= khi or not isinstance(v, int) or not 0 < v <= 999:
+                raise MemoryImportError(f'巅峰分配条目异常：{k}={v}')
+        for r in payload.get('runes') or []:
+            if not isinstance(r.get('name'), str) or not r['name'] \
+                    or not 0 <= int(r.get('level') or 0) <= 6:
+                raise MemoryImportError(f'符文槽条目异常：{r}')
         for row in payload.get('talent_ability_mods') or []:
             if (len(row) != 3 or not valid_ptr(row[1])
                     or not math.isfinite(row[2]) or abs(row[2]) > 1e6):
@@ -689,6 +782,8 @@ def import_snapshot(double_read=True) -> SnapshotResult:
             'primary_stat': payload['primary_stat'], 'hero_class': payload['hero_class'],
             'hero_abilities': payload['hero_abilities'],
             'talent_ability_mods': payload['talent_ability_mods'],
+            'paragon': payload['paragon'],
+            'runes': payload['runes'],
         },
         'inventory': payload['inventory'],
         'storage': payload['storage'],

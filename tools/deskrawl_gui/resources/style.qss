@@ -1,60 +1,170 @@
-/* Deskrawl 暗色主题 —— 调色板集中在此：底 #1e1f22 / 面 #2b2d30 / 边 #3c3f41 / 字 #dfe1e5 / 主色 #4e9feb / 次要字 #9aa0a6 */
+/* ============================================================================
+   Deskrawl 暗色主题（令牌化）
+   ----------------------------------------------------------------------------
+   色板令牌（改主题只改这一段 + 各规则里的引用值）：
+     底色    --bg-root   #1E2226   窗口/表格底
+             --bg-sunk   #1A1D20   侧边导航（比底更深一档，形成层级）
+             --bg-panel  #262B30   控件面（输入框/按钮/菜单）
+             --bg-hover  #2E343A   悬停/选中底
+     边线    --line      #30353B   全部描边（唯一边色，不再混用多档灰）
+     文字    --text      #E8EAED   主文字
+             --text-dim  #9AA0A6   次要文字/标题弱化
+     强调    --accent    #4FC3F7   可交互元素唯一强调色（选中/焦点/进度条）
+             --accent-deep #2B5F7A 强调色的按压/选中底
+     功能    --up        #66BB6A   Δ 上涨（仅 Δ 值使用）
+             --down      #EF5350   Δ 下跌（仅 Δ 值使用）
+             --warn      #FFB74D   降级/告警横幅
+   间距令牌：4 / 8 / 12 / 16 / 24（页面外距 16，组内 8，条目 4）
+   字号令牌：页面标题 16px(600) / 分组标题 13px(600) / 正文 12px
+   圆角令牌：控件 4px（唯一的圆角尺寸）
+   ============================================================================ */
+
+/* ---- 全局基座 ---- */
 QWidget {
-    background-color: #1e1f22;
-    color: #dfe1e5;
+    background-color: #1E2226;
+    color: #E8EAED;
     font-family: "Microsoft YaHei UI", "Segoe UI", sans-serif;
+    font-size: 12px;
+}
+QGroupBox {
+    border: 1px solid #30353B;
+    border-radius: 4px;
+    margin-top: 12px;
+    padding: 8px;
+    background-color: #1E2226;
+}
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 8px;
+    padding: 0 4px;
+    color: #9AA0A6;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* ---- 侧边导航 ---- */
+QListWidget#sidebar {
+    background: #1A1D20;
+    border: none;
+    border-right: 1px solid #30353B;
+    outline: none;
+    padding: 8px 0;
     font-size: 13px;
 }
-QMainWindow::separator { background: #3c3f41; width: 1px; height: 1px; }
-QDockWidget { titlebar-close-icon: none; titlebar-normal-icon: none; }
-QDockWidget::title { background: #2b2d30; padding: 6px 8px; border-bottom: 1px solid #3c3f41; }
-QTabWidget::pane { border: 1px solid #3c3f41; background: #1e1f22; top: -1px; }
-QTabBar::tab { background: #2b2d30; padding: 6px 14px; border: 1px solid #3c3f41; border-bottom: none; }
-QTabBar::tab:selected { background: #1e1f22; color: #4e9feb; }
-QGroupBox { border: 1px solid #3c3f41; border-radius: 4px; margin-top: 10px; padding-top: 8px; }
-QGroupBox::title { subcontrol-origin: margin; left: 8px; padding: 0 4px; color: #9aa0a6; }
-QPushButton { background: #2b2d30; border: 1px solid #3c3f41; border-radius: 4px; padding: 4px 12px; }
-QPushButton:hover { background: #35373b; }
-QPushButton:pressed { background: #40434a; }
-QPushButton:disabled { color: #6b6f76; }
-QLineEdit, QSpinBox, QDoubleSpinBox, QComboBox {
-    background: #2b2d30; border: 1px solid #3c3f41; border-radius: 3px; padding: 3px 6px;
-    selection-background-color: #2f5d8a;
+QListWidget#sidebar::item {
+    padding: 10px 16px;
+    border-left: 3px solid transparent;
 }
-QLineEdit:focus, QSpinBox:focus, QDoubleSpinBox:focus, QComboBox:focus { border-color: #4e9feb; }
-QComboBox QAbstractItemView { background: #2b2d30; border: 1px solid #3c3f41; selection-background-color: #2f5d8a; }
+QListWidget#sidebar::item:hover { background: #23272C; }
+QListWidget#sidebar::item:selected {
+    background: #23272C;
+    border-left: 3px solid #4FC3F7;
+    color: #E8EAED;
+}
+
+/* ---- 页面头部（标题-副标题两级） ---- */
+QLabel#pageTitle { font-size: 16px; font-weight: 600; color: #E8EAED; }
+QLabel#pageSubtitle { font-size: 12px; color: #9AA0A6; }
+QLabel#emptyState { color: #9AA0A6; }
+
+/* ---- 输入控件：唯一强调色标焦点，4px 圆角，4/8 间距 ---- */
+QPushButton {
+    background: #262B30;
+    border: 1px solid #30353B;
+    border-radius: 4px;
+    padding: 4px 12px;
+}
+QPushButton:hover { background: #2E343A; }
+QPushButton:pressed { background: #2B5F7A; }
+QPushButton:disabled { color: #6B7076; }
+QLineEdit, QSpinBox, QDoubleSpinBox, QComboBox {
+    background: #262B30;
+    border: 1px solid #30353B;
+    border-radius: 4px;
+    padding: 4px 8px;
+    selection-background-color: #2B5F7A;
+}
+QLineEdit:focus, QSpinBox:focus, QDoubleSpinBox:focus, QComboBox:focus { border-color: #4FC3F7; }
+QComboBox QAbstractItemView {
+    background: #262B30;
+    border: 1px solid #30353B;
+    selection-background-color: #2B5F7A;
+}
+QCheckBox, QRadioButton { spacing: 8px; }
+
+/* ---- 表格：行选中用强调色深档，避免与焦点框抢视觉 ---- */
 QHeaderView::section {
-    background: #2b2d30; border: none; border-right: 1px solid #3c3f41;
-    border-bottom: 1px solid #3c3f41; padding: 4px 6px; color: #9aa0a6;
+    background: #262B30;
+    border: none;
+    border-right: 1px solid #30353B;
+    border-bottom: 1px solid #30353B;
+    padding: 4px 8px;
+    color: #9AA0A6;
 }
 QTableView, QTreeView, QListView {
-    background: #1e1f22; alternate-background-color: #232529;
-    gridline-color: #3c3f41; border: 1px solid #3c3f41; selection-background-color: #2f5d8a;
+    background: #1E2226;
+    alternate-background-color: #23272C;
+    gridline-color: #30353B;
+    border: 1px solid #30353B;
+    border-radius: 4px;
+    selection-background-color: #2B5F7A;
 }
-QTableView::item:selected, QListView::item:selected { background: #2f5d8a; }
-QMenuBar { background: #2b2d30; }
-QMenuBar::item:selected { background: #3c3f41; }
-QMenu { background: #2b2d30; border: 1px solid #3c3f41; }
-QMenu::item:selected { background: #3c3f41; }
-QMenu::item:disabled { color: #6b6f76; }
-QStatusBar { background: #2b2d30; color: #9aa0a6; }
-QProgressBar { background: #2b2d30; border: 1px solid #3c3f41; border-radius: 3px; text-align: center; }
-QProgressBar::chunk { background: #4e9feb; }
-QScrollBar:vertical { background: #1e1f22; width: 12px; margin: 0; }
-QScrollBar::handle:vertical { background: #3c3f41; border-radius: 6px; min-height: 24px; }
-QScrollBar:horizontal { background: #1e1f22; height: 12px; margin: 0; }
-QScrollBar::handle:horizontal { background: #3c3f41; border-radius: 6px; min-width: 24px; }
+QTableView::item:selected, QListView::item:selected { background: #2B5F7A; }
+
+/* ---- 菜单 / 状态栏 ---- */
+QMenuBar { background: #1A1D20; }
+QMenuBar::item:selected { background: #2E343A; }
+QMenu { background: #262B30; border: 1px solid #30353B; }
+QMenu::item:selected { background: #2E343A; }
+QMenu::item:disabled { color: #6B7076; }
+QStatusBar { background: #1A1D20; color: #9AA0A6; }
+QLabel#snapshotLabel { color: #9AA0A6; }
+
+/* ---- 对比条 / 滚动条 / 提示 ---- */
+QProgressBar {
+    background: #262B30;
+    border: 1px solid #30353B;
+    border-radius: 4px;
+    text-align: center;
+}
+QProgressBar::chunk { background: #4FC3F7; }
+QSlider::groove:horizontal { background: #262B30; height: 4px; border-radius: 2px; }
+QSlider::handle:horizontal { background: #4FC3F7; width: 12px; margin: -5px 0; border-radius: 6px; }
+QScrollBar:vertical { background: #1E2226; width: 10px; margin: 0; }
+QScrollBar::handle:vertical { background: #30353B; border-radius: 5px; min-height: 24px; }
+QScrollBar:horizontal { background: #1E2226; height: 10px; margin: 0; }
+QScrollBar::handle:horizontal { background: #30353B; border-radius: 5px; min-width: 24px; }
 QScrollBar::add-line, QScrollBar::sub-line { height: 0; width: 0; }
 QScrollBar::add-page, QScrollBar::sub-page { background: none; }
-QCheckBox, QRadioButton { spacing: 6px; }
-QToolTip { background: #2b2d30; color: #dfe1e5; border: 1px solid #3c3f41; }
-QSlider::groove:horizontal { background: #2b2d30; height: 4px; border-radius: 2px; }
-QSlider::handle:horizontal { background: #4e9feb; width: 12px; margin: -5px 0; border-radius: 6px; }
+QToolTip { background: #262B30; color: #E8EAED; border: 1px solid #30353B; }
 
-/* 对比结果强调字：涨绿跌红，颜色只在这里定义，代码只切 objectName */
-QLabel#dpsBig { font-size: 22px; font-weight: bold; color: #4e9feb; }
-QLabel#deltaUp { font-size: 20px; font-weight: bold; color: #4cc06a; }
-QLabel#deltaDown { font-size: 20px; font-weight: bold; color: #e05a4f; }
+/* ---- 语义强调字：颜色只在这里定义，代码只切 objectName ---- */
+QLabel#dpsBig { font-size: 22px; font-weight: 600; color: #4FC3F7; }
+QLabel#deltaUp { font-size: 20px; font-weight: 600; color: #66BB6A; }
+QLabel#deltaDown { font-size: 20px; font-weight: 600; color: #EF5350; }
 
-/* 武器卡片导入元信息（强化等级/镶嵌宝石），弱化色避免与可编辑控件抢注意力 */
-QLabel#weaponMeta { color: #8a9aa8; }
+/* ---- 模式横幅（α 降级提示）：告警色只作描边与文字，不做大面积底色 ---- */
+QLabel#modeBanner {
+    color: #FFB74D;
+    border: 1px solid #FFB74D;
+    border-radius: 4px;
+    padding: 8px 12px;
+    background: #262B30;
+}
+
+/* ---- 游戏实测框（DPS 计轮询）：分组卡片样式，数值可选中复制 ---- */
+QFrame#dpsMeter {
+    background: #262B30;
+    border: 1px solid #30353B;
+    border-radius: 4px;
+}
+QLabel#dpsMeterTitle { color: #9AA0A6; font-size: 12px; }
+/* 主行 = 结论（换装预测 + 涨跌），涨跌配色经 trend 属性切换，颜色不散落代码 */
+QLabel#dpsMeterValue { color: #E0E0E0; font-size: 18px; font-weight: 600; }
+QLabel#dpsMeterValue[trend="up"] { color: #4CAF50; }
+QLabel#dpsMeterValue[trend="down"] { color: #EF5350; }
+/* 次行 = 诊断（实测/期望/系数），弱化到不与结论抢注意力 */
+QLabel#dpsMeterDiag { color: #7F868D; font-size: 11px; }
+
+/* ---- 导入元信息（强化/宝石），弱化色避免与可编辑控件抢注意力 ---- */
+QLabel#weaponMeta { color: #9AA0A6; }

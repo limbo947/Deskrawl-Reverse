@@ -13,7 +13,8 @@ from PySide6.QtWidgets import QHeaderView
 
 from deskrawl_calc import StatType, stat_name
 
-from ..core.calc_service import ability_names
+from ..core.localization import ability_display_name
+from ..core.skill_service import ability_level_bonuses
 
 # 基础面板里直接映射到 StatType 的输入项
 _BASE_FIELDS = [(StatType.Strength, '力量'), (StatType.Dexterity, '敏捷'),
@@ -89,9 +90,6 @@ class PanelEditor(QWidget):
         box = QGroupBox('技能（仅作参考倍率）')
         form = QFormLayout(box)
         self.skill_combo = QComboBox()
-        self.skill_combo.addItem('（不使用）', '')
-        for name in ability_names(self.gd):
-            self.skill_combo.addItem(name, name)
         self.skill_combo.currentIndexChanged.connect(self._on_skill)
         cfg = self.gd.game_config()
         self.skill_level_spin = QSpinBox()
@@ -102,7 +100,35 @@ class PanelEditor(QWidget):
         form.addRow('技能', self.skill_combo)
         form.addRow('等级', self.skill_level_spin)
         form.addRow('攻击倍率', self.skill_info)
+        self._options_class = object()       # 哨兵：与任何 hero_class 都不同，强制首次构建
+        self.refresh_skill_options()
         return box
+
+    def refresh_skill_options(self):
+        """按当前职业重建技能下拉（中文名），职业变更时由页面刷新链调用。
+
+        数据源 = 该职业 HeroData.Abilities（排除敌人技能；未设职业取全职业并集兜底）。
+        显示用简中名（本地化表），data 保留 _name 供倍率/主力技能查表；职业未变时跳过重建，
+        避免每次全局刷新都打断用户正在进行的下拉选择。
+        """
+        hc = getattr(self.profile, 'hero_class', None)
+        if hc == self._options_class:
+            return
+        self._options_class = hc
+        if hc is not None:
+            names = self.gd.abilities_for_class(hc)
+        else:
+            names = sorted({n for h in self.gd.heroes().values()
+                            for n in self.gd.abilities_for_class(h.get('Class'))})
+        current = self.profile.skill_name
+        self.skill_combo.blockSignals(True)
+        self.skill_combo.clear()
+        self.skill_combo.addItem('（不使用）', '')
+        for name in names:
+            self.skill_combo.addItem(ability_display_name(self.gd, name), name)
+        idx = self.skill_combo.findData(current)
+        self.skill_combo.setCurrentIndex(idx if idx >= 0 else 0)
+        self.skill_combo.blockSignals(False)
 
     # ---------------- 回填 / 事件 ----------------
     def reload(self):
@@ -163,5 +189,9 @@ class PanelEditor(QWidget):
         if not name:
             self.skill_info.setText('（不使用技能；倍率请直接填在武器编辑区）')
             return
-        mult = self.gd.ability_attack_scaling(name, int(self.profile.skill_level))
-        self.skill_info.setText(f'攻击倍率 ≈ {mult:.4f}（参考值；实际计算以武器编辑区的技能倍率为准）')
+        # 有效等级 = 基础等级 + 符文「技能等级+N」（如旋风斩 10+8=18，tooltip 185% 同源）
+        bonus = ability_level_bonuses(self.profile, self.gd)
+        eff = int(self.profile.skill_level) + bonus.get('*', 0) + bonus.get(name, 0)
+        mult = self.gd.ability_attack_scaling(name, eff)
+        extra = f'，有效等级 {eff}' if eff != int(self.profile.skill_level) else ''
+        self.skill_info.setText(f'攻击倍率 ≈ {mult:.4f}（{extra}；参考值，实际以武器编辑区倍率为准）')

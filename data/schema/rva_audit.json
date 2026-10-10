@@ -6,8 +6,8 @@
  },
  "old_dump_ref": "8660446",
  "summary": {
-  "literal": 68,
-  "valid": 153,
+  "literal": 69,
+  "valid": 159,
   "valid_renamed": 0,
   "data_valid": 13,
   "stale_relocated": 0,
@@ -18,8 +18,8 @@
   "unknown": 0,
   "historical": 176,
   "deprecated": 29,
-  "total": 439,
-  "files": 43
+  "total": 446,
+  "files": 45
  },
  "findings": [
   {
@@ -3261,6 +3261,66 @@
    "slot": null
   },
   {
+   "file": "docs/08-常量设计要点与待办.md",
+   "line": 287,
+   "token": "0x52B160",
+   "value": "0x52b160",
+   "annotation": null,
+   "context": "ningDummy : Enemy`（dump.cs `bka(StatType)` RVA `",
+   "status": "valid",
+   "label": "仍有效（方法）",
+   "detail": "TrainingDummy::bka(StatType a) { }) Slot=11",
+   "new_addr": null,
+   "evidence": "",
+   "method": "TrainingDummy::bka",
+   "slot": 11
+  },
+  {
+   "file": "docs/08-常量设计要点与待办.md",
+   "line": 299,
+   "token": "0x64B6D0",
+   "value": "0x64b6d0",
+   "annotation": null,
+   "context": "- `TrainingDpsMeterUI`（dump.cs RVA：`hww()` `",
+   "status": "valid",
+   "label": "仍有效（方法）",
+   "detail": "TrainingDpsMeterUI::hww() { }) Slot=None",
+   "new_addr": null,
+   "evidence": "",
+   "method": "TrainingDpsMeterUI::hww",
+   "slot": null
+  },
+  {
+   "file": "docs/08-常量设计要点与待办.md",
+   "line": 299,
+   "token": "0x64B7D0",
+   "value": "0x64b7d0",
+   "annotation": null,
+   "context": "erUI`（dump.cs RVA：`hww()` `0x64B6D0` / `Awake` `",
+   "status": "valid",
+   "label": "仍有效（方法）",
+   "detail": "TrainingDpsMeterUI::Awake() { }) Slot=None",
+   "new_addr": null,
+   "evidence": "",
+   "method": "TrainingDpsMeterUI::Awake",
+   "slot": null
+  },
+  {
+   "file": "docs/08-常量设计要点与待办.md",
+   "line": 303,
+   "token": "0x52B0B0",
+   "value": "0x52b0b0",
+   "annotation": null,
+   "context": "  `TrainingDummy.bmj`（`",
+   "status": "valid",
+   "label": "仍有效（方法）",
+   "detail": "TrainingDummy::bmj(long a, bool b) { }) Slot=26",
+   "new_addr": null,
+   "evidence": "",
+   "method": "TrainingDummy::bmj",
+   "slot": 26
+  },
+  {
    "file": "docs/09-存档解密与数据汇总报表.md",
    "line": 17,
    "token": "0x7B6670",
@@ -5191,7 +5251,7 @@
   },
   {
    "file": "tools/deskrawl_gui/app.py",
-   "line": 195,
+   "line": 228,
    "token": "0x50E400",
    "value": "0x50e400",
    "annotation": "Player.CalcDamage",
@@ -5206,7 +5266,7 @@
   },
   {
    "file": "tools/deskrawl_gui/core/calc_service.py",
-   "line": 226,
+   "line": 227,
    "token": "0x4FA2B0",
    "value": "0x4fa2b0",
    "annotation": "Player.PanelStat",
@@ -5221,7 +5281,7 @@
   },
   {
    "file": "tools/deskrawl_gui/core/calc_service.py",
-   "line": 237,
+   "line": 238,
    "token": "0x67B470",
    "value": "0x67b470",
    "annotation": "Character.BaseFieldToStat",
@@ -5236,7 +5296,7 @@
   },
   {
    "file": "tools/deskrawl_gui/core/calc_service.py",
-   "line": 237,
+   "line": 238,
    "token": "0x4FA9D0",
    "value": "0x4fa9d0",
    "annotation": "Player.BaseFieldToStat",
@@ -5251,7 +5311,7 @@
   },
   {
    "file": "tools/deskrawl_gui/core/calc_service.py",
-   "line": 266,
+   "line": 267,
    "token": "0x50A860",
    "value": "0x50a860",
    "annotation": "Player.EvaluateCondition",
@@ -5490,7 +5550,7 @@
   },
   {
    "file": "tools/deskrawl_gui/selftest.py",
-   "line": 498,
+   "line": 549,
    "token": "0x50E400",
    "value": "0x50e400",
    "annotation": "Player.CalcDamage",
@@ -5505,7 +5565,7 @@
   },
   {
    "file": "tools/deskrawl_gui/widgets/item_editor.py",
-   "line": 35,
+   "line": 38,
    "token": "0x50E400",
    "value": "0x50e400",
    "annotation": "Player.CalcDamage",
@@ -5547,6 +5607,21 @@
    "evidence": "",
    "method": "Player::bkn",
    "alias": "Player.CalcDamage"
+  },
+  {
+   "file": "tools/deskrawl_gui/widgets/target_editor.py",
+   "line": 15,
+   "token": "0x18052B160",
+   "value": "0x18052b160",
+   "annotation": "TrainingDummy.bka",
+   "context": "# 训练假人预设（2026-10-10 反汇编 TrainingDummy.bka@",
+   "status": "valid",
+   "label": "仍有效（方法）",
+   "detail": "TrainingDummy::bka(StatType a) { }) Slot=11",
+   "new_addr": null,
+   "evidence": "",
+   "method": "TrainingDummy::bka",
+   "slot": 11
   },
   {
    "file": "tools/scripts/chk.py",
@@ -6545,6 +6620,34 @@
    "status": "literal",
    "label": "非地址（白名单/自动规则）",
    "detail": "PE ImageBase 本身（节表换算基准），不是可寻址目标",
+   "new_addr": null,
+   "evidence": ""
+  },
+  {
+   "file": "tools/scripts/probe_dps_meter.py",
+   "line": 25,
+   "token": "0x52B0B0",
+   "value": "0x52b0b0",
+   "annotation": null,
+   "context": "DUMMY_BMJ_RVA =",
+   "status": "valid",
+   "label": "仍有效（方法）",
+   "detail": "TrainingDummy::bmj(long a, bool b) { }) Slot=26",
+   "new_addr": null,
+   "evidence": "",
+   "method": "TrainingDummy::bmj",
+   "slot": 26
+  },
+  {
+   "file": "tools/scripts/probe_dps_meter.py",
+   "line": 34,
+   "token": "0x0410",
+   "value": "0x410",
+   "annotation": "k32.OpenProcess",
+   "context": "    h = k32.OpenProcess(",
+   "status": "literal",
+   "label": "非地址（白名单/自动规则）",
+   "detail": "四位以内的微常量（位掩码/计数/标志），不可能是地址",
    "new_addr": null,
    "evidence": ""
   },

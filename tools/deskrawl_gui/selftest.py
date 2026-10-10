@@ -95,7 +95,7 @@ def _gui_behavior_checks(win) -> bool:
     """在已建好的主窗口上跑一遍关键交互（真实控件 + 真实信号链），headless 可验证。
 
     覆盖任务书里的交互要求：词条下拉用内核全量中文名、面板改动→属性表实时刷新、
-    装配浏览器搜索与加入构建、排序表按数值排序、双击加入构建。
+    装配中心搜索/加入/就地改参数/删除确认、排序表按数值排序、双击加入构建。
     检查完逐个还原，避免污染 demo 构建。
     """
     import copy
@@ -103,6 +103,8 @@ def _gui_behavior_checks(win) -> bool:
     from PySide6.QtCore import Qt
 
     from deskrawl_calc import StatType
+
+    from .widgets import assembly_center as _ac_mod
 
     results = []
 
@@ -166,27 +168,60 @@ def _gui_behavior_checks(win) -> bool:
           '职业主属性下拉写回 profile（力量 → 未设置还原）',
           f'{pc.count()} 个选项；写回={wrote}')
 
-    # 3) 装配浏览器：搜索过滤 + 加入/删除
-    browser = win.assembly_browser
-    listing = browser._lists['gem']
-    browser._searches['gem'].setText('GemAmethyst')
-    hidden = sum(1 for i in range(listing.count()) if listing.item(i).isHidden())
-    check(0 < hidden < listing.count(), '装配浏览器搜索过滤生效',
-          f'{listing.count()} 项中隐藏 {hidden} 项')
-    browser._searches['gem'].setText('')
-    n0 = len(win.profile.assembled)
-    listing.setCurrentRow(0)
-    browser._add_selected('gem')
-    n1 = len(win.profile.assembled)
-    check(n1 == n0 + 1, '装配浏览器「加入构建」生效', f'{n0} → {n1} 项')
-    browser.assembled_list.setCurrentRow(n1 - 1)
-    browser._remove_selected()
-    check(len(win.profile.assembled) == n0, '装配浏览器「删除选中」生效',
-          f'回到 {len(win.profile.assembled)} 项')
+    # 3) 装配中心：搜索过滤 + 加入/删除（删除有确认对话框，测试里短路为「确认」）
+    ac = win.assembly_center
+    saved_confirm = _ac_mod.confirm_delete
+    _ac_mod.confirm_delete = lambda *a, **k: True       # headless 走通删除全路径
+    try:
+        total = ac.model.rowCount()
+        ac.search_edit.setText('GemAmethyst')
+        filtered = ac.proxy.rowCount()
+        check(0 < filtered < total, '装配中心搜索过滤生效',
+              f'{total} 项中剩余 {filtered} 项')
+        ac.search_edit.setText('')
+
+        n0 = len(win.profile.assembled)
+        ac.table.setCurrentIndex(ac.proxy.index(0, 0))
+        ac._add_selected()
+        n1 = len(win.profile.assembled)
+        check(n1 == n0 + 1, '装配中心「加入构建」生效', f'{n0} → {n1} 项')
+
+        # 3b) 已装配就地改参数：宝石改部位（等级恒 1）、非宝石改等级
+        ac.assembled_list.setCurrentRow(n1 - 1)
+        gem_edit_ok = (win.profile.assembled[n1 - 1].kind == 'gem'
+                       and ac.edit_label.text() == '镶嵌部位')
+        ac.edit_slot_combo.setCurrentIndex(0)               # 武器孔 → 护甲
+        ac._apply_assembled_edit()
+        cat_ok = win.profile.assembled[n1 - 1].category == 0
+        check(gem_edit_ok and cat_ok, '已装配宝石就地改部位',
+              f'标签={ac.edit_label.text()}；category → {win.profile.assembled[n1 - 1].category}')
+
+        ri = next(i for i in range(ac.kind_combo.count())
+                  if ac.kind_combo.itemData(i) == 'rune')
+        ac.kind_combo.setCurrentIndex(ri)
+        ac.table.setCurrentIndex(ac.proxy.index(0, 0))
+        ac._add_selected()
+        n2 = len(win.profile.assembled)
+        ac.assembled_list.setCurrentRow(n2 - 1)
+        rune_edit_ok = (win.profile.assembled[n2 - 1].kind == 'rune'
+                        and ac.edit_label.text() == '符文等级')
+        ac.edit_level_spin.setValue(7)
+        ac._apply_assembled_edit()
+        lvl_ok = win.profile.assembled[n2 - 1].level == 7
+        check(rune_edit_ok and lvl_ok, '已装配符文就地改等级',
+              f'标签={ac.edit_label.text()}；level → {win.profile.assembled[n2 - 1].level}')
+
+        while len(win.profile.assembled) > n0:
+            ac.assembled_list.setCurrentRow(len(win.profile.assembled) - 1)
+            ac._remove_selected()
+        check(len(win.profile.assembled) == n0, '装配中心「删除选中」（含确认）生效',
+              f'回到 {len(win.profile.assembled)} 项')
+    finally:
+        _ac_mod.confirm_delete = saved_confirm
 
     # 4) 排序表：四列均可排序，且 ΔDPS 按数值而非字符串排
-    table = win.candidate_rank_view.table
-    model = table.model()
+    table = ac.table
+    model = table.model()       # QSortFilterProxyModel（排序键 UserRole 经由代理透传）
     head_flips = []
     for col in (0, 2, 3, 4):
         table.sortByColumn(col, Qt.DescendingOrder)
@@ -207,11 +242,11 @@ def _gui_behavior_checks(win) -> bool:
 
     # 5) 排序表双击 → 加入构建
     n0 = len(win.profile.assembled)
-    table.doubleClicked.emit(win.candidate_rank_view.proxy.index(0, 0))
+    table.doubleClicked.emit(ac.proxy.index(0, 0))
     n1 = len(win.profile.assembled)
     check(n1 == n0 + 1, '候选排序表双击加入构建', f'{n0} → {n1} 项')
-    win.assembly_browser.assembled_list.setCurrentRow(n1 - 1)
-    win.assembly_browser._remove_selected()
+    ac.assembled_list.setCurrentRow(n1 - 1)
+    ac._remove_selected()
 
     return all(results)
 
@@ -289,6 +324,22 @@ def _engine_ok(rep: Report):
                    _rel_pct(svc.delta_pct, ANCHORS['delta_pct'])]
     rep.add(max(anchor_errs) < TOL_PCT, '锚点（服务值 ↔ 197.9/226.3/+14.32%）',
             f'最大相对误差 {max(anchor_errs):.4f}%')
+    _dps_meter_formula_check(rep)
+
+
+# DPS 计显示值锚点（2026-10-10 活体实测 PID 12620：与游戏画面「23M」同源，随内存链冻结）
+_METER_ANCHOR = {'total': 28114469480.0, 'start_time': 35484.5314386267,
+                 'last_tick': 36710.330834729306, 'dps': 22934519.0}
+
+
+def _dps_meter_formula_check(rep: Report):
+    """DPS 计复算公式（hww() 同式）对照活体实测锚点：纯函数，headless 可验。"""
+    from .core.dps_meter import meter_dps
+
+    a = _METER_ANCHOR
+    got = meter_dps(a['total'], a['start_time'], a['last_tick'])
+    rep.add(_rel_pct(got, a['dps']) < TOL_PCT, 'DPS 计复算公式（hww 同式 ↔ 活体 23M 锚点）',
+            f'{got:.0f}（期望 {a["dps"]:.0f}，误差 {_rel_pct(got, a["dps"]):.4f}%）')
 
 
 def _set_cand_affix(profile, stat, value):
@@ -475,7 +526,7 @@ def _snapshot_checks(rep: Report):
     from PySide6.QtCore import Qt
     from PySide6.QtWidgets import QApplication
 
-    from .widgets.candidate_rank_view import CandidateRankView
+    from .widgets.assembly_center import AssemblyCenter
     from .widgets.equipment_editor import EquipmentEditor
 
     # 本函数的 UI 检查要先于 α 段构造控件，QApplication 必须最先就位（QWidget 硬前置）
@@ -484,11 +535,11 @@ def _snapshot_checks(rep: Report):
     prof = CharacterProfile.from_snapshot(beta, gd)
     sheet = prof.to_sheet(gd)
     sheet.add_mods(prof.weapon_current.to_weapon().modifiers)
-    # 主属性键位按「面板口径」对齐（bjr 伤害公式读 bjd 复合值，见 PROGRESS 主属性伤害加成）：
-    # 期望 = 面板行 final（451 = nsq 377 + nsu 50 + nte 14 + BasePrimaryStat 10），其余键位 ≡ nsq
-    prow = {r[0]: r for r in calc_service.build_panel(beta)['rows']}[int(prof.primary_stat)]
-    expect = dict(nsq)
-    expect[int(prof.primary_stat)] = float(prow[5])
+    # 期望 = 面板行 final（基座已改用 build_panel 面板口径：nsq 只是平坦层，用它比对会让
+    # 暴伤/暴击率/物理% 等少读，见 profile._panel_finals 的实测记录）
+    prow = {int(r[0]): float(r[5]) for r in calc_service.build_panel(beta)['rows']
+            if r[5] is not None}
+    expect = {st: prow.get(st, v) for st, v in nsq.items()}
     bad = [st for st, v in sorted(expect.items()) if sheet.final(st) != v]
     rep.add(not bad, 'β 夹具 装配链 Final ≡ 口径期望（主属性=面板 451，其余逐键 ≡ nsq）',
             f'{len(expect)} 键逐位比对，失配 {len(bad)}；主属性 {stat_name(prof.primary_stat)} '
@@ -576,7 +627,7 @@ def _snapshot_checks(rep: Report):
     rows = calc_service.rank_candidates(prof_a, gd, 'gem', level=1, category=2)
     base_dps = calc_service.baseline_dps(prof_a, gd)
 
-    view = CandidateRankView(prof_a, gd)
+    view = AssemblyCenter(prof_a, gd)
     ti = next(i for i in range(view.kind_combo.count())
               if view.kind_combo.itemData(i) == 'talent')
     view.kind_combo.setCurrentIndex(ti)     # 天赋池含百分比加算词条，用于验证「近似」标注
@@ -627,12 +678,21 @@ def _skill_checks(rep: Report, prof, gd):
 
     独立路径：手写 (BaseDamage + scaling×(F20+F3))×主属性因子，须与 DamageModel.attack_damage() 逐位一致。
     """
+    import copy
+
     from deskrawl_calc import DamageModel, StatType
 
     from .core import calc_service, skill_service
 
     res = calc_service.compare(prof, gd)
     rows = skill_service.skill_rows(prof, gd, res.current_sheet, res.candidate_sheet, res.target)
+    # 主力技能选择：显式指定参考技能 → 精确命中该行（循环系数/候选预测的基线口径）
+    prof_m = copy.deepcopy(prof)
+    prof_m.skill_name = rows[0].name
+    picked = skill_service.pick_main_row(rows, prof_m)
+    top = max(rows, key=lambda r: r.current_dps)
+    pick_ok = picked is not None and picked.name == rows[0].name \
+        and skill_service.pick_main_row(rows, prof).name == top.name
     skills = gd.damage_skills(prof.hero_class, prof.skill_level)
     ok = (prof.hero_class == 1 and len(rows) == len(skills) == 10
           and all(r.current_dps > 0 for r in rows))
@@ -646,11 +706,24 @@ def _skill_checks(rep: Report, prof, gd):
     ps_fac = 1.0 + sheet.final(int(prof.primary_stat)) / 100.0
     manual = (w.base_damage + e['scaling'] * (f20 + f3)) * ps_fac
     eng_ok = abs(model.attack_damage() - manual) < 1e-9
-    rep.add(ok and eng_ok,
+    # 候选侧用候选武器：把候选白字基础伤害上调，主力行候选列必抬、当前列不动
+    # （旧版两侧共用 weapon_current，候选换武器的白字/攻速会被漏掉——「预测不动」的根因之一）
+    prof_w = copy.deepcopy(prof)
+    prof_w.weapon_candidate.base_damage = float(prof_w.weapon_candidate.base_damage) + 100.0
+    res_w = calc_service.compare(prof_w, gd)
+    rows_w = skill_service.skill_rows(prof_w, gd, res_w.current_sheet, res_w.candidate_sheet,
+                                      res_w.target)
+    ww_base = next(r for r in rows if r.name == 'WarriorHeavyAttack3')
+    ww_up = next(r for r in rows_w if r.name == 'WarriorHeavyAttack3')
+    cand_weapon_ok = (ww_up.candidate_dps > ww_base.candidate_dps
+                      and ww_up.current_dps == ww_base.current_dps)
+    rep.add(ok and eng_ok and pick_ok and cand_weapon_ok,
             f'技能秒伤对比（{len(rows)} 项，Barbarian；skill_scaling 合成口径）',
             f'行数={len(rows)}（期望 {len(skills)}）；示例 {rows[0].ability_name} '
             f'{rows[0].current_dps:.1f} 秒伤；Whirlwind 倍率={e["scaling"]:.3f}，'
-            f'攻击伤害 引擎={model.attack_damage():.4f} vs 手算={manual:.4f}，一致={eng_ok}')
+            f'攻击伤害 引擎={model.attack_damage():.4f} vs 手算={manual:.4f}，一致={eng_ok}；'
+            f'主力技能选择={pick_ok}；候选武器参与（白字+100→候选列 {ww_base.candidate_dps:.0f}'
+            f'→{ww_up.candidate_dps:.0f}，当前列不变）={cand_weapon_ok}')
 
 
 def _skill_freq_checks(rep: Report, prof, gd):

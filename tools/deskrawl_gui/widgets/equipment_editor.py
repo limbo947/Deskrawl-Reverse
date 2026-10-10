@@ -8,11 +8,13 @@ WeaponDraft（多出基础伤害/攻速/技能倍率），其余槽用 ItemDraft
 """
 import copy
 
-from PySide6.QtWidgets import (QComboBox, QHBoxLayout, QLabel, QSpinBox, QVBoxLayout, QWidget)
+from PySide6.QtCore import Signal
+from PySide6.QtWidgets import (QComboBox, QHBoxLayout, QLabel, QVBoxLayout, QWidget)
 
 from ..core import calc_service, skill_service
 from ..core.item_draft import ItemDraft
 from ..core.profile import COMPARE_SLOTS, SLOT_EQUIP_TYPE, SLOT_LABELS
+from .common import ModeBanner
 from .compare_view import CompareView
 from .item_editor import ItemEditor
 
@@ -21,10 +23,8 @@ _HERO_CLASSES = [(None, '（未设置）'), (1, '野蛮人'), (2, '法师'), (4,
 
 
 class EquipmentEditor(QWidget):
-    # α 聚合导入没有逐件装备可分解：当前槽没有真实数据，对比语义降级为
-    # 「基线（=游戏面板）vs 基线+候选词条」，并把百分比类增量是近似这一点显式说明。
-    ALPHA_NOTICE = ('α 聚合模式（快照无逐件装备）：当前装备不可分解，对比降级为'
-                    '「基线 vs 基线+候选词条」；候选的百分比类词条增量为近似值。')
+    changed = Signal()          # 职业等跨页参数变更（页面层转发给全局刷新链）
+    resultsChanged = Signal()   # 本页结果已重算（词条/候选/槽位变化）：页面层据此同步实测框期望
 
     def __init__(self, profile, gd, parent=None):
         super().__init__(parent)
@@ -40,21 +40,15 @@ class EquipmentEditor(QWidget):
         self.bag_combo = QComboBox()
         self.bag_combo.currentIndexChanged.connect(self._on_bag_selected)
 
-        # 技能区参数：职业（决定列出哪些伤害技能）+ 统一技能等级（快照暂无逐技能等级）。
+        # 技能区参数：职业决定列出哪些伤害技能；技能等级唯一入口在角色页（消除双入口互同步）
         self.class_combo = QComboBox()
         for value, label in _HERO_CLASSES:
             self.class_combo.addItem(label, value)
         self.class_combo.currentIndexChanged.connect(self._on_class)
-        max_lv = max(1, int(self.gd.game_config().get('MaxAbilityLevel') or 20))
-        self.skill_level_spin = QSpinBox()
-        self.skill_level_spin.setRange(1, max_lv)
-        self.skill_level_spin.valueChanged.connect(self._on_skill_level)
 
         self.compare_view = CompareView()
 
-        self.alpha_banner = QLabel(self.ALPHA_NOTICE)
-        self.alpha_banner.setWordWrap(True)
-        self.alpha_banner.setVisible(False)
+        self.alpha_banner = ModeBanner()
 
         self._cur_holder = QWidget()
         self._cur_lay = QVBoxLayout(self._cur_holder)
@@ -64,25 +58,23 @@ class EquipmentEditor(QWidget):
         self._cand_lay.setContentsMargins(0, 0, 0, 0)
         self.current_editor = None
         self.candidate_editor = None
+        self.last_skill_rows = []          # 最近一次 refresh 的技能秒伤行（页面层复用）
 
         cand_side = QWidget()
         cand_lay = QVBoxLayout(cand_side)
         cand_lay.setContentsMargins(0, 0, 0, 0)
-        bag_bar = QHBoxLayout()
-        bag_bar.addWidget(QLabel('从背包/仓库导入:'))
-        bag_bar.addWidget(self.bag_combo, 1)
-        cand_lay.addLayout(bag_bar)
         cand_lay.addWidget(self._cand_holder, 1)
 
         slot_bar = QHBoxLayout()
         slot_bar.addWidget(QLabel('装备槽'))
         slot_bar.addWidget(self.slot_combo)
         slot_bar.addSpacing(12)
-        slot_bar.addWidget(QLabel('职业（技能表）'))
+        slot_bar.addWidget(QLabel('职业（技能秒伤表）'))
         slot_bar.addWidget(self.class_combo)
-        slot_bar.addWidget(QLabel('技能等级'))
-        slot_bar.addWidget(self.skill_level_spin)
-        slot_bar.addStretch(1)
+        slot_bar.addSpacing(12)
+        # 背包导入上移到工具条：候选列与当前列从此行数对齐（旧布局候选列多一行，双侧错位）
+        slot_bar.addWidget(QLabel('从背包/仓库导入:'))
+        slot_bar.addWidget(self.bag_combo, 1)
 
         top = QHBoxLayout()
         top.addWidget(self._cur_holder, 1)
@@ -137,10 +129,8 @@ class EquipmentEditor(QWidget):
     def _on_class(self, *_):
         value = self.class_combo.currentData()
         self.profile.hero_class = None if value is None else int(value)
-        self.refresh()
-
-    def _on_skill_level(self, value):
-        self.profile.skill_level = int(value)
+        # 职业影响角色页技能下拉与技能表：发 changed 走全局刷新链（角色页选项随之重建）
+        self.changed.emit()
         self.refresh()
 
     # ---------------- 候选下拉 ----------------
@@ -185,8 +175,7 @@ class EquipmentEditor(QWidget):
     # ---------------- 刷新 ----------------
     def _apply_mode(self):
         """按导入模式切换降级态；手工构建/β 导入时恢复完整对比（幂等，可反复调用）。"""
-        alpha = getattr(self.profile, 'import_mode', '') == 'alpha'
-        self.alpha_banner.setVisible(alpha)
+        alpha = self.alpha_banner.update_mode(self.profile)
         if self.current_editor is not None:
             self.current_editor.setEnabled(not alpha)
 
@@ -196,9 +185,13 @@ class EquipmentEditor(QWidget):
         result = calc_service.compare(self.profile, self.gd)
         rows = skill_service.skill_rows(self.profile, self.gd, result.current_sheet,
                                         result.candidate_sheet, result.target,
-                                        level=int(self.skill_level_spin.value()))
+                                        level=int(self.profile.skill_level))
+        # 留存技能行供页面层（循环系数/候选预测）复用，避免同帧重复计算
+        self.last_skill_rows = rows
         self.compare_view.set_result(result)
         self.compare_view.set_skills(rows)
+        # 词条/候选改动只走本页刷新，页面层靠这条信号重喂实测框期望（否则预测停留在旧基线）
+        self.resultsChanged.emit()
 
     def reload(self):
         """从 profile 回填输入（换构建/导入时用），随后重算。"""
@@ -210,9 +203,6 @@ class EquipmentEditor(QWidget):
         ci = self.class_combo.findData(self.profile.hero_class)
         self.class_combo.setCurrentIndex(ci if ci >= 0 else 0)
         self.class_combo.blockSignals(False)
-        self.skill_level_spin.blockSignals(True)
-        self.skill_level_spin.setValue(max(1, int(self.profile.skill_level)))
-        self.skill_level_spin.blockSignals(False)
         self._build_editors()
         self._reload_bag_combo()
         self.refresh()

@@ -12,8 +12,11 @@ from PySide6.QtWidgets import (QAbstractItemView, QComboBox, QDoubleSpinBox, QFo
 
 from deskrawl_calc import StatType, stat_name
 
-_MOD_TYPES = [(0, '加法'), (1, '百分比加算'), (2, '连乘')]
-_MOD_LABELS = dict(_MOD_TYPES)
+from ..core.calc_service import MOD_TYPE_CN
+
+# 类型中文名单一来源在 core（与候选摘要 describe_mods 共用），此处只做视图所需的列表化
+_MOD_TYPES = list(MOD_TYPE_CN.items())
+_MOD_LABELS = dict(MOD_TYPE_CN)
 
 # 装备词条的入池方式在游戏里固定为「加法」：ItemData 固定属性 43 条、宝石/符文/套装加成
 # 255 条实测 100% 为 Type 0（仅 3 条天赋在护甲/魔抗/荆棘上用百分比加算，且不来自装备）。
@@ -160,11 +163,11 @@ class ItemEditor(QGroupBox):
         form = QFormLayout()
         self.name_edit = QLineEdit()
         self.name_edit.textChanged.connect(self._on_name)
+        form.addRow('名称', self.name_edit)
         if self.weapon:
             self.damage_spin = self._spin(form, '基础伤害', 0.0, 1e6, 2, 'base_damage')
             self.speed_spin = self._spin(form, '攻速(次/秒)', 0.0, 20.0, 3, 'base_speed')
             self.skill_spin = self._spin(form, '技能倍率', 0.0, 100.0, 3, 'skill_multiplier')
-        form.addRow('名称', self.name_edit)
 
         self.affixes = AffixTable()
         self.affixes.changed.connect(self._on_affixes)

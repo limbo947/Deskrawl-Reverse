@@ -51,26 +51,27 @@ HEAD = f'''# 存档解密与实测数据汇总报表
 存档写入调用链（`GameAssembly.dll`）：
 
 ```
-SaveSystem.eed(SaveContainer)          @ RVA 0x7A4360
-   ├─ UnityEngine.JsonUtility.ToJson   @ RVA 0x1829E3CF0
-   ├─ SaveSystem.egk(string)           @ RVA 0x7B8B90   ; JSON 压缩（去空白）
-   └─ 0x7E1980 (异步写盘)
-          ├─ iw/iu.esk()               @ RVA 0x7E2190
-          └─ it.esg(string) -> byte[]  @ RVA 0x7E0430   ; ★ 加密封装
+SaveSystem.SerializeContainer(SaveContainer)  @ RVA 0x7B6670
+   ├─ UnityEngine.JsonUtility.ToJson   @ RVA 0x1829F5FB0
+   ├─ SaveSystem.CompactJson(string)   @ RVA 0x7CAEE0   ; JSON 压缩（去空白）
+   └─ SaveWriter.WriteAsync @ RVA 0x4DC670 (异步写盘)
+          ├─ je.jc.evd()               @ RVA 0x4DCE80
+          └─ SaveCrypto.Encrypt(string) -> byte[]  @ RVA 0x7F6640   ; ★ 加密封装
 ```
 
-真正的编解码类是混淆后的 **`it`**（TypeDefIndex 6173，含静态字段 `nns`/`nnt` = magic 字节数组）：
+真正的编解码类在补丁前叫 **`it`**（TypeDefIndex 6173，含静态字段 `nns`/`nnt` = magic 字节数组），
+补丁后按「类形状匹配」重锚定为 **`jb`**；语义名与当期地址见 `data/schema/aliases.json`：
 
 | 方法 | RVA | 作用 |
 |---|---|---|
-| `it.esb(string)` | `0x7E0040` | `SHA256(UTF8(s))` → 32 字节 |
-| `it.esc()` | `0x7E0240` | 文件密钥 = `esb("desktop-diablo-save-v1-CHANGE-ME")` |
-| `it.esd()` | `0x7E02A0` | MAC 密钥 = `esb("desktop-diablo-save-v1-CHANGE-ME|mac")` |
-| `it.esg(string)` | `0x7E0430` | 加密：JSON 字符串 → 文件字节 |
-| `it.esh(byte[], out string, out bool)` | `0x7E0EC0` | 解密：文件字节 → JSON |
-| `it.ese(byte[])` | `0x7E0300` | 版本判定（前缀是否 `DDS2`） |
-| `it.esf(byte[], byte[])` | `0x7E03C0` | 定长比较 |
-| `it..cctor()` | `0x7E17E0` | 初始化 magic：`ASCII("DDS1")` / `ASCII("DDS2")` |
+| `SaveCrypto.Sha256(string)` | `0x7F6250` | `SHA256(UTF8(s))` → 32 字节 |
+| `SaveCrypto.FileKey()` | `0x7F6450` | 文件密钥 = `Sha256("desktop-diablo-save-v1-CHANGE-ME")` |
+| `SaveCrypto.MacKey()` | `0x7F64B0` | MAC 密钥 = `Sha256("desktop-diablo-save-v1-CHANGE-ME|mac")` |
+| `SaveCrypto.Encrypt(string)` | `0x7F6640` | 加密：JSON 字符串 → 文件字节 |
+| `SaveCrypto.Decrypt(byte[], out string, out bool)` | `0x7F70D0` | 解密：文件字节 → JSON |
+| `SaveCrypto.IsDds2(byte[])` | `0x7F6510` | 版本判定（前缀是否 `DDS2`） |
+| `SaveCrypto.FixedTimeEquals(byte[], byte[])` | `0x7F65D0` | 定长比较 |
+| `SaveCrypto.StaticInit()` | `0x7F79F0` | 初始化 magic：`ASCII("DDS1")` / `ASCII("DDS2")` |
 
 > 线索来源：`global-metadata.dat` 字符串 `SaveFileWriter: `、`DDS1`、`DDS2`、
 > `desktop-diablo-save-v1-CHANGE-ME(|mac)`，经 metadata-usage 交叉定位到 `iw`/`it` 类。✅
@@ -123,9 +124,10 @@ MacKey = SHA256( UTF8("desktop-diablo-save-v1-CHANGE-ME|mac") )    # HMAC 独立
 
 ## B. 实测数据汇总报表
 
-> 数据源：`C:\\Users\\cc\\tools\\so_dump\\*.json`（21 文件 / 1333 条，字节级精确解码）。
-> 数值单位与枚举含义详见第 02、07 篇；带 `⚠️` 者为 `ObscuredLong` 字段未可靠解码。
-> 表中 `n=` 为有效样本数（已剔除解码噪声）。
+> 数据源：`data/so_dump/*.json`（25 文件：21 个主数据 1333 条 + 4 个特效/系数资产 291 条，字节级精确解码）。
+> 数值单位与枚举含义详见第 02、07 篇；本报表由 `tools/scripts/build_report.py` 生成到 `report_data.md`，
+> 2026-10-10 已随 `decode.py` 的 ACTk 公式修正重生成（旧版本节含错值，勿引用历史副本）。
+> 表中 `n=` 为有效样本数；过滤阈值（剔除反常量与 1e18 量级）是防御性护栏，用于捕获解码回归。
 
 '''
 

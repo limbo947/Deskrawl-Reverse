@@ -187,6 +187,79 @@ class GameData:
         return sum(leveled_value(e['AttackScalingBase'], e['AttackScalingPerLevel'], level) for e in effs)
 
     # ------------------------------------------------------------------ #
+    # 英雄职业 → 伤害技能清单（HeroData.Abilities 用 pathID 引用 AbilityData）
+    # ------------------------------------------------------------------ #
+    def heroes(self) -> Dict[str, dict]:
+        return self._index(self._load('HeroData.json'))
+
+    def hero_for_class(self, hero_class) -> Optional[dict]:
+        """按 HeroData.Class 取职业记录（Class 唯一：Barbarian=1/Hunter=4/Sorcerer=2/Monk=8）。"""
+        if hero_class is None:
+            return None
+        for h in self._load('HeroData.json'):
+            if int(h.get('Class', -1)) == int(hero_class):
+                return h
+        return None
+
+    def abilities_for_class(self, hero_class) -> List[str]:
+        """该职业的 AbilityData._name 列表（HeroData.Abilities 里的 pathID → _name）。"""
+        h = self.hero_for_class(hero_class)
+        if not h:
+            return []
+        by_pid = {int(r['_pathid']): r['_name'] for r in self._load('AbilityData.json')
+                  if r.get('_pathid') is not None}
+        return [by_pid[int(a['pathID'])] for a in (h.get('Abilities') or [])
+                if int(a.get('pathID', 0)) in by_pid]
+
+    def _base_strikes(self, rec: dict) -> int:
+        """每次施放的基础命中次数：取 StaggeredStrikesEffect.TargetCount（错峰打击，
+        AllowRepeatWhenNoOtherTargets=True 时单目标会重复命中），无该效果则为 1。
+
+        实测 Rending Onslaught = 3（屠夫韵律「额外劈砍」类天赋在此之上 +N 次）。
+        """
+        for e in (rec.get('_managedRefs') or {}).get('__items__', []):
+            if e.get('__type__') == 'StaggeredStrikesEffect':
+                n = unwrap(e.get('TargetCount'))
+                if n:
+                    return max(1, int(n))
+        return 1
+
+    def damage_skills(self, hero_class, level: int = 1) -> List[dict]:
+        """该职业的全部伤害技能（含 DamageEffect）逐段倍率/伤害类型/冷却/基础命中次数。
+
+        多段技能（多个 DamageEffect）逐段返回，供上层按各自 DamageType 分别入乘区。
+        冷却字段多数技能的 Obscured 为默认 0（dump 中 hash=723851361、值≈denormal），
+        上层按「≈0 视为无冷却，回退攻速」处理（见 skill_service）。
+        """
+        out = []
+        index = self._index(self._load('AbilityData.json'))
+        for name in self.abilities_for_class(hero_class):
+            rec = index.get(name)
+            if not rec:
+                continue
+            effs = self.ability_damage_effects(name)
+            if not effs:
+                continue
+            cd = rec.get('Cooldown') or {}
+            mc = rec.get('ManaCost') or {}
+            out.append({
+                'name': name, 'ability_name': str(rec.get('AbilityName') or name),
+                'level_req': int(rec.get('LevelRequirement') or 0),
+                'mana_cost': leveled_value(mc.get('Base'), mc.get('PerLevel'), level),
+                'tags': [int(t) for t in (rec.get('Tags') or [])],
+                'strikes': self._base_strikes(rec),
+                'effects': [{'damage_type': int(e['DamageType']),
+                             'scaling': leveled_value(e['AttackScalingBase'],
+                                                      e['AttackScalingPerLevel'], level),
+                             'base_damage': unwrap(e.get('BaseDamage')) or 0.0,
+                             'can_crit': bool(e.get('CanCrit'))} for e in effs],
+                'cooldown': leveled_value(cd.get('Base'), cd.get('PerLevel'), level),
+                'channel_duration': unwrap(rec.get('ChannelDuration')) or 0.0,
+                'tick_rate': unwrap(rec.get('ChannelTickRate')) or 0.0,
+            })
+        return out
+
+    # ------------------------------------------------------------------ #
     # 传奇/天赋/生活技能 特效（SO 资产，已解码）
     # ------------------------------------------------------------------ #
     def equipment_effects(self) -> List[dict]:

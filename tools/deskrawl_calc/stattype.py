@@ -103,7 +103,7 @@ class DamageType(IntEnum):
     Arcane = 5
 
 
-# 硬编码分组表（ItemizationConfig..cctor @ 0x6F6360）
+# 硬编码分组表（ItemizationConfig.StaticInit @ 0x706A50，补丁前 ..cctor @ 0x6F6360）
 CORE = [StatType.Strength, StatType.Dexterity, StatType.Intelligence]
 ALL_ELEMENTS = [StatType.DamagePhysical, StatType.DamageFire, StatType.DamageCold,
                 StatType.DamageLightning, StatType.DamagePoison, StatType.DamageArcane]
@@ -112,7 +112,7 @@ CONDITIONAL_DAMAGE = [StatType.DamageVsHealthy, StatType.DamageVsInjured, StatTy
                       StatType.DamageVsBleeding, StatType.DamageVsPoisoned, StatType.DamageVsDistant,
                       StatType.DamageVsBurned]
 
-# DamageType → StatType（跳转表 @ 0x681368，与 ALL_ELEMENTS 一致）
+# DamageType → StatType（跳转表在 Character.ElementDamageMultiplier@0x67D010 内，与 ALL_ELEMENTS 一致）
 DAMAGE_TYPE_TO_STAT = {
     DamageType.Physical: StatType.DamagePhysical,
     DamageType.Fire: StatType.DamageFire,
@@ -122,14 +122,14 @@ DAMAGE_TYPE_TO_STAT = {
     DamageType.Arcane: StatType.DamageArcane,
 }
 
-# 封顶 0.85 的 4 项（0x4A9C30，掩码 0x402010 + 特判 37）
+# 封顶 0.85 的 4 项（StatCap.Clamp@0x4A91C0，掩码 0x402010 + 特判 37）
 CAPPED_085 = {StatType.CritChance, StatType.CooldownReduction, StatType.Dodge, StatType.ManaCostReduction}
 # clamp[0,1] 的减伤项
 CLAMP_01 = {StatType.DamageReduction, StatType.PoisonDamageReduction, StatType.PhysicalDamageReduction,
             StatType.FireDamageReduction, StatType.ColdDamageReduction, StatType.LightningDamageReduction,
             StatType.ArcaneDamageReduction}
 
-# 元素减伤 StatType 按伤害类型（bku 跳转表 @ 0x682384）
+# 元素减伤 StatType 按伤害类型（跳转表在 Character.ApplyDamage@0x67E320 内）
 ELEM_REDUCTION_BY_DAMAGE = {
     DamageType.Physical: StatType.PhysicalDamageReduction,
     DamageType.Fire: StatType.FireDamageReduction,

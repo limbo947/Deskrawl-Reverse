@@ -22,6 +22,8 @@ def val(x):
     return None
 
 def num(vals):
+    # 过滤阈值是防御性护栏：2026-10-10 前 decode.py 的 ACTk 公式写错时，
+    # 会把 0 解成 1e-38 反常量、把整数解成 1e18 量级，这里兜底剔除以免再次污染报表。
     out = []
     for v in vals:
         if not isinstance(v, (int, float)):
@@ -29,16 +31,14 @@ def num(vals):
         if isinstance(v, float) and v != v:  # NaN
             continue
         a = abs(v)
-        if a > 1e9:            # ObscuredLong 解码失败产生的天文数字
-            continue
-        if 0 < a < 1e-6:       # 反规格化浮点（解码失败）
+        if a > 1e9 or (0 < a < 1e-6):
             continue
         out.append(v)
     return out
 
 def stat(vals):
     vals = num(vals)
-    if not vals: return '⚠️ 不可靠（ObscuredLong 未可靠解码）'
+    if not vals: return '—'
     med = st.median(vals)
     return f'{min(vals):g} ~ {max(vals):g}（中位 {med:g}, n={len(vals)}）'
 
@@ -75,13 +75,24 @@ USE = {
  'RecipeData':'合成配方',
  'FishingMapData':'钓鱼点',
  'TownData':'城镇',
+ # 2026-10-10 新增的 4 个特效/系数资产文件（非「SO 实例」口径，见 docs/09 §B 说明）
+ 'AffixRollTable':'装备词条 Roll 系数表',
+ 'EquipmentEffects':'装备特效定义（按稀有度索引）',
+ 'LifeSkillEffects':'生活技能特效',
+ 'TalentEffects':'天赋特效',
 }
-tot = 0
+tot = 0; main_tot = 0; n_aux = 0
+AUX = {'AffixRollTable', 'EquipmentEffects', 'LifeSkillEffects', 'TalentEffects'}
 for f in files:
     b = os.path.basename(f); n = len(json.load(open(f, encoding='utf-8')))
     tot += n
+    if b[:-5] in AUX: n_aux += 1
+    else: main_tot += n
     w(f'| `{b}` | {n} | {USE.get(b[:-5], "")} |')
-w(f'| **合计** | **{tot}** | 21 个文件 |')
+w(f'| **合计** | **{tot}** | {len(files)} 个文件（{len(files)-n_aux} 个主数据 + {n_aux} 个特效/系数资产） |')
+w()
+w(f'> 第 07 篇引用的「1333 条 SO 实例」指 {len(files)-n_aux} 个主数据文件（实测 {main_tot} 条）；'
+  f'另有 {n_aux} 个特效/系数资产文件（{tot - main_tot} 条）不计入该口径。')
 w()
 
 # ---------- item-like ----------
@@ -271,8 +282,9 @@ w()
 # ---------- enemies ----------
 en = load('Enemy.json')
 w(f'## 十五、敌人 Enemy（{len(en)} 条）\n')
-w('- BaseMaxHealth：⚠️ 该字段为 ObscuredLong，本次解码不可靠（参考 07 篇地图/遭遇的预烘焙值）')
-w('- BaseDamage：⚠️ 同上（ObscuredLong 解码不可靠）')
+# ObscuredLong 的取值公式已于 2026-10-10 修正（(hidden-key) XOR key），故这里直接给值，不再打 ⚠️
+w('- BaseMaxHealth：' + stat([val(x.get('BaseMaxHealth')) for x in en]))
+w('- BaseDamage：' + stat([val(x.get('BaseDamage')) for x in en]))
 w('- BaseMoveSpeed：' + stat([val(x.get('BaseMoveSpeed')) for x in en]))
 w('- 暴击率 BaseCritChance：' + (stat([val(x.get('BaseCritChance')) for x in en]) or '—'))
 w('- 闪避 BaseDodgeChance：' + (stat([val(x.get('BaseDodgeChance')) for x in en]) or '—'))

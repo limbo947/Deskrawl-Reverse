@@ -90,21 +90,43 @@ class Decoder:
         self.file = None
 
 
+def _shuffle_b4(x):
+    """ACTkByte4.Shuffle：交换第 1、2 字节（0 基）——ObscuredFloat 的隐藏值用这个置换存放。"""
+    b1, b2 = (x >> 8) & 0xFF, (x >> 16) & 0xFF
+    return (x & 0xFF0000FF) | (b1 << 16) | (b2 << 8)
+
+
+def _f32(u):
+    return struct.unpack('<f', struct.pack('<I', u & 0xFFFFFFFF))[0]
+
+
 def decode_obscured(t, r):
-    """ACTk Obscured* : [hash:i32][cipher...][raw tail]. Value = cipher XOR key."""
+    """ACTk Obscured* : [hash:i32][cipher...][raw tail]。
+
+    取值公式**按类型分家**，不能统一成「cipher XOR key」：
+      · 整型（Int/Long）= `(hidden − key) XOR key` —— 写入侧是 `key + (value XOR key)`；
+      · 浮点（Float）= `bswap12(hidden) XOR key`。
+    依据（三重独立一致）：本轮反汇编新构建实测 `0x180451340 = sub rcx,rdx; xor rcx,rdx`（解密）、
+    `0x180451330 = xor rcx,rdx; lea rax,[rdx+rcx]`（加密）；`memory_reader.py`/`mem_probe.py` 的
+    运行时读取实现同一公式；改正后 `Enemy.json` 的 HP/DMG/等级立刻落在合理量级
+    （旧公式给出 ±9e18 的荒谬值，是 docs/09 长期挂 ⚠️ 的根因）。
+    """
     size = OBSC_SIZES[t]
     start = r.o
     h = r.i32()
     if t == 'ObscuredLong':
         a = r.i64(); b = r.i64(); tail = r.raw(max(0, size - 20))
         return {'__type__': t, 'hash': h, 'hiddenValue': a, 'cryptoKey': b,
-                'value': a ^ b, '__tail__': tail.hex()}
+                'value': ((a - b) & 0xFFFFFFFFFFFFFFFF) ^ b, '__tail__': tail.hex()}
     a = r.i32(); b = r.i32(); tail = r.raw(max(0, size - 12))
     if t == 'ObscuredFloat':
-        x = struct.unpack('<I', struct.pack('<i', a ^ b))[0]
-        val = struct.unpack('<f', struct.pack('<I', x))[0]
+        # ACTk 对 4 字节浮点先做 ACTkByte4.Shuffle（交换字节 1↔2）再与本字段密钥异或；
+        # 漏掉这步会得到「看起来像小数」的伪值（符文 Base 11.35 而非 20），且 0 值会解成 1e-38 反常量。
+        val = _f32(_shuffle_b4(a & 0xFFFFFFFF) ^ (b & 0xFFFFFFFF))
     else:
-        val = a ^ b
+        # 有符号 32 位回报：游戏里确有负值字段，掩码后要回绕成负数才对得上
+        u = ((a - b) & 0xFFFFFFFF) ^ b
+        val = u - (1 << 32) if u >= (1 << 31) else u
     return {'__type__': t, 'hash': h, 'hiddenValue': a, 'cryptoKey': b,
             'value': val, '__tail__': tail.hex()}
 

@@ -3,6 +3,7 @@
 
 实现依据（全部来自指令级逆向，见 04-伤害计算与属性关联）：
   Final(stat) = (Base + ΣFlat) × (1 + ΣPercentAdd) × Π(1 + PercentMult)      ✅ 6.1
+  bjr : attackDamage = (武器伤害 + Damage(3)) × (1 + Final(主属性)/100)       ✅ 6.2.0
   bkn : typeMul = 1 + Final(Damage<type>) + Final(DamagePercent)             ✅ 6.2.1
   bko : condMul = 1 + Σ(命中的条件伤害项)                                     ✅ 6.2.2
   crit: critChance = clamp(Final(CritChance)+buff+cond, 0, 0.85)             ✅ 6.2.3
@@ -145,7 +146,7 @@ class Target:
         return self.armor if int(damage_type) == int(DamageType.Physical) else self.magic_resist
 
     def armor_resist(self, damage_type: int) -> float:
-        """armorResist = resist / (resist + 50 × max(1, level))。常量 50 @ 0x18362A350。"""
+        """armorResist = resist / (resist + 50 × max(1, level))。常量 50 @ 0x18363F120（补丁前 0x18362A350，见 docs/08 §12.2）。"""
         r = self.resist(damage_type)
         return r / (r + 50.0 * max(1, self.level)) if (r + 50.0) > 0 else 0.0
 
@@ -194,6 +195,8 @@ class DamageModel:
                  equip_crit_damage: float = 0.0,  # 装备/天赋额外的暴伤加成
                  damage_dealt_mult: float = 1.0,  # 攻击方 SEC.bgl 增/减伤
                  weapon_damage: float = 0.0,  # 武器基础伤害（面板）
+                 primary_stat: Optional[int] = None,  # 职业主属性 StatType 0/1/2；None=不启用
+                 skill_scaling: float = 1.0,  # 技能倍率 AttackScaling.wo(level)；1.0=普攻
                  armor_pen: float = 0.0):     # 破甲（占位，引擎未证实存在）
         self.sheet = sheet
         self.damage_type = int(damage_type)
@@ -203,6 +206,8 @@ class DamageModel:
         self.equip_crit_damage = equip_crit_damage
         self.damage_dealt_mult = damage_dealt_mult
         self.weapon_damage = weapon_damage
+        self.primary_stat = primary_stat
+        self.skill_scaling = float(skill_scaling)
         self.armor_pen = armor_pen
 
     # --- 乘区 A ---
@@ -222,9 +227,26 @@ class DamageModel:
     def crit_multiplier(self) -> float:
         return 1.0 + self.sheet.final(StatType.CritDamage) + self.equip_crit_damage
 
-    # --- 攻击方基础伤害 ---
+    # --- 攻击方基础伤害（Player.CalcDamage@0x50E400：武器伤害 + 通用增伤(3)，再乘主属性加成）---
+    def primary_stat_multiplier(self) -> float:
+        """×(1 + Final(职业主属性)/100)。主属性由 Player.PrimaryStatValue@0x4F7BD0 给出
+        （英雄职业主属性：0=力量/1=敏捷/2=智力，Barbarian=0 实证）；None=不启用。
+
+        游戏内力量 tooltip「当前提升 451% 伤害」即 451 代入本式（×5.51），2026-10-09 截图实证。
+        """
+        if self.primary_stat is None:
+            return 1.0
+        return 1.0 + self.sheet.final(int(self.primary_stat)) / 100.0
+
     def attack_damage(self) -> float:
-        return self.weapon_damage + self.sheet.final(StatType.WeaponDamage)
+        """单次攻击基础伤害 = (武器伤害 + 技能倍率×(武器伤害%+ 通用增伤)) ×(1 + 主属性/100)。
+
+        技能倍率走 bjr（docs/04 §6.2）：(BaseDamage + scaling×(Final(20)+Final(3)))×主属性因子；
+        weapon_damage 即公式里的 BaseDamage（不被 scaling 放大）。skill_scaling=1.0 时逐位退化为
+        普攻口径（保留原结合顺序，避免浮点末位偏差）。
+        """
+        core = self.weapon_damage + self.skill_scaling * self.sheet.final(StatType.WeaponDamage)
+        return (core + self.skill_scaling * self.sheet.final(StatType.Damage)) * self.primary_stat_multiplier()
 
     # --- 减伤层 ---
     def mitigation(self, target: Target):

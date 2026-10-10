@@ -1,0 +1,196 @@
+{
+  "$comment": "RVA 体检配置（rva_audit.py 的输入）。三条硬规矩：① literal 每条必须写明「为什么不是地址」；② deprecated 每条必须给出 doc + marker，脚本会打开文档验证理由真的写在里面，防止用配置「消灭红点」；③ 未登记且判不出来的条目一律进「人工确认」清单，不许自动放行。",
+  "scan": {
+    "$comment": "扫描范围与字面量宽度。min_digits=4 会捞到 0x0410 这类权限标志，由 literal/自动规则兜底；上限 10 位覆盖 9 位 VA。exclude_globs 排除机器产物。",
+    "roots": ["tools"],
+    "suffixes": [".py"],
+    "min_digits": 4,
+    "max_digits": 10,
+    "exclude_globs": ["docs/reports/*"]
+  },
+  "doc_policy": {
+    "$comment": "文档侧分区。①次机器产出的报告按设计就是地址陈列柜，不扫；②进度档/计划书/调研报告是**当时状态的证词**，整篇登记为历史证词（改了就不是证词），每条必须写明理由；③参考文档 docs/01-09 默认必须写当期地址，例外只有被 `<!-- rva-audit:historical 理由 -->` … `<!-- /rva-audit:historical -->` 显式圈定的区块。分区只对「本来会判失效」的地址生效：区块/整篇里的当期地址照常判「仍有效」，不会被掩盖。",
+    "historical_docs": [
+      {"file": "docs/plan/PROGRESS-P1P2.md", "reason": "内存导入 P1–P2 的进度档，记录当时的地址与判定，改了就失去证词价值"},
+      {"file": "docs/plan/BLOCKED-P1P2.md", "reason": "同上（阻塞档，含当时的地址）"},
+      {"file": "docs/plan/PROGRESS-补丁回归.md", "reason": "本轮补丁回归的进度档，含反向验证原文里的旧地址"},
+      {"file": "docs/plan/内存导入P1-P2工程实施计划.md", "reason": "补丁前写的工程计划，地址是当时的现状描述"},
+      {"file": "docs/plan/联机角色数据内存导入可行性调研.md", "reason": "补丁前的可行性调研（调研当时的地址与判定）"},
+      {"file": "docs/04-伤害计算与属性关联.md", "reason": "补丁前反汇编证据的存档：§6.2 顶部已声明地址失效并指向 §12.3/aliases.json；正文里的旧地址是推导链本身，就地改写会毁掉证据"}
+    ],
+    "marker_begin": "rva-audit:historical",
+    "marker_end": "/rva-audit:historical"
+  },
+  "literal": [
+    {
+      "file": "tools/deskrawl_gui/core/memory_reader.py",
+      "token": "0x10000",
+      "reason": "用户态指针下限，出现在 `0x10000 <= p < 0x7FFFFFFEFFFF` 的范围比较里，是阈值不是地址"
+    },
+    {
+      "file": "tools/scripts/mem_probe.py",
+      "token": "0x10000",
+      "reason": "同上（内存链刻意自包含，与 memory_reader.py 是两份独立实现）"
+    },
+    {
+      "file": "tools/deskrawl_calc/stattype.py",
+      "token": "0x402010",
+      "reason": "封顶属性的**位掩码**（注释原文「掩码 0x402010 + 特判 37」），是 4 项封顶属性的位集，不是地址；与之配对的 0x4A9C30 才是代码地址"
+    },
+    {
+      "file": "tools/scripts/dump_index.py",
+      "token": "0x4000",
+      "reason": "`containing()` 判定「内联数据是否属于该方法的跨距阈值」，是搜索窗口宽度不是地址"
+    },
+    {
+      "file": "tools/scripts/rva_audit.py",
+      "token": "0x1000",
+      "reason": "本脚本的「微常量上限」判定阈值（低于它的字面量直接归入非地址），是规则参数不是地址"
+    },
+    {
+      "file": "docs/plan/补丁回归清单.md",
+      "token": "0x4A08",
+      "reason": "弃用探针 `xref.py` 的偏移**差值**（「`password` 项差 0x4A08」），是两处地址之差不是地址"
+    },
+    {
+      "file": "docs/plan/文档置信度待核清单.md",
+      "token": "0x1000",
+      "reason": "类整体**位移量**（「类位移 −0x1000」），是两版之间的差值不是地址"
+    },
+    {
+      "file": "docs/08-常量设计要点与待办.md",
+      "tokens": ["0x41FA00", "0x41FE00", "0x2A32C00", "0xAE9200", "0x285600",
+                 "0x2E52A00", "0x393BC00"],
+      "reason": "§12.1 节表的**原始大小 / 文件偏移**列：尺寸与偏移不是可寻址目标（按 VA 口径判当然落不到方法上）"
+    },
+    {
+      "file": "docs/08-常量设计要点与待办.md",
+      "tokens": ["0x363D964", "0x363D9C8", "0x363DA18", "0x363DA20", "0x363DA28",
+                 "0x363DA58", "0x363DB20", "0x363DB38"],
+      "reason": "§12.2 表的**新文件偏移**列（新 VA 减去节基址），是偏移不是地址"
+    },
+    {
+      "file": "docs/08-常量设计要点与待办.md",
+      "tokens": ["0x180001000", "0x180421000", "0x182E54000", "0x18393E000"],
+      "reason": "§12.1 节表的 **VA 列**：节起点，本就不是方法/数据条目"
+    },
+    {
+      "file": "docs/08-常量设计要点与待办.md",
+      "tokens": ["0x180001600", "0x180001200"],
+      "reason": "§12.1 换算公式里的**加数常量**（VA = 文件偏移 + 该值），是数值不是地址"
+    }
+  ],
+  "data_refs": [
+    {
+      "$comment": "登记「确实是地址、但不是方法起始也不是已知常量」的数据指针；理由必须写明它是什么。",
+      "file": "docs/08-常量设计要点与待办.md",
+      "tokens": ["0x182EE3580", "0x18349CCB0"],
+      "reason": "§12.5 记录的 dumper 导出指针 CodeRegistration / MetadataRegistration——当期构建的真实数据指针（本版 v39 导出时读到的值），本来就该长期保持当期值"
+    }
+  ],
+  "deprecated": [
+    {
+      "file": "tools/scripts/read_const.py",
+      "reason": "一次性常量探针：目标常量在旧常量簇 0x18362A***，标签本身带问号（'roll_high / default(1.0?)'），且原始输入（补丁前 GameAssembly.dll）已被游戏更新覆盖，不可复原。其任务已由 extract_rolltable.py + docs/08 §11.3 的 55 项系数表 + §12.2 新址表承接。",
+      "doc": "docs/plan/补丁回归清单.md",
+      "marker": "read_const.py"
+    },
+    {
+      "file": "tools/scripts/chk.py",
+      "reason": "一次性 PE 查看器：RVA 列表是取样（.data 里 SaveFileWriter/DDS1/DDS2 那批），不是锚点；且其功能已被 pe_file.py（节表/换算/读字节）覆盖。补丁后取样地址语义已变，重锚定无价值。",
+      "doc": "docs/plan/补丁回归清单.md",
+      "marker": "chk.py"
+    },
+    {
+      "file": "tools/scripts/xref.py",
+      "reason": "一次性 xref 探针：6 个目标地址是手搓的，与补丁前 script.json 的字面量表并不一致（'password' 项 0x39E44C8 vs 表内 0x39F1AD0），本身就不可信；字符串地址的权威来源已改为 script_index.py + script.json。",
+      "doc": "docs/plan/补丁回归清单.md",
+      "marker": "xref.py"
+    },
+    {
+      "file": "tools/scripts/meta_range.py",
+      "reason": "一次性范围取样（[0x39E43C0,0x39E44E0] 打印 ScriptString），功能已被 script_index.py 完整覆盖；范围边界是取样窗口而非锚点。",
+      "doc": "docs/plan/补丁回归清单.md",
+      "marker": "meta_range.py"
+    },
+    {
+      "file": "tools/scripts/strings_ctx.py",
+      "reason": "探针输入是 global-metadata.dat 的文件偏移，补丁后该文件被覆盖（同版本 v39、内容不同），旧偏移不可复原；当时的结论（SerializeReference 托管段布局）已固化进 decode.py 与 docs/08 §11.1。",
+      "doc": "docs/plan/补丁回归清单.md",
+      "marker": "strings_ctx.py"
+    },
+    {
+      "file": "tools/scripts/obs_solve3.py",
+      "reason": "一次性 ACTk 字节布局求解探针，命中的 0xffffffff 是掩码；偏移结论已固化进 memory_reader.py / mem_probe.py。",
+      "doc": "docs/plan/补丁回归清单.md",
+      "marker": "obs_solve3.py"
+    }
+  ],
+  "doc_sections": {
+    "$comment": "docs/08 §12.1 节表，逐行与 PE 头实测比对（VA/文件偏移/原始大小）。",
+    "doc": "docs/08-常量设计要点与待办.md",
+    "rows": [
+      {"name": ".text", "va": "0x180001000", "raw": "0x400", "rawsize": "0x41FA00"},
+      {"name": "il2cpp", "va": "0x180421000", "raw": "0x41FE00", "rawsize": "0x2A32C00"},
+      {"name": ".rdata", "va": "0x182E54000", "raw": "0x2E52A00", "rawsize": "0xAE9200"},
+      {"name": ".data", "va": "0x18393E000", "raw": "0x393BC00", "rawsize": "0x285600"}
+    ]
+  },
+  "doc_constants": {
+    "$comment": "docs/08 §9.1(旧址+值) 与 §12.2(新址) 的联合复核：新址必须逐字节读回该值；旧址列出是否仍读回同值（供人判断「失效」是否彻底）。float32/double 自动判别，不预设存储宽度。",
+    "doc": "docs/08-常量设计要点与待办.md",
+    "rows": [
+      {"name": "命中浮动上界", "value": 1.1, "va_old": "0x18362A194", "va_new": "0x18363EF64"},
+      {"name": "受伤阈值", "value": 0.3, "va_old": "0x18362A1F8", "va_new": "0x18363EFC8"},
+      {"name": "健康阈值", "value": 0.8, "va_old": "0x18362A248", "va_new": "0x18363F018"},
+      {"name": "属性数值封顶", "value": 0.85, "va_old": "0x18362A250", "va_new": "0x18363F020"},
+      {"name": "命中浮动下界", "value": 0.9, "va_old": "0x18362A0FC", "va_new": "0x18363F028"},
+      {"name": "易伤乘区", "value": 1.3, "va_old": "0x18362A288", "va_new": "0x18363F058"},
+      {"name": "护甲分母", "value": 50.0, "va_old": "0x18362A350", "va_new": "0x18363F120"},
+      {"name": "主属性分母", "value": 100.0, "va_old": "0x18362A370", "va_new": "0x18363F138"}
+    ]
+  },
+  "offset_checks": {
+    "$comment": "memory_offsets.json 的机械复核。mode=field：组内每个十六进制偏移都必须是 klass 的字段偏移（证明「补丁不改实例布局」）；mode=rva：每个值都必须是当期 dump.cs 的方法起始 RVA；mode=klass：类名必须仍存在（混淆类会改名）；mode=const：结构尺寸常量必须等于声明值。注意 klass 要写**声明该字段的类**——Player 继承 Character，多数基础字段的实际宿主是 Character。",
+    "json": "tools/deskrawl_gui/core/memory_offsets.json",
+    "checks": [
+      {"path": "player", "klass": "Character", "mode": "field",
+       "keep": ["level", "base_max_health", "base_damage", "base_move_speed", "base_crit_chance",
+                "base_crit_damage", "base_attack_speed", "base_dodge_chance", "base_max_mana",
+                "current_health"]},
+      {"path": "player", "klass": "Player", "mode": "field",
+       "keep": ["current_xp", "base_primary_stat", "base_life_on_hit", "base_life_on_kill",
+                "base_cooldown_reduction", "talents"]},
+      {"path": "player.stat_dicts", "klass": "Player", "mode": "field"},
+      {"path": "player.conditional_mods", "klass": "Player", "mode": "field", "keep": ["nuf", "nug"]},
+      {"path": "player.status_controller", "klass": "Character", "mode": "field", "keep": ["ptr"]},
+      {"path": "player.status_controller", "klass": "StatusEffectController", "mode": "field",
+       "keep": ["flat", "pct", "mult"]},
+      {"path": "hero_data", "klass": "HeroData", "mode": "field", "keep": ["primary_stat", "class", "abilities"]},
+      {"path": "inventory_slot", "klass": "InventorySlot", "mode": "field"},
+      {"path": "item_data", "klass": "ItemData", "mode": "field", "keep": ["type", "rarity", "equip_slot"]},
+      {"path": "generated_item", "klass": "GeneratedItemData", "mode": "field"},
+      {"path": "talent_effect_ability_modifier", "klass": "TalentEffect_AbilityModifier", "mode": "field",
+       "keep": ["ability", "tag", "stat", "modifier"]},
+      {"path": "player.conditional_mods", "mode": "const", "expect": {"tuple_stride": "0x20"}},
+      {"path": "talent_effect_ability_modifier", "mode": "const", "expect": {"per_level_stride": "0x10"}},
+      {"path": "singleton_getters", "mode": "rva", "keys": "rva"},
+      {"path": "save_system.anchor_rvas", "mode": "rva"},
+      {"path": "generated_items.scan_rvas", "mode": "rva"},
+      {"path": "generated_items.klass", "mode": "klass"},
+      {"path": "hero_data.klass", "mode": "klass"},
+      {"path": "item_data.klass", "mode": "klass"},
+      {"path": "generated_item_klass", "mode": "klass"}
+    ]
+  },
+  "falsify": {
+    "$comment": "证伪用例：故意把已知有效地址改错一位/改成越界值，体检必须报「已失效」。任何一条没被拦下即视为自检失效（退出码非 0）。",
+    "cases": [
+      {"token": "0x18067BD01", "expect": "stale", "why": "真实有效地址 0x18067BD00（当期 Character.bkn）末位 +1，必须判失效"},
+      {"token": "0x18050E401", "expect": "stale", "why": "Player.bkn 覆写 0x18050E400 末位 +1"},
+      {"token": "0x7B6671", "expect": "stale", "why": "SaveSystem 锚点 0x7B6670 末位 +1（RVA 形式）"},
+      {"token": "0x18363F021", "expect": "stale", "why": "常量 0.85 新址 0x18363F020 末位 +1（数据地址）"},
+      {"token": "0x18067BD00", "expect": "valid", "why": "真值对照：同一地址必须判有效（证明不是「一律判红」）"}
+    ]
+  }
+}

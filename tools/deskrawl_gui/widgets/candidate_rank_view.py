@@ -23,6 +23,11 @@ class _RankModel(QAbstractTableModel):
     def __init__(self, parent=None):
         super().__init__(parent)
         self._rows = []
+        self._alpha = False
+
+    def set_alpha(self, alpha: bool):
+        """α 聚合导入下，百分比类词条增量为近似（面板抹掉了池结构），行上加显式标注。"""
+        self._alpha = bool(alpha)
 
     def set_rows(self, rows):
         self.beginResetModel()
@@ -51,7 +56,10 @@ class _RankModel(QAbstractTableModel):
         if role == Qt.UserRole:      # 排序键：名称/效果按字符串，数值列按 float
             return [r.name, r.detail, r.dps, r.delta, r.delta_pct][col]
         if role == Qt.DisplayRole:
-            return [r.name, r.detail, f'{r.dps:.1f}', f'{r.delta:+.1f}',
+            detail = r.detail
+            if col == 1 and self._alpha and any(int(m.type) != 0 for m in r.modifiers):
+                detail += '（近似）'
+            return [r.name, detail, f'{r.dps:.1f}', f'{r.delta:+.1f}',
                     f'{r.delta_pct:+.2f}%'][col]
         if role == Qt.TextAlignmentRole and col >= 2:
             return int(Qt.AlignRight | Qt.AlignVCenter)
@@ -142,9 +150,14 @@ class CandidateRankView(QWidget):
         level, category = self._params()
         rows = calc_service.rank_candidates(self.profile, self.gd, kind,
                                            level=level, category=category)
+        alpha = getattr(self.profile, 'import_mode', '') == 'alpha'
+        self.model.set_alpha(alpha)
         self.model.set_rows(rows)
-        self.hint.setText(f'{KIND_LABELS[kind]}候选 {len(rows)} 条；基线 DPS = '
-                          f'{calc_service.baseline_dps(self.profile, self.gd):.1f}')
+        hint = (f'{KIND_LABELS[kind]}候选 {len(rows)} 条；基线 DPS = '
+                f'{calc_service.baseline_dps(self.profile, self.gd):.1f}')
+        if alpha:
+            hint += '；α 聚合导入：基线=游戏面板，百分比类（非加法）词条增量为近似'
+        self.hint.setText(hint)
 
     def _on_double_clicked(self, proxy_index):
         src = self.proxy.mapToSource(proxy_index)

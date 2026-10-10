@@ -55,3 +55,6 @@ QSlider::handle:horizontal { background: #4e9feb; width: 12px; margin: -5px 0; b
 QLabel#dpsBig { font-size: 22px; font-weight: bold; color: #4e9feb; }
 QLabel#deltaUp { font-size: 20px; font-weight: bold; color: #4cc06a; }
 QLabel#deltaDown { font-size: 20px; font-weight: bold; color: #e05a4f; }
+
+/* 武器卡片导入元信息（强化等级/镶嵌宝石），弱化色避免与可编辑控件抢注意力 */
+QLabel#weaponMeta { color: #8a9aa8; }

@@ -1,0 +1,119 @@
+{
+  "$comment": "Deskrawl 运行时内存导入偏移表。RVA 相对 GameAssembly.dll；实例字段偏移为 P1 spike 活体实测（2026-10-07，PID 28336，ExampleHeroB Lv70），并于 2026-10-10 补丁后经新构建 dump.cs 逐字段复核（偏移未变，仅字段改名）。2026-10-10 补丁（GameAssembly d46f0a32…）：方法 RVA 按「同名签名」在新 dump 中重算，指纹同步更新；注释里出现的旧方法名见 docs/08 §12.3 映射表。游戏更新后应重跑 tools/scripts/mem_probe.py 全量再生本表。",
+  "process_name": "Deskrawl.exe",
+  "module": "GameAssembly.dll",
+  "fingerprints": {
+    "$comment": "P2 版本指纹（2026-10-10 补丁后实测）。导入前校验：任一不符即拒绝导入并提示重新导出 schema/so_dump。游戏目录可用环境变量 DESKRAWL_GAME 覆盖。",
+    "game_dir": "d:\\steam\\steamapps\\common\\Deskrawl",
+    "game_assembly_sha256": "d46f0a321e8e07646cca37c7460e58fbfecc47ade5027ea2e00fc71f0fec0565",
+    "global_metadata_sha256": "57627070d0fe8a00f82e373100768f529c4829f02d6aeb8ac3057aaab13cacfc",
+    "so_dump_itemdata_entries": 338
+  },
+  "il2cpp": {
+    "static_fields": "0xB8",
+    "klass_name_ptr": "0x10",
+    "string_len": "0x10",
+    "string_data": "0x14",
+    "array_len": "0x18",
+    "array_data": "0x20",
+    "list_items": "0x10",
+    "list_size": "0x18",
+    "dict_entries": "0x18",
+    "dict_count": "0x20",
+    "entry_key": "0x8",
+    "entry_value": "0x10"
+  },
+  "singleton_getters": {
+    "GameManager": {"rva": "0x76CEE0", "klass": "GameManager", "method": "dkh()"},
+    "Inventory": {"rva": "0x4F4100", "klass": "Inventory", "method": "fbr()"},
+    "Storage": {"rva": "0x520F80", "klass": "Storage", "method": "fpj()"},
+    "EquipmentManager": {"rva": "0x7649D0", "klass": "EquipmentManager", "method": "ddk()"}
+  },
+  "save_system": {
+    "anchor_rvas": ["0x7B6670", "0x7B61F0", "0x7B5DD0", "0x7B7F80"],
+    "klass": "SaveSystem",
+    "field_slot_index": "0x24",
+    "container": "0x28",
+    "item_name_cache": "0x70"
+  },
+  "container": {
+    "online_slots": "0x20",
+    "rec_profile": "0x18",
+    "rec_name": "0x20",
+    "rec_summary_level": "0x28"
+  },
+  "generated_items": {
+    "scan_rvas": ["0x784AB0", "0x7848E0", "0x784830"],
+    "klass": "gj",
+    "items": "0x0",
+    "$comment": "补丁后：klass gi→gj，扫描方法 doj/dog/dof → dpv/dps/dpr"
+  },
+  "game_manager": {
+    "combat_controller": "0x40", "town_controller": "0x48", "hero_data": "0x38"
+  },
+  "hero_data": {"klass": "HeroData", "primary_stat": "0x2C", "class": "0x30", "abilities": "0x50"},
+  "ability_klass": "AbilityData",
+  "talent_data": {"effects": "0x48"},
+  "talent_effect_ability_modifier": {
+    "$comment": "TalentEffect_AbilityModifier（TalentData.Effects 里的元素对象）：Ability@0x18 / Tag@0x20 / Stat@0x24 / Modifier(LeveledFloat, Base@0x28+PerLevel@0x38, ObscuredFloat 0x10)@0x28。Stat 枚举：8=ChannelSpeed 9=StrikeCount。活体实测 2026-10-09：死神之刃(WarriorTalent61, 10/10) 给旋风斩 ChannelSpeed=0.1000/级，按「每级累加」= +100%（与 tooltip 一致）。",
+    "klass": "TalentEffect_AbilityModifier",
+    "ability": "0x18", "tag": "0x20", "stat": "0x24", "modifier": "0x28", "per_level_stride": "0x10"
+  },
+  "ability_mod_stat": {"channel_speed": 8, "strike_count": 9},
+  "controller": {"player": "0x20"},
+  "player": {
+    "klass": "Player",
+    "level": "0x20",
+    "base_max_health": "0x30",
+    "base_damage": "0x50",
+    "base_move_speed": "0x70",
+    "base_crit_chance": "0x84",
+    "base_crit_damage": "0x98",
+    "base_attack_speed": "0xAC",
+    "base_dodge_chance": "0xC0",
+    "base_max_mana": "0xD8",
+    "current_health": "0x118",
+    "current_xp": "0x180",
+    "base_primary_stat": "0x1A0",
+    "base_life_on_hit": "0x1B4",
+    "base_life_on_kill": "0x1C8",
+    "base_cooldown_reduction": "0x1DC",
+    "talents": "0x248",
+    "stat_dicts": {
+      "nsq": "0x218", "nsr": "0x220", "nsu": "0x238", "nsv": "0x240",
+      "ntc": "0x278", "ntd": "0x280", "nte": "0x288"
+    },
+    "$stat_dicts_comment": "语义标注（2026-10-08 反汇编定案，RVA 见 PROGRESS）：面板 = bjd(stat) = (平坦层 × (1+百分比加算层)) × 特殊%区。平坦层 = nsq+nsu+ntc+nte+nsr 之和 + 基础字段 + far（护甲←力量、魔抗←智力） + 条件表；百分比加算层 = nsv+ntd（实测 nsv={护甲:+0.40}，护甲最终 ×1.4 实证）。nsq 本身已含装备/宝石/强化/nwo 运行时词条（逐键闭环）。强化缩放模型（2026-10-08 与 nsq 逐位对拍实证，GUI core/profile.apply_upgrade 同源）：词条数组前 2×UpgradeLevel 条 ×1.05；WeaponDamage(20) ×(1+0.0125L)、WeaponSpeed(21) ×(1+0.025L)；+1 三件护甲 15 词条与 +4 武器 7 词条全部逐位闭合。【2026-10-10 补丁改名】nsq→nyx、nsr→nyy、nsu→nzb、nsv→nzc、ntc→nzj、ntd→nzk、nte→nzl（偏移不变，新 dump 逐字段核对）。",
+    "conditional_mods": {
+      "$comment": "条件属性表（fat/0x4F6720 的输入）nuf/nug：ValueTuple 内联 0x20 步长；nuf=(cond,radius,stat,type,value,ability) 字段 @0,4,8,12,16(d),24(p)；nug=(cond,pad,status,stat,type,value) @0,8,16,20,24(d)。cond 枚举 Injured=0/Healthy=1/NoNearbyEnemies=2/OutOfCombat=3/SingleEnemyInCombat=4/Surrounded=5/None=-1；Healthy=血>0.8、Injured=血<0.3（fgp/0x506060 实证），血比例=当前血[lss@0x118]/面板生命。",
+      "nuf": "0x358", "nug": "0x360", "tuple_stride": "0x20"
+    },
+    "status_controller": {
+      "$comment": "StatusEffectController（bgh/0x4D5E10）：面板最终 = g3(stat)×(v+g1(stat))×(1+g2(stat))，三字典实测为空即无操作；此为增益(Buff)口径。",
+      "ptr": "0x130", "flat": "0x38", "pct": "0x40", "mult": "0x48"
+    }
+  },
+  "inventory": {"slots": "0x38"},
+  "storage": {"slots": "0x30"},
+  "inventory_slot": {"item": "0x10", "count": "0x18", "uid": "0x20"},
+  "equipment_manager": {"slot_item": "0x28", "slot_uid": "0x30"},
+  "generated_item": {
+    "item_level": "0x10", "rarity": "0x14", "modifiers": "0x18",
+    "upgrade_level": "0x20", "rune_level": "0x28", "socket_count": "0x38",
+    "socketed_gems": "0x40", "instance_id": "0x50"
+  },
+  "stat_modifier": {"size": "0x1C", "stat": "0x0", "type": "0x4", "value": "0x8"},
+  "item_data": {"klass": "ItemData", "type": "0x20", "rarity": "0x24", "equip_slot": "0x90"},
+  "generated_item_klass": "GeneratedItemData",
+  "entry_steps": {"stat_double": "0x38", "ptr": "0x18"},
+  "stat_key_range": [0, 65],
+  "player_level_range": [1, 70],
+  "equip_slot_id_to_type": {
+    "0": 1, "1": 2, "2": 3, "3": 4, "4": 5, "5": 6, "6": 7,
+    "7": 7, "8": 8, "9": 10, "10": 9, "11": 11
+  },
+  "equip_slot_names": {
+    "0": "Weapon", "1": "Helm", "2": "Chest", "3": "Pants", "4": "Boots", "5": "Belt",
+    "6": "Ring1", "7": "Ring2", "8": "Necklace", "9": "Shoulder", "10": "Gloves", "11": "Back"
+  }
+}

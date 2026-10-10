@@ -3,7 +3,9 @@
 | 文件 | 记录数 | 主要用途 |
 |---|---:|---|
 | `AbilityData.json` | 124 | 技能定义 |
+| `AffixRollTable.json` | 6 | 装备词条 Roll 系数表 |
 | `Enemy.json` | 65 | 敌人定义 |
+| `EquipmentEffects.json` | 92 | 装备特效定义（按稀有度索引） |
 | `FishingMapData.json` | 3 | 钓鱼点 |
 | `GameConfig.json` | 2 | 全局数值配置（等级/成长/锻造/镶嵌/巅峰/离线） |
 | `GemData.json` | 36 | 宝石库 |
@@ -12,6 +14,7 @@
 | `HeroData.json` | 4 | 职业英雄定义 |
 | `ItemData.json` | 338 | 装备/材料物品库 |
 | `ItemizationConfig.json` | 1 | 装备词条池与宝石孔 |
+| `LifeSkillEffects.json` | 36 | 生活技能特效 |
 | `LifeSkillNodeData.json` | 85 | 生活技能节点 |
 | `LootConfig.json` | 2 | 掉落向量与稀有度权重 |
 | `MapData.json` | 76 | 地图关卡 |
@@ -22,8 +25,11 @@
 | `SlaveData.json` | 67 | 宠物/随从 |
 | `StatusEffectData.json` | 95 | 状态/Buff定义 |
 | `TalentData.json` | 186 | 天赋树节点 |
+| `TalentEffects.json` | 157 | 天赋特效 |
 | `TownData.json` | 3 | 城镇 |
-| **合计** | **1333** | 21 个文件 |
+| **合计** | **1624** | 25 个文件（21 个主数据 + 4 个特效/系数资产） |
+
+> 第 07 篇引用的「1333 条 SO 实例」指 21 个主数据文件（实测 1333 条）；另有 4 个特效/系数资产文件（291 条）不计入该口径。
 
 ## 二、装备/材料库（`ItemData.json`，338 条）
 
@@ -177,16 +183,16 @@
 
 ## 九、技能 AbilityData（124 条）
 
-- 法力消耗 ManaCost：19.3096 ~ 121.246（中位 54.7568, n=25）
-- 冷却 Cooldown：0.57254 ~ 118985（中位 8.29211, n=110）
-- 施法距离 Range：0.682349 ~ 31.5957（中位 6.13721, n=124）
+- 法力消耗 ManaCost：0 ~ 85（中位 0, n=124）
+- 冷却 Cooldown：0 ~ 99999（中位 5.5, n=124）
+- 施法距离 Range：1 ~ 30（中位 6, n=124）
 - 需求等级 LevelRequirement：1 ~ 50（中位 1, n=124）
 - Targeting 分布：{0: 66, 1: 16, 2: 3, 3: 10, 4: 11, 5: 6, 7: 8, 8: 1, 9: 2, 10: 1}
 - Affinity 分布：{0: 109, 1: 15}
 
 ## 十、状态效果 StatusEffectData（95 条）
 
-- 持续时间 Duration：1.18823 ~ 48212（中位 6.23132, n=93）
+- 持续时间 Duration：0 ~ 86400（中位 5, n=94）
 - 可叠加 19 条；最大层数分布：{1: 73, 2: 1, 5: 5, 10: 3, 20: 3, 25: 1, 50: 1, 100: 7, 2147483647: 1}
 - Tick 间隔 TickRate：0 ~ 2（中位 0, n=95）
 
@@ -245,11 +251,11 @@
 
 ## 十五、敌人 Enemy（65 条）
 
-- BaseMaxHealth：⚠️ 该字段为 ObscuredLong，本次解码不可靠（参考 07 篇地图/遭遇的预烘焙值）
-- BaseDamage：⚠️ 同上（ObscuredLong 解码不可靠）
-- BaseMoveSpeed：0.534302 ~ 5.30969（中位 0.893616, n=65）
-- 暴击率 BaseCritChance：0.0412996 ~ 0.491177（中位 0.0593136, n=59）
-- 闪避 BaseDodgeChance：0 ~ 0.483334（中位 0.483334, n=13）
+- BaseMaxHealth：15 ~ 1.2e+07（中位 300, n=65）
+- BaseDamage：1 ~ 50（中位 15, n=65）
+- BaseMoveSpeed：0.8 ~ 3（中位 1.6, n=65）
+- 暴击率 BaseCritChance：0 ~ 0.2（中位 0.1, n=65）
+- 闪避 BaseDodgeChance：0 ~ 0.3（中位 0, n=65）
 - MythicSize 分布：{1: 8, 2: 27, 3: 30}
 - EncounterType 分布：{0: 65}
 

@@ -55,6 +55,13 @@ def selftest():
     e1 = mt.compute(Target(hp_fraction=0.5, vulnerable=True), rng=_rnd.Random(0)).expected_mult
     ok.append(('易伤倍率 = 1.3', abs(e1 / e0 - 1.3) < 1e-9))
 
+    # 7) 主属性加成（Player.CalcDamage@0x50E400，补丁前 bjr@0x509D80）：(武器伤害 + Damage(3)) ×(1 + Final(主属性)/100)
+    s = StatSheet({StatType.WeaponDamage: 100, StatType.Damage: 50, StatType.Strength: 451})
+    m = DamageModel(s, DamageType.Physical, primary_stat=StatType.Strength)
+    ok.append(('主属性 ×5.51（力量 451 实测值）', abs(m.attack_damage() - 150.0 * 5.51) < 1e-9))
+    ok.append(('未设主属性 ×1.0（兼容非玩家路径）',
+               abs(DamageModel(s, DamageType.Physical).attack_damage() - 150.0) < 1e-9))
+
     for desc, good in ok:
         print(f'  [{"PASS" if good else "FAIL"}] {desc}')
     return all(g for _, g in ok)

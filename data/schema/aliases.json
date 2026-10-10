@@ -1,0 +1,763 @@
+{
+  "$comment": "语义别名表：文档与脚本引用左边的语义名（稳定），右边是每版都会重新生成的混淆名与地址。维护方式：build_aliases.py --check 按「类 + 归一化签名 + Slot」比对当期 dump.cs；--write 在补丁后刷新 current 并把上一版压入 history。条目只增不减。",
+  "build": {
+    "game_assembly_sha256": "d46f0a321e8e07646cca37c7460e58fbfecc47ade5027ea2e00fc71f0fec0565",
+    "global_metadata_sha256": "57627070d0fe8a00f82e373100768f529c4829f02d6aeb8ac3057aaab13cacfc",
+    "dumped_at": "2026-10-10",
+    "base_ref": "8660446"
+  },
+  "aliases": {
+    "Character.CalcDamage": {
+      "说明": "伤害合成 Slot 12：trunc(base + scaling×Final(Damage))",
+      "slot": 12,
+      "signature": "public virtual long <m>(long a, float b) { }",
+      "锚定依据": "同类同签名 + Slot",
+      "current": {
+        "klass": "Character",
+        "name": "bkn",
+        "rva": "0x67bd00",
+        "va": "0x18067bd00"
+      },
+      "history": [
+        {
+          "build": "c242676e…",
+          "klass": "Character",
+          "name": "bjr",
+          "rva": "0x680400"
+        }
+      ]
+    },
+    "Player.CalcDamage": {
+      "说明": "Player 覆写 Slot 12：再乘主属性加成 (1+Final(主属性)/100)",
+      "slot": 12,
+      "signature": "public override long <m>(long a, float b) { }",
+      "锚定依据": "同类同签名 + Slot",
+      "current": {
+        "klass": "Player",
+        "name": "bkn",
+        "rva": "0x50e400",
+        "va": "0x18050e400"
+      },
+      "history": [
+        {
+          "build": "c242676e…",
+          "klass": "Player",
+          "name": "bjr",
+          "rva": "0x509d80"
+        }
+      ]
+    },
+    "Character.ElementDamageMultiplier": {
+      "说明": "元素乘区：1.0 + Final(元素) + Final(DamagePercent 65)",
+      "slot": null,
+      "signature": "public double <m>(DamageType a) { }",
+      "锚定依据": "同类同签名 + Slot",
+      "current": {
+        "klass": "Character",
+        "name": "bll",
+        "rva": "0x67d010",
+        "va": "0x18067d010"
+      },
+      "history": [
+        {
+          "build": "c242676e…",
+          "klass": "Character",
+          "name": "bkn",
+          "rva": "0x681280"
+        }
+      ]
+    },
+    "Character.ConditionalDamagePool": {
+      "说明": "条件伤害池 Slot 15：1 + Σ条件值（血比例 0.8/0.3 内联判定）",
+      "slot": 15,
+      "signature": "public virtual double <m>(Character a, AbilityData b) { }",
+      "锚定依据": "同类同签名 + Slot",
+      "current": {
+        "klass": "Character",
+        "name": "blm",
+        "rva": "0x67d160",
+        "va": "0x18067d160"
+      },
+      "history": [
+        {
+          "build": "c242676e…",
+          "klass": "Character",
+          "name": "bko",
+          "rva": "0x681380"
+        }
+      ]
+    },
+    "Character.OnHitDamageStage": {
+      "说明": "受击侧 Slot 17：易伤标记时 dmg ×1.3",
+      "slot": 17,
+      "signature": "public virtual bool <m>(long a, bool b, DamageType c, int d, bool e, Character f, ScriptableObject g) { }",
+      "锚定依据": "同类同签名 + Slot",
+      "current": {
+        "klass": "Character",
+        "name": "blo",
+        "rva": "0x67dbb0",
+        "va": "0x18067dbb0"
+      },
+      "history": [
+        {
+          "build": "c242676e…",
+          "klass": "Character",
+          "name": "bkq",
+          "rva": "0x681ac0"
+        }
+      ]
+    },
+    "Character.ApplyDamage": {
+      "说明": "受击侧伤害应用（含元素减伤跳转表）",
+      "slot": null,
+      "signature": "public long <m>(long a, DamageType b, int c) { }",
+      "锚定依据": "同类同签名 + Slot",
+      "current": {
+        "klass": "Character",
+        "name": "bls",
+        "rva": "0x67e320",
+        "va": "0x18067e320"
+      },
+      "history": [
+        {
+          "build": "c242676e…",
+          "klass": "Character",
+          "name": "bku",
+          "rva": "0x6821f0"
+        }
+      ]
+    },
+    "Character.ArmorCurve": {
+      "说明": "护甲曲线：resist/(resist + level×50)",
+      "slot": null,
+      "signature": "public double <m>(DamageType a, int b) { }",
+      "锚定依据": "同类同签名 + Slot",
+      "current": {
+        "klass": "Character",
+        "name": "blr",
+        "rva": "0x67e240",
+        "va": "0x18067e240"
+      },
+      "history": [
+        {
+          "build": "c242676e…",
+          "klass": "Character",
+          "name": "bkt",
+          "rva": "0x682150"
+        }
+      ]
+    },
+    "Character.ConditionalCritChance": {
+      "说明": "条件暴击 Slot 14",
+      "slot": 14,
+      "signature": "protected virtual float <m>(Character a, AbilityData b) { }",
+      "锚定依据": "同类同签名 + Slot",
+      "current": {
+        "klass": "Character",
+        "name": "blj",
+        "rva": "0x4b01b0",
+        "va": "0x1804b01b0"
+      },
+      "history": [
+        {
+          "build": "c242676e…",
+          "klass": "Character",
+          "name": "bkl",
+          "rva": "0x4b0c40"
+        }
+      ]
+    },
+    "Character.BaseFieldToStat": {
+      "说明": "基础字段 → 属性（逐分支）",
+      "slot": 11,
+      "signature": "protected virtual double <m>(StatType a) { }",
+      "锚定依据": "同类同签名 + Slot",
+      "current": {
+        "klass": "Character",
+        "name": "bka",
+        "rva": "0x67b470",
+        "va": "0x18067b470"
+      },
+      "history": [
+        {
+          "build": "c242676e…",
+          "klass": "Character",
+          "name": "bje",
+          "rva": "0x67fde0"
+        }
+      ]
+    },
+    "Player.BaseFieldToStat": {
+      "说明": "Player 覆写的基础字段 → 属性",
+      "slot": 11,
+      "signature": "protected override double <m>(StatType a) { }",
+      "锚定依据": "同类同签名 + Slot",
+      "current": {
+        "klass": "Player",
+        "name": "bka",
+        "rva": "0x4fa9d0",
+        "va": "0x1804fa9d0"
+      },
+      "history": [
+        {
+          "build": "c242676e…",
+          "klass": "Player",
+          "name": "bje",
+          "rva": "0x4f64f0"
+        }
+      ]
+    },
+    "Player.PanelStat": {
+      "说明": "游戏面板口径：平坦层 ×(1+百分比加算层)，与「属性」页对拍过",
+      "slot": 10,
+      "signature": "protected override double <m>(StatType a) { }",
+      "锚定依据": "同类同签名 + Slot",
+      "current": {
+        "klass": "Player",
+        "name": "bjz",
+        "rva": "0x4fa2b0",
+        "va": "0x1804fa2b0"
+      },
+      "history": [
+        {
+          "build": "c242676e…",
+          "klass": "Player",
+          "name": "bjd",
+          "rva": "0x4f5e10"
+        }
+      ]
+    },
+    "Player.PrimaryStatValue": {
+      "说明": "职业主属性面板值（力量/敏捷/智力）",
+      "slot": null,
+      "signature": "public PrimaryStat <m>() { }",
+      "锚定依据": "同类同签名 + Slot",
+      "current": {
+        "klass": "Player",
+        "name": "fdd",
+        "rva": "0x4f7bd0",
+        "va": "0x1804f7bd0"
+      },
+      "history": [
+        {
+          "build": "c242676e…",
+          "klass": "Player",
+          "name": "fak",
+          "rva": "0x4f3760"
+        }
+      ]
+    },
+    "Player.ConditionalModValue": {
+      "说明": "条件属性表的取值函数（输入为 Player.conditional_mods 两张表）",
+      "slot": null,
+      "signature": "private double <m>(StatType a, ModifierType b) { }",
+      "锚定依据": "REA 反编译 FUN_1804fac90 实证：访问 Player +0x358/+0x360（= nuf/nug 两张条件属性表，见 memory_offsets.json），同签名兄弟 fdn 两个偏移都不访问",
+      "current": {
+        "klass": "Player",
+        "name": "fdm",
+        "rva": "0x4fac90",
+        "va": "0x1804fac90",
+        "ordinal": 0
+      },
+      "history": [
+        {
+          "build": "c242676e…",
+          "klass": "Player",
+          "name": "fat",
+          "rva": "0x4f6720"
+        }
+      ],
+      "证据等级": "指令级",
+      "证据": "REA procedure_pseudo_code 0x1804fac90（2026-10-10）"
+    },
+    "Player.EvaluateCondition": {
+      "说明": "条件谓词：Healthy/Injured 等按血比例判定",
+      "slot": null,
+      "signature": "private bool <m>(PlayerCondition a, float b) { }",
+      "锚定依据": "同类同签名 + Slot",
+      "current": {
+        "klass": "Player",
+        "name": "fji",
+        "rva": "0x50a860",
+        "va": "0x18050a860"
+      },
+      "history": [
+        {
+          "build": "c242676e…",
+          "klass": "Player",
+          "name": "fgp",
+          "rva": "0x506060"
+        }
+      ]
+    },
+    "StatusEffectController.SumStatBonus": {
+      "说明": "增益(Buff)口径三字典累加：g3×(v+g1)×(1+g2)",
+      "slot": null,
+      "signature": "public double <m>(StatType a, double b) { }",
+      "锚定依据": "同类同签名 + Slot",
+      "current": {
+        "klass": "StatusEffectController",
+        "name": "bhb",
+        "rva": "0x4d56a0",
+        "va": "0x1804d56a0"
+      },
+      "history": [
+        {
+          "build": "c242676e…",
+          "klass": "StatusEffectController",
+          "name": "bgh",
+          "rva": "0x4d5e10"
+        }
+      ]
+    },
+    "StatCap.Clamp": {
+      "说明": "四类属性封顶 0.85（掩码 0x402010 + 特判 37）",
+      "slot": null,
+      "signature": "public static double <m>(StatType a, double b) { }",
+      "锚定依据": "同类同签名 + Slot",
+      "current": {
+        "klass": "bg",
+        "name": "wz",
+        "rva": "0x4a91c0",
+        "va": "0x1804a91c0"
+      },
+      "history": [
+        {
+          "build": "c242676e…",
+          "klass": "bg",
+          "name": "wm",
+          "rva": "0x4a9c30"
+        }
+      ]
+    },
+    "ItemizationConfig.StaticInit": {
+      "说明": "三类分组表静态初始化（Core/AllElements/ConditionalDamage）",
+      "slot": null,
+      "signature": "private static void .<m>() { }",
+      "锚定依据": "同类同签名 + Slot",
+      "current": {
+        "klass": "ItemizationConfig",
+        "name": "cctor",
+        "rva": "0x706a50",
+        "va": "0x180706a50"
+      },
+      "history": [
+        {
+          "build": "c242676e…",
+          "klass": "ItemizationConfig",
+          "name": "cctor",
+          "rva": "0x6f6360"
+        }
+      ]
+    },
+    "Actk.ObscuredInt.Decrypt": {
+      "说明": "ACTk：int 解码 (hidden-key)^key",
+      "slot": null,
+      "signature": "private int <m>() { }",
+      "锚定依据": "同类同签名 + Slot",
+      "current": {
+        "klass": "ObscuredInt",
+        "name": "kex",
+        "rva": "0x4548a0",
+        "va": "0x1804548a0"
+      },
+      "history": [
+        {
+          "build": "c242676e…",
+          "klass": "ObscuredInt",
+          "name": "kah",
+          "rva": "0x4558a0"
+        }
+      ]
+    },
+    "Actk.ObscuredFloat.Decrypt": {
+      "说明": "ACTk：float 解码 bswap12(hidden)^key",
+      "slot": null,
+      "signature": "public static float <m>(int a, int b) { }",
+      "锚定依据": "同类同签名 + Slot",
+      "current": {
+        "klass": "ObscuredFloat",
+        "name": "kcy",
+        "rva": "0x453810",
+        "va": "0x180453810"
+      },
+      "history": [
+        {
+          "build": "c242676e…",
+          "klass": "ObscuredFloat",
+          "name": "jyi",
+          "rva": "0x454810"
+        }
+      ]
+    },
+    "Actk.ObscuredDouble.Decrypt": {
+      "说明": "ACTk：double 解码（字节置换后 ^key）",
+      "slot": null,
+      "signature": "public static double <m>(long a, long b) { }",
+      "锚定依据": "同类同签名 + Slot",
+      "current": {
+        "klass": "ObscuredDouble",
+        "name": "kbx",
+        "rva": "0x452b70",
+        "va": "0x180452b70"
+      },
+      "history": [
+        {
+          "build": "c242676e…",
+          "klass": "ObscuredDouble",
+          "name": "jxh",
+          "rva": "0x453b70"
+        }
+      ]
+    },
+    "Actk.ObscuredLong.Decrypt": {
+      "说明": "ACTk：long 解码 (hidden-key)^key（与 ObscuredDateTime.jxz 同址：RVA 0x451340）",
+      "slot": null,
+      "signature": "public static long <m>(long a, long b) { }",
+      "锚定依据": "指令级反汇编：0x180451340 = `sub rcx,rdx; xor rcx,rdx; mov rax,rcx; ret`（解密 (hidden−key)^key），而 0x180451330 = `xor rcx,rdx; lea rax,[rdx+rcx]`（加密 key+(value^key)）——成对函数，解密在 0x451340；另与「同签名组序位 + 类整体位移 −0x1000 + 同址条目序」三重一致。REA 看不到函数体（dump 登记为共享泛型条目），故证据取自 capstone 逐字节反汇编",
+      "current": {
+        "klass": "ObscuredLong",
+        "name": "kfj",
+        "rva": "0x451340",
+        "va": "0x180451340",
+        "ordinal": 1
+      },
+      "history": [
+        {
+          "build": "c242676e…",
+          "klass": "ObscuredLong",
+          "name": "kas",
+          "rva": "0x452340"
+        }
+      ],
+      "证据等级": "指令级（字节反汇编）",
+      "证据": "capstone 反汇编 0x180451340/0x180451330（2026-10-10）；与 memory_reader.py 运行时公式、decode.py 修正后公式一致"
+    },
+    "SaveSystem.SerializeContainer": {
+      "说明": "SaveContainer → JSON 存档串（调用 JsonUtility.ToJson）",
+      "slot": null,
+      "signature": "private void <m>(SaveContainer a) { }",
+      "锚定依据": "同类同签名 + Slot",
+      "current": {
+        "klass": "SaveSystem",
+        "name": "egj",
+        "rva": "0x7b6670",
+        "va": "0x1807b6670"
+      },
+      "history": [
+        {
+          "build": "c242676e…",
+          "klass": "SaveSystem",
+          "name": "eed",
+          "rva": "0x7a4360"
+        }
+      ]
+    },
+    "SaveSystem.CompactJson": {
+      "说明": "JSON 去空白压缩",
+      "slot": null,
+      "signature": "private static string <m>(string a) { }",
+      "锚定依据": "同类同签名 + Slot",
+      "current": {
+        "klass": "SaveSystem",
+        "name": "eiq",
+        "rva": "0x7caee0",
+        "va": "0x1807caee0"
+      },
+      "history": [
+        {
+          "build": "c242676e…",
+          "klass": "SaveSystem",
+          "name": "egk",
+          "rva": "0x7b8b90"
+        }
+      ]
+    },
+    "SaveSystem.LoadByName": {
+      "说明": "按槽位名读取存档（语义名由 string 参数推断，无 tooltip 佐证）",
+      "slot": null,
+      "signature": "private SaveContainer <m>(string a) { }",
+      "锚定依据": "同类同签名 + Slot",
+      "current": {
+        "klass": "SaveSystem",
+        "name": "egg",
+        "rva": "0x7b61f0",
+        "va": "0x1807b61f0"
+      },
+      "history": [
+        {
+          "build": "c242676e…",
+          "klass": "SaveSystem",
+          "name": "eea",
+          "rva": "0x7a3ee0"
+        }
+      ]
+    },
+    "SaveSystem.LoadByMode": {
+      "说明": "按 CharacterMode 读取（语义名由参数类型推断）",
+      "slot": null,
+      "signature": "private List<SaveSlotRecord> <m>(CharacterMode a) { }",
+      "锚定依据": "同类同签名 + Slot",
+      "current": {
+        "klass": "SaveSystem",
+        "name": "ege",
+        "rva": "0x7b5dd0",
+        "va": "0x1807b5dd0"
+      },
+      "history": [
+        {
+          "build": "c242676e…",
+          "klass": "SaveSystem",
+          "name": "edy",
+          "rva": "0x7a3ac0"
+        }
+      ]
+    },
+    "SaveSystem.Save": {
+      "说明": "无参保存入口（语义名由无参签名推断）",
+      "slot": null,
+      "signature": "private ValueTuple<SaveData, SavedStash> <m>() { }",
+      "锚定依据": "同类同签名 + Slot",
+      "current": {
+        "klass": "SaveSystem",
+        "name": "eha",
+        "rva": "0x7b7f80",
+        "va": "0x1807b7f80"
+      },
+      "history": [
+        {
+          "build": "c242676e…",
+          "klass": "SaveSystem",
+          "name": "eeu",
+          "rva": "0x7a5c60"
+        }
+      ]
+    },
+    "SaveWriter.WriteAsync": {
+      "说明": "异步写盘链入口",
+      "slot": null,
+      "signature": "public static Task<bool> <m>(string a, string b) { }",
+      "锚定依据": "iw 同名类形状自证不足（签名交集 0/5），判为撞名；类形状匹配（iw → je）",
+      "current": {
+        "klass": "je",
+        "name": "evf",
+        "rva": "0x4dc670",
+        "va": "0x1804dc670"
+      },
+      "history": [
+        {
+          "build": "c242676e…",
+          "klass": "iw",
+          "name": "esm",
+          "rva": "0x7e1980"
+        }
+      ]
+    },
+    "SaveCrypto.Sha256": {
+      "说明": "SHA256(UTF8(s)) → 32 字节",
+      "slot": null,
+      "signature": "private static byte[] <m>(string a) { }",
+      "锚定依据": "类形状匹配（it → jb）",
+      "current": {
+        "klass": "jb",
+        "name": "euu",
+        "rva": "0x7f6250",
+        "va": "0x1807f6250"
+      },
+      "history": [
+        {
+          "build": "c242676e…",
+          "klass": "it",
+          "name": "esb",
+          "rva": "0x7e0040"
+        }
+      ]
+    },
+    "SaveCrypto.FileKey": {
+      "说明": "文件密钥 = SHA256('desktop-diablo-save-v1-CHANGE-ME')",
+      "slot": null,
+      "signature": "private static byte[] <m>() { }",
+      "锚定依据": "REA 反编译 FUN_1807f6450 证实形状：`return Sha256(cached-string)`（与 MacKey 同构，仅缓存串字段不同，差 8 字节）；两者的内部分配由同签名组序位 + 类整体位移两规则一致给出",
+      "current": {
+        "klass": "jb",
+        "name": "euv",
+        "rva": "0x7f6450",
+        "va": "0x1807f6450",
+        "ordinal": 0
+      },
+      "history": [
+        {
+          "build": "c242676e…",
+          "klass": "it",
+          "name": "esc",
+          "rva": "0x7e0240"
+        }
+      ],
+      "证据等级": "两规则一致 + 反编译证实形状",
+      "证据": "REA procedure_pseudo_code 0x1807f6450（2026-10-10）"
+    },
+    "SaveCrypto.MacKey": {
+      "说明": "MAC 密钥 = SHA256('...|mac')",
+      "slot": null,
+      "signature": "private static byte[] <m>() { }",
+      "锚定依据": "REA 反编译 FUN_1807f64b0 证实形状：`return Sha256(cached-string)`（与 FileKey 同构，仅缓存串字段不同，差 8 字节）；两者的内部分配由同签名组序位 + 类整体位移两规则一致给出",
+      "current": {
+        "klass": "jb",
+        "name": "euw",
+        "rva": "0x7f64b0",
+        "va": "0x1807f64b0",
+        "ordinal": 1
+      },
+      "history": [
+        {
+          "build": "c242676e…",
+          "klass": "it",
+          "name": "esd",
+          "rva": "0x7e02a0"
+        }
+      ],
+      "证据等级": "两规则一致 + 反编译证实形状",
+      "证据": "REA procedure_pseudo_code 0x1807f64b0（2026-10-10）"
+    },
+    "SaveCrypto.Encrypt": {
+      "说明": "加密：JSON 字符串 → DDS2 文件字节（★ 加密封装）",
+      "slot": null,
+      "signature": "public static byte[] <m>(string a) { }",
+      "锚定依据": "类形状匹配（it → jb）",
+      "current": {
+        "klass": "jb",
+        "name": "euz",
+        "rva": "0x7f6640",
+        "va": "0x1807f6640"
+      },
+      "history": [
+        {
+          "build": "c242676e…",
+          "klass": "it",
+          "name": "esg",
+          "rva": "0x7e0430"
+        }
+      ]
+    },
+    "SaveCrypto.Decrypt": {
+      "说明": "解密：文件字节 → JSON（out string, out bool）",
+      "slot": null,
+      "signature": "public static bool <m>(byte[] a, out string b, out bool c) { }",
+      "锚定依据": "类形状匹配（it → jb）",
+      "current": {
+        "klass": "jb",
+        "name": "eva",
+        "rva": "0x7f70d0",
+        "va": "0x1807f70d0"
+      },
+      "history": [
+        {
+          "build": "c242676e…",
+          "klass": "it",
+          "name": "esh",
+          "rva": "0x7e0ec0"
+        }
+      ]
+    },
+    "SaveCrypto.IsDds2": {
+      "说明": "版本判定（前缀是否 DDS2）",
+      "slot": null,
+      "signature": "public static bool <m>(byte[] a) { }",
+      "锚定依据": "类形状匹配（it → jb）",
+      "current": {
+        "klass": "jb",
+        "name": "eux",
+        "rva": "0x7f6510",
+        "va": "0x1807f6510"
+      },
+      "history": [
+        {
+          "build": "c242676e…",
+          "klass": "it",
+          "name": "ese",
+          "rva": "0x7e0300"
+        }
+      ]
+    },
+    "SaveCrypto.FixedTimeEquals": {
+      "说明": "定长比较（防时序侧信道）",
+      "slot": null,
+      "signature": "private static bool <m>(byte[] a, byte[] b) { }",
+      "锚定依据": "类形状匹配（it → jb）",
+      "current": {
+        "klass": "jb",
+        "name": "euy",
+        "rva": "0x7f65d0",
+        "va": "0x1807f65d0"
+      },
+      "history": [
+        {
+          "build": "c242676e…",
+          "klass": "it",
+          "name": "esf",
+          "rva": "0x7e03c0"
+        }
+      ]
+    },
+    "SaveCrypto.StaticInit": {
+      "说明": "初始化 magic：ASCII('DDS1')/ASCII('DDS2')",
+      "slot": null,
+      "signature": "private static void .<m>() { }",
+      "锚定依据": "类形状匹配（it → jb）",
+      "current": {
+        "klass": "jb",
+        "name": "cctor",
+        "rva": "0x7f79f0",
+        "va": "0x1807f79f0"
+      },
+      "history": [
+        {
+          "build": "c242676e…",
+          "klass": "it",
+          "name": "cctor",
+          "rva": "0x7e17e0"
+        }
+      ]
+    },
+    "RollTable.StaticInit": {
+      "说明": "词条 Roll 系数表（55 项）静态初始化；extract_rolltable.py 的扫描起点",
+      "slot": null,
+      "signature": "private static void .<m>() { }",
+      "锚定依据": "gg 同名类形状自证不足（签名交集 1/22），判为撞名；类形状匹配（gg → gh）",
+      "current": {
+        "klass": "gh",
+        "name": "cctor",
+        "rva": "0x7836c0",
+        "va": "0x1807836c0"
+      },
+      "history": [
+        {
+          "build": "c242676e…",
+          "klass": "gg",
+          "name": "cctor",
+          "rva": "0x771dc0"
+        }
+      ]
+    },
+    "RollTable.RangeEnd": {
+      "说明": "Roll 表扫描终点边界（旧注释按「gg 的下一方法」写的地址）",
+      "slot": null,
+      "signature": "private static int <m>(double a) { }",
+      "锚定依据": "跨类唯一同签名候选",
+      "current": {
+        "klass": "gi",
+        "name": "dpj",
+        "rva": "0x7842d0",
+        "va": "0x1807842d0"
+      },
+      "history": [
+        {
+          "build": "c242676e…",
+          "klass": "gh",
+          "name": "dnx",
+          "rva": "0x7729d0"
+        }
+      ]
+    }
+  }
+}

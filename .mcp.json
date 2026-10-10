@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "rea": {
+      "type": "stdio",
+      "command": "wsl.exe",
+      "args": [
+        "-d",
+        "Ubuntu",
+        "--",
+        "bash",
+        "-lc",
+        "export GHIDRA_INSTALL_DIR=~/tools/ghidra_12.1.4_PUBLIC GHIDRA_HEADLESS_MAXMEM=8G REA_GHIDRA_STARTUP_TIMEOUT_MS=14400000; exec npx -y rea-agents@6.1.0 mcp"
+      ],
+      "timeout": 3600000
+    }
+  }
+}

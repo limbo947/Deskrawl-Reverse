@@ -1,0 +1,1499 @@
+{
+ "meta": {
+  "time": "2026-10-08 19:09:57",
+  "pid": 9868,
+  "mode": "beta",
+  "town_mode": false,
+  "final_dict": "nsq",
+  "hero": {
+   "name": "ExampleHeroB",
+   "summary_level": 70,
+   "profile": "00000000000000000000000000000001",
+   "slot_index": 1
+  },
+  "warnings": [],
+  "fingerprints": {
+   "dicts": "f4f8020958bc1856",
+   "uids": "0484dc4abf2fe1bc"
+  }
+ },
+ "player": {
+  "level": 70,
+  "fields": {
+   "BaseMaxHealth": 1204,
+   "BaseDamage": 0,
+   "BaseMoveSpeed": 3.0,
+   "BaseCritChance": 0.05000000074505806,
+   "BaseCritDamage": 1.5,
+   "BaseAttackSpeed": 0.0,
+   "BaseDodgeChance": 0.05000000074505806,
+   "BaseMaxMana": 100,
+   "CurrentHealth": 5592,
+   "CurrentXP": 0,
+   "BasePrimaryStat": 10.0,
+   "BaseLifeOnHit": 0.0,
+   "BaseLifeOnKill": 0.0,
+   "BaseCooldownReduction": 0.0
+  },
+  "town_mode": false,
+  "final_dict": "nsq",
+  "base": {
+   "21": 1.2430000305175781,
+   "20": 297.1499938964844,
+   "45": 2.3327499330043793,
+   "5": 2.7495999336242676,
+   "3": 94.3499984741211,
+   "32": 1.8577499091625214,
+   "12": 97.64999389648438,
+   "23": 2.119999945163727,
+   "8": 4362.949951171875,
+   "7": 2511.7999877929688,
+   "14": 131.0,
+   "22": 0.2149999961256981,
+   "44": 0.859000027179718,
+   "17": 0.7069999873638153,
+   "9": 2659.8999633789062,
+   "29": 2.5679999589920044,
+   "36": 86.0,
+   "42": 0.5049999803304672,
+   "0": 377.0,
+   "53": 0.1550000011920929,
+   "15": 0.3089999854564667,
+   "6": 0.35694998502731323,
+   "38": 1.0,
+   "40": 1.5329999923706055,
+   "4": 0.3400000035762787,
+   "16": 0.3070000112056732,
+   "51": 0.17000000178813934,
+   "11": 53.0,
+   "31": 1.1920000314712524,
+   "65": 0.5429999828338623,
+   "52": 0.15299999713897705,
+   "13": 0.15299999713897705,
+   "57": 0.15000000596046448
+  },
+  "stat_dicts": {
+   "nsq": {
+    "21": 1.2430000305175781,
+    "20": 297.1499938964844,
+    "45": 2.3327499330043793,
+    "5": 2.7495999336242676,
+    "3": 94.3499984741211,
+    "32": 1.8577499091625214,
+    "12": 97.64999389648438,
+    "23": 2.119999945163727,
+    "8": 4362.949951171875,
+    "7": 2511.7999877929688,
+    "14": 131.0,
+    "22": 0.2149999961256981,
+    "44": 0.859000027179718,
+    "17": 0.7069999873638153,
+    "9": 2659.8999633789062,
+    "29": 2.5679999589920044,
+    "36": 86.0,
+    "42": 0.5049999803304672,
+    "0": 377.0,
+    "53": 0.1550000011920929,
+    "15": 0.3089999854564667,
+    "6": 0.35694998502731323,
+    "38": 1.0,
+    "40": 1.5329999923706055,
+    "4": 0.3400000035762787,
+    "16": 0.3070000112056732,
+    "51": 0.17000000178813934,
+    "11": 53.0,
+    "31": 1.1920000314712524,
+    "65": 0.5429999828338623,
+    "52": 0.15299999713897705,
+    "13": 0.15299999713897705,
+    "57": 0.15000000596046448
+   },
+   "nsr": {},
+   "nsu": {
+    "4": 0.09999999403953552,
+    "5": 0.800000011920929,
+    "40": 0.800000011920929,
+    "0": 50.0,
+    "15": 0.4000000059604645
+   },
+   "nsv": {
+    "8": 0.4000000059604645
+   },
+   "ntc": {
+    "15": 1.5000000447034836,
+    "19": 2.0000000298023224,
+    "16": 1.0000000149011612,
+    "17": 0.42000000178813934,
+    "18": 12.0,
+    "41": 1.5000000447034836
+   },
+   "ntd": {},
+   "nte": {
+    "0": 14.0
+   }
+  },
+  "conditionals": {
+   "nuf": [
+    [
+     1,
+     6.0,
+     23,
+     0,
+     0.75,
+     0
+    ],
+    [
+     1,
+     6.0,
+     24,
+     0,
+     0.75,
+     0
+    ],
+    [
+     1,
+     6.0,
+     25,
+     0,
+     0.75,
+     0
+    ],
+    [
+     1,
+     6.0,
+     26,
+     0,
+     0.75,
+     0
+    ],
+    [
+     1,
+     6.0,
+     27,
+     0,
+     0.75,
+     0
+    ],
+    [
+     1,
+     6.0,
+     28,
+     0,
+     0.75,
+     0
+    ],
+    [
+     -1,
+     6.0,
+     57,
+     0,
+     0.5,
+     1
+    ]
+   ],
+   "nug": [
+    [
+     4,
+     0,
+     6,
+     0,
+     0.3499999940395355
+    ]
+   ]
+  },
+  "status_mods": {
+   "flat": {},
+   "pct": {},
+   "mult": {}
+  },
+  "primary_stat": 0,
+  "hero_class": 1
+ },
+ "inventory": [],
+ "storage": [
+  {
+   "uid": "690ea008-30e1-49bc-96e3-64e6f9bc99b4",
+   "count": 1,
+   "name": "LegendarySword1",
+   "equip_slot_type": 1,
+   "item_level": 841,
+   "rarity": 3,
+   "upgrade_level": 0,
+   "rune_level": 0,
+   "socket_count": 3,
+   "modifiers": [
+    [
+     21,
+     0,
+     1.0299999713897705
+    ],
+    [
+     20,
+     0,
+     309.0
+    ],
+    [
+     23,
+     0,
+     1.2380000352859497
+    ],
+    [
+     62,
+     0,
+     1.5470000505447388
+    ],
+    [
+     32,
+     0,
+     1.5470000505447388
+    ],
+    [
+     40,
+     0,
+     1.5470000505447388
+    ],
+    [
+     12,
+     0,
+     93.0
+    ]
+   ],
+   "socketed_gems": []
+  },
+  {
+   "uid": "bc67897f-65a9-4014-8cb7-b65a74275110",
+   "count": 1,
+   "name": "LegendaryStaff2",
+   "equip_slot_type": 1,
+   "item_level": 839,
+   "rarity": 3,
+   "upgrade_level": 0,
+   "rune_level": 0,
+   "socket_count": 1,
+   "modifiers": [
+    [
+     21,
+     0,
+     0.9599999785423279
+    ],
+    [
+     20,
+     0,
+     250.0
+    ],
+    [
+     3,
+     0,
+     37.0
+    ],
+    [
+     31,
+     0,
+     1.25600004196167
+    ],
+    [
+     32,
+     0,
+     1.4279999732971191
+    ],
+    [
+     29,
+     0,
+     1.5190000534057617
+    ],
+    [
+     12,
+     0,
+     75.0
+    ]
+   ],
+   "socketed_gems": []
+  },
+  {
+   "uid": "684b2662-13b3-4109-9724-4f70673f74cb",
+   "count": 1,
+   "name": "LegendaryHelm2",
+   "equip_slot_type": 2
+  },
+  {
+   "uid": "936c23ec-d801-4b73-a5a7-e3f6272d1e4f",
+   "count": 1,
+   "name": "LegendaryHelm2",
+   "equip_slot_type": 2
+  },
+  {
+   "uid": "785db8e1-60b8-4eba-bc7a-7f1d25e7006e",
+   "count": 1,
+   "name": "LegendaryHelm4",
+   "equip_slot_type": 2
+  },
+  {
+   "uid": "869d31a4-a4e0-43c2-b16a-440a91100f83",
+   "count": 1,
+   "name": "LegendaryChestArmor5",
+   "equip_slot_type": 3
+  },
+  {
+   "uid": "393c1daf-cd0f-4a79-9d86-f014464f5468",
+   "count": 1,
+   "name": "LegendaryChestArmor2",
+   "equip_slot_type": 3
+  },
+  {
+   "uid": "7fc4f468-98fd-42af-9900-8ea7e2aa5d09",
+   "count": 1,
+   "name": "LegendaryChestArmor5",
+   "equip_slot_type": 3
+  },
+  {
+   "uid": "2586e8c2-a6c5-49f9-86cc-550ef83719a1",
+   "count": 1,
+   "name": "LegendaryChestArmor5",
+   "equip_slot_type": 3
+  },
+  {
+   "uid": "58a6a79a-acbe-4cc3-b458-90f53466776e",
+   "count": 1,
+   "name": "LegendaryPants2",
+   "equip_slot_type": 4
+  },
+  {
+   "uid": "2efbc252-e1fb-4793-b482-9308d6b1fbd0",
+   "count": 1,
+   "name": "LegendaryPants1",
+   "equip_slot_type": 4
+  },
+  {
+   "uid": "a1a9988a-c031-4f0b-8078-f2f048a36f00",
+   "count": 1,
+   "name": "LegendaryPants3",
+   "equip_slot_type": 4
+  },
+  {
+   "uid": "ec7cd38f-3a5c-472d-8d1e-cfaddfd08bba",
+   "count": 1,
+   "name": "LegendaryPants3",
+   "equip_slot_type": 4
+  },
+  {
+   "uid": "4c2600a8-b1ee-4301-bf71-5460f4e5aa27",
+   "count": 1,
+   "name": "LegendaryPants3",
+   "equip_slot_type": 4
+  },
+  {
+   "uid": "3ca54f1e-9372-40ed-b258-d6479b4cc10c",
+   "count": 1,
+   "name": "LegendaryBoots1",
+   "equip_slot_type": 5
+  },
+  {
+   "uid": "41f26a1b-9367-4e09-8f57-b10f2819c593",
+   "count": 1,
+   "name": "LegendaryBoots1",
+   "equip_slot_type": 5
+  },
+  {
+   "uid": "41003d17-cb45-416a-b533-5c65c246a898",
+   "count": 1,
+   "name": "LegendaryBelt2",
+   "equip_slot_type": 6
+  },
+  {
+   "uid": "532d2b6a-90b0-4ad1-b8bd-71ff473ead87",
+   "count": 1,
+   "name": "LegendaryBelt3",
+   "equip_slot_type": 6
+  },
+  {
+   "uid": "13a34029-34e1-456e-b83b-2e8dc0df8d5f",
+   "count": 1,
+   "name": "LegendaryBelt2",
+   "equip_slot_type": 6
+  },
+  {
+   "uid": "db89abc8-fdc4-47f1-95c9-cd32342a1ecf",
+   "count": 1,
+   "name": "LegendaryRing1",
+   "equip_slot_type": 7
+  },
+  {
+   "uid": "b59ed451-9657-47ad-9c0e-ea59f5d5551e",
+   "count": 1,
+   "name": "LegendaryRing7",
+   "equip_slot_type": 7
+  },
+  {
+   "uid": "6399bef6-269f-4c4f-8371-cc0c09bab3a8",
+   "count": 1,
+   "name": "LegendaryRing1",
+   "equip_slot_type": 7
+  },
+  {
+   "uid": "6c4b0541-ca13-4eda-bcda-b23398f21b2c",
+   "count": 1,
+   "name": "LegendaryRing1",
+   "equip_slot_type": 7
+  },
+  {
+   "uid": "b7c6d104-dc38-427c-98bd-267dcb3caac8",
+   "count": 1,
+   "name": "LegendaryRing5",
+   "equip_slot_type": 7
+  },
+  {
+   "uid": "d94ba414-9067-4c16-9c6b-1ebea3d7db50",
+   "count": 1,
+   "name": "LegendaryNeck2",
+   "equip_slot_type": 8
+  },
+  {
+   "uid": "1db1253d-b8b6-450f-8830-3fe8ec2ad749",
+   "count": 1,
+   "name": "LegendaryGloves6",
+   "equip_slot_type": 9
+  },
+  {
+   "uid": "7ec65a66-1fe7-4dc5-a638-564bc82b0451",
+   "count": 1,
+   "name": "LegendaryGloves1",
+   "equip_slot_type": 9
+  },
+  {
+   "uid": "560844ba-24ae-4152-8fe3-31938a7be59d",
+   "count": 1,
+   "name": "LegendaryGloves6",
+   "equip_slot_type": 9
+  },
+  {
+   "uid": "20c873b3-207e-4db5-82c5-d0665777ed4e",
+   "count": 1,
+   "name": "LegendaryGloves2",
+   "equip_slot_type": 9
+  },
+  {
+   "uid": "93870af2-7100-450a-ad3f-8fce576fc032",
+   "count": 1,
+   "name": "LegendaryShoulder2",
+   "equip_slot_type": 10
+  },
+  {
+   "uid": "aff7868d-6611-4a81-ab9e-6415397b406c",
+   "count": 1,
+   "name": "LegendaryShoulder1",
+   "equip_slot_type": 10
+  },
+  {
+   "uid": "481d50fb-577d-44d4-b84c-313899fed920",
+   "count": 1,
+   "name": "LegendaryShoulder1",
+   "equip_slot_type": 10
+  },
+  {
+   "uid": "9b5386aa-39df-47b8-9e36-5fbc51cc9147",
+   "count": 1,
+   "name": "LegendaryShoulder2",
+   "equip_slot_type": 10
+  },
+  {
+   "uid": "ac9fb223-a0e5-4104-a6e4-f06b00a4809c",
+   "count": 1,
+   "name": "LegendaryShoulder1",
+   "equip_slot_type": 10
+  },
+  {
+   "uid": "13616459-031c-4127-ab4b-b12a01c95d04",
+   "count": 1,
+   "name": "LegendaryShoulder1",
+   "equip_slot_type": 10
+  },
+  {
+   "uid": "fdcfd924-e760-4326-8324-943e828aa5ea",
+   "count": 1,
+   "name": "RareRune_WarriorHeavyAttack2",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "6bb992b7-f47a-466a-8cfd-a619c36b3b50",
+   "count": 1,
+   "name": "RareRune_WarriorRageShout",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "9a55ef80-2c68-4592-8579-3f896cf14e65",
+   "count": 1,
+   "name": "RareRune_WarriorRageShout",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "b16df5b8-44d2-4cde-b675-c89f6cb1a832",
+   "count": 1,
+   "name": "RareRune_WarriorRageShout",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "2aaf281c-425f-47ba-ab45-2ccd3c194982",
+   "count": 1,
+   "name": "RareRune_WarriorBasicAttack2",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "3f52b1fc-d8fc-4c67-8a3a-093751b18220",
+   "count": 1,
+   "name": "RareRune_WarriorBasicAttack2",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "d2b1e9dc-14de-4af4-ba33-321e077203ff",
+   "count": 1,
+   "name": "RareRune_WarriorBasicAttack2",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "fab43ba5-62bf-4e90-802c-7e512ed1e85b",
+   "count": 1,
+   "name": "RareRune_WarriorBasicAttack2",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "8df2ec4f-5de2-41ea-a931-34535a86e01a",
+   "count": 1,
+   "name": "RareRune_WarriorHeavyAttack1",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "827ca465-e2cb-493d-9244-4b81667b13f1",
+   "count": 1,
+   "name": "RareRune_WarriorRageShield",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "46b957db-acd9-412e-8c4f-7edb73508e73",
+   "count": 1,
+   "name": "RareRune_WarriorBasicAttack3",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "a4eab391-9d98-4954-bbfc-8698a15b74eb",
+   "count": 1,
+   "name": "RareRune_WarriorBasicAttack3",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "aaf6580c-49aa-4148-a222-009130d6abeb",
+   "count": 1,
+   "name": "RareRune_WarriorBasicAttack3",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "bcf57d4f-f838-4ab5-b2ff-5e22d58e9964",
+   "count": 1,
+   "name": "RareRune_WarriorBasicAttack3",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "f8cabb2c-8e1b-48d7-a9de-36555b27eddd",
+   "count": 1,
+   "name": "RareRune_WarriorBasicAttack3",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "20bd99a9-369a-4996-8b1d-872e0101fd82",
+   "count": 1,
+   "name": "UncommonRune_DamageVsHealthy",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "35c694d2-89fc-46c5-8fe8-ce346681b37a",
+   "count": 1,
+   "name": "UncommonRune_DamageVsHealthy",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "cf5ce630-9054-4523-a6b8-2ea528d6d315",
+   "count": 1,
+   "name": "UncommonRune_DamageVsInjured",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "073a4526-1a6d-4a4d-b6c3-ffe769d4defe",
+   "count": 1,
+   "name": "UncommonRune_DamageVsStunned",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "4d6ddae2-6ef3-4539-9a3f-6395b0be64d1",
+   "count": 1,
+   "name": "UncommonRune_DamageVsStunned",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "e229dfc1-ecb9-4b1c-91c0-18c7151e1c94",
+   "count": 1,
+   "name": "UncommonRune_DamageVsStunned",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "df0bfa5b-1584-43e1-abbf-c60d86475e9a",
+   "count": 1,
+   "name": "UncommonRune_DamageVsInjured",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "8f17d641-2bbb-4caf-956c-18734bd9be8d",
+   "count": 1,
+   "name": "UncommonRune_DamageVsBleeding",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "dc108916-fcb9-44c2-b67a-ee410eeae944",
+   "count": 1,
+   "name": "UncommonRune_DamageVsPoisoned",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "3818b94e-2bae-48fe-84cf-397ac3a0585a",
+   "count": 1,
+   "name": "UncommonRune_DamageVsSlowed",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "7543b587-eba7-424a-a848-97e0da7bf73e",
+   "count": 1,
+   "name": "UncommonRune_DamageVsSlowed",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "d8703205-486e-46a7-89fd-d9879401e007",
+   "count": 1,
+   "name": "UncommonRune_DamageVsSlowed",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "0cc2f698-fc67-49e6-8edd-68b19dc06b79",
+   "count": 1,
+   "name": "UncommonRune_DamageVsDistant",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "3cd92c77-e383-404f-915c-a6bcd1fdad0d",
+   "count": 1,
+   "name": "UncommonRune_DamageVsDistant",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "5e3e1bd2-0664-475f-ae0b-8842a387dd7f",
+   "count": 1,
+   "name": "UncommonRune_DamageVsPoisoned",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "0f6f6feb-d648-4f6f-b575-8037bc0155e8",
+   "count": 1,
+   "name": "UncommonRune_DamageVsInjured",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "80e16566-85e3-4884-ad52-d040d5ee3db8",
+   "count": 1,
+   "name": "LegendaryNeck1",
+   "equip_slot_type": 8
+  },
+  {
+   "uid": "ecd2db57-14ce-4889-abc9-9fd322dbdb5d",
+   "count": 1,
+   "name": "LegendaryShoulder3",
+   "equip_slot_type": 10
+  },
+  {
+   "uid": "",
+   "count": 21,
+   "name": "GemEmerald4",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "",
+   "count": 13,
+   "name": "GemAmethyst4",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "",
+   "count": 14,
+   "name": "GemRuby4",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "",
+   "count": 15,
+   "name": "GemSapphire4",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "",
+   "count": 14,
+   "name": "GemDiamond4",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "",
+   "count": 21,
+   "name": "GemTopaz4",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "",
+   "count": 4,
+   "name": "GemEmerald5",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "",
+   "count": 6,
+   "name": "GemAmethyst5",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "",
+   "count": 5,
+   "name": "GemRuby5",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "",
+   "count": 4,
+   "name": "GemSapphire5",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "",
+   "count": 2,
+   "name": "GemDiamond5",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "",
+   "count": 4,
+   "name": "GemTopaz5",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "",
+   "count": 3,
+   "name": "GemEmerald2",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "",
+   "count": 7,
+   "name": "GemAmethyst2",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "",
+   "count": 1,
+   "name": "GemRuby2",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "",
+   "count": 5,
+   "name": "GemSapphire2",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "",
+   "count": 3,
+   "name": "GemDiamond2",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "",
+   "count": 4,
+   "name": "GemTopaz2",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "",
+   "count": 5,
+   "name": "GemEmerald3",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "",
+   "count": 7,
+   "name": "GemAmethyst3",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "",
+   "count": 7,
+   "name": "GemRuby3",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "",
+   "count": 7,
+   "name": "GemSapphire3",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "",
+   "count": 1,
+   "name": "GemDiamond3",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "",
+   "count": 3,
+   "name": "GemEmerald1",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "",
+   "count": 2,
+   "name": "GemAmethyst1",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "",
+   "count": 2,
+   "name": "GemSapphire1",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "",
+   "count": 1,
+   "name": "GemTopaz1",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "3dcfd0bf-3bd4-4c0d-b6f1-bed6d347b344",
+   "count": 1,
+   "name": "LegendaryHelm4",
+   "equip_slot_type": 2
+  },
+  {
+   "uid": "1610744e-c2ca-4ec8-b23d-42d40b416673",
+   "count": 1,
+   "name": "LegendaryHelm1",
+   "equip_slot_type": 2
+  },
+  {
+   "uid": "3f966a36-3a2c-4fcb-997e-7e7e1d032398",
+   "count": 1,
+   "name": "LegendaryHelm1",
+   "equip_slot_type": 2
+  },
+  {
+   "uid": "b19d3d09-01ea-4d3b-b28e-bedeff12e0c5",
+   "count": 1,
+   "name": "LegendaryChestArmor5",
+   "equip_slot_type": 3
+  },
+  {
+   "uid": "b5b7025b-d5f8-4ab6-ba21-8ee1aed77d0d",
+   "count": 1,
+   "name": "LegendaryChestArmor5",
+   "equip_slot_type": 3
+  },
+  {
+   "uid": "7c163a83-f365-4235-a486-12c5453c342d",
+   "count": 1,
+   "name": "LegendaryChestArmor2",
+   "equip_slot_type": 3
+  },
+  {
+   "uid": "25b6ce0f-20b5-4f48-8b9e-a036f874f02a",
+   "count": 1,
+   "name": "LegendaryPants2",
+   "equip_slot_type": 4
+  },
+  {
+   "uid": "b19cee3e-0279-49b0-9b75-1922fb9fa2c6",
+   "count": 1,
+   "name": "LegendaryPants3",
+   "equip_slot_type": 4
+  },
+  {
+   "uid": "0435c67d-ae6f-4371-9185-6f48a2c3ecce",
+   "count": 1,
+   "name": "LegendaryPants3",
+   "equip_slot_type": 4
+  },
+  {
+   "uid": "e201ba09-bf64-4ce9-87e2-e7333888d3f7",
+   "count": 1,
+   "name": "LegendaryPants1",
+   "equip_slot_type": 4
+  },
+  {
+   "uid": "3b328020-fc91-4e6c-9452-cb944bd898b8",
+   "count": 1,
+   "name": "LegendaryPants2",
+   "equip_slot_type": 4
+  },
+  {
+   "uid": "98a673bc-312c-4e44-9d54-92fa952a4ab7",
+   "count": 1,
+   "name": "LegendaryBoots1",
+   "equip_slot_type": 5
+  },
+  {
+   "uid": "38113618-1ada-492d-bab0-8aa38982a9de",
+   "count": 1,
+   "name": "LegendaryRing1",
+   "equip_slot_type": 7
+  },
+  {
+   "uid": "bf72fcc6-e968-49e0-b106-e8bfa9af46ca",
+   "count": 1,
+   "name": "LegendaryRing2",
+   "equip_slot_type": 7
+  },
+  {
+   "uid": "a20a0015-9885-468a-957b-8a5a34d84034",
+   "count": 1,
+   "name": "LegendaryNeck2",
+   "equip_slot_type": 8
+  },
+  {
+   "uid": "c422186c-11b5-4f96-8db4-3ccad2d7f101",
+   "count": 1,
+   "name": "LegendaryGloves6",
+   "equip_slot_type": 9
+  },
+  {
+   "uid": "2da1fe31-7814-46c8-b0b4-ca5b74db334f",
+   "count": 1,
+   "name": "LegendaryBack2",
+   "equip_slot_type": 11
+  },
+  {
+   "uid": "",
+   "count": 2,
+   "name": "ExpPotion1",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "ef477242-78f5-4824-9b6d-00b8383d49d9",
+   "count": 1,
+   "name": "RareRune_WarriorHeavyAttack3",
+   "equip_slot_type": 0
+  },
+  {
+   "uid": "862fa7c5-b09f-4764-ae1d-8f1c6cd7004d",
+   "count": 1,
+   "name": "LegendaryHelm1",
+   "equip_slot_type": 2
+  }
+ ],
+ "equipment": [
+  {
+   "slot": 0,
+   "uid": "2e81bd16-f389-4e3f-ab7d-0efd1f31dd25",
+   "name": "LegendarySword1",
+   "item_type": 3,
+   "equip_slot_type": 1,
+   "modifiers": [
+    [
+     21,
+     0,
+     1.1299999952316284
+    ],
+    [
+     20,
+     0,
+     283.0
+    ],
+    [
+     45,
+     0,
+     1.5549999475479126
+    ],
+    [
+     5,
+     0,
+     0.9330000281333923
+    ],
+    [
+     3,
+     0,
+     47.0
+    ],
+    [
+     32,
+     0,
+     1.5549999475479126
+    ],
+    [
+     12,
+     0,
+     93.0
+    ]
+   ],
+   "socketed_gems": [
+    "GemDiamond5",
+    "GemDiamond5",
+    "GemDiamond4"
+   ],
+   "item_level": 845,
+   "rarity": 3,
+   "upgrade_level": 4,
+   "rune_level": 0,
+   "socket_count": 3
+  },
+  {
+   "slot": 1,
+   "uid": "d4352642-a8ee-44e0-832b-36fc15e2fb4a",
+   "name": "LegendaryHelm2",
+   "item_type": 3,
+   "equip_slot_type": 2,
+   "modifiers": [
+    [
+     8,
+     0,
+     712.0
+    ],
+    [
+     7,
+     0,
+     526.0
+    ],
+    [
+     14,
+     0,
+     61.0
+    ],
+    [
+     22,
+     0,
+     0.06199999898672104
+    ],
+    [
+     44,
+     0,
+     0.2840000092983246
+    ],
+    [
+     17,
+     0,
+     0.2290000021457672
+    ]
+   ],
+   "socketed_gems": [],
+   "item_level": 836,
+   "rarity": 3,
+   "upgrade_level": 0,
+   "rune_level": 0,
+   "socket_count": 0
+  },
+  {
+   "slot": 2,
+   "uid": "f4844d03-e148-4a07-a9cf-8b6a3859244d",
+   "name": "LegendaryChestArmor5",
+   "item_type": 3,
+   "equip_slot_type": 3,
+   "modifiers": [
+    [
+     8,
+     0,
+     675.0
+    ],
+    [
+     44,
+     0,
+     0.28600001335144043
+    ],
+    [
+     9,
+     0,
+     746.0
+    ],
+    [
+     29,
+     0,
+     1.2239999771118164
+    ],
+    [
+     22,
+     0,
+     0.07599999755620956
+    ],
+    [
+     36,
+     0,
+     28.0
+    ]
+   ],
+   "socketed_gems": [
+    "GemSapphire4"
+   ],
+   "item_level": 831,
+   "rarity": 3,
+   "upgrade_level": 0,
+   "rune_level": 0,
+   "socket_count": 1
+  },
+  {
+   "slot": 3,
+   "uid": "ed5b11b2-8ed7-4b0a-8631-95e7359e2e7c",
+   "name": "LegendaryPants3",
+   "item_type": 3,
+   "equip_slot_type": 4,
+   "modifiers": [
+    [
+     8,
+     0,
+     762.0
+    ],
+    [
+     44,
+     0,
+     0.289000004529953
+    ],
+    [
+     0,
+     0,
+     71.0
+    ],
+    [
+     42,
+     0,
+     0.26499998569488525
+    ],
+    [
+     9,
+     0,
+     604.0
+    ],
+    [
+     36,
+     0,
+     27.0
+    ]
+   ],
+   "socketed_gems": [
+    "GemSapphire4"
+   ],
+   "item_level": 833,
+   "rarity": 3,
+   "upgrade_level": 0,
+   "rune_level": 0,
+   "socket_count": 1
+  },
+  {
+   "slot": 4,
+   "uid": "06146893-2ce4-47db-a2b6-0d57b9328ff2",
+   "name": "LegendaryBoots1",
+   "item_type": 3,
+   "equip_slot_type": 5,
+   "modifiers": [
+    [
+     8,
+     0,
+     774.0
+    ],
+    [
+     7,
+     0,
+     696.0
+    ],
+    [
+     53,
+     0,
+     0.1550000011920929
+    ],
+    [
+     22,
+     0,
+     0.07699999958276749
+    ],
+    [
+     0,
+     0,
+     77.0
+    ],
+    [
+     15,
+     0,
+     0.3089999854564667
+    ]
+   ],
+   "socketed_gems": [],
+   "item_level": 841,
+   "rarity": 3,
+   "upgrade_level": 1,
+   "rune_level": 0,
+   "socket_count": 0
+  },
+  {
+   "slot": 5,
+   "uid": "8ebd3b1c-3758-4968-8b56-0c7598e837e6",
+   "name": "LegendaryBelt3",
+   "item_type": 3,
+   "equip_slot_type": 6,
+   "modifiers": [
+    [
+     9,
+     0,
+     518.0
+    ],
+    [
+     6,
+     0,
+     0.1589999943971634
+    ],
+    [
+     38,
+     0,
+     1.0
+    ],
+    [
+     7,
+     0,
+     565.0
+    ],
+    [
+     17,
+     0,
+     0.22499999403953552
+    ]
+   ],
+   "socketed_gems": [],
+   "item_level": 683,
+   "rarity": 3,
+   "upgrade_level": 1,
+   "rune_level": 0,
+   "socket_count": 0
+  },
+  {
+   "slot": 6,
+   "uid": "613225d6-6907-4cdf-ba9e-7b7ae561f03e",
+   "name": "LegendaryRing7",
+   "item_type": 3,
+   "equip_slot_type": 7,
+   "modifiers": [
+    [
+     0,
+     0,
+     77.0
+    ],
+    [
+     40,
+     0,
+     1.5329999923706055
+    ],
+    [
+     4,
+     0,
+     0.12300000339746475
+    ],
+    [
+     9,
+     0,
+     766.0
+    ],
+    [
+     16,
+     0,
+     0.3070000112056732
+    ]
+   ],
+   "socketed_gems": [
+    "GemDiamond4"
+   ],
+   "item_level": 833,
+   "rarity": 3,
+   "upgrade_level": 0,
+   "rune_level": 0,
+   "socket_count": 1
+  },
+  {
+   "slot": 7,
+   "uid": "6a5eb773-6021-405b-9ab4-286c3d8a20df",
+   "name": "LegendaryRing5",
+   "item_type": 3,
+   "equip_slot_type": 7,
+   "modifiers": [
+    [
+     5,
+     0,
+     0.8889999985694885
+    ],
+    [
+     0,
+     0,
+     75.0
+    ],
+    [
+     14,
+     0,
+     70.0
+    ],
+    [
+     23,
+     0,
+     1.1699999570846558
+    ],
+    [
+     11,
+     0,
+     27.0
+    ]
+   ],
+   "socketed_gems": [
+    "GemDiamond4"
+   ],
+   "item_level": 840,
+   "rarity": 3,
+   "upgrade_level": 0,
+   "rune_level": 0,
+   "socket_count": 1
+  },
+  {
+   "slot": 8,
+   "uid": "86374489-2ef1-4832-8324-b43eea2177d9",
+   "name": "LegendaryNeck1",
+   "item_type": 3,
+   "equip_slot_type": 8,
+   "modifiers": [
+    [
+     29,
+     0,
+     1.343999981880188
+    ],
+    [
+     31,
+     0,
+     1.1920000314712524
+    ],
+    [
+     4,
+     0,
+     0.09399999678134918
+    ],
+    [
+     65,
+     0,
+     0.5429999828338623
+    ],
+    [
+     11,
+     0,
+     26.0
+    ]
+   ],
+   "socketed_gems": [],
+   "item_level": 833,
+   "rarity": 3,
+   "upgrade_level": 0,
+   "rune_level": 0,
+   "socket_count": 1
+  },
+  {
+   "slot": 9,
+   "uid": "266be240-7d34-4abd-afdc-0f73254b9ca1",
+   "name": "LegendaryShoulder3",
+   "item_type": 3,
+   "equip_slot_type": 10,
+   "modifiers": [
+    [
+     8,
+     0,
+     766.0
+    ],
+    [
+     52,
+     0,
+     0.15299999713897705
+    ],
+    [
+     13,
+     0,
+     0.15299999713897705
+    ],
+    [
+     0,
+     0,
+     77.0
+    ],
+    [
+     7,
+     0,
+     690.0
+    ],
+    [
+     36,
+     0,
+     31.0
+    ]
+   ],
+   "socketed_gems": [],
+   "item_level": 833,
+   "rarity": 3,
+   "upgrade_level": 0,
+   "rune_level": 0,
+   "socket_count": 0
+  },
+  {
+   "slot": 10,
+   "uid": "0b041760-efc3-497e-8dcb-d402db8dac25",
+   "name": "LegendaryGloves2",
+   "item_type": 3,
+   "equip_slot_type": 9,
+   "modifiers": [
+    [
+     8,
+     0,
+     605.0
+    ],
+    [
+     5,
+     0,
+     0.8389999866485596
+    ],
+    [
+     3,
+     0,
+     45.0
+    ],
+    [
+     4,
+     0,
+     0.12300000339746475
+    ],
+    [
+     6,
+     0,
+     0.1899999976158142
+    ],
+    [
+     17,
+     0,
+     0.2529999911785126
+    ]
+   ],
+   "socketed_gems": [],
+   "item_level": 847,
+   "rarity": 3,
+   "upgrade_level": 1,
+   "rune_level": 0,
+   "socket_count": 0
+  },
+  {
+   "slot": 11,
+   "uid": "da095205f9e14fbb92962a2ef7f6a3e2",
+   "name": "LegendaryBack4",
+   "item_type": 3,
+   "equip_slot_type": 11,
+   "modifiers": [],
+   "socketed_gems": [],
+   "item_level": 1,
+   "rarity": 3,
+   "upgrade_level": 0,
+   "rune_level": 0,
+   "socket_count": 0
+  }
+ ]
+}

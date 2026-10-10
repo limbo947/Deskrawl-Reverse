@@ -146,6 +146,17 @@ def verify_offsets(cfg, new_idx, old_idx):
     return out
 
 
+def _sha256(path):
+    """大文件分块哈希（GameAssembly.dll ~66 MB）：一次读满会白占几百 MB 内存。"""
+    h = hashlib.sha256()
+    if not os.path.exists(path):
+        return '<文件不存在>'
+    with open(path, 'rb') as f:
+        for chunk in iter(lambda: f.read(1 << 20), b''):
+            h.update(chunk)
+    return h.hexdigest()
+
+
 def verify_fingerprints(cfg):
     """体检顺带核对 memory_offsets.json 的指纹门禁是否与磁盘上的游戏文件一致。"""
     path = os.path.join(REPO, 'tools/deskrawl_gui/core/memory_offsets.json')
@@ -153,17 +164,59 @@ def verify_fingerprints(cfg):
     out = []
     for key, target in (('game_assembly_sha256', paths.GAME_ASSEMBLY),
                         ('global_metadata_sha256', paths.GAME_METADATA)):
-        h = hashlib.sha256()
-        if os.path.exists(target):
-            with open(target, 'rb') as f:
-                for chunk in iter(lambda: f.read(1 << 20), b''):
-                    h.update(chunk)
-            actual = h.hexdigest()
-        else:
-            actual = '<文件不存在>'
+        actual = _sha256(target)
         out.append({'key': key, 'declared': fp.get(key), 'actual': actual,
                     'ok': actual == fp.get(key)})
     return out
+
+
+def verify_doc_fingerprints(cfg):
+    """文档记录的构建指纹必须与磁盘一致，且真的写在文档里（双向）。
+
+    为什么必须有这一条：docs/08 §12.5 记的 CodeRegistration / MetadataRegistration 这类导出指针
+    当期没有任何可回查的锚点，它们唯一能锚定的就是「这份文档描述的就是这份构建」。补丁后先在这里
+    变红，人去更新文档与 config，比这些指针静默过期安全得多。
+    """
+    spec = cfg.get('doc_fingerprints', {})
+    if not spec:
+        return []
+    doc = os.path.join(REPO, spec['doc'])
+    text = open(doc, encoding='utf-8', errors='replace').read() if os.path.exists(doc) else ''
+    out = []
+    for key, target in (('game_assembly_sha256', paths.GAME_ASSEMBLY),
+                        ('global_metadata_sha256', paths.GAME_METADATA)):
+        declared = spec.get(key)
+        if not declared:
+            continue
+        actual = _sha256(target)
+        in_doc = declared in text
+        out.append({'key': key, 'doc': spec['doc'], 'declared': declared, 'actual': actual,
+                    'in_doc': in_doc, 'ok': declared == actual and in_doc,
+                    'note': ('与磁盘一致' if declared == actual else '与磁盘不符')
+                            + ('；文档已记录' if in_doc else '；文档未记录该值')})
+    return out
+
+
+def verify_data_refs(cfg):
+    """data_refs 逐条自校验：必须自带锚点，否则判定链会把它降级成「登记即有效」。
+
+    `expect` = 当期 script.json 里的名字/字面量（判定链 ⑥ 会核对）；没有可核对锚点的条目必须
+    显式写 `anchor: "none"` 并把原因写进 `reason`——「静默降级成免检」是这里唯一不能容忍的状态。
+    """
+    rows = []
+    for e in cfg.get('data_refs', []):
+        toks = ([e['token']] if 'token' in e else []) + list(e.get('tokens', []))
+        if not toks:
+            continue
+        if e.get('expect'):
+            kind, ok, note = '名字核对', True, f"expect={e['expect']}"
+        elif str(e.get('anchor', '')).lower() == 'none':
+            kind, ok, note = '显式无锚点', True, '已声明当期无锚点可查（原因写在 reason 里）'
+        else:
+            kind, ok, note = '缺锚点', False, '既无 expect 也未声明 anchor=none，会被静默放行'
+        rows.append({'file': e['file'], 'tokens': [str(t) for t in toks], 'kind': kind,
+                     'expect': e.get('expect'), 'ok': ok, 'note': note})
+    return rows
 
 
 def render(payload, findings, cfg, args, bad, labels, red_set):
@@ -215,6 +268,15 @@ def render(payload, findings, cfg, args, bad, labels, red_set):
     for f in findings:
         if f.status == 'literal':
             A(f'| `{f.hit.file}:{f.hit.line}` | `{f.hit.token}` | {f.detail} |')
+    A('')
+    A('## 4a. 仍有效（数据地址：常量新址 / 当期 script.json 槽 / 登记的数据指针）')
+    A('')
+    A('| 文件:行 | 字面量 | 依据 |')
+    A('|---|---|---|')
+    for f in findings:
+        if f.status == 'data_valid':
+            A(f'| `{f.hit.file}:{f.hit.line}` | `{f.hit.token}` | {f.detail}'
+              + (f'（{f.evidence}）' if f.evidence else '') + ' |')
     A('')
     A('## 4b. 历史对照（紧邻「旧/补丁前」标注，刻意保留的旧地址）')
     A('')
@@ -292,5 +354,29 @@ def render(payload, findings, cfg, args, bad, labels, red_set):
               f"| {c['why']} |")
     else:
         A('> 未运行。用 `python rva_audit.py --falsify` 生成（故意把已知有效地址改错一位，必须报红）。')
+    A('')
+    A('## 8. 配置与文档锚点自校验')
+    A('')
+    A('### 8.1 `data_refs` 逐条锚点（没有可核对锚点的必须显式声明 `anchor: none`）')
+    A('')
+    A('| 文件 | 字面量 | 锚点 | 结论 | 说明 |')
+    A('|---|---|---|---|---|')
+    if payload['data_refs']:
+        for r in payload['data_refs']:
+            toks = ' '.join(f'`{t}`' for t in r['tokens'])
+            A(f"| `{r['file']}` | {toks} | {r['kind']} | {'✅' if r['ok'] else '❌'} | {r['note']} |")
+    else:
+        A('| — | — | — | — | （无条目） |')
+    A('')
+    A('### 8.2 文档记录的构建指纹（文档 ↔ 磁盘 双向核对）')
+    A('')
+    A('| 键 | 文档 | 文档记录值 | 磁盘实测 | 结论 |')
+    A('|---|---|---|---|---|')
+    if payload['doc_fingerprints']:
+        for r in payload['doc_fingerprints']:
+            A(f"| `{r['key']}` | `{r['doc']}` | `{str(r['declared'])[:16]}…` "
+              f"| `{str(r['actual'])[:16]}…` | {'✅' if r['ok'] else '❌'} {r['note']} |")
+    else:
+        A('| — | — | — | — | （未配置 `doc_fingerprints`） |')
     A('')
     return '\n'.join(L) + '\n'

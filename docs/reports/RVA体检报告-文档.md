@@ -3,16 +3,16 @@
 - 命令：`python rva_audit.py --check --falsify`
 - 当期 GameAssembly.dll SHA-256：`d46f0a321e8e07646cca37c7460e58fbfecc47ade5027ea2e00fc71f0fec0565`
 - 旧构建 dump.cs 来源：`git show 8660446:data/schema/dump.cs`
-- 扫描：43 个文件 / 439 条地址字面量
+- 扫描：49 个文件 / 464 条地址字面量
 
 ## 0. 结论摘要
 
 | 判定 | 条数 |
 |---|---|
-| 非地址（白名单/自动规则） | 68 |
-| 仍有效（方法） | 153 |
+| 非地址（白名单/自动规则） | 75 |
+| 仍有效（方法） | 163 |
 | 仍有效（注释里的方法名已过期） | 0 |
-| 仍有效（数据地址） | 13 |
+| 仍有效（数据地址） | 21 |
 | 已失效（已给出重算值） | 0 |
 | 已失效（内联数据，只能改成方法级引用） | 0 |
 | 已失效（重算候选不唯一） | 0 |
@@ -21,7 +21,7 @@
 | 无法判定（人工确认） | 0 |
 | 历史对照（有意保留的旧地址） | 176 |
 | 弃用探针（理由已写入文档） | 29 |
-| **合计** | **439** |
+| **合计** | **464** |
 
 ## 1. 已失效与重算值（写回源码前需人工复核）
 
@@ -68,7 +68,7 @@
 | `docs/plan/archive/联机角色数据内存导入可行性调研.md:131` | `0x0410` | 四位以内的微常量（位掩码/计数/标志），不可能是地址 |
 | `docs/plan/archive/联机角色数据内存导入可行性调研.md:227` | `0x0410` | 四位以内的微常量（位掩码/计数/标志），不可能是地址 |
 | `docs/plan/补丁回归清单.md:51` | `0x180000000` | PE ImageBase 本身（节表换算基准），不是可寻址目标 |
-| `docs/plan/补丁回归清单.md:104` | `0x4A08` | 弃用探针 `xref.py` 的偏移**差值**（「`password` 项差 0x4A08」），是两处地址之差不是地址 |
+| `docs/plan/补丁回归清单.md:111` | `0x4A08` | 弃用探针 `xref.py` 的偏移**差值**（「`password` 项差 0x4A08」），是两处地址之差不是地址 |
 | `tools/deskrawl_calc/stattype.py:125` | `0x402010` | 封顶属性的**位掩码**（注释原文「掩码 0x402010 + 特判 37」），是 4 项封顶属性的位集，不是地址；与之配对的 0x4A9C30 才是代码地址 |
 | `tools/deskrawl_gui/core/memory_reader.py:5` | `0x0410` | 四位以内的微常量（位掩码/计数/标志），不可能是地址 |
 | `tools/deskrawl_gui/core/memory_reader.py:21` | `0x0410` | 四位以内的微常量（位掩码/计数/标志），不可能是地址 |
@@ -100,11 +100,44 @@
 | `tools/scripts/mem_probe.py:558` | `0x0410` | 四位以内的微常量（位掩码/计数/标志），不可能是地址 |
 | `tools/scripts/obs_solve3.py:42` | `0xffffffff` | 值 0xffffffff 超出映像范围（max_rva=0x4190000），是掩码/哨兵而非地址 |
 | `tools/scripts/pe_file.py:8` | `0x180000000` | PE ImageBase 本身（节表换算基准），不是可寻址目标 |
+| `tools/scripts/probe_dps_meter.py:34` | `0x0410` | 四位以内的微常量（位掩码/计数/标志），不可能是地址 |
+| `tools/scripts/probe_paragon.py:41` | `0x0410` | 四位以内的微常量（位掩码/计数/标志），不可能是地址 |
+| `tools/scripts/probe_paragon.py:45` | `0x180000000` | PE ImageBase 本身（节表换算基准），不是可寻址目标 |
+| `tools/scripts/probe_player_statistics.py:28` | `0x0410` | 四位以内的微常量（位掩码/计数/标志），不可能是地址 |
+| `tools/scripts/probe_runes.py:37` | `0x0410` | 四位以内的微常量（位掩码/计数/标志），不可能是地址 |
 | `tools/scripts/probe_skill_levels.py:9` | `0x0410` | 四位以内的微常量（位掩码/计数/标志），不可能是地址 |
+| `tools/scripts/probe_stat_labels.py:47` | `0x0410` | 四位以内的微常量（位掩码/计数/标志），不可能是地址 |
+| `tools/scripts/probe_stat_labels.py:51` | `0x180000000` | PE ImageBase 本身（节表换算基准），不是可寻址目标 |
 | `tools/scripts/rea_call.py:60` | `0x180000000` | PE ImageBase 本身（节表换算基准），不是可寻址目标 |
 | `tools/scripts/read_const.py:6` | `0x180000000` | PE ImageBase 本身（节表换算基准），不是可寻址目标 |
-| `tools/scripts/rva_audit.py:479` | `0x1000` | 本脚本的「微常量上限」判定阈值（低于它的字面量直接归入非地址），是规则参数不是地址 |
+| `tools/scripts/rva_audit.py:518` | `0x1000` | 本脚本的「微常量上限」判定阈值（低于它的字面量直接归入非地址），是规则参数不是地址 |
 | `tools/scripts/xref.py:7` | `0x180000000` | PE ImageBase 本身（节表换算基准），不是可寻址目标 |
+
+## 4a. 仍有效（数据地址：常量新址 / 当期 script.json 槽 / 登记的数据指针）
+
+| 文件:行 | 字面量 | 依据 |
+|---|---|---|
+| `docs/04-伤害计算与属性关联.md:214` | `0x18363F058` | 常量「易伤乘区」= 1.3（double） |
+| `docs/04-伤害计算与属性关联.md:235` | `0x18363F120` | 常量「护甲分母」= 50.0（double） |
+| `docs/08-常量设计要点与待办.md:197` | `0x18363EF64` | 常量「命中浮动上界」= 1.1（float32） |
+| `docs/08-常量设计要点与待办.md:198` | `0x18363EFC8` | 常量「受伤阈值」= 0.3（double） |
+| `docs/08-常量设计要点与待办.md:199` | `0x18363F018` | 常量「健康阈值」= 0.8（double） |
+| `docs/08-常量设计要点与待办.md:200` | `0x18363F020` | 常量「属性数值封顶」= 0.85（double） |
+| `docs/08-常量设计要点与待办.md:201` | `0x18363F028` | 常量「命中浮动下界」= 0.9（double） |
+| `docs/08-常量设计要点与待办.md:202` | `0x18363F058` | 常量「易伤乘区」= 1.3（double） |
+| `docs/08-常量设计要点与待办.md:203` | `0x18363F120` | 常量「护甲分母」= 50.0（double） |
+| `docs/08-常量设计要点与待办.md:204` | `0x18363F138` | 常量「主属性分母」= 100.0（double） |
+| `docs/08-常量设计要点与待办.md:248` | `0x182EE3580` | 已登记的数据指针：§12.5 记录的 dumper 导出指针 CodeRegistration / MetadataRegistration——当期构建的真实数据指针（本版 v39 导出时读到的值），本来就该长期保持当期值。当期 script.json 里查不到它们，只能靠「文档描述的就是这份构建」锚定：见 doc_fingerprints（补丁后文档指纹先变红，人去更新 §12.4/§12.5 与这里）（rva_audit_config.json:data_refs） |
+| `docs/08-常量设计要点与待办.md:248` | `0x18349CCB0` | 已登记的数据指针：§12.5 记录的 dumper 导出指针 CodeRegistration / MetadataRegistration——当期构建的真实数据指针（本版 v39 导出时读到的值），本来就该长期保持当期值。当期 script.json 里查不到它们，只能靠「文档描述的就是这份构建」锚定：见 doc_fingerprints（补丁后文档指纹先变红，人去更新 §12.4/§12.5 与这里）（rva_audit_config.json:data_refs） |
+| `tools/deskrawl_calc/engine.py:149` | `0x18363F120` | 常量「护甲分母」= 50.0（double） |
+| `tools/scripts/probe_paragon.py:17` | `0x183A1BF88` | 当期 元数据槽：hh_TypeInfo（与登记名一致）（当期 script.json 按 RVA 命中 + data_refs 登记名核对） |
+| `tools/scripts/probe_stat_labels.py:13` | `0x183A1EB70` | 当期 元数据槽：ItemRarity_var（与登记名一致）（当期 script.json 按 RVA 命中 + data_refs 登记名核对） |
+| `tools/scripts/probe_stat_labels.py:13` | `0x183A212F0` | 当期 元数据槽：Method$UnityEngine.Object.Instantiate<StatRowUI>()（与登记名一致）（当期 script.json 按 RVA 命中 + data_refs 登记名核对） |
+| `tools/scripts/probe_stat_labels.py:13` | `0x183A212E8` | 当期 元数据槽：StatRowUI[]_TypeInfo（与登记名一致）（当期 script.json 按 RVA 命中 + data_refs 登记名核对） |
+| `tools/scripts/probe_stat_labels.py:14` | `0x183A2A4B0` | 当期 元数据槽：ItemRarity[]_TypeInfo（与登记名一致）（当期 script.json 按 RVA 命中 + data_refs 登记名核对） |
+| `tools/scripts/probe_stat_labels.py:14` | `0x183A109E0` | 当期 元数据槽：UnityEngine.Object_TypeInfo（与登记名一致）（当期 script.json 按 RVA 命中 + data_refs 登记名核对） |
+| `tools/scripts/probe_stat_labels.py:14` | `0x183A17CD8` | 当期 元数据槽：GameManager_TypeInfo（与登记名一致）（当期 script.json 按 RVA 命中 + data_refs 登记名核对） |
+| `tools/scripts/probe_stat_labels.py:15` | `0x183A1EBC8` | 当期 元数据槽：PlayerStatistics_TypeInfo（与登记名一致）（当期 script.json 按 RVA 命中 + data_refs 登记名核对） |
 
 ## 4b. 历史对照（紧邻「旧/补丁前」标注，刻意保留的旧地址）
 
@@ -393,5 +426,28 @@
 | `0x18050E401` | stale | stale_inline | ✅ | Player.bkn 覆写 0x18050E400 末位 +1 |
 | `0x7B6671` | stale | stale_inline | ✅ | SaveSystem 锚点 0x7B6670 末位 +1（RVA 形式） |
 | `0x18363F021` | stale | unknown | ✅ | 常量 0.85 新址 0x18363F020 末位 +1（数据地址） |
+| `0x183A1BF89` | stale | unknown | ✅ | 当期元数据槽 hh_TypeInfo 0x183A1BF88 末位 +1：当期表查不到该 RVA，必须落回人工确认（证明 ⑥ 不是「.data 一律放行」） |
 | `0x18067BD00` | valid | valid | ✅ | 真值对照：同一地址必须判有效（证明不是「一律判红」） |
+
+## 8. 配置与文档锚点自校验
+
+### 8.1 `data_refs` 逐条锚点（没有可核对锚点的必须显式声明 `anchor: none`）
+
+| 文件 | 字面量 | 锚点 | 结论 | 说明 |
+|---|---|---|---|---|
+| `tools/scripts/probe_paragon.py` | `0x183A1BF88` | 名字核对 | ✅ | expect=hh_TypeInfo |
+| `tools/scripts/probe_stat_labels.py` | `0x183A1EB70` | 名字核对 | ✅ | expect=ItemRarity_var |
+| `tools/scripts/probe_stat_labels.py` | `0x183A212F0` | 名字核对 | ✅ | expect=Method$UnityEngine.Object.Instantiate<StatRowUI>() |
+| `tools/scripts/probe_stat_labels.py` | `0x183A212E8` | 名字核对 | ✅ | expect=StatRowUI[]_TypeInfo |
+| `tools/scripts/probe_stat_labels.py` | `0x183A2A4B0` | 名字核对 | ✅ | expect=ItemRarity[]_TypeInfo |
+| `tools/scripts/probe_stat_labels.py` | `0x183A109E0` | 名字核对 | ✅ | expect=UnityEngine.Object_TypeInfo |
+| `tools/scripts/probe_stat_labels.py` | `0x183A17CD8` | 名字核对 | ✅ | expect=GameManager_TypeInfo |
+| `tools/scripts/probe_stat_labels.py` | `0x183A1EBC8` | 名字核对 | ✅ | expect=PlayerStatistics_TypeInfo |
+| `docs/08-常量设计要点与待办.md` | `0x182EE3580` `0x18349CCB0` | 显式无锚点 | ✅ | 已声明当期无锚点可查（原因写在 reason 里） |
+
+### 8.2 文档记录的构建指纹（文档 ↔ 磁盘 双向核对）
+
+| 键 | 文档 | 文档记录值 | 磁盘实测 | 结论 |
+|---|---|---|---|---|
+| `game_assembly_sha256` | `docs/08-常量设计要点与待办.md` | `d46f0a321e8e0764…` | `d46f0a321e8e0764…` | ✅ 与磁盘一致；文档已记录 |
 

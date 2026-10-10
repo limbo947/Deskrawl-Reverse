@@ -82,10 +82,59 @@
   ],
   "data_refs": [
     {
-      "$comment": "登记「确实是地址、但不是方法起始也不是已知常量」的数据指针；理由必须写明它是什么。",
+      "$comment": "登记「确实是地址、但不是方法起始也不是已知常量」的数据指针；理由必须写明它是什么。带 `expect` 的条目由判定链 ⑥ 按 RVA 回查当期 script.json 并核对名字/字面量：名字不符即判失效（防「补丁后槽表重排、旧 RVA 落到别的条目」静默漂绿）；不带 `expect` 的是当期无锚点可查的导出指针（如 dumper 的 *Registration），只登记、不自动判绿。",
+      "file": "tools/scripts/probe_paragon.py",
+      "token": "0x183A1BF88",
+      "expect": "hh_TypeInfo",
+      "reason": "巅峰点数容器的静态管理类（混淆名 hh）TypeInfo 槽：dyt/dzg 的用法槽指向它，探针据此读 static_fields[+0x40] 的 Dictionary<StatType,int> 得出 {\"力量\": 21}"
+    },
+    {
+      "file": "tools/scripts/probe_stat_labels.py",
+      "token": "0x183A1EB70",
+      "expect": "ItemRarity_var",
+      "reason": "StatisticsUI.hnk（统计行构建）引用的元数据槽之一：稀有度枚举的静态字段。探针整批 dump 这些槽是为了确认统计页只读哪些元数据"
+    },
+    {
+      "file": "tools/scripts/probe_stat_labels.py",
+      "token": "0x183A212F0",
+      "expect": "Method$UnityEngine.Object.Instantiate<StatRowUI>()",
+      "reason": "同上（hnk 引用）：Instantiate<StatRowUI>() 的方法槽——统计行是逐行 Instantiate 出来的"
+    },
+    {
+      "file": "tools/scripts/probe_stat_labels.py",
+      "token": "0x183A212E8",
+      "expect": "StatRowUI[]_TypeInfo",
+      "reason": "同上（hnk 引用）：统计行控件数组的类型槽"
+    },
+    {
+      "file": "tools/scripts/probe_stat_labels.py",
+      "token": "0x183A2A4B0",
+      "expect": "ItemRarity[]_TypeInfo",
+      "reason": "同上（hnk 引用）：按稀有度遍历的枚举数组类型槽"
+    },
+    {
+      "file": "tools/scripts/probe_stat_labels.py",
+      "token": "0x183A109E0",
+      "expect": "UnityEngine.Object_TypeInfo",
+      "reason": "同上（hnk 引用）：Instantiate 的基类类型槽"
+    },
+    {
+      "file": "tools/scripts/probe_stat_labels.py",
+      "token": "0x183A17CD8",
+      "expect": "GameManager_TypeInfo",
+      "reason": "hnm 引用的元数据槽：统计页从 GameManager 取时钟，故它只读元统计"
+    },
+    {
+      "file": "tools/scripts/probe_stat_labels.py",
+      "token": "0x183A1EBC8",
+      "expect": "PlayerStatistics_TypeInfo",
+      "reason": "hnm 引用的元数据槽：PlayerStatistics 是终身元统计（时长/金币/经验/死亡），不含伤害计数——「实伤只能靠 DPS 计」这条结论的直接证据"
+    },
+    {
       "file": "docs/08-常量设计要点与待办.md",
       "tokens": ["0x182EE3580", "0x18349CCB0"],
-      "reason": "§12.5 记录的 dumper 导出指针 CodeRegistration / MetadataRegistration——当期构建的真实数据指针（本版 v39 导出时读到的值），本来就该长期保持当期值"
+      "anchor": "none",
+      "reason": "§12.5 记录的 dumper 导出指针 CodeRegistration / MetadataRegistration——当期构建的真实数据指针（本版 v39 导出时读到的值），本来就该长期保持当期值。当期 script.json 里查不到它们，只能靠「文档描述的就是这份构建」锚定：见 doc_fingerprints（补丁后文档指纹先变红，人去更新 §12.4/§12.5 与这里）"
     }
   ],
   "deprecated": [
@@ -183,6 +232,11 @@
       {"path": "generated_item_klass", "mode": "klass"}
     ]
   },
+  "doc_fingerprints": {
+    "$comment": "文档里写的构建 SHA 必须与磁盘上的游戏文件一致（双向：文档要记录它、它要等于实测值）。为什么需要：§12.5 的 CodeRegistration / MetadataRegistration 这类导出指针当期无锚点可查，唯一能锚的就是「这份文档描述的就是这份构建」——补丁后这里先红，避免那些指针静默过期。",
+    "doc": "docs/08-常量设计要点与待办.md",
+    "game_assembly_sha256": "d46f0a321e8e07646cca37c7460e58fbfecc47ade5027ea2e00fc71f0fec0565"
+  },
   "falsify": {
     "$comment": "证伪用例：故意把已知有效地址改错一位/改成越界值，体检必须报「已失效」。任何一条没被拦下即视为自检失效（退出码非 0）。",
     "cases": [
@@ -190,6 +244,7 @@
       {"token": "0x18050E401", "expect": "stale", "why": "Player.bkn 覆写 0x18050E400 末位 +1"},
       {"token": "0x7B6671", "expect": "stale", "why": "SaveSystem 锚点 0x7B6670 末位 +1（RVA 形式）"},
       {"token": "0x18363F021", "expect": "stale", "why": "常量 0.85 新址 0x18363F020 末位 +1（数据地址）"},
+      {"token": "0x183A1BF89", "expect": "stale", "why": "当期元数据槽 hh_TypeInfo 0x183A1BF88 末位 +1：当期表查不到该 RVA，必须落回人工确认（证明 ⑥ 不是「.data 一律放行」）"},
       {"token": "0x18067BD00", "expect": "valid", "why": "真值对照：同一地址必须判有效（证明不是「一律判红」）"}
     ]
   }

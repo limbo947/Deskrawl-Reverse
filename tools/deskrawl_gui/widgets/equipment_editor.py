@@ -106,7 +106,9 @@ class EquipmentEditor(QWidget):
         weapon = (slot == 0)
         label = SLOT_LABELS.get(slot, f'槽{slot}')
         self.current_editor = ItemEditor(f'当前{label}', cur, weapon=weapon)
-        self.candidate_editor = ItemEditor(f'候选{label}', cand, weapon=weapon)
+        # 候选侧的「与当前武器相同」以本槽当前件为镜像源；非武器槽暂不提供该开关
+        self.candidate_editor = ItemEditor(f'候选{label}', cand, weapon=weapon,
+                                          current_of=(lambda: cur) if weapon else None)
         self.current_editor.changed.connect(self.refresh)
         self.candidate_editor.changed.connect(self.refresh)
         self._replace(self._cur_lay, self.current_editor)
@@ -164,6 +166,12 @@ class EquipmentEditor(QWidget):
             cand.base_damage = 0.0        # 白字伤害以 WeaponDamage(20) 词条入池，与当前武器同口径
             cand.base_speed = float(rec.get('speed') or 1.0)
             cand.skill_multiplier = 1.0
+            # 记下该件在背包里的原貌与强化前词条：供「与当前武器相同」开关镜像/还原/重算
+            cand.raw_modifiers = [[int(s), int(t), float(v)]
+                                  for s, t, v in (rec.get('modifiers') or [])]
+            cand.like_current = False
+            cand.own_upgrade_level = int(rec.get('upgrade_level') or 0)
+            cand.own_gems = list(rec.get('gems') or [])
         else:
             cand.equip_slot_type = int(rec.get('equip_slot_type') or 0)
             cand.item_level = int(rec.get('item_level') or 0)
@@ -174,10 +182,16 @@ class EquipmentEditor(QWidget):
 
     # ---------------- 刷新 ----------------
     def _apply_mode(self):
-        """按导入模式切换降级态；手工构建/β 导入时恢复完整对比（幂等，可反复调用）。"""
+        """按导入模式切换受限态（幂等，可反复调用）。
+
+        当前件是游戏里的既成事实：只要来自导入就置为只读（β 仍可读可对比、但不可改），
+        α 没有逐件数据则整块禁用。把「基线不可编辑」写进模式判定，用户不必记住哪侧是事实。
+        """
         alpha = self.alpha_banner.update_mode(self.profile)
+        imported = bool(getattr(self.profile, 'import_mode', ''))
         if self.current_editor is not None:
             self.current_editor.setEnabled(not alpha)
+            self.current_editor.set_locked(imported)
 
     def refresh(self):
         """重算并渲染结果区（纯计算，不改动输入控件）。"""

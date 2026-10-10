@@ -8,10 +8,23 @@
   ① 配置白名单 / 自动非地址规则（ImageBase、微常量、超出映像的掩码）
   ② 当期 dump.cs 的方法起始 RVA            → 仍有效
   ③ 旧构建 dump.cs 同名方法（签名 + Slot，混淆类再按类形状匹配）→ 已失效 + 重算值
-  ④ docs/08 §12.2 常量表（旧址/新址）        → 已失效 + 重算值，或仍有效
-  ⑤ 旧 script.json 的字符串/元数据条目       → 已失效 + 重算值
-  ⑥ 旧构建中「含有该地址的方法」             → 已失效（内联数据，只能改方法级引用）
-  ⑦ 都判不了 → 人工确认（配置文件里登记的弃用探针除外，且弃用理由必须写在文档里）
+  ④ 旧构建中「含有该地址的方法」             → 已失效（内联数据，只能改方法级引用）
+  ⑤ docs/08 §12.2 常量表（旧址/新址）        → 已失效 + 重算值，或仍有效
+  ⑥ 当期 script.json 的字符串/元数据槽（按 RVA）+ `data_refs` 登记名一致 → 仍有效（数据地址）
+      名字不符 → 已失效（该 RVA 当期已被别的条目占用）；未登记 → 人工确认
+  ⑦ 旧 script.json 的字符串/元数据条目（按 RVA 取出内容，再按内容/名字在当期对搬）
+                                            → 已失效 + 重算值
+  ⑧ 都判不了 → 人工确认（配置文件里登记的弃用探针除外，且弃用理由必须写在文档里）
+
+为什么 ⑥ 必须存在且排在 ⑦ 之前：`.data` 里的元数据槽只有**当期**表能证明它「还在原位」；
+两张表的 RVA 空间高度重叠（实测同一 RVA 在旧表里往往是完全不相干的条目），按旧表判必然
+误报「已迁移」。反过来，槽地址写错一位时当期表也查不到，照样落回人工确认（红）。
+为什么 ⑥ 还要核对登记名：槽表很密，补丁后旧 RVA 几乎总会**仍然是某个槽**——只看「命中」
+就会把「已被别的条目占用」静默判绿。所以 ⑥ 只承认「命中且名字与 `data_refs` 登记一致」，
+不一致就报「已失效」，让「补丁后槽表重排」变成一次人工确认而不是一次静默漂移。
+为什么 script.json 的键必须是 RVA：Il2CppDumper 导出的 `Address` 列就是槽的 RVA。曾按 VA
+过滤（`image_base + rva`），两张表因此都是空的、⑥⑦ 静默失效——静默失效比报红更危险，
+故此处写死口径，并由 `--falsify` 的「槽地址末位 +1 必须报红」用例守住。
 
 为什么 `--check` 与 `--falsify` 必须同时存在：`--check` 是给回归用的门（红=有死地址未处理），
 `--falsify` 用来证明这扇门不是「一律放行」——故意把已知有效地址改错一位，它必须报红。
@@ -182,10 +195,17 @@ class Auditor:
             for tok in ([e['token']] if 'token' in e else []) + list(e.get('tokens', [])):
                 self.lit[f"{e['file']}:{tok}"] = e['reason']
         self.deprecated = {e['file']: e for e in cfg.get('deprecated', [])}
+        # 数据指针分两类：有 `expect` 的必须与当期 script.json 的条目名/值对上（否则判失效），
+        # 没 `expect` 的是当期无锚点可查的导出指针（如 dumper 的 *Registration）——只登记、不自动判绿。
         self.refs = {}
+        self.refs_expect = {}
         for e in cfg.get('data_refs', []):
             for tok in ([e['token']] if 'token' in e else []) + list(e.get('tokens', [])):
-                self.refs[f"{e['file']}:{tok}"] = e['reason']
+                key = f"{e['file']}:{tok}"
+                if e.get('expect'):
+                    self.refs_expect[key] = e['expect']
+                else:
+                    self.refs[key] = e['reason']
         pol = cfg.get('doc_policy', {})
         self.hist_docs = {e['file']: e['reason'] for e in pol.get('historical_docs', [])}
         self.mark_begin = pol.get('marker_begin', 'rva-audit:historical')
@@ -434,7 +454,26 @@ class Auditor:
                            f"常量「{row['name']}」旧簇地址 → 新址 {row['va_new']}",
                            new_addr=int(row['va_new'], 16),
                            evidence='docs/08 §12.2 新址表（字节校验通过）')
-        entry = self.old_scripts.by_addr.get(va)
+        # 当期脚本槽：命中只说明「这个 RVA 现在是某个槽」，还要与登记名对上才算有效——
+        # 槽表很密，补丁后旧 RVA 几乎总会落在别的条目上，只看命中会把漂移静默判绿。
+        entry = self.new_scripts.by_addr.get(rva)
+        if entry:
+            kind, value = entry
+            what = '字符串字面量槽' if kind == 'string' else '元数据槽'
+            exp = self.refs_expect.get(f'{hit.file}:{hit.token}')
+            if exp and exp == value:
+                return Finding(hit, 'data_valid', f'当期 {what}：{value}（与登记名一致）',
+                               evidence='当期 script.json 按 RVA 命中 + data_refs 登记名核对',
+                               extra={'metadata': value})
+            if exp:
+                return Finding(hit, 'data_stale',
+                               f'登记的是 {exp}，当期 {what} 已是 {value}（该 RVA 被别的条目占用）',
+                               evidence='当期 script.json 命中项与 data_refs 登记名不符',
+                               extra={'metadata': value, 'expected': exp})
+            return Finding(hit, 'unknown',
+                           f'当期 {what}：{value}——`.data` 槽无法自证归属；'
+                           f'若确是刻意引用的条目，请按 data_refs 登记 expect 名字')
+        entry = self.old_scripts.by_addr.get(rva)
         if entry:
             kind, value = entry
             if kind == 'string':
@@ -543,15 +582,16 @@ def main(argv=None):
     img = pe_file.load()
     new_idx = dump_index.DumpIndex.load(paths.DUMP_CS)
     old_idx = dump_index.DumpIndex.load_from_git(args.base_ref)
-    # script.json 只按需要的地址/字面量过滤加载：文件 95 MB，全量建表毫无必要
-    want_addrs = {img.image_base + (h.value - img.image_base if h.value >= img.image_base
-                                    else h.value) for h in hits}
+    # script.json 只按需要的地址/字面量过滤加载：文件 95 MB，全量建表毫无必要。
+    # 键一律用 RVA——dumper 导出的 Address 列就是槽的 RVA；两张表都按它过滤，⑥⑦ 才谈得上。
+    want_rvas = {h.value - img.image_base if h.value >= img.image_base else h.value
+                 for h in hits}
     old_scripts = script_index.ScriptIndex.load_from_git(
-        args.base_ref, want_addrs=want_addrs)
+        args.base_ref, want_addrs=want_rvas)
     want_values = {v for k, v in old_scripts.by_addr.values() if k == 'string'}
     want_values |= {v for k, v in old_scripts.by_addr.values() if k == 'metadata'}
     new_scripts = script_index.ScriptIndex.load(
-        paths.SCRIPT_JSON, want_values=want_values)
+        paths.SCRIPT_JSON, want_addrs=want_rvas, want_values=want_values)
 
     alias_path = os.path.join(REPO, 'data', 'schema', 'aliases.json')
     aliases = json.load(open(alias_path, encoding='utf-8')) if os.path.exists(alias_path) else {}
@@ -562,6 +602,8 @@ def main(argv=None):
     deps = rva_verify.verify_deprecations(cfg)
     offsets = rva_verify.verify_offsets(cfg, new_idx, old_idx)
     fps = rva_verify.verify_fingerprints(cfg)
+    doc_fps = rva_verify.verify_doc_fingerprints(cfg)
+    refs = rva_verify.verify_data_refs(cfg)
     falsify = run_falsify(cfg, auditor) if args.falsify else []
 
     summary = {s: sum(1 for f in findings if f.status == s) for s in LABEL}
@@ -574,6 +616,8 @@ def main(argv=None):
         'deprecations': [d for d in deps if not d['ok']],
         'offsets': [o for o in offsets if not o['ok']],
         'fingerprints': [f for f in fps if not f['ok']],
+        'doc_fingerprints': [r for r in doc_fps if not r['ok']],
+        'data_refs': [r for r in refs if not r['ok']],
         'falsify': [c for c in falsify if not c['ok']],
     }
 
@@ -583,6 +627,7 @@ def main(argv=None):
         'findings': [f.to_dict() for f in findings],
         'doc_sections': doc_secs, 'doc_constants': doc_consts,
         'deprecations': deps, 'offsets': offsets, 'fingerprints': fps,
+        'doc_fingerprints': doc_fps, 'data_refs': refs,
         'falsify': falsify, 'red': [f.hit.key for f in red]}
     if not args.no_write:
         os.makedirs(os.path.dirname(args.json_out), exist_ok=True)
@@ -609,8 +654,9 @@ def main(argv=None):
 
     # 报告模式（无 --check）恒为 0：计划 §3.1 要求「一条命令列出」先能跑通、能贴进文档；
     # 门禁职责交给 --check，避免把「已有死地址待写回」这类正常状态变成 CI 红灯。
-    failure = bool(red) or any(bad[k] for k in ('doc_sections', 'doc_constants',
-                                                'deprecations', 'offsets', 'falsify'))
+    failure = bool(red) or any(bad[k] for k in ('doc_sections', 'doc_constants', 'deprecations',
+                                                'offsets', 'doc_fingerprints', 'data_refs',
+                                                'falsify'))
     return 1 if (args.check and failure) else 0
 
 

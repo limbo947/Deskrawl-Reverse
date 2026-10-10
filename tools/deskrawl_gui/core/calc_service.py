@@ -11,7 +11,7 @@ import os
 from dataclasses import dataclass, field
 from typing import List
 
-from deskrawl_calc import (DamageModel, Modifier, StatSheet, StatType, Target,
+from deskrawl_calc import (DamageModel, Modifier, StatSheet, StatType, Target, Weapon,
                            compare_weapons, stat_name)
 
 from .profile import KIND_LABELS, SLOT_LABELS, CharacterProfile, _gem_category
@@ -93,6 +93,27 @@ def _negate(mods) -> list:
             for m in mods if int(m.type) != 2]
 
 
+def _weapon_gems(gd, draft) -> list:
+    """武器孔位宝石的静态加成（加成组 = 武器 2，与 _gem_category 的实测锚定同源）。"""
+    cat = _gem_category(1)              # EquipSlotType 1 = 武器
+    out = []
+    for gname in (getattr(draft, 'gems', None) or []):
+        out.extend(gd.gem_modifiers(str(gname), cat))
+    return out
+
+
+def _weapon_with_gems(gd, draft) -> Weapon:
+    """武器草稿 → Weapon（孔位宝石并入词条）：候选侧的宝石因此能参与对比。
+
+    内核的 Weapon 只认词条，宝石加成原本只在装配链里；把两者在这里合并，是为了让
+    「候选换一套宝石」这种对比有数值出口，而不是只有元信息展示。
+    """
+    w = draft.to_weapon()
+    return Weapon(w.name, w.base_damage, w.base_speed,
+                  list(w.modifiers) + _weapon_gems(gd, draft),
+                  skill_multiplier=w.skill_multiplier)
+
+
 def _slot_sheets(profile, gd, slot):
     """非武器槽的 (current_sheet, candidate_sheet)。
 
@@ -117,7 +138,7 @@ def _slot_sheets(profile, gd, slot):
 def compare(profile: CharacterProfile, gd, slot=None) -> CompareResult:
     """对比所选槽的当前件/候选件（默认取 profile.compare_slot）。
 
-    slot==0 走内核 compare_weapons（武器词条不在 base，由它两侧分别叠加）；
+    slot==0 走内核 compare_weapons（武器词条与各自孔位宝石都不在 base，由它两侧分别叠加）；
     slot 1..10 走「卸下当前件 → 分别装回」的对称路径（见 _slot_sheets）。
     """
     slot = int(profile.compare_slot if slot is None else slot)
@@ -125,8 +146,14 @@ def compare(profile: CharacterProfile, gd, slot=None) -> CompareResult:
     label = SLOT_LABELS.get(slot, f'槽{slot}')
     if slot == 0:
         sheet = profile.to_sheet(gd)
-        cur = profile.weapon_current.to_weapon()
-        cand = profile.weapon_candidate.to_weapon()
+        # 当前武器的孔位宝石原本只在装配链里（assembled 的 slot=0 条目）→ 两侧都会看到「当前」的宝石。
+        # 为让候选武器的宝石参与对比，先按槽卸下（宝石恒为 Flat，可逆），再并入各自武器词条：
+        # 当前侧总量不变（卸下又装回），差异因此完全落在候选侧。
+        for it in profile.assembled:
+            if it.kind == 'gem' and int(getattr(it, 'slot', -1)) == 0:
+                sheet.add_mods(_negate(it.modifiers(gd)))
+        cur = _weapon_with_gems(gd, profile.weapon_current)
+        cand = _weapon_with_gems(gd, profile.weapon_candidate)
         r = compare_weapons(sheet, cur, cand, target=target, damage_type=profile.damage_type,
                             primary_stat=profile.primary_stat)
         return CompareResult(0, label, r['current']['dps'], r['candidate']['dps'],

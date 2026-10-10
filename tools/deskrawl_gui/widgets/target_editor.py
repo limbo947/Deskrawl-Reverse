@@ -40,6 +40,14 @@ class TargetEditor(QWidget):
         root.addStretch(1)
         self.reload()
 
+    def insert_below_basic(self, widget):
+        """把外部卡片插到「目标基础」下方（参考技能卡就位处）。
+
+        布局仍由本页统一管理（滚动区只有一段）：参考技能与目标同属对比口径的输入，
+        紧贴目标基础比甩到页尾顺手，「目标基础 → 参考技能 → 目标状态」也仍是可读的顺序。
+        """
+        self.layout().insertWidget(1, widget)
+
     def _build_basic_group(self) -> QGroupBox:
         box = QGroupBox('目标基础')
         form = QFormLayout(box)

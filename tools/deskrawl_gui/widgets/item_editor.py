@@ -4,15 +4,20 @@
 从 equipment_editor 拆出：装备对比页要按 11 个槽位复用同一套「名称 + 词条行 + 元信息」控件，
 把它独立成 ItemEditor 后，equipment_editor 只负责槽位切换与装配，避免单文件膨胀。
 控件直接写回传入的草稿（WeaponDraft / ItemDraft），改动只发 changed 信号。
+
+两种受限态（都在 EquipmentEditor 里按导入来源决定）：
+- set_locked：当前件即游戏里的既成事实，只读展示——基线被改脏则整页对比口径失效；
+- current_of：候选武器专用，「与当前武器相同（强化/宝石）」开关据此镜像当前件。
 """
 from PySide6.QtCore import Signal
-from PySide6.QtWidgets import (QAbstractItemView, QComboBox, QDoubleSpinBox, QFormLayout,
-                               QGroupBox, QHeaderView, QLabel, QLineEdit, QPushButton,
-                               QTableWidget, QVBoxLayout)
+from PySide6.QtWidgets import (QAbstractItemView, QCheckBox, QComboBox, QDoubleSpinBox,
+                               QFormLayout, QGroupBox, QHeaderView, QLabel, QLineEdit,
+                               QPushButton, QTableWidget, QVBoxLayout)
 
 from deskrawl_calc import StatType, stat_name
 
 from ..core.calc_service import MOD_TYPE_CN
+from ..core.item_draft import apply_upgrade
 
 # 类型中文名单一来源在 core（与候选摘要 describe_mods 共用），此处只做视图所需的列表化
 _MOD_TYPES = list(MOD_TYPE_CN.items())
@@ -49,6 +54,7 @@ class AffixTable(QTableWidget):
     def __init__(self, parent=None):
         super().__init__(0, len(self.COLUMNS), parent)
         self._loading = False
+        self._locked = False
         self.setHorizontalHeaderLabels(self.COLUMNS)
         self.verticalHeader().setVisible(False)
         self.setEditTriggers(QAbstractItemView.NoEditTriggers)
@@ -71,8 +77,21 @@ class AffixTable(QTableWidget):
         return out
 
     def append_row(self):
+        if self._locked:
+            return
         self._add_row(int(StatType.DamagePhysical), 0, 0.0)
         self._emit()
+
+    def set_locked(self, locked):
+        """整表只读化（当前件固定态）：属性/数值不可改、删除按钮隐藏，仍是可读的事实展示。"""
+        self._locked = bool(locked)
+        for row in range(self.rowCount()):
+            self._apply_lock(row)
+
+    def _apply_lock(self, row):
+        self.cellWidget(row, 0).setEnabled(not self._locked)
+        self.cellWidget(row, 2).setReadOnly(self._locked)
+        self.cellWidget(row, 3).setVisible(not self._locked)
 
     def _add_row(self, stat, mtype, value):
         row = self.rowCount()
@@ -107,6 +126,7 @@ class AffixTable(QTableWidget):
         type_combo.currentIndexChanged.connect(self._emit)
         spin.valueChanged.connect(self._emit)
         btn.clicked.connect(lambda: self._remove_row(btn))
+        self._apply_lock(row)
 
     def _on_stat_changed(self, stat_combo, type_combo, spin):
         """属性切换 → 类型自动回到该属性的规范值（物品词条在游戏里恒为加法），并刷新填写提示。"""
@@ -151,15 +171,23 @@ class AffixTable(QTableWidget):
 
 
 class ItemEditor(QGroupBox):
-    """一件装备的编辑面板。weapon=True 时多出 基础伤害/攻速/技能倍率 三行。"""
+    """一件装备的编辑面板。weapon=True 时多出 基础伤害/攻速/技能倍率 三行。
+
+    current_of 只在候选侧传入（返回「当前件」草稿）：勾选「与当前武器相同」时镜像当前件的
+    强化等级与镶嵌宝石，并按原始词条重算数值——「同强化同宝石谁更强」是换装对比的常见问题。
+    """
 
     changed = Signal()
 
-    def __init__(self, title, draft, *, weapon=False, parent=None):
+    def __init__(self, title, draft, *, weapon=False, current_of=None, parent=None):
         super().__init__(title, parent)
+        self._base_title = title
         self._loading = False
+        self._locked = False
+        self._spins = []
         self.draft = draft
         self.weapon = bool(weapon)
+        self._current_of = current_of
         form = QFormLayout()
         self.name_edit = QLineEdit()
         self.name_edit.textChanged.connect(self._on_name)
@@ -168,11 +196,18 @@ class ItemEditor(QGroupBox):
             self.damage_spin = self._spin(form, '基础伤害', 0.0, 1e6, 2, 'base_damage')
             self.speed_spin = self._spin(form, '攻速(次/秒)', 0.0, 20.0, 3, 'base_speed')
             self.skill_spin = self._spin(form, '技能倍率', 0.0, 100.0, 3, 'skill_multiplier')
+        if self.weapon and current_of is not None:
+            self.like_current = QCheckBox()
+            self.like_current.setToolTip(
+                '勾选：候选沿用当前武器的强化等级与镶嵌宝石，并按背包原始词条重算「强化后」数值\n'
+                '（即「同强化同宝石谁更强」的对照）；取消：回到该件在背包里的原貌。')
+            self.like_current.toggled.connect(self._on_like_current)
+            form.addRow('强化/宝石', self.like_current)
 
         self.affixes = AffixTable()
         self.affixes.changed.connect(self._on_affixes)
-        add_btn = QPushButton('添加词条')
-        add_btn.clicked.connect(self.affixes.append_row)
+        self.add_btn = QPushButton('添加词条')
+        self.add_btn.clicked.connect(self.affixes.append_row)
 
         # 导入元信息（强化等级/镶嵌宝石），只读展示；手工构建恒为空
         self.meta_label = QLabel()
@@ -184,7 +219,7 @@ class ItemEditor(QGroupBox):
         root.addLayout(form)
         root.addWidget(self.meta_label)
         root.addWidget(self.affixes)
-        root.addWidget(add_btn)
+        root.addWidget(self.add_btn)
         self.reload()
 
     def _spin(self, form, label, lo, hi, decimals, attr) -> QDoubleSpinBox:
@@ -193,11 +228,28 @@ class ItemEditor(QGroupBox):
         sp.setDecimals(decimals)
         sp.valueChanged.connect(lambda v, a=attr: self._on_num(a, v))
         form.addRow(label, sp)
+        self._spins.append(sp)
         return sp
 
     def set_draft(self, draft):
         self.draft = draft
         self.reload()
+
+    def set_locked(self, locked):
+        """固定本卡片（当前件 = 游戏里的既成事实）：只读展示。
+
+        基线是整页对比的口径来源，改脏它会得到「看起来合理但无意义」的 Δ，所以宁可不给输入口。
+        """
+        locked = bool(locked)
+        self._locked = locked
+        self.name_edit.setReadOnly(locked)
+        for sp in self._spins:
+            sp.setReadOnly(locked)
+        self.affixes.set_locked(locked)
+        self.add_btn.setEnabled(not locked)
+        self.setTitle(self._base_title + ('（已固定·不可编辑）' if locked else ''))
+        self.setToolTip('当前装备来自游戏导入，数值已固定为只读；要试验改动请在候选侧进行。'
+                        if locked else '')
 
     def reload(self):
         self._loading = True
@@ -208,6 +260,9 @@ class ItemEditor(QGroupBox):
             self.skill_spin.setValue(getattr(self.draft, 'skill_multiplier', 1.0))
         self.affixes.set_affixes(self.draft.affixes)
         self._reload_meta()
+        if hasattr(self, 'like_current'):
+            self.like_current.setChecked(bool(getattr(self.draft, 'like_current', False)))
+            self._update_like_text()
         self._loading = False
 
     def _reload_meta(self):
@@ -219,21 +274,74 @@ class ItemEditor(QGroupBox):
         gems = list(getattr(self.draft, 'gems', None) or [])
         if gems:
             parts.append('镶嵌宝石：' + '、'.join(gems))
+        if (getattr(self.draft, 'like_current', False)
+                and not (getattr(self.draft, 'raw_modifiers', None) or [])):
+            parts.append('已镜像当前件的强化/宝石；手工输入词条不随强化等级重算')
         self.meta_label.setText('；'.join(parts))
         self.meta_label.setVisible(bool(parts))
 
+    # ---- 「与当前武器相同（强化/宝石）」 ----
+    def _on_like_current(self, checked):
+        if self._loading or self._locked or self._current_of is None:
+            return
+        cur = self._current_of()
+        checked = bool(checked)
+        if checked and not getattr(self.draft, 'like_current', False):
+            # 记下自身原貌：取消勾选要能原样还原（背包里的 +N 与宝石）
+            self.draft.own_upgrade_level = int(getattr(self.draft, 'upgrade_level', 0) or 0)
+            self.draft.own_gems = list(getattr(self.draft, 'gems', None) or [])
+        self.draft.like_current = checked
+        if checked:
+            level = int(getattr(cur, 'upgrade_level', 0) or 0)
+            self.draft.gems = list(getattr(cur, 'gems', None) or [])
+        else:
+            level = int(getattr(self.draft, 'own_upgrade_level', 0) or 0)
+            self.draft.gems = list(getattr(self.draft, 'own_gems', None) or [])
+        self.draft.upgrade_level = level
+        self._refold(level)
+        self.reload()
+        self.changed.emit()
+
+    def _refold(self, level):
+        """按背包原始词条重算「强化后」数值（与导入链 apply_upgrade 同一模型）。
+
+        原始词条缺失（手工逐条输入）时不动数值——没有强化前基线就推不出强化后的值，
+        此时 _reload_meta 会显式说明，避免用户误以为改动已生效。
+        """
+        raw = [[int(s), int(t), float(v)]
+               for s, t, v in (getattr(self.draft, 'raw_modifiers', None) or [])]
+        if not raw:
+            return False
+        affixes, speed = apply_upgrade(raw, level)
+        self.draft.affixes = [[int(s), int(t), float(v)] for s, t, v in affixes]
+        # 攻速词条(21) 的折算值就是武器基础攻速的来源（与面板 nsq[21] 同语义）
+        if any(int(s) == int(StatType.WeaponSpeed) for s, _t, _v in raw):
+            self.draft.base_speed = float(speed) or float(getattr(self.draft, 'base_speed', 1.0))
+        return True
+
+    def _update_like_text(self):
+        """开关文案写出当前件的强化与宝石数——用户不必切页核对当前武器。"""
+        cur = self._current_of() if self._current_of is not None else None
+        lv = int(getattr(cur, 'upgrade_level', 0) or 0)
+        gems = len(list(getattr(cur, 'gems', None) or []))
+        now = f'强化 +{lv}' if lv else '无强化'
+        gs = f'{gems} 颗宝石' if gems else '无宝石'
+        self.like_current.setText(f'与当前武器相同（{now}、{gs}）')
+
     def _on_name(self, text):
-        if self._loading:
+        if self._loading or self._locked:
             return
         self.draft.name = text
         self.changed.emit()
 
     def _on_num(self, attr, value):
-        if self._loading:
+        if self._loading or self._locked:
             return
         setattr(self.draft, attr, float(value))
         self.changed.emit()
 
     def _on_affixes(self):
+        if self._loading or self._locked:
+            return
         self.draft.affixes = self.affixes.affixes()
         self.changed.emit()

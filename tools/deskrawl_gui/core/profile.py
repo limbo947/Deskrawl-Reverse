@@ -131,8 +131,9 @@ def _talent_ability_mods(ptrs, raw, hero_class, gd) -> Dict[str, Dict[int, float
 class WeaponDraft:
     """一把武器的可编辑草稿。affixes 用 [stat, type, value] 三元组存，便于 JSON 往返。
 
-    upgrade_level / gems 是内存导入的展示元数据（只读展示，不参与计算——宝石加成
-    已进 assembled 装配链；手工构建两者恒为默认值）。
+    affixes 是**强化后**口径（导入链按 apply_upgrade 折算）；raw_modifiers 保留背包里的
+    强化前原貌，改强化等级（含「与当前武器相同」开关）时据此重算，否则无法从折叠值反推。
+    upgrade_level / gems 参与候选侧对比：武器孔位宝石按侧计入（calc_service.compare slot=0）。
     """
 
     name: str = ''
@@ -142,6 +143,11 @@ class WeaponDraft:
     affixes: List[list] = field(default_factory=list)
     upgrade_level: int = 0
     gems: List[str] = field(default_factory=list)
+    # 候选侧「与当前武器相同（强化/宝石）」开关，连同取消时要还原的自身原貌
+    raw_modifiers: List[list] = field(default_factory=list)
+    like_current: bool = False
+    own_upgrade_level: int = 0
+    own_gems: List[str] = field(default_factory=list)
 
     def to_weapon(self) -> Weapon:
         return Weapon(self.name, self.base_damage, self.base_speed,
@@ -153,7 +159,11 @@ class WeaponDraft:
                 'skill_multiplier': self.skill_multiplier,
                 'affixes': [[int(s), int(t), float(v)] for s, t, v in self.affixes],
                 'upgrade_level': int(self.upgrade_level),
-                'gems': [str(g) for g in self.gems]}
+                'gems': [str(g) for g in self.gems],
+                'raw_modifiers': [[int(s), int(t), float(v)] for s, t, v in self.raw_modifiers],
+                'like_current': bool(self.like_current),
+                'own_upgrade_level': int(self.own_upgrade_level),
+                'own_gems': [str(g) for g in self.own_gems]}
 
     @classmethod
     def from_dict(cls, d: dict) -> 'WeaponDraft':
@@ -162,7 +172,12 @@ class WeaponDraft:
                    skill_multiplier=float(d.get('skill_multiplier', 1.0)),
                    affixes=[[int(s), int(t), float(v)] for s, t, v in (d.get('affixes') or [])],
                    upgrade_level=int(d.get('upgrade_level', 0) or 0),
-                   gems=[str(g) for g in (d.get('gems') or [])])
+                   gems=[str(g) for g in (d.get('gems') or [])],
+                   raw_modifiers=[[int(s), int(t), float(v)]
+                                  for s, t, v in (d.get('raw_modifiers') or [])],
+                   like_current=bool(d.get('like_current', False)),
+                   own_upgrade_level=int(d.get('own_upgrade_level', 0) or 0),
+                   own_gems=[str(g) for g in (d.get('own_gems') or [])])
 
 
 @dataclass
@@ -254,7 +269,8 @@ class CharacterProfile:
     panel: dict = None
     # 背包/仓库内未装备的**全部装备**（导入时冻结，供任意槽的候选快捷载入；[] = 手工/α 降级）。
     # 每项：{'source' 背包|仓库, 'name', 'equip_slot_type', 'item_level', 'rarity',
-    #        'upgrade_level', 'gems', 'affixes'（已按强化模型折算）, 'speed'}。
+    #        'upgrade_level', 'gems', 'affixes'（已按强化模型折算）, 'speed',
+    #        'modifiers'（强化前原貌，改强化等级时重算用）}。
     bag_items: List[dict] = field(default_factory=list)
     # 装备对比页当前选中的内存槽 id：0=武器，1..10=其余十件（不含披风/Back=11）。
     compare_slot: int = 0
@@ -475,6 +491,8 @@ class CharacterProfile:
                     'upgrade_level': int(it.get('upgrade_level') or 0),
                     'gems': [str(g) for g in (it.get('socketed_gems') or [])],
                     'affixes': affixes, 'speed': float(speed) or 1.0,
+                    # 强化前原貌：候选改强化等级（「与当前武器相同」）时据此重算，折叠值不可反推
+                    'modifiers': [[int(s), int(t), float(v)] for s, t, v in (it['modifiers'] or [])],
                 })
         if missing:
             warns.append(f'背包/仓库有 {missing} 件装备无实例数据（α 模式降级），未列入候选')

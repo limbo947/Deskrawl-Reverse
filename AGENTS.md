@@ -27,7 +27,7 @@ python -m venv .venv-gui
 .\.venv-gui\Scripts\python.exe -m pip install -r requirements-gui.txt
 cd tools
 ..\.venv-gui\Scripts\python.exe -m deskrawl_gui              # 启动主窗口
-..\.venv-gui\Scripts\python.exe -m deskrawl_gui --selftest   # 内核 10 项 + GUI 服务层/面板锚点对拍，共 32 项
+..\.venv-gui\Scripts\python.exe -m deskrawl_gui --selftest   # 内核 10 项 + GUI 服务层/面板锚点对拍，共 35 项
 ..\.venv-gui\Scripts\python.exe -m deskrawl_gui --smoke      # 无显示环境骨架冒烟（建窗口即退）
 ```
 
@@ -55,9 +55,10 @@ python patch_regression.py --live         # 指纹 → 体检 → 别名 → 自
 ```
 
 - `rva_audit.py` **只报告、不写回**（地址自动写错会污染全仓）；写回由人工复核后单独提交。
-- 判定链：白名单/自动非地址规则 → 当期 `dump.cs` 方法起始 → 旧构建同名方法（签名+Slot → **类形状自证** → 跨类唯一）→ 嵌套类 → `docs/08 §12.2` 常量表字节校验 → 旧 `script.json` 字面量对搬 → 内联数据 → 人工确认。**同名类不算证据**：混淆类名每版重生成，实测新构建有同名 `iw` 但签名交集 0/5，真身是 `je`（`gg`→`gh`、`gi`→`gj` 同理）。
+- 判定链：白名单/自动非地址规则 → 当期 `dump.cs` 方法起始 → 旧构建同名方法（签名+Slot → **类形状自证** → 跨类唯一）→ 嵌套类 → 内联数据（含该地址的方法）→ `docs/08 §12.2` 常量表字节校验 → **当期 `script.json` 的字符串/元数据槽（须与 `data_refs` 的 `expect` 登记名一致）** → 旧 `script.json` 按内容/名字对搬 → 人工确认。**同名类不算证据**：混淆类名每版重生成，实测新构建有同名 `iw` 但签名交集 0/5，真身是 `je`（`gg`→`gh`、`gi`→`gj` 同理）。`.data` 元数据槽只有**当期**表能证明「还在原位」（两版 RVA 空间高度重叠，同一 RVA 在旧表里常是别的条目，按旧表判必然误报迁移）；`script.json` 的 `Address` 列是槽的 **RVA**，两张表都按 RVA 过滤——曾按 VA 过滤导致两表全空、这两条规则静默失效。
 - 报告落 `docs/reports/RVA体检报告.md`（+ `-文档.md`），机读结果落 `data/schema/rva_audit*.json`；`rva_verify.py` 是复核与渲染段（从 `rva_audit.py` 拆出）。
 - 文件分区（`rva_audit_config.json`）：`literal`/`data_refs` 每条必须写明理由；弃用探针的理由**必须真的写在文档里**（脚本会打开文档校验标记），文档侧历史证词用 `doc_policy` 或文档内 `<!-- rva-audit:historical 理由 -->` 标记——都不许用来「消灭红点」。
+- 报告第 8 段是两项**自校验**（补丁后的第一声警铃）：① `data_refs` 每条必须带锚点——`expect`（当期 `script.json` 的条目名/字面量，判定链 ⑥ 会核对）或显式 `anchor: "none"`（当期无锚点可查，理由写在 `reason` 里），缺锚点直接判错，防「登记即有效」静默降级；② `doc_fingerprints`：`docs/08 §12` 记录的构建 SHA 必须等于磁盘实测（双向：文档要记、值要对），给 `*Registration` 这类无锚点导出指针一个「补丁后先红」的锚。
 - **写地址的习惯**：注释与文档引用**语义名**（`aliases.json` 的键）而非当期混淆名；紧邻「旧/补丁前」标注的地址是刻意保留的对照，不要「顺手修正」。
 
 ### 逆向脚本（tools/scripts/，重依赖，仅重建数据时需要）
@@ -90,7 +91,8 @@ tools/scripts/         逆向脚本（UnityPy/capstone，面向游戏文件）
 
 - `core/profile.py`：`CharacterProfile`（可 JSON 序列化，存 `data/builds/*.json`）是面板编辑、构建存取、计算的唯一事实源。装配顺序与 `cli.demo()` 刻意保持一致，使 GUI 复算能与内核直算对拍。装备槽→宝石部位的映射（`_GEM_CATEGORY_BY_EQUIP_TYPE`）是内存面板实测锚定的，勿按直觉改。
 - `core/calc_service.py`：全部纯函数（输入 profile/GameData，输出视图 dataclass），widget 不做计算。将来要把排序挪线程只改这一个文件。
-- `app.py`：只做主窗口装配（左 dock 面板 / 中央三 Tab / 右 dock 目标+属性明细）与信号中转；编辑逻辑下沉 `widgets/`。导入错误统一走 `MemoryImportError.code` → 中文文案映射（`_IMPORT_ERROR_TEXTS`），新错误态应加 code 而非拼消息子串。
+- `app.py`：只做主窗口装配（侧边导航 `SidebarNav` + 三页堆栈：角色 / 装备对比 / 装配中心）与信号中转；编辑逻辑下沉 `widgets/`。导入错误统一走 `MemoryImportError.code` → 中文文案映射（`_IMPORT_ERROR_TEXTS`），新错误态应加 code 而非拼消息子串。
+- 对比页的取向：**当前件（游戏事实）只读**（`ItemEditor.set_locked`，导入态自动生效）——基线可改就等于对比失效；参考技能卡（`widgets/skill_card.py`）挂在目标基础卡片下方（换装预测/循环系数的基线口径）；候选武器可勾「与当前武器相同（强化/宝石）」，按背包原始词条 `raw_modifiers` 重算，武器孔位宝石因此**按侧计入** `compare(slot=0)`（先按槽卸下装配链里的当前武器宝石，再并入各自武器词条）。
 - `__main__.py` 三模式互斥：`--selftest`（纯数值，不建 QApplication）、`--smoke`（建窗即退）、默认 GUI。
 
 ### 内存导入链（GUI 内，联机角色只读导入）

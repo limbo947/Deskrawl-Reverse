@@ -7,6 +7,51 @@
     "base_ref": "8660446"
   },
   "aliases": {
+    "GameConfig.UpgradeRecipe": {
+      "说明": "强化配方选择：UpgradeRecipes(0x58) 里线性找 EquipmentUpgradeRecipe.Rarity(0x10)==入参，返回 .Recipe(0x18)；无等级入参——目标等级≥11 的分支在 Upgrade.Ingredients 里",
+      "slot": null,
+      "signature": "public RecipeData <m>(ItemRarity a) { }",
+      "锚定依据": "全 dump 唯一「(ItemRarity)→RecipeData」签名；类形状自证（GameConfig 其余 ccx/ccy/ccz 同为「枚举→配置」形状）",
+      "current": {
+        "klass": "GameConfig",
+        "name": "ccw",
+        "rva": "0x700310",
+        "va": "0x180700310"
+      },
+      "history": [],
+      "证据等级": "指令级（REA 反编译）",
+      "证据": "REA procedure_pseudo_code 0x180700310（2026-10-10）：+0x58 列表按 +0x10 稀有度匹配返回 +0x18，空列表返回 0"
+    },
+    "Upgrade.MaxUpgradeLevel": {
+      "说明": "强化上限：读 GameConfig.MaxEquipmentUpgradeLevel(0x70)，配置未装载时回退 0xC=12",
+      "slot": null,
+      "signature": "public static int <m>() { }",
+      "锚定依据": "语义锚定：UpgradePanelUI.gcv 里与 GeneratedItemData.UpgradeLevel(0x20) 比较、驱动 MaxLevelSection 的那个 static int()；其类（强化服务，当期名 ip）兼有 (ItemData,string)→List<CraftingIngredient> 方法",
+      "current": {
+        "klass": "ip",
+        "name": "epn",
+        "rva": "0x7E51B0",
+        "va": "0x1807E51B0"
+      },
+      "history": [],
+      "证据等级": "指令级（REA 反编译）",
+      "证据": "REA procedure_pseudo_code 0x1807E51B0（2026-10-10）：单例链后 return *(int*)(cfg+0x70)，空指针回退 0xC"
+    },
+    "Upgrade.Ingredients": {
+      "说明": "强化材料清单：目标等级<0xB 走稀有度配方（材料量×目标等级²），≥0xB 走 GameConfig.SpecialUpgradeRecipe(0x68)（材料量×(目标等级−9)）；稀有度∈{2,3,4} 且目标∈{9,10} 额外查 ExtraUpgradeMaterials(0x60)",
+      "slot": null,
+      "signature": "public static List<CraftingIngredient> <m>(ItemData a, string b) { }",
+      "锚定依据": "全 dump 唯一「(ItemData,string)→List<CraftingIngredient>」签名；类形状自证（同类还有 epq/eps/epw 三个 (ItemData,string)→bool）",
+      "current": {
+        "klass": "ip",
+        "name": "epp",
+        "rva": "0x7E54B0",
+        "va": "0x1807E54B0"
+      },
+      "history": [],
+      "证据等级": "指令级（REA 反编译）",
+      "证据": "REA procedure_pseudo_code 0x1807E54B0（2026-10-10）：if(目标等级<0xB){按 0x58 稀有度查} else {取 0x68 配方的 Ingredients(0x18)}；倍率 if(<0xB) n² else (n−9)；216 行 amount=倍率×Ingredient.Amount"
+    },
     "Character.CalcDamage": {
       "说明": "伤害合成 Slot 12：trunc(base + scaling×Final(Damage))",
       "slot": 12,

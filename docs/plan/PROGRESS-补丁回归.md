@@ -438,6 +438,54 @@ MythicDungeon 独一档（BaseHP 30 / BaseDamage 2 / BossDMG 30 / Band1End 50 / 
 | `python rva_audit.py --check --falsify` / `--docs` | 退出码 0 |
 | `python build_aliases.py --check` | 退出码 0 |
 
+## 第五轮（同日）：暂缓三条清零（③-9 / ③-13 / ③-17）
+
+### ③-9 强化等级 → 配方分支：指令级定案
+
+新写 `rea_call.py`（broker 调用前端：写 `request.json`/轮询 `response.json`，支持 `k=v` 参数——
+PowerShell 转义会吃掉 JSON 的 `\"`，实测 `{"procedure":...}` 到进程时已不是合法 JSON），
+经常驻 broker 反编译（**REA 入参必须用 VA**，传 RVA 会报 "No procedure exists"）：
+
+| 语义名 | 类.方法 | VA | 结论 |
+|---|---|---|---|
+| `Upgrade.Ingredients` | `ip.epp` | `0x1807E54B0` | 配方分支：**目标等级 < 0xB 走稀有度配方（`UpgradeRecipes`@0x58 按 `EquipmentUpgradeRecipe.Rarity`@0x10 匹配取 `.Recipe`@0x18），≥ 0xB 走 `SpecialUpgradeRecipe`@0x68**；材料量目标 ≤10 按 `目标等级²` 倍、≥11 按 `目标等级−9` 倍（→11 级 ×1、→12 级 ×2）；稀有度 ∈{2,3,4} 且目标 ∈{9,10} 额外查 `ExtraUpgradeMaterials`@0x60（按槽位，查不到即抛异常） |
+| `Upgrade.MaxUpgradeLevel` | `ip.epn` | `0x1807E51B0` | 读 `MaxEquipmentUpgradeLevel`@0x70，配置未装载回退 `0xC`=12 |
+| `GameConfig.UpgradeRecipe` | `GameConfig.ccw` | `0x180700310` | 稀有度→配方线性查找，**无等级入参**（`procedure_references` incoming 只有 DATA 引用，调用点不在 Ghidra 直接引用里） |
+
+三条已入 `aliases.json`（37→**40 条**，`build_aliases --check` 0 问题）。更正两处文档事实：
+GameConfig 字段名是 **`SpecialUpgradeRecipe`**（旧稿按资产名写成 `UpgradeRecipeSpecial`）；
+`Uncommon` 在 `UpgradeRecipes` 列表里**没有**条目（只有 Common/Rare/Legendary/Divine 四项）。
+
+### ③-13 技能秒伤：误差量化收窄 + 模型修正一处
+
+`probe_skill_dps.py` 按 `AbilityData` 全量 124 条复算：
+
+| 旧声明 | 实测 | 处置 |
+|---|---|---|
+| 忽略前摇/收招 | `ChannelWindup`/`ChannelRecovery` 各只有 1 个非零且是**敌人**技能；玩家技能恒 0 | 已计入（口径完备，不改玩家技能数值） |
+| 多段同 rate | 多段本就按多个 `DamageEffect` 逐段求和 | 旧声明过谦，不改 |
+| 引导按整段持续 | 7 个引导技能 **6 个有 2.5~18s 冷却**，旧口径按「无限引导」计 | **修正**：改为整段周期（前摇+持续+收招+冷却×(1−CDR)）；冷却=0 时退化为旧口径，**自检锚点 3.125/6.250 不变**（GUI 32/32 实证） |
+| 忽略站桩 | `StandingTime`/`IsStandingUponCasting` 是施法期位移锁，不在伤害链上 | 不入秒伤，声明收窄 |
+| 逐技能等级未接入（`nst`@0x230） | `probe_skill_levels.py` 实机实测：`Player+0x230` 为**空 `Dictionary`**（count=0，键类型无法自证）；存档槽 `LearnedAbilities=[]` | **无数据源**，维持单一等级口径（探针只读，未动导入链） |
+
+### ③-17 Back 9 件战力来源：定案「零战力、纯外观」
+
+`probe_back_items.py` 三重证据：① 静态——9 件唯一专属字段是 `BackModelPrefab`（与 `WeaponModelPrefab`
+同位的模型挂载），数值字段全空、`NotUpgradable=true`（9/9）；② 交叉引用——全量 so_dump 25 文件按
+pathID/名字检索**零引用**（不存在外部关联的特效资产），2 件神圣带 `SteamItemDefId`（Steam 装饰品）；
+③ 实机——`memdump --json` 里背部位实装 `LegendaryBack2`，实例 `modifiers=[]`、`socketed_gems=[]`、
+`upgrade_level=0`。`docs/07` §8A.6/§8A.14 与清单已按「纯外观、零属性」更正。
+
+### 第五轮回归
+
+| 命令 | 结果 |
+|---|---|
+| `python build_aliases.py --check` | 40 条，问题 0 |
+| `python -m deskrawl_calc.cli selftest` | 10 PASS |
+| `python -m deskrawl_gui --selftest` | 32/32（含引导周期修正后的 3.125/6.250 锚点） |
+| `python rva_audit.py --check --falsify` / `--docs` | 退出码 0 |
+| `python -m deskrawl_gui.memdump` | 退出码 0（实机，指纹+双读） |
+
 ## 遗留与建议
 
 1. `docs/` 地址已全部有处置（0 待处理）；**文档正文的方法名仍是旧名**（如 docs/08 §11 摘录里的 `bjr`），
@@ -445,7 +493,8 @@ MythicDungeon 独一档（BaseHP 30 / BaseDamage 2 / BossDMG 30 / Band1End 50 / 
 2. **③-18 已完成（第四轮）**：`§8A.11`～`§8A.14` 逐项复核**无差异**（计数型表格不吃浮点解码），
    实际修的是 `§8A.10` 属性分布表、`docs/09 §B` 陈旧镜像与两处生成器陈旧点；
    清单统计已从「已核 15 + 暂缓 4」收敛为「已核 16 + 暂缓 3」。
-3. ③-9（强化等级→配方分支）、③-13（技能秒伤模型）、③-17（Back 战力来源）三条暂缓仍挂在清单里。
+3. ③-9 / ③-13 / ③-17 已在第五轮全部核毕（清单 N=19 清零，见上文「第五轮」）；
+   文档置信度待核清单**无暂缓条目**。
 4. 数据生成链有隐患：`tools/scripts/assets_cache.json` 偏旧（`dump_all2.py` 靠它只认到 251/338 件物品），
    **直接重跑 `dump_all2.py` 会把 so_dump 覆盖成更小的数据集**（本轮实测后已 `git checkout` 回滚，未留痕）。
    下次要重导数据，先重建资产缓存并逐文件 `git diff` 核对；`decode.py` 已修，重导会得到与本次一致的值。

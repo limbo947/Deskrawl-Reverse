@@ -256,6 +256,10 @@ class GameData:
                 'cooldown': leveled_value(cd.get('Base'), cd.get('PerLevel'), level),
                 'channel_duration': unwrap(rec.get('ChannelDuration')) or 0.0,
                 'tick_rate': unwrap(rec.get('ChannelTickRate')) or 0.0,
+                # 前摇/收招：实测 124 个技能里各只有 1 个非零且是敌人技能（VolcanoDemonLordFlyingLaser），
+                # 玩家技能恒 0——带上它们是为了口径完备，不改变任何玩家技能的数值
+                'channel_windup': unwrap(rec.get('ChannelWindup')) or 0.0,
+                'channel_recovery': unwrap(rec.get('ChannelRecovery')) or 0.0,
             })
         return out
 

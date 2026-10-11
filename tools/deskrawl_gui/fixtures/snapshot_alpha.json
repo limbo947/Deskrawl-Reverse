@@ -900,6 +900,204 @@
    "count": 1,
    "name": "LegendaryHelm1",
    "equip_slot_type": 2
+  },
+  {
+   "uid": "c7add3ac-8976-426d-8141-9980e4eb123e",
+   "count": 1,
+   "name": "LegendaryHelm4",
+   "equip_slot_type": 2
+  },
+  {
+   "uid": "df45c0de-b556-41b2-902c-49ec96c8250c",
+   "count": 1,
+   "name": "LegendaryHelm4",
+   "equip_slot_type": 2
+  },
+  {
+   "uid": "1610744e-c2ca-4ec8-b23d-42d40b416673",
+   "count": 1,
+   "name": "LegendaryHelm1",
+   "equip_slot_type": 2
+  },
+  {
+   "uid": "862fa7c5-b09f-4764-ae1d-8f1c6cd7004d",
+   "count": 1,
+   "name": "LegendaryHelm1",
+   "equip_slot_type": 2
+  },
+  {
+   "uid": "5410201a-acd9-4b47-8ebb-121ea4873e9a",
+   "count": 1,
+   "name": "LegendaryChestArmor1",
+   "equip_slot_type": 3
+  },
+  {
+   "uid": "b19d3d09-01ea-4d3b-b28e-bedeff12e0c5",
+   "count": 1,
+   "name": "LegendaryChestArmor5",
+   "equip_slot_type": 3
+  },
+  {
+   "uid": "4c2600a8-b1ee-4301-bf71-5460f4e5aa27",
+   "count": 1,
+   "name": "LegendaryPants3",
+   "equip_slot_type": 4
+  },
+  {
+   "uid": "f651344e-2e33-4f0d-90d8-262be604e3d8",
+   "count": 1,
+   "name": "LegendaryBoots1",
+   "equip_slot_type": 5
+  },
+  {
+   "uid": "812f2a2b-cdf1-466a-a572-99ca6d7c2b5f",
+   "count": 1,
+   "name": "LegendaryBoots3",
+   "equip_slot_type": 5
+  },
+  {
+   "uid": "2c3f5027-4dee-4fc1-821c-dcf055e84f7a",
+   "count": 1,
+   "name": "LegendaryBoots1",
+   "equip_slot_type": 5
+  },
+  {
+   "uid": "710fd5c5-a1cb-44b2-ba8c-a9c6b1f44910",
+   "count": 1,
+   "name": "LegendaryBoots3",
+   "equip_slot_type": 5
+  },
+  {
+   "uid": "41003d17-cb45-416a-b533-5c65c246a898",
+   "count": 1,
+   "name": "LegendaryBelt2",
+   "equip_slot_type": 6
+  },
+  {
+   "uid": "4d710696-66f0-4e86-919b-f5b297de1395",
+   "count": 1,
+   "name": "LegendaryBelt2",
+   "equip_slot_type": 6
+  },
+  {
+   "uid": "1512f320-7a66-4329-8346-17f4ba9403ec",
+   "count": 1,
+   "name": "LegendaryBelt3",
+   "equip_slot_type": 6
+  },
+  {
+   "uid": "faf744f2-4970-4dff-bc8a-2e00a98042eb",
+   "count": 1,
+   "name": "LegendaryBelt3",
+   "equip_slot_type": 6
+  },
+  {
+   "uid": "f9eed28c-6400-4553-b1c4-4e361c64bed7",
+   "count": 1,
+   "name": "LegendaryBelt2",
+   "equip_slot_type": 6
+  },
+  {
+   "uid": "8f50a773-b926-4ace-a60d-87bd3585cd04",
+   "count": 1,
+   "name": "LegendaryBelt1",
+   "equip_slot_type": 6
+  },
+  {
+   "uid": "8ebd3b1c-3758-4968-8b56-0c7598e837e6",
+   "count": 1,
+   "name": "LegendaryBelt3",
+   "equip_slot_type": 6
+  },
+  {
+   "uid": "2f9ab1d0-d84d-4a98-9901-12d36d7b829b",
+   "count": 1,
+   "name": "LegendaryRing1",
+   "equip_slot_type": 7
+  },
+  {
+   "uid": "b7c6d104-dc38-427c-98bd-267dcb3caac8",
+   "count": 1,
+   "name": "LegendaryRing5",
+   "equip_slot_type": 7
+  },
+  {
+   "uid": "e9d177a6-25b8-425f-b0cc-cb0234852994",
+   "count": 1,
+   "name": "LegendaryNeck1",
+   "equip_slot_type": 8
+  },
+  {
+   "uid": "d7466b7c-f03f-4de7-873a-806d28b3d85a",
+   "count": 1,
+   "name": "LegendaryNeck2",
+   "equip_slot_type": 8
+  },
+  {
+   "uid": "86374489-2ef1-4832-8324-b43eea2177d9",
+   "count": 1,
+   "name": "LegendaryNeck1",
+   "equip_slot_type": 8
+  },
+  {
+   "uid": "96093b60-ec9f-4102-b4b6-625e4ff42fa0",
+   "count": 1,
+   "name": "LegendaryGloves1",
+   "equip_slot_type": 9
+  },
+  {
+   "uid": "37df35e8-a791-4196-bf58-8b7e6c2df01a",
+   "count": 1,
+   "name": "LegendaryShoulder3",
+   "equip_slot_type": 10
+  },
+  {
+   "uid": "8b62d336-ff6f-46f4-a408-c734b86c53bb",
+   "count": 1,
+   "name": "LegendaryShoulder1",
+   "equip_slot_type": 10
+  },
+  {
+   "uid": "8a1c0711-00a9-4828-a295-2325c91a7a2e",
+   "count": 1,
+   "name": "LegendaryShoulder2",
+   "equip_slot_type": 10
+  },
+  {
+   "uid": "3dcfd0bf-3bd4-4c0d-b6f1-bed6d347b344",
+   "count": 1,
+   "name": "LegendaryHelm4",
+   "equip_slot_type": 2
+  },
+  {
+   "uid": "25b6ce0f-20b5-4f48-8b9e-a036f874f02a",
+   "count": 1,
+   "name": "LegendaryPants2",
+   "equip_slot_type": 4
+  },
+  {
+   "uid": "70a82466-6303-43bd-96b0-6cd1b1a4e143",
+   "count": 1,
+   "name": "LegendaryPants1",
+   "equip_slot_type": 4
+  },
+  {
+   "uid": "e77a34f3-164d-4d60-bf3a-0bf9706e3858",
+   "count": 1,
+   "name": "LegendaryBoots3",
+   "equip_slot_type": 5
+  },
+  {
+   "uid": "e911cc34-d95a-4d74-8aa7-b012810d13da",
+   "count": 1,
+   "name": "LegendaryNeck5",
+   "equip_slot_type": 8
+  },
+  {
+   "uid": "8b576382-84b9-4c7d-86b5-62d53f305c48",
+   "count": 1,
+   "name": "LegendaryShoulder3",
+   "equip_slot_type": 10
   }
  ]
 }

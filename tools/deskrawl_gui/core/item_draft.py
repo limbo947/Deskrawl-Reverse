@@ -13,33 +13,38 @@ from typing import List
 from deskrawl_calc import Modifier, StatType
 
 # ---- 强化（UpgradeLevel）缩放模型 ------------------------------------------------
-# 2026-10-08 与活体面板（nsq）逐位对拍实证，证据链见 PROGRESS「强化缩放」：
-#   · +1 装备（靴/手套/腰带共 15 条词条）：仅 modifiers 数组前 2 条 ×1.05，其余原值；
-#   · +4 武器（7 条词条）：全部 ×1.05（前 2L=8 ≥ 7），逐位闭合（nsq[12]=93×1.05 等）；
-#   · 武器伤害(20) ×(1+0.0125L)、武器速度(21) ×(1+0.025L)：+4 时 ×1.05/×1.10 逐位闭合，
-#     与「前 2L 条」规则对 20 号自洽（21 号若走同规则应为 ×1.05，实测 ×1.10 → 单列）。
-# 边界说明：L∈{2,3} 与「前 2L」在 L>4、词条数>8 时未取到实证，模型按现有证据外推
-# （记录于 BLOCKED）；当前武器的 20/21 两键始终用 nsq 面板值覆写，不依赖外推。
-_UPGRADE_AFFIX_RATE = 1.05
-_UPGRADE_DAMAGE_PER_LV = 0.0125
-_UPGRADE_SPEED_PER_LV = 0.025
+# 2026-10-12 实机逐位重定（+1/+2/+3/+4 武器 nsq[20]/[21] 对拍，见审计报告 F7）：
+#   · 每个升级等级给 2 条词条各 +5%（从 idx0 顺序推进），到末尾绕回开头——即前 2L 个槽位
+#     各吃一次 +5%；当 2L > 词条数 n 时溢出部分绕回，早期词条会吃到第二次（+10%）。
+#   · 实测 7 词条武器：L=1/2/3 时 [21](idx0)/[20](idx1) 均 ×1.05、idx6 恒 ×1.0；
+#     L=4（2L=8 溢出 1）→ idx0 [21] ×1.10、其余 ×1.05（累计命中按加算 v×(1+0.05×命中数)）。
+#   · 旧模型给 [20]/[21] 单列 ×(1+0.0125L)/×(1+0.025L) 是错的（L=1 预测 ×1.0125/×1.025，
+#     实测均 ×1.05）；旧「+4 全条 ×1.05 + [21] 单列 ×1.10」也源于漏了绕回。
+#   影响面：仅「+N 背包武器/装备候选」的预测值（已装备武器由 nsq 单源覆写，见 profile 步骤 2）。
+#   边界：L≥5 时「每级 2 条轮转」与「前 2L 槽位取模」两解不可分（无样本），按后者实现。
+_UPGRADE_AFFIX_STEP = 0.05
 
 
 def apply_upgrade(modifiers, upgrade_level):
     """按实测模型折算强化后的词条值（[[stat,type,value],...] → (affixes, weapon_speed)）。
 
-    等级 0 原样返回；武器速度(21) 折算值同时作为武器基础攻速的来源（与面板 nsq[21] 同语义）。
+    每级给 2 条词条各 +5%（从 idx0 顺序推进、末尾绕回）；值按累计命中次数加算
+    （v×(1+0.05×命中数)），故 2L 溢出时早期词条可得 ×1.10。武器速度(21) 的折算值同时
+    作为武器基础攻速的来源（与面板 nsq[21] 同语义）。
     """
     lv = int(upgrade_level or 0)
+    n = len(modifiers)
+    hits = [0] * n
+    if lv and n:
+        for k in range(2 * lv):
+            hits[k % n] += 1
     out, speed = [], 1.0
     for i, row in enumerate(modifiers):
         s, t, v = int(row[0]), int(row[1]), float(row[2])
+        if hits[i]:
+            v *= 1.0 + _UPGRADE_AFFIX_STEP * hits[i]
         if s == int(StatType.WeaponSpeed):
-            speed = v * (1.0 + _UPGRADE_SPEED_PER_LV * lv) if lv else v
-        elif s == int(StatType.WeaponDamage):
-            v *= 1.0 + _UPGRADE_DAMAGE_PER_LV * lv
-        elif lv and i < 2 * lv:
-            v *= _UPGRADE_AFFIX_RATE
+            speed = v
         out.append([s, t, v])
     return out, speed
 

@@ -14,7 +14,9 @@ from typing import List
 from deskrawl_calc import (DamageModel, Modifier, StatSheet, StatType, Target, Weapon,
                            compare_weapons, stat_name)
 
-from .profile import KIND_LABELS, SLOT_LABELS, CharacterProfile, _gem_category
+from .localization import item_internal_name
+from .profile import (KIND_LABELS, SLOT_EQUIP_TYPE, SLOT_LABELS, CharacterProfile,
+                      _gem_category)
 
 
 @dataclass
@@ -76,14 +78,40 @@ def _weapon_mods(profile):
     return profile.weapon_current.to_weapon().modifiers
 
 
-def _add_item_mods(gd, item) -> list:
-    """一件装备对属性表的贡献：词条 + 其孔位宝石（按装备槽类型取对应宝石加成组）。"""
+def gem_category_for_slot(slot) -> int:
+    """内存槽 id → 宝石加成组（0=护甲 1=饰品 2=武器）；未知槽回落护甲组。
+
+    宝石组必须由**被对比的槽位**推导，不能读草稿自身的 equip_slot_type：手工候选草稿
+    该字段恒为 0，戒指/项链槽会静默落到护甲组（CDR/主属性顶替饰品专属加成）。
+    槽→EquipSlotType 取 SLOT_EQUIP_TYPE（与 memory_offsets 的实测表同源）。
+    """
+    return _gem_category(SLOT_EQUIP_TYPE.get(int(slot), 0))
+
+
+def _effect_mods(gd, name) -> list:
+    """装备名（简中显示名）→ 传奇特效词条。
+
+    只有 StatModifier / AllStats 两类能入属性池（92 条特效里 80 条是触发/状态/技能修改类，
+    本就不走属性池）；名字要反查回 ItemData 内部名才能取到 `EquipmentEffects` 引用。
+    """
+    return gd.item_effect_modifiers(item_internal_name(gd, str(name or '')))
+
+
+def _add_item_mods(gd, item, slot=None) -> list:
+    """一件装备对属性表的贡献：词条 + 孔位宝石 + 传奇特效。
+
+    宝石加成组优先按对比槽位推导（见 gem_category_for_slot）；无槽位上下文时回落草稿自身的
+    equip_slot_type（导入件该字段由实测映射填准，手工草稿为 0）。两侧对称：当前件与候选件
+    用同一套取组规则，否则手工候选会得到与当前件不一致的宝石加成。
+    """
     if item is None:
         return []
     out = list(item.to_mods())
-    cat = _gem_category(getattr(item, 'equip_slot_type', 0))
+    cat = _gem_category(getattr(item, 'equip_slot_type', 0)) if slot is None \
+        else gem_category_for_slot(slot)
     for gname in (getattr(item, 'gems', None) or []):
         out.extend(gd.gem_modifiers(str(gname), cat))
+    out.extend(_effect_mods(gd, getattr(item, 'name', '')))
     return out
 
 
@@ -103,35 +131,40 @@ def _weapon_gems(gd, draft) -> list:
 
 
 def _weapon_with_gems(gd, draft) -> Weapon:
-    """武器草稿 → Weapon（孔位宝石并入词条）：候选侧的宝石因此能参与对比。
+    """武器草稿 → Weapon（孔位宝石 + 传奇特效并入词条）：候选侧的宝石/特效因此能参与对比。
 
-    内核的 Weapon 只认词条，宝石加成原本只在装配链里；把两者在这里合并，是为了让
-    「候选换一套宝石」这种对比有数值出口，而不是只有元信息展示。
+    内核的 Weapon 只认词条，宝石与特效加成原本不在它这里；把三者合并，是为了让
+    「候选换一套宝石」或「换一把带属性类传奇特效的武器」这种对比有数值出口。
     """
     w = draft.to_weapon()
     return Weapon(w.name, w.base_damage, w.base_speed,
-                  list(w.modifiers) + _weapon_gems(gd, draft),
+                  list(w.modifiers) + _weapon_gems(gd, draft) + _effect_mods(gd, draft.name),
                   skill_multiplier=w.skill_multiplier)
 
 
 def _slot_sheets(profile, gd, slot):
     """非武器槽的 (current_sheet, candidate_sheet)。
 
-    当前件词条已烘焙在 base 残差、宝石在 assembled 里；先克隆「完整构建（含武器词条）」再把
-    当前槽当前件整体卸下得到干净基线，两侧分别装回当前件/候选件——于是当前侧 ≡ 基线，仅候选产生 Δ。
+    当前件词条与**传奇特效**都已烘焙在 base 残差（特效此前不可分解）、宝石在 assembled 里；
+    先克隆「完整构建（含武器词条）」再把当前槽当前件整体卸下（词条 + 宝石 + 特效三者都取反）
+    得到干净基线，两侧分别装回当前件/候选件——于是当前侧 ≡ 基线，仅候选产生 Δ。
+    孔位宝石的加成组一律按本槽位推导（gem_category_for_slot），故候选草稿的 equip_slot_type
+    是否填准都不影响取组——手工候选与导入件因此得到同一口径。
     """
     base = profile.to_sheet(gd)
     base.add_mods(_weapon_mods(profile))
     cur_item = profile.slot_current.get(slot)
     if cur_item is not None:
         base.add_mods(_negate(cur_item.to_mods()))
+        # 特效不在 assembled、而是留在 base 残差里；不取反就会「泄漏」给候选侧
+        base.add_mods(_negate(_effect_mods(gd, cur_item.name)))
     for it in profile.assembled:
         if it.kind == 'gem' and int(getattr(it, 'slot', -1)) == slot:
             base.add_mods(_negate(it.modifiers(gd)))
     cur_sheet = base.clone()
-    cur_sheet.add_mods(_add_item_mods(gd, cur_item))
+    cur_sheet.add_mods(_add_item_mods(gd, cur_item, slot))
     cand_sheet = base.clone()
-    cand_sheet.add_mods(_add_item_mods(gd, profile.slot_candidate.get(slot)))
+    cand_sheet.add_mods(_add_item_mods(gd, profile.slot_candidate.get(slot), slot))
     return cur_sheet, cand_sheet
 
 
@@ -152,6 +185,8 @@ def compare(profile: CharacterProfile, gd, slot=None) -> CompareResult:
         for it in profile.assembled:
             if it.kind == 'gem' and int(getattr(it, 'slot', -1)) == 0:
                 sheet.add_mods(_negate(it.modifiers(gd)))
+        # 当前武器的传奇特效同样留在 base 残差里（不在 assembled）→ 一并卸下，否则会泄漏给候选武器
+        sheet.add_mods(_negate(_effect_mods(gd, profile.weapon_current.name)))
         cur = _weapon_with_gems(gd, profile.weapon_current)
         cand = _weapon_with_gems(gd, profile.weapon_candidate)
         r = compare_weapons(sheet, cur, cand, target=target, damage_type=profile.damage_type,
@@ -417,4 +452,4 @@ def build_panel(payload: dict) -> dict:
 __all__ = ['StatRow', 'CompareResult', 'CandidateRow', 'stat_rows', 'compare',
            'candidate_names', 'candidate_modifiers', 'describe_mods',
            'baseline_dps', 'rank_candidates', 'KIND_LABELS',
-           'build_panel', 'PANEL_ORDER', 'MOD_TYPE_CN']
+           'build_panel', 'PANEL_ORDER', 'MOD_TYPE_CN', 'gem_category_for_slot']

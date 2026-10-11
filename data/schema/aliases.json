@@ -112,6 +112,36 @@
         }
       ]
     },
+    "Character.SkillTypeDamageMultiplier": {
+      "说明": "技能类型增伤 Slot 16：1 + Σ{tag0→33 BasicAttack, tag1→34 StrongAttack, tag2→61 Special}（同池加算，不是 if/elif 单选）",
+      "slot": 16,
+      "signature": "public virtual double <m>(AbilityData a) { }",
+      "锚定依据": "同类同签名 + Slot（Character 的 Slot 16；补丁前文档未记录该槽位，属 2026-10-12 新增结论）",
+      "current": {
+        "klass": "Character",
+        "name": "bln",
+        "rva": "0x67d9a0",
+        "va": "0x18067d9a0"
+      },
+      "history": [],
+      "证据等级": "指令级（REA 反编译）",
+      "证据": "REA procedure_pseudo_code 0x18067d9a0（2026-10-12）：取 AbilityData.Tags(+0x28) 做 IndexOf(tag)，tag 0/1/2 命中即 addsd 累加 Final(0x21=33)/Final(0x22=34)/Final(0x3d=61)，初值 1.0；DamageEffect.tp 内以 `dmg *= (*(vtable+0x228))(ability)` 应用（xrefs 指到 0x180498196）"
+    },
+    "DamageOverTimeBehavior.TickDamage": {
+      "说明": "DOT 每跳伤害：base × scaling × (Final(62 DamageOverTime) + 元素乘区)——62 与元素乘区同池加算",
+      "slot": null,
+      "signature": "private double <m>(Character a, double b) { }",
+      "锚定依据": "类内同签名唯一（DamageOverTimeBehavior 其余方法参数各异）",
+      "current": {
+        "klass": "DamageOverTimeBehavior",
+        "name": "ym",
+        "rva": "0x4ac830",
+        "va": "0x1804ac830"
+      },
+      "history": [],
+      "证据等级": "指令级（REA 反编译）",
+      "证据": "REA procedure_pseudo_code 0x1804ac830（2026-10-12）：`base×param×(Final(0x3e=62) + ElementDamageMultiplier(behavior.DamageType@+0x14))`；即 62 不在直击链路（bko/bln 都不读它），只在 DOT tick 里消费"
+    },
     "Character.ConditionalDamagePool": {
       "说明": "条件伤害池 Slot 15：1 + Σ条件值（血比例 0.8/0.3 内联判定）",
       "slot": 15,

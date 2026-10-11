@@ -3,7 +3,8 @@
 
 可用性（基于对 dump 的实测）：
   ✅ 完整可解析：GemData / RuneData / TalentData / RuneSetData / ItemizationConfig / GameConfig
-  ✅ 已解码并接入：AbilityData 技能效果(`_managedRefs`)、EquipmentEffect_* 传奇特效、
+  ✅ 已解码并接入：AbilityData 技能效果(`_managedRefs`)、EquipmentEffect_* 传奇特效
+     （仅 StatModifier/AllStats 类入属性池，触发/状态/技能修改类未建模）、
      TalentEffect_*/LifeSkillEffect_* 特效、词条 Roll 公式(`AffixRollTable`)
   ⬜ 仍需外部输入：角色面板基础值（联机数据不在本地）；装备具体 roll 值可用 `affix_range()` 估算
 """
@@ -287,6 +288,27 @@ class GameData:
         if str(e.get('_class', '')).endswith('AllStats') and e.get('Bonus'):
             for s in (StatType.Strength, StatType.Dexterity, StatType.Intelligence):
                 out.append(Modifier(int(s), 0, float(e['Bonus'])))
+        return out
+
+    def item_effect_pathids(self, item_name: str) -> List[int]:
+        """装备 ItemData._name → EquipmentEffect pathID 列表（ItemData.EquipmentEffects 引用）。"""
+        rec = self.items().get(str(item_name or ''))
+        out = []
+        for e in (rec or {}).get('EquipmentEffects') or []:
+            pid = e.get('pathID') if isinstance(e, dict) else None
+            if pid:
+                out.append(int(pid))
+        return out
+
+    def item_effect_modifiers(self, item_name: str) -> List[Modifier]:
+        """装备的传奇特效词条（**仅** StatModifier / AllStats 类可解析，触发/状态类返回空）。
+
+        92 条 EquipmentEffects 中 80 条是触发/状态/技能修改类，本就不走属性池——所以
+        「返回空」是正常的未建模，不是异常；调用方不要据此判定装备无特效。
+        """
+        out = []
+        for pid in self.item_effect_pathids(item_name):
+            out.extend(self.equipment_effect_modifiers(pid))
         return out
 
     # ------------------------------------------------------------------ #

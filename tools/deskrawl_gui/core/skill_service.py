@@ -61,24 +61,31 @@ class SkillRow:
     interval: float              # 当前侧的单次间隔（秒）
 
 
-def _tag_multiplier(skill: dict, sheet) -> float:
-    """技能标签对应的增伤（普攻 33 / 强力攻击 34）。
+# AbilityTag → 技能类型伤害属性。Character.SkillTypeDamageMultiplier（Slot 16）实证：
+# 按 tag 命中项**同池加算** `1 + Σ`，不是 if/elif 二选一。
+_TAG_DAMAGE_STATS = {0: StatType.BasicAttackDamage,      # BasicAttack  → 33
+                     1: StatType.StrongAttackDamage,     # StrongAttack → 34
+                     2: StatType.SpecialAbilityDamage}   # Special      → 61
 
-    AbilityTag：BasicAttack=0 / StrongAttack=1（旋风斩 Tags=[1,3,7] → 吃强力攻击伤害，
-    角色页实测 108.3%）。属性页把这两项列在「进攻」里，此前未被任何计算路径消费。
+
+def _tag_multiplier(skill: dict, sheet) -> float:
+    """技能类型增伤倍率 = 1 + Σ{命中标签对应的 33/34/61}（同池加算）。
+
+    指令级依据（2026-10-12 REA）：`Character.bln(AbilityData)`（Slot 16）对 tag 0/1/2 分别读
+    33/34/61 后 `addsd` 累加、返回 `1 + Σ`；`DamageEffect.tp` 以 `dmg ×= bln(ability)` 应用。
+    故多标签技能（同时带 BasicAttack(0) 与 StrongAttack(1)）两项都吃——旧实现的 if/elif 是错的；
+    更实质的缺陷是 **61 被完全忽略**，特殊技能（tag 2，如 WarriorSpecial3/4）一直少这一项。
     """
     tags = skill.get('tags') or []
-    if 1 in tags:
-        stat = int(StatType.StrongAttackDamage)
-    elif 0 in tags:
-        stat = int(StatType.BasicAttackDamage)
-    else:
-        return 1.0
-    return 1.0 + sheet.final(stat)
+    total = 0.0
+    for tag, stat in _TAG_DAMAGE_STATS.items():
+        if tag in tags:
+            total += sheet.final(stat)
+    return 1.0 + total
 
 
 def _per_hit(skill: dict, sheet, target, *, weapon, primary_stat) -> float:
-    """每次命中的期望伤害（多段求和 × 普攻/强攻标签增伤）。"""
+    """每次命中的期望伤害（多段求和 × 技能类型标签增伤 33/34/61）。"""
     total = 0.0
     for e in skill['effects']:
         model = DamageModel(sheet, e['damage_type'], weapon_damage=weapon.base_damage,

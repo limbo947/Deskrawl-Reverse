@@ -27,7 +27,7 @@ python -m venv .venv-gui
 .\.venv-gui\Scripts\python.exe -m pip install -r requirements-gui.txt
 cd tools
 ..\.venv-gui\Scripts\python.exe -m deskrawl_gui              # 启动主窗口
-..\.venv-gui\Scripts\python.exe -m deskrawl_gui --selftest   # 内核 10 项 + GUI 服务层/面板锚点对拍，共 40 项
+..\.venv-gui\Scripts\python.exe -m deskrawl_gui --selftest   # 内核 10 项 + GUI 服务层/面板锚点对拍，共 48 项
 ..\.venv-gui\Scripts\python.exe -m deskrawl_gui --smoke      # 无显示环境骨架冒烟（建窗口即退）
 ```
 

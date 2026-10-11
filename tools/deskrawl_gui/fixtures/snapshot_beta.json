@@ -986,6 +986,1396 @@
    "count": 1,
    "name": "LegendaryHelm1",
    "equip_slot_type": 2
+  },
+  {
+   "uid": "c7add3ac-8976-426d-8141-9980e4eb123e",
+   "count": 1,
+   "name": "LegendaryHelm4",
+   "equip_slot_type": 2,
+   "item_level": 841,
+   "rarity": 3,
+   "upgrade_level": 0,
+   "rune_level": 0,
+   "socket_count": 1,
+   "modifiers": [
+    [
+     8,
+     0,
+     774.0
+    ],
+    [
+     9,
+     0,
+     774.0
+    ],
+    [
+     14,
+     0,
+     77.0
+    ],
+    [
+     44,
+     0,
+     0.3089999854564667
+    ],
+    [
+     54,
+     0,
+     0.1550000011920929
+    ],
+    [
+     36,
+     0,
+     31.0
+    ]
+   ],
+   "socketed_gems": []
+  },
+  {
+   "uid": "df45c0de-b556-41b2-902c-49ec96c8250c",
+   "count": 1,
+   "name": "LegendaryHelm4",
+   "equip_slot_type": 2,
+   "item_level": 841,
+   "rarity": 3,
+   "upgrade_level": 0,
+   "rune_level": 0,
+   "socket_count": 1,
+   "modifiers": [
+    [
+     8,
+     0,
+     774.0
+    ],
+    [
+     14,
+     0,
+     77.0
+    ],
+    [
+     22,
+     0,
+     0.07699999958276749
+    ],
+    [
+     55,
+     0,
+     0.1550000011920929
+    ],
+    [
+     13,
+     0,
+     0.1550000011920929
+    ],
+    [
+     36,
+     0,
+     31.0
+    ]
+   ],
+   "socketed_gems": []
+  },
+  {
+   "uid": "1610744e-c2ca-4ec8-b23d-42d40b416673",
+   "count": 1,
+   "name": "LegendaryHelm1",
+   "equip_slot_type": 2,
+   "item_level": 833,
+   "rarity": 3,
+   "upgrade_level": 0,
+   "rune_level": 0,
+   "socket_count": 1,
+   "modifiers": [
+    [
+     8,
+     0,
+     766.0
+    ],
+    [
+     13,
+     0,
+     0.15299999713897705
+    ],
+    [
+     0,
+     0,
+     77.0
+    ],
+    [
+     54,
+     0,
+     0.15299999713897705
+    ],
+    [
+     44,
+     0,
+     0.3070000112056732
+    ],
+    [
+     41,
+     0,
+     0.3070000112056732
+    ]
+   ],
+   "socketed_gems": []
+  },
+  {
+   "uid": "862fa7c5-b09f-4764-ae1d-8f1c6cd7004d",
+   "count": 1,
+   "name": "LegendaryHelm1",
+   "equip_slot_type": 2,
+   "item_level": 833,
+   "rarity": 3,
+   "upgrade_level": 0,
+   "rune_level": 0,
+   "socket_count": 1,
+   "modifiers": [
+    [
+     8,
+     0,
+     766.0
+    ],
+    [
+     55,
+     0,
+     0.15299999713897705
+    ],
+    [
+     54,
+     0,
+     0.15299999713897705
+    ],
+    [
+     44,
+     0,
+     0.3070000112056732
+    ],
+    [
+     9,
+     0,
+     766.0
+    ],
+    [
+     15,
+     0,
+     0.3070000112056732
+    ]
+   ],
+   "socketed_gems": []
+  },
+  {
+   "uid": "5410201a-acd9-4b47-8ebb-121ea4873e9a",
+   "count": 1,
+   "name": "LegendaryChestArmor1",
+   "equip_slot_type": 3,
+   "item_level": 841,
+   "rarity": 3,
+   "upgrade_level": 0,
+   "rune_level": 0,
+   "socket_count": 2,
+   "modifiers": [
+    [
+     8,
+     0,
+     774.0
+    ],
+    [
+     44,
+     0,
+     0.3089999854564667
+    ],
+    [
+     61,
+     0,
+     1.2380000352859497
+    ],
+    [
+     42,
+     0,
+     0.3089999854564667
+    ],
+    [
+     0,
+     0,
+     77.0
+    ],
+    [
+     41,
+     0,
+     0.3089999854564667
+    ]
+   ],
+   "socketed_gems": []
+  },
+  {
+   "uid": "b19d3d09-01ea-4d3b-b28e-bedeff12e0c5",
+   "count": 1,
+   "name": "LegendaryChestArmor5",
+   "equip_slot_type": 3,
+   "item_level": 833,
+   "rarity": 3,
+   "upgrade_level": 0,
+   "rune_level": 0,
+   "socket_count": 2,
+   "modifiers": [
+    [
+     8,
+     0,
+     766.0
+    ],
+    [
+     0,
+     0,
+     77.0
+    ],
+    [
+     7,
+     0,
+     690.0
+    ],
+    [
+     9,
+     0,
+     766.0
+    ],
+    [
+     53,
+     0,
+     0.15299999713897705
+    ],
+    [
+     15,
+     0,
+     0.3070000112056732
+    ]
+   ],
+   "socketed_gems": []
+  },
+  {
+   "uid": "4c2600a8-b1ee-4301-bf71-5460f4e5aa27",
+   "count": 1,
+   "name": "LegendaryPants3",
+   "equip_slot_type": 4,
+   "item_level": 801,
+   "rarity": 3,
+   "upgrade_level": 1,
+   "rune_level": 0,
+   "socket_count": 2,
+   "modifiers": [
+    [
+     8,
+     0,
+     737.0
+    ],
+    [
+     9,
+     0,
+     737.0
+    ],
+    [
+     42,
+     0,
+     0.29499998688697815
+    ],
+    [
+     22,
+     0,
+     0.07400000095367432
+    ],
+    [
+     51,
+     0,
+     0.1469999998807907
+    ],
+    [
+     41,
+     0,
+     0.29499998688697815
+    ]
+   ],
+   "socketed_gems": [
+    "GemSapphire4",
+    "GemSapphire4"
+   ]
+  },
+  {
+   "uid": "f651344e-2e33-4f0d-90d8-262be604e3d8",
+   "count": 1,
+   "name": "LegendaryBoots1",
+   "equip_slot_type": 5,
+   "item_level": 841,
+   "rarity": 3,
+   "upgrade_level": 0,
+   "rune_level": 0,
+   "socket_count": 0,
+   "modifiers": [
+    [
+     8,
+     0,
+     774.0
+    ],
+    [
+     60,
+     0,
+     0.3089999854564667
+    ],
+    [
+     9,
+     0,
+     774.0
+    ],
+    [
+     0,
+     0,
+     77.0
+    ],
+    [
+     22,
+     0,
+     0.07699999958276749
+    ],
+    [
+     11,
+     0,
+     31.0
+    ]
+   ],
+   "socketed_gems": []
+  },
+  {
+   "uid": "812f2a2b-cdf1-466a-a572-99ca6d7c2b5f",
+   "count": 1,
+   "name": "LegendaryBoots3",
+   "equip_slot_type": 5,
+   "item_level": 841,
+   "rarity": 3,
+   "upgrade_level": 0,
+   "rune_level": 0,
+   "socket_count": 0,
+   "modifiers": [
+    [
+     8,
+     0,
+     774.0
+    ],
+    [
+     22,
+     0,
+     0.07699999958276749
+    ],
+    [
+     7,
+     0,
+     696.0
+    ],
+    [
+     37,
+     0,
+     0.1550000011920929
+    ],
+    [
+     53,
+     0,
+     0.1550000011920929
+    ],
+    [
+     57,
+     0,
+     0.1550000011920929
+    ]
+   ],
+   "socketed_gems": []
+  },
+  {
+   "uid": "2c3f5027-4dee-4fc1-821c-dcf055e84f7a",
+   "count": 1,
+   "name": "LegendaryBoots1",
+   "equip_slot_type": 5,
+   "item_level": 835,
+   "rarity": 3,
+   "upgrade_level": 0,
+   "rune_level": 0,
+   "socket_count": 0,
+   "modifiers": [
+    [
+     8,
+     0,
+     768.0
+    ],
+    [
+     7,
+     0,
+     691.0
+    ],
+    [
+     60,
+     0,
+     0.3070000112056732
+    ],
+    [
+     0,
+     0,
+     77.0
+    ],
+    [
+     52,
+     0,
+     0.15399999916553497
+    ],
+    [
+     17,
+     0,
+     0.3070000112056732
+    ]
+   ],
+   "socketed_gems": []
+  },
+  {
+   "uid": "710fd5c5-a1cb-44b2-ba8c-a9c6b1f44910",
+   "count": 1,
+   "name": "LegendaryBoots3",
+   "equip_slot_type": 5,
+   "item_level": 821,
+   "rarity": 3,
+   "upgrade_level": 0,
+   "rune_level": 0,
+   "socket_count": 0,
+   "modifiers": [
+    [
+     8,
+     0,
+     755.0
+    ],
+    [
+     9,
+     0,
+     755.0
+    ],
+    [
+     7,
+     0,
+     680.0
+    ],
+    [
+     60,
+     0,
+     0.3019999861717224
+    ],
+    [
+     22,
+     0,
+     0.07599999755620956
+    ],
+    [
+     57,
+     0,
+     0.1509999930858612
+    ]
+   ],
+   "socketed_gems": []
+  },
+  {
+   "uid": "41003d17-cb45-416a-b533-5c65c246a898",
+   "count": 1,
+   "name": "LegendaryBelt2",
+   "equip_slot_type": 6,
+   "item_level": 841,
+   "rarity": 3,
+   "upgrade_level": 0,
+   "rune_level": 0,
+   "socket_count": 0,
+   "modifiers": [
+    [
+     13,
+     0,
+     0.1550000011920929
+    ],
+    [
+     37,
+     0,
+     0.1550000011920929
+    ],
+    [
+     38,
+     0,
+     1.0
+    ],
+    [
+     6,
+     0,
+     0.23199999332427979
+    ],
+    [
+     17,
+     0,
+     0.3089999854564667
+    ]
+   ],
+   "socketed_gems": []
+  },
+  {
+   "uid": "4d710696-66f0-4e86-919b-f5b297de1395",
+   "count": 1,
+   "name": "LegendaryBelt2",
+   "equip_slot_type": 6,
+   "item_level": 841,
+   "rarity": 3,
+   "upgrade_level": 0,
+   "rune_level": 0,
+   "socket_count": 0,
+   "modifiers": [
+    [
+     9,
+     0,
+     774.0
+    ],
+    [
+     39,
+     0,
+     155.0
+    ],
+    [
+     38,
+     0,
+     1.0
+    ],
+    [
+     37,
+     0,
+     0.1550000011920929
+    ],
+    [
+     36,
+     0,
+     31.0
+    ]
+   ],
+   "socketed_gems": []
+  },
+  {
+   "uid": "1512f320-7a66-4329-8346-17f4ba9403ec",
+   "count": 1,
+   "name": "LegendaryBelt3",
+   "equip_slot_type": 6,
+   "item_level": 700,
+   "rarity": 3,
+   "upgrade_level": 0,
+   "rune_level": 0,
+   "socket_count": 0,
+   "modifiers": [
+    [
+     38,
+     0,
+     1.0
+    ],
+    [
+     6,
+     0,
+     0.1599999964237213
+    ],
+    [
+     9,
+     0,
+     615.0
+    ],
+    [
+     13,
+     0,
+     0.12800000607967377
+    ],
+    [
+     36,
+     0,
+     22.0
+    ]
+   ],
+   "socketed_gems": []
+  },
+  {
+   "uid": "faf744f2-4970-4dff-bc8a-2e00a98042eb",
+   "count": 1,
+   "name": "LegendaryBelt3",
+   "equip_slot_type": 6,
+   "item_level": 700,
+   "rarity": 3,
+   "upgrade_level": 0,
+   "rune_level": 0,
+   "socket_count": 0,
+   "modifiers": [
+    [
+     6,
+     0,
+     0.16300000250339508
+    ],
+    [
+     37,
+     0,
+     0.12399999797344208
+    ],
+    [
+     7,
+     0,
+     438.0
+    ],
+    [
+     38,
+     0,
+     1.0
+    ],
+    [
+     17,
+     0,
+     0.2529999911785126
+    ]
+   ],
+   "socketed_gems": []
+  },
+  {
+   "uid": "f9eed28c-6400-4553-b1c4-4e361c64bed7",
+   "count": 1,
+   "name": "LegendaryBelt2",
+   "equip_slot_type": 6,
+   "item_level": 700,
+   "rarity": 3,
+   "upgrade_level": 0,
+   "rune_level": 0,
+   "socket_count": 0,
+   "modifiers": [
+    [
+     7,
+     0,
+     488.0
+    ],
+    [
+     22,
+     0,
+     0.04899999871850014
+    ],
+    [
+     38,
+     0,
+     1.0
+    ],
+    [
+     39,
+     0,
+     100.0
+    ],
+    [
+     36,
+     0,
+     19.0
+    ]
+   ],
+   "socketed_gems": []
+  },
+  {
+   "uid": "8f50a773-b926-4ace-a60d-87bd3585cd04",
+   "count": 1,
+   "name": "LegendaryBelt1",
+   "equip_slot_type": 6,
+   "item_level": 700,
+   "rarity": 3,
+   "upgrade_level": 0,
+   "rune_level": 0,
+   "socket_count": 0,
+   "modifiers": [
+    [
+     39,
+     0,
+     111.0
+    ],
+    [
+     9,
+     0,
+     492.0
+    ],
+    [
+     6,
+     0,
+     0.1589999943971634
+    ],
+    [
+     7,
+     0,
+     498.0
+    ],
+    [
+     36,
+     0,
+     22.0
+    ]
+   ],
+   "socketed_gems": []
+  },
+  {
+   "uid": "8ebd3b1c-3758-4968-8b56-0c7598e837e6",
+   "count": 1,
+   "name": "LegendaryBelt3",
+   "equip_slot_type": 6,
+   "item_level": 683,
+   "rarity": 3,
+   "upgrade_level": 1,
+   "rune_level": 0,
+   "socket_count": 0,
+   "modifiers": [
+    [
+     9,
+     0,
+     518.0
+    ],
+    [
+     6,
+     0,
+     0.1589999943971634
+    ],
+    [
+     38,
+     0,
+     1.0
+    ],
+    [
+     7,
+     0,
+     565.0
+    ],
+    [
+     17,
+     0,
+     0.22499999403953552
+    ]
+   ],
+   "socketed_gems": []
+  },
+  {
+   "uid": "2f9ab1d0-d84d-4a98-9901-12d36d7b829b",
+   "count": 1,
+   "name": "LegendaryRing1",
+   "equip_slot_type": 7,
+   "item_level": 835,
+   "rarity": 3,
+   "upgrade_level": 0,
+   "rune_level": 0,
+   "socket_count": 0,
+   "modifiers": [
+    [
+     9,
+     0,
+     684.0
+    ],
+    [
+     40,
+     0,
+     1.156000018119812
+    ],
+    [
+     14,
+     0,
+     67.0
+    ],
+    [
+     24,
+     0,
+     0.9610000252723694
+    ],
+    [
+     11,
+     0,
+     24.0
+    ]
+   ],
+   "socketed_gems": []
+  },
+  {
+   "uid": "b7c6d104-dc38-427c-98bd-267dcb3caac8",
+   "count": 1,
+   "name": "LegendaryRing5",
+   "equip_slot_type": 7,
+   "item_level": 821,
+   "rarity": 3,
+   "upgrade_level": 0,
+   "rune_level": 0,
+   "socket_count": 1,
+   "modifiers": [
+    [
+     9,
+     0,
+     755.0
+    ],
+    [
+     24,
+     0,
+     1.2089999914169312
+    ],
+    [
+     6,
+     0,
+     0.22699999809265137
+    ],
+    [
+     40,
+     0,
+     1.5110000371932983
+    ],
+    [
+     11,
+     0,
+     30.0
+    ]
+   ],
+   "socketed_gems": []
+  },
+  {
+   "uid": "e9d177a6-25b8-425f-b0cc-cb0234852994",
+   "count": 1,
+   "name": "LegendaryNeck1",
+   "equip_slot_type": 8,
+   "item_level": 841,
+   "rarity": 3,
+   "upgrade_level": 0,
+   "rune_level": 0,
+   "socket_count": 1,
+   "modifiers": [
+    [
+     9,
+     0,
+     774.0
+    ],
+    [
+     5,
+     0,
+     0.9279999732971191
+    ],
+    [
+     24,
+     0,
+     1.2380000352859497
+    ],
+    [
+     65,
+     0,
+     0.6190000176429749
+    ],
+    [
+     11,
+     0,
+     31.0
+    ]
+   ],
+   "socketed_gems": []
+  },
+  {
+   "uid": "d7466b7c-f03f-4de7-873a-806d28b3d85a",
+   "count": 1,
+   "name": "LegendaryNeck2",
+   "equip_slot_type": 8,
+   "item_level": 841,
+   "rarity": 3,
+   "upgrade_level": 0,
+   "rune_level": 0,
+   "socket_count": 1,
+   "modifiers": [
+    [
+     32,
+     0,
+     1.5470000505447388
+    ],
+    [
+     4,
+     0,
+     0.12399999797344208
+    ],
+    [
+     31,
+     0,
+     1.5470000505447388
+    ],
+    [
+     24,
+     0,
+     1.2380000352859497
+    ],
+    [
+     41,
+     0,
+     0.3089999854564667
+    ]
+   ],
+   "socketed_gems": []
+  },
+  {
+   "uid": "86374489-2ef1-4832-8324-b43eea2177d9",
+   "count": 1,
+   "name": "LegendaryNeck1",
+   "equip_slot_type": 8,
+   "item_level": 833,
+   "rarity": 3,
+   "upgrade_level": 0,
+   "rune_level": 0,
+   "socket_count": 1,
+   "modifiers": [
+    [
+     29,
+     0,
+     1.343999981880188
+    ],
+    [
+     31,
+     0,
+     1.1920000314712524
+    ],
+    [
+     4,
+     0,
+     0.09399999678134918
+    ],
+    [
+     65,
+     0,
+     0.5429999828338623
+    ],
+    [
+     11,
+     0,
+     26.0
+    ]
+   ],
+   "socketed_gems": []
+  },
+  {
+   "uid": "96093b60-ec9f-4102-b4b6-625e4ff42fa0",
+   "count": 1,
+   "name": "LegendaryGloves1",
+   "equip_slot_type": 9,
+   "item_level": 821,
+   "rarity": 3,
+   "upgrade_level": 0,
+   "rune_level": 0,
+   "socket_count": 0,
+   "modifiers": [
+    [
+     8,
+     0,
+     755.0
+    ],
+    [
+     9,
+     0,
+     755.0
+    ],
+    [
+     13,
+     0,
+     0.1509999930858612
+    ],
+    [
+     4,
+     0,
+     0.12099999934434891
+    ],
+    [
+     6,
+     0,
+     0.22699999809265137
+    ],
+    [
+     35,
+     0,
+     15.0
+    ]
+   ],
+   "socketed_gems": []
+  },
+  {
+   "uid": "37df35e8-a791-4196-bf58-8b7e6c2df01a",
+   "count": 1,
+   "name": "LegendaryShoulder3",
+   "equip_slot_type": 10,
+   "item_level": 841,
+   "rarity": 3,
+   "upgrade_level": 0,
+   "rune_level": 0,
+   "socket_count": 0,
+   "modifiers": [
+    [
+     8,
+     0,
+     774.0
+    ],
+    [
+     52,
+     0,
+     0.1550000011920929
+    ],
+    [
+     49,
+     0,
+     0.1550000011920929
+    ],
+    [
+     60,
+     0,
+     0.3089999854564667
+    ],
+    [
+     39,
+     0,
+     155.0
+    ],
+    [
+     36,
+     0,
+     31.0
+    ]
+   ],
+   "socketed_gems": []
+  },
+  {
+   "uid": "8b62d336-ff6f-46f4-a408-c734b86c53bb",
+   "count": 1,
+   "name": "LegendaryShoulder1",
+   "equip_slot_type": 10,
+   "item_level": 841,
+   "rarity": 3,
+   "upgrade_level": 0,
+   "rune_level": 0,
+   "socket_count": 0,
+   "modifiers": [
+    [
+     8,
+     0,
+     774.0
+    ],
+    [
+     52,
+     0,
+     0.1550000011920929
+    ],
+    [
+     13,
+     0,
+     0.1550000011920929
+    ],
+    [
+     49,
+     0,
+     0.1550000011920929
+    ],
+    [
+     0,
+     0,
+     77.0
+    ],
+    [
+     57,
+     0,
+     0.1550000011920929
+    ]
+   ],
+   "socketed_gems": []
+  },
+  {
+   "uid": "8a1c0711-00a9-4828-a295-2325c91a7a2e",
+   "count": 1,
+   "name": "LegendaryShoulder2",
+   "equip_slot_type": 10,
+   "item_level": 821,
+   "rarity": 3,
+   "upgrade_level": 0,
+   "rune_level": 0,
+   "socket_count": 0,
+   "modifiers": [
+    [
+     8,
+     0,
+     755.0
+    ],
+    [
+     22,
+     0,
+     0.07599999755620956
+    ],
+    [
+     49,
+     0,
+     0.1509999930858612
+    ],
+    [
+     7,
+     0,
+     680.0
+    ],
+    [
+     9,
+     0,
+     755.0
+    ],
+    [
+     36,
+     0,
+     30.0
+    ]
+   ],
+   "socketed_gems": []
+  },
+  {
+   "uid": "3dcfd0bf-3bd4-4c0d-b6f1-bed6d347b344",
+   "count": 1,
+   "name": "LegendaryHelm4",
+   "equip_slot_type": 2,
+   "item_level": 833,
+   "rarity": 3,
+   "upgrade_level": 0,
+   "rune_level": 0,
+   "socket_count": 1,
+   "modifiers": [
+    [
+     8,
+     0,
+     766.0
+    ],
+    [
+     13,
+     0,
+     0.15299999713897705
+    ],
+    [
+     9,
+     0,
+     766.0
+    ],
+    [
+     54,
+     0,
+     0.15299999713897705
+    ],
+    [
+     22,
+     0,
+     0.07699999958276749
+    ],
+    [
+     16,
+     0,
+     0.3070000112056732
+    ]
+   ],
+   "socketed_gems": []
+  },
+  {
+   "uid": "25b6ce0f-20b5-4f48-8b9e-a036f874f02a",
+   "count": 1,
+   "name": "LegendaryPants2",
+   "equip_slot_type": 4,
+   "item_level": 833,
+   "rarity": 3,
+   "upgrade_level": 0,
+   "rune_level": 0,
+   "socket_count": 2,
+   "modifiers": [
+    [
+     8,
+     0,
+     766.0
+    ],
+    [
+     9,
+     0,
+     766.0
+    ],
+    [
+     42,
+     0,
+     0.3070000112056732
+    ],
+    [
+     7,
+     0,
+     690.0
+    ],
+    [
+     49,
+     0,
+     0.15299999713897705
+    ],
+    [
+     16,
+     0,
+     0.3070000112056732
+    ]
+   ],
+   "socketed_gems": []
+  },
+  {
+   "uid": "70a82466-6303-43bd-96b0-6cd1b1a4e143",
+   "count": 1,
+   "name": "LegendaryPants1",
+   "equip_slot_type": 4,
+   "item_level": 850,
+   "rarity": 3,
+   "upgrade_level": 0,
+   "rune_level": 0,
+   "socket_count": 2,
+   "modifiers": [
+    [
+     8,
+     0,
+     780.0
+    ],
+    [
+     0,
+     0,
+     78.0
+    ],
+    [
+     22,
+     0,
+     0.057999998331069946
+    ],
+    [
+     51,
+     0,
+     0.13699999451637268
+    ],
+    [
+     42,
+     0,
+     0.24799999594688416
+    ],
+    [
+     41,
+     0,
+     0.2939999997615814
+    ]
+   ],
+   "socketed_gems": []
+  },
+  {
+   "uid": "e77a34f3-164d-4d60-bf3a-0bf9706e3858",
+   "count": 1,
+   "name": "LegendaryBoots3",
+   "equip_slot_type": 5,
+   "item_level": 859,
+   "rarity": 3,
+   "upgrade_level": 0,
+   "rune_level": 0,
+   "socket_count": 0,
+   "modifiers": [
+    [
+     8,
+     0,
+     790.0
+    ],
+    [
+     0,
+     0,
+     79.0
+    ],
+    [
+     22,
+     0,
+     0.07900000363588333
+    ],
+    [
+     60,
+     0,
+     0.3160000145435333
+    ],
+    [
+     53,
+     0,
+     0.15800000727176666
+    ],
+    [
+     17,
+     0,
+     0.3160000145435333
+    ]
+   ],
+   "socketed_gems": []
+  },
+  {
+   "uid": "e911cc34-d95a-4d74-8aa7-b012810d13da",
+   "count": 1,
+   "name": "LegendaryNeck5",
+   "equip_slot_type": 8,
+   "item_level": 858,
+   "rarity": 3,
+   "upgrade_level": 0,
+   "rune_level": 0,
+   "socket_count": 0,
+   "modifiers": [
+    [
+     23,
+     0,
+     1.1679999828338623
+    ],
+    [
+     0,
+     0,
+     73.0
+    ],
+    [
+     31,
+     0,
+     1.3660000562667847
+    ],
+    [
+     4,
+     0,
+     0.11999999731779099
+    ],
+    [
+     57,
+     0,
+     0.15600000321865082
+    ]
+   ],
+   "socketed_gems": []
+  },
+  {
+   "uid": "8b576382-84b9-4c7d-86b5-62d53f305c48",
+   "count": 1,
+   "name": "LegendaryShoulder3",
+   "equip_slot_type": 10,
+   "item_level": 840,
+   "rarity": 3,
+   "upgrade_level": 0,
+   "rune_level": 0,
+   "socket_count": 0,
+   "modifiers": [
+    [
+     8,
+     0,
+     753.0
+    ],
+    [
+     7,
+     0,
+     661.0
+    ],
+    [
+     13,
+     0,
+     0.11999999731779099
+    ],
+    [
+     52,
+     0,
+     0.11900000274181366
+    ],
+    [
+     39,
+     0,
+     142.0
+    ],
+    [
+     57,
+     0,
+     0.15199999511241913
+    ]
+   ],
+   "socketed_gems": []
   }
  ],
  "equipment": [

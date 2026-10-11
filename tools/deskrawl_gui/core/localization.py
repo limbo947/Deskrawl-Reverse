@@ -22,10 +22,14 @@ def _load(path: str) -> dict:
         return {}
 
 
+def _table_path(dir_key: str, filename: str) -> str:
+    """data/loc/<filename> 的绝对路径（相对 so_dump 目录）；dir_key 为空时返回空串。"""
+    return os.path.normpath(os.path.join(dir_key, '..', 'loc', filename)) if dir_key else ''
+
+
 def _table(gd, filename: str) -> dict:
     """定位并懒加载 data/loc/<filename>（相对 gd.dir）；缺表返回 {}，由调用方回落原名。"""
-    path = os.path.normpath(os.path.join(getattr(gd, 'dir', ''), '..', 'loc', filename))
-    return _load(path)
+    return _load(_table_path(getattr(gd, 'dir', ''), filename))
 
 
 def ability_display_name(gd, name: str) -> str:
@@ -47,4 +51,46 @@ def equipment_display_name(gd, name: str) -> str:
     return zh or str(name)
 
 
-__all__ = ['ability_display_name', 'equipment_display_name']
+@lru_cache(maxsize=4)
+def _reverse_names(dir_key: str, items_sig: int) -> dict:
+    """{简中显示名: 内部 _name}，由 ItemData 逐条正推显示名后倒排。
+
+    为什么不直接倒排本地化表：表里混有 `Xxx.Desc` 等非物品键，且 4 组描述文本重名；
+    以 ItemData 为准倒排可保证「装备 → 内部名」全覆盖，且没有描述键污染。
+    items_sig 是条目数签名——它变说明 so_dump 换了，缓存自然失效。
+    """
+    import json as _json
+    try:
+        with open(os.path.join(dir_key, 'ItemData.json'), encoding='utf-8') as f:
+            rows = _json.load(f)
+    except (OSError, ValueError):
+        return {}
+    table = _load(_table_path(dir_key, 'equipments_zh.json'))
+    rev = {}
+    for r in rows:
+        nm = r.get('_name')
+        if nm:
+            rev.setdefault(table.get(nm, nm), str(nm))
+    return rev
+
+
+def item_internal_name(gd, display_name: str) -> str:
+    """装备简中显示名 → ItemData 内部 _name；查不到时原样返回（按内部名或手工名回落）。
+
+    传奇特效按 ItemData 的 `EquipmentEffects` 引用解析，而 profile 冻结的是简中名——
+    故计算链取特效前需要这一次反查。回落而非抛错：手工输入的装备名本就不在表内。
+    """
+    name = str(display_name or '')
+    if not name:
+        return name
+    d = os.path.normpath(str(getattr(gd, 'dir', '') or ''))
+    if not d:
+        return name
+    try:
+        sig = len(gd.items())
+    except (OSError, ValueError, TypeError):
+        return name
+    return _reverse_names(d, sig).get(name, name)
+
+
+__all__ = ['ability_display_name', 'equipment_display_name', 'item_internal_name']

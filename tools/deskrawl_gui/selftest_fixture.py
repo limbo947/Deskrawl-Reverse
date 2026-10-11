@@ -54,6 +54,7 @@ def _snapshot_checks(rep: Report):
     from deskrawl_calc import GameData, stat_name
 
     from .core import calc_service
+    from .core.localization import equipment_display_name
     from .core.profile import CharacterProfile
 
     gd = GameData()
@@ -99,7 +100,8 @@ def _snapshot_checks(rep: Report):
     got = [[int(s), int(t), float(v)] for s, t, v in prof.weapon_current.affixes]
     by = {int(s): float(v) for s, _t, v in got}
     upg = int(wrec.get('upgrade_level') or 0)
-    upg_ok = (prof.weapon_current.name == wrec['name'] and got != want_raw
+    upg_ok = (prof.weapon_current.name == equipment_display_name(gd, wrec['name'])
+              and got != want_raw
               and by.get(20) == nsq[20] and by.get(21) == nsq[21]
               and prof.weapon_current.upgrade_level == upg
               and prof.weapon_current.gems == [str(g) for g in (wrec.get('socketed_gems') or [])])
@@ -115,6 +117,16 @@ def _snapshot_checks(rep: Report):
     names = [rec['name'] for rec in bag]
     rep.add(bag_ok, 'β 夹具 背包/仓库装备候选（bag_items）',
             f'{len(bag)} 件：{names[:4]}{"…" if len(names) > 4 else ""}')
+
+    # 装备名简中化：导入链按 Equipments 表（Unity Localization）翻成游戏内显示名；
+    # 锚定一个具体映射（LegendarySword1 → 苦痛锯齿巨剑），表被换/键失配时先红
+    equip_names = [prof.weapon_current.name, *(d.name for d in prof.slot_current.values()),
+                   *names]
+    han = all(any('\u4e00' <= ch <= '\u9fff' for ch in n) for n in equip_names)
+    sample = equipment_display_name(gd, 'LegendarySword1')
+    rep.add(han and sample == '苦痛锯齿巨剑' and prof.weapon_current.name == sample,
+            '装备名简中本地化（Equipments 表 → 与游戏内显示一致）',
+            f'{len(equip_names)} 件装备名含中文={han}；LegendarySword1 → {sample}')
 
     # 候选下拉行为：武器槽下拉只列武器 → 选中第一件武器即整件载入候选草稿（引用不变）
     weapon_bag = [r for r in bag if int(r.get('equip_slot_type') or 0) == 1]
@@ -159,8 +171,9 @@ def _snapshot_checks(rep: Report):
             f'标题「{eqc.current_editor.title()}」；'
             f'候选只读={eqc.candidate_editor.name_edit.isReadOnly()}')
 
-    # 候选武器「与当前武器相同（强化/宝石）」：镜像 → 重算 → 取消复原
+    # 候选装备「与当前装备相同（强化/宝石）」：武器镜像 → 重算 → 取消复原（任意槽同款开关）
     _weapon_mirror_checks(rep, prof, gd)
+    _nonweapon_mirror_checks(rep, prof, gd)
 
     derived = _derived_flat(beta, gd)
     exact_bad = [st for st in _DERIVED_EXACT_KEYS if nsq[st] != derived.get(st, 0.0)]
@@ -222,7 +235,7 @@ def _slot_checks(rep: Report, prof, gd):
 
 
 def _weapon_mirror_checks(rep: Report, prof, gd):
-    """候选武器「与当前武器相同（强化/宝石）」：镜像当前件 + 按原始词条重算 + 取消复原。
+    """候选装备「与当前装备相同（强化/宝石）」：镜像当前件 + 按原始词条重算 + 取消复原。
 
     这是「同强化同宝石谁更强」的对照开关，三件事缺一都会让用户看到错的 Δ：
     宝石必须真的进数值（武器孔位宝石按侧计入）、强化等级必须按背包原始词条重算
@@ -270,11 +283,75 @@ def _weapon_mirror_checks(rep: Report, prof, gd):
               else r_mir.candidate_dps >= r_own.candidate_dps)
     rep.add(mirror_ok and dps_ok and back_ok and r_back.candidate_dps == r_own.candidate_dps
             and r_mir.current_dps == r_own_cur,
-            '候选武器「与当前武器相同」（镜像 +N/宝石 + 重算 + 取消复原）',
+            '候选武器「与当前装备相同」（镜像 +N/宝石 + 重算 + 取消复原）',
             f'当前 +{cur.upgrade_level}/{len(cur.gems)} 颗 → 镜像后候选 +{mir_level}；'
             f'候选 DPS {r_own.candidate_dps:.1f} → {r_mir.candidate_dps:.1f}'
             f'（当前侧 {r_own_cur:.1f} 不变={r_mir.current_dps == r_own_cur}）；'
             f'取消复原={back_ok}（DPS 回到 {r_back.candidate_dps:.1f}）')
+
+
+def _nonweapon_mirror_checks(rep: Report, prof, gd):
+    """非武器槽同步「与当前装备相同」：手套 +1 镜像 → 重算 → 取消复原。
+
+    与武器版共用开关逻辑，但走的是 ItemDraft（无武器三行）与 _add_item_mods 的宝石
+    路径（按 equip_slot_type 取加成组）——故单独验证。夹具的非武器装备在背包侧没有
+    实例数据（真实 β 包同样会被排除），这里用「装备栏同件的强化前词条」合成一条背包
+    记录，完整走「下拉载入 → 勾选 → 取消」路径（覆盖 _on_bag_selected 的非武器分支）。
+    选槽 10 手套：+1 缩放的前两条词条含暴伤（0.839→×1.05），镜像带来的 ΔDPS 可观测；
+    靴/腰带的 +1 只放大防御词条，DPS 上本来就不该有变化。
+    """
+    import copy
+
+    from .core import calc_service
+    from .core.item_draft import apply_upgrade
+    from .widgets.equipment_editor import EquipmentEditor
+
+    beta = _load_fixture('snapshot_beta.json')
+    rec = next((r for r in beta['equipment'] if int(r.get('slot', -1)) == 10), None)
+    cur = prof.slot_current.get(10)
+    if rec is None or cur is None:
+        rep.add(False, '非武器槽「与当前装备相同」', '夹具缺槽 10（手套）装备')
+        return
+    raw = [[int(s), int(t), float(v)] for s, t, v in rec['modifiers']]
+    affixes, _speed = apply_upgrade(raw, 0)
+
+    prof2 = copy.deepcopy(prof)
+    prof2.bag_items = list(prof2.bag_items) + [{
+        'source': '仓库', 'name': cur.name, 'equip_slot_type': 9, 'item_level': 800,
+        'rarity': 4, 'upgrade_level': 0, 'gems': [], 'affixes': affixes, 'speed': 1.0,
+        'modifiers': raw}]
+
+    eq = EquipmentEditor(prof2, gd)
+    eq.slot_combo.setCurrentIndex(eq.slot_combo.findData(10))
+    cb = getattr(eq.candidate_editor, 'like_current', None)
+    if cb is None:
+        rep.add(False, '非武器槽「与当前装备相同」', '非武器候选未提供开关')
+        return
+    eq.bag_combo.setCurrentIndex(eq.bag_combo.findData(len(prof2.bag_items) - 1))
+    cand = prof2.slot_candidate[10]
+    own = [[list(a) for a in cand.affixes], int(cand.upgrade_level), list(cand.gems)]
+    r_own = calc_service.compare(prof2, gd, slot=10)
+
+    cb.setChecked(True)                                    # 勾选：镜像当前手套的 +1 与宝石
+    mir_level = int(cand.upgrade_level)
+    want, _s = apply_upgrade(raw, cur.upgrade_level)
+    want = [[int(s), int(t), float(v)] for s, t, v in want]
+    mirror_ok = (mir_level == int(cur.upgrade_level)
+                 and [list(a) for a in cand.affixes] == want
+                 and list(cand.gems) == list(cur.gems))
+    r_mir = calc_service.compare(prof2, gd, slot=10)
+
+    cb.setChecked(False)                                   # 取消：回到背包原貌（+0）
+    back_ok = ([list(a) for a in cand.affixes] == own[0]
+               and int(cand.upgrade_level) == own[1] and list(cand.gems) == own[2])
+    rep.add(mirror_ok and back_ok and r_mir.candidate_dps > r_own.candidate_dps
+            and _rel_pct(r_mir.candidate_dps, r_mir.current_dps) < 1e-6
+            and r_mir.current_dps == r_own.current_dps,
+            '非武器槽「与当前装备相同」同步（手套 +1 镜像 → 重算 → 取消复原）',
+            f'手套 +{cur.upgrade_level}：候选镜像后 +{mir_level}（取消复原 +{int(cand.upgrade_level)}）；'
+            f'候选 DPS {r_own.candidate_dps:.1f} → {r_mir.candidate_dps:.1f}'
+            f'（镜像后两侧相等={_rel_pct(r_mir.candidate_dps, r_mir.current_dps) < 1e-6}，'
+            f'当前侧不变={r_mir.current_dps == r_own.current_dps}）；复原={back_ok}')
 
 
 def _skill_checks(rep: Report, prof, gd):

@@ -79,6 +79,9 @@ def run_smoke() -> int:
     print('[smoke] 交互检查：')
     behavior_ok = _gui_behavior_checks(win)
 
+    print('[smoke] 会话持久化检查：')
+    state_ok = _session_state_smoke_checks()
+
     if count <= 0:
         print('[smoke] 失败：widget 计数为 0', file=sys.stderr)
         return 1
@@ -88,7 +91,43 @@ def run_smoke() -> int:
     if not behavior_ok:
         print('[smoke] 失败：交互检查未通过', file=sys.stderr)
         return 1
+    if not state_ok:
+        print('[smoke] 失败：会话持久化检查未通过', file=sys.stderr)
+        return 1
     return 0
+
+
+def _session_state_smoke_checks() -> bool:
+    """会话持久化端到端（headless）：改数据 → close 落盘 → 新窗口恢复尺寸/页面/数据。
+
+    全程在临时目录上进行（monkeypatch STATE_PATH），不触碰真实 data/session_state.json；
+    冒烟的主窗口走默认 persist_state=False（不读写用户状态），这里显式开启生产路径。
+    """
+    import tempfile
+
+    from .app import MainWindow
+    from .core import session_state
+
+    tmp = os.path.join(tempfile.mkdtemp(prefix='deskrawl_state_'), 'state.json')
+    old_path = session_state.STATE_PATH
+    session_state.STATE_PATH = tmp
+    try:
+        w1 = MainWindow(persist_state=True)
+        w1.profile.name = '会话恢复测试'
+        w1.nav.setCurrentRow(1)
+        w1.resize(1000, 700)
+        w1.close()                                   # closeEvent → 落盘
+        saved = os.path.exists(tmp)
+        w2 = MainWindow(persist_state=True)          # 启动路径：读盘恢复
+        ok = (saved and w2.profile.name == '会话恢复测试'
+              and w2.nav.currentRow() == 1 and w2.stack.currentIndex() == 1
+              and w2.size() == w1.size())
+        print(f'  [{"PASS" if ok else "FAIL"}] 会话持久化（close 落盘 → 新窗口恢复尺寸/页面/数据）：'
+              f'落盘={saved}，数据「{w2.profile.name}」，页={w2.nav.currentRow()}，'
+              f'尺寸 {w2.size().width()}x{w2.size().height()}（期望 {w1.size().width()}x{w1.size().height()}）')
+        return ok
+    finally:
+        session_state.STATE_PATH = old_path
 
 
 def _gui_behavior_checks(win) -> bool:
@@ -523,6 +562,30 @@ def _error_map_check(rep: Report):
     print(f'    弹窗文案示例：{describe_import_error(cases[0][1])[1].splitlines()[0]}')
 
 
+def _session_state_checks(rep: Report):
+    """T8：会话状态落盘服务层（往返一致 + 损坏/版本不符回落），临时目录，不碰真实状态。"""
+    import tempfile
+
+    from .core import session_state
+
+    tmp = os.path.join(tempfile.mkdtemp(prefix='deskrawl_state_'), 'state.json')
+    payload = {'version': session_state.STATE_VERSION,
+               'window': {'geometry': 'QUJD', 'page': 2},
+               'profile': {'name': '往返', 'level': 70}}
+    saved = session_state.save_state(payload, path=tmp)
+    roundtrip = saved == tmp and session_state.load_state(path=tmp) == payload
+    no_tmp = not os.path.exists(tmp + '.tmp')
+    with open(tmp, 'w', encoding='utf-8') as f:
+        f.write('{ broken json')
+    broken = session_state.load_state(path=tmp) == {}
+    session_state.save_state(dict(payload, version=999), path=tmp)
+    stale = session_state.load_state(path=tmp) == {}
+    rep.add(roundtrip and no_tmp and broken and stale,
+            '会话状态落盘（往返一致 + 原子写 + 损坏/版本不符回落）',
+            f'往返={roundtrip}；无 .tmp 残留={no_tmp}；损坏文件回落={broken}；'
+            f'版本不符回落={stale}；文件={tmp}')
+
+
 def run_selftest() -> int:
     rep = Report()
     if not _print_kernel_selftest():
@@ -537,6 +600,7 @@ def run_selftest() -> int:
     _snapshot_checks(rep)
     _panel_checks(rep)
     _error_map_check(rep)
+    _session_state_checks(rep)
     print(f'\n自检结果：{"全部通过" if rep.ok() else "存在失败"}'
           f'（{rep.passed}/{len(rep.checks)}）')
     return 0 if rep.ok() else 1

@@ -15,6 +15,7 @@ from typing import Dict, List, Optional
 from deskrawl_calc import DamageType, Modifier, StatSheet, StatType, Target, Weapon
 
 from .item_draft import ItemDraft, apply_upgrade
+from .localization import equipment_display_name
 
 # 四类装配/候选来源；顺序即界面 Tab 顺序，两处 widget 共用同一份定义避免漂移
 KIND_ORDER = [('gem', '宝石'), ('rune', '符文'), ('talent', '天赋'), ('runeset', '套装')]
@@ -384,8 +385,10 @@ class CharacterProfile:
         nsq[20]/[21] 是武器单源精确值，直接覆写折算值，残差反解自然吸收原值差。
         主属性取 HeroData.PrimaryStat（fak 链），并把该键位 base 对齐到面板口径
         （_align_primary_stat）——DPS 的攻击伤害 ×(1+Final(主属性)/100) 与游戏一致。
-        同时冻结非武器槽当前件（slot_current，供任意槽对比）与背包/仓库全部装备
-        （bag_items，候选快捷载入的数据源），并记录 HeroData.Class（hero_class，用于技能表）。
+        装备名经 Equipments 本地化表翻成简中（equipment_display_name，与游戏内显示一致；
+        缺表/未覆盖时回落内部名）。同时冻结非武器槽当前件（slot_current，供任意槽对比）与
+        背包/仓库全部装备（bag_items，候选快捷载入的数据源），并记录 HeroData.Class
+        （hero_class，用于技能表）。
         """
         meta = payload.get('meta') or {}
         player = payload.get('player') or {}
@@ -460,7 +463,8 @@ class CharacterProfile:
                         speed = nsq[int(StatType.WeaponSpeed)]
             # base_damage=0：游戏白字伤害以 WeaponDamage(20) 词条形式存在于面板，填在这里会双计
             prof.weapon_current = WeaponDraft(
-                name=str(wrec.get('name') or ''), base_damage=0.0,
+                name=equipment_display_name(gd, str(wrec.get('name') or '')),
+                base_damage=0.0,
                 base_speed=float(speed) or 1.0, affixes=affixes,
                 upgrade_level=int(wrec.get('upgrade_level') or 0),
                 gems=[str(g) for g in (wrec.get('socketed_gems') or [])])
@@ -470,7 +474,9 @@ class CharacterProfile:
         for rec in equip:
             slot = int(rec.get('slot', -1))
             if 1 <= slot <= 10:
-                prof.slot_current[slot] = ItemDraft.from_record(rec, source='装备')
+                draft = ItemDraft.from_record(rec, source='装备')
+                draft.name = equipment_display_name(gd, draft.name)
+                prof.slot_current[slot] = draft
 
         # 3) 背包/仓库未装备装备 → bag_items（任意槽候选快捷载入的数据源）。
         #    仅收 UID 命中实例表的装备（有逐件词条）；α 降级无实例数据，按「无实例数据」汇总一条告警。
@@ -484,7 +490,8 @@ class CharacterProfile:
                     continue
                 affixes, speed = apply_upgrade(it['modifiers'], it.get('upgrade_level'))
                 prof.bag_items.append({
-                    'source': label, 'name': str(it.get('name') or ''),
+                    'source': label,
+                    'name': equipment_display_name(gd, str(it.get('name') or '')),
                     'equip_slot_type': int(it.get('equip_slot_type') or 0),
                     'item_level': int(it.get('item_level') or 0),
                     'rarity': int(it.get('rarity') or 0),

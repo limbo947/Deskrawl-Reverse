@@ -27,7 +27,7 @@ python -m venv .venv-gui
 .\.venv-gui\Scripts\python.exe -m pip install -r requirements-gui.txt
 cd tools
 ..\.venv-gui\Scripts\python.exe -m deskrawl_gui              # 启动主窗口
-..\.venv-gui\Scripts\python.exe -m deskrawl_gui --selftest   # 内核 10 项 + GUI 服务层/面板锚点对拍，共 35 项
+..\.venv-gui\Scripts\python.exe -m deskrawl_gui --selftest   # 内核 10 项 + GUI 服务层/面板锚点对拍，共 38 项
 ..\.venv-gui\Scripts\python.exe -m deskrawl_gui --smoke      # 无显示环境骨架冒烟（建窗口即退）
 ```
 
@@ -91,8 +91,8 @@ tools/scripts/         逆向脚本（UnityPy/capstone，面向游戏文件）
 
 - `core/profile.py`：`CharacterProfile`（可 JSON 序列化，存 `data/builds/*.json`）是面板编辑、构建存取、计算的唯一事实源。装配顺序与 `cli.demo()` 刻意保持一致，使 GUI 复算能与内核直算对拍。装备槽→宝石部位的映射（`_GEM_CATEGORY_BY_EQUIP_TYPE`）是内存面板实测锚定的，勿按直觉改。
 - `core/calc_service.py`：全部纯函数（输入 profile/GameData，输出视图 dataclass），widget 不做计算。将来要把排序挪线程只改这一个文件。
-- `app.py`：只做主窗口装配（侧边导航 `SidebarNav` + 三页堆栈：角色 / 装备对比 / 装配中心）与信号中转；编辑逻辑下沉 `widgets/`。导入错误统一走 `MemoryImportError.code` → 中文文案映射（`_IMPORT_ERROR_TEXTS`），新错误态应加 code 而非拼消息子串。
-- 对比页的取向：**当前件（游戏事实）只读**（`ItemEditor.set_locked`，导入态自动生效）——基线可改就等于对比失效；参考技能卡（`widgets/skill_card.py`）挂在目标基础卡片下方（换装预测/循环系数的基线口径）；候选武器可勾「与当前武器相同（强化/宝石）」，按背包原始词条 `raw_modifiers` 重算，武器孔位宝石因此**按侧计入** `compare(slot=0)`（先按槽卸下装配链里的当前武器宝石，再并入各自武器词条）。
+- `app.py`：只做主窗口装配（侧边导航 `SidebarNav` + 三页堆栈：角色 / 装备对比 / 装配中心）与信号中转；编辑逻辑下沉 `widgets/`。导入错误统一走 `MemoryImportError.code` → 中文文案映射（`_IMPORT_ERROR_TEXTS`），新错误态应加 code 而非拼消息子串。会话持久化：关闭时把窗口几何/当前页 + 完整 profile 落盘 `data/session_state.json`（gitignore 排除，原子写），启动自动恢复；`MainWindow(persist_state=False)` 为默认（测试/冒烟不碰用户状态），仅生产入口 `run_gui` 显式开启。
+- 对比页的取向：**当前件（游戏事实）只读**（`ItemEditor.set_locked`，导入态自动生效）——基线可改就等于对比失效；参考技能卡（`widgets/skill_card.py`）挂在目标基础卡片下方（换装预测/循环系数的基线口径）；候选**任意槽**可勾「与当前装备相同（强化/宝石）」，按背包原始词条 `raw_modifiers` 重算——武器孔位宝石**按侧计入** `compare(slot=0)`（先按槽卸下装配链里的当前武器宝石，再并入各自武器词条），非武器槽走「先卸下当前件再按侧装回」（`_slot_sheets`）。装备名经 `core/localization.py` 按游戏 Equipments 本地化表（`data/loc/equipments_zh.json`）在导入时翻成简中。
 - `__main__.py` 三模式互斥：`--selftest`（纯数值，不建 QApplication）、`--smoke`（建窗即退）、默认 GUI。
 
 ### 内存导入链（GUI 内，联机角色只读导入）
@@ -120,6 +120,7 @@ tools/scripts/         逆向脚本（UnityPy/capstone，面向游戏文件）
 ### data/ 与 docs/
 
 - `data/so_dump/`：25 个 JSON、1333 条 SO 实例（字节级精确，0 残留），是全部静态数值的事实源。JSON 里 `_name`/`_pathID`/`_managedRefs` 是导出器附加的元字段。
+- `data/loc/`：Unity Localization 表导出的简中映射（`abilities_zh.json` 技能名、`equipments_zh.json` 装备名；`extract_localization.py <表名>` 导出，GUI 显示名用，缺表/未覆盖回落内部名）。补丁更新游戏后本地化表若变，需重跑导出。
 - `data/schema/`：Il2CppDumper(v39) 产物 `dump.cs`/`script.json`/`stringliteral.json`，是 schema.py 与反汇编符号的输入；外加 `aliases.json`（**语义别名表**，37 条：伤害链/面板口径/ACTk 解码器/存档加解密链/Roll 表）与 `rva_audit*.json`（体检机读结果）。
 - 注意存在**两套同名 GameConfig**：`MaxPlayerLevel` 35（Beta，resources.assets）与 70（正式，sharedassets0.assets），查配置时先确认哪套（`dump.cs` 里只有一个 `GameConfig` 类）。
 - `docs/00-索引.md` 是文档入口（含分类地图与按需阅读路径）；docs/01–05 是**机制与结构篇**（架构/属性/数据结构/公式/配置字段）、06–09 是**实测与工具篇**（成长曲线/内容数值/常量与地址/存档），编号即阅读顺序；docs/08 §11 存硬结论、§12 存补丁后重锚定结果；docs/plan/ 存**现行**计划/清单/进度档，已完结的历史证词移入 `docs/plan/archive/`（**地址不随补丁回改**）；docs/reports/ 存**脚本产出的报告**（勿手改，重跑命令见 `docs/plan/补丁回归清单.md`）。文档置信度标注：✅ 指令/字节级证据、🔶 高置信推断（**当前正文已无在用条目**）、⚠️ 待确认（「暂缓」条目必须写明复核条件）——引用数值时沿用此标注，不要把 🔶 或暂缓写成定论。

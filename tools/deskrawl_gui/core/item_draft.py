@@ -60,6 +60,12 @@ class ItemDraft:
     item_level: int = 0
     rarity: int = 0
     source: str = ''
+    # 候选侧「与当前装备相同（强化/宝石）」开关：raw_modifiers 保留背包里的强化前原貌
+    # （折叠后不可反推），own_* 记下取消勾选时要还原的自身原貌。语义与 WeaponDraft 同款。
+    raw_modifiers: List[list] = field(default_factory=list)
+    like_current: bool = False
+    own_upgrade_level: int = 0
+    own_gems: List[str] = field(default_factory=list)
 
     def to_mods(self) -> List[Modifier]:
         return [Modifier(int(s), int(t), float(v)) for s, t, v in self.affixes]
@@ -71,7 +77,11 @@ class ItemDraft:
                 'gems': [str(g) for g in self.gems],
                 'equip_slot_type': int(self.equip_slot_type),
                 'item_level': int(self.item_level), 'rarity': int(self.rarity),
-                'source': self.source}
+                'source': self.source,
+                'raw_modifiers': [[int(s), int(t), float(v)] for s, t, v in self.raw_modifiers],
+                'like_current': bool(self.like_current),
+                'own_upgrade_level': int(self.own_upgrade_level),
+                'own_gems': [str(g) for g in self.own_gems]}
 
     @classmethod
     def from_dict(cls, d: dict) -> 'ItemDraft':
@@ -82,7 +92,12 @@ class ItemDraft:
                    equip_slot_type=int(d.get('equip_slot_type', 0) or 0),
                    item_level=int(d.get('item_level', 0) or 0),
                    rarity=int(d.get('rarity', 0) or 0),
-                   source=str(d.get('source', '')))
+                   source=str(d.get('source', '')),
+                   raw_modifiers=[[int(s), int(t), float(v)]
+                                  for s, t, v in (d.get('raw_modifiers') or [])],
+                   like_current=bool(d.get('like_current', False)),
+                   own_upgrade_level=int(d.get('own_upgrade_level', 0) or 0),
+                   own_gems=[str(g) for g in (d.get('own_gems') or [])])
 
     @classmethod
     def from_record(cls, rec: dict, *, source: str = '') -> 'ItemDraft':

@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 """主窗口：左侧导航栏 + 页面堆栈（角色 / 装备对比 / 装配中心）；暗色主题。
 
-主窗口只做三件事：装配页面、持有唯一事实源 profile、中转刷新信号。
+主窗口只做四件事：装配页面、持有唯一事实源 profile、中转刷新信号、会话状态落盘/恢复
+（persist_state 开启时；默认关闭，测试/冒烟构造路径不碰用户状态文件）。
 页面内部组合见 widgets/role_page、compare_page、assembly_center；编辑控件下沉到 widgets/。
 
 刷新协议（对称，重构自旧「部分 reload」的不对称链）：
@@ -12,7 +13,7 @@ import os
 import sys
 import time
 
-from PySide6.QtCore import Qt, Signal
+from PySide6.QtCore import QByteArray, Qt, Signal
 from PySide6.QtGui import QAction
 from PySide6.QtWidgets import (QApplication, QFileDialog, QHBoxLayout, QLabel,
                                QMainWindow, QMessageBox, QStackedWidget,
@@ -20,7 +21,7 @@ from PySide6.QtWidgets import (QApplication, QFileDialog, QHBoxLayout, QLabel,
 
 from deskrawl_calc import GameData, stat_name
 
-from .core import calc_service
+from .core import calc_service, session_state
 from .core.memory_import import MemoryImportError, check_fingerprints, import_snapshot
 from .core.profile import BUILDS_DIR, CharacterProfile, load_build, save_build
 from .widgets.assembly_center import AssemblyCenter
@@ -70,18 +71,29 @@ def load_qss(path: str = QSS_PATH) -> str:
 
 
 class MainWindow(QMainWindow):
-    """主窗口：侧边导航 + 页面堆栈，持有 profile 并中转刷新信号。"""
+    """主窗口：侧边导航 + 页面堆栈，持有 profile 并中转刷新信号。
+
+    persist_state 默认关闭：测试/冒烟等构造路径不读写用户的会话文件；
+    生产入口 run_gui 显式开启——关闭时落盘窗口几何/当前页 + 完整 profile，启动自动恢复。
+    """
 
     profileChanged = Signal()
 
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, *, persist_state=False):
         super().__init__(parent)
         self.setWindowTitle('Deskrawl 数值计算台')
         self.resize(1360, 860)
         self.setMinimumSize(960, 640)
 
+        self._persist_state = bool(persist_state)
+        self._restore_note = ''                  # 恢复失败时的状态栏说明（不阻断启动）
+        state = session_state.load_state() if self._persist_state else {}
+        if self._persist_state and not state and os.path.exists(session_state.STATE_PATH):
+            # 文件在但读不出（损坏/版本不符）：明确说明，避免「为什么没恢复」的静默
+            self._restore_note = '上次会话状态无法恢复（已回到默认状态；文件损坏或版本不符）'
         self.gd = GameData()
-        self.profile = CharacterProfile.demo()
+        # 恢复必须早于页面构造：各页在 __init__ 里直接读 profile（对比页会按槽建编辑器）
+        self.profile = self._initial_profile(state)
         self._last_import_mono = float('-inf')   # 手动导入节流（≥1s）
 
         # 页面装配：每页自带标题头部，导航只切页
@@ -116,6 +128,61 @@ class MainWindow(QMainWindow):
         self.assembly_center.changed.connect(self.profileChanged)
         self.profileChanged.connect(self._refresh_all)
         self._refresh_all()
+        if self._persist_state:
+            self._restore_session_window(state)
+
+    # ---------------- 会话持久化（窗口几何/当前页 + 完整 profile） ----------------
+    def _initial_profile(self, state: dict) -> CharacterProfile:
+        """启动初始 profile：会话里有就恢复，否则示例构建。
+
+        损坏/旧版状态一律回落（记 _restore_note 供状态栏说明），不阻断启动——
+        会话恢复是便利性功能，任何失败都不该让窗口打不开。
+        """
+        prof = state.get('profile')
+        if isinstance(prof, dict):
+            try:
+                return CharacterProfile.from_dict(prof)
+            except (TypeError, ValueError, KeyError) as exc:
+                self._restore_note = f'上次会话数据无法恢复（已用示例构建）：{exc}'
+        return CharacterProfile.demo()
+
+    def _restore_session_window(self, state: dict):
+        """恢复窗口几何（含最大化）与上次所在页；随后在状态栏说明恢复结果。"""
+        if state:
+            win = state.get('window') or {}
+            geo = win.get('geometry')
+            if isinstance(geo, str) and geo:
+                self.restoreGeometry(QByteArray.fromBase64(geo.encode('ascii')))
+            try:
+                row = int(win.get('page') or 0)
+            except (TypeError, ValueError):
+                row = 0
+            self.nav.setCurrentRow(max(0, min(row, len(PAGES) - 1)))
+            if self.profile.import_mode:
+                mode_cn = 'β 逐件' if self.profile.import_mode == 'beta' else 'α 聚合'
+                self._snapshot_label.setText(
+                    f'快照：{self.profile.import_time or "未知"}（{mode_cn}·已恢复）')
+        # _refresh_all 的「已刷新」提示在前，这里覆盖成恢复说明（用户先看到关心的结果）
+        if self._restore_note:
+            self.statusBar().showMessage(self._restore_note, 12000)
+        elif state:
+            self.statusBar().showMessage('已恢复上次关闭前的会话（窗口与数据）', 10000)
+
+    def _save_session_state(self):
+        """关闭时落盘：窗口几何/当前页 + 完整 profile。失败弹窗说明但不阻断关闭。"""
+        try:
+            payload = {'version': session_state.STATE_VERSION,
+                       'window': {'geometry': bytes(self.saveGeometry().toBase64()).decode('ascii'),
+                                  'page': int(self.nav.currentRow())},
+                       'profile': self.profile.to_dict()}
+            session_state.save_state(payload)
+        except OSError as exc:
+            QMessageBox.warning(self, '会话保存失败', f'{exc}\n（下次启动将回到默认状态）')
+
+    def closeEvent(self, event):
+        if self._persist_state:
+            self._save_session_state()
+        super().closeEvent(event)
 
     def _bind_page_shortcuts(self):
         """Ctrl+1/2/3 直达对应页面；挂 QAction 以便菜单外也能生效。"""
@@ -320,6 +387,6 @@ def build_application(argv=None) -> QApplication:
 
 def run_gui(argv=None) -> int:
     app = build_application(argv)
-    win = MainWindow()
+    win = MainWindow(persist_state=True)      # 生产入口：关闭落盘 / 启动恢复会话状态
     win.show()
     return app.exec()

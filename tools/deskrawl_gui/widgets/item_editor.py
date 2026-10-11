@@ -7,7 +7,7 @@
 
 两种受限态（都在 EquipmentEditor 里按导入来源决定）：
 - set_locked：当前件即游戏里的既成事实，只读展示——基线被改脏则整页对比口径失效；
-- current_of：候选武器专用，「与当前武器相同（强化/宝石）」开关据此镜像当前件。
+- current_of：候选侧专用（任意槽），「与当前装备相同（强化/宝石）」开关据此镜像当前件。
 """
 from PySide6.QtCore import Signal
 from PySide6.QtWidgets import (QAbstractItemView, QCheckBox, QComboBox, QDoubleSpinBox,
@@ -173,8 +173,9 @@ class AffixTable(QTableWidget):
 class ItemEditor(QGroupBox):
     """一件装备的编辑面板。weapon=True 时多出 基础伤害/攻速/技能倍率 三行。
 
-    current_of 只在候选侧传入（返回「当前件」草稿）：勾选「与当前武器相同」时镜像当前件的
-    强化等级与镶嵌宝石，并按原始词条重算数值——「同强化同宝石谁更强」是换装对比的常见问题。
+    current_of 只在候选侧传入（返回「当前件」草稿，任意槽通用）：勾选「与当前装备相同」时
+    镜像当前件的强化等级与镶嵌宝石，并按原始词条重算数值——「同强化同宝石谁更强」是换装
+    对比的常见问题，对所有槽位同样成立。
     """
 
     changed = Signal()
@@ -196,10 +197,10 @@ class ItemEditor(QGroupBox):
             self.damage_spin = self._spin(form, '基础伤害', 0.0, 1e6, 2, 'base_damage')
             self.speed_spin = self._spin(form, '攻速(次/秒)', 0.0, 20.0, 3, 'base_speed')
             self.skill_spin = self._spin(form, '技能倍率', 0.0, 100.0, 3, 'skill_multiplier')
-        if self.weapon and current_of is not None:
+        if current_of is not None:
             self.like_current = QCheckBox()
             self.like_current.setToolTip(
-                '勾选：候选沿用当前武器的强化等级与镶嵌宝石，并按背包原始词条重算「强化后」数值\n'
+                '勾选：候选沿用当前装备的强化等级与镶嵌宝石，并按背包原始词条重算「强化后」数值\n'
                 '（即「同强化同宝石谁更强」的对照）；取消：回到该件在背包里的原貌。')
             self.like_current.toggled.connect(self._on_like_current)
             form.addRow('强化/宝石', self.like_current)
@@ -276,11 +277,11 @@ class ItemEditor(QGroupBox):
             parts.append('镶嵌宝石：' + '、'.join(gems))
         if (getattr(self.draft, 'like_current', False)
                 and not (getattr(self.draft, 'raw_modifiers', None) or [])):
-            parts.append('已镜像当前件的强化/宝石；手工输入词条不随强化等级重算')
+            parts.append('已镜像当前装备的强化/宝石；手工输入词条不随强化等级重算')
         self.meta_label.setText('；'.join(parts))
         self.meta_label.setVisible(bool(parts))
 
-    # ---- 「与当前武器相同（强化/宝石）」 ----
+    # ---- 「与当前装备相同（强化/宝石）」 ----
     def _on_like_current(self, checked):
         if self._loading or self._locked or self._current_of is None:
             return
@@ -320,13 +321,13 @@ class ItemEditor(QGroupBox):
         return True
 
     def _update_like_text(self):
-        """开关文案写出当前件的强化与宝石数——用户不必切页核对当前武器。"""
+        """开关文案写出当前件的强化与宝石数——用户不必切页核对当前装备。"""
         cur = self._current_of() if self._current_of is not None else None
         lv = int(getattr(cur, 'upgrade_level', 0) or 0)
         gems = len(list(getattr(cur, 'gems', None) or []))
         now = f'强化 +{lv}' if lv else '无强化'
         gs = f'{gems} 颗宝石' if gems else '无宝石'
-        self.like_current.setText(f'与当前武器相同（{now}、{gs}）')
+        self.like_current.setText(f'与当前装备相同（{now}、{gs}）')
 
     def _on_name(self, text):
         if self._loading or self._locked:

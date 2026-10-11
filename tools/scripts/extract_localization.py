@@ -43,8 +43,13 @@ def find_text_asset(table: str) -> str:
 
 
 def extract(table: str) -> dict:
-    """解析 CSV → {Key: 简中}。简中缺失/重复时保留英文（回落显示，宁缺勿空）。"""
-    rows = csv.DictReader(io.StringIO(find_text_asset(table)))
+    """解析 CSV → {Key: 简中}。简中缺失/重复时保留英文（回落显示，宁缺勿空）。
+
+    表头去 BOM：部分 TextAsset（如 Equipments）的 m_Script 已是 str（未走 decode 分支），
+    UTF-8 BOM 会附在首个列名上，不清掉则 DictReader 找不到 'Key' 列直接抛错。
+    """
+    text = find_text_asset(table).lstrip('\ufeff')
+    rows = csv.DictReader(io.StringIO(text))
     out = {}
     for r in rows:
         zh = (r.get('Chinese (Simplified)') or '').strip()

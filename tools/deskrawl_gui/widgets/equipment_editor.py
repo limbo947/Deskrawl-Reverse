@@ -106,9 +106,10 @@ class EquipmentEditor(QWidget):
         weapon = (slot == 0)
         label = SLOT_LABELS.get(slot, f'槽{slot}')
         self.current_editor = ItemEditor(f'当前{label}', cur, weapon=weapon)
-        # 候选侧的「与当前武器相同」以本槽当前件为镜像源；非武器槽暂不提供该开关
+        # 候选侧的「与当前装备相同」以本槽当前件为镜像源（武器与非武器槽通用）；α 下当前件
+        # 被整块禁用，开关实质上也不会被用到
         self.candidate_editor = ItemEditor(f'候选{label}', cand, weapon=weapon,
-                                          current_of=(lambda: cur) if weapon else None)
+                                          current_of=lambda: cur)
         self.current_editor.changed.connect(self.refresh)
         self.candidate_editor.changed.connect(self.refresh)
         self._replace(self._cur_lay, self.current_editor)
@@ -162,16 +163,16 @@ class EquipmentEditor(QWidget):
         cand.affixes = [list(a) for a in (rec.get('affixes') or [])]
         cand.upgrade_level = int(rec.get('upgrade_level') or 0)
         cand.gems = list(rec.get('gems') or [])
+        # 记下该件在背包里的原貌与强化前词条（任意槽）：供「与当前装备相同」开关镜像/还原/重算
+        cand.raw_modifiers = [[int(s), int(t), float(v)]
+                              for s, t, v in (rec.get('modifiers') or [])]
+        cand.like_current = False
+        cand.own_upgrade_level = int(rec.get('upgrade_level') or 0)
+        cand.own_gems = list(rec.get('gems') or [])
         if slot == 0:
             cand.base_damage = 0.0        # 白字伤害以 WeaponDamage(20) 词条入池，与当前武器同口径
             cand.base_speed = float(rec.get('speed') or 1.0)
             cand.skill_multiplier = 1.0
-            # 记下该件在背包里的原貌与强化前词条：供「与当前武器相同」开关镜像/还原/重算
-            cand.raw_modifiers = [[int(s), int(t), float(v)]
-                                  for s, t, v in (rec.get('modifiers') or [])]
-            cand.like_current = False
-            cand.own_upgrade_level = int(rec.get('upgrade_level') or 0)
-            cand.own_gems = list(rec.get('gems') or [])
         else:
             cand.equip_slot_type = int(rec.get('equip_slot_type') or 0)
             cand.item_level = int(rec.get('item_level') or 0)

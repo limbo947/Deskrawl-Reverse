@@ -27,7 +27,7 @@ python -m venv .venv-gui
 .\.venv-gui\Scripts\python.exe -m pip install -r requirements-gui.txt
 cd tools
 ..\.venv-gui\Scripts\python.exe -m deskrawl_gui              # 启动主窗口
-..\.venv-gui\Scripts\python.exe -m deskrawl_gui --selftest   # 内核 10 项 + GUI 服务层/面板锚点对拍，共 38 项
+..\.venv-gui\Scripts\python.exe -m deskrawl_gui --selftest   # 内核 10 项 + GUI 服务层/面板锚点对拍，共 40 项
 ..\.venv-gui\Scripts\python.exe -m deskrawl_gui --smoke      # 无显示环境骨架冒烟（建窗口即退）
 ```
 
@@ -91,8 +91,8 @@ tools/scripts/         逆向脚本（UnityPy/capstone，面向游戏文件）
 
 - `core/profile.py`：`CharacterProfile`（可 JSON 序列化，存 `data/builds/*.json`）是面板编辑、构建存取、计算的唯一事实源。装配顺序与 `cli.demo()` 刻意保持一致，使 GUI 复算能与内核直算对拍。装备槽→宝石部位的映射（`_GEM_CATEGORY_BY_EQUIP_TYPE`）是内存面板实测锚定的，勿按直觉改。
 - `core/calc_service.py`：全部纯函数（输入 profile/GameData，输出视图 dataclass），widget 不做计算。将来要把排序挪线程只改这一个文件。
-- `app.py`：只做主窗口装配（侧边导航 `SidebarNav` + 三页堆栈：角色 / 装备对比 / 装配中心）与信号中转；编辑逻辑下沉 `widgets/`。导入错误统一走 `MemoryImportError.code` → 中文文案映射（`_IMPORT_ERROR_TEXTS`），新错误态应加 code 而非拼消息子串。会话持久化：关闭时把窗口几何/当前页 + 完整 profile 落盘 `data/session_state.json`（gitignore 排除，原子写），启动自动恢复；`MainWindow(persist_state=False)` 为默认（测试/冒烟不碰用户状态），仅生产入口 `run_gui` 显式开启。
-- 对比页的取向：**当前件（游戏事实）只读**（`ItemEditor.set_locked`，导入态自动生效）——基线可改就等于对比失效；参考技能卡（`widgets/skill_card.py`）挂在目标基础卡片下方（换装预测/循环系数的基线口径）；候选**任意槽**可勾「与当前装备相同（强化/宝石）」，按背包原始词条 `raw_modifiers` 重算——武器孔位宝石**按侧计入** `compare(slot=0)`（先按槽卸下装配链里的当前武器宝石，再并入各自武器词条），非武器槽走「先卸下当前件再按侧装回」（`_slot_sheets`）。装备名经 `core/localization.py` 按游戏 Equipments 本地化表（`data/loc/equipments_zh.json`）在导入时翻成简中。
+- `app.py`：只做主窗口装配（侧边导航 `SidebarNav` + 三页堆栈：角色 / 装备对比 / 装配中心）与信号中转；编辑逻辑下沉 `widgets/`。导入错误统一走 `MemoryImportError.code` → 中文文案映射（`_IMPORT_ERROR_TEXTS`），新错误态应加 code 而非拼消息子串。会话持久化：关闭时把窗口几何/当前页 + 完整 profile 落盘 `data/session_state.json`（gitignore 排除，原子写），启动自动恢复；`MainWindow(persist_state=False)` 为默认（测试/冒烟不碰用户状态），仅生产入口 `run_gui` 显式开启。内存导入走 `preserved_import`：只换角色数据，保留用户口径（图二目标/参考技能/伤害类型/开关记忆）——不能退回裸 `from_snapshot`（selftest 会红）。
+- 对比页的取向：**当前件（游戏事实）只读**（`ItemEditor.set_locked`，导入态自动生效）——基线可改就等于对比失效；参考技能卡（`widgets/skill_card.py`）挂在目标基础卡片下方（换装预测/循环系数的基线口径）；候选**任意槽**可勾「与当前装备相同（强化/宝石）」，按背包原始词条 `raw_modifiers` 重算，**选择跨槽保持**（`profile.like_current_pref` 记忆位，换槽/载入背包件自动沿用，随会话持久化）——武器孔位宝石**按侧计入** `compare(slot=0)`（先按槽卸下装配链里的当前武器宝石，再并入各自武器词条），非武器槽走「先卸下当前件再按侧装回」（`_slot_sheets`）。装备名经 `core/localization.py` 按游戏 Equipments 本地化表（`data/loc/equipments_zh.json`）在导入时翻成简中。
 - `__main__.py` 三模式互斥：`--selftest`（纯数值，不建 QApplication）、`--smoke`（建窗即退）、默认 GUI。
 
 ### 内存导入链（GUI 内，联机角色只读导入）

@@ -275,6 +275,8 @@ class CharacterProfile:
     bag_items: List[dict] = field(default_factory=list)
     # 装备对比页当前选中的内存槽 id：0=武器，1..10=其余十件（不含披风/Back=11）。
     compare_slot: int = 0
+    # 候选侧「与当前装备相同」开关的选择记忆（跨槽保持；随会话状态/构建持久化）。
+    like_current_pref: bool = False
     # 非武器槽的当前件/候选件草稿（键 = 内存槽 id 1..10）。武器槽仍用 weapon_current/candidate。
     slot_current: Dict[int, ItemDraft] = field(default_factory=dict)
     slot_candidate: Dict[int, ItemDraft] = field(default_factory=dict)
@@ -313,6 +315,7 @@ class CharacterProfile:
             'primary_stat': self.primary_stat,
             'panel': self.panel, 'bag_items': self.bag_items,
             'compare_slot': int(self.compare_slot),
+            'like_current_pref': bool(self.like_current_pref),
             'slot_current': {str(int(k)): v.to_dict() for k, v in self.slot_current.items()},
             'slot_candidate': {str(int(k)): v.to_dict() for k, v in self.slot_candidate.items()},
             'hero_class': self.hero_class,
@@ -339,6 +342,7 @@ class CharacterProfile:
             panel=d.get('panel'),
             bag_items=[dict(x) for x in (d.get('bag_items') or [])],
             compare_slot=int(d.get('compare_slot', 0) or 0),
+            like_current_pref=bool(d.get('like_current_pref', False)),
             slot_current={int(k): ItemDraft.from_dict(v)
                           for k, v in (d.get('slot_current') or {}).items()},
             slot_candidate={int(k): ItemDraft.from_dict(v)

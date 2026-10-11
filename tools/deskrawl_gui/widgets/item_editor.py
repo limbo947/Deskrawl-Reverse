@@ -179,6 +179,8 @@ class ItemEditor(QGroupBox):
     """
 
     changed = Signal()
+    # 开关选择本身也播报（EquipmentEditor 据此写 profile.like_current_pref，实现跨槽保持）
+    likeCurrentChanged = Signal(bool)
 
     def __init__(self, title, draft, *, weapon=False, current_of=None, parent=None):
         super().__init__(title, parent)
@@ -277,7 +279,7 @@ class ItemEditor(QGroupBox):
             parts.append('镶嵌宝石：' + '、'.join(gems))
         if (getattr(self.draft, 'like_current', False)
                 and not (getattr(self.draft, 'raw_modifiers', None) or [])):
-            parts.append('已镜像当前装备的强化/宝石；手工输入词条不随强化等级重算')
+            parts.append('已镜像当前装备的强化/宝石；该件无强化前原貌，词条数值未重算')
         self.meta_label.setText('；'.join(parts))
         self.meta_label.setVisible(bool(parts))
 
@@ -301,6 +303,7 @@ class ItemEditor(QGroupBox):
         self.draft.upgrade_level = level
         self._refold(level)
         self.reload()
+        self.likeCurrentChanged.emit(checked)
         self.changed.emit()
 
     def _refold(self, level):

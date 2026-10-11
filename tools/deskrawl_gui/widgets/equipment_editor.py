@@ -110,10 +110,29 @@ class EquipmentEditor(QWidget):
         # 被整块禁用，开关实质上也不会被用到
         self.candidate_editor = ItemEditor(f'候选{label}', cand, weapon=weapon,
                                           current_of=lambda: cur)
+        self.candidate_editor.likeCurrentChanged.connect(self._on_like_current_pref)
+        self._auto_like_current(cur)     # 跨槽保持：上一次勾选则本槽自动沿用
         self.current_editor.changed.connect(self.refresh)
         self.candidate_editor.changed.connect(self.refresh)
         self._replace(self._cur_lay, self.current_editor)
         self._replace(self._cand_lay, self.candidate_editor)
+
+    # ---------------- 「与当前装备相同」选择记忆 ----------------
+    def _on_like_current_pref(self, checked):
+        """把开关选择写回 profile：跨槽保持，且随会话状态/构建存档持久化。"""
+        self.profile.like_current_pref = bool(checked)
+
+    def _auto_like_current(self, cur):
+        """记忆为开时自动勾选新槽/新载入件的开关；当前件无可镜像内容（手工空卡）则不勾。
+
+        勾了没有可镜像的强化/宝石只会多出提示噪音，也会把「候选=当前件拷贝」误标成镜像态。
+        """
+        if not bool(getattr(self.profile, 'like_current_pref', False)):
+            return
+        if not (int(getattr(cur, 'upgrade_level', 0) or 0)
+                or list(getattr(cur, 'gems', None) or [])):
+            return
+        self.candidate_editor.like_current.setChecked(True)
 
     @staticmethod
     def _replace(lay, widget):
@@ -158,7 +177,7 @@ class EquipmentEditor(QWidget):
         if idx is None or int(idx) < 0:
             return
         rec = (self.profile.bag_items or [])[int(idx)]
-        slot, _cur, cand = self._drafts()
+        slot, cur, cand = self._drafts()
         cand.name = str(rec.get('name') or '')
         cand.affixes = [list(a) for a in (rec.get('affixes') or [])]
         cand.upgrade_level = int(rec.get('upgrade_level') or 0)
@@ -179,6 +198,7 @@ class EquipmentEditor(QWidget):
             cand.rarity = int(rec.get('rarity') or 0)
             cand.source = str(rec.get('source') or '')
         self.candidate_editor.reload()
+        self._auto_like_current(cur)     # 保持选择：上次勾选则新载入的背包件自动沿用镜像
         self.refresh()
 
     # ---------------- 刷新 ----------------

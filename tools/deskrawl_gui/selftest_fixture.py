@@ -174,6 +174,9 @@ def _snapshot_checks(rep: Report):
     # 候选装备「与当前装备相同（强化/宝石）」：武器镜像 → 重算 → 取消复原（任意槽同款开关）
     _weapon_mirror_checks(rep, prof, gd)
     _nonweapon_mirror_checks(rep, prof, gd)
+    # 开关选择跨槽记忆 + 导入保留用户口径（图二设置不随导入变化）
+    _like_current_pref_checks(rep, prof, gd)
+    _import_keep_checks(rep, prof, gd)
 
     derived = _derived_flat(beta, gd)
     exact_bad = [st for st in _DERIVED_EXACT_KEYS if nsq[st] != derived.get(st, 0.0)]
@@ -352,6 +355,68 @@ def _nonweapon_mirror_checks(rep: Report, prof, gd):
             f'候选 DPS {r_own.candidate_dps:.1f} → {r_mir.candidate_dps:.1f}'
             f'（镜像后两侧相等={_rel_pct(r_mir.candidate_dps, r_mir.current_dps) < 1e-6}，'
             f'当前侧不变={r_mir.current_dps == r_own.current_dps}）；复原={back_ok}')
+
+
+def _like_current_pref_checks(rep: Report, prof, gd):
+    """「与当前装备相同」选择跨槽保持：勾选后换槽仍自动勾选，取消后不再自动勾。
+
+    记忆位是 profile.like_current_pref（随会话状态/构建持久化）；自动勾选只在本槽当前件
+    有可镜像的强化/宝石时发生——手工空卡不误勾，也不会给「候选=当前件拷贝」贴上镜像标签。
+    """
+    import copy
+
+    from .widgets.equipment_editor import EquipmentEditor
+
+    prof2 = copy.deepcopy(prof)
+    eq = EquipmentEditor(prof2, gd)                    # 默认槽 0 = 武器
+    eq.candidate_editor.like_current.setChecked(True)  # 勾选 → 记忆位开
+    pref_on = bool(prof2.like_current_pref)
+    eq.slot_combo.setCurrentIndex(eq.slot_combo.findData(2))   # 换到胸甲（当前件带 1 颗宝石）
+    draft_flag = bool(prof2.slot_candidate[2].like_current)    # 快照：之后的取消会清零
+    kept = eq.candidate_editor.like_current.isChecked() and draft_flag
+    eq.candidate_editor.like_current.setChecked(False)         # 取消 → 记忆位关
+    eq.slot_combo.setCurrentIndex(eq.slot_combo.findData(3))   # 换到裤子
+    off_ok = (not eq.candidate_editor.like_current.isChecked()
+              and not bool(prof2.like_current_pref))
+    rep.add(pref_on and kept and off_ok,
+            '「与当前装备相同」选择跨槽保持（勾选记忆 / 取消记忆）',
+            f'勾选后换槽仍勾选={kept}（槽2 候选草稿 like_current={draft_flag}）；'
+            f'取消后换槽不勾={off_ok}；最终记忆位={prof2.like_current_pref}')
+
+
+def _import_keep_checks(rep: Report, prof, gd):
+    """导入保留用户口径设置：目标（图二）/参考技能/伤害类型/开关记忆不随导入重置。
+
+    走产线同一函数（app.preserved_import）——若有人改回 replace_with(from_snapshot(...))
+    的裸路径，这条会立刻变红。
+    """
+    import copy
+
+    from deskrawl_calc import DamageType
+
+    from .app import preserved_import
+    from .core.profile import TargetDraft
+
+    beta = _load_fixture('snapshot_beta.json')
+    before = copy.deepcopy(prof)
+    before.target = TargetDraft(level=65, hp_fraction=0.5, elite=True, vulnerable=True,
+                                distant=True)
+    before.skill_name = 'WarriorHeavyAttack3'
+    before.skill_level = 10
+    before.damage_type = int(DamageType.Fire)          # 非默认（Physical=0），证明确实保留
+    before.like_current_pref = True
+
+    newp = preserved_import(before, beta, gd)
+    ok = (newp.import_mode == 'beta'
+          and newp.target.level == 65 and abs(float(newp.target.hp_fraction) - 0.5) < 1e-9
+          and newp.target.elite and newp.target.vulnerable and newp.target.distant
+          and newp.skill_name == 'WarriorHeavyAttack3' and int(newp.skill_level) == 10
+          and int(newp.damage_type) == int(DamageType.Fire)
+          and bool(newp.like_current_pref))
+    rep.add(ok, '导入保留用户口径（图二目标/参考技能/伤害类型/开关记忆）',
+            f'目标 Lv{newp.target.level}/血{float(newp.target.hp_fraction):.0%}/精英={newp.target.elite}；'
+            f'技能 {newp.skill_name} Lv{newp.skill_level}；伤害类型={DamageType(int(newp.damage_type)).name}；'
+            f'开关记忆={bool(newp.like_current_pref)}；模式={newp.import_mode}')
 
 
 def _skill_checks(rep: Report, prof, gd):

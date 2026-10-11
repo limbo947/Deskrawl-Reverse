@@ -62,6 +62,22 @@ def describe_import_error(exc) -> tuple:
     return title, f'{text}\n\n（详情：{exc}）'
 
 
+def preserved_import(profile: CharacterProfile, payload: dict, gd) -> CharacterProfile:
+    """从内存快照构建新档案，但保留用户的「口径设置」，导入只换角色数据。
+
+    目标（图二）/参考技能/伤害类型是用户为「看什么数」选的，与游戏角色无关；「与当前装备
+    相同」开关记忆同理（导入后候选草稿全换新，记忆位决定下一件候选是否自动沿用）。若有人
+    把这几个字段改回从快照默认值走，selftest 的「导入保留用户口径」会立刻变红。
+    """
+    imported = CharacterProfile.from_snapshot(payload, gd)
+    imported.target = profile.target
+    imported.damage_type = int(profile.damage_type)
+    imported.skill_name = profile.skill_name
+    imported.skill_level = int(profile.skill_level)
+    imported.like_current_pref = bool(getattr(profile, 'like_current_pref', False))
+    return imported
+
+
 def load_qss(path: str = QSS_PATH) -> str:
     """读取主题样式。文件缺失必须显式抛错：静默降级会让暗色主题失效却无人察觉。"""
     if not os.path.exists(path):
@@ -262,7 +278,7 @@ class MainWindow(QMainWindow):
         finally:
             QApplication.restoreOverrideCursor()
         payload = res.payload
-        self.profile.replace_with(CharacterProfile.from_snapshot(payload, self.gd))
+        self.profile.replace_with(preserved_import(self.profile, payload, self.gd))
         try:
             # 游戏面板口径复算（bjd 反汇编还原）：属性明细与游戏「属性」页同口径。
             # 复算异常不阻断导入：回退计算口径（属性明细的既有行为）并在状态栏说明。

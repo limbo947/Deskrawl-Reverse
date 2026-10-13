@@ -83,7 +83,7 @@ def _snapshot_checks(rep: Report):
             f'= {sheet.final(prof.primary_stat):.0f}（面板 {float(prow[5]):.0f}）；'
             f'模式={prof.import_mode}，宝石 {len(prof.assembled)} 颗')
 
-    # 主属性伤害加成（Player.CalcDamage@0x50E400）：DPS 的攻击伤害 = (武器伤害 + 通用增伤) ×(1+Final/100)
+    # 主属性伤害加成（Player.CalcDamage@0x511060）：DPS 的攻击伤害 = (武器伤害 + 通用增伤) ×(1+Final/100)
     fac = calc_service.compare(prof, gd).current_model.primary_stat_multiplier()
     rep.add(abs(fac - 5.51) < 1e-9, 'β 主属性伤害加成 = ×5.510（力量 451，游戏 tooltip 同源）',
             f'主属性={stat_name(prof.primary_stat)}；因子 ×{fac:.4f}')

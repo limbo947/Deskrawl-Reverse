@@ -33,7 +33,7 @@ def f32_at_va(va):
     return struct.unpack('<f', data[o:o+4])[0]
 
 
-START, END = 0x7836C0, 0x7842D0          # RollTable.StaticInit（旧 gg..cctor）.. 下一方法（旧 gh.dnx → gi.dpj）
+START, END = 0x787520, 0x788130          # RollTable.StaticInit（旧 gg..cctor）.. 下一方法（旧 gh.dnx → gi.dpj）
 code = data[rva2off(START): rva2off(START) + (END - START)]
 md = Cs(CS_ARCH_X86, CS_MODE_64)
 md.detail = True
@@ -82,7 +82,7 @@ for k, v in pairs:
     rows.append({'Stat': k, 'Name': sname(k), 'PerLevel': v})
 
 out = {
-    '_source': 'RollTable.StaticInit（旧 gg..cctor）@ RVA 0x7836C0 (Dictionary<StatType,float> mxt)',
+    '_source': 'RollTable.StaticInit（旧 gg..cctor）@ RVA 0x787520 (Dictionary<StatType,float> mxt)',
     'formula': 'value = (1 + rarityMul) * (itemLevel * PerLevel[stat] (+5 if stat==20)) * rollFactor',
     'rollFactor': {'random': [0.85, 1.15], 'max': 1.15},
     'rarityMul': {'Common': 0.2, 'Uncommon': 0.4, 'Rare': 0.5, 'Legendary': 0.6, 'Divine': 0.0, 'RuneSet': 0.0},

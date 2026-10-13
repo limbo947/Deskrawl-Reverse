@@ -35,6 +35,13 @@ def selftest():
     ok.append(('暴伤× = 4.812', abs(m.crit_multiplier() - 4.812) < 1e-9))
     ok.append(('暴击率封顶 0.85', abs(m.crit_chance() - 0.85) < 1e-9))
 
+    # 3b) 封顶 1.0.2b：CDR 0.80、减伤 0.90（StatCap.GetCap@0x4AC490 实证）
+    s2 = StatSheet()
+    s2.add_mod(Modifier(StatType.CooldownReduction, ModifierType.Flat, 0.95))
+    s2.add_mod(Modifier(StatType.DamageReduction, ModifierType.Flat, 0.95))
+    ok.append(('CDR 封顶 0.80（1.0.2b）', abs(s2.capped(StatType.CooldownReduction) - 0.80) < 1e-9))
+    ok.append(('减伤封顶 0.90（1.0.2b）', abs(s2.capped(StatType.DamageReduction) - 0.90) < 1e-9))
+
     # 4) 护甲曲线：500 / (500 + 50×70) = 0.125
     t = Target(level=70, armor=500)
     ok.append(('护甲减伤 = 0.125', abs(t.armor_resist(DamageType.Physical) - 0.125) < 1e-9))
@@ -55,7 +62,7 @@ def selftest():
     e1 = mt.compute(Target(hp_fraction=0.5, vulnerable=True), rng=_rnd.Random(0)).expected_mult
     ok.append(('易伤倍率 = 1.3', abs(e1 / e0 - 1.3) < 1e-9))
 
-    # 7) 主属性加成（Player.CalcDamage@0x50E400，补丁前 bjr@0x509D80）：(武器伤害 + Damage(3)) ×(1 + Final(主属性)/100)
+    # 7) 主属性加成（Player.CalcDamage@0x511060，补丁前 bjr@0x509D80）：(武器伤害 + Damage(3)) ×(1 + Final(主属性)/100)
     s = StatSheet({StatType.WeaponDamage: 100, StatType.Damage: 50, StatType.Strength: 451})
     m = DamageModel(s, DamageType.Physical, primary_stat=StatType.Strength)
     ok.append(('主属性 ×5.51（力量 451 实测值）', abs(m.attack_damage() - 150.0 * 5.51) < 1e-9))

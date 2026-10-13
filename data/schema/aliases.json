@@ -1,10 +1,12 @@
 {
   "$comment": "语义别名表：文档与脚本引用左边的语义名（稳定），右边是每版都会重新生成的混淆名与地址。维护方式：build_aliases.py --check 按「类 + 归一化签名 + Slot」比对当期 dump.cs；--write 在补丁后刷新 current 并把上一版压入 history。条目只增不减。",
   "build": {
-    "game_assembly_sha256": "d46f0a321e8e07646cca37c7460e58fbfecc47ade5027ea2e00fc71f0fec0565",
-    "global_metadata_sha256": "57627070d0fe8a00f82e373100768f529c4829f02d6aeb8ac3057aaab13cacfc",
-    "dumped_at": "2026-10-10",
-    "base_ref": "8660446"
+    "game_assembly_sha256": "f8221364be8101c60d76be3e031f2cd5be376a7fb6b9b73a7cfb45e2a52a9fab",
+    "global_metadata_sha256": "f5cf7ba1bbd13cb099ea231ac89ed772f10c9f28d329f5dab9bc805a3809b802",
+    "dumped_at": "2026-10-13",
+    "base_ref": "13ae764",
+    "base_build_sha256": "d46f0a321e8e07646cca37c7460e58fbfecc47ade5027ea2e00fc71f0fec0565",
+    "base_ref_note": "base_ref=13ae764（2026-10-10 版），base_build_sha256=其 SHA；--check 只回验与该 SHA 同代的 history 项，更早世代（如首版 c242676e…）无对应 dump 可回验故跳过"
   },
   "aliases": {
     "GameConfig.UpgradeRecipe": {
@@ -14,11 +16,18 @@
       "锚定依据": "全 dump 唯一「(ItemRarity)→RecipeData」签名；类形状自证（GameConfig 其余 ccx/ccy/ccz 同为「枚举→配置」形状）",
       "current": {
         "klass": "GameConfig",
-        "name": "ccw",
-        "rva": "0x700310",
-        "va": "0x180700310"
+        "name": "ccv",
+        "rva": "0x703c80",
+        "va": "0x180703c80"
       },
-      "history": [],
+      "history": [
+        {
+          "build": "d46f0a32…",
+          "klass": "GameConfig",
+          "name": "ccw",
+          "rva": "0x700310"
+        }
+      ],
       "证据等级": "指令级（REA 反编译）",
       "证据": "REA procedure_pseudo_code 0x180700310（2026-10-10）：+0x58 列表按 +0x10 稀有度匹配返回 +0x18，空列表返回 0"
     },
@@ -29,11 +38,18 @@
       "锚定依据": "语义锚定：UpgradePanelUI.gcv 里与 GeneratedItemData.UpgradeLevel(0x20) 比较、驱动 MaxLevelSection 的那个 static int()；其类（强化服务，当期名 ip）兼有 (ItemData,string)→List<CraftingIngredient> 方法",
       "current": {
         "klass": "ip",
-        "name": "epn",
-        "rva": "0x7E51B0",
-        "va": "0x1807E51B0"
+        "name": "epm",
+        "rva": "0x7e9260",
+        "va": "0x1807e9260"
       },
-      "history": [],
+      "history": [
+        {
+          "build": "d46f0a32…",
+          "klass": "ip",
+          "name": "epn",
+          "rva": "0x7E51B0"
+        }
+      ],
       "证据等级": "指令级（REA 反编译）",
       "证据": "REA procedure_pseudo_code 0x1807E51B0（2026-10-10）：单例链后 return *(int*)(cfg+0x70)，空指针回退 0xC"
     },
@@ -44,11 +60,18 @@
       "锚定依据": "全 dump 唯一「(ItemData,string)→List<CraftingIngredient>」签名；类形状自证（同类还有 epq/eps/epw 三个 (ItemData,string)→bool）",
       "current": {
         "klass": "ip",
-        "name": "epp",
-        "rva": "0x7E54B0",
-        "va": "0x1807E54B0"
+        "name": "epo",
+        "rva": "0x7e9560",
+        "va": "0x1807e9560"
       },
-      "history": [],
+      "history": [
+        {
+          "build": "d46f0a32…",
+          "klass": "ip",
+          "name": "epp",
+          "rva": "0x7E54B0"
+        }
+      ],
       "证据等级": "指令级（REA 反编译）",
       "证据": "REA procedure_pseudo_code 0x1807E54B0（2026-10-10）：if(目标等级<0xB){按 0x58 稀有度查} else {取 0x68 配方的 Ingredients(0x18)}；倍率 if(<0xB) n² else (n−9)；216 行 amount=倍率×Ingredient.Amount"
     },
@@ -59,11 +82,17 @@
       "锚定依据": "同类同签名 + Slot",
       "current": {
         "klass": "Character",
-        "name": "bkn",
-        "rva": "0x67bd00",
-        "va": "0x18067bd00"
+        "name": "bkm",
+        "rva": "0x67fce0",
+        "va": "0x18067fce0"
       },
       "history": [
+        {
+          "build": "d46f0a32…",
+          "klass": "Character",
+          "name": "bkn",
+          "rva": "0x67bd00"
+        },
         {
           "build": "c242676e…",
           "klass": "Character",
@@ -79,11 +108,17 @@
       "锚定依据": "同类同签名 + Slot",
       "current": {
         "klass": "Player",
-        "name": "bkn",
-        "rva": "0x50e400",
-        "va": "0x18050e400"
+        "name": "bkm",
+        "rva": "0x511060",
+        "va": "0x180511060"
       },
       "history": [
+        {
+          "build": "d46f0a32…",
+          "klass": "Player",
+          "name": "bkn",
+          "rva": "0x50e400"
+        },
         {
           "build": "c242676e…",
           "klass": "Player",
@@ -99,11 +134,17 @@
       "锚定依据": "同类同签名 + Slot",
       "current": {
         "klass": "Character",
-        "name": "bll",
-        "rva": "0x67d010",
-        "va": "0x18067d010"
+        "name": "blk",
+        "rva": "0x680e80",
+        "va": "0x180680e80"
       },
       "history": [
+        {
+          "build": "d46f0a32…",
+          "klass": "Character",
+          "name": "bll",
+          "rva": "0x67d010"
+        },
         {
           "build": "c242676e…",
           "klass": "Character",
@@ -119,11 +160,18 @@
       "锚定依据": "同类同签名 + Slot（Character 的 Slot 16；补丁前文档未记录该槽位，属 2026-10-12 新增结论）",
       "current": {
         "klass": "Character",
-        "name": "bln",
-        "rva": "0x67d9a0",
-        "va": "0x18067d9a0"
+        "name": "blm",
+        "rva": "0x6814c0",
+        "va": "0x1806814c0"
       },
-      "history": [],
+      "history": [
+        {
+          "build": "d46f0a32…",
+          "klass": "Character",
+          "name": "bln",
+          "rva": "0x67d9a0"
+        }
+      ],
       "证据等级": "指令级（REA 反编译）",
       "证据": "REA procedure_pseudo_code 0x18067d9a0（2026-10-12）：取 AbilityData.Tags(+0x28) 做 IndexOf(tag)，tag 0/1/2 命中即 addsd 累加 Final(0x21=33)/Final(0x22=34)/Final(0x3d=61)，初值 1.0；DamageEffect.tp 内以 `dmg *= (*(vtable+0x228))(ability)` 应用（xrefs 指到 0x180498196）"
     },
@@ -135,10 +183,17 @@
       "current": {
         "klass": "DamageOverTimeBehavior",
         "name": "ym",
-        "rva": "0x4ac830",
-        "va": "0x1804ac830"
+        "rva": "0x4afc10",
+        "va": "0x1804afc10"
       },
-      "history": [],
+      "history": [
+        {
+          "build": "d46f0a32…",
+          "klass": "DamageOverTimeBehavior",
+          "name": "ym",
+          "rva": "0x4ac830"
+        }
+      ],
       "证据等级": "指令级（REA 反编译）",
       "证据": "REA procedure_pseudo_code 0x1804ac830（2026-10-12）：`base×param×(Final(0x3e=62) + ElementDamageMultiplier(behavior.DamageType@+0x14))`；即 62 不在直击链路（bko/bln 都不读它），只在 DOT tick 里消费"
     },
@@ -149,11 +204,17 @@
       "锚定依据": "同类同签名 + Slot",
       "current": {
         "klass": "Character",
-        "name": "blm",
-        "rva": "0x67d160",
-        "va": "0x18067d160"
+        "name": "bll",
+        "rva": "0x680f60",
+        "va": "0x180680f60"
       },
       "history": [
+        {
+          "build": "d46f0a32…",
+          "klass": "Character",
+          "name": "blm",
+          "rva": "0x67d160"
+        },
         {
           "build": "c242676e…",
           "klass": "Character",
@@ -169,11 +230,17 @@
       "锚定依据": "同类同签名 + Slot",
       "current": {
         "klass": "Character",
-        "name": "blo",
-        "rva": "0x67dbb0",
-        "va": "0x18067dbb0"
+        "name": "bln",
+        "rva": "0x6815d0",
+        "va": "0x1806815d0"
       },
       "history": [
+        {
+          "build": "d46f0a32…",
+          "klass": "Character",
+          "name": "blo",
+          "rva": "0x67dbb0"
+        },
         {
           "build": "c242676e…",
           "klass": "Character",
@@ -189,11 +256,17 @@
       "锚定依据": "同类同签名 + Slot",
       "current": {
         "klass": "Character",
-        "name": "bls",
-        "rva": "0x67e320",
-        "va": "0x18067e320"
+        "name": "blr",
+        "rva": "0x681d10",
+        "va": "0x180681d10"
       },
       "history": [
+        {
+          "build": "d46f0a32…",
+          "klass": "Character",
+          "name": "bls",
+          "rva": "0x67e320"
+        },
         {
           "build": "c242676e…",
           "klass": "Character",
@@ -209,11 +282,17 @@
       "锚定依据": "同类同签名 + Slot",
       "current": {
         "klass": "Character",
-        "name": "blr",
-        "rva": "0x67e240",
-        "va": "0x18067e240"
+        "name": "blq",
+        "rva": "0x681c90",
+        "va": "0x180681c90"
       },
       "history": [
+        {
+          "build": "d46f0a32…",
+          "klass": "Character",
+          "name": "blr",
+          "rva": "0x67e240"
+        },
         {
           "build": "c242676e…",
           "klass": "Character",
@@ -229,11 +308,17 @@
       "锚定依据": "同类同签名 + Slot",
       "current": {
         "klass": "Character",
-        "name": "blj",
-        "rva": "0x4b01b0",
-        "va": "0x1804b01b0"
+        "name": "bli",
+        "rva": "0x4b35f0",
+        "va": "0x1804b35f0"
       },
       "history": [
+        {
+          "build": "d46f0a32…",
+          "klass": "Character",
+          "name": "blj",
+          "rva": "0x4b01b0"
+        },
         {
           "build": "c242676e…",
           "klass": "Character",
@@ -249,11 +334,17 @@
       "锚定依据": "同类同签名 + Slot",
       "current": {
         "klass": "Character",
-        "name": "bka",
-        "rva": "0x67b470",
-        "va": "0x18067b470"
+        "name": "bjz",
+        "rva": "0x67f900",
+        "va": "0x18067f900"
       },
       "history": [
+        {
+          "build": "d46f0a32…",
+          "klass": "Character",
+          "name": "bka",
+          "rva": "0x67b470"
+        },
         {
           "build": "c242676e…",
           "klass": "Character",
@@ -269,11 +360,17 @@
       "锚定依据": "同类同签名 + Slot",
       "current": {
         "klass": "Player",
-        "name": "bka",
-        "rva": "0x4fa9d0",
-        "va": "0x1804fa9d0"
+        "name": "bjz",
+        "rva": "0x4fdab0",
+        "va": "0x1804fdab0"
       },
       "history": [
+        {
+          "build": "d46f0a32…",
+          "klass": "Player",
+          "name": "bka",
+          "rva": "0x4fa9d0"
+        },
         {
           "build": "c242676e…",
           "klass": "Player",
@@ -289,11 +386,17 @@
       "锚定依据": "同类同签名 + Slot",
       "current": {
         "klass": "Player",
-        "name": "bjz",
-        "rva": "0x4fa2b0",
-        "va": "0x1804fa2b0"
+        "name": "bjy",
+        "rva": "0x4fd3a0",
+        "va": "0x1804fd3a0"
       },
       "history": [
+        {
+          "build": "d46f0a32…",
+          "klass": "Player",
+          "name": "bjz",
+          "rva": "0x4fa2b0"
+        },
         {
           "build": "c242676e…",
           "klass": "Player",
@@ -309,11 +412,17 @@
       "锚定依据": "同类同签名 + Slot",
       "current": {
         "klass": "Player",
-        "name": "fdd",
-        "rva": "0x4f7bd0",
-        "va": "0x1804f7bd0"
+        "name": "fdc",
+        "rva": "0x4facf0",
+        "va": "0x1804facf0"
       },
       "history": [
+        {
+          "build": "d46f0a32…",
+          "klass": "Player",
+          "name": "fdd",
+          "rva": "0x4f7bd0"
+        },
         {
           "build": "c242676e…",
           "klass": "Player",
@@ -329,12 +438,18 @@
       "锚定依据": "REA 反编译 FUN_1804fac90 实证：访问 Player +0x358/+0x360（= nuf/nug 两张条件属性表，见 memory_offsets.json），同签名兄弟 fdn 两个偏移都不访问",
       "current": {
         "klass": "Player",
-        "name": "fdm",
-        "rva": "0x4fac90",
-        "va": "0x1804fac90",
+        "name": "fdl",
+        "rva": "0x4fdcc0",
+        "va": "0x1804fdcc0",
         "ordinal": 0
       },
       "history": [
+        {
+          "build": "d46f0a32…",
+          "klass": "Player",
+          "name": "fdm",
+          "rva": "0x4fac90"
+        },
         {
           "build": "c242676e…",
           "klass": "Player",
@@ -352,11 +467,17 @@
       "锚定依据": "同类同签名 + Slot",
       "current": {
         "klass": "Player",
-        "name": "fji",
-        "rva": "0x50a860",
-        "va": "0x18050a860"
+        "name": "fjh",
+        "rva": "0x50d2f0",
+        "va": "0x18050d2f0"
       },
       "history": [
+        {
+          "build": "d46f0a32…",
+          "klass": "Player",
+          "name": "fji",
+          "rva": "0x50a860"
+        },
         {
           "build": "c242676e…",
           "klass": "Player",
@@ -372,11 +493,17 @@
       "锚定依据": "同类同签名 + Slot",
       "current": {
         "klass": "StatusEffectController",
-        "name": "bhb",
-        "rva": "0x4d56a0",
-        "va": "0x1804d56a0"
+        "name": "bha",
+        "rva": "0x4d8510",
+        "va": "0x1804d8510"
       },
       "history": [
+        {
+          "build": "d46f0a32…",
+          "klass": "StatusEffectController",
+          "name": "bhb",
+          "rva": "0x4d56a0"
+        },
         {
           "build": "c242676e…",
           "klass": "StatusEffectController",
@@ -386,17 +513,23 @@
       ]
     },
     "StatCap.Clamp": {
-      "说明": "四类属性封顶 0.85（掩码 0x402010 + 特判 37）",
+      "说明": "属性封顶 clamp：按 stat 调 GetCap 取值后夹到 [0,值]（1.0.2b 起分档 0.85/0.80/0.90，旧为统一 0.85）",
       "slot": null,
       "signature": "public static double <m>(StatType a, double b) { }",
       "锚定依据": "同类同签名 + Slot",
       "current": {
         "klass": "bg",
         "name": "wz",
-        "rva": "0x4a91c0",
-        "va": "0x1804a91c0"
+        "rva": "0x4ac560",
+        "va": "0x1804ac560"
       },
       "history": [
+        {
+          "build": "d46f0a32…",
+          "klass": "bg",
+          "name": "wz",
+          "rva": "0x4a91c0"
+        },
         {
           "build": "c242676e…",
           "klass": "bg",
@@ -404,6 +537,21 @@
           "rva": "0x4a9c30"
         }
       ]
+    },
+    "StatCap.GetCap": {
+      "说明": "属性封顶值查表（1.0.2b 新增、由旧内联掩码拆出）：0.85=暴击(4)/闪避(22)/蓝耗(37)；0.80=冷却缩减(13)；0.90=通用减伤(64)与元素减伤(49/51/52/53/54/55)；其余 inf（不进 Clamp 有效域）",
+      "slot": null,
+      "signature": "public static double <m>(StatType a) { }",
+      "锚定依据": "全 dump 唯一「(StatType)→double」签名（同类 Clamp 为 (StatType,double)→double，另 ww/wz/xa 三元组形状自证）",
+      "current": {
+        "klass": "bg",
+        "name": "wx",
+        "rva": "0x4ac490",
+        "va": "0x1804ac490"
+      },
+      "history": [],
+      "证据等级": "指令级（capstone 反汇编）",
+      "证据": "1.0.2b 反汇编：cmp ecx,0x16/je 分支与跳转表——CDR(0xD) 取 0.8@0x18364F9C8、stat 64 取 0.9@0x18364F9D8、{4,22,37} 取 0.85@0x18364F9D0、49/51-55 取 0.9、其余 inf@0x18364FE38"
     },
     "ItemizationConfig.StaticInit": {
       "说明": "三类分组表静态初始化（Core/AllElements/ConditionalDamage）",
@@ -413,10 +561,16 @@
       "current": {
         "klass": "ItemizationConfig",
         "name": "cctor",
-        "rva": "0x706a50",
-        "va": "0x180706a50"
+        "rva": "0x70a3f0",
+        "va": "0x18070a3f0"
       },
       "history": [
+        {
+          "build": "d46f0a32…",
+          "klass": "ItemizationConfig",
+          "name": "cctor",
+          "rva": "0x706a50"
+        },
         {
           "build": "c242676e…",
           "klass": "ItemizationConfig",
@@ -432,11 +586,17 @@
       "锚定依据": "同类同签名 + Slot",
       "current": {
         "klass": "ObscuredInt",
-        "name": "kex",
-        "rva": "0x4548a0",
-        "va": "0x1804548a0"
+        "name": "kff",
+        "rva": "0x457960",
+        "va": "0x180457960"
       },
       "history": [
+        {
+          "build": "d46f0a32…",
+          "klass": "ObscuredInt",
+          "name": "kex",
+          "rva": "0x4548a0"
+        },
         {
           "build": "c242676e…",
           "klass": "ObscuredInt",
@@ -452,11 +612,17 @@
       "锚定依据": "同类同签名 + Slot",
       "current": {
         "klass": "ObscuredFloat",
-        "name": "kcy",
-        "rva": "0x453810",
-        "va": "0x180453810"
+        "name": "kdf",
+        "rva": "0x4568d0",
+        "va": "0x1804568d0"
       },
       "history": [
+        {
+          "build": "d46f0a32…",
+          "klass": "ObscuredFloat",
+          "name": "kcy",
+          "rva": "0x453810"
+        },
         {
           "build": "c242676e…",
           "klass": "ObscuredFloat",
@@ -472,11 +638,17 @@
       "锚定依据": "同类同签名 + Slot",
       "current": {
         "klass": "ObscuredDouble",
-        "name": "kbx",
-        "rva": "0x452b70",
-        "va": "0x180452b70"
+        "name": "kce",
+        "rva": "0x455c30",
+        "va": "0x180455c30"
       },
       "history": [
+        {
+          "build": "d46f0a32…",
+          "klass": "ObscuredDouble",
+          "name": "kbx",
+          "rva": "0x452b70"
+        },
         {
           "build": "c242676e…",
           "klass": "ObscuredDouble",
@@ -492,12 +664,18 @@
       "锚定依据": "指令级反汇编：0x180451340 = `sub rcx,rdx; xor rcx,rdx; mov rax,rcx; ret`（解密 (hidden−key)^key），而 0x180451330 = `xor rcx,rdx; lea rax,[rdx+rcx]`（加密 key+(value^key)）——成对函数，解密在 0x451340；另与「同签名组序位 + 类整体位移 −0x1000 + 同址条目序」三重一致。REA 看不到函数体（dump 登记为共享泛型条目），故证据取自 capstone 逐字节反汇编",
       "current": {
         "klass": "ObscuredLong",
-        "name": "kfj",
-        "rva": "0x451340",
-        "va": "0x180451340",
+        "name": "kfq",
+        "rva": "0x454400",
+        "va": "0x180454400",
         "ordinal": 1
       },
       "history": [
+        {
+          "build": "d46f0a32…",
+          "klass": "ObscuredLong",
+          "name": "kfj",
+          "rva": "0x451340"
+        },
         {
           "build": "c242676e…",
           "klass": "ObscuredLong",
@@ -515,11 +693,17 @@
       "锚定依据": "同类同签名 + Slot",
       "current": {
         "klass": "SaveSystem",
-        "name": "egj",
-        "rva": "0x7b6670",
-        "va": "0x1807b6670"
+        "name": "egi",
+        "rva": "0x7ba6a0",
+        "va": "0x1807ba6a0"
       },
       "history": [
+        {
+          "build": "d46f0a32…",
+          "klass": "SaveSystem",
+          "name": "egj",
+          "rva": "0x7b6670"
+        },
         {
           "build": "c242676e…",
           "klass": "SaveSystem",
@@ -535,11 +719,17 @@
       "锚定依据": "同类同签名 + Slot",
       "current": {
         "klass": "SaveSystem",
-        "name": "eiq",
-        "rva": "0x7caee0",
-        "va": "0x1807caee0"
+        "name": "eip",
+        "rva": "0x7cef20",
+        "va": "0x1807cef20"
       },
       "history": [
+        {
+          "build": "d46f0a32…",
+          "klass": "SaveSystem",
+          "name": "eiq",
+          "rva": "0x7caee0"
+        },
         {
           "build": "c242676e…",
           "klass": "SaveSystem",
@@ -555,11 +745,17 @@
       "锚定依据": "同类同签名 + Slot",
       "current": {
         "klass": "SaveSystem",
-        "name": "egg",
-        "rva": "0x7b61f0",
-        "va": "0x1807b61f0"
+        "name": "egf",
+        "rva": "0x7ba220",
+        "va": "0x1807ba220"
       },
       "history": [
+        {
+          "build": "d46f0a32…",
+          "klass": "SaveSystem",
+          "name": "egg",
+          "rva": "0x7b61f0"
+        },
         {
           "build": "c242676e…",
           "klass": "SaveSystem",
@@ -575,11 +771,17 @@
       "锚定依据": "同类同签名 + Slot",
       "current": {
         "klass": "SaveSystem",
-        "name": "ege",
-        "rva": "0x7b5dd0",
-        "va": "0x1807b5dd0"
+        "name": "egd",
+        "rva": "0x7b9e00",
+        "va": "0x1807b9e00"
       },
       "history": [
+        {
+          "build": "d46f0a32…",
+          "klass": "SaveSystem",
+          "name": "ege",
+          "rva": "0x7b5dd0"
+        },
         {
           "build": "c242676e…",
           "klass": "SaveSystem",
@@ -595,11 +797,17 @@
       "锚定依据": "同类同签名 + Slot",
       "current": {
         "klass": "SaveSystem",
-        "name": "eha",
-        "rva": "0x7b7f80",
-        "va": "0x1807b7f80"
+        "name": "egz",
+        "rva": "0x7bbfd0",
+        "va": "0x1807bbfd0"
       },
       "history": [
+        {
+          "build": "d46f0a32…",
+          "klass": "SaveSystem",
+          "name": "eha",
+          "rva": "0x7b7f80"
+        },
         {
           "build": "c242676e…",
           "klass": "SaveSystem",
@@ -615,11 +823,17 @@
       "锚定依据": "iw 同名类形状自证不足（签名交集 0/5），判为撞名；类形状匹配（iw → je）",
       "current": {
         "klass": "je",
-        "name": "evf",
-        "rva": "0x4dc670",
-        "va": "0x1804dc670"
+        "name": "eve",
+        "rva": "0x4df520",
+        "va": "0x1804df520"
       },
       "history": [
+        {
+          "build": "d46f0a32…",
+          "klass": "je",
+          "name": "evf",
+          "rva": "0x4dc670"
+        },
         {
           "build": "c242676e…",
           "klass": "iw",
@@ -635,11 +849,17 @@
       "锚定依据": "类形状匹配（it → jb）",
       "current": {
         "klass": "jb",
-        "name": "euu",
-        "rva": "0x7f6250",
-        "va": "0x1807f6250"
+        "name": "eut",
+        "rva": "0x7fa3d0",
+        "va": "0x1807fa3d0"
       },
       "history": [
+        {
+          "build": "d46f0a32…",
+          "klass": "jb",
+          "name": "euu",
+          "rva": "0x7f6250"
+        },
         {
           "build": "c242676e…",
           "klass": "it",
@@ -655,12 +875,18 @@
       "锚定依据": "REA 反编译 FUN_1807f6450 证实形状：`return Sha256(cached-string)`（与 MacKey 同构，仅缓存串字段不同，差 8 字节）；两者的内部分配由同签名组序位 + 类整体位移两规则一致给出",
       "current": {
         "klass": "jb",
-        "name": "euv",
-        "rva": "0x7f6450",
-        "va": "0x1807f6450",
+        "name": "euu",
+        "rva": "0x7fa5d0",
+        "va": "0x1807fa5d0",
         "ordinal": 0
       },
       "history": [
+        {
+          "build": "d46f0a32…",
+          "klass": "jb",
+          "name": "euv",
+          "rva": "0x7f6450"
+        },
         {
           "build": "c242676e…",
           "klass": "it",
@@ -678,12 +904,18 @@
       "锚定依据": "REA 反编译 FUN_1807f64b0 证实形状：`return Sha256(cached-string)`（与 FileKey 同构，仅缓存串字段不同，差 8 字节）；两者的内部分配由同签名组序位 + 类整体位移两规则一致给出",
       "current": {
         "klass": "jb",
-        "name": "euw",
-        "rva": "0x7f64b0",
-        "va": "0x1807f64b0",
+        "name": "euv",
+        "rva": "0x7fa630",
+        "va": "0x1807fa630",
         "ordinal": 1
       },
       "history": [
+        {
+          "build": "d46f0a32…",
+          "klass": "jb",
+          "name": "euw",
+          "rva": "0x7f64b0"
+        },
         {
           "build": "c242676e…",
           "klass": "it",
@@ -701,11 +933,17 @@
       "锚定依据": "类形状匹配（it → jb）",
       "current": {
         "klass": "jb",
-        "name": "euz",
-        "rva": "0x7f6640",
-        "va": "0x1807f6640"
+        "name": "euy",
+        "rva": "0x7fa7c0",
+        "va": "0x1807fa7c0"
       },
       "history": [
+        {
+          "build": "d46f0a32…",
+          "klass": "jb",
+          "name": "euz",
+          "rva": "0x7f6640"
+        },
         {
           "build": "c242676e…",
           "klass": "it",
@@ -721,11 +959,17 @@
       "锚定依据": "类形状匹配（it → jb）",
       "current": {
         "klass": "jb",
-        "name": "eva",
-        "rva": "0x7f70d0",
-        "va": "0x1807f70d0"
+        "name": "euz",
+        "rva": "0x7fb260",
+        "va": "0x1807fb260"
       },
       "history": [
+        {
+          "build": "d46f0a32…",
+          "klass": "jb",
+          "name": "eva",
+          "rva": "0x7f70d0"
+        },
         {
           "build": "c242676e…",
           "klass": "it",
@@ -741,11 +985,17 @@
       "锚定依据": "类形状匹配（it → jb）",
       "current": {
         "klass": "jb",
-        "name": "eux",
-        "rva": "0x7f6510",
-        "va": "0x1807f6510"
+        "name": "euw",
+        "rva": "0x7fa690",
+        "va": "0x1807fa690"
       },
       "history": [
+        {
+          "build": "d46f0a32…",
+          "klass": "jb",
+          "name": "eux",
+          "rva": "0x7f6510"
+        },
         {
           "build": "c242676e…",
           "klass": "it",
@@ -761,11 +1011,17 @@
       "锚定依据": "类形状匹配（it → jb）",
       "current": {
         "klass": "jb",
-        "name": "euy",
-        "rva": "0x7f65d0",
-        "va": "0x1807f65d0"
+        "name": "eux",
+        "rva": "0x7fa750",
+        "va": "0x1807fa750"
       },
       "history": [
+        {
+          "build": "d46f0a32…",
+          "klass": "jb",
+          "name": "euy",
+          "rva": "0x7f65d0"
+        },
         {
           "build": "c242676e…",
           "klass": "it",
@@ -782,10 +1038,16 @@
       "current": {
         "klass": "jb",
         "name": "cctor",
-        "rva": "0x7f79f0",
-        "va": "0x1807f79f0"
+        "rva": "0x7fbb90",
+        "va": "0x1807fbb90"
       },
       "history": [
+        {
+          "build": "d46f0a32…",
+          "klass": "jb",
+          "name": "cctor",
+          "rva": "0x7f79f0"
+        },
         {
           "build": "c242676e…",
           "klass": "it",
@@ -802,10 +1064,16 @@
       "current": {
         "klass": "gh",
         "name": "cctor",
-        "rva": "0x7836c0",
-        "va": "0x1807836c0"
+        "rva": "0x787520",
+        "va": "0x180787520"
       },
       "history": [
+        {
+          "build": "d46f0a32…",
+          "klass": "gh",
+          "name": "cctor",
+          "rva": "0x7836c0"
+        },
         {
           "build": "c242676e…",
           "klass": "gg",
@@ -821,11 +1089,17 @@
       "锚定依据": "跨类唯一同签名候选",
       "current": {
         "klass": "gi",
-        "name": "dpj",
-        "rva": "0x7842d0",
-        "va": "0x1807842d0"
+        "name": "dpi",
+        "rva": "0x788130",
+        "va": "0x180788130"
       },
       "history": [
+        {
+          "build": "d46f0a32…",
+          "klass": "gi",
+          "name": "dpj",
+          "rva": "0x7842d0"
+        },
         {
           "build": "c242676e…",
           "klass": "gh",

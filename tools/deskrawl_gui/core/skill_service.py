@@ -110,14 +110,14 @@ def _hits_per_sec(skill: dict, sheet, atk_speed: float, mods) -> float:
     if skill['channel_duration'] > 0 and skill['tick_rate'] > 0:
         dur = float(skill['channel_duration'])
         ticks = dur / float(skill['tick_rate'])
-        cdr = min(0.85, max(0.0, sheet.final(StatType.CooldownReduction)))
+        cdr = min(0.80, max(0.0, sheet.final(StatType.CooldownReduction)))
         cycle = (float(skill.get('channel_windup') or 0.0) + dur
                  + float(skill.get('channel_recovery') or 0.0)
                  + float(skill['cooldown']) * (1.0 - cdr))
         if cycle <= 0:
             return strikes * (1.0 + channel_speed) / float(skill['tick_rate'])
         return strikes * (1.0 + channel_speed) * ticks / cycle
-    cdr = min(0.85, max(0.0, sheet.final(StatType.CooldownReduction)))
+    cdr = min(0.80, max(0.0, sheet.final(StatType.CooldownReduction)))
     cd = float(skill['cooldown']) * (1.0 - cdr)
     interval = cd if cd > 0.05 else (1.0 / atk_speed if atk_speed > 0 else 1.0)
     return strikes / interval if interval > 0 else 0.0

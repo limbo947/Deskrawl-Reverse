@@ -60,9 +60,15 @@ def locate(new_idx, entry):
 
 
 def check(cfg, new_idx, old_idx=None, quiet=False):
-    """逐条校验；返回 (问题列表, 已核条数)。"""
+    """逐条校验；返回 (问题列表, 已核条数)。
+
+    history 回验只针对 `base_build_sha256` 那一代（即 base_ref 指向的那份旧构建）：
+    `--write` 每次只把「上一版」压入 history，历史会跨多版累积，但本机只保有一份旧
+    dump（base_ref），更早世代无法回验——按 build 前缀跳过，避免把「无从校验」误判成红。
+    """
     problems, checked, weak = [], 0, []
     seen = {}
+    base_build = (cfg['build'].get('base_build_sha256') or '')[:8]
     for semantic, entry in cfg['aliases'].items():
         m, err, by_ordinal = locate(new_idx, entry)
         if by_ordinal:
@@ -84,6 +90,8 @@ def check(cfg, new_idx, old_idx=None, quiet=False):
         for h in entry.get('history', []):
             if old_idx is None:
                 continue
+            if base_build and (h.get('build', '')[:8] != base_build):
+                continue  # 更早世代：无对应旧 dump 可回验，跳过（非放行，见 docstring）
             hk = h.get('klass', '')
             hit = [x for x in old_idx.by_klass.get(hk, [])
                    if x.name == h['name'] and x.rva == int(h['rva'], 16)]
@@ -115,8 +123,13 @@ def write(cfg, new_idx, old_idx=None):
         entry.setdefault('history', []).insert(0, {
             'build': cfg['build']['game_assembly_sha256'][:8] + '…',
             'klass': cur['klass'], 'name': cur['name'], 'rva': cur['rva']})
-        entry['current'] = {'klass': m.klass, 'name': m.name,
-                            'rva': hex(m.rva), 'va': hex(m.va)}
+        new_cur = {'klass': m.klass, 'name': m.name,
+                   'rva': hex(m.rva), 'va': hex(m.va)}
+        # 保留 ordinal：靠「组内序位」定位的条目若丢失该字段，下一次 --check 会因
+        # 「同签名候选不唯一」判红（--write 只刷新 current，不应把消歧依据一起抹掉）。
+        if 'ordinal' in cur:
+            new_cur['ordinal'] = cur['ordinal']
+        entry['current'] = new_cur
         entry['signature'] = m.sig
         changed += 1
         print(f'  ↻ {semantic}: {cur["name"]}@{cur["rva"]} → {m.name}@{hex(m.rva)}')

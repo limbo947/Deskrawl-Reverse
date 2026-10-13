@@ -14,7 +14,7 @@ from mem_probe import (find_process, module_base, read_mem, u32, u64, valid_ptr)
 k32 = ctypes.WinDLL('kernel32', use_last_error=True)
 
 # dzg/dyt 共用的状态类 usage slot（VA → 运行时重定位）
-STATE_SLOT_VA = 0x183A1BF88
+STATE_SLOT_VA = 0x183A2A4D8
 
 
 def klass_name_of_obj(h, obj):

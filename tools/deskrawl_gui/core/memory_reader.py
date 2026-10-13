@@ -279,21 +279,21 @@ class ActkCodec:
     def __init__(self, pr: ProcessReader):
         self.pr = pr
 
-    def obsc_int(self, addr):     # (hidden - key) ^ key；Actk.ObscuredInt.Decrypt @0x4548A0
+    def obsc_int(self, addr):     # (hidden - key) ^ key；Actk.ObscuredInt.Decrypt @0x457960
         hidden = self.pr.u32(addr + 4)
         key = self.pr.u32(addr + 8)
         if hidden is None or key is None:
             return None
         return _s32(((hidden - key) & 0xFFFFFFFF) ^ key)
 
-    def obsc_long(self, addr):    # (hidden - key) ^ key；Actk.ObscuredLong.Decrypt @0x451340
+    def obsc_long(self, addr):    # (hidden - key) ^ key；Actk.ObscuredLong.Decrypt @0x454400
         hidden = self.pr.u64(addr + 8)
         key = self.pr.u64(addr + 0x10)
         if hidden is None or key is None:
             return None
         return _s64(((hidden - key) & 0xFFFFFFFFFFFFFFFF) ^ key)
 
-    def obsc_float(self, addr):   # bswap12(hidden) ^ key（字节 1<->2 互换）；Actk.ObscuredFloat.Decrypt @0x453810
+    def obsc_float(self, addr):   # bswap12(hidden) ^ key（字节 1<->2 互换）；Actk.ObscuredFloat.Decrypt @0x4568D0
         hidden = self.pr.u32(addr + 4)
         key = self.pr.u32(addr + 8)
         if hidden is None or key is None:
@@ -302,7 +302,7 @@ class ActkCodec:
         swapped = (hidden & 0xFF0000FF) | (b1 << 16) | (b2 << 8)
         return struct.unpack('<f', struct.pack('<I', swapped ^ key))[0]
 
-    def obsc_double(self, addr):  # 字节置换（swap01 + 4->5->7->4 三循环）后 ^ key；Actk.ObscuredDouble.Decrypt @0x452B70
+    def obsc_double(self, addr):  # 字节置换（swap01 + 4->5->7->4 三循环）后 ^ key；Actk.ObscuredDouble.Decrypt @0x455C30
         hidden = self.pr.u64(addr + 8)
         key = self.pr.u64(addr + 0x10)
         if hidden is None or key is None:

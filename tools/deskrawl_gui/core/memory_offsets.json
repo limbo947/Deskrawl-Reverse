@@ -1,12 +1,12 @@
 {
-  "$comment": "Deskrawl 运行时内存导入偏移表。RVA 相对 GameAssembly.dll；实例字段偏移为 P1 spike 活体实测（2026-10-07，PID 28336，ExampleHeroB Lv70），并于 2026-10-10 补丁后经新构建 dump.cs 逐字段复核（偏移未变，仅字段改名）。2026-10-10 补丁（GameAssembly d46f0a32…）：方法 RVA 按「同名签名」在新 dump 中重算，指纹同步更新；注释里出现的旧方法名见 docs/08 §12.3 映射表。游戏更新后应重跑 tools/scripts/mem_probe.py 全量再生本表。",
+  "$comment": "Deskrawl 运行时内存导入偏移表。RVA 相对 GameAssembly.dll；实例字段偏移为 P1 spike 活体实测（2026-10-07，PID 28336，ExampleHeroB Lv70），并于 2026-10-10 补丁后经新构建 dump.cs 逐字段复核（偏移未变，仅字段改名）。2026-10-10 补丁（GameAssembly d46f0a32…）：方法 RVA 按「同名签名」在新 dump 中重算，指纹同步更新；注释里出现的旧方法名见 docs/08 §12.3 映射表。2026-10-13 补丁 1.0.2b（GameAssembly f8221364…）：方法 RVA 按「签名+Slot」重算（docs/08 §13），实例字段偏移复核未变。游戏更新后应重跑 tools/scripts/mem_probe.py 全量再生本表。",
   "process_name": "Deskrawl.exe",
   "module": "GameAssembly.dll",
   "fingerprints": {
-    "$comment": "P2 版本指纹（2026-10-10 补丁后实测）。导入前校验：任一不符即拒绝导入并提示重新导出 schema/so_dump。游戏目录可用环境变量 DESKRAWL_GAME 覆盖。",
+    "$comment": "P2 版本指纹（2026-10-13 补丁 1.0.2b 后实测）。导入前校验：任一不符即拒绝导入并提示重新导出 schema/so_dump。游戏目录可用环境变量 DESKRAWL_GAME 覆盖。",
     "game_dir": "d:\\steam\\steamapps\\common\\Deskrawl",
-    "game_assembly_sha256": "d46f0a321e8e07646cca37c7460e58fbfecc47ade5027ea2e00fc71f0fec0565",
-    "global_metadata_sha256": "57627070d0fe8a00f82e373100768f529c4829f02d6aeb8ac3057aaab13cacfc",
+    "game_assembly_sha256": "f8221364be8101c60d76be3e031f2cd5be376a7fb6b9b73a7cfb45e2a52a9fab",
+    "global_metadata_sha256": "f5cf7ba1bbd13cb099ea231ac89ed772f10c9f28d329f5dab9bc805a3809b802",
     "so_dump_itemdata_entries": 338
   },
   "il2cpp": {
@@ -24,13 +24,13 @@
     "entry_value": "0x10"
   },
   "singleton_getters": {
-    "GameManager": {"rva": "0x76CEE0", "klass": "GameManager", "method": "dkh()"},
-    "Inventory": {"rva": "0x4F4100", "klass": "Inventory", "method": "fbr()"},
-    "Storage": {"rva": "0x520F80", "klass": "Storage", "method": "fpj()"},
-    "EquipmentManager": {"rva": "0x7649D0", "klass": "EquipmentManager", "method": "ddk()"}
+    "GameManager": {"rva": "0x770C00", "klass": "GameManager", "method": "dkg()"},
+    "Inventory": {"rva": "0x4F7220", "klass": "Inventory", "method": "fbq()"},
+    "Storage": {"rva": "0x523D30", "klass": "Storage", "method": "fpi()"},
+    "EquipmentManager": {"rva": "0x7686D0", "klass": "EquipmentManager", "method": "ddj()"}
   },
   "save_system": {
-    "anchor_rvas": ["0x7B6670", "0x7B61F0", "0x7B5DD0", "0x7B7F80"],
+    "anchor_rvas": ["0x7BA6A0", "0x7BA220", "0x7B9E00", "0x7BBFD0"],
     "klass": "SaveSystem",
     "field_slot_index": "0x24",
     "container": "0x28",
@@ -43,10 +43,10 @@
     "rec_summary_level": "0x28"
   },
   "generated_items": {
-    "scan_rvas": ["0x784AB0", "0x7848E0", "0x784830"],
+    "scan_rvas": ["0x788980", "0x788800", "0x788750"],
     "klass": "gj",
     "items": "0x0",
-    "$comment": "补丁后：klass gi→gj，扫描方法 doj/dog/dof → dpv/dps/dpr"
+    "$comment": "补丁后：klass gi→gj，扫描方法 dpv/dps/dpr（10-10 版 0x784AB0/0x7848E0/0x784830）；1.0.2b 版 gj 类仍在，三方法 RVA 重算为 0x788980/0x788800/0x788750（按签名+Slot 匹配）"
   },
   "game_manager": {
     "combat_controller": "0x40", "town_controller": "0x48", "hero_data": "0x38"
@@ -89,7 +89,7 @@
       "nuf": "0x358", "nug": "0x360", "tuple_stride": "0x20"
     },
     "status_controller": {
-      "$comment": "StatusEffectController（bgh/0x4D5E10）：面板最终 = g3(stat)×(v+g1(stat))×(1+g2(stat))，三字典实测为空即无操作；此为增益(Buff)口径。",
+      "$comment": "StatusEffectController（SumStatBonus@0x4D8510）：面板最终 = g3(stat)×(v+g1(stat))×(1+g2(stat))，三字典为增益(Buff)口径。值为**明文 double**（dump.cs 两版均为 Dictionary<StatType,double>），步长 0x18，须按 stat_plain_double 读——套面板字典的 ObscuredDouble(0x38) 会在 buff 层非空时解出 nan。",
       "ptr": "0x130", "flat": "0x38", "pct": "0x40", "mult": "0x48"
     }
   },
@@ -105,10 +105,10 @@
   "stat_modifier": {"size": "0x1C", "stat": "0x0", "type": "0x4", "value": "0x8"},
   "item_data": {"klass": "ItemData", "type": "0x20", "rarity": "0x24", "equip_slot": "0x90"},
   "generated_item_klass": "GeneratedItemData",
-  "entry_steps": {"stat_double": "0x38", "ptr": "0x18"},
+  "entry_steps": {"stat_double": "0x38", "stat_plain_double": "0x18", "ptr": "0x18"},
   "paragon": {
-    "$comment": "巅峰点数分配（2026-10-10 活体实测）。静态管理器（dump.cs hh，混淆名不校验）static_fields +0x40 = Dictionary<StatType,int>（dyt(StatType) 反汇编定位）；条目 stride 0x10：hashCode@0/next@4/key(StatType id)@8/value(点数)@C，数据区 @+0x20。定位走锚点方法用法槽 + 容器形状/值域双校验（类名每版混淆不可用）。读「当前角色」运行时分配；云端槽位 rec_profile 只是 GUID。",
-    "anchor_rvas": ["0x7A39C0", "0x7A51E0"],
+    "$comment": "巅峰点数分配（2026-10-10 活体实测，2026-10-13 1.0.2b 重锚定）。静态管理器（dump.cs hh，混淆名不校验）static_fields +0x40 = Dictionary<StatType,int>（dys(StatType)/0x7A7BA0 反汇编定位，旧 dyt）；条目 stride 0x10：hashCode@0/next@4/key(StatType id)@8/value(点数)@C，数据区 @+0x20。定位走锚点方法用法槽 + 容器形状/值域双校验（类名每版混淆不可用）。读「当前角色」运行时分配；云端槽位 rec_profile 只是 GUID。",
+    "anchor_rvas": ["0x7A7960", "0x7A91A0"],
     "static_dict": "0x40",
     "entries": "0x18",
     "count": "0x20",
@@ -118,8 +118,8 @@
     "value": "0xC"
   },
   "rune_manager": {
-    "$comment": "符文槽（RuneManager，类名未混淆；单例 getter eaq@0x7A8B30，2026-10-10 实测）：runes = RuneData[]（6 槽，元素为 ItemData 子类，名称走 SaveSystem 名称倒排 name_map）；uids = string[]（6 槽实例 UID，经 uid2gid → rune_level@0x28 取符文等级）。符文同时提供属性（RuneData.Attributes）与「技能等级+N」（AbilityLevels）——旋风斩 10+8=18 级的唯一来源。",
-    "getter_rva": "0x7A8B30",
+    "$comment": "符文槽（RuneManager，类名未混淆；单例 getter eap@0x7ACB30，2026-10-13 1.0.2b 重算，旧 eaq@0x7A8B30）：runes = RuneData[]（6 槽，元素为 ItemData 子类，名称走 SaveSystem 名称倒排 name_map）；uids = string[]（6 槽实例 UID，经 uid2gid → rune_level@0x28 取符文等级）。符文同时提供属性（RuneData.Attributes）与「技能等级+N」（AbilityLevels）——旋风斩 10+8=18 级的唯一来源。",
+    "getter_rva": "0x7ACB30",
     "klass": "RuneManager",
     "runes": "0x30",
     "uids": "0x38",

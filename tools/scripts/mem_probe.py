@@ -12,10 +12,10 @@
 定位链（全部来自 data/schema/dump.cs，当前构建）：
   1) 锚点方法 RVA（反汇编前 192B 扫 rip 相对加载 -> 元数据用法槽）：
        2026-10-10 补丁后按「同签名」在新 dump 重算（旧名→新名见 docs/08 §12.3）：
-       SaveSystem.egj(SaveContainer)       RVA 0x7B6670   （旧 eed 0x7A4360）
-       SaveSystem.egg(string)              RVA 0x7B61F0   （旧 eea 0x7A3EE0）
-       SaveSystem.ege(CharacterMode)       RVA 0x7B5DD0   （旧 edy 0x7A3AC0）
-       SaveSystem.eha()                    RVA 0x7B7F80   （旧 eeu 0x7A5C60）
+       SaveSystem.egi(SaveContainer)       RVA 0x7BA6A0   （旧 eed 0x7A4360）
+       SaveSystem.egf(string)              RVA 0x7BA220   （旧 eea 0x7A3EE0）
+       SaveSystem.egd(CharacterMode)       RVA 0x7B9E00   （旧 edy 0x7A3AC0）
+       SaveSystem.egz()                    RVA 0x7BBFD0   （旧 eeu 0x7A5C60）
   2) 槽值 = Il2CppClass*(SaveSystem)，以类名 "SaveSystem" 自校验（name @ +0x10）
   3) static_fields：Il2CppClass 内偏移候选扫描，用「实例对象 klass 指针回指」自校验；
      nfi 位于 static_fields+0x0（dump.cs L390396 <nfi>k__BackingField // 0x0）
@@ -166,19 +166,19 @@ def module_base(h, mod_name):
 RIP_PREFIXES = {b'\x48\x8b', b'\x48\x8d', b'\x4c\x8b', b'\x4c\x8d'}
 RIP_MODRMS = {0x05, 0x0D, 0x15, 0x1D, 0x2D, 0x35, 0x3D}  # 0x25(rsp) 排除
 
-ANCHORS = [  # (说明, RVA) —— 2026-10-10 补丁后重算（同签名匹配，旧名见 docs/08 §12.3）
-    ('SaveSystem.egj(SaveContainer)   旧 eed', 0x7B6670),
-    ('SaveSystem.egg(string)          旧 eea', 0x7B61F0),
-    ('SaveSystem.ege(CharacterMode)   旧 edy', 0x7B5DD0),
-    ('SaveSystem.eha()                旧 eeu', 0x7B7F80),
+ANCHORS = [  # (说明, RVA) —— 2026-10-13 1.0.2b 补丁后重算（签名+Slot 匹配；旧名为 10-10 版）
+    ('SaveSystem.egi(SaveContainer)   旧 egj', 0x7BA6A0),
+    ('SaveSystem.egf(string)          旧 egg', 0x7BA220),
+    ('SaveSystem.egd(CharacterMode)   旧 ege', 0x7B9E00),
+    ('SaveSystem.egz()                旧 eha', 0x7BBFD0),
 ]
 
 # 路径 B：运行时单例静态 getter（无参返回单例实例）
 SINGLETON_GETTERS = [
-    # (说明, getter RVA, 期望返回类型类名) —— 2026-10-10 补丁后重算
-    ('GameManager.dkh()   旧 diw', 0x76CEE0, 'GameManager'),
-    ('Inventory.fbr()     旧 eyy', 0x4F4100, 'Inventory'),
-    ('Storage.fpj()       旧 fmq', 0x520F80, 'Storage'),
+    # (说明, getter RVA, 期望返回类型类名) —— 2026-10-13 1.0.2b 补丁后重算
+    ('GameManager.dkg()   旧 dkh', 0x770C00, 'GameManager'),
+    ('Inventory.fbq()     旧 fbr', 0x4F7220, 'Inventory'),
+    ('Storage.fpi()       旧 fpj', 0x523D30, 'Storage'),
 ]
 
 
@@ -214,8 +214,8 @@ def elem(h, first, i):
 # ---------------- ACTk (CodeStage Anti-Cheat Toolkit) 解码 ----------------
 # 算法经反汇编实证（GameAssembly 当前构建）：
 #   ObscuredInt/Long 读取 = (hiddenValue - currentCryptoKey) XOR currentCryptoKey
-#     （encrypt 为 key + (value ^ key)； Actk.ObscuredInt.Decrypt@0x4548A0 / Actk.ObscuredLong.Decrypt@0x451340）
-#   ObscuredFloat 读取 = bswap12(hiddenValue) XOR currentCryptoKey（Actk.ObscuredFloat.Decrypt@0x453810，
+#     （encrypt 为 key + (value ^ key)； Actk.ObscuredInt.Decrypt@0x457960 / Actk.ObscuredLong.Decrypt@0x454400）
+#   ObscuredFloat 读取 = bswap12(hiddenValue) XOR currentCryptoKey（Actk.ObscuredFloat.Decrypt@0x4568D0，
 #     加密 jyh = bswap12(bits ^ key)，b16<->b24 字节互换）
 # 布局：dump.cs L657166-657470；hash 字段为 FNV 校验（反篡改），读取时忽略
 def _s32(x):
@@ -247,7 +247,7 @@ def obsc_double(h, addr):  # 40B: hash@0 hidden@8 key@0x10 fake@0x18 oldByte8@0x
     if hidden is None or key is None:
         return None
     b = struct.pack('<Q', hidden)
-    # 字节置换（Actk.ObscuredDouble.Decrypt@0x452B70 反汇编实证）：swap(0,1) + 三循环 4->5->7->4
+    # 字节置换（Actk.ObscuredDouble.Decrypt@0x455C30 反汇编实证）：swap(0,1) + 三循环 4->5->7->4
     r = bytes([b[1], b[0], b[2], b[3], b[7], b[4], b[6], b[5]])
     bits = struct.unpack('<Q', r)[0] ^ key
     return struct.unpack('<d', struct.pack('<Q', bits))[0]

@@ -26,7 +26,7 @@ class StatType(IntEnum):
     MagicResistPercent = 59 # 魔抗(%)
     Dodge = 22              # 闪避率          [封顶 0.85]
     CritDamageReduction = 60
-    DamageReduction = 64    # 全局减伤        [clamp 0,1]
+    DamageReduction = 64    # 全局减伤        [封顶 0.90]
     PoisonDamageReduction = 49
     PhysicalDamageReduction = 51
     FireDamageReduction = 52
@@ -42,7 +42,7 @@ class StatType(IntEnum):
     LifeRegen = 36
     HealingReceivedBonus = 56
     # 循环
-    CooldownReduction = 13  # [封顶 0.85]
+    CooldownReduction = 13  # [封顶 0.80]
     MaxMana = 14
     ManaOnKill = 35
     ManaRegen = 47
@@ -103,7 +103,7 @@ class DamageType(IntEnum):
     Arcane = 5
 
 
-# 硬编码分组表（ItemizationConfig.StaticInit @ 0x706A50，补丁前 ..cctor @ 0x6F6360）
+# 硬编码分组表（ItemizationConfig.StaticInit @ 0x70A3F0，补丁前 ..cctor @ 0x6F6360）
 CORE = [StatType.Strength, StatType.Dexterity, StatType.Intelligence]
 ALL_ELEMENTS = [StatType.DamagePhysical, StatType.DamageFire, StatType.DamageCold,
                 StatType.DamageLightning, StatType.DamagePoison, StatType.DamageArcane]
@@ -112,7 +112,7 @@ CONDITIONAL_DAMAGE = [StatType.DamageVsHealthy, StatType.DamageVsInjured, StatTy
                       StatType.DamageVsBleeding, StatType.DamageVsPoisoned, StatType.DamageVsDistant,
                       StatType.DamageVsBurned]
 
-# DamageType → StatType（跳转表在 Character.ElementDamageMultiplier@0x67D010 内，与 ALL_ELEMENTS 一致）
+# DamageType → StatType（跳转表在 Character.ElementDamageMultiplier@0x680E80 内，与 ALL_ELEMENTS 一致）
 DAMAGE_TYPE_TO_STAT = {
     DamageType.Physical: StatType.DamagePhysical,
     DamageType.Fire: StatType.DamageFire,
@@ -122,14 +122,17 @@ DAMAGE_TYPE_TO_STAT = {
     DamageType.Arcane: StatType.DamageArcane,
 }
 
-# 封顶 0.85 的 4 项（StatCap.Clamp@0x4A91C0，掩码 0x402010 + 特判 37）
-CAPPED_085 = {StatType.CritChance, StatType.CooldownReduction, StatType.Dodge, StatType.ManaCostReduction}
-# clamp[0,1] 的减伤项
-CLAMP_01 = {StatType.DamageReduction, StatType.PoisonDamageReduction, StatType.PhysicalDamageReduction,
-            StatType.FireDamageReduction, StatType.ColdDamageReduction, StatType.LightningDamageReduction,
-            StatType.ArcaneDamageReduction}
+# 属性封顶表（StatCap.GetCap@0x4AC490 反汇编实证，1.0.2b；旧统一 0.85 掩码 0x402010 已拆分）：
+#   0.85 = 暴击率(4)/闪避(22)/蓝耗缩减(37)；0.80 = 冷却缩减(13)（1.0.2b 由 0.85 下调，见更新说明）；
+#   0.90 = 通用减伤(64)与各元素减伤(49/51-55)（1.0.2b 由无上限收紧为 90%）；其余无上限（inf）。
+CAPPED_085 = {StatType.CritChance, StatType.Dodge, StatType.ManaCostReduction}
+CAPPED_080 = {StatType.CooldownReduction}
+# 减伤类封顶 0.90（旧 CLAMP_01 的 1.0 口径已被 1.0.2b 取代）
+CAPPED_090 = {StatType.DamageReduction, StatType.PoisonDamageReduction, StatType.PhysicalDamageReduction,
+              StatType.FireDamageReduction, StatType.ColdDamageReduction, StatType.LightningDamageReduction,
+              StatType.ArcaneDamageReduction}
 
-# 元素减伤 StatType 按伤害类型（跳转表在 Character.ApplyDamage@0x67E320 内）
+# 元素减伤 StatType 按伤害类型（跳转表在 Character.ApplyDamage@0x681D10 内）
 ELEM_REDUCTION_BY_DAMAGE = {
     DamageType.Physical: StatType.PhysicalDamageReduction,
     DamageType.Fire: StatType.FireDamageReduction,

@@ -4,7 +4,7 @@
 动机：训练假人 DPS 计只在假人图存在；若 PlayerStatistics 的计数器是「玩家造成伤害累计」，
 则 GUI 在任何战斗场景都能做差分 → 实战滚动 DPS。
 字段（dump.cs）：odx double@0x28 / ody long@0x30 / odz long@0x38 / oea int@0x40；
-单例 getter fmy() RVA 0x519B20。语义待本探针对照游戏「统计」面板确认。
+单例 getter fmx() RVA 0x51C840。语义待本探针对照游戏「统计」面板确认。
 
 用法：python probe_player_statistics.py [间隔秒]   # 默认采样 2 次、隔 3s
 """
@@ -17,7 +17,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from mem_probe import find_process, find_singleton, module_base, u32, u64, valid_ptr
 
 k32 = ctypes.WinDLL('kernel32', use_last_error=True)
-GETTER_RVA = 0x519B20       # PlayerStatistics.fmy()
+GETTER_RVA = 0x51C840       # PlayerStatistics.fmx()
 KLASS = 'PlayerStatistics'
 
 

@@ -22,7 +22,7 @@ from mem_probe import (cstr, find_process, f32, klass_name, module_base, read_me
                        scan_usage_slots, u32, u64, valid_ptr)
 
 k32 = ctypes.WinDLL('kernel32', use_last_error=True)
-DUMMY_BMJ_RVA = 0x52B0B0      # dump.cs: TrainingDummy.bmj(long, bool) Slot 26
+DUMMY_BMJ_RVA = 0x52DE70      # dump.cs: TrainingDummy.bmj(long, bool) Slot 26
 METER_KLASS = 'TrainingDpsMeterUI'
 PROC = 'Deskrawl.exe'
 

@@ -487,6 +487,19 @@ pathID/名字检索**零引用**（不存在外部关联的特效资产），2 �
 | `python rva_audit.py --check --falsify` / `--docs` | 退出码 0 |
 | `python -m deskrawl_gui.memdump` | 退出码 0（实机，指纹+双读） |
 
+## 第六轮（2026-10-14）：1.0.2b 收尾（文档侧重锚定 + 实机 memdump）
+
+补丁 1.0.2b 的代码侧重锚定与前一轮完成；本轮清掉文档侧体检红并跑实机：
+
+| 项 | 结论 |
+|---|---|
+| 文档侧重锚定 | `docs/02/03/06/07/09` 的「补丁后」地址滚动到 1.0.2b 值（旧值转「补丁前」，仍是对照）；`docs/08 §13.2/§13.4` 的 10-10 旧列逐格标「旧」；`docs/plan/文档置信度待核清单.md` 的证据地址同步更新 |
+| 新增配置登记 | `§13.2` 常量簇通配 `0x18364F***` 与 double 查表簇偏移列归为「非地址」；double 查表簇封顶常量（0.85/0.8/0.9/inf）登记为无锚点数据指针（PE 逐字节读回命中） |
+| 实机缺陷（**非补丁引入，既有隐患**） | `memdump` 报 `status_mods.flat[57] nan`：`StatusEffectController` 的 flat/pct/mult 三字典是 `Dictionary<StatType,double>`（dump.cs 两版一致），导入链却按面板字典的 `ObscuredDouble`（步长 0x38）读——buff 层为空时看不出，活体有 buff 即解出 nan。修：新增 `_read_plain_double_dict` + `entry_steps.stat_plain_double=0x18` |
+| 实机 memdump | 修复后 `[校验] PASS`（结构/键域/值域/双读一致性），退出码 0 |
+
+回归：`deskrawl_calc` selftest 12/12、`deskrawl_gui --selftest` 48/48、`rva_audit --check --falsify`（代码侧 0 红）与 `--docs`（文档侧 0 红）、`build_aliases --check` 43 条 0 问题。
+
 ## 遗留与建议
 
 1. `docs/` 地址已全部有处置（0 待处理）；**文档正文的方法名仍是旧名**（如 docs/08 §11 摘录里的 `bjr`），

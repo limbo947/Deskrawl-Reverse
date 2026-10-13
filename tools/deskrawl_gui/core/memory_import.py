@@ -222,6 +222,23 @@ class SnapshotBuilder:
             kv[key] = val
         return kv
 
+    def _read_plain_double_dict(self, d, label):
+        """Dictionary<StatType, double>：键 i32@+8，值**普通 double**@+0x10，步长 0x18。
+
+        为什么单独一份：StatusEffectController 的 flat/pct/mult 三个增益层是明文 double
+        （dump.cs 两版均为 `double`），与面板字典（ObscuredDouble，步长 0x38）不同。照
+        ObscuredDouble 解会在 buff 层非空时解出 nan（活体 buff 一旦存在即暴露）。
+        """
+        entries, _free = self.il.dict_entries(d, self.off['entry_steps']['stat_plain_double'])
+        kv = {}
+        for e in entries:
+            key = self.il.dict_entry_key_i32(e)
+            raw = self.pr.read(e + self.il.o['entry_value'], 8)
+            if raw is None:
+                raise MemoryReadError(f'字典 {label} 值读取失败')
+            kv[key] = struct.unpack('<d', raw)[0]
+        return kv
+
     def _read_slots(self, arr):
         """InventorySlot[]（引用数组）：Item@0x10 / Count@0x18 / ItemUid@0x20；空槽跳过。
 
@@ -373,7 +390,7 @@ class SnapshotBuilder:
         return slots
 
     def _read_conditionals(self, player):
-        """nuf/nug 条件属性表（Player.ConditionalModValue@0x4FAC90 的输入；布局见 memory_offsets.json 注释）。
+        """nuf/nug 条件属性表（Player.ConditionalModValue@0x4FDCC0 的输入；布局见 memory_offsets.json 注释）。
 
         值字段是内联 double（非 Obscured）；ability/status 指针非空表示该条带技能/状态门控，
         导出为 1（面板复算侧不猜门控状态，跳过并告警）。"""
@@ -404,13 +421,13 @@ class SnapshotBuilder:
         return out
 
     def _read_status_mods(self, player):
-        """StatusEffectController 三字典（StatusEffectController.SumStatBonus@0x4D56A0 的 g1/g2/g3 层）。空表=无增益。"""
+        """StatusEffectController 三字典（SumStatBonus@0x4D8510 的 g1/g2/g3 层）。空表=无增益。"""
         sc = self.off['player']['status_controller']
         ctrl = self.pr.u64(player + sc['ptr'])
         out = {}
         for label in ('flat', 'pct', 'mult'):
             d = self.pr.u64(ctrl + sc[label]) if valid_ptr(ctrl) else 0
-            out[label] = self._read_stat_dict(d, f'status.{label}') if valid_ptr(d) else {}
+            out[label] = self._read_plain_double_dict(d, f'status.{label}') if valid_ptr(d) else {}
         return out
 
     def _read_primary_stat(self):

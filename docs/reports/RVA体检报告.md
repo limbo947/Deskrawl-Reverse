@@ -1,17 +1,17 @@
 # RVA 体检报告（由 `tools/scripts/rva_audit.py` 自动生成，勿手改）
 
 - 命令：`python rva_audit.py --check --falsify`
-- 当期 GameAssembly.dll SHA-256：`d46f0a321e8e07646cca37c7460e58fbfecc47ade5027ea2e00fc71f0fec0565`
+- 当期 GameAssembly.dll SHA-256：`f8221364be8101c60d76be3e031f2cd5be376a7fb6b9b73a7cfb45e2a52a9fab`
 - 旧构建 dump.cs 来源：`git show 8660446:data/schema/dump.cs`
-- 扫描：34 个文件 / 152 条地址字面量
+- 扫描：34 个文件 / 154 条地址字面量
 
 ## 0. 结论摘要
 
 | 判定 | 条数 |
 |---|---|
 | 非地址（白名单/自动规则） | 43 |
-| 仍有效（方法） | 64 |
-| 仍有效（注释里的方法名已过期） | 0 |
+| 仍有效（方法） | 65 |
+| 仍有效（注释里的方法名已过期） | 1 |
 | 仍有效（数据地址） | 9 |
 | 已失效（已给出重算值） | 0 |
 | 已失效（内联数据，只能改成方法级引用） | 0 |
@@ -21,7 +21,7 @@
 | 无法判定（人工确认） | 0 |
 | 历史对照（有意保留的旧地址） | 7 |
 | 弃用探针（理由已写入文档） | 29 |
-| **合计** | **152** |
+| **合计** | **154** |
 
 ## 1. 已失效与重算值（写回源码前需人工复核）
 
@@ -32,6 +32,7 @@
 
 | 文件:行 | 注释名 | 当期名 |
 |---|---|---|
+| `tools/deskrawl_gui/core/memory_import.py:424` | SumStatBonus | 注释名 SumStatBonus → 当期名 bha；StatusEffectController::bha(StatType a, double b) { }) Slot=None |
 
 ## 3. 白名单：判为非地址（每条必须写明理由）
 
@@ -41,32 +42,32 @@
 | `tools/deskrawl_gui/core/memory_reader.py:5` | `0x0410` | 四位以内的微常量（位掩码/计数/标志），不可能是地址 |
 | `tools/deskrawl_gui/core/memory_reader.py:21` | `0x0410` | 四位以内的微常量（位掩码/计数/标志），不可能是地址 |
 | `tools/deskrawl_gui/core/memory_reader.py:44` | `0x10000` | 用户态指针下限，出现在 `0x10000 <= p < 0x7FFFFFFEFFFF` 的范围比较里，是阈值不是地址 |
-| `tools/deskrawl_gui/core/memory_reader.py:263` | `0xFFFFFFFF` | 值 0xFFFFFFFF 超出映像范围（max_rva=0x4190000），是掩码/哨兵而非地址 |
-| `tools/deskrawl_gui/core/memory_reader.py:264` | `0x100000000` | 值 0x100000000 超出映像范围（max_rva=0x4190000），是掩码/哨兵而非地址 |
-| `tools/deskrawl_gui/core/memory_reader.py:264` | `0x80000000` | 值 0x80000000 超出映像范围（max_rva=0x4190000），是掩码/哨兵而非地址 |
-| `tools/deskrawl_gui/core/memory_reader.py:287` | `0xFFFFFFFF` | 值 0xFFFFFFFF 超出映像范围（max_rva=0x4190000），是掩码/哨兵而非地址 |
-| `tools/deskrawl_gui/core/memory_reader.py:302` | `0xFF0000FF` | 值 0xFF0000FF 超出映像范围（max_rva=0x4190000），是掩码/哨兵而非地址 |
-| `tools/scripts/decode.py:96` | `0xFF0000FF` | 值 0xFF0000FF 超出映像范围（max_rva=0x4190000），是掩码/哨兵而非地址 |
-| `tools/scripts/decode.py:100` | `0xFFFFFFFF` | 值 0xFFFFFFFF 超出映像范围（max_rva=0x4190000），是掩码/哨兵而非地址 |
-| `tools/scripts/decode.py:125` | `0xFFFFFFFF` | 值 0xFFFFFFFF 超出映像范围（max_rva=0x4190000），是掩码/哨兵而非地址 |
-| `tools/scripts/decode.py:125` | `0xFFFFFFFF` | 值 0xFFFFFFFF 超出映像范围（max_rva=0x4190000），是掩码/哨兵而非地址 |
-| `tools/scripts/decode.py:128` | `0xFFFFFFFF` | 值 0xFFFFFFFF 超出映像范围（max_rva=0x4190000），是掩码/哨兵而非地址 |
+| `tools/deskrawl_gui/core/memory_reader.py:263` | `0xFFFFFFFF` | 值 0xFFFFFFFF 超出映像范围（max_rva=0x419d000），是掩码/哨兵而非地址 |
+| `tools/deskrawl_gui/core/memory_reader.py:264` | `0x100000000` | 值 0x100000000 超出映像范围（max_rva=0x419d000），是掩码/哨兵而非地址 |
+| `tools/deskrawl_gui/core/memory_reader.py:264` | `0x80000000` | 值 0x80000000 超出映像范围（max_rva=0x419d000），是掩码/哨兵而非地址 |
+| `tools/deskrawl_gui/core/memory_reader.py:287` | `0xFFFFFFFF` | 值 0xFFFFFFFF 超出映像范围（max_rva=0x419d000），是掩码/哨兵而非地址 |
+| `tools/deskrawl_gui/core/memory_reader.py:302` | `0xFF0000FF` | 值 0xFF0000FF 超出映像范围（max_rva=0x419d000），是掩码/哨兵而非地址 |
+| `tools/scripts/decode.py:96` | `0xFF0000FF` | 值 0xFF0000FF 超出映像范围（max_rva=0x419d000），是掩码/哨兵而非地址 |
+| `tools/scripts/decode.py:100` | `0xFFFFFFFF` | 值 0xFFFFFFFF 超出映像范围（max_rva=0x419d000），是掩码/哨兵而非地址 |
+| `tools/scripts/decode.py:125` | `0xFFFFFFFF` | 值 0xFFFFFFFF 超出映像范围（max_rva=0x419d000），是掩码/哨兵而非地址 |
+| `tools/scripts/decode.py:125` | `0xFFFFFFFF` | 值 0xFFFFFFFF 超出映像范围（max_rva=0x419d000），是掩码/哨兵而非地址 |
+| `tools/scripts/decode.py:128` | `0xFFFFFFFF` | 值 0xFFFFFFFF 超出映像范围（max_rva=0x419d000），是掩码/哨兵而非地址 |
 | `tools/scripts/disasm.py:11` | `0x180000000` | PE ImageBase 本身（节表换算基准），不是可寻址目标 |
 | `tools/scripts/disasm2.py:9` | `0x180000000` | PE ImageBase 本身（节表换算基准），不是可寻址目标 |
-| `tools/scripts/disasm2.py:95` | `0x8000000` | 值 0x8000000 超出映像范围（max_rva=0x4190000），是掩码/哨兵而非地址 |
-| `tools/scripts/dump_index.py:91` | `0xFFFFFFFF` | 值 0xFFFFFFFF 超出映像范围（max_rva=0x4190000），是掩码/哨兵而非地址 |
+| `tools/scripts/disasm2.py:95` | `0x8000000` | 值 0x8000000 超出映像范围（max_rva=0x419d000），是掩码/哨兵而非地址 |
+| `tools/scripts/dump_index.py:91` | `0xFFFFFFFF` | 值 0xFFFFFFFF 超出映像范围（max_rva=0x419d000），是掩码/哨兵而非地址 |
 | `tools/scripts/dump_index.py:147` | `0x4000` | `containing()` 判定「内联数据是否属于该方法的跨距阈值」，是搜索窗口宽度不是地址 |
 | `tools/scripts/extract_rolltable.py:11` | `0x180000000` | PE ImageBase 本身（节表换算基准），不是可寻址目标 |
 | `tools/scripts/mem_probe.py:37` | `0x0400` | 四位以内的微常量（位掩码/计数/标志），不可能是地址 |
 | `tools/scripts/mem_probe.py:38` | `0x0010` | 四位以内的微常量（位掩码/计数/标志），不可能是地址 |
 | `tools/scripts/mem_probe.py:65` | `0x10000` | 同上（内存链刻意自包含，与 memory_reader.py 是两份独立实现） |
-| `tools/scripts/mem_probe.py:222` | `0xFFFFFFFF` | 值 0xFFFFFFFF 超出映像范围（max_rva=0x4190000），是掩码/哨兵而非地址 |
-| `tools/scripts/mem_probe.py:223` | `0x100000000` | 值 0x100000000 超出映像范围（max_rva=0x4190000），是掩码/哨兵而非地址 |
-| `tools/scripts/mem_probe.py:223` | `0x80000000` | 值 0x80000000 超出映像范围（max_rva=0x4190000），是掩码/哨兵而非地址 |
-| `tools/scripts/mem_probe.py:235` | `0xFFFFFFFF` | 值 0xFFFFFFFF 超出映像范围（max_rva=0x4190000），是掩码/哨兵而非地址 |
-| `tools/scripts/mem_probe.py:261` | `0xFF0000FF` | 值 0xFF0000FF 超出映像范围（max_rva=0x4190000），是掩码/哨兵而非地址 |
+| `tools/scripts/mem_probe.py:222` | `0xFFFFFFFF` | 值 0xFFFFFFFF 超出映像范围（max_rva=0x419d000），是掩码/哨兵而非地址 |
+| `tools/scripts/mem_probe.py:223` | `0x100000000` | 值 0x100000000 超出映像范围（max_rva=0x419d000），是掩码/哨兵而非地址 |
+| `tools/scripts/mem_probe.py:223` | `0x80000000` | 值 0x80000000 超出映像范围（max_rva=0x419d000），是掩码/哨兵而非地址 |
+| `tools/scripts/mem_probe.py:235` | `0xFFFFFFFF` | 值 0xFFFFFFFF 超出映像范围（max_rva=0x419d000），是掩码/哨兵而非地址 |
+| `tools/scripts/mem_probe.py:261` | `0xFF0000FF` | 值 0xFF0000FF 超出映像范围（max_rva=0x419d000），是掩码/哨兵而非地址 |
 | `tools/scripts/mem_probe.py:558` | `0x0410` | 四位以内的微常量（位掩码/计数/标志），不可能是地址 |
-| `tools/scripts/obs_solve3.py:42` | `0xffffffff` | 值 0xffffffff 超出映像范围（max_rva=0x4190000），是掩码/哨兵而非地址 |
+| `tools/scripts/obs_solve3.py:42` | `0xffffffff` | 值 0xffffffff 超出映像范围（max_rva=0x419d000），是掩码/哨兵而非地址 |
 | `tools/scripts/pe_file.py:8` | `0x180000000` | PE ImageBase 本身（节表换算基准），不是可寻址目标 |
 | `tools/scripts/probe_dps_meter.py:34` | `0x0410` | 四位以内的微常量（位掩码/计数/标志），不可能是地址 |
 | `tools/scripts/probe_paragon.py:41` | `0x0410` | 四位以内的微常量（位掩码/计数/标志），不可能是地址 |
@@ -85,27 +86,27 @@
 
 | 文件:行 | 字面量 | 依据 |
 |---|---|---|
-| `tools/deskrawl_calc/engine.py:149` | `0x18363F120` | 常量「护甲分母」= 50.0（double） |
-| `tools/scripts/probe_paragon.py:17` | `0x183A1BF88` | 当期 元数据槽：hh_TypeInfo（与登记名一致）（当期 script.json 按 RVA 命中 + data_refs 登记名核对） |
-| `tools/scripts/probe_stat_labels.py:13` | `0x183A1EB70` | 当期 元数据槽：ItemRarity_var（与登记名一致）（当期 script.json 按 RVA 命中 + data_refs 登记名核对） |
-| `tools/scripts/probe_stat_labels.py:13` | `0x183A212F0` | 当期 元数据槽：Method$UnityEngine.Object.Instantiate<StatRowUI>()（与登记名一致）（当期 script.json 按 RVA 命中 + data_refs 登记名核对） |
-| `tools/scripts/probe_stat_labels.py:13` | `0x183A212E8` | 当期 元数据槽：StatRowUI[]_TypeInfo（与登记名一致）（当期 script.json 按 RVA 命中 + data_refs 登记名核对） |
-| `tools/scripts/probe_stat_labels.py:14` | `0x183A2A4B0` | 当期 元数据槽：ItemRarity[]_TypeInfo（与登记名一致）（当期 script.json 按 RVA 命中 + data_refs 登记名核对） |
-| `tools/scripts/probe_stat_labels.py:14` | `0x183A109E0` | 当期 元数据槽：UnityEngine.Object_TypeInfo（与登记名一致）（当期 script.json 按 RVA 命中 + data_refs 登记名核对） |
-| `tools/scripts/probe_stat_labels.py:14` | `0x183A17CD8` | 当期 元数据槽：GameManager_TypeInfo（与登记名一致）（当期 script.json 按 RVA 命中 + data_refs 登记名核对） |
-| `tools/scripts/probe_stat_labels.py:15` | `0x183A1EBC8` | 当期 元数据槽：PlayerStatistics_TypeInfo（与登记名一致）（当期 script.json 按 RVA 命中 + data_refs 登记名核对） |
+| `tools/deskrawl_calc/engine.py:152` | `0x18364FAD0` | 常量「护甲分母」= 50.0（double） |
+| `tools/scripts/probe_paragon.py:17` | `0x183A2A4D8` | 当期 元数据槽：hh_TypeInfo（与登记名一致）（当期 script.json 按 RVA 命中 + data_refs 登记名核对） |
+| `tools/scripts/probe_stat_labels.py:13` | `0x183A2D670` | 当期 元数据槽：ItemRarity_var（与登记名一致）（当期 script.json 按 RVA 命中 + data_refs 登记名核对） |
+| `tools/scripts/probe_stat_labels.py:13` | `0x183A2FB50` | 当期 元数据槽：Method$UnityEngine.Object.Instantiate<StatRowUI>()（与登记名一致）（当期 script.json 按 RVA 命中 + data_refs 登记名核对） |
+| `tools/scripts/probe_stat_labels.py:13` | `0x183A2FB48` | 当期 元数据槽：StatRowUI[]_TypeInfo（与登记名一致）（当期 script.json 按 RVA 命中 + data_refs 登记名核对） |
+| `tools/scripts/probe_stat_labels.py:14` | `0x183A37E40` | 当期 元数据槽：ItemRarity[]_TypeInfo（与登记名一致）（当期 script.json 按 RVA 命中 + data_refs 登记名核对） |
+| `tools/scripts/probe_stat_labels.py:14` | `0x183A1F3E8` | 当期 元数据槽：UnityEngine.Object_TypeInfo（与登记名一致）（当期 script.json 按 RVA 命中 + data_refs 登记名核对） |
+| `tools/scripts/probe_stat_labels.py:14` | `0x183A25F98` | 当期 元数据槽：GameManager_TypeInfo（与登记名一致）（当期 script.json 按 RVA 命中 + data_refs 登记名核对） |
+| `tools/scripts/probe_stat_labels.py:15` | `0x183A2D6C8` | 当期 元数据槽：PlayerStatistics_TypeInfo（与登记名一致）（当期 script.json 按 RVA 命中 + data_refs 登记名核对） |
 
 ## 4b. 历史对照（紧邻「旧/补丁前」标注，刻意保留的旧地址）
 
 | 文件:行 | 字面量 | 原判定 | 重算值 | 上下文 |
 |---|---|---|---|---|
-| `tools/deskrawl_calc/cli.py:58` | `0x509D80` | 已失效（已给出重算值） | `0x18050e400` | `CalcDamage@0x50E400，补丁前 bjr@` |
-| `tools/deskrawl_calc/engine.py:149` | `0x18362A350` | 已失效（已给出重算值） | `0x18363f120` | `el))。常量 50 @ 0x18363F120（补丁前` |
-| `tools/deskrawl_calc/stattype.py:106` | `0x6F6360` | 已失效（已给出重算值） | `0x180706a50` | `nit @ 0x706A50，补丁前 ..cctor @` |
-| `tools/scripts/mem_probe.py:15` | `0x7A4360` | 已失效（已给出重算值） | `0x1807b6670` | `       RVA 0x7B6670   （旧 eed` |
-| `tools/scripts/mem_probe.py:16` | `0x7A3EE0` | 已失效（已给出重算值） | `0x1807b61f0` | `       RVA 0x7B61F0   （旧 eea` |
-| `tools/scripts/mem_probe.py:17` | `0x7A3AC0` | 已失效（已给出重算值） | `0x1807b5dd0` | `       RVA 0x7B5DD0   （旧 edy` |
-| `tools/scripts/mem_probe.py:18` | `0x7A5C60` | 已失效（已给出重算值） | `0x1807b7f80` | `       RVA 0x7B7F80   （旧 eeu` |
+| `tools/deskrawl_calc/cli.py:65` | `0x509D80` | 已失效（已给出重算值） | `0x180511060` | `CalcDamage@0x511060，补丁前 bjr@` |
+| `tools/deskrawl_calc/engine.py:152` | `0x18363F120` | 已失效（已给出重算值） | `0x18364fad0` | `el))。常量 50 @ 0x18364FAD0（补丁前` |
+| `tools/deskrawl_calc/stattype.py:106` | `0x6F6360` | 已失效（已给出重算值） | `0x18070a3f0` | `nit @ 0x70A3F0，补丁前 ..cctor @` |
+| `tools/scripts/mem_probe.py:15` | `0x7A4360` | 已失效（已给出重算值） | `0x1807ba6a0` | `       RVA 0x7BA6A0   （旧 eed` |
+| `tools/scripts/mem_probe.py:16` | `0x7A3EE0` | 已失效（已给出重算值） | `0x1807ba220` | `       RVA 0x7BA220   （旧 eea` |
+| `tools/scripts/mem_probe.py:17` | `0x7A3AC0` | 已失效（已给出重算值） | `0x1807b9e00` | `       RVA 0x7B9E00   （旧 edy` |
+| `tools/scripts/mem_probe.py:18` | `0x7A5C60` | 已失效（已给出重算值） | `0x1807bbfd0` | `       RVA 0x7BBFD0   （旧 eeu` |
 
 ## 4c. 弃用探针（不参与生产路径，理由与出处见文档；原判定与重算值仍保留）
 
@@ -133,7 +134,7 @@
 | `tools/scripts/strings_ctx.py:14` | `0xbfe9b` | 无法判定（人工确认） | — | docs/plan/补丁回归清单.md |
 | `tools/scripts/strings_ctx.py:14` | `0xc0b56` | 无法判定（人工确认） | — | docs/plan/补丁回归清单.md |
 | `tools/scripts/strings_ctx.py:14` | `0x90167` | 无法判定（人工确认） | — | docs/plan/补丁回归清单.md |
-| `tools/scripts/strings_ctx.py:14` | `0x61685b` | 已失效（内联数据，只能改成方法级引用） | `0x180624850` | docs/plan/补丁回归清单.md |
+| `tools/scripts/strings_ctx.py:14` | `0x61685b` | 已失效（内联数据，只能改成方法级引用） | `0x180628b80` | docs/plan/补丁回归清单.md |
 | `tools/scripts/xref.py:45` | `0x1839e44c8` | 无法判定（人工确认） | — | docs/plan/补丁回归清单.md |
 | `tools/scripts/xref.py:46` | `0x1839e44b0` | 无法判定（人工确认） | — | docs/plan/补丁回归清单.md |
 | `tools/scripts/xref.py:47` | `0x1839e4470` | 无法判定（人工确认） | — | docs/plan/补丁回归清单.md |
@@ -156,22 +157,22 @@
 | 节 | 文档 VA | 实测 VA | 文档 raw | 实测 raw | 结论 |
 |---|---|---|---|---|---|
 | `.text` | `0x180001000` | `0x180001000` | `0x400` | `0x400` | ✅ |
-| `il2cpp` | `0x180421000` | `0x180421000` | `0x41FE00` | `0x41fe00` | ✅ |
-| `.rdata` | `0x182E54000` | `0x182e54000` | `0x2E52A00` | `0x2e52a00` | ✅ |
-| `.data` | `0x18393E000` | `0x18393e000` | `0x393BC00` | `0x393bc00` | ✅ |
+| `il2cpp` | `0x180424000` | `0x180424000` | `0x422600` | `0x422600` | ✅ |
+| `.rdata` | `0x182E63000` | `0x182e63000` | `0x2E61400` | `0x2e61400` | ✅ |
+| `.data` | `0x18394C000` | `0x18394c000` | `0x3949800` | `0x3949800` | ✅ |
 
 ### 5.2 docs/08 §9.1+§12.2 常量新旧址（新址必须逐字节读回该值）
 
 | 常量 | 值 | 旧址读取 | 新址 | 新址读取 | 结论 |
 |---|---|---|---|---|---|
-| 命中浮动上界 | `1.1` | `double=-1.2769088845340128e-257 float32=-1.257062932383403e-32` | `0x18363EF64` | `double=0.015234442414657679 float32=1.100000023841858` | ✅ |
-| 受伤阈值 | `0.3` | `double=8.92030872235e-313 float32=3.4666738998970245e-33` | `0x18363EFC8` | `double=0.3 float32=4.17232506322307e-08` | ✅ |
-| 健康阈值 | `0.8` | `double=8.455325659117904e-259 float32=4.506948606660122e-39` | `0x18363F018` | `double=0.8 float32=-1.5881868392106856e-23` | ✅ |
-| 属性数值封顶 | `0.85` | `double=3.3873306032257707e-258 float32=1.1172345732752302e-32` | `0x18363F020` | `double=0.85 float32=4.17232506322307e-08` | ✅ |
-| 命中浮动下界 | `0.9` | `double=0.0 float32=0.0` | `0x18363F028` | `double=0.9 float32=-107374184.0` | ✅ |
-| 易伤乘区 | `1.3` | `double=2.4999054276780752e-256 float32=2.061020987793198e-32` | `0x18363F058` | `double=1.3 float32=-107374184.0` | ✅ |
-| 护甲分母 | `50.0` | `double=6.327088687679112e-256 float32=1.2006955826643979e-39` | `0x18363F120` | `double=50.0 float32=0.0` | ✅ |
-| 主属性分母 | `100.0` | `double=2.1176356757173506e-278 float32=1.2341299375867225e-34` | `0x18363F138` | `double=100.0 float32=0.0` | ✅ |
+| 命中浮动上界 | `1.1` | `double=6.947929595477165e+78 float32=7.037368913005485e+22` | `0x18364F914` | `double=0.015234442414657679 float32=1.100000023841858` | ✅ |
+| 受伤阈值 | `0.3` | `double=9.092174261023591e-307 float32=1.0899477145401121e+27` | `0x18364F728` | `double=4.800414192374092e-07 float32=0.30000001192092896` | ✅ |
+| 健康阈值 | `0.8` | `double=5.624386911297039e+160 float32=-4744619770249216.0` | `0x18364F83C` | `double=5.246966156e-315 float32=0.800000011920929` | ✅ |
+| 属性数值封顶 | `0.85` | `double=5.006413625294587e+223 float32=2.7368118089614256e+20` | `0x18364F860` | `double=0.0017968753794775695 float32=0.8500000238418579` | ✅ |
+| 命中浮动下界 | `0.9` | `double=148713325446.85452 float32=-1.3242666332582207e-18` | `0x18364F87C` | `double=0.0030184672170435077 float32=0.8999999761581421` | ✅ |
+| 易伤乘区 | `1.3` | `double=1.1368968342350022e+243 float32=3.072731204561519e+32` | `0x18364F938` | `double=0.07500000289874151 float32=1.2999999523162842` | ✅ |
+| 护甲分母 | `50.0` | `double=3.3707750381021294e-307 float32=8.94658864418333e-39` | `0x18364FAD0` | `double=50.0 float32=0.0` | ✅ |
+| 主属性分母 | `100.0` | `double=9.940868632040414e+247 float32=2.1129645031192029e-19` | `0x18364FAE8` | `double=100.0 float32=0.0` | ✅ |
 
 ## 6. memory_offsets.json 复核（结构偏移与方法锚点）
 
@@ -202,19 +203,19 @@
 
 | 键 | 声明值 | 实测值 | 结论 |
 |---|---|---|---|
-| `game_assembly_sha256` | `d46f0a321e8e0764…` | `d46f0a321e8e0764…` | ✅ |
-| `global_metadata_sha256` | `57627070d0fe8a00…` | `57627070d0fe8a00…` | ✅ |
+| `game_assembly_sha256` | `f8221364be8101c6…` | `f8221364be8101c6…` | ✅ |
+| `global_metadata_sha256` | `f5cf7ba1bbd13cb0…` | `f5cf7ba1bbd13cb0…` | ✅ |
 
 ## 7. 可证伪演示（`--falsify`）
 
 | 用例 | 期望 | 实测 | 结论 | 说明 |
 |---|---|---|---|---|
-| `0x18067BD01` | stale | stale_inline | ✅ | 真实有效地址 0x18067BD00（当期 Character.bkn）末位 +1，必须判失效 |
-| `0x18050E401` | stale | stale_inline | ✅ | Player.bkn 覆写 0x18050E400 末位 +1 |
-| `0x7B6671` | stale | stale_inline | ✅ | SaveSystem 锚点 0x7B6670 末位 +1（RVA 形式） |
-| `0x18363F021` | stale | unknown | ✅ | 常量 0.85 新址 0x18363F020 末位 +1（数据地址） |
-| `0x183A1BF89` | stale | unknown | ✅ | 当期元数据槽 hh_TypeInfo 0x183A1BF88 末位 +1：当期表查不到该 RVA，必须落回人工确认（证明 ⑥ 不是「.data 一律放行」） |
-| `0x18067BD00` | valid | valid | ✅ | 真值对照：同一地址必须判有效（证明不是「一律判红」） |
+| `0x18067FCE1` | stale | stale_inline | ✅ | 真实有效地址 0x18067FCE0（当期 Character.bkm=CalcDamage）末位 +1，必须判失效 |
+| `0x180511061` | stale | stale_inline | ✅ | Player.bkm 覆写 0x180511060 末位 +1 |
+| `0x7BA6A1` | stale | stale_inline | ✅ | SaveSystem 锚点 0x7BA6A0 末位 +1（RVA 形式） |
+| `0x18364F861` | stale | unknown | ✅ | 常量 0.85 新址 0x18364F860 末位 +1（数据地址） |
+| `0x183A2A4D9` | stale | unknown | ✅ | 当期元数据槽 hh_TypeInfo 0x183A2A4D8 末位 +1：当期表查不到该 RVA，必须落回人工确认（证明 ⑥ 不是「.data 一律放行」） |
+| `0x18067FCE0` | valid | valid | ✅ | 真值对照：同一地址必须判有效（证明不是「一律判红」） |
 
 ## 8. 配置与文档锚点自校验
 
@@ -222,19 +223,20 @@
 
 | 文件 | 字面量 | 锚点 | 结论 | 说明 |
 |---|---|---|---|---|
-| `tools/scripts/probe_paragon.py` | `0x183A1BF88` | 名字核对 | ✅ | expect=hh_TypeInfo |
-| `tools/scripts/probe_stat_labels.py` | `0x183A1EB70` | 名字核对 | ✅ | expect=ItemRarity_var |
-| `tools/scripts/probe_stat_labels.py` | `0x183A212F0` | 名字核对 | ✅ | expect=Method$UnityEngine.Object.Instantiate<StatRowUI>() |
-| `tools/scripts/probe_stat_labels.py` | `0x183A212E8` | 名字核对 | ✅ | expect=StatRowUI[]_TypeInfo |
-| `tools/scripts/probe_stat_labels.py` | `0x183A2A4B0` | 名字核对 | ✅ | expect=ItemRarity[]_TypeInfo |
-| `tools/scripts/probe_stat_labels.py` | `0x183A109E0` | 名字核对 | ✅ | expect=UnityEngine.Object_TypeInfo |
-| `tools/scripts/probe_stat_labels.py` | `0x183A17CD8` | 名字核对 | ✅ | expect=GameManager_TypeInfo |
-| `tools/scripts/probe_stat_labels.py` | `0x183A1EBC8` | 名字核对 | ✅ | expect=PlayerStatistics_TypeInfo |
+| `tools/scripts/probe_paragon.py` | `0x183A2A4D8` | 名字核对 | ✅ | expect=hh_TypeInfo |
+| `tools/scripts/probe_stat_labels.py` | `0x183A2D670` | 名字核对 | ✅ | expect=ItemRarity_var |
+| `tools/scripts/probe_stat_labels.py` | `0x183A2FB50` | 名字核对 | ✅ | expect=Method$UnityEngine.Object.Instantiate<StatRowUI>() |
+| `tools/scripts/probe_stat_labels.py` | `0x183A2FB48` | 名字核对 | ✅ | expect=StatRowUI[]_TypeInfo |
+| `tools/scripts/probe_stat_labels.py` | `0x183A37E40` | 名字核对 | ✅ | expect=ItemRarity[]_TypeInfo |
+| `tools/scripts/probe_stat_labels.py` | `0x183A1F3E8` | 名字核对 | ✅ | expect=UnityEngine.Object_TypeInfo |
+| `tools/scripts/probe_stat_labels.py` | `0x183A25F98` | 名字核对 | ✅ | expect=GameManager_TypeInfo |
+| `tools/scripts/probe_stat_labels.py` | `0x183A2D6C8` | 名字核对 | ✅ | expect=PlayerStatistics_TypeInfo |
 | `docs/08-常量设计要点与待办.md` | `0x182EE3580` `0x18349CCB0` | 显式无锚点 | ✅ | 已声明当期无锚点可查（原因写在 reason 里） |
+| `docs/08-常量设计要点与待办.md` | `0x18364F9D0` `0x18364F9C8` `0x18364F9D8` `0x18364FE38` | 显式无锚点 | ✅ | 已声明当期无锚点可查（原因写在 reason 里） |
 
 ### 8.2 文档记录的构建指纹（文档 ↔ 磁盘 双向核对）
 
 | 键 | 文档 | 文档记录值 | 磁盘实测 | 结论 |
 |---|---|---|---|---|
-| `game_assembly_sha256` | `docs/08-常量设计要点与待办.md` | `d46f0a321e8e0764…` | `d46f0a321e8e0764…` | ✅ 与磁盘一致；文档已记录 |
+| `game_assembly_sha256` | `docs/08-常量设计要点与待办.md` | `f8221364be8101c6…` | `f8221364be8101c6…` | ✅ 与磁盘一致；文档已记录 |
 

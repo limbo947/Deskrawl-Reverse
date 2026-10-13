@@ -106,8 +106,8 @@ def decode_obscured(t, r):
     取值公式**按类型分家**，不能统一成「cipher XOR key」：
       · 整型（Int/Long）= `(hidden − key) XOR key` —— 写入侧是 `key + (value XOR key)`；
       · 浮点（Float）= `bswap12(hidden) XOR key`。
-    依据（三重独立一致）：本轮反汇编新构建实测 `0x180451340 = sub rcx,rdx; xor rcx,rdx`（解密）、
-    `0x180451330 = xor rcx,rdx; lea rax,[rdx+rcx]`（加密）；`memory_reader.py`/`mem_probe.py` 的
+    依据（三重独立一致）：本轮反汇编新构建实测 `0x180454400 = sub rcx,rdx; xor rcx,rdx`（解密）、
+    `0x1804543F0 = xor rcx,rdx; lea rax,[rdx+rcx]`（加密）；`memory_reader.py`/`mem_probe.py` 的
     运行时读取实现同一公式；改正后 `Enemy.json` 的 HP/DMG/等级立刻落在合理量级
     （旧公式给出 ±9e18 的荒谬值，是 docs/09 长期挂 ⚠️ 的根因）。
     """

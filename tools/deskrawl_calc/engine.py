@@ -8,6 +8,7 @@
   bko : condMul = 1 + Σ(命中的条件伤害项)                                     ✅ 6.2.2
   crit: critChance = clamp(Final(CritChance)+buff+cond, 0, 0.85)             ✅ 6.2.3
         critMul    = 1 + Final(CritDamage)+equip
+  封顶 1.0.2b：CDR 0.85→0.80；通用/元素减伤上限 90%（StatCap.GetCap@0x4AC490 实证）
   armor: resist/(resist + 50 × max(1, level))                                ✅ 6.2.4
   减伤 : ×(1-armorResist)×(1-elemRed)×(1-DamageReduction)                    ✅
   易伤 : ×1.3（固定），另 VulnerableDamage 计入条件池                          ✅ 6.2.5
@@ -21,8 +22,8 @@ from dataclasses import dataclass, field
 from typing import Dict, List, Optional
 
 from .stattype import (StatType, ModifierType, DamageType, DAMAGE_TYPE_TO_STAT,
-                       CORE, ALL_ELEMENTS, CONDITIONAL_DAMAGE, CAPPED_085, CLAMP_01,
-                       ELEM_REDUCTION_BY_DAMAGE, name as stat_name)
+                       CORE, ALL_ELEMENTS, CONDITIONAL_DAMAGE, CAPPED_085, CAPPED_080,
+                       CAPPED_090, ELEM_REDUCTION_BY_DAMAGE, name as stat_name)
 
 
 def _clamp(v: float, lo: float, hi: float) -> float:
@@ -106,13 +107,15 @@ class StatSheet:
                 * self.mult.get(s, 1.0))
 
     def capped(self, stat) -> float:
-        """按游戏规则 clamp：4 项封顶 0.85；减伤类 clamp[0,1]。"""
+        """按游戏规则 clamp：0.85（暴击/闪避/蓝耗）/0.80（CDR，1.0.2b）/0.90（减伤类，1.0.2b）。"""
         s = int(stat)
         v = self.final(s)
         if stat in CAPPED_085:
             return _clamp(v, 0.0, 0.85)
-        if stat in CLAMP_01:
-            return _clamp(v, 0.0, 1.0)
+        if stat in CAPPED_080:
+            return _clamp(v, 0.0, 0.80)
+        if stat in CAPPED_090:
+            return _clamp(v, 0.0, 0.90)
         return v
 
     def breakdown(self, stat) -> Dict[str, float]:
@@ -146,7 +149,7 @@ class Target:
         return self.armor if int(damage_type) == int(DamageType.Physical) else self.magic_resist
 
     def armor_resist(self, damage_type: int) -> float:
-        """armorResist = resist / (resist + 50 × max(1, level))。常量 50 @ 0x18363F120（补丁前 0x18362A350，见 docs/08 §12.2）。"""
+        """armorResist = resist / (resist + 50 × max(1, level))。常量 50 @ 0x18364FAD0（补丁前 0x18363F120，见 docs/08 §13.2）。"""
         r = self.resist(damage_type)
         return r / (r + 50.0 * max(1, self.level)) if (r + 50.0) > 0 else 0.0
 
@@ -227,9 +230,9 @@ class DamageModel:
     def crit_multiplier(self) -> float:
         return 1.0 + self.sheet.final(StatType.CritDamage) + self.equip_crit_damage
 
-    # --- 攻击方基础伤害（Player.CalcDamage@0x50E400：武器伤害 + 通用增伤(3)，再乘主属性加成）---
+    # --- 攻击方基础伤害（Player.CalcDamage@0x511060：武器伤害 + 通用增伤(3)，再乘主属性加成）---
     def primary_stat_multiplier(self) -> float:
-        """×(1 + Final(职业主属性)/100)。主属性由 Player.PrimaryStatValue@0x4F7BD0 给出
+        """×(1 + Final(职业主属性)/100)。主属性由 Player.PrimaryStatValue@0x4FACF0 给出
         （英雄职业主属性：0=力量/1=敏捷/2=智力，Barbarian=0 实证）；None=不启用。
 
         游戏内力量 tooltip「当前提升 451% 伤害」即 451 代入本式（×5.51），2026-10-09 截图实证。
@@ -253,8 +256,8 @@ class DamageModel:
         ar = target.armor_resist(self.damage_type)
         if self.armor_pen:
             ar = ar * (1.0 - _clamp(self.armor_pen, 0.0, 1.0))
-        er = _clamp(target.elem_reduction.get(self.damage_type, 0.0), 0.0, 1.0)
-        gr = _clamp(target.damage_reduction, 0.0, 1.0)
+        er = _clamp(target.elem_reduction.get(self.damage_type, 0.0), 0.0, 0.90)
+        gr = _clamp(target.damage_reduction, 0.0, 0.90)
         return (1.0 - ar), (1.0 - er), (1.0 - gr)
 
     # --- 完整计算 ---

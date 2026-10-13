@@ -46,7 +46,7 @@ class ComparePage(QWidget):
         root = QVBoxLayout(self)
         root.setContentsMargins(16, 12, 16, 12)
         head = QHBoxLayout()
-        head.addWidget(page_header('装备对比', '编辑当前/候选装备（当前件来自导入时固定只读）或从背包载入候选；右栏设目标与参考技能（含「训练假人」预设，与游戏 DPS 计同口径）'), 1)
+        head.addWidget(page_header('装备对比', '编辑当前/候选装备（当前件来自导入时固定只读）或从背包载入候选；右栏设目标与参考技能（含「训练假人」预设，与游戏 DPS 计同口径）。一次只对比一个槽位，多件同换的组合 Δ 不能由各槽 Δ 简单相乘得到（请逐槽评估）'), 1)
         # 游戏实测值：期望口径旁边随时可对照的真实计伤（只读轮询）
         self.dps_meter = GameDpsMeter()
         head.addWidget(self.dps_meter)

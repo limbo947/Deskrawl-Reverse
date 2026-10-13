@@ -37,6 +37,13 @@ class TargetEditor(QWidget):
         root.setContentsMargins(6, 6, 6, 6)
         root.addWidget(self._build_basic_group())
         root.addWidget(self._build_condition_group())
+        # F10：内核还支持元素减伤/护甲穿透/攻击方增伤与暴击类系数，本页未暴露入口。换装对比的
+        # Δ 两侧同口径故不受影响，但要拿本工具对拍游戏绝对 DPS 时需知悉这一缺口。
+        hint = QLabel('元素减伤、护甲穿透、攻击方增伤/暴击类系数属内核参数、本页未暴露：'
+                      '换装对比的 Δ 两侧同口径不受影响，绝对值对拍时请知悉。')
+        hint.setObjectName('emptyState')
+        hint.setWordWrap(True)
+        root.addWidget(hint)
         root.addStretch(1)
         self.reload()
 

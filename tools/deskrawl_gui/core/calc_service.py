@@ -49,6 +49,7 @@ class CompareResult:
     current_sheet: StatSheet
     candidate_sheet: StatSheet
     target: Target
+    warnings: List[str] = field(default_factory=list)
 
 
 @dataclass
@@ -115,10 +116,21 @@ def _add_item_mods(gd, item, slot=None) -> list:
     return out
 
 
-def _negate(mods) -> list:
-    """取反以便从基线里「卸下」一件装备。装备词条实测恒为 Flat，可逆；%连乘(type 2)不可逆则跳过。"""
-    return [Modifier(int(m.stat), int(m.type), -float(m.value))
-            for m in mods if int(m.type) != 2]
+def _negate(mods, warns=None, label=None) -> list:
+    """取反以便从基线里「卸下」一件装备。装备词条实测恒为 Flat，可逆；%连乘(type 2)不可逆则跳过。
+
+    跳过是静默丢数据：type≠0 的词条当前全仓不可达（UI 锁「加法」），但一旦出现会让基线漏项、
+    Δ 失真，故向 warns 写显式告警（F8 防御——宁可红不出脏）。
+    """
+    out = []
+    for m in mods:
+        if int(m.type) == 2:
+            if warns is not None:
+                who = f'「{label}」' if label else ''
+                warns.append(f'{who}含连乘(type 2)词条：卸下不可逆已跳过，Δ 可能失真')
+            continue
+        out.append(Modifier(int(m.stat), int(m.type), -float(m.value)))
+    return out
 
 
 def _weapon_gems(gd, draft) -> list:
@@ -142,7 +154,7 @@ def _weapon_with_gems(gd, draft) -> Weapon:
                   skill_multiplier=w.skill_multiplier)
 
 
-def _slot_sheets(profile, gd, slot):
+def _slot_sheets(profile, gd, slot, warns):
     """非武器槽的 (current_sheet, candidate_sheet)。
 
     当前件词条与**传奇特效**都已烘焙在 base 残差（特效此前不可分解）、宝石在 assembled 里；
@@ -155,12 +167,12 @@ def _slot_sheets(profile, gd, slot):
     base.add_mods(_weapon_mods(profile))
     cur_item = profile.slot_current.get(slot)
     if cur_item is not None:
-        base.add_mods(_negate(cur_item.to_mods()))
+        base.add_mods(_negate(cur_item.to_mods(), warns, cur_item.name))
         # 特效不在 assembled、而是留在 base 残差里；不取反就会「泄漏」给候选侧
-        base.add_mods(_negate(_effect_mods(gd, cur_item.name)))
+        base.add_mods(_negate(_effect_mods(gd, cur_item.name), warns, cur_item.name))
     for it in profile.assembled:
         if it.kind == 'gem' and int(getattr(it, 'slot', -1)) == slot:
-            base.add_mods(_negate(it.modifiers(gd)))
+            base.add_mods(_negate(it.modifiers(gd), warns, '当前装备孔位宝石'))
     cur_sheet = base.clone()
     cur_sheet.add_mods(_add_item_mods(gd, cur_item, slot))
     cand_sheet = base.clone()
@@ -177,6 +189,7 @@ def compare(profile: CharacterProfile, gd, slot=None) -> CompareResult:
     slot = int(profile.compare_slot if slot is None else slot)
     target = profile.to_target()
     label = SLOT_LABELS.get(slot, f'槽{slot}')
+    warns: List[str] = []
     if slot == 0:
         sheet = profile.to_sheet(gd)
         # 当前武器的孔位宝石原本只在装配链里（assembled 的 slot=0 条目）→ 两侧都会看到「当前」的宝石。
@@ -184,9 +197,10 @@ def compare(profile: CharacterProfile, gd, slot=None) -> CompareResult:
         # 当前侧总量不变（卸下又装回），差异因此完全落在候选侧。
         for it in profile.assembled:
             if it.kind == 'gem' and int(getattr(it, 'slot', -1)) == 0:
-                sheet.add_mods(_negate(it.modifiers(gd)))
+                sheet.add_mods(_negate(it.modifiers(gd), warns, '当前武器孔位宝石'))
         # 当前武器的传奇特效同样留在 base 残差里（不在 assembled）→ 一并卸下，否则会泄漏给候选武器
-        sheet.add_mods(_negate(_effect_mods(gd, profile.weapon_current.name)))
+        sheet.add_mods(_negate(_effect_mods(gd, profile.weapon_current.name), warns,
+                               profile.weapon_current.name))
         cur = _weapon_with_gems(gd, profile.weapon_current)
         cand = _weapon_with_gems(gd, profile.weapon_candidate)
         r = compare_weapons(sheet, cur, cand, target=target, damage_type=profile.damage_type,
@@ -194,9 +208,9 @@ def compare(profile: CharacterProfile, gd, slot=None) -> CompareResult:
         return CompareResult(0, label, r['current']['dps'], r['candidate']['dps'],
                              r['delta'], r['delta_pct'], r['current']['model'],
                              r['candidate']['model'], r['current']['sheet'],
-                             r['candidate']['sheet'], target)
+                             r['candidate']['sheet'], target, warns)
 
-    cur_sheet, cand_sheet = _slot_sheets(profile, gd, slot)
+    cur_sheet, cand_sheet = _slot_sheets(profile, gd, slot, warns)
     w = profile.weapon_current.to_weapon()
 
     def model(sheet):
@@ -208,7 +222,7 @@ def compare(profile: CharacterProfile, gd, slot=None) -> CompareResult:
     cand_dps = cand_model.dps(target, w.base_speed) * w.skill_multiplier
     return CompareResult(slot, label, cur_dps, cand_dps, cand_dps - cur_dps,
                          ((cand_dps / cur_dps - 1.0) * 100.0) if cur_dps else 0.0,
-                         cur_model, cand_model, cur_sheet, cand_sheet, target)
+                         cur_model, cand_model, cur_sheet, cand_sheet, target, warns)
 
 
 def candidate_names(gd, kind: str) -> List[str]:

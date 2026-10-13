@@ -11,12 +11,20 @@ from PySide6.QtWidgets import QLabel, QMessageBox, QVBoxLayout, QWidget
 ALPHA_BANNER_TEXT = ('α 聚合模式（快照无逐件装备）：相关计算降级为「基线 vs 基线+候选词条」，'
                      '百分比类词条增量为近似值。')
 
+# 装备对比页专用补充（F9）：α 下武器槽 Δ 语义偏高——当前武器词条并入基线、不随本轮对比卸下。
+# 独立成段而非并入上面：装配中心也复用同一横幅，那句只在对比口径下成立。
+ALPHA_WEAPON_NOTE = ('武器槽的 Δ 另有一层偏高：当前武器词条已并入基线、随本轮对比不会卸下，'
+                     '故只反映候选增量。')
+
 
 class ModeBanner(QLabel):
-    """α/β 导入模式横幅：α 时显示降级说明，其余模式隐藏（幂等，可反复调用）。"""
+    """α/β 导入模式横幅：α 时显示降级说明，其余模式隐藏（幂等，可反复调用）。
 
-    def __init__(self, parent=None):
-        super().__init__(ALPHA_BANNER_TEXT, parent)
+    extra 供各页追加本页专属口径说明（默认空 = 只显示通用降级文案）。
+    """
+
+    def __init__(self, extra: str = '', parent=None):
+        super().__init__(ALPHA_BANNER_TEXT + extra, parent)
         self.setObjectName('modeBanner')
         self.setWordWrap(True)
         self.setVisible(False)

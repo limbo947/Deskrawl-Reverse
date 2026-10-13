@@ -36,6 +36,14 @@ class CompareView(QGroupBox):
         head.addWidget(self.delta, 1, 2)
         root.addLayout(head)
 
+        # 对比口径告警（F8）：_negate 卸下不可逆词条（连乘 type 2）时会丢项使 Δ 失真，
+        # 内容非空才显示；用 modeBanner 的告警样式，与 α 横幅同一视觉语言。
+        self.warn_label = QLabel('')
+        self.warn_label.setObjectName('modeBanner')
+        self.warn_label.setWordWrap(True)
+        self.warn_label.setVisible(False)
+        root.addWidget(self.warn_label)
+
         self.skill_hint = QLabel('技能秒伤对比：—')
         root.addWidget(self.skill_hint)
         self.skill_table = QTableWidget(0, len(_SKILL_COLS))
@@ -64,13 +72,20 @@ class CompareView(QGroupBox):
         self.delta.style().unpolish(self.delta)
         self.delta.style().polish(self.delta)
 
-        # 过程量（暴击/暴伤/主属性/攻速）不占行：要查时悬停 Δ 即可
+        warns = list(getattr(result, 'warnings', None) or [])
+        self.warn_label.setVisible(bool(warns))
+        if warns:
+            self.warn_label.setText('对比口径告警：' + '；'.join(warns))
+
+        # 过程量（暴击/暴伤/主属性/攻速）不占行：要查时悬停 Δ 即可。末尾一句说明顶部 Δ 的
+        # 口径边界（F6）：它是不带技能标签的普攻期望，标签/冷却类词条只体现在下方技能表。
         m0, m1 = result.current_model, result.candidate_model
         self.delta.setToolTip(
             f'暴击率 {m0.crit_chance():.3f} → {m1.crit_chance():.3f}\n'
             f'暴伤× {m0.crit_multiplier():.3f} → {m1.crit_multiplier():.3f}\n'
             f'攻击伤害主属性加成 {self._primary_text(m0)} → {self._primary_text(m1)}\n'
-            f'有效攻速已含武器基础攻速与面板攻速加成')
+            f'有效攻速已含武器基础攻速与面板攻速加成\n'
+            f'顶部 Δ 为无标签普攻口径：普攻/强攻伤害(33/34)与冷却缩减(13)只作用于下方技能表')
 
     def set_skills(self, rows):
         """渲染逐技能秒伤对比（技能 · 当前 · 候选 · Δ%）。空表给出原因提示。"""

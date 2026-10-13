@@ -352,6 +352,17 @@ def _chain_audit_checks(rep: Report, prof, gd):
             f'7 词条：[21] L1/2/3={_fac(1, 0)}/{_fac(2, 0)}/{_fac(3, 0)}、L4={_fac(4, 0)}（×1.10）；'
             f'[20] L4={_fac(4, 1)}（=105）；idx6 L3={_fac(3, 6)}')
 
+    # 8) F8 防御：_negate 卸下不可逆词条（连乘 type 2）时会丢项使 Δ 失真——必须写显式告警而非
+    #    静默跳过（type≠0 词条当前全仓不可达，这是防御性缺口；注入以证明告警真的会触发）。
+    from deskrawl_calc import Modifier
+    warns = []
+    kept = calc_service._negate(
+        [Modifier(int(StatType.DamagePhysical), 0, 3.0),
+         Modifier(int(StatType.DamagePhysical), 2, 1.5)], warns, '测试件')
+    rep.add(len(kept) == 1 and len(warns) == 1 and '连乘' in warns[0],
+            'F8 防御：_negate 跳过 type 2 词条并写告警（不静默丢项）',
+            f'保留 {len(kept)} 条（期望 1）、告警 {warns}')
+
 
 def _slot_checks(rep: Report, prof, gd):
     """非武器槽对比自检：候选=当前件 → Δ=0；给候选加词条 → DPS 上升。

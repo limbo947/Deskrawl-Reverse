@@ -14,7 +14,7 @@ from PySide6.QtWidgets import (QComboBox, QHBoxLayout, QLabel, QVBoxLayout, QWid
 from ..core import calc_service, skill_service
 from ..core.item_draft import ItemDraft
 from ..core.profile import COMPARE_SLOTS, SLOT_EQUIP_TYPE, SLOT_LABELS
-from .common import ModeBanner
+from .common import ALPHA_WEAPON_NOTE, ModeBanner
 from .compare_view import CompareView
 from .item_editor import ItemEditor
 
@@ -34,6 +34,10 @@ class EquipmentEditor(QWidget):
         self.slot_combo = QComboBox()
         for slot, label in COMPARE_SLOTS:
             self.slot_combo.addItem(label, slot)
+        # 披风（内存槽 11）按用户要求不纳入对比（COMPARE_SLOTS 有意排除）；尾挂一条禁用项把
+        # 「为什么列表里没有披风」显式化，避免玩家反复找（F5）。禁用项无 data、不可选中。
+        self.slot_combo.addItem('披风（Back）不参与对比')
+        self.slot_combo.model().item(self.slot_combo.count() - 1).setEnabled(False)
         self.slot_combo.currentIndexChanged.connect(self._on_slot)
 
         # 候选快捷导入：内存导入冻结的背包/仓库装备（bag_items），按当前槽类型过滤。
@@ -48,7 +52,7 @@ class EquipmentEditor(QWidget):
 
         self.compare_view = CompareView()
 
-        self.alpha_banner = ModeBanner()
+        self.alpha_banner = ModeBanner(ALPHA_WEAPON_NOTE)
 
         self._cur_holder = QWidget()
         self._cur_lay = QVBoxLayout(self._cur_holder)

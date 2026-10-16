@@ -144,6 +144,15 @@ def _cond_damage(gd, effs, damage_type, target, ability_name=None) -> float:
                                       ability_name=ability_name)
 
 
+def _apply_conversions(gd, sheet, effs) -> None:
+    """属性换算：属性表装配**完成后**逐条 `StatSheet.add_conversion`（`StatConversion`，显式后步）。
+
+    ⚠️ 顺序：须在全部 mods 之后（源拿去算 `Final(源)`）；两侧各自应用（当前件 ↔ 候选件）。
+    """
+    for src, tgt, frac in effects.stat_conversions(effs):
+        sheet.add_conversion(src, tgt, frac)
+
+
 def _add_item_mods(gd, item, slot=None) -> list:
     """一件装备对属性表的贡献：词条 + 孔位宝石 + 传奇特效。
 
@@ -253,6 +262,8 @@ def compare(profile: CharacterProfile, gd, slot=None) -> CompareResult:
         common = _equipped_effects(gd, profile, exclude_slot=0)
         cur_eff = common + _effect_dicts(gd, profile.weapon_current.name)
         cand_eff = common + _effect_dicts(gd, profile.weapon_candidate.name)
+        # 属性换算（StatConversion）：其余件对两侧公共（武器无该特效），装配完成后应用
+        _apply_conversions(gd, sheet, common)
         cc_c, cd_c = _crit_terms(gd, cur_eff, target)
         cc_k, cd_k = _crit_terms(gd, cand_eff, target)
         dmg_c = _cond_damage(gd, cur_eff, profile.damage_type, target)
@@ -279,6 +290,9 @@ def compare(profile: CharacterProfile, gd, slot=None) -> CompareResult:
     cc_k, cd_k = _crit_terms(gd, cand_eff, target)
     dmg_c = _cond_damage(gd, cur_eff, profile.damage_type, target)
     dmg_k = _cond_damage(gd, cand_eff, profile.damage_type, target)
+    # 属性换算：两侧各自应用（当前件 ↔ 候选件；其余件已含在 common 里）
+    _apply_conversions(gd, cur_sheet, cur_eff)
+    _apply_conversions(gd, cand_sheet, cand_eff)
 
     def model(sheet, cc, cd, cdmg):
         return DamageModel(sheet, profile.damage_type, weapon_damage=w.base_damage,
@@ -350,6 +364,7 @@ def _dps_with(profile: CharacterProfile, gd, extra_mods, extra_effects=None) -> 
     sheet.add_mods(extra_mods)
     target = profile.to_target()
     effs = _equipped_effects(gd, profile) + list(extra_effects or [])
+    _apply_conversions(gd, sheet, effs)
     cc, cd = _crit_terms(gd, effs, target)
     dmg = _cond_damage(gd, effs, profile.damage_type, target)
     model = DamageModel(sheet, profile.damage_type, weapon_damage=w.base_damage,

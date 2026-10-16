@@ -160,6 +160,17 @@ def selftest():
                abs(_m_cm.get(8, 0.0) - 0.25) < 1e-9 and abs(_m_cm.get(13, 0.0) - 3.0) < 1e-9
                and _eff.ability_mods_for([_cm], 'Other', []) == {}))
 
+    # 15) 属性换算（StatConversion）：TargetStat += Final(SourceStat) × Fraction（显式后步）
+    _sc = {'_class': 'EquipmentEffect_StatConversion', 'SourceStat': 0, 'TargetStat': 39,
+           'Fraction': 0.1}
+    _s3 = StatSheet({StatType.Strength: 100})
+    _s3.add_conversion(0, 39, 0.1)
+    ok.append(('特效·属性换算：力量 100 → 荆棘 += 10（Final(源)×Fraction）；src==tgt 跳过',
+               abs(_s3.final(StatType.Thorns) - 10.0) < 1e-9
+               and _eff.stat_conversions([_sc]) == [(0, 39, 0.1)]
+               and StatSheet({StatType.Strength: 100}).add_conversion(0, 0, 0.5)
+                   .final(StatType.Strength) == 100.0))
+
     for desc, good in ok:
         print(f'  [{"PASS" if good else "FAIL"}] {desc}')
     return all(g for _, g in ok)

@@ -178,3 +178,16 @@ def ability_mods_for(effects: List[dict], ability_name: Optional[str], tags, *,
                 out[13] = out.get(13, 0.0) + float(
                     unwrap(e.get('AdditionalChannelDurationSeconds')) or 0.0)
     return out
+
+
+def stat_conversions(effects: List[dict]) -> List[Tuple[int, int, float]]:
+    """`StatConversion` → [(SourceStat, TargetStat, Fraction)]（🔶 语义待 REA）。
+
+    调用方在属性表装配**完成后**逐条 `StatSheet.add_conversion(src, tgt, frac)`。
+    """
+    out: List[Tuple[int, int, float]] = []
+    for e in effects or []:
+        if _is(e, 'StatConversion'):
+            out.append((int(e.get('SourceStat', -1)), int(e.get('TargetStat', -1)),
+                        float(unwrap(e.get('Fraction')) or 0.0)))
+    return out

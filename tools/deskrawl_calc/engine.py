@@ -107,6 +107,19 @@ class StatSheet:
                 * (1.0 + self.add.get(s, 0.0))
                 * self.mult.get(s, 1.0))
 
+    def add_conversion(self, src, tgt, frac) -> 'StatSheet':
+        """属性换算：`TargetStat += Final(SourceStat) × Fraction`（显式后步，须在全部 mods 之后调用）。
+
+        来源：`EquipmentEffect_StatConversion` / `TalentEffect_StatConversion`（docs/04 §6.3）。
+        🔶 语义待 REA：现口径把「Final(源) × 系数」加到目标 stat 的**平坦层**（不参与目标的 %Add/%Mult）；
+        `src == tgt` 或链式换算（a→b→c）不可逆，由调用方负责避免。
+        """
+        s, t = int(src), int(tgt)
+        if s == t or not frac:
+            return self
+        self.flat[t] = self.flat.get(t, 0.0) + self.final(s) * float(frac)
+        return self
+
     def capped(self, stat) -> float:
         """按游戏规则 clamp：0.85（暴击/闪避/蓝耗）/0.80（CDR，1.0.2b）/0.90（减伤类，1.0.2b）。"""
         s = int(stat)

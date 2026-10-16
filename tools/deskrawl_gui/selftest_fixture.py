@@ -852,3 +852,17 @@ def _legendary_effect_checks(rep: Report):
             '传奇特效·引导修改（符文套装 WarriorSetRune2(4) → 旋风斩 hits/sec ×1.25）',
             f'旋风斩 {base_hits[ww]:.4f} → {up_hits[ww]:.4f}（×{ratio:.4f}）；'
             f'其它技能不变={other_same}')
+
+    # 7) 属性换算（StatConversion）：候选换 LegendaryChestArmor6（闪避22 → 物理减伤51 ×0.5）
+    #    → 候选侧属性表 51 增加「0.5×Final(闪避)」，当前侧不变（装配完成后显式后步）
+    p7 = CharacterProfile.from_snapshot(beta, gd)
+    p7.compare_slot = 2
+    c6 = copy.deepcopy(p7.slot_current[2])
+    c6.name = 'LegendaryChestArmor6'
+    p7.slot_candidate[2] = c6
+    r7 = calc_service.compare(p7, gd)
+    d51 = r7.candidate_sheet.final(51) - r7.current_sheet.final(51)
+    dodge = r7.current_sheet.final(22)
+    rep.add(abs(d51 - 0.5 * dodge) < 1e-6,
+            '传奇特效·属性换算（胸甲 ChestArmor6 → 闪避×0.5 加到物理减伤 51）',
+            f'Δ物理减伤(51)={d51:.6f}（期望 0.5×闪避 {dodge:.6f}={0.5 * dodge:.6f}）')

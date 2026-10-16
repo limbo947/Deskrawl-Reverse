@@ -276,7 +276,9 @@ class DamageModel:
         · 最后按 `ApplyDamage` 收口减伤层（与直击同）。
         实例层叠层由调用方按占空比上限折算（`skill_service._dot_dps`）。
 
-        ⚠️ 未解析：实例倍率 `bl.lxp`(@0x30) 与技能类型标签乘区是否参与——本式按 `lxp=1`、不含 33/34/61。
+        ⚠️ 边界（已定）：技能类型标签乘区 33/34/61 **不**参与 DOT——tick 的 vtable+0x228 已证实是条件池
+        （`blw`），标签乘区只在直击 `DamageEffect` 应用点生效；实例倍率 `bl.lxp`(@0x30) 在 `.ctor` 与
+        apply（`StatusEffectController.bgw`）均写死 `1.0f`，本式按 1.0 与实机一致。
         """
         atk = self._scaled_attack_damage(damage_per_tick)
         pool = self.type_multiplier() + self.sheet.final(StatType.DamageOverTime)

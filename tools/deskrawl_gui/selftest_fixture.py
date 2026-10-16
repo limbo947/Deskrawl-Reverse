@@ -279,9 +279,9 @@ def _chain_audit_checks(rep: Report, prof, gd):
                 f'GemRuby6 两组数值不同={distinct}；Δ%={r.delta_pct:+.6f}；'
                 f'技能行 Δ≡0={not any(abs(x.delta) > 1e-9 for x in rows)}')
 
-    # 4) 技能类型标签池（33/34/61 同池加算）已接线；62（持续伤害）仍不建模
+    # 4) 技能类型标签池 33/34/61 同池加算；62（持续伤害）现由 DOT 段消费（只作用于施加 DOT 的技能）
     #    指令级依据：Character.SkillTypeDamageMultiplier(Slot 16) 按 tag 0/1/2 累加 33/34/61；
-    #    62 由 DamageOverTimeBehavior 的 DOT tick 公式消费，本工具未建模 DOT，故保持惰性。
+    #    62 由 DamageOverTimeBehavior 的 tick 公式消费（docs/04 §6.2.7），工具已建模 DOT 并折入技能秒伤。
     slot = 6 if p.slot_current.get(6) else next(iter(p.slot_current), None)
     if slot is None:
         rep.add(False, '技能类型标签池（33/34/61）', '夹具无非武器槽')
@@ -300,15 +300,19 @@ def _chain_audit_checks(rep: Report, prof, gd):
         hit61 = [r for r in rows61 if abs(r.delta) > 1e-9]
         ok61 = (special and {r.name for r in hit61} == special
                 and all(abs(r.delta) < 1e-9 for r in others))
-        # 62：DOT 未建模 → 任何技能行都不变（主 DPS 也不变）
+        # 62：DOT 已建模 → 只作用于施加 DOT 的技能（Barbarian=Bleeding 于 WarriorBasicAttack3/HeavyAttack4）；
+        #    「零消费保持惰性」旧口径作废——命中集合须恰为 DOT 技能，且注入 62 使其货币上升。
         dps62, rows62 = rows_with([[int(StatType.DamageOverTime), 0, 5.0]])
-        ok62 = (abs(dps62 - base_dps) < 1e-9
-                and not any(abs(r.delta) > 1e-9 for r in rows62))
+        dot_skills = {'WarriorBasicAttack3', 'WarriorHeavyAttack4'}
+        hit62 = {r.name for r in rows62 if abs(r.delta) > 1e-9}
+        proven = all(gd.ability_dot(n) for n in dot_skills)   # 自证：这俩确为 DOT 技能
+        ok62 = (proven and abs(dps62 - base_dps) < 1e-9 and hit62 == dot_skills)
         rep.add(ok61 and ok62,
-                '技能类型池：61 命中 Special(2) 标签技能；62（持续伤害）未建模保持惰性',
+                '技能类型池：61 命中 Special(2) 标签技能；62 只命中施加 DOT 的技能',
                 f'注入 61+5.0 → 命中 {sorted({r.name for r in hit61})}'
                 f'（Special 技能={sorted(special)}）={ok61}；'
-                f'注入 62+5.0 → 主 DPS 不变且技能行 Δ≡0={ok62}')
+                f'注入 62+5.0 → 命中 {sorted(hit62)}（DOT 技能={sorted(dot_skills)}，自证={proven}）、'
+                f'主 DPS 不变={abs(dps62 - base_dps) < 1e-9}')
 
     # 5) 披风槽 11（按设计排除）行为固化：标签回落、无当前件 → 候选为空时 Δ≡0
     r11 = calc_service.compare(p, gd, slot=11)

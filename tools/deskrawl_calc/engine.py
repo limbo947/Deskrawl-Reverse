@@ -253,8 +253,30 @@ class DamageModel:
         weapon_damage 即公式里的 BaseDamage（不被 scaling 放大）。skill_scaling=1.0 时逐位退化为
         普攻口径（保留原结合顺序，避免浮点末位偏差）。
         """
-        core = self.weapon_damage + self.skill_scaling * self.sheet.final(StatType.WeaponDamage)
-        return (core + self.skill_scaling * self.sheet.final(StatType.Damage)) * self.primary_stat_multiplier()
+        return self._scaled_attack_damage(self.skill_scaling)
+
+    def _scaled_attack_damage(self, scaling: float) -> float:
+        """把技能倍率换成任意系数（DOT 跳伤传 DamagePerTick，复用同一结合顺序）。"""
+        core = self.weapon_damage + scaling * self.sheet.final(StatType.WeaponDamage)
+        return (core + scaling * self.sheet.final(StatType.Damage)) * self.primary_stat_multiplier()
+
+    def dot_tick_damage(self, target: Target, damage_per_tick: float,
+                        *, can_crit: bool = False) -> float:
+        """DOT 每跳伤害（DamageOverTimeBehavior.TickDamage 同式，语义别名见 aliases.json；docs/04 §6.2.7）。
+
+        `tick = 元素乘区(+Final(62)) × base`——62 与元素乘区**同池加算**（指令级：addsd），
+        base 为武器伤害按 DamagePerTick 折算的攻击伤害（对应 apply 时 `Character.<m>(0, DamagePerTick)`）。
+        CanCrit 时按期望暴击折入（yq/ys 路径实测 tick 走暴击期望）；减伤层与直击同（ApplyDamage 收口）。
+
+        🔶 简化：未建模状态实例的叠层/剩余时长缩放与 ReapplyMode 的精确口径——按「每跳基础量」建模。
+        """
+        atk = self._scaled_attack_damage(damage_per_tick)
+        pool = self.type_multiplier() + self.sheet.final(StatType.DamageOverTime)
+        tick = atk * pool
+        if can_crit:
+            tick *= 1.0 + self.crit_chance() * (self.crit_multiplier() - 1.0)
+        am, er, gr = self.mitigation(target)
+        return max(1.0, tick * am * er * gr)
 
     # --- 减伤层 ---
     def mitigation(self, target: Target):

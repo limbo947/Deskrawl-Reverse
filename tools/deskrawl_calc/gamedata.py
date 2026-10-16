@@ -188,6 +188,68 @@ class GameData:
         return sum(leveled_value(e['AttackScalingBase'], e['AttackScalingPerLevel'], level) for e in effs)
 
     # ------------------------------------------------------------------ #
+    # DOT（StatusEffectData 的 DamageOverTimeBehavior + 技能 ApplyStatusEffectEffect 引用）
+    # ------------------------------------------------------------------ #
+    def dot_specs(self) -> Dict[int, dict]:
+        """pathID → DOT 规格：StatusEffectData 里含 DamageOverTimeBehavior 的状态（≤6 条）。
+
+        字段：damage_per_tick（武器伤害比例）/ damage_type / can_crit / reapply_mode /
+        tick_rate / duration(Base) / stackable / max_stacks。数据为 dump 实测，逐字段原值。
+        """
+        cached = getattr(self, '_dot_by_pid', None)
+        if cached is not None:
+            return cached
+        out: Dict[int, dict] = {}
+        for rec in self._load('StatusEffectData.json'):
+            pid = rec.get('_pathid')
+            if pid is None:
+                continue
+            beh = next((e for e in (rec.get('_managedRefs') or {}).get('__items__', [])
+                        if e.get('__type__') == 'DamageOverTimeBehavior'), None)
+            if not beh:
+                continue
+            dur = rec.get('Duration') or {}
+            out[int(pid)] = {
+                'name': rec.get('_name'),
+                'damage_per_tick': float(unwrap(beh.get('DamagePerTick')) or 0.0),
+                'damage_type': int(beh.get('DamageType') or 0),
+                'can_crit': bool(beh.get('CanCrit')),
+                'reapply_mode': int(beh.get('ReapplyMode') or 0),
+                'tick_rate': float(unwrap(rec.get('TickRate')) or 0.0),
+                'duration': leveled_value(dur.get('Base'), dur.get('PerLevel'), 1),
+                'stackable': bool(rec.get('Stackable')),
+                'max_stacks': int(rec.get('MaxStacks') or 1),
+            }
+        self._dot_by_pid = out
+        return out
+
+    def ability_dot(self, ability_name: str, level: int = 1) -> List[dict]:
+        """该技能每次施放施加的 DOT（ApplyStatusEffectEffect → StatusEffect.pathID → DOT 规格）。
+
+        只收「带 DamageOverTimeBehavior 的状态」；Chance 按技能等级 Base+(lv-1)×PerLevel。
+        玩家侧的 DOT 状态为 Bleeding/Burn/HunterPoison（武器/胸甲池可滚出 62 词条的消费入口）。
+        """
+        specs = self.dot_specs()
+        cache = getattr(self, '_dot_by_ability', None)
+        if cache is None:
+            cache = self._dot_by_ability = {}
+        key = (ability_name, int(level))
+        if key in cache:
+            return cache[key]
+        rec = self._index(self._load('AbilityData.json')).get(ability_name) or {}
+        out = []
+        for e in (rec.get('_managedRefs') or {}).get('__items__', []):
+            if e.get('__type__') != 'ApplyStatusEffectEffect':
+                continue
+            spec = specs.get(int((e.get('StatusEffect') or {}).get('pathID') or 0))
+            if not spec:
+                continue
+            ch = e.get('Chance') or {}
+            out.append({**spec, 'chance': leveled_value(ch.get('Base'), ch.get('PerLevel'), level)})
+        cache[key] = out
+        return out
+
+    # ------------------------------------------------------------------ #
     # 英雄职业 → 伤害技能清单（HeroData.Abilities 用 pathID 引用 AbilityData）
     # ------------------------------------------------------------------ #
     def heroes(self) -> Dict[str, dict]:

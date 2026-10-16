@@ -3,14 +3,14 @@
 - 命令：`python rva_audit.py --check --falsify`
 - 当期 GameAssembly.dll SHA-256：`f23ae23f8714fa5a49b9ab4b8ae767c33f7e50afad47284d81121354d1677a46`
 - 旧构建 dump.cs 来源：`git show 3c42617:data/schema/dump.cs`
-- 扫描：34 个文件 / 154 条地址字面量
+- 扫描：34 个文件 / 156 条地址字面量
 
 ## 0. 结论摘要
 
 | 判定 | 条数 |
 |---|---|
 | 非地址（白名单/自动规则） | 43 |
-| 仍有效（方法） | 66 |
+| 仍有效（方法） | 68 |
 | 仍有效（注释里的方法名已过期） | 0 |
 | 仍有效（数据地址） | 9 |
 | 已失效（已给出重算值） | 0 |
@@ -21,7 +21,7 @@
 | 无法判定（人工确认） | 0 |
 | 历史对照（有意保留的旧地址） | 7 |
 | 弃用探针（理由已写入文档） | 29 |
-| **合计** | **154** |
+| **合计** | **156** |
 
 ## 1. 已失效与重算值（写回源码前需人工复核）
 
@@ -85,7 +85,7 @@
 
 | 文件:行 | 字面量 | 依据 |
 |---|---|---|
-| `tools/deskrawl_calc/engine.py:152` | `0x183681610` | 常量「护甲分母」= 50.0（double） |
+| `tools/deskrawl_calc/engine.py:157` | `0x183681610` | 常量「护甲分母」= 50.0（double） |
 | `tools/scripts/probe_paragon.py:17` | `0x183A62170` | 当期 元数据槽：hk_TypeInfo（与登记名一致）（当期 script.json 按 RVA 命中 + data_refs 登记名核对） |
 | `tools/scripts/probe_stat_labels.py:13` | `0x183A64B90` | 当期 元数据槽：ItemRarity_var（与登记名一致）（当期 script.json 按 RVA 命中 + data_refs 登记名核对） |
 | `tools/scripts/probe_stat_labels.py:13` | `0x183A66578` | 当期 元数据槽：Method$UnityEngine.Object.Instantiate<StatRowUI>()（与登记名一致）（当期 script.json 按 RVA 命中 + data_refs 登记名核对） |
@@ -100,7 +100,7 @@
 | 文件:行 | 字面量 | 原判定 | 重算值 | 上下文 |
 |---|---|---|---|---|
 | `tools/deskrawl_calc/cli.py:65` | `0x509D80` | 已失效（内联数据，只能改成方法级引用） | `0x18050fd90` | `CalcDamage@0x518230，补丁前 bjr@` |
-| `tools/deskrawl_calc/engine.py:152` | `0x18363F120` | 无法判定（人工确认） | — | `el))。常量 50 @ 0x183681610（补丁前` |
+| `tools/deskrawl_calc/engine.py:157` | `0x18363F120` | 无法判定（人工确认） | — | `el))。常量 50 @ 0x183681610（补丁前` |
 | `tools/deskrawl_calc/stattype.py:107` | `0x6F6360` | 已失效（内联数据，只能改成方法级引用） | `0x180701800` | `nit @ 0x715FE0，补丁前 ..cctor @` |
 | `tools/scripts/mem_probe.py:15` | `0x7BA6A0` | 已失效（已给出重算值） | `0x1807c7350` | `       RVA 0x7C7350   （旧 egi` |
 | `tools/scripts/mem_probe.py:16` | `0x7BA220` | 已失效（已给出重算值） | `0x1807c6ed0` | `       RVA 0x7C6ED0   （旧 egf` |

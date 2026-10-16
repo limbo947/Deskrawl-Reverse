@@ -95,32 +95,58 @@ def _per_hit(skill: dict, sheet, target, *, weapon, primary_stat) -> float:
     return total * _tag_multiplier(skill, sheet)
 
 
-def _hits_per_sec(skill: dict, sheet, atk_speed: float, mods) -> float:
-    """每秒命中次数 = 每次施放的命中次数 ÷ 施放周期，含 ChannelSpeed / StrikeCount 天赋修正。
+def _rates(skill: dict, sheet, atk_speed: float, mods) -> tuple:
+    """→ (每秒命中次数 hits/sec, 每秒施放次数 casts/sec)，含 ChannelSpeed / StrikeCount 修正。
 
-    每次施放命中次数 = 基础击数（StaggeredStrikesEffect.TargetCount，如 Rending Onslaught=3；
-    无则为 1）+ StrikeCount 天赋附加次数（如屠夫韵律 +1 次/级）。
-    引导技能按「整段周期」计：命中数 = 击数×(1+通道速度)×Duration/TickRate，
-    周期 = 前摇+持续+收招+冷却×(1-CDR)（引导技能同样吃冷却，实测 7 个里 6 个有冷却）；
-    冷却=0 时退化为 1/TickRate，与旧口径逐位相同。非引导有冷却 = 冷却×(1-CDR)；否则 = 1/攻速。
+    hits/sec 口径（与旧实现逐位相同）：每次施放命中次数 = 基础击数（StaggeredStrikesEffect.TargetCount，
+    如 Rending Onslaught=3）+ StrikeCount 天赋附加；引导技能按整段周期计：命中数 =
+    击数×(1+通道速度)×Duration/TickRate，周期 = 前摇+持续+收招+冷却×(1-CDR)（引导同样吃冷却）；
+    冷却=0 退化 1/TickRate；非引导有冷却 = 冷却×(1-CDR)；否则 = 1/攻速。
+    casts/sec = hits/sec ÷ 每次施放命中次数——DOT 每次施放只施加一次，其每秒输出按 casts/sec 摊算。
     """
     channel_speed = float((mods or {}).get(CHANNEL_SPEED_STAT, 0.0))
     strike_bonus = float((mods or {}).get(STRIKE_COUNT_STAT, 0.0))
     strikes = int(skill.get('strikes', 1)) + strike_bonus
+    cdr = min(0.80, max(0.0, sheet.final(StatType.CooldownReduction)))
     if skill['channel_duration'] > 0 and skill['tick_rate'] > 0:
         dur = float(skill['channel_duration'])
-        ticks = dur / float(skill['tick_rate'])
-        cdr = min(0.80, max(0.0, sheet.final(StatType.CooldownReduction)))
+        tick = float(skill['tick_rate'])
+        ticks = dur / tick
         cycle = (float(skill.get('channel_windup') or 0.0) + dur
                  + float(skill.get('channel_recovery') or 0.0)
                  + float(skill['cooldown']) * (1.0 - cdr))
         if cycle <= 0:
-            return strikes * (1.0 + channel_speed) / float(skill['tick_rate'])
-        return strikes * (1.0 + channel_speed) * ticks / cycle
-    cdr = min(0.80, max(0.0, sheet.final(StatType.CooldownReduction)))
+            return strikes * (1.0 + channel_speed) / tick, 1.0 / tick
+        return strikes * (1.0 + channel_speed) * ticks / cycle, 1.0 / cycle
     cd = float(skill['cooldown']) * (1.0 - cdr)
     interval = cd if cd > 0.05 else (1.0 / atk_speed if atk_speed > 0 else 1.0)
-    return strikes / interval if interval > 0 else 0.0
+    if interval <= 0:
+        return 0.0, 0.0
+    return strikes / interval, 1.0 / interval
+
+
+def _dot_dps(dots: List[dict], sheet, target, *, weapon, primary_stat, casts_per_sec: float) -> float:
+    """技能施加的 DOT 每秒输出（折进该技能秒伤，见 docs/04 §6.2.7）。
+
+    per-tick 伤害走引擎 `DamageModel.dot_tick_damage`（TickDamage 同式：元素池 + Final(62)）；
+    刷新/重复施加按「占空比」摊算：uptime = min(1, duration × casts/sec) × Chance——
+    冷却长于持续时间时按「每次施放时长 × 施加频率」计，反之持续覆盖 → 稳态每跳 × TickRate。
+
+    🔶 未建模：状态实例的叠层/剩余时长缩放、ReapplyMode 的精确刷新语义（Pooling/Stackable/
+    HighestDamageOverwrite）——按单实例满占空比建模。
+    """
+    total = 0.0
+    for d in dots:
+        rate = float(d.get('tick_rate') or 0.0)
+        if rate <= 0 or float(d.get('damage_per_tick') or 0.0) <= 0:
+            continue
+        model = DamageModel(sheet, int(d['damage_type']), weapon_damage=weapon.base_damage,
+                            primary_stat=primary_stat)
+        tick = model.dot_tick_damage(target, float(d['damage_per_tick']), can_crit=bool(d['can_crit']))
+        uptime = min(1.0, float(d.get('duration') or 0.0) * casts_per_sec)
+        total += tick * rate * uptime * float(d.get('chance', 1.0) or 0.0)
+    return total
+
 
 
 def ability_level_bonuses(profile, gd) -> dict:
@@ -210,10 +236,17 @@ def skill_rows(profile, gd, cur_sheet, cand_sheet, target,
                 e['scaling'] = (float(r['AttackScalingBase'])
                                 + float(r['AttackScalingPerLevel']) * (eff_lv - 1))
         mods = all_mods.get(sk['name'], {})
-        cur_rate = _hits_per_sec(sk, cur_sheet, atk_speed(cur_sheet, w_cur), mods)
-        cand_rate = _hits_per_sec(sk, cand_sheet, atk_speed(cand_sheet, w_cand), mods)
+        cur_rate, cur_cps = _rates(sk, cur_sheet, atk_speed(cur_sheet, w_cur), mods)
+        cand_rate, cand_cps = _rates(sk, cand_sheet, atk_speed(cand_sheet, w_cand), mods)
         cur = _per_hit(sk, cur_sheet, target, weapon=w_cur, primary_stat=ps) * cur_rate
         cand = _per_hit(sk, cand_sheet, target, weapon=w_cand, primary_stat=ps) * cand_rate
+        # DOT：技能施加的持续伤害折进本行（Bleeding/Burn/HunterPoison 等，见 _dot_dps）
+        dots = gd.ability_dot(sk['name'], eff_lv)
+        if dots:
+            cur += _dot_dps(dots, cur_sheet, target, weapon=w_cur,
+                            primary_stat=ps, casts_per_sec=cur_cps)
+            cand += _dot_dps(dots, cand_sheet, target, weapon=w_cand,
+                             primary_stat=ps, casts_per_sec=cand_cps)
         # 展示名用游戏本地化的简中名（表缺失回落英文），name 保留 _name 供天赋修正查表
         rows.append(SkillRow(name=sk['name'],
                              ability_name=ability_display_name(gd, sk['name']),

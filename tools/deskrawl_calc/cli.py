@@ -81,6 +81,16 @@ def selftest():
                       rng=_rnd.Random(0)).effective_dps
     ok.append(('最终减伤下限：伤害不为负（保底 1/击）', abs(floor - 1.0) < 1e-9))
 
+    # 9) DOT 跳伤（DamageOverTimeBehavior.TickDamage，语义别名见 aliases.json）：tick = (元素池 + Final(62)) × base
+    #    指令级依据：`addsd xmm0(clamp(Final(62))), xmm6(ElementDamageMultiplier)`——62 与元素乘区**同池加算**（不是相乘）
+    t0 = DamageModel(StatSheet({StatType.WeaponDamage: 100}), DamageType.Physical)
+    tick0 = t0.dot_tick_damage(Target(level=1), 0.5)
+    t1 = DamageModel(StatSheet({StatType.WeaponDamage: 100, StatType.DamageOverTime: 1.0}),
+                     DamageType.Physical)
+    tick1 = t1.dot_tick_damage(Target(level=1), 0.5)
+    ok.append(('DOT 跳伤：62 与元素乘区同池加算（+1.0 使池 1.0→2.0，tick ×2）',
+               abs(tick1 - 2.0 * tick0) < 1e-9))
+
     for desc, good in ok:
         print(f'  [{"PASS" if good else "FAIL"}] {desc}')
     return all(g for _, g in ok)

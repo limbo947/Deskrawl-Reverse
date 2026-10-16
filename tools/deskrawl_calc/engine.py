@@ -152,6 +152,11 @@ class Target:
     burned: bool = False
     elite: bool = False
     distant: bool = False
+    # 眩晕（`TargetStateCondition.Stunned=1`）：仅作传奇特效的条件门控谓词，**不进** bko 条件池
+    # （bko 10 项无「对眩晕」词条）。见 effects.condition_holds。
+    stunned: bool = False
+    # 目标身上状态 → 层数（`TargetStateCondition.SpecificStatus=5` 据此判命中，并按层数缩放）。
+    statuses: Dict[str, int] = field(default_factory=dict)
 
     def resist(self, damage_type: int) -> float:
         return self.armor if int(damage_type) == int(DamageType.Physical) else self.magic_resist
@@ -369,13 +374,22 @@ class Weapon:
 
 def compare_weapons(base_sheet: StatSheet, current: Weapon, candidate: Weapon, *,
                     target: Optional[Target] = None, damage_type=DamageType.Physical,
+                    current_kw: Optional[dict] = None, candidate_kw: Optional[dict] = None,
                     **attacker_kw) -> Dict:
-    """比较两把武器：返回各自期望 DPS 与变化百分比。"""
+    """比较两把武器：返回各自期望 DPS 与变化百分比。
+
+    `current_kw` / `candidate_kw` 为逐侧覆盖的攻击方参数（如传奇特效带来的
+    `conditional_crit` / `equip_crit_damage`）——两侧可不同（当前武器 ↔ 候选武器），
+    merge 在 `attacker_kw` 之上；不传则两侧同口径（与旧行为逐位一致）。
+    """
     target = target or Target()
     out = {}
-    for tag, w in (('current', current), ('candidate', candidate)):
+    for tag, w, extra in (('current', current, current_kw), ('candidate', candidate, candidate_kw)):
+        kwargs = dict(attacker_kw)
+        if extra:
+            kwargs.update(extra)
         sheet = base_sheet.clone().add_mods(w.modifiers)
-        model = DamageModel(sheet, damage_type, weapon_damage=w.base_damage, **attacker_kw)
+        model = DamageModel(sheet, damage_type, weapon_damage=w.base_damage, **kwargs)
         dps = model.dps(target, w.base_speed) * w.skill_multiplier
         out[tag] = {'weapon': w.name, 'dps': dps, 'sheet': sheet, 'model': model}
     cur, cand = out['current']['dps'], out['candidate']['dps']

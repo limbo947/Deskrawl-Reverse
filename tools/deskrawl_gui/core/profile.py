@@ -230,13 +230,16 @@ class TargetDraft:
     poisoned: bool = False
     burned: bool = False
     distant: bool = False
+    # 眩晕：仅作传奇特效条件门控（TargetStateCondition.Stunned=1，不进 bko 条件池）。
+    stunned: bool = False
 
     def to_target(self) -> Target:
         return Target(level=self.level, hp_fraction=self.hp_fraction, armor=self.armor,
                       magic_resist=self.magic_resist, damage_reduction=self.damage_reduction,
                       elite=self.elite, vulnerable=self.vulnerable, slowed=self.slowed,
                       immobilized=self.immobilized, bleeding=self.bleeding,
-                      poisoned=self.poisoned, burned=self.burned, distant=self.distant)
+                      poisoned=self.poisoned, burned=self.burned, distant=self.distant,
+                      stunned=self.stunned)
 
     def to_dict(self) -> dict:
         return dict(self.__dict__)

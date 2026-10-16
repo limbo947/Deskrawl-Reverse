@@ -1050,7 +1050,7 @@
   },
   {
    "file": "docs/04-伤害计算与属性关联.md",
-   "line": 369,
+   "line": 390,
    "token": "0x76F5F0",
    "value": "0x76f5f0",
    "annotation": null,
@@ -1064,7 +1064,7 @@
   },
   {
    "file": "docs/04-伤害计算与属性关联.md",
-   "line": 369,
+   "line": 390,
    "token": "0x771590",
    "value": "0x771590",
    "annotation": null,
@@ -1078,7 +1078,7 @@
   },
   {
    "file": "docs/04-伤害计算与属性关联.md",
-   "line": 369,
+   "line": 390,
    "token": "0x771DC0",
    "value": "0x771dc0",
    "annotation": null,
@@ -1092,7 +1092,7 @@
   },
   {
    "file": "docs/04-伤害计算与属性关联.md",
-   "line": 382,
+   "line": 403,
    "token": "0x4A9D80",
    "value": "0x4a9d80",
    "annotation": "wo",
@@ -8356,7 +8356,7 @@
   },
   {
    "file": "tools/deskrawl_calc/engine.py",
-   "line": 160,
+   "line": 165,
    "token": "0x183681610",
    "value": "0x183681610",
    "annotation": null,
@@ -8370,7 +8370,7 @@
   },
   {
    "file": "tools/deskrawl_calc/engine.py",
-   "line": 160,
+   "line": 165,
    "token": "0x18363F120",
    "value": "0x18363f120",
    "annotation": null,
@@ -8384,7 +8384,7 @@
   },
   {
    "file": "tools/deskrawl_calc/engine.py",
-   "line": 241,
+   "line": 246,
    "token": "0x518230",
    "value": "0x518230",
    "annotation": "Player.CalcDamage",
@@ -8399,7 +8399,7 @@
   },
   {
    "file": "tools/deskrawl_calc/engine.py",
-   "line": 243,
+   "line": 248,
    "token": "0x500CA0",
    "value": "0x500ca0",
    "annotation": "Player.PrimaryStatValue",
@@ -8516,7 +8516,7 @@
   },
   {
    "file": "tools/deskrawl_gui/core/calc_service.py",
-   "line": 303,
+   "line": 372,
    "token": "0x503350",
    "value": "0x503350",
    "annotation": "Player.PanelStat",
@@ -8531,7 +8531,7 @@
   },
   {
    "file": "tools/deskrawl_gui/core/calc_service.py",
-   "line": 314,
+   "line": 383,
    "token": "0x686F60",
    "value": "0x686f60",
    "annotation": "Character.BaseFieldToStat",
@@ -8546,7 +8546,7 @@
   },
   {
    "file": "tools/deskrawl_gui/core/calc_service.py",
-   "line": 314,
+   "line": 383,
    "token": "0x503A60",
    "value": "0x503a60",
    "annotation": "Player.BaseFieldToStat",
@@ -8561,7 +8561,7 @@
   },
   {
    "file": "tools/deskrawl_gui/core/calc_service.py",
-   "line": 343,
+   "line": 412,
    "token": "0x513490",
    "value": "0x513490",
    "annotation": "Player.EvaluateCondition",
@@ -8770,7 +8770,7 @@
   },
   {
    "file": "tools/deskrawl_gui/core/profile.py",
-   "line": 265,
+   "line": 268,
    "token": "0x518230",
    "value": "0x518230",
    "annotation": "Player.CalcDamage",
@@ -8785,7 +8785,7 @@
   },
   {
    "file": "tools/deskrawl_gui/core/profile.py",
-   "line": 266,
+   "line": 269,
    "token": "0x500CA0",
    "value": "0x500ca0",
    "annotation": "Player.PrimaryStatValue",

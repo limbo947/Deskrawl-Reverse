@@ -11,8 +11,10 @@ from .stattype import (StatType, ModifierType, DamageType, STAT_NAMES, name as s
 from .engine import (Modifier, StatSheet, Target, DamageModel, DamageBreakdown,
                      Weapon, compare_weapons, unwrap, leveled_value)
 from .gamedata import GameData
+from . import effects
 
 __all__ = ['StatType', 'ModifierType', 'DamageType', 'STAT_NAMES', 'stat_name',
            'CORE', 'ALL_ELEMENTS', 'CONDITIONAL_DAMAGE',
            'Modifier', 'StatSheet', 'Target', 'DamageModel', 'DamageBreakdown',
-           'Weapon', 'compare_weapons', 'unwrap', 'leveled_value', 'GameData']
+           'Weapon', 'compare_weapons', 'unwrap', 'leveled_value', 'GameData',
+           'effects']

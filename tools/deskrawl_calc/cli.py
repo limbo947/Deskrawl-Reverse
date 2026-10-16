@@ -105,6 +105,30 @@ def selftest():
     crit1 = t3.dot_tick_damage(Target(level=1, crit_damage_reduction=1.0), 0.5, can_crit=True)
     ok.append(('DOT 暴击按目标暴伤减免(60)折减（0→1.5×，1.0→1.0×）', abs(crit0 / crit1 - 1.5) < 1e-9))
 
+    # 12) 传奇特效（EquipmentEffect_*）语义解释（effects.py；结构推断，见 docs/04 §6.3）
+    from . import effects as _eff
+    _sword = {'_class': 'EquipmentEffect_ConditionalCritChance', 'Condition': 0,
+              'BonusCritChance': 0.30}
+    ok.append(('特效·条件暴击率：易伤命中 → +0.30；目标未易伤 → 0',
+               abs(_eff.crit_terms([_sword], Target(vulnerable=True))[0] - 0.30) < 1e-9
+               and _eff.crit_terms([_sword], Target(vulnerable=False))[0] == 0.0))
+    _ring = {'_class': 'EquipmentEffect_ConditionalCritDamage', 'Condition': 5,
+             'Status': {'fileID': 0, 'pathID': 5385}, 'BonusCritDamage': 0.05,
+             'ScaleByStatusStacks': True}
+    ok.append(('特效·条件暴伤：SpecificStatus 按状态名命中并 ×层数（0.05×3=0.15）；无状态 → 0',
+               abs(_eff.crit_terms([_ring], Target(statuses={'Brittle': 3}),
+                                   status_names={5385: 'Brittle'})[1] - 0.15) < 1e-9
+               and _eff.crit_terms([_ring], Target())[1] == 0.0))
+    _glove = {'_class': 'EquipmentEffect_AbilityTagCritDamage', 'Tag': 9999,
+              'Ability': {'fileID': 2, 'pathID': 59950}, 'BonusCritDamage': 1.5}
+    _pants = {'_class': 'EquipmentEffect_AbilityTagCritDamage', 'Tag': 8,
+              'Ability': None, 'BonusCritDamage': 1.5}
+    ok.append(('特效·标签暴伤：Ability 名精确匹配；无 Ability 时按 Tag 命中技能标签',
+               abs(_eff.ability_crit_damage([_glove], [0], 'SomeAbility',
+                                            ability_names={59950: 'SomeAbility'}) - 1.5) < 1e-9
+               and abs(_eff.ability_crit_damage([_pants], [8, 2], 'X') - 1.5) < 1e-9
+               and _eff.ability_crit_damage([_pants], [2], 'X') == 0.0))
+
     for desc, good in ok:
         print(f'  [{"PASS" if good else "FAIL"}] {desc}')
     return all(g for _, g in ok)

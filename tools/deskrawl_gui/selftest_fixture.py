@@ -727,3 +727,63 @@ def _panel_checks(rep: Report):
 
     rep.add(CharacterProfile.demo().panel is None, '手工构建无面板数据（属性明细退回计算口径）',
             'demo().panel is None')
+
+
+def _legendary_effect_checks(rep: Report):
+    """T9：传奇特效首批 A（条件暴击 / 标签暴伤）接线自检。
+
+    链路：数据层 `item_effects`/`runeset_effects` 保真提取 → 内核 `effects` 语义 →
+    `calc_service` 逐侧装配（条件暴击进暴击乘区）→ `skill_service` 按技能/标签过滤。
+    反向抓手：目标状态开关必须驱动条件暴击；候选换「按标签暴伤」件时只抬命中该标签的技能行，
+    其余行 Δ 逐位为 0（证明接线真实生效而非空转）。
+    """
+    import copy
+
+    from deskrawl_calc import GameData
+
+    from .core import calc_service, skill_service
+    from .core.profile import CharacterProfile
+
+    gd = GameData()
+    beta = _load_fixture('snapshot_beta.json')
+
+    # 1) 数据层：装备 → 全部传奇特效（保真 dict，含非属性类）；符文套装特效同源
+    sw = [e['_class'] for e in gd.item_effects('LegendarySword1')]
+    rs = gd.runeset_effects('WarriorSetRune3', 6)
+    rep.add(any(c.endswith('ConditionalCritChance') for c in sw)
+            and any(str(e.get('_class', '')).endswith('ConditionalCritDamage') for e in rs),
+            '传奇特效 数据层（item_effects / runeset_effects 保真提取）',
+            f'LegendarySword1 → {sw}；WarriorSetRune3(6) → {[e["_class"] for e in rs]}')
+
+    # 2) 条件暴击门控端到端：当前武器 = LegendarySword1（易伤 → 额外 +30% 暴击率）
+    p = CharacterProfile.from_snapshot(beta, gd)
+    p.compare_slot = 0
+    p.target.vulnerable = False
+    r0 = calc_service.compare(p, gd)
+    p.target.vulnerable = True
+    r1 = calc_service.compare(p, gd)
+    d_cur = r1.current_model.crit_chance() - r0.current_model.crit_chance()
+    d_cand = r1.candidate_model.crit_chance() - r0.candidate_model.crit_chance()
+    # BonusCritChance 原值是 float32（0.30000001192092896）→ 容差 1e-6
+    rep.add(abs(d_cur - 0.30) < 1e-6 and abs(d_cand) < 1e-12 and r1.current_dps > r0.current_dps,
+            '传奇特效·条件暴击（易伤门控 → 当前武器暴击率 +30%，候选列不动）',
+            f'当前暴击率 {r0.current_model.crit_chance():.3f} → {r1.current_model.crit_chance():.3f}；'
+            f'候选 Δ={d_cand:.2e}；当前 DPS {r0.current_dps:.1f} → {r1.current_dps:.1f}')
+
+    # 3) 按标签暴伤：候选换 LegendaryPants1（3 条 AbilityTagCritDamage，含 Tag 8=火焰），
+    #    词条/宝石与当前件逐位相同 → 只抬含 tag 8 的技能行（WarriorHeavyAttack1），其余行 Δ 逐位 0
+    p2 = CharacterProfile.from_snapshot(beta, gd)
+    p2.compare_slot = 3
+    cand = copy.deepcopy(p2.slot_current[3])
+    cand.name = 'LegendaryPants1'
+    p2.slot_candidate[3] = cand
+    res = calc_service.compare(p2, gd)
+    rows = skill_service.skill_rows(p2, gd, res.current_sheet, res.candidate_sheet, res.target,
+                                    cur_effects=res.current_effects,
+                                    cand_effects=res.candidate_effects)
+    by = {r.name: r for r in rows}
+    hit = by['WarriorHeavyAttack1'].delta               # tags [1, 8] 含火焰(8)
+    miss = by['WarriorBasicAttack'].delta               # tags [0, 7] 不含
+    rep.add(hit > 0 and abs(miss) < 1e-9,
+            '传奇特效·标签暴伤（候选 LegendaryPants1 → 只抬 WarriorHeavyAttack1 行）',
+            f'WarriorHeavyAttack1 Δ={hit:+.3f}（应 >0）；WarriorBasicAttack Δ={miss:.2e}（应 0）')

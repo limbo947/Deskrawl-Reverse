@@ -19,7 +19,7 @@ _DUMMY_PRESET = {'level': 70, 'hp_fraction': 1.0, 'armor': 0.0,
 
 _CONDITIONS = [('elite', '精英'), ('vulnerable', '易伤'), ('slowed', '减速'),
                ('immobilized', '定身'), ('bleeding', '流血'), ('poisoned', '中毒'),
-               ('burned', '灼烧'), ('distant', '远处')]
+               ('burned', '灼烧'), ('distant', '远处'), ('stunned', '眩晕')]
 
 _DAMAGE_TYPES = [(DamageType.Physical, '物理'), (DamageType.Fire, '火焰'), (DamageType.Cold, '冰霜'),
                  (DamageType.Lightning, '闪电'), (DamageType.Poison, '毒素'), (DamageType.Arcane, '奥术')]

@@ -30,10 +30,26 @@ def _as_mod(stat, mtype, value) -> Optional[Modifier]:
     return Modifier(int(stat), t, v)
 
 
+def _ref_pathid(v) -> Optional[int]:
+    """`{fileID, pathID}` 引用 → pathID；已是整数则原样返回；其余为 None。
+
+    `ItemData.EquipmentEffects` / `RuneSetData.Bonuses[].Effects` / 特效内的
+    `Ability`/`StatusEffect` 字段都是这种引用结构（`equipment_effect` 内层另有
+    `Update` 等字段混排，故这里只认 pathID 键）。
+    """
+    if isinstance(v, dict):
+        pid = v.get('pathID')
+        return int(pid) if pid else None
+    if isinstance(v, int) and not isinstance(v, bool):
+        return int(v) or None
+    return None
+
+
 class GameData:
     def __init__(self, dump_dir: str = DEFAULT_DIR):
         self.dir = dump_dir
         self._cache: Dict[str, list] = {}
+        self._pidx: Dict[str, Dict[int, str]] = {}
 
     # --- 原始加载 ---
     def _load(self, fname: str) -> list:
@@ -357,10 +373,60 @@ class GameData:
         rec = self.items().get(str(item_name or ''))
         out = []
         for e in (rec or {}).get('EquipmentEffects') or []:
-            pid = e.get('pathID') if isinstance(e, dict) else None
+            pid = _ref_pathid(e)
             if pid:
-                out.append(int(pid))
+                out.append(pid)
         return out
+
+    def item_effects(self, item_name: str) -> List[dict]:
+        """装备的**全部**传奇特效（保真 effect dict：`_class` + 各字段原值）。
+
+        与 `item_effect_modifiers` 的区别：后者只把 StatModifier / AllStats 折成属性词条；
+        本方法返回原始 effect dict，供内核 `effects.py` 按类解释（条件暴击 / 条件伤害 /
+        技能修改 / 属性换算等）。
+        """
+        out = []
+        for pid in self.item_effect_pathids(item_name):
+            e = self.equipment_effect(pid)
+            if e:
+                out.append(e)
+        return out
+
+    def runeset_effects(self, set_name: str, equipped_count: int) -> List[dict]:
+        """符文套装的 EquipmentEffect_*（保真 effect dict）。
+
+        语义同 `runeset_modifiers`：`Bonuses[].RequiredCount <= equipped_count` 即生效。
+        套装特效（如 `WarriorSetRune2_Effect2` 引导修改、`HunterSetRune1_Effect2` 技能修正）
+        不走 ItemData.EquipmentEffects，只能由此进入。
+        """
+        s = self.runesets().get(set_name)
+        if not s:
+            return []
+        out = []
+        for b in s.get('Bonuses') or []:
+            if int(b.get('RequiredCount', 0)) <= equipped_count:
+                for ref in b.get('Effects') or []:
+                    pid = _ref_pathid(ref)
+                    e = self.equipment_effect(pid) if pid else None
+                    if e:
+                        out.append(e)
+        return out
+
+    def _pathid_index(self, fname: str) -> Dict[int, str]:
+        """某 SO 表的 pathID → `_name`（缓存）。"""
+        if fname not in self._pidx:
+            self._pidx[fname] = {int(r['_pathid']): r['_name']
+                                 for r in self._load(fname)
+                                 if r.get('_pathid') is not None and r.get('_name')}
+        return self._pidx[fname]
+
+    def ability_name_by_pathid(self) -> Dict[int, str]:
+        """AbilityData pathID → _name（特效 `Ability` 引用解析技能名）。"""
+        return self._pathid_index('AbilityData.json')
+
+    def status_name_by_pathid(self) -> Dict[int, str]:
+        """StatusEffectData pathID → _name（`SpecificStatus(5)` 用状态名匹配目标状态）。"""
+        return self._pathid_index('StatusEffectData.json')
 
     def item_effect_modifiers(self, item_name: str) -> List[Modifier]:
         """装备的传奇特效词条（**仅** StatModifier / AllStats 类可解析，触发/状态类返回空）。

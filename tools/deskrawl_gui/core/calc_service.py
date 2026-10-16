@@ -12,7 +12,7 @@ from dataclasses import dataclass, field
 from typing import List
 
 from deskrawl_calc import (DamageModel, Modifier, StatSheet, StatType, Target, Weapon,
-                           compare_weapons, stat_name)
+                           compare_weapons, effects, stat_name)
 
 from .localization import item_internal_name
 from .profile import (KIND_LABELS, SLOT_EQUIP_TYPE, SLOT_LABELS, CharacterProfile,
@@ -50,6 +50,10 @@ class CompareResult:
     candidate_sheet: StatSheet
     target: Target
     warnings: List[str] = field(default_factory=list)
+    # 两侧的传奇特效（保真 dict；含公共件 + 被对比槽各自件）。供技能秒伤对比按技能过滤
+    # （AbilityTagCritDamage/AbilityModifier 等按技能/标签命中的特效），见 skill_service.skill_rows。
+    current_effects: list = field(default_factory=list)
+    candidate_effects: list = field(default_factory=list)
 
 
 @dataclass
@@ -96,6 +100,40 @@ def _effect_mods(gd, name) -> list:
     本就不走属性池）；名字要反查回 ItemData 内部名才能取到 `EquipmentEffects` 引用。
     """
     return gd.item_effect_modifiers(item_internal_name(gd, str(name or '')))
+
+
+def _effect_dicts(gd, name) -> list:
+    """装备名（简中显示名）→ **全部**传奇特效（保真 dict，含触发/条件/技能修改类）。
+
+    与 `_effect_mods` 同款名字反查；交给内核 `effects.py` 按类解释（条件暴击 / 标签暴伤 /
+    技能修改 / 属性换算等）。
+    """
+    return gd.item_effects(item_internal_name(gd, str(name or '')))
+
+
+def _equipped_effects(gd, profile, *, exclude_slot=None) -> list:
+    """当前构建所有已装备件的传奇特效（保真 dict）：武器 + slot_current + 已装配符文套装。
+
+    「当前件 ↔ 候选件」对比时，被对比槽位的件由调用方单独处理 → `exclude_slot` 排除该槽；
+    其余件（含武器、其它槽、套装）对两侧**公共**，故同口径加入，仅被对比槽产生 Δ。
+    """
+    ex = -1 if exclude_slot is None else int(exclude_slot)
+    out: list = []
+    if ex != 0:
+        out.extend(_effect_dicts(gd, getattr(profile.weapon_current, 'name', '')))
+    for s, it in (getattr(profile, 'slot_current', None) or {}).items():
+        if int(s) == ex:
+            continue
+        out.extend(_effect_dicts(gd, getattr(it, 'name', '')))
+    for it in (getattr(profile, 'assembled', None) or []):
+        if getattr(it, 'kind', '') == 'runeset':
+            out.extend(gd.runeset_effects(str(it.name), int(it.level)))
+    return out
+
+
+def _crit_terms(gd, effs, target) -> tuple:
+    """特效列表 → (条件额外暴击率, 条件额外暴伤)，按目标状态门控（effects.crit_terms）。"""
+    return effects.crit_terms(effs, target, status_names=gd.status_name_by_pathid())
 
 
 def _add_item_mods(gd, item, slot=None) -> list:
@@ -203,26 +241,43 @@ def compare(profile: CharacterProfile, gd, slot=None) -> CompareResult:
                                profile.weapon_current.name))
         cur = _weapon_with_gems(gd, profile.weapon_current)
         cand = _weapon_with_gems(gd, profile.weapon_candidate)
+        # 逐侧条件暴击（武器特效差异：当前武器 ↔ 候选武器；其余件对两侧公共）
+        common = _equipped_effects(gd, profile, exclude_slot=0)
+        cur_eff = common + _effect_dicts(gd, profile.weapon_current.name)
+        cand_eff = common + _effect_dicts(gd, profile.weapon_candidate.name)
+        cc_c, cd_c = _crit_terms(gd, cur_eff, target)
+        cc_k, cd_k = _crit_terms(gd, cand_eff, target)
         r = compare_weapons(sheet, cur, cand, target=target, damage_type=profile.damage_type,
-                            primary_stat=profile.primary_stat)
+                            primary_stat=profile.primary_stat,
+                            current_kw={'conditional_crit': cc_c, 'equip_crit_damage': cd_c},
+                            candidate_kw={'conditional_crit': cc_k, 'equip_crit_damage': cd_k})
         return CompareResult(0, label, r['current']['dps'], r['candidate']['dps'],
                              r['delta'], r['delta_pct'], r['current']['model'],
                              r['candidate']['model'], r['current']['sheet'],
-                             r['candidate']['sheet'], target, warns)
+                             r['candidate']['sheet'], target, warns,
+                             current_effects=cur_eff, candidate_effects=cand_eff)
 
     cur_sheet, cand_sheet = _slot_sheets(profile, gd, slot, warns)
     w = profile.weapon_current.to_weapon()
+    # 逐侧条件暴击（被对比槽两件不同；其余件公共）
+    common = _equipped_effects(gd, profile, exclude_slot=slot)
+    cur_eff = common + _effect_dicts(gd, getattr(profile.slot_current.get(slot), 'name', ''))
+    cand_eff = common + _effect_dicts(gd, getattr(profile.slot_candidate.get(slot), 'name', ''))
+    cc_c, cd_c = _crit_terms(gd, cur_eff, target)
+    cc_k, cd_k = _crit_terms(gd, cand_eff, target)
 
-    def model(sheet):
+    def model(sheet, cc, cd):
         return DamageModel(sheet, profile.damage_type, weapon_damage=w.base_damage,
-                           primary_stat=profile.primary_stat)
+                           primary_stat=profile.primary_stat,
+                           conditional_crit=cc, equip_crit_damage=cd)
 
-    cur_model, cand_model = model(cur_sheet), model(cand_sheet)
+    cur_model, cand_model = model(cur_sheet, cc_c, cd_c), model(cand_sheet, cc_k, cd_k)
     cur_dps = cur_model.dps(target, w.base_speed) * w.skill_multiplier
     cand_dps = cand_model.dps(target, w.base_speed) * w.skill_multiplier
     return CompareResult(slot, label, cur_dps, cand_dps, cand_dps - cur_dps,
                          ((cand_dps / cur_dps - 1.0) * 100.0) if cur_dps else 0.0,
-                         cur_model, cand_model, cur_sheet, cand_sheet, target, warns)
+                         cur_model, cand_model, cur_sheet, cand_sheet, target, warns,
+                         current_effects=cur_eff, candidate_effects=cand_eff)
 
 
 def candidate_names(gd, kind: str) -> List[str]:
@@ -266,18 +321,31 @@ def describe_mods(mods) -> str:
                      f'（{MOD_TYPE_CN.get(int(m.type), m.type)}）' for m in mods)
 
 
-def _dps_with(profile: CharacterProfile, gd, extra_mods) -> float:
-    """当前构建（含当前武器词条）+ extra_mods 的期望 DPS。
+def _dps_with(profile: CharacterProfile, gd, extra_mods, extra_effects=None) -> float:
+    """当前构建（含当前武器词条与已装备件的传奇特效）+ extra_mods/extra_effects 的期望 DPS。
 
     排序基线与候选增量共用这一条路径，保证 Δ 可被独立复现（self-test 用引擎直算对拍）。
+    条件暴击类特效（`ConditionalCritChance/Damage`）走 `conditional_crit`/`equip_crit_damage`
+    参数（不进属性表）；符文套装候选的套装特效由 `extra_effects` 传入。
     """
     sheet = profile.to_sheet(gd)
     w = profile.weapon_current.to_weapon()
     sheet.add_mods(w.modifiers)
     sheet.add_mods(extra_mods)
+    target = profile.to_target()
+    effs = _equipped_effects(gd, profile) + list(extra_effects or [])
+    cc, cd = _crit_terms(gd, effs, target)
     model = DamageModel(sheet, profile.damage_type, weapon_damage=w.base_damage,
-                        primary_stat=profile.primary_stat)
-    return model.dps(profile.to_target(), w.base_speed) * w.skill_multiplier
+                        primary_stat=profile.primary_stat,
+                        conditional_crit=cc, equip_crit_damage=cd)
+    return model.dps(target, w.base_speed) * w.skill_multiplier
+
+
+def candidate_effects(gd, kind: str, name: str, *, level: int = 1) -> list:
+    """某候选的传奇特效（保真 dict）：目前仅符文套装带 `EquipmentEffect_*`。"""
+    if kind == 'runeset':
+        return gd.runeset_effects(name, level)
+    return []
 
 
 def baseline_dps(profile: CharacterProfile, gd) -> float:
@@ -292,7 +360,8 @@ def rank_candidates(profile: CharacterProfile, gd, kind: str, *,
     rows = []
     for name in candidate_names(gd, kind):
         mods = candidate_modifiers(gd, kind, name, level=level, category=category)
-        dps = _dps_with(profile, gd, mods)
+        effs = candidate_effects(gd, kind, name, level=level)
+        dps = _dps_with(profile, gd, mods, extra_effects=effs)
         pct = (dps / base_dps - 1.0) * 100.0 if base_dps else 0.0
         rows.append(CandidateRow(name, describe_mods(mods), dps, dps - base_dps, pct, mods))
     rows.sort(key=lambda r: -r.delta)

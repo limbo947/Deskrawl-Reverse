@@ -224,7 +224,9 @@ class EquipmentEditor(QWidget):
         result = calc_service.compare(self.profile, self.gd)
         rows = skill_service.skill_rows(self.profile, self.gd, result.current_sheet,
                                         result.candidate_sheet, result.target,
-                                        level=int(self.profile.skill_level))
+                                        level=int(self.profile.skill_level),
+                                        cur_effects=result.current_effects,
+                                        cand_effects=result.candidate_effects)
         # 留存技能行供页面层（循环系数/候选预测）复用，避免同帧重复计算
         self.last_skill_rows = rows
         self.compare_view.set_result(result)

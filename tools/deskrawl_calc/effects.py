@@ -29,6 +29,21 @@ def _cls(e: dict) -> str:
     return str((e or {}).get('_class') or '')
 
 
+def _is(e: dict, short_name: str) -> bool:
+    """类名精确匹配（去 `EquipmentEffect_` 前缀，避免 `AlwaysHealthConditionalDamage` 误命中 `ConditionalDamage`）。"""
+    name = _cls(e).split('.')[-1]
+    return name.removeprefix('EquipmentEffect_') == short_name
+
+
+# 目标负面状态（🔶 集合口径，供 `DamagePerNegativeStatus` 计数；不含易伤/精英/远处）
+_NEGATIVE_ATTRS = ('slowed', 'immobilized', 'bleeding', 'poisoned', 'burned', 'stunned')
+
+
+def negative_status_count(target) -> int:
+    """目标身上的负面状态数（`DamagePerNegativeStatus` 的乘数，🔶 集合待 REA 核实）。"""
+    return sum(1 for a in _NEGATIVE_ATTRS if getattr(target, a, False))
+
+
 def _name_of(ref, names: Optional[Dict[int, str]]) -> Optional[str]:
     pid = _ref_pathid(ref)
     if pid is None or not names:
@@ -66,11 +81,10 @@ def crit_terms(effects: List[dict], target, *, status_names: Optional[Dict[int, 
     cc = 0.0
     cd = 0.0
     for e in effects or []:
-        cls = _cls(e)
-        if cls.endswith('ConditionalCritChance'):
+        if _is(e, 'ConditionalCritChance'):
             if condition_holds(e.get('Condition', -1), target):
                 cc += float(unwrap(e.get('BonusCritChance')) or 0.0)
-        elif cls.endswith('ConditionalCritDamage'):
+        elif _is(e, 'ConditionalCritDamage'):
             sn = _name_of(e.get('Status'), status_names)
             if condition_holds(e.get('Condition', -1), target, sn):
                 v = float(unwrap(e.get('BonusCritDamage')) or 0.0)
@@ -90,7 +104,7 @@ def ability_crit_damage(effects: List[dict], tags, ability_name: Optional[str], 
     tset = {int(t) for t in (tags or [])}
     out = 0.0
     for e in effects or []:
-        if not _cls(e).endswith('AbilityTagCritDamage'):
+        if not _is(e, 'AbilityTagCritDamage'):
             continue
         an = _name_of(e.get('Ability'), ability_names)
         if an is not None:
@@ -99,4 +113,34 @@ def ability_crit_damage(effects: List[dict], tags, ability_name: Optional[str], 
         elif int(e.get('Tag', _ABILITY_TAG_NONE)) != _ABILITY_TAG_NONE:
             if int(e.get('Tag', _ABILITY_TAG_NONE)) in tset:
                 out += float(unwrap(e.get('BonusCritDamage')) or 0.0)
+    return out
+
+
+def conditional_damage(effects: List[dict], damage_type: int, target, *,
+                       status_names: Optional[Dict[int, str]] = None,
+                       ability_names: Optional[Dict[int, str]] = None,
+                       ability_name: Optional[str] = None) -> float:
+    """`ConditionalDamage` 对**本次伤害类型**的额外条件伤害，加进条件池乘区 C。
+
+    命中三条件（🔶 归属待 REA：条件池加项 vs 元素池加算）：
+      · `Condition` 成立（`Status` 用于 `SpecificStatus` 的名匹配）；
+      · `DamageType` == 本次伤害类型（Neck7=物理、Shoulder4=冰霜/毒素）；
+      · `Ability` 为空 或 等于本次技能名。
+    数值 = `BonusDamage` + `DamagePerNegativeStatus` × 目标负面状态数。
+    """
+    out = 0.0
+    for e in effects or []:
+        if not _is(e, 'ConditionalDamage'):
+            continue
+        if int(e.get('DamageType', -1)) != int(damage_type):
+            continue
+        an = _name_of(e.get('Ability'), ability_names)
+        if an is not None and an != ability_name:
+            continue
+        sn = _name_of(e.get('Status'), status_names)
+        if not condition_holds(e.get('Condition', -1), target, sn):
+            continue
+        out += float(unwrap(e.get('BonusDamage')) or 0.0)
+        out += (float(unwrap(e.get('DamagePerNegativeStatus')) or 0.0)
+                * negative_status_count(target))
     return out

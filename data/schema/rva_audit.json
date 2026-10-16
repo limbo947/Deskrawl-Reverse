@@ -1050,7 +1050,7 @@
   },
   {
    "file": "docs/04-伤害计算与属性关联.md",
-   "line": 390,
+   "line": 391,
    "token": "0x76F5F0",
    "value": "0x76f5f0",
    "annotation": null,
@@ -1064,7 +1064,7 @@
   },
   {
    "file": "docs/04-伤害计算与属性关联.md",
-   "line": 390,
+   "line": 391,
    "token": "0x771590",
    "value": "0x771590",
    "annotation": null,
@@ -1078,7 +1078,7 @@
   },
   {
    "file": "docs/04-伤害计算与属性关联.md",
-   "line": 390,
+   "line": 391,
    "token": "0x771DC0",
    "value": "0x771dc0",
    "annotation": null,
@@ -1092,7 +1092,7 @@
   },
   {
    "file": "docs/04-伤害计算与属性关联.md",
-   "line": 403,
+   "line": 404,
    "token": "0x4A9D80",
    "value": "0x4a9d80",
    "annotation": "wo",
@@ -8384,7 +8384,7 @@
   },
   {
    "file": "tools/deskrawl_calc/engine.py",
-   "line": 246,
+   "line": 253,
    "token": "0x518230",
    "value": "0x518230",
    "annotation": "Player.CalcDamage",
@@ -8399,7 +8399,7 @@
   },
   {
    "file": "tools/deskrawl_calc/engine.py",
-   "line": 248,
+   "line": 255,
    "token": "0x500CA0",
    "value": "0x500ca0",
    "annotation": "Player.PrimaryStatValue",
@@ -8516,7 +8516,7 @@
   },
   {
    "file": "tools/deskrawl_gui/core/calc_service.py",
-   "line": 372,
+   "line": 389,
    "token": "0x503350",
    "value": "0x503350",
    "annotation": "Player.PanelStat",
@@ -8531,7 +8531,7 @@
   },
   {
    "file": "tools/deskrawl_gui/core/calc_service.py",
-   "line": 383,
+   "line": 400,
    "token": "0x686F60",
    "value": "0x686f60",
    "annotation": "Character.BaseFieldToStat",
@@ -8546,7 +8546,7 @@
   },
   {
    "file": "tools/deskrawl_gui/core/calc_service.py",
-   "line": 383,
+   "line": 400,
    "token": "0x503A60",
    "value": "0x503a60",
    "annotation": "Player.BaseFieldToStat",
@@ -8561,7 +8561,7 @@
   },
   {
    "file": "tools/deskrawl_gui/core/calc_service.py",
-   "line": 412,
+   "line": 429,
    "token": "0x513490",
    "value": "0x513490",
    "annotation": "Player.EvaluateCondition",

@@ -85,18 +85,22 @@ def _tag_multiplier(skill: dict, sheet) -> float:
 
 
 def _per_hit(skill: dict, sheet, target, *, weapon, primary_stat,
-             extra_crit_chance: float = 0.0, extra_crit_damage: float = 0.0) -> float:
+             extra_crit_chance: float = 0.0, extra_crit_damage: float = 0.0,
+             cond_damage_fn=None) -> float:
     """每次命中的期望伤害（多段求和 × 技能类型标签增伤 33/34/61）。
 
     `extra_crit_chance`/`extra_crit_damage` 为传奇特效贡献（条件暴击率/暴伤、按标签暴伤），
     经 `DamageModel.conditional_crit/equip_crit_damage` 进入暴击乘区（见 docs/04 §6.2.3）。
+    `cond_damage_fn(damage_type)->float` 提供各段的条件额外伤害（`ConditionalDamage`，加进条件池 C）。
     """
     total = 0.0
     for e in skill['effects']:
+        cdmg = float(cond_damage_fn(e['damage_type'])) if cond_damage_fn else 0.0
         model = DamageModel(sheet, e['damage_type'], weapon_damage=weapon.base_damage,
                             primary_stat=primary_stat, skill_scaling=e['scaling'],
                             conditional_crit=extra_crit_chance,
-                            equip_crit_damage=extra_crit_damage)
+                            equip_crit_damage=extra_crit_damage,
+                            conditional_damage=cdmg)
         bd = model.compute(target)
         total += bd.base_damage * bd.expected_mult
     return total * _tag_multiplier(skill, sheet)
@@ -242,6 +246,11 @@ def skill_rows(profile, gd, cur_sheet, cand_sheet, target,
     cc_c, cd_c = effects.crit_terms(eff_c, target, status_names=snames)
     cc_k, cd_k = effects.crit_terms(eff_k, target, status_names=snames)
 
+    def cond_fn(effs, name):
+        """该技能各段的条件额外伤害闭包（DamageType 过滤 + 技能名匹配）。"""
+        return lambda dt: effects.conditional_damage(effs, dt, target, status_names=snames,
+                                                     ability_names=anames, ability_name=name)
+
     def atk_speed(sheet, weapon) -> float:
         return weapon.base_speed * (1.0 + sheet.final(StatType.AttackSpeed))
 
@@ -261,11 +270,13 @@ def skill_rows(profile, gd, cur_sheet, cand_sheet, target,
         cur = _per_hit(sk, cur_sheet, target, weapon=w_cur, primary_stat=ps,
                        extra_crit_chance=cc_c,
                        extra_crit_damage=cd_c + effects.ability_crit_damage(
-                           eff_c, tags, sk['name'], ability_names=anames)) * cur_rate
+                           eff_c, tags, sk['name'], ability_names=anames),
+                       cond_damage_fn=cond_fn(eff_c, sk['name'])) * cur_rate
         cand = _per_hit(sk, cand_sheet, target, weapon=w_cand, primary_stat=ps,
                         extra_crit_chance=cc_k,
                         extra_crit_damage=cd_k + effects.ability_crit_damage(
-                            eff_k, tags, sk['name'], ability_names=anames)) * cand_rate
+                            eff_k, tags, sk['name'], ability_names=anames),
+                        cond_damage_fn=cond_fn(eff_k, sk['name'])) * cand_rate
         # DOT：技能施加的持续伤害折进本行（Bleeding/Burn/HunterPoison 等，见 _dot_dps）
         dots = gd.ability_dot(sk['name'], eff_lv)
         if dots:

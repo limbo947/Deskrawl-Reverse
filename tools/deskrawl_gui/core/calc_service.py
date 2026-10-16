@@ -136,6 +136,14 @@ def _crit_terms(gd, effs, target) -> tuple:
     return effects.crit_terms(effs, target, status_names=gd.status_name_by_pathid())
 
 
+def _cond_damage(gd, effs, damage_type, target, ability_name=None) -> float:
+    """特效列表 → 本次伤害类型的条件额外伤害（effects.conditional_damage，加进条件池）。"""
+    return effects.conditional_damage(effs, damage_type, target,
+                                      status_names=gd.status_name_by_pathid(),
+                                      ability_names=gd.ability_name_by_pathid(),
+                                      ability_name=ability_name)
+
+
 def _add_item_mods(gd, item, slot=None) -> list:
     """一件装备对属性表的贡献：词条 + 孔位宝石 + 传奇特效。
 
@@ -247,10 +255,14 @@ def compare(profile: CharacterProfile, gd, slot=None) -> CompareResult:
         cand_eff = common + _effect_dicts(gd, profile.weapon_candidate.name)
         cc_c, cd_c = _crit_terms(gd, cur_eff, target)
         cc_k, cd_k = _crit_terms(gd, cand_eff, target)
+        dmg_c = _cond_damage(gd, cur_eff, profile.damage_type, target)
+        dmg_k = _cond_damage(gd, cand_eff, profile.damage_type, target)
         r = compare_weapons(sheet, cur, cand, target=target, damage_type=profile.damage_type,
                             primary_stat=profile.primary_stat,
-                            current_kw={'conditional_crit': cc_c, 'equip_crit_damage': cd_c},
-                            candidate_kw={'conditional_crit': cc_k, 'equip_crit_damage': cd_k})
+                            current_kw={'conditional_crit': cc_c, 'equip_crit_damage': cd_c,
+                                        'conditional_damage': dmg_c},
+                            candidate_kw={'conditional_crit': cc_k, 'equip_crit_damage': cd_k,
+                                          'conditional_damage': dmg_k})
         return CompareResult(0, label, r['current']['dps'], r['candidate']['dps'],
                              r['delta'], r['delta_pct'], r['current']['model'],
                              r['candidate']['model'], r['current']['sheet'],
@@ -265,13 +277,17 @@ def compare(profile: CharacterProfile, gd, slot=None) -> CompareResult:
     cand_eff = common + _effect_dicts(gd, getattr(profile.slot_candidate.get(slot), 'name', ''))
     cc_c, cd_c = _crit_terms(gd, cur_eff, target)
     cc_k, cd_k = _crit_terms(gd, cand_eff, target)
+    dmg_c = _cond_damage(gd, cur_eff, profile.damage_type, target)
+    dmg_k = _cond_damage(gd, cand_eff, profile.damage_type, target)
 
-    def model(sheet, cc, cd):
+    def model(sheet, cc, cd, cdmg):
         return DamageModel(sheet, profile.damage_type, weapon_damage=w.base_damage,
                            primary_stat=profile.primary_stat,
-                           conditional_crit=cc, equip_crit_damage=cd)
+                           conditional_crit=cc, equip_crit_damage=cd,
+                           conditional_damage=cdmg)
 
-    cur_model, cand_model = model(cur_sheet, cc_c, cd_c), model(cand_sheet, cc_k, cd_k)
+    cur_model, cand_model = (model(cur_sheet, cc_c, cd_c, dmg_c),
+                             model(cand_sheet, cc_k, cd_k, dmg_k))
     cur_dps = cur_model.dps(target, w.base_speed) * w.skill_multiplier
     cand_dps = cand_model.dps(target, w.base_speed) * w.skill_multiplier
     return CompareResult(slot, label, cur_dps, cand_dps, cand_dps - cur_dps,
@@ -335,9 +351,10 @@ def _dps_with(profile: CharacterProfile, gd, extra_mods, extra_effects=None) -> 
     target = profile.to_target()
     effs = _equipped_effects(gd, profile) + list(extra_effects or [])
     cc, cd = _crit_terms(gd, effs, target)
+    dmg = _cond_damage(gd, effs, profile.damage_type, target)
     model = DamageModel(sheet, profile.damage_type, weapon_damage=w.base_damage,
                         primary_stat=profile.primary_stat,
-                        conditional_crit=cc, equip_crit_damage=cd)
+                        conditional_crit=cc, equip_crit_damage=cd, conditional_damage=dmg)
     return model.dps(target, w.base_speed) * w.skill_multiplier
 
 

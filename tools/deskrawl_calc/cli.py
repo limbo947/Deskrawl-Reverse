@@ -129,6 +129,22 @@ def selftest():
                and abs(_eff.ability_crit_damage([_pants], [8, 2], 'X') - 1.5) < 1e-9
                and _eff.ability_crit_damage([_pants], [2], 'X') == 0.0))
 
+    # 13) 传奇特效·条件伤害（ConditionalDamage）：按 DamageType 过滤 + 条件门控 + 每负面状态递增
+    _cd = {'_class': 'EquipmentEffect_ConditionalDamage', 'Condition': 3, 'Status': None,
+           'DamageType': 2, 'BonusDamage': 0.9, 'Ability': None,
+           'BaseBonusDamage': 0.0, 'DamagePerNegativeStatus': 0.0}
+    ok.append(('特效·条件伤害：按 DamageType 过滤 + 精英门控（冰霜 0.9 命中；物理/非精英 0）',
+               abs(_eff.conditional_damage([_cd], 2, Target(elite=True)) - 0.9) < 1e-9
+               and _eff.conditional_damage([_cd], 0, Target(elite=True)) == 0.0
+               and _eff.conditional_damage([_cd], 2, Target(elite=False)) == 0.0))
+    _cd2 = {'_class': 'EquipmentEffect_ConditionalDamage', 'Condition': 1, 'Status': None,
+            'DamageType': 0, 'BonusDamage': 0.5, 'Ability': None,
+            'BaseBonusDamage': 0.0, 'DamagePerNegativeStatus': 0.25}
+    _m2 = DamageModel(StatSheet(), DamageType.Physical, conditional_damage=0.75)
+    ok.append(('特效·条件伤害：每负面状态递增（眩晕 → 0.5+0.25×1=0.75）且进条件池（×1.75）',
+               abs(_eff.conditional_damage([_cd2], 0, Target(stunned=True)) - 0.75) < 1e-9
+               and abs(_m2.conditional_multiplier(Target()) - 1.75) < 1e-9))
+
     for desc, good in ok:
         print(f'  [{"PASS" if good else "FAIL"}] {desc}')
     return all(g for _, g in ok)

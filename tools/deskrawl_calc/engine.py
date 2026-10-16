@@ -209,6 +209,7 @@ class DamageModel:
                  buff_crit: float = 0.0,      # SEC.bgm 提供的暴击率加成
                  conditional_crit: float = 0.0,  # 装备/天赋条件暴击（bkl）
                  equip_crit_damage: float = 0.0,  # 装备/天赋额外的暴伤加成
+                 conditional_damage: float = 0.0,  # 传奇特效条件伤害（ConditionalDamage，加进条件池）
                  damage_dealt_mult: float = 1.0,  # 攻击方 SEC.bgl 增/减伤
                  weapon_damage: float = 0.0,  # 武器基础伤害（面板）
                  primary_stat: Optional[int] = None,  # 职业主属性 StatType 0/1/2；None=不启用
@@ -220,6 +221,7 @@ class DamageModel:
         self.buff_crit = buff_crit
         self.conditional_crit = conditional_crit
         self.equip_crit_damage = equip_crit_damage
+        self.conditional_damage = conditional_damage
         self.damage_dealt_mult = damage_dealt_mult
         self.weapon_damage = weapon_damage
         self.primary_stat = primary_stat
@@ -234,7 +236,12 @@ class DamageModel:
 
     # --- 乘区 C ---
     def conditional_multiplier(self, target: Target) -> float:
-        return 1.0 + sum(self.sheet.final(s) for s in target.conditional_stats())
+        """`1 + Σ条件伤害词条 + 传奇特效条件伤害`（`conditional_damage` 为按本模型伤害类型过滤后的加项）。
+
+        后者来自 `EquipmentEffect_ConditionalDamage`（`effects.conditional_damage`，🔶 归属待 REA：
+        条件池加项 vs 元素池加算）。
+        """
+        return 1.0 + sum(self.sheet.final(s) for s in target.conditional_stats()) + self.conditional_damage
 
     # --- 暴击 ---
     def crit_chance(self) -> float:

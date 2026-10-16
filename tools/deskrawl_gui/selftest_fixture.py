@@ -787,3 +787,29 @@ def _legendary_effect_checks(rep: Report):
     rep.add(hit > 0 and abs(miss) < 1e-9,
             '传奇特效·标签暴伤（候选 LegendaryPants1 → 只抬 WarriorHeavyAttack1 行）',
             f'WarriorHeavyAttack1 Δ={hit:+.3f}（应 >0）；WarriorBasicAttack Δ={miss:.2e}（应 0）')
+
+    # 4) 条件伤害：候选换 LegendaryNeck7（Condition=Stunned、DamageType=物理、Ability=WarriorBasicAttack2、+1.5）
+    #    → 目标开「眩晕」时只抬 WarriorBasicAttack2 行；关「眩晕」时各行 Δ 归零（门控 + Ability 过滤反证）
+    p3 = CharacterProfile.from_snapshot(beta, gd)
+    p3.compare_slot = 8
+    cn = copy.deepcopy(p3.slot_current[8])
+    cn.name = 'LegendaryNeck7'
+    p3.slot_candidate[8] = cn
+
+    def rows_of(p):
+        r = calc_service.compare(p, gd)
+        return skill_service.skill_rows(p, gd, r.current_sheet, r.candidate_sheet, r.target,
+                                        cur_effects=r.current_effects,
+                                        cand_effects=r.candidate_effects)
+
+    p3.target.stunned = False
+    d_off = {r.name: r.delta for r in rows_of(p3)}
+    p3.target.stunned = True
+    d_on = {r.name: r.delta for r in rows_of(p3)}
+    hit = d_on['WarriorBasicAttack2']
+    others = [v for k, v in d_on.items() if k != 'WarriorBasicAttack2']
+    off_zero = all(abs(v) < 1e-9 for v in d_off.values())
+    rep.add(off_zero and hit > 0 and all(abs(v) < 1e-9 for v in others),
+            '传奇特效·条件伤害（颈链 Cleave → 只抬 WarriorBasicAttack2 行，眩晕门控）',
+            f'非眩晕各行 Δ 全 0={off_zero}；眩晕 WarriorBasicAttack2 Δ={hit:+.3f}（应 >0），'
+            f'其余行全 0={all(abs(v) < 1e-9 for v in others)}')

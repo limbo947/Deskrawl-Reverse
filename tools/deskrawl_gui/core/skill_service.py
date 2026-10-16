@@ -128,12 +128,13 @@ def _rates(skill: dict, sheet, atk_speed: float, mods) -> tuple:
 def _dot_dps(dots: List[dict], sheet, target, *, weapon, primary_stat, casts_per_sec: float) -> float:
     """技能施加的 DOT 每秒输出（折进该技能秒伤，见 docs/04 §6.2.7）。
 
-    per-tick 伤害走引擎 `DamageModel.dot_tick_damage`（TickDamage 同式：元素池 + Final(62)）；
-    刷新/重复施加按「占空比」摊算：uptime = min(1, duration × casts/sec) × Chance——
-    冷却长于持续时间时按「每次施放时长 × 施加频率」计，反之持续覆盖 → 稳态每跳 × TickRate。
+    per-tick 伤害走引擎 `DamageModel.dot_tick_damage`（tick = (元素池 + Final(62)) × 条件池 × base…）。
+    多重量按「每次施放叠一层、每层存活 duration」计稳态：层数 = min(上限, 施放频率 × duration)——
+    非叠层（Pooling/HighestDamageOverwrite）上限 1（即原 uptime 口径的直接推广），
+    叠层（ReapplyMode=Stackable，如 HunterPoison MaxStacks=150：层数随施放频率累积）；
+    层数为分数时即「平均层数」，等价于原 `min(1, duration×频率)` 的占空比。
 
-    🔶 未建模：状态实例的叠层/剩余时长缩放、ReapplyMode 的精确刷新语义（Pooling/Stackable/
-    HighestDamageOverwrite）——按单实例满占空比建模。
+    ⚠️ 未解析：实例倍率 `bl.lxp`(@0x30) 语义（按 1.0）。
     """
     total = 0.0
     for d in dots:
@@ -143,8 +144,9 @@ def _dot_dps(dots: List[dict], sheet, target, *, weapon, primary_stat, casts_per
         model = DamageModel(sheet, int(d['damage_type']), weapon_damage=weapon.base_damage,
                             primary_stat=primary_stat)
         tick = model.dot_tick_damage(target, float(d['damage_per_tick']), can_crit=bool(d['can_crit']))
-        uptime = min(1.0, float(d.get('duration') or 0.0) * casts_per_sec)
-        total += tick * rate * uptime * float(d.get('chance', 1.0) or 0.0)
+        cap = float(d.get('max_stacks') or 1) if d.get('stackable') else 1.0
+        stacks = min(cap, float(d.get('duration') or 0.0) * casts_per_sec)
+        total += tick * rate * stacks * float(d.get('chance', 1.0) or 0.0)
     return total
 
 

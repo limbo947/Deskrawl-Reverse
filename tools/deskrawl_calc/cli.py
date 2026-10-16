@@ -91,6 +91,20 @@ def selftest():
     ok.append(('DOT 跳伤：62 与元素乘区同池加算（+1.0 使池 1.0→2.0，tick ×2）',
                abs(tick1 - 2.0 * tick0) < 1e-9))
 
+    # 10) DOT tick 吃条件池（乘区 C）：tick 内 `[caster_klass+0x228]` 运行时解析为 Character.ConditionalDamagePool
+    #     （指令级：live 读 .Player/.Enemy klass+0x228 → Player$$blw / Character$$blw）
+    t2 = DamageModel(StatSheet({StatType.WeaponDamage: 100, StatType.DamageVsHealthy: 0.5}),
+                     DamageType.Physical)
+    tick2 = t2.dot_tick_damage(Target(level=1, hp_fraction=1.0), 0.5)
+    ok.append(('DOT 跳伤吃条件池（完好 +0.5 → tick ×1.5）', abs(tick2 - 1.5 * tick0) < 1e-9))
+
+    # 11) DOT 暴击按**目标方「暴击伤害减免(60)」**折减（ys 反汇编：1 + 暴击率×(1−clamp01(60))×(暴伤+加成)）
+    t3 = DamageModel(StatSheet({StatType.CritChance: 0.5, StatType.CritDamage: 1.0}),
+                     DamageType.Physical, weapon_damage=100)
+    crit0 = t3.dot_tick_damage(Target(level=1), 0.5, can_crit=True)
+    crit1 = t3.dot_tick_damage(Target(level=1, crit_damage_reduction=1.0), 0.5, can_crit=True)
+    ok.append(('DOT 暴击按目标暴伤减免(60)折减（0→1.5×，1.0→1.0×）', abs(crit0 / crit1 - 1.5) < 1e-9))
+
     for desc, good in ok:
         print(f'  [{"PASS" if good else "FAIL"}] {desc}')
     return all(g for _, g in ok)

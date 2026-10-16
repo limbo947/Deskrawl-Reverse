@@ -992,7 +992,7 @@
   },
   {
    "file": "docs/04-伤害计算与属性关联.md",
-   "line": 291,
+   "line": 295,
    "token": "0x1806893E0",
    "value": "0x1806893e0",
    "annotation": null,
@@ -1007,7 +1007,7 @@
   },
   {
    "file": "docs/04-伤害计算与属性关联.md",
-   "line": 291,
+   "line": 295,
    "token": "0x1806894A0",
    "value": "0x1806894a0",
    "annotation": null,
@@ -1021,7 +1021,7 @@
   },
   {
    "file": "docs/04-伤害计算与属性关联.md",
-   "line": 291,
+   "line": 295,
    "token": "0x1806895E4",
    "value": "0x1806895e4",
    "annotation": null,
@@ -1035,7 +1035,7 @@
   },
   {
    "file": "docs/04-伤害计算与属性关联.md",
-   "line": 295,
+   "line": 299,
    "token": "0x180689360",
    "value": "0x180689360",
    "annotation": null,
@@ -1050,7 +1050,7 @@
   },
   {
    "file": "docs/04-伤害计算与属性关联.md",
-   "line": 354,
+   "line": 358,
    "token": "0x76F5F0",
    "value": "0x76f5f0",
    "annotation": null,
@@ -1064,7 +1064,7 @@
   },
   {
    "file": "docs/04-伤害计算与属性关联.md",
-   "line": 354,
+   "line": 358,
    "token": "0x771590",
    "value": "0x771590",
    "annotation": null,
@@ -1078,7 +1078,7 @@
   },
   {
    "file": "docs/04-伤害计算与属性关联.md",
-   "line": 354,
+   "line": 358,
    "token": "0x771DC0",
    "value": "0x771dc0",
    "annotation": null,
@@ -1092,7 +1092,7 @@
   },
   {
    "file": "docs/04-伤害计算与属性关联.md",
-   "line": 367,
+   "line": 371,
    "token": "0x4A9D80",
    "value": "0x4a9d80",
    "annotation": "wo",
@@ -8356,7 +8356,7 @@
   },
   {
    "file": "tools/deskrawl_calc/engine.py",
-   "line": 157,
+   "line": 160,
    "token": "0x183681610",
    "value": "0x183681610",
    "annotation": null,
@@ -8370,7 +8370,7 @@
   },
   {
    "file": "tools/deskrawl_calc/engine.py",
-   "line": 157,
+   "line": 160,
    "token": "0x18363F120",
    "value": "0x18363f120",
    "annotation": null,
@@ -8384,7 +8384,7 @@
   },
   {
    "file": "tools/deskrawl_calc/engine.py",
-   "line": 238,
+   "line": 241,
    "token": "0x518230",
    "value": "0x518230",
    "annotation": "Player.CalcDamage",
@@ -8399,7 +8399,7 @@
   },
   {
    "file": "tools/deskrawl_calc/engine.py",
-   "line": 240,
+   "line": 243,
    "token": "0x500CA0",
    "value": "0x500ca0",
    "annotation": "Player.PrimaryStatValue",

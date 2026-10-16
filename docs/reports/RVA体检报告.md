@@ -165,7 +165,7 @@
 | `docs/08-常量设计要点与待办.md:461` | `0x183681978` | 已登记的数据指针：§14.3 的 double 查表簇封顶常量：`StatCap.GetCap(StatType)` 按属性分档返回 0.85（暴击/闪避/蓝耗缩减）/0.8（CDR）/0.9（通用·元素减伤）/inf（其余无上限）。当期 script.json 无对应槽位可查，锚点由 §14.3 表登记 + PE 逐字节读回（f64 = 0.85/0.8/0.9/inf 全部命中）。1.0.3 与常量簇同位（0.85@0x183681510、0.8@0x183681508、0.9@0x183681518、inf@0x183681978）（rva_audit_config.json:data_refs） |
 | `docs/08-常量设计要点与待办.md:531` | `0x182F19730` | 已登记的数据指针：§14.5 记录的 dumper 导出指针 CodeRegistration / MetadataRegistration——当期构建的真实数据指针（1.0.3 v39 导出时读到的值），本来就该长期保持当期值。当期 script.json 里查不到它们，只能靠「文档描述的就是这份构建」锚定：见 doc_fingerprints（补丁后文档指纹先变红，人去更新 §14.5 与这里）（rva_audit_config.json:data_refs） |
 | `docs/08-常量设计要点与待办.md:531` | `0x1834DE720` | 已登记的数据指针：§14.5 记录的 dumper 导出指针 CodeRegistration / MetadataRegistration——当期构建的真实数据指针（1.0.3 v39 导出时读到的值），本来就该长期保持当期值。当期 script.json 里查不到它们，只能靠「文档描述的就是这份构建」锚定：见 doc_fingerprints（补丁后文档指纹先变红，人去更新 §14.5 与这里）（rva_audit_config.json:data_refs） |
-| `tools/deskrawl_calc/engine.py:157` | `0x183681610` | 常量「护甲分母」= 50.0（double） |
+| `tools/deskrawl_calc/engine.py:160` | `0x183681610` | 常量「护甲分母」= 50.0（double） |
 | `tools/scripts/probe_paragon.py:17` | `0x183A62170` | 当期 元数据槽：hk_TypeInfo（与登记名一致）（当期 script.json 按 RVA 命中 + data_refs 登记名核对） |
 | `tools/scripts/probe_stat_labels.py:13` | `0x183A64B90` | 当期 元数据槽：ItemRarity_var（与登记名一致）（当期 script.json 按 RVA 命中 + data_refs 登记名核对） |
 | `tools/scripts/probe_stat_labels.py:13` | `0x183A66578` | 当期 元数据槽：Method$UnityEngine.Object.Instantiate<StatRowUI>()（与登记名一致）（当期 script.json 按 RVA 命中 + data_refs 登记名核对） |
@@ -241,12 +241,12 @@
 | `docs/04-伤害计算与属性关联.md:224` | `0x180567B20` | 已失效（内联数据，只能改成方法级引用） | `0x18056f080` | `y() —— 补丁后 RVA 0x567B20 / VA` |
 | `docs/04-伤害计算与属性关联.md:235` | `0x18363F120` | 无法判定（人工确认） | — | ` × level)` 形式（常量 `50.0` 同址 `` |
 | `docs/04-伤害计算与属性关联.md:237` | `0x180567670` | 已失效（内联数据，只能改成方法级引用） | `0x18056ec90` | `面板评分还有 `EquipmentUI.gdw()`（`` |
-| `docs/04-伤害计算与属性关联.md:291` | `0x1806894A0` | 已失效（内联数据，只能改成方法级引用） | `0x180690c10` | `3 `bme` @ `0x1806893E0`）尾部（`` |
-| `docs/04-伤害计算与属性关联.md:291` | `0x1806895E4` | 已失效（内联数据，只能改成方法级引用） | `0x180690c10` | `806893E0`）尾部（`0x1806894A0`–`` |
-| `docs/04-伤害计算与属性关联.md:354` | `0x76F5F0` | 已失效（内联数据，只能改成方法级引用） | `0x18077c050` | `值 Roll 公式** ✅（`gg.dna` RVA `` |
-| `docs/04-伤害计算与属性关联.md:354` | `0x771590` | 已失效（内联数据，只能改成方法级引用） | `0x18077e100` | ` `0x76F5F0` / `gg.dnt` RVA `` |
-| `docs/04-伤害计算与属性关联.md:354` | `0x771DC0` | 已失效（内联数据，只能改成方法级引用） | `0x18077eb10` | `x771590` / `gg..cctor` RVA `` |
-| `docs/04-伤害计算与属性关联.md:367` | `0x4A9D80` | 已失效（内联数据，只能改成方法级引用） | `0x1804ac270` | `ackScaling.PerLevel   ← wo()` |
+| `docs/04-伤害计算与属性关联.md:295` | `0x1806894A0` | 已失效（内联数据，只能改成方法级引用） | `0x180690c10` | `3 `bme` @ `0x1806893E0`）尾部（`` |
+| `docs/04-伤害计算与属性关联.md:295` | `0x1806895E4` | 已失效（内联数据，只能改成方法级引用） | `0x180690c10` | `806893E0`）尾部（`0x1806894A0`–`` |
+| `docs/04-伤害计算与属性关联.md:358` | `0x76F5F0` | 已失效（内联数据，只能改成方法级引用） | `0x18077c050` | `值 Roll 公式** ✅（`gg.dna` RVA `` |
+| `docs/04-伤害计算与属性关联.md:358` | `0x771590` | 已失效（内联数据，只能改成方法级引用） | `0x18077e100` | ` `0x76F5F0` / `gg.dnt` RVA `` |
+| `docs/04-伤害计算与属性关联.md:358` | `0x771DC0` | 已失效（内联数据，只能改成方法级引用） | `0x18077eb10` | `x771590` / `gg..cctor` RVA `` |
+| `docs/04-伤害计算与属性关联.md:371` | `0x4A9D80` | 已失效（内联数据，只能改成方法级引用） | `0x1804ac270` | `ackScaling.PerLevel   ← wo()` |
 | `docs/07-实测数值-内容数据.md:74` | `0x706A50` | 已失效（内联数据，只能改成方法级引用） | `0x1807125d0` | `or`（补丁后 RVA `0x715FE0`，补丁前 `` |
 | `docs/08-常量设计要点与待办.md:19` | `0x4A9C30` | 已失效（内联数据，只能改成方法级引用） | `0x1804ac270` | `| 属性数值封顶 | `0.85` | `` |
 | `docs/08-常量设计要点与待办.md:19` | `0x18362A250` | 无法判定（人工确认） | — | `封顶 | `0.85` | `0x4A9C30` / `` |
@@ -561,7 +561,7 @@
 | `docs/plan/文档置信度待核清单.md:52` | `0x505300` | 已失效（内联数据，只能改成方法级引用） | `0x18050b2d0` | `sEffectData, Character)`（旧 `` |
 | `docs/plan/文档置信度待核清单.md:52` | `0x506060` | 已失效（内联数据，只能改成方法级引用） | `0x18050c060` | `PlayerCondition, float)`@旧 `` |
 | `tools/deskrawl_calc/cli.py:65` | `0x509D80` | 已失效（内联数据，只能改成方法级引用） | `0x18050fd90` | `CalcDamage@0x518230，补丁前 bjr@` |
-| `tools/deskrawl_calc/engine.py:157` | `0x18363F120` | 无法判定（人工确认） | — | `el))。常量 50 @ 0x183681610（补丁前` |
+| `tools/deskrawl_calc/engine.py:160` | `0x18363F120` | 无法判定（人工确认） | — | `el))。常量 50 @ 0x183681610（补丁前` |
 | `tools/deskrawl_calc/stattype.py:107` | `0x6F6360` | 已失效（内联数据，只能改成方法级引用） | `0x180701800` | `nit @ 0x715FE0，补丁前 ..cctor @` |
 | `tools/scripts/mem_probe.py:15` | `0x7BA6A0` | 已失效（已给出重算值） | `0x1807c7350` | `       RVA 0x7C7350   （旧 egi` |
 | `tools/scripts/mem_probe.py:16` | `0x7BA220` | 已失效（已给出重算值） | `0x1807c6ed0` | `       RVA 0x7C6ED0   （旧 egf` |

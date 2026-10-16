@@ -141,6 +141,9 @@ class Target:
     # 指令级依据：Character.ApplyDamage@0x1806893E0 尾部 `subsd xmm6, clamp(Final(66))` → `max(0, trunc(·))`，
     # 且该 stat 走 StatCap.Clamp（GetCap 落 inf 分支→无上限）。见 docs/04 §6.2.7。
     final_damage_reduction: float = 0.0
+    # 暴击伤害减免（StatType.CritDamageReduction=60，**目标方**）：DOT 跳伤暴击按 (1−clamp01(·)) 折减。
+    # 指令级依据：DamageOverTimeBehavior 暴击因子（ys）反汇编 `1 + (1−clamp01(target.Final(60)))×(Final(5)+bonus)`。
+    crit_damage_reduction: float = 0.0
     vulnerable: bool = False
     slowed: bool = False
     immobilized: bool = False
@@ -262,19 +265,25 @@ class DamageModel:
 
     def dot_tick_damage(self, target: Target, damage_per_tick: float,
                         *, can_crit: bool = False) -> float:
-        """DOT 每跳伤害（DamageOverTimeBehavior.TickDamage 同式，语义别名见 aliases.json；docs/04 §6.2.7）。
+        """DOT 每跳伤害（DamageOverTimeBehavior tick 链：apply `yt`（存实例 lxt）→ tick `yp`）。
 
-        `tick = 元素乘区(+Final(62)) × base`——62 与元素乘区**同池加算**（指令级：addsd），
-        base 为武器伤害按 DamagePerTick 折算的攻击伤害（对应 apply 时 `Character.<m>(0, DamagePerTick)`）。
-        CanCrit 时按期望暴击折入（yq/ys 路径实测 tick 走暴击期望）；减伤层与直击同（ApplyDamage 收口）。
+        `tick = (Clamp(Final(62)) + 元素乘区) × base × 条件池`——
+        · `(62 + 元素乘区)` 同池加算（`yt` 反汇编 `addsd`，语义别名见 aliases.json）；
+        · `base` 为武器伤害按 DamagePerTick 折算的攻击伤害（对应 apply 时 `Character.<m>(0, DamagePerTick)`）；
+        · `条件池` = `engine.conditional_multiplier(target)`——指令级：tick 内 `[caster_klass+0x228]` 运行时
+          解析为 `Character.ConditionalDamagePool`（`blw`，.Player/.Enemy klass+0x228 实证）；
+        · CanCrit 时暴击因子 `1 + 暴击率 × (1 − clamp01(target.Final(60))) × (Final(5)+暴伤加成)`（`ys` 反汇编）；
+        · 最后按 `ApplyDamage` 收口减伤层（与直击同）。
+        实例层叠层由调用方按占空比上限折算（`skill_service._dot_dps`）。
 
-        🔶 简化：未建模状态实例的叠层/剩余时长缩放与 ReapplyMode 的精确口径——按「每跳基础量」建模。
+        ⚠️ 未解析：实例倍率 `bl.lxp`(@0x30) 与技能类型标签乘区是否参与——本式按 `lxp=1`、不含 33/34/61。
         """
         atk = self._scaled_attack_damage(damage_per_tick)
         pool = self.type_multiplier() + self.sheet.final(StatType.DamageOverTime)
-        tick = atk * pool
+        tick = atk * pool * self.conditional_multiplier(target)
         if can_crit:
-            tick *= 1.0 + self.crit_chance() * (self.crit_multiplier() - 1.0)
+            cd_red = _clamp(target.crit_damage_reduction, 0.0, 1.0)
+            tick *= 1.0 + self.crit_chance() * (1.0 - cd_red) * (self.crit_multiplier() - 1.0)
         am, er, gr = self.mitigation(target)
         return max(1.0, tick * am * er * gr)
 

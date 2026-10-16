@@ -42,9 +42,13 @@ from .localization import ability_display_name
 
 __all__ = ['SkillRow', 'skill_rows', 'pick_main_row', 'ability_level_bonuses']
 
-# TalentEffect_AbilityModifier.ModifiedStat：只处理改变「每秒命中次数」的两项
+# TalentEffect_AbilityModifier.ModifiedStat：只处理改变「每秒命中次数 / 引导时长」的项
 CHANNEL_SPEED_STAT = 8
 STRIKE_COUNT_STAT = 9
+CHANNEL_DURATION_STAT = 13      # 引导时长（秒，与 ChannelDuration 同池）🔶 单位待 REA
+# 落「每次命中」口径的两项（LegendaryRing6 的 CritChance、HunterSetRune1_Effect2 的 Damage）
+CRIT_CHANCE_STAT = 5
+DAMAGE_STAT = 2
 
 
 @dataclass
@@ -86,11 +90,12 @@ def _tag_multiplier(skill: dict, sheet) -> float:
 
 def _per_hit(skill: dict, sheet, target, *, weapon, primary_stat,
              extra_crit_chance: float = 0.0, extra_crit_damage: float = 0.0,
-             cond_damage_fn=None) -> float:
+             damage_mult: float = 1.0, cond_damage_fn=None) -> float:
     """每次命中的期望伤害（多段求和 × 技能类型标签增伤 33/34/61）。
 
     `extra_crit_chance`/`extra_crit_damage` 为传奇特效贡献（条件暴击率/暴伤、按标签暴伤），
     经 `DamageModel.conditional_crit/equip_crit_damage` 进入暴击乘区（见 docs/04 §6.2.3）。
+    `damage_mult` 为按技能命中的增伤（`AbilityModifier` 的 Damage 项），进 `damage_dealt_mult`。
     `cond_damage_fn(damage_type)->float` 提供各段的条件额外伤害（`ConditionalDamage`，加进条件池 C）。
     """
     total = 0.0
@@ -100,10 +105,20 @@ def _per_hit(skill: dict, sheet, target, *, weapon, primary_stat,
                             primary_stat=primary_stat, skill_scaling=e['scaling'],
                             conditional_crit=extra_crit_chance,
                             equip_crit_damage=extra_crit_damage,
-                            conditional_damage=cdmg)
+                            conditional_damage=cdmg,
+                            damage_dealt_mult=damage_mult)
         bd = model.compute(target)
         total += bd.base_damage * bd.expected_mult
     return total * _tag_multiplier(skill, sheet)
+
+
+def _sum_mods(*dicts) -> dict:
+    """把多份 {stat: 值} 合并（同键相加）——天赋与装备侧修正同池。"""
+    out: dict = {}
+    for d in dicts:
+        for k, v in (d or {}).items():
+            out[int(k)] = out.get(int(k), 0.0) + float(v)
+    return out
 
 
 def _rates(skill: dict, sheet, atk_speed: float, mods) -> tuple:
@@ -117,10 +132,11 @@ def _rates(skill: dict, sheet, atk_speed: float, mods) -> tuple:
     """
     channel_speed = float((mods or {}).get(CHANNEL_SPEED_STAT, 0.0))
     strike_bonus = float((mods or {}).get(STRIKE_COUNT_STAT, 0.0))
+    extra_dur = float((mods or {}).get(CHANNEL_DURATION_STAT, 0.0))
     strikes = int(skill.get('strikes', 1)) + strike_bonus
     cdr = min(0.80, max(0.0, sheet.final(StatType.CooldownReduction)))
     if skill['channel_duration'] > 0 and skill['tick_rate'] > 0:
-        dur = float(skill['channel_duration'])
+        dur = float(skill['channel_duration']) + extra_dur      # 引导附加时长（装备/天赋 13 项）
         tick = float(skill['tick_rate'])
         ticks = dur / tick
         cycle = (float(skill.get('channel_windup') or 0.0) + dur
@@ -265,17 +281,23 @@ def skill_rows(profile, gd, cur_sheet, cand_sheet, target,
                                 + float(r['AttackScalingPerLevel']) * (eff_lv - 1))
         mods = all_mods.get(sk['name'], {})
         tags = sk.get('tags') or []
-        cur_rate, cur_cps = _rates(sk, cur_sheet, atk_speed(cur_sheet, w_cur), mods)
-        cand_rate, cand_cps = _rates(sk, cand_sheet, atk_speed(cand_sheet, w_cand), mods)
+        # 装备侧按技能命中的修正（AbilityModifier/AbilityChannelModifier）与天赋同池（同键相加）
+        emods_c = effects.ability_mods_for(eff_c, sk['name'], tags, ability_names=anames)
+        emods_k = effects.ability_mods_for(eff_k, sk['name'], tags, ability_names=anames)
+        mods_c, mods_k = _sum_mods(mods, emods_c), _sum_mods(mods, emods_k)
+        cur_rate, cur_cps = _rates(sk, cur_sheet, atk_speed(cur_sheet, w_cur), mods_c)
+        cand_rate, cand_cps = _rates(sk, cand_sheet, atk_speed(cand_sheet, w_cand), mods_k)
         cur = _per_hit(sk, cur_sheet, target, weapon=w_cur, primary_stat=ps,
-                       extra_crit_chance=cc_c,
+                       extra_crit_chance=cc_c + float(emods_c.get(CRIT_CHANCE_STAT, 0.0)),
                        extra_crit_damage=cd_c + effects.ability_crit_damage(
                            eff_c, tags, sk['name'], ability_names=anames),
+                       damage_mult=1.0 + float(emods_c.get(DAMAGE_STAT, 0.0)),
                        cond_damage_fn=cond_fn(eff_c, sk['name'])) * cur_rate
         cand = _per_hit(sk, cand_sheet, target, weapon=w_cand, primary_stat=ps,
-                        extra_crit_chance=cc_k,
+                        extra_crit_chance=cc_k + float(emods_k.get(CRIT_CHANCE_STAT, 0.0)),
                         extra_crit_damage=cd_k + effects.ability_crit_damage(
                             eff_k, tags, sk['name'], ability_names=anames),
+                        damage_mult=1.0 + float(emods_k.get(DAMAGE_STAT, 0.0)),
                         cond_damage_fn=cond_fn(eff_k, sk['name'])) * cand_rate
         # DOT：技能施加的持续伤害折进本行（Bleeding/Burn/HunterPoison 等，见 _dot_dps）
         dots = gd.ability_dot(sk['name'], eff_lv)

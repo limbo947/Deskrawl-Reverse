@@ -145,6 +145,21 @@ def selftest():
                abs(_eff.conditional_damage([_cd2], 0, Target(stunned=True)) - 0.75) < 1e-9
                and abs(_m2.conditional_multiplier(Target()) - 1.75) < 1e-9))
 
+    # 14) 传奇特效·技能修正（AbilityModifier / AbilityChannelModifier）→ {ModifiedStat: 值}
+    _am = {'_class': 'EquipmentEffect_AbilityModifier', 'Tag': 8, 'Ability': None,
+           'Stat': 2, 'Modifier': 0.6}
+    _cm = {'_class': 'EquipmentEffect_AbilityChannelModifier', 'Tag': 9999,
+           'Ability': {'fileID': 2, 'pathID': 59959}, 'ChannelSpeedBonus': 0.25,
+           'AdditionalChannelDurationSeconds': 3.0}
+    ok.append(('特效·技能修正：AbilityModifier 按 Tag 命中 → Damage(2) +0.6；未命中 → 空',
+               _eff.ability_mods_for([_am], 'WarriorHeavyAttack1', [1, 8]) == {2: 0.6}
+               and _eff.ability_mods_for([_am], 'X', [0]) == {}))
+    _m_cm = _eff.ability_mods_for([_cm], 'WarriorHeavyAttack3', [1],
+                                  ability_names={59959: 'WarriorHeavyAttack3'})
+    ok.append(('特效·引导修改：Ability 名命中 → ChannelSpeed(8) +0.25、ChannelDuration(13) +3.0',
+               abs(_m_cm.get(8, 0.0) - 0.25) < 1e-9 and abs(_m_cm.get(13, 0.0) - 3.0) < 1e-9
+               and _eff.ability_mods_for([_cm], 'Other', []) == {}))
+
     for desc, good in ok:
         print(f'  [{"PASS" if good else "FAIL"}] {desc}')
     return all(g for _, g in ok)

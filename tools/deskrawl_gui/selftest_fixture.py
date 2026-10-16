@@ -813,3 +813,42 @@ def _legendary_effect_checks(rep: Report):
             '传奇特效·条件伤害（颈链 Cleave → 只抬 WarriorBasicAttack2 行，眩晕门控）',
             f'非眩晕各行 Δ 全 0={off_zero}；眩晕 WarriorBasicAttack2 Δ={hit:+.3f}（应 >0），'
             f'其余行全 0={all(abs(v) < 1e-9 for v in others)}')
+
+    # 5) 技能修正（AbilityModifier）：候选按 Tag 8 注入 Damage +0.6 → 只抬 WarriorHeavyAttack1
+    from .core.profile import AssemblyItem
+
+    p4 = CharacterProfile.from_snapshot(beta, gd)
+    p4.compare_slot = 1
+    p4.slot_candidate[1] = copy.deepcopy(p4.slot_current[1])   # 与当前件相同 → 排除属性差异
+    r4 = calc_service.compare(p4, gd)
+    am = {'_class': 'EquipmentEffect_AbilityModifier', 'Tag': 8, 'Ability': None,
+          'Stat': 2, 'Modifier': 0.6}
+    d_am = {r.name: r.delta for r in skill_service.skill_rows(
+        p4, gd, r4.current_sheet, r4.candidate_sheet, r4.target,
+        cur_effects=r4.current_effects, cand_effects=r4.candidate_effects + [am])}
+    hit_am = d_am['WarriorHeavyAttack1']
+    others_am = [v for k, v in d_am.items() if k != 'WarriorHeavyAttack1']
+    rep.add(hit_am > 0 and all(abs(v) < 1e-9 for v in others_am),
+            '传奇特效·技能修正（AbilityModifier Tag8 Damage+0.6 → 只抬 WarriorHeavyAttack1）',
+            f'WarriorHeavyAttack1 Δ={hit_am:+.3f}（应 >0）；其余行全 0='
+            f'{all(abs(v) < 1e-9 for v in others_am)}')
+
+    # 6) 引导修改（AbilityChannelModifier，符文套装 WarriorSetRune2(4)）→ 旋风斩 hits/sec ×1.25
+    p5 = CharacterProfile.from_snapshot(beta, gd)
+    r5 = calc_service.compare(p5, gd)
+    base_hits = {r.name: r.hits_per_sec for r in skill_service.skill_rows(
+        p5, gd, r5.current_sheet, r5.candidate_sheet, r5.target,
+        cur_effects=r5.current_effects, cand_effects=r5.candidate_effects)}
+    p6 = copy.deepcopy(p5)
+    p6.assembled = list(p6.assembled) + [AssemblyItem('runeset', 'WarriorSetRune2', 4)]
+    r6 = calc_service.compare(p6, gd)
+    up_hits = {r.name: r.hits_per_sec for r in skill_service.skill_rows(
+        p6, gd, r6.current_sheet, r6.candidate_sheet, r6.target,
+        cur_effects=r6.current_effects, cand_effects=r6.candidate_effects)}
+    ww = 'WarriorHeavyAttack3'
+    ratio = up_hits[ww] / base_hits[ww]
+    other_same = abs(up_hits['WarriorBasicAttack'] - base_hits['WarriorBasicAttack']) < 1e-12
+    rep.add(abs(ratio - 1.25) < 1e-9 and other_same,
+            '传奇特效·引导修改（符文套装 WarriorSetRune2(4) → 旋风斩 hits/sec ×1.25）',
+            f'旋风斩 {base_hits[ww]:.4f} → {up_hits[ww]:.4f}（×{ratio:.4f}）；'
+            f'其它技能不变={other_same}')

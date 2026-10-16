@@ -144,3 +144,37 @@ def conditional_damage(effects: List[dict], damage_type: int, target, *,
         out += (float(unwrap(e.get('DamagePerNegativeStatus')) or 0.0)
                 * negative_status_count(target))
     return out
+
+
+def ability_mods_for(effects: List[dict], ability_name: Optional[str], tags, *,
+                     ability_names: Optional[Dict[int, str]] = None) -> Dict[int, float]:
+    """该技能命中的 `AbilityModifier` / `AbilityChannelModifier` 修正 → {ModifiedStat: 值}（同键相加）。
+
+    · `AbilityModifier`：`Ability` 非空 → 按技能名精确匹配；否则 `Tag` != None(9999) → tag ∈ 技能
+      `Tags` 即命中 → `Stat`(ModifiedStat) += `Modifier`；
+    · `AbilityChannelModifier`：`Ability` 名匹配 → ChannelSpeed(8) += `ChannelSpeedBonus`、
+      ChannelDuration(13) += `AdditionalChannelDurationSeconds`（🔶 单位/同池待 REA）。
+
+    返回的 `ModifiedStat`：2 Damage / 5 CritChance → 进 `_per_hit`；8 ChannelSpeed / 9 StrikeCount /
+    13 ChannelDuration → 进 `_rates`；其余（如 1 ManaCost）当前不落伤害口径。
+    """
+    tagset = {int(t) for t in (tags or [])}
+    out: Dict[int, float] = {}
+    for e in effects or []:
+        if _is(e, 'AbilityModifier'):
+            an = _name_of(e.get('Ability'), ability_names)
+            if an is not None:
+                hit = (an == ability_name)
+            else:
+                tag = int(e.get('Tag', _ABILITY_TAG_NONE))
+                hit = tag != _ABILITY_TAG_NONE and tag in tagset
+            if hit:
+                st = int(e.get('Stat', -1))
+                out[st] = out.get(st, 0.0) + float(unwrap(e.get('Modifier')) or 0.0)
+        elif _is(e, 'AbilityChannelModifier'):
+            an = _name_of(e.get('Ability'), ability_names)
+            if an is not None and an == ability_name:
+                out[8] = out.get(8, 0.0) + float(unwrap(e.get('ChannelSpeedBonus')) or 0.0)
+                out[13] = out.get(13, 0.0) + float(
+                    unwrap(e.get('AdditionalChannelDurationSeconds')) or 0.0)
+    return out

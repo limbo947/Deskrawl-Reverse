@@ -1,7 +1,7 @@
 [
  {
   "_name": "",
-  "_pathid": 60934,
+  "_pathid": 60993,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -78,7 +78,7 @@
   "SizeRadius": 0.699999988079071,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5976
+   "pathID": 6001
   },
   "Animator": null,
   "MinEnemySpacing": 1.0,
@@ -88,18 +88,18 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59812
+    "pathID": 59864
    },
    {
     "fileID": 0,
-    "pathID": 59811
+    "pathID": 59863
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4849
+    "pathID": 4867
    },
    "Volume": 0.699999988079071,
    "Pitch": 2.0
@@ -110,7 +110,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60071
+     "pathID": 60124
     },
     "Chance": 0.0020000000949949026,
     "Difficulties": -1
@@ -124,7 +124,7 @@
  },
  {
   "_name": "",
-  "_pathid": 60936,
+  "_pathid": 60995,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -201,7 +201,7 @@
   "SizeRadius": 0.8999999761581421,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5976
+   "pathID": 6001
   },
   "Animator": null,
   "MinEnemySpacing": 1.0,
@@ -211,14 +211,14 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59814
+    "pathID": 59866
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4784
+    "pathID": 4802
    },
    "Volume": 0.8999999761581421,
    "Pitch": 1.0
@@ -229,7 +229,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60066
+     "pathID": 60119
     },
     "Chance": 0.0020000000949949026,
     "Difficulties": -1
@@ -243,7 +243,7 @@
  },
  {
   "_name": "",
-  "_pathid": 60951,
+  "_pathid": 61010,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -320,7 +320,7 @@
   "SizeRadius": 1.0,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5976
+   "pathID": 6001
   },
   "Animator": null,
   "MinEnemySpacing": 1.0,
@@ -330,14 +330,14 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59814
+    "pathID": 59866
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4793
+    "pathID": 4811
    },
    "Volume": 0.5,
    "Pitch": 0.800000011920929
@@ -348,7 +348,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60068
+     "pathID": 60121
     },
     "Chance": 0.0024999999441206455,
     "Difficulties": -1
@@ -362,7 +362,7 @@
  },
  {
   "_name": "",
-  "_pathid": 60962,
+  "_pathid": 61021,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -436,10 +436,10 @@
    "value": 100,
    "__tail__": ""
   },
-  "SizeRadius": 1.7999999523162842,
+  "SizeRadius": 1.600000023841858,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5976
+   "pathID": 6001
   },
   "Animator": null,
   "MinEnemySpacing": 1.0,
@@ -449,18 +449,18 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59808
+    "pathID": 59860
    },
    {
     "fileID": 0,
-    "pathID": 59809
+    "pathID": 59861
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4909
+    "pathID": 4928
    },
    "Volume": 1.0,
    "Pitch": 0.800000011920929
@@ -471,7 +471,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60032
+     "pathID": 60084
     },
     "Chance": 1.0,
     "Difficulties": 1
@@ -479,7 +479,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60034
+     "pathID": 60086
     },
     "Chance": 1.0,
     "Difficulties": 2
@@ -487,7 +487,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60033
+     "pathID": 60085
     },
     "Chance": 1.0,
     "Difficulties": 4
@@ -495,7 +495,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59935
+     "pathID": 59987
     },
     "Chance": 0.05000000074505806,
     "Difficulties": -1
@@ -503,7 +503,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60069
+     "pathID": 60122
     },
     "Chance": 0.0006000000284984708,
     "Difficulties": -1
@@ -517,7 +517,7 @@
  },
  {
   "_name": "",
-  "_pathid": 60988,
+  "_pathid": 61047,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -594,7 +594,7 @@
   "SizeRadius": 2.5999999046325684,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5976
+   "pathID": 6001
   },
   "Animator": null,
   "MinEnemySpacing": 1.0,
@@ -604,11 +604,11 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59814
+    "pathID": 59866
    },
    {
     "fileID": 0,
-    "pathID": 59806
+    "pathID": 59858
    }
   ],
   "Phases": [
@@ -617,11 +617,11 @@
     "Abilities": [
      {
       "fileID": 0,
-      "pathID": 59814
+      "pathID": 59866
      },
      {
       "fileID": 0,
-      "pathID": 59806
+      "pathID": 59858
      }
     ]
    },
@@ -630,15 +630,15 @@
     "Abilities": [
      {
       "fileID": 0,
-      "pathID": 59814
+      "pathID": 59866
      },
      {
       "fileID": 0,
-      "pathID": 59806
+      "pathID": 59858
      },
      {
       "fileID": 0,
-      "pathID": 59807
+      "pathID": 59859
      }
     ]
    }
@@ -646,7 +646,7 @@
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 5015
+    "pathID": 5035
    },
    "Volume": 1.0,
    "Pitch": 0.8999999761581421
@@ -657,7 +657,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59936
+     "pathID": 59988
     },
     "Chance": 0.05000000074505806,
     "Difficulties": -1
@@ -665,7 +665,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60067
+     "pathID": 60120
     },
     "Chance": 0.00039999998989515007,
     "Difficulties": -1
@@ -673,7 +673,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60027
+     "pathID": 60079
     },
     "Chance": 0.20000000298023224,
     "Difficulties": -1
@@ -681,7 +681,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59959
+     "pathID": 60011
     },
     "Chance": 0.004999999888241291,
     "Difficulties": -1
@@ -689,7 +689,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59920
+     "pathID": 59972
     },
     "Chance": 0.000699999975040555,
     "Difficulties": 4
@@ -703,7 +703,7 @@
  },
  {
   "_name": "",
-  "_pathid": 60993,
+  "_pathid": 61052,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -780,11 +780,11 @@
   "SizeRadius": 1.600000023841858,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5976
+   "pathID": 6001
   },
   "Animator": {
    "fileID": 0,
-   "pathID": 54144
+   "pathID": 54186
   },
   "MinEnemySpacing": 1.0,
   "HighDifficultyHpOverride": 0,
@@ -793,14 +793,14 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59814
+    "pathID": 59866
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4983
+    "pathID": 5002
    },
    "Volume": 1.0,
    "Pitch": 1.0
@@ -811,7 +811,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60113
+     "pathID": 60166
     },
     "Chance": 0.0020000000949949026,
     "Difficulties": -1
@@ -825,7 +825,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61005,
+  "_pathid": 61064,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -902,7 +902,7 @@
   "SizeRadius": 0.8999999761581421,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5976
+   "pathID": 6001
   },
   "Animator": null,
   "MinEnemySpacing": 1.0,
@@ -912,18 +912,18 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59814
+    "pathID": 59866
    },
    {
     "fileID": 0,
-    "pathID": 59810
+    "pathID": 59862
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4881
+    "pathID": 4900
    },
    "Volume": 0.699999988079071,
    "Pitch": 0.699999988079071
@@ -934,7 +934,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60070
+     "pathID": 60123
     },
     "Chance": 0.0024999999441206455,
     "Difficulties": -1
@@ -948,7 +948,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61446,
+  "_pathid": 61506,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -1025,11 +1025,11 @@
   "SizeRadius": 1.600000023841858,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5976
+   "pathID": 6001
   },
   "Animator": {
    "fileID": 0,
-   "pathID": 54156
+   "pathID": 54198
   },
   "MinEnemySpacing": 1.0,
   "HighDifficultyHpOverride": 7000,
@@ -1038,18 +1038,18 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59843
+    "pathID": 59895
    },
    {
     "fileID": 0,
-    "pathID": 59844
+    "pathID": 59896
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 5015
+    "pathID": 5035
    },
    "Volume": 1.0,
    "Pitch": 1.0
@@ -1060,7 +1060,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60032
+     "pathID": 60084
     },
     "Chance": 1.0,
     "Difficulties": 1
@@ -1068,7 +1068,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60034
+     "pathID": 60086
     },
     "Chance": 1.0,
     "Difficulties": 2
@@ -1076,7 +1076,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60033
+     "pathID": 60085
     },
     "Chance": 1.0,
     "Difficulties": 4
@@ -1084,7 +1084,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59935
+     "pathID": 59987
     },
     "Chance": 0.05000000074505806,
     "Difficulties": -1
@@ -1092,7 +1092,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60110
+     "pathID": 60163
     },
     "Chance": 0.0003000000142492354,
     "Difficulties": -1
@@ -1106,7 +1106,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61552,
+  "_pathid": 61612,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -1183,11 +1183,11 @@
   "SizeRadius": 0.5,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5975
+   "pathID": 6000
   },
   "Animator": {
    "fileID": 0,
-   "pathID": 54131
+   "pathID": 54173
   },
   "MinEnemySpacing": 1.0,
   "HighDifficultyHpOverride": 0,
@@ -1196,14 +1196,14 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59814
+    "pathID": 59866
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 5010
+    "pathID": 5030
    },
    "Volume": 0.800000011920929,
    "Pitch": 0.8999999761581421
@@ -1214,7 +1214,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60082
+     "pathID": 60135
     },
     "Chance": 0.0020000000949949026,
     "Difficulties": -1
@@ -1228,7 +1228,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61553,
+  "_pathid": 61613,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -1305,7 +1305,7 @@
   "SizeRadius": 0.699999988079071,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5972
+   "pathID": 5997
   },
   "Animator": null,
   "MinEnemySpacing": 1.0,
@@ -1315,14 +1315,14 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59814
+    "pathID": 59866
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4792
+    "pathID": 4810
    },
    "Volume": 0.5,
    "Pitch": 1.0
@@ -1338,7 +1338,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61554,
+  "_pathid": 61614,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -1415,7 +1415,7 @@
   "SizeRadius": 1.5,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5976
+   "pathID": 6001
   },
   "Animator": null,
   "MinEnemySpacing": 1.0,
@@ -1425,18 +1425,18 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59834
+    "pathID": 59886
    },
    {
     "fileID": 0,
-    "pathID": 59833
+    "pathID": 59885
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4962
+    "pathID": 4981
    },
    "Volume": 0.5,
    "Pitch": 1.0
@@ -1447,7 +1447,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60099
+     "pathID": 60152
     },
     "Chance": 0.00039999998989515007,
     "Difficulties": -1
@@ -1455,7 +1455,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60035
+     "pathID": 60087
     },
     "Chance": 0.20000000298023224,
     "Difficulties": -1
@@ -1463,7 +1463,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59960
+     "pathID": 60012
     },
     "Chance": 0.004999999888241291,
     "Difficulties": -1
@@ -1471,7 +1471,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59936
+     "pathID": 59988
     },
     "Chance": 0.05000000074505806,
     "Difficulties": -1
@@ -1479,7 +1479,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59920
+     "pathID": 59972
     },
     "Chance": 0.000699999975040555,
     "Difficulties": 4
@@ -1493,7 +1493,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61555,
+  "_pathid": 61615,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -1570,11 +1570,11 @@
   "SizeRadius": 0.4000000059604645,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5976
+   "pathID": 6001
   },
   "Animator": {
    "fileID": 0,
-   "pathID": 54217
+   "pathID": 54259
   },
   "MinEnemySpacing": 1.0,
   "HighDifficultyHpOverride": 0,
@@ -1583,14 +1583,14 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59814
+    "pathID": 59866
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4790
+    "pathID": 4808
    },
    "Volume": 0.800000011920929,
    "Pitch": 1.0
@@ -1601,7 +1601,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60117
+     "pathID": 60170
     },
     "Chance": 0.0024999999441206455,
     "Difficulties": -1
@@ -1615,7 +1615,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61556,
+  "_pathid": 61616,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -1692,11 +1692,11 @@
   "SizeRadius": 2.0,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5975
+   "pathID": 6000
   },
   "Animator": {
    "fileID": 0,
-   "pathID": 54302
+   "pathID": 54344
   },
   "MinEnemySpacing": 0.699999988079071,
   "HighDifficultyHpOverride": 0,
@@ -1705,11 +1705,11 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59818
+    "pathID": 59870
    },
    {
     "fileID": 0,
-    "pathID": 59814
+    "pathID": 59866
    }
   ],
   "Phases": [],
@@ -1724,7 +1724,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59936
+     "pathID": 59988
     },
     "Chance": 1.0,
     "Difficulties": -1
@@ -1738,7 +1738,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61557,
+  "_pathid": 61617,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -1815,11 +1815,11 @@
   "SizeRadius": 0.6000000238418579,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5976
+   "pathID": 6001
   },
   "Animator": {
    "fileID": 0,
-   "pathID": 54240
+   "pathID": 54282
   },
   "MinEnemySpacing": 1.0,
   "HighDifficultyHpOverride": 0,
@@ -1828,14 +1828,14 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59825
+    "pathID": 59877
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4792
+    "pathID": 4810
    },
    "Volume": 0.5,
    "Pitch": 1.0
@@ -1846,7 +1846,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60087
+     "pathID": 60140
     },
     "Chance": 0.0024999999441206455,
     "Difficulties": -1
@@ -1860,7 +1860,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61558,
+  "_pathid": 61618,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -1937,7 +1937,7 @@
   "SizeRadius": 0.699999988079071,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5972
+   "pathID": 5997
   },
   "Animator": null,
   "MinEnemySpacing": 1.0,
@@ -1947,14 +1947,14 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59814
+    "pathID": 59866
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4792
+    "pathID": 4810
    },
    "Volume": 0.5,
    "Pitch": 1.0
@@ -1965,33 +1965,9 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59936
+     "pathID": 59988
     },
     "Chance": 1.0,
-    "Difficulties": -1
-   },
-   {
-    "Item": {
-     "fileID": 0,
-     "pathID": 59937
-    },
-    "Chance": 1.0,
-    "Difficulties": -1
-   },
-   {
-    "Item": {
-     "fileID": 0,
-     "pathID": 59936
-    },
-    "Chance": 1.0,
-    "Difficulties": -1
-   },
-   {
-    "Item": {
-     "fileID": 0,
-     "pathID": 59982
-    },
-    "Chance": 0.699999988079071,
     "Difficulties": -1
    },
    {
@@ -1999,13 +1975,21 @@
      "fileID": 0,
      "pathID": 59988
     },
-    "Chance": 0.699999988079071,
+    "Chance": 1.0,
     "Difficulties": -1
    },
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59994
+     "pathID": 59988
+    },
+    "Chance": 1.0,
+    "Difficulties": -1
+   },
+   {
+    "Item": {
+     "fileID": 0,
+     "pathID": 60034
     },
     "Chance": 0.699999988079071,
     "Difficulties": -1
@@ -2013,7 +1997,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60000
+     "pathID": 60040
     },
     "Chance": 0.699999988079071,
     "Difficulties": -1
@@ -2021,7 +2005,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60006
+     "pathID": 60046
     },
     "Chance": 0.699999988079071,
     "Difficulties": -1
@@ -2029,7 +2013,23 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60012
+     "pathID": 60052
+    },
+    "Chance": 0.699999988079071,
+    "Difficulties": -1
+   },
+   {
+    "Item": {
+     "fileID": 0,
+     "pathID": 60058
+    },
+    "Chance": 0.699999988079071,
+    "Difficulties": -1
+   },
+   {
+    "Item": {
+     "fileID": 0,
+     "pathID": 60064
     },
     "Chance": 0.699999988079071,
     "Difficulties": -1
@@ -2043,7 +2043,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61559,
+  "_pathid": 61619,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -2120,7 +2120,7 @@
   "SizeRadius": 1.2999999523162842,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5975
+   "pathID": 6000
   },
   "Animator": null,
   "MinEnemySpacing": 0.699999988079071,
@@ -2130,18 +2130,18 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59814
+    "pathID": 59866
    },
    {
     "fileID": 0,
-    "pathID": 59802
+    "pathID": 59854
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4983
+    "pathID": 5002
    },
    "Volume": 1.0,
    "Pitch": 1.0
@@ -2152,7 +2152,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59936
+     "pathID": 59988
     },
     "Chance": 0.05000000074505806,
     "Difficulties": -1
@@ -2160,7 +2160,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60054
+     "pathID": 60107
     },
     "Chance": 0.00039999998989515007,
     "Difficulties": -1
@@ -2168,7 +2168,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60025
+     "pathID": 60077
     },
     "Chance": 0.20000000298023224,
     "Difficulties": -1
@@ -2176,7 +2176,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59947
+     "pathID": 59999
     },
     "Chance": 0.004999999888241291,
     "Difficulties": -1
@@ -2184,7 +2184,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59920
+     "pathID": 59972
     },
     "Chance": 0.000699999975040555,
     "Difficulties": 4
@@ -2198,7 +2198,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61560,
+  "_pathid": 61620,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -2275,11 +2275,11 @@
   "SizeRadius": 0.6000000238418579,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5976
+   "pathID": 6001
   },
   "Animator": {
    "fileID": 0,
-   "pathID": 54256
+   "pathID": 54298
   },
   "MinEnemySpacing": 1.0,
   "HighDifficultyHpOverride": 0,
@@ -2288,14 +2288,14 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59814
+    "pathID": 59866
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4840
+    "pathID": 4858
    },
    "Volume": 0.5,
    "Pitch": 1.2000000476837158
@@ -2306,7 +2306,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60072
+     "pathID": 60125
     },
     "Chance": 0.0020000000949949026,
     "Difficulties": -1
@@ -2320,7 +2320,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61561,
+  "_pathid": 61621,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -2397,7 +2397,7 @@
   "SizeRadius": 0.44999998807907104,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5975
+   "pathID": 6000
   },
   "Animator": null,
   "MinEnemySpacing": 1.0,
@@ -2407,14 +2407,14 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59803
+    "pathID": 59855
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4775
+    "pathID": 4793
    },
    "Volume": 0.5,
    "Pitch": 1.2000000476837158
@@ -2425,7 +2425,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60057
+     "pathID": 60110
     },
     "Chance": 0.0020000000949949026,
     "Difficulties": -1
@@ -2439,7 +2439,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61562,
+  "_pathid": 61622,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -2516,11 +2516,11 @@
   "SizeRadius": 1.399999976158142,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5976
+   "pathID": 6001
   },
   "Animator": {
    "fileID": 0,
-   "pathID": 54291
+   "pathID": 54333
   },
   "MinEnemySpacing": 1.0,
   "HighDifficultyHpOverride": 0,
@@ -2529,18 +2529,18 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59814
+    "pathID": 59866
    },
    {
     "fileID": 0,
-    "pathID": 59824
+    "pathID": 59876
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4917
+    "pathID": 4936
    },
    "Volume": 0.6000000238418579,
    "Pitch": 0.75
@@ -2551,7 +2551,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60032
+     "pathID": 60084
     },
     "Chance": 1.0,
     "Difficulties": 1
@@ -2559,7 +2559,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60034
+     "pathID": 60086
     },
     "Chance": 1.0,
     "Difficulties": 2
@@ -2567,7 +2567,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60033
+     "pathID": 60085
     },
     "Chance": 1.0,
     "Difficulties": 4
@@ -2575,7 +2575,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59935
+     "pathID": 59987
     },
     "Chance": 0.05000000074505806,
     "Difficulties": -1
@@ -2583,7 +2583,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60095
+     "pathID": 60148
     },
     "Chance": 0.0006000000284984708,
     "Difficulties": -1
@@ -2597,7 +2597,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61563,
+  "_pathid": 61623,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -2674,7 +2674,7 @@
   "SizeRadius": 0.8999999761581421,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5976
+   "pathID": 6001
   },
   "Animator": null,
   "MinEnemySpacing": 1.0,
@@ -2684,14 +2684,14 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59815
+    "pathID": 59867
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4784
+    "pathID": 4802
    },
    "Volume": 0.5,
    "Pitch": 1.0
@@ -2702,7 +2702,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60104
+     "pathID": 60157
     },
     "Chance": 0.0024999999441206455,
     "Difficulties": -1
@@ -2716,7 +2716,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61564,
+  "_pathid": 61624,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -2793,11 +2793,11 @@
   "SizeRadius": 0.4000000059604645,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5976
+   "pathID": 6001
   },
   "Animator": {
    "fileID": 0,
-   "pathID": 54246
+   "pathID": 54288
   },
   "MinEnemySpacing": 1.0,
   "HighDifficultyHpOverride": 0,
@@ -2806,14 +2806,14 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59814
+    "pathID": 59866
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 5004
+    "pathID": 5023
    },
    "Volume": 0.800000011920929,
    "Pitch": 0.8999999761581421
@@ -2824,7 +2824,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60063
+     "pathID": 60116
     },
     "Chance": 0.0024999999441206455,
     "Difficulties": -1
@@ -2838,7 +2838,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61565,
+  "_pathid": 61625,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -2915,7 +2915,7 @@
   "SizeRadius": 0.699999988079071,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5972
+   "pathID": 5997
   },
   "Animator": null,
   "MinEnemySpacing": 1.0,
@@ -2925,14 +2925,14 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59814
+    "pathID": 59866
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4792
+    "pathID": 4810
    },
    "Volume": 0.5,
    "Pitch": 1.0
@@ -2943,7 +2943,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59937
+     "pathID": 59988
     },
     "Chance": 1.0,
     "Difficulties": -1
@@ -2951,7 +2951,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59937
+     "pathID": 59988
     },
     "Chance": 1.0,
     "Difficulties": -1
@@ -2959,7 +2959,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59937
+     "pathID": 59988
     },
     "Chance": 1.0,
     "Difficulties": -1
@@ -2967,7 +2967,15 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59983
+     "pathID": 59987
+    },
+    "Chance": 1.0,
+    "Difficulties": -1
+   },
+   {
+    "Item": {
+     "fileID": 0,
+     "pathID": 60035
     },
     "Chance": 0.699999988079071,
     "Difficulties": -1
@@ -2975,7 +2983,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59989
+     "pathID": 60041
     },
     "Chance": 0.699999988079071,
     "Difficulties": -1
@@ -2983,7 +2991,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59995
+     "pathID": 60047
     },
     "Chance": 0.699999988079071,
     "Difficulties": -1
@@ -2991,7 +2999,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60001
+     "pathID": 60053
     },
     "Chance": 0.699999988079071,
     "Difficulties": -1
@@ -2999,7 +3007,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60007
+     "pathID": 60059
     },
     "Chance": 0.699999988079071,
     "Difficulties": -1
@@ -3007,7 +3015,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60013
+     "pathID": 60065
     },
     "Chance": 0.699999988079071,
     "Difficulties": -1
@@ -3021,7 +3029,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61566,
+  "_pathid": 61626,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -3098,7 +3106,7 @@
   "SizeRadius": 1.0,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5976
+   "pathID": 6001
   },
   "Animator": null,
   "MinEnemySpacing": 1.0,
@@ -3108,18 +3116,18 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59814
+    "pathID": 59866
    },
    {
     "fileID": 0,
-    "pathID": 59837
+    "pathID": 59889
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4793
+    "pathID": 4811
    },
    "Volume": 0.5,
    "Pitch": 0.8500000238418579
@@ -3130,7 +3138,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60101
+     "pathID": 60154
     },
     "Chance": 0.0020000000949949026,
     "Difficulties": -1
@@ -3144,7 +3152,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61567,
+  "_pathid": 61627,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -3222,7 +3230,7 @@
   "OnHitVFXPrefab": null,
   "Animator": {
    "fileID": 0,
-   "pathID": 54278
+   "pathID": 54320
   },
   "MinEnemySpacing": 1.0,
   "HighDifficultyHpOverride": 0,
@@ -3231,14 +3239,14 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59820
+    "pathID": 59872
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4909
+    "pathID": 4928
    },
    "Volume": 0.6000000238418579,
    "Pitch": 1.2000000476837158
@@ -3249,7 +3257,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60097
+     "pathID": 60150
     },
     "Chance": 0.0024999999441206455,
     "Difficulties": -1
@@ -3263,7 +3271,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61568,
+  "_pathid": 61628,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -3340,11 +3348,11 @@
   "SizeRadius": 1.600000023841858,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5976
+   "pathID": 6001
   },
   "Animator": {
    "fileID": 0,
-   "pathID": 54171
+   "pathID": 54213
   },
   "MinEnemySpacing": 1.0,
   "HighDifficultyHpOverride": 0,
@@ -3353,14 +3361,14 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59814
+    "pathID": 59866
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4792
+    "pathID": 4810
    },
    "Volume": 0.5,
    "Pitch": 1.0
@@ -3371,7 +3379,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60088
+     "pathID": 60141
     },
     "Chance": 0.0024999999441206455,
     "Difficulties": -1
@@ -3385,7 +3393,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61569,
+  "_pathid": 61629,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -3462,7 +3470,7 @@
   "SizeRadius": 0.30000001192092896,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5973
+   "pathID": 5998
   },
   "Animator": null,
   "MinEnemySpacing": 1.0,
@@ -3472,14 +3480,14 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59814
+    "pathID": 59866
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4858
+    "pathID": 4876
    },
    "Volume": 0.5,
    "Pitch": 0.699999988079071
@@ -3490,7 +3498,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60055
+     "pathID": 60108
     },
     "Chance": 0.0024999999441206455,
     "Difficulties": -1
@@ -3504,7 +3512,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61570,
+  "_pathid": 61630,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -3581,11 +3589,11 @@
   "SizeRadius": 1.0,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5975
+   "pathID": 6000
   },
   "Animator": {
    "fileID": 0,
-   "pathID": 54254
+   "pathID": 54296
   },
   "MinEnemySpacing": 1.0,
   "HighDifficultyHpOverride": 0,
@@ -3594,14 +3602,14 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59823
+    "pathID": 59875
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4973
+    "pathID": 4992
    },
    "Volume": 0.5,
    "Pitch": 1.2999999523162842
@@ -3612,7 +3620,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60032
+     "pathID": 60084
     },
     "Chance": 1.0,
     "Difficulties": 1
@@ -3620,7 +3628,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60034
+     "pathID": 60086
     },
     "Chance": 1.0,
     "Difficulties": 2
@@ -3628,7 +3636,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60033
+     "pathID": 60085
     },
     "Chance": 1.0,
     "Difficulties": 4
@@ -3636,7 +3644,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59935
+     "pathID": 59987
     },
     "Chance": 0.05000000074505806,
     "Difficulties": -1
@@ -3644,7 +3652,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60073
+     "pathID": 60126
     },
     "Chance": 0.0006000000284984708,
     "Difficulties": -1
@@ -3658,7 +3666,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61571,
+  "_pathid": 61631,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -3735,11 +3743,11 @@
   "SizeRadius": 1.0,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5976
+   "pathID": 6001
   },
   "Animator": {
    "fileID": 0,
-   "pathID": 54310
+   "pathID": 54352
   },
   "MinEnemySpacing": 1.0,
   "HighDifficultyHpOverride": 0,
@@ -3748,18 +3756,18 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59831
+    "pathID": 59883
    },
    {
     "fileID": 0,
-    "pathID": 59817
+    "pathID": 59869
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4853
+    "pathID": 4871
    },
    "Volume": 0.5,
    "Pitch": 0.8500000238418579
@@ -3770,7 +3778,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60094
+     "pathID": 60147
     },
     "Chance": 0.0024999999441206455,
     "Difficulties": -1
@@ -3784,7 +3792,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61572,
+  "_pathid": 61632,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -3861,11 +3869,11 @@
   "SizeRadius": 0.8999999761581421,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5975
+   "pathID": 6000
   },
   "Animator": {
    "fileID": 0,
-   "pathID": 54139
+   "pathID": 54181
   },
   "MinEnemySpacing": 1.0,
   "HighDifficultyHpOverride": 0,
@@ -3874,14 +3882,14 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59814
+    "pathID": 59866
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4924
+    "pathID": 4943
    },
    "Volume": 1.0,
    "Pitch": 1.0
@@ -3892,7 +3900,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60081
+     "pathID": 60134
     },
     "Chance": 0.00039999998989515007,
     "Difficulties": -1
@@ -3900,7 +3908,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59936
+     "pathID": 59988
     },
     "Chance": 0.05000000074505806,
     "Difficulties": -1
@@ -3908,7 +3916,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60029
+     "pathID": 60081
     },
     "Chance": 0.20000000298023224,
     "Difficulties": -1
@@ -3916,7 +3924,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59945
+     "pathID": 59997
     },
     "Chance": 0.004999999888241291,
     "Difficulties": -1
@@ -3924,7 +3932,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59920
+     "pathID": 59972
     },
     "Chance": 0.000699999975040555,
     "Difficulties": 4
@@ -3938,7 +3946,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61573,
+  "_pathid": 61633,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -4015,11 +4023,11 @@
   "SizeRadius": 0.4000000059604645,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5976
+   "pathID": 6001
   },
   "Animator": {
    "fileID": 0,
-   "pathID": 54141
+   "pathID": 54183
   },
   "MinEnemySpacing": 1.0,
   "HighDifficultyHpOverride": 0,
@@ -4028,14 +4036,14 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59814
+    "pathID": 59866
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4920
+    "pathID": 4939
    },
    "Volume": 0.5,
    "Pitch": 1.7999999523162842
@@ -4046,7 +4054,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60106
+     "pathID": 60159
     },
     "Chance": 0.0024999999441206455,
     "Difficulties": -1
@@ -4060,7 +4068,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61574,
+  "_pathid": 61634,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -4137,11 +4145,11 @@
   "SizeRadius": 0.4000000059604645,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5976
+   "pathID": 6001
   },
   "Animator": {
    "fileID": 0,
-   "pathID": 54228
+   "pathID": 54270
   },
   "MinEnemySpacing": 1.0,
   "HighDifficultyHpOverride": 0,
@@ -4150,14 +4158,14 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59814
+    "pathID": 59866
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4795
+    "pathID": 4813
    },
    "Volume": 0.5,
    "Pitch": 1.0
@@ -4168,7 +4176,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60116
+     "pathID": 60169
     },
     "Chance": 0.0020000000949949026,
     "Difficulties": -1
@@ -4182,7 +4190,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61575,
+  "_pathid": 61635,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -4259,11 +4267,11 @@
   "SizeRadius": 0.699999988079071,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5976
+   "pathID": 6001
   },
   "Animator": {
    "fileID": 0,
-   "pathID": 54286
+   "pathID": 54328
   },
   "MinEnemySpacing": 1.0,
   "HighDifficultyHpOverride": 0,
@@ -4272,14 +4280,14 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59814
+    "pathID": 59866
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4792
+    "pathID": 4810
    },
    "Volume": 0.5,
    "Pitch": 1.0
@@ -4290,7 +4298,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60089
+     "pathID": 60142
     },
     "Chance": 0.0024999999441206455,
     "Difficulties": -1
@@ -4304,7 +4312,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61576,
+  "_pathid": 61636,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -4381,11 +4389,11 @@
   "SizeRadius": 0.5,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5975
+   "pathID": 6000
   },
   "Animator": {
    "fileID": 0,
-   "pathID": 54163
+   "pathID": 54205
   },
   "MinEnemySpacing": 1.0,
   "HighDifficultyHpOverride": 4000,
@@ -4394,14 +4402,14 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59813
+    "pathID": 59865
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4912
+    "pathID": 4931
    },
    "Volume": 1.0,
    "Pitch": 1.0
@@ -4412,7 +4420,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60032
+     "pathID": 60084
     },
     "Chance": 1.0,
     "Difficulties": 1
@@ -4420,7 +4428,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60034
+     "pathID": 60086
     },
     "Chance": 1.0,
     "Difficulties": 2
@@ -4428,7 +4436,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60033
+     "pathID": 60085
     },
     "Chance": 1.0,
     "Difficulties": 4
@@ -4436,7 +4444,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60065
+     "pathID": 60118
     },
     "Chance": 0.0006000000284984708,
     "Difficulties": -1
@@ -4444,7 +4452,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59935
+     "pathID": 59987
     },
     "Chance": 0.05000000074505806,
     "Difficulties": -1
@@ -4458,7 +4466,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61577,
+  "_pathid": 61637,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -4535,11 +4543,11 @@
   "SizeRadius": 0.30000001192092896,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5976
+   "pathID": 6001
   },
   "Animator": {
    "fileID": 0,
-   "pathID": 54236
+   "pathID": 54278
   },
   "MinEnemySpacing": 1.0,
   "HighDifficultyHpOverride": 0,
@@ -4548,14 +4556,14 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59845
+    "pathID": 59897
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4881
+    "pathID": 4900
    },
    "Volume": 0.5,
    "Pitch": 1.0
@@ -4566,7 +4574,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60077
+     "pathID": 60130
     },
     "Chance": 0.0024999999441206455,
     "Difficulties": -1
@@ -4580,7 +4588,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61578,
+  "_pathid": 61638,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -4657,7 +4665,7 @@
   "SizeRadius": 0.25,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5974
+   "pathID": 5999
   },
   "Animator": null,
   "MinEnemySpacing": 0.699999988079071,
@@ -4667,14 +4675,14 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59839
+    "pathID": 59891
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4871
+    "pathID": 4890
    },
    "Volume": 0.6000000238418579,
    "Pitch": 1.399999976158142
@@ -4685,7 +4693,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60032
+     "pathID": 60084
     },
     "Chance": 1.0,
     "Difficulties": 1
@@ -4693,7 +4701,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60034
+     "pathID": 60086
     },
     "Chance": 1.0,
     "Difficulties": 2
@@ -4701,7 +4709,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60033
+     "pathID": 60085
     },
     "Chance": 1.0,
     "Difficulties": 4
@@ -4709,7 +4717,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59935
+     "pathID": 59987
     },
     "Chance": 0.05000000074505806,
     "Difficulties": -1
@@ -4717,7 +4725,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60079
+     "pathID": 60132
     },
     "Chance": 0.0006000000284984708,
     "Difficulties": -1
@@ -4731,7 +4739,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61579,
+  "_pathid": 61639,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -4808,7 +4816,7 @@
   "SizeRadius": 0.30000001192092896,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5973
+   "pathID": 5998
   },
   "Animator": null,
   "MinEnemySpacing": 1.0,
@@ -4818,14 +4826,14 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59814
+    "pathID": 59866
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4858
+    "pathID": 4876
    },
    "Volume": 0.5,
    "Pitch": 0.699999988079071
@@ -4836,7 +4844,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60055
+     "pathID": 60108
     },
     "Chance": 0.0024999999441206455,
     "Difficulties": -1
@@ -4850,7 +4858,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61580,
+  "_pathid": 61640,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -4927,7 +4935,7 @@
   "SizeRadius": 1.0,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5976
+   "pathID": 6001
   },
   "Animator": null,
   "MinEnemySpacing": 1.0,
@@ -4937,14 +4945,14 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59838
+    "pathID": 59890
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4802
+    "pathID": 4820
    },
    "Volume": 0.5,
    "Pitch": 0.8500000238418579
@@ -4955,7 +4963,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60103
+     "pathID": 60156
     },
     "Chance": 0.0020000000949949026,
     "Difficulties": -1
@@ -4969,7 +4977,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61581,
+  "_pathid": 61641,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -5046,11 +5054,11 @@
   "SizeRadius": 1.0,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5976
+   "pathID": 6001
   },
   "Animator": {
    "fileID": 0,
-   "pathID": 54274
+   "pathID": 54316
   },
   "MinEnemySpacing": 1.0,
   "HighDifficultyHpOverride": 0,
@@ -5059,14 +5067,14 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59814
+    "pathID": 59866
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4805
+    "pathID": 4823
    },
    "Volume": 0.5,
    "Pitch": 1.149999976158142
@@ -5077,7 +5085,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60096
+     "pathID": 60149
     },
     "Chance": 0.0024999999441206455,
     "Difficulties": -1
@@ -5091,7 +5099,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61582,
+  "_pathid": 61642,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -5168,11 +5176,11 @@
   "SizeRadius": 1.0,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5976
+   "pathID": 6001
   },
   "Animator": {
    "fileID": 0,
-   "pathID": 54213
+   "pathID": 54255
   },
   "MinEnemySpacing": 1.0,
   "HighDifficultyHpOverride": 0,
@@ -5181,14 +5189,14 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59814
+    "pathID": 59866
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4793
+    "pathID": 4811
    },
    "Volume": 0.5,
    "Pitch": 0.8500000238418579
@@ -5199,7 +5207,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60091
+     "pathID": 60144
     },
     "Chance": 0.0024999999441206455,
     "Difficulties": -1
@@ -5213,7 +5221,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61583,
+  "_pathid": 61643,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -5291,7 +5299,7 @@
   "OnHitVFXPrefab": null,
   "Animator": {
    "fileID": 0,
-   "pathID": 54279
+   "pathID": 54321
   },
   "MinEnemySpacing": 1.0,
   "HighDifficultyHpOverride": 0,
@@ -5300,14 +5308,14 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59814
+    "pathID": 59866
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4909
+    "pathID": 4928
    },
    "Volume": 0.6000000238418579,
    "Pitch": 1.2000000476837158
@@ -5318,7 +5326,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60098
+     "pathID": 60151
     },
     "Chance": 0.0024999999441206455,
     "Difficulties": -1
@@ -5332,7 +5340,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61584,
+  "_pathid": 61644,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -5409,7 +5417,7 @@
   "SizeRadius": 1.2999999523162842,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5975
+   "pathID": 6000
   },
   "Animator": null,
   "MinEnemySpacing": 0.699999988079071,
@@ -5419,18 +5427,18 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59814
+    "pathID": 59866
    },
    {
     "fileID": 0,
-    "pathID": 59805
+    "pathID": 59857
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4867
+    "pathID": 4886
    },
    "Volume": 1.0,
    "Pitch": 0.8999999761581421
@@ -5441,7 +5449,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60032
+     "pathID": 60084
     },
     "Chance": 1.0,
     "Difficulties": 1
@@ -5449,7 +5457,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60034
+     "pathID": 60086
     },
     "Chance": 1.0,
     "Difficulties": 2
@@ -5457,7 +5465,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60033
+     "pathID": 60085
     },
     "Chance": 1.0,
     "Difficulties": 4
@@ -5465,7 +5473,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59935
+     "pathID": 59987
     },
     "Chance": 0.05000000074505806,
     "Difficulties": -1
@@ -5473,7 +5481,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60059
+     "pathID": 60112
     },
     "Chance": 0.0006000000284984708,
     "Difficulties": -1
@@ -5487,7 +5495,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61585,
+  "_pathid": 61645,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -5564,11 +5572,11 @@
   "SizeRadius": 1.0,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5976
+   "pathID": 6001
   },
   "Animator": {
    "fileID": 0,
-   "pathID": 54223
+   "pathID": 54265
   },
   "MinEnemySpacing": 1.0,
   "HighDifficultyHpOverride": 4000,
@@ -5577,11 +5585,11 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59814
+    "pathID": 59866
    },
    {
     "fileID": 0,
-    "pathID": 59827
+    "pathID": 59879
    }
   ],
   "Phases": [],
@@ -5596,7 +5604,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60084
+     "pathID": 60137
     },
     "Chance": 0.0006000000284984708,
     "Difficulties": -1
@@ -5604,7 +5612,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60032
+     "pathID": 60084
     },
     "Chance": 1.0,
     "Difficulties": 1
@@ -5612,7 +5620,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60034
+     "pathID": 60086
     },
     "Chance": 1.0,
     "Difficulties": 2
@@ -5620,7 +5628,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60033
+     "pathID": 60085
     },
     "Chance": 1.0,
     "Difficulties": 4
@@ -5628,7 +5636,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59935
+     "pathID": 59987
     },
     "Chance": 0.05000000074505806,
     "Difficulties": -1
@@ -5642,7 +5650,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61586,
+  "_pathid": 61646,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -5719,11 +5727,11 @@
   "SizeRadius": 2.0,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5976
+   "pathID": 6001
   },
   "Animator": {
    "fileID": 0,
-   "pathID": 54140
+   "pathID": 54182
   },
   "MinEnemySpacing": 1.0,
   "HighDifficultyHpOverride": 0,
@@ -5732,18 +5740,18 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59814
+    "pathID": 59866
    },
    {
     "fileID": 0,
-    "pathID": 59801
+    "pathID": 59853
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4792
+    "pathID": 4810
    },
    "Volume": 0.5,
    "Pitch": 1.0
@@ -5754,7 +5762,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60085
+     "pathID": 60138
     },
     "Chance": 0.00039999998989515007,
     "Difficulties": -1
@@ -5762,7 +5770,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59936
+     "pathID": 59988
     },
     "Chance": 0.05000000074505806,
     "Difficulties": -1
@@ -5770,7 +5778,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60030
+     "pathID": 60082
     },
     "Chance": 0.20000000298023224,
     "Difficulties": -1
@@ -5778,7 +5786,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59958
+     "pathID": 60010
     },
     "Chance": 0.004999999888241291,
     "Difficulties": -1
@@ -5786,7 +5794,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59920
+     "pathID": 59972
     },
     "Chance": 0.000699999975040555,
     "Difficulties": 4
@@ -5800,7 +5808,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61587,
+  "_pathid": 61647,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -5877,7 +5885,7 @@
   "SizeRadius": 1.600000023841858,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5976
+   "pathID": 6001
   },
   "Animator": null,
   "MinEnemySpacing": 1.0,
@@ -5887,22 +5895,22 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59828
+    "pathID": 59880
    },
    {
     "fileID": 0,
-    "pathID": 59830
+    "pathID": 59882
    },
    {
     "fileID": 0,
-    "pathID": 59829
+    "pathID": 59881
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4847
+    "pathID": 4865
    },
    "Volume": 0.800000011920929,
    "Pitch": 0.75
@@ -5913,7 +5921,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60092
+     "pathID": 60145
     },
     "Chance": 0.00039999998989515007,
     "Difficulties": -1
@@ -5921,7 +5929,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59936
+     "pathID": 59988
     },
     "Chance": 0.05000000074505806,
     "Difficulties": -1
@@ -5929,7 +5937,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60031
+     "pathID": 60083
     },
     "Chance": 0.20000000298023224,
     "Difficulties": -1
@@ -5937,7 +5945,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59944
+     "pathID": 59996
     },
     "Chance": 0.004999999888241291,
     "Difficulties": -1
@@ -5945,7 +5953,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59920
+     "pathID": 59972
     },
     "Chance": 0.000699999975040555,
     "Difficulties": 4
@@ -5959,7 +5967,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61588,
+  "_pathid": 61648,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -6036,7 +6044,7 @@
   "SizeRadius": 0.20000000298023224,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5976
+   "pathID": 6001
   },
   "Animator": null,
   "MinEnemySpacing": 0.699999988079071,
@@ -6046,14 +6054,14 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59814
+    "pathID": 59866
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4871
+    "pathID": 4890
    },
    "Volume": 0.6000000238418579,
    "Pitch": 1.399999976158142
@@ -6064,7 +6072,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60105
+     "pathID": 60158
     },
     "Chance": 0.0024999999441206455,
     "Difficulties": -1
@@ -6078,7 +6086,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61589,
+  "_pathid": 61649,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -6155,11 +6163,11 @@
   "SizeRadius": 1.7999999523162842,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5976
+   "pathID": 6001
   },
   "Animator": {
    "fileID": 0,
-   "pathID": 54215
+   "pathID": 54257
   },
   "MinEnemySpacing": 1.0,
   "HighDifficultyHpOverride": 0,
@@ -6168,18 +6176,18 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59826
+    "pathID": 59878
    },
    {
     "fileID": 0,
-    "pathID": 59814
+    "pathID": 59866
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4793
+    "pathID": 4811
    },
    "Volume": 0.5,
    "Pitch": 1.0
@@ -6190,7 +6198,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60076
+     "pathID": 60129
     },
     "Chance": 0.00039999998989515007,
     "Difficulties": -1
@@ -6198,7 +6206,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59936
+     "pathID": 59988
     },
     "Chance": 0.05000000074505806,
     "Difficulties": -1
@@ -6206,7 +6214,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60028
+     "pathID": 60080
     },
     "Chance": 0.20000000298023224,
     "Difficulties": -1
@@ -6214,7 +6222,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59941
+     "pathID": 59993
     },
     "Chance": 0.004999999888241291,
     "Difficulties": -1
@@ -6222,7 +6230,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59920
+     "pathID": 59972
     },
     "Chance": 0.000699999975040555,
     "Difficulties": 4
@@ -6236,7 +6244,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61590,
+  "_pathid": 61650,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -6313,7 +6321,7 @@
   "SizeRadius": 0.44999998807907104,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5975
+   "pathID": 6000
   },
   "Animator": null,
   "MinEnemySpacing": 1.0,
@@ -6323,14 +6331,14 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59814
+    "pathID": 59866
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4775
+    "pathID": 4793
    },
    "Volume": 0.5,
    "Pitch": 1.2000000476837158
@@ -6341,7 +6349,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60056
+     "pathID": 60109
     },
     "Chance": 0.0020000000949949026,
     "Difficulties": -1
@@ -6355,7 +6363,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61591,
+  "_pathid": 61651,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -6432,7 +6440,7 @@
   "SizeRadius": 0.699999988079071,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5972
+   "pathID": 5997
   },
   "Animator": null,
   "MinEnemySpacing": 1.0,
@@ -6442,14 +6450,14 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59814
+    "pathID": 59866
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4792
+    "pathID": 4810
    },
    "Volume": 0.5,
    "Pitch": 1.0
@@ -6460,47 +6468,31 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59935
-    },
-    "Chance": 1.0,
-    "Difficulties": -1
-   },
-   {
-    "Item": {
-     "fileID": 0,
-     "pathID": 59936
-    },
-    "Chance": 1.0,
-    "Difficulties": -1
-   },
-   {
-    "Item": {
-     "fileID": 0,
-     "pathID": 59936
-    },
-    "Chance": 1.0,
-    "Difficulties": -1
-   },
-   {
-    "Item": {
-     "fileID": 0,
-     "pathID": 59981
-    },
-    "Chance": 0.699999988079071,
-    "Difficulties": -1
-   },
-   {
-    "Item": {
-     "fileID": 0,
      "pathID": 59987
     },
-    "Chance": 0.699999988079071,
+    "Chance": 1.0,
     "Difficulties": -1
    },
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59993
+     "pathID": 59988
+    },
+    "Chance": 1.0,
+    "Difficulties": -1
+   },
+   {
+    "Item": {
+     "fileID": 0,
+     "pathID": 59988
+    },
+    "Chance": 1.0,
+    "Difficulties": -1
+   },
+   {
+    "Item": {
+     "fileID": 0,
+     "pathID": 60033
     },
     "Chance": 0.699999988079071,
     "Difficulties": -1
@@ -6508,7 +6500,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59999
+     "pathID": 60039
     },
     "Chance": 0.699999988079071,
     "Difficulties": -1
@@ -6516,7 +6508,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60005
+     "pathID": 60045
     },
     "Chance": 0.699999988079071,
     "Difficulties": -1
@@ -6524,7 +6516,23 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60011
+     "pathID": 60051
+    },
+    "Chance": 0.699999988079071,
+    "Difficulties": -1
+   },
+   {
+    "Item": {
+     "fileID": 0,
+     "pathID": 60057
+    },
+    "Chance": 0.699999988079071,
+    "Difficulties": -1
+   },
+   {
+    "Item": {
+     "fileID": 0,
+     "pathID": 60063
     },
     "Chance": 0.699999988079071,
     "Difficulties": -1
@@ -6538,7 +6546,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61592,
+  "_pathid": 61652,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -6615,7 +6623,7 @@
   "SizeRadius": 0.30000001192092896,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5976
+   "pathID": 6001
   },
   "Animator": null,
   "MinEnemySpacing": 1.0,
@@ -6625,18 +6633,18 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59814
+    "pathID": 59866
    },
    {
     "fileID": 0,
-    "pathID": 59804
+    "pathID": 59856
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4857
+    "pathID": 4875
    },
    "Volume": 0.5,
    "Pitch": 0.800000011920929
@@ -6647,7 +6655,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60058
+     "pathID": 60111
     },
     "Chance": 0.0024999999441206455,
     "Difficulties": -1
@@ -6661,7 +6669,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61594,
+  "_pathid": 61654,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -6738,11 +6746,11 @@
   "SizeRadius": 0.30000001192092896,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5976
+   "pathID": 6001
   },
   "Animator": {
    "fileID": 0,
-   "pathID": 54267
+   "pathID": 54309
   },
   "MinEnemySpacing": 1.0,
   "HighDifficultyHpOverride": 0,
@@ -6751,14 +6759,14 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59814
+    "pathID": 59866
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4917
+    "pathID": 4936
    },
    "Volume": 0.699999988079071,
    "Pitch": 1.2000000476837158
@@ -6769,7 +6777,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60080
+     "pathID": 60133
     },
     "Chance": 0.0024999999441206455,
     "Difficulties": -1
@@ -6783,7 +6791,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61595,
+  "_pathid": 61655,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -6860,11 +6868,11 @@
   "SizeRadius": 0.800000011920929,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5975
+   "pathID": 6000
   },
   "Animator": {
    "fileID": 0,
-   "pathID": 54242
+   "pathID": 54284
   },
   "MinEnemySpacing": 0.699999988079071,
   "HighDifficultyHpOverride": 0,
@@ -6873,18 +6881,18 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59814
+    "pathID": 59866
    },
    {
     "fileID": 0,
-    "pathID": 59817
+    "pathID": 59869
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4983
+    "pathID": 5002
    },
    "Volume": 1.0,
    "Pitch": 0.6000000238418579
@@ -6895,7 +6903,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60060
+     "pathID": 60113
     },
     "Chance": 0.00039999998989515007,
     "Difficulties": -1
@@ -6903,7 +6911,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59936
+     "pathID": 59988
     },
     "Chance": 0.05000000074505806,
     "Difficulties": -1
@@ -6911,7 +6919,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60026
+     "pathID": 60078
     },
     "Chance": 0.20000000298023224,
     "Difficulties": -1
@@ -6919,7 +6927,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59942
+     "pathID": 59994
     },
     "Chance": 0.004999999888241291,
     "Difficulties": -1
@@ -6927,7 +6935,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59920
+     "pathID": 59972
     },
     "Chance": 0.000699999975040555,
     "Difficulties": 4
@@ -6941,7 +6949,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61596,
+  "_pathid": 61656,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -7018,7 +7026,7 @@
   "SizeRadius": 0.800000011920929,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5975
+   "pathID": 6000
   },
   "Animator": null,
   "MinEnemySpacing": 0.699999988079071,
@@ -7028,18 +7036,18 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59814
+    "pathID": 59866
    },
    {
     "fileID": 0,
-    "pathID": 59819
+    "pathID": 59871
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4983
+    "pathID": 5002
    },
    "Volume": 1.0,
    "Pitch": 1.0
@@ -7050,7 +7058,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60114
+     "pathID": 60167
     },
     "Chance": 0.00039999998989515007,
     "Difficulties": -1
@@ -7058,7 +7066,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59936
+     "pathID": 59988
     },
     "Chance": 0.05000000074505806,
     "Difficulties": -1
@@ -7066,7 +7074,15 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59943
+     "pathID": 60093
+    },
+    "Chance": 0.20000000298023224,
+    "Difficulties": -1
+   },
+   {
+    "Item": {
+     "fileID": 0,
+     "pathID": 59995
     },
     "Chance": 0.004999999888241291,
     "Difficulties": -1
@@ -7074,7 +7090,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59920
+     "pathID": 59972
     },
     "Chance": 0.000699999975040555,
     "Difficulties": 4
@@ -7088,7 +7104,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61597,
+  "_pathid": 61657,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -7165,11 +7181,11 @@
   "SizeRadius": 0.6000000238418579,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5976
+   "pathID": 6001
   },
   "Animator": {
    "fileID": 0,
-   "pathID": 54150
+   "pathID": 54192
   },
   "MinEnemySpacing": 1.0,
   "HighDifficultyHpOverride": 0,
@@ -7178,14 +7194,14 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59814
+    "pathID": 59866
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4968
+    "pathID": 4987
    },
    "Volume": 0.5,
    "Pitch": 1.0
@@ -7196,7 +7212,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60075
+     "pathID": 60128
     },
     "Chance": 0.0024999999441206455,
     "Difficulties": -1
@@ -7210,7 +7226,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61598,
+  "_pathid": 61658,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -7287,7 +7303,7 @@
   "SizeRadius": 0.25,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5974
+   "pathID": 5999
   },
   "Animator": null,
   "MinEnemySpacing": 0.699999988079071,
@@ -7297,14 +7313,14 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59839
+    "pathID": 59891
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4871
+    "pathID": 4890
    },
    "Volume": 0.6000000238418579,
    "Pitch": 1.399999976158142
@@ -7315,7 +7331,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60083
+     "pathID": 60136
     },
     "Chance": 0.0024999999441206455,
     "Difficulties": -1
@@ -7329,7 +7345,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61599,
+  "_pathid": 61659,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -7406,7 +7422,7 @@
   "SizeRadius": 0.699999988079071,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5972
+   "pathID": 5997
   },
   "Animator": null,
   "MinEnemySpacing": 1.0,
@@ -7416,14 +7432,14 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59814
+    "pathID": 59866
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4792
+    "pathID": 4810
    },
    "Volume": 0.5,
    "Pitch": 1.0
@@ -7439,7 +7455,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61600,
+  "_pathid": 61660,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -7516,11 +7532,11 @@
   "SizeRadius": 0.800000011920929,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5976
+   "pathID": 6001
   },
   "Animator": {
    "fileID": 0,
-   "pathID": 54160
+   "pathID": 54202
   },
   "MinEnemySpacing": 1.0,
   "HighDifficultyHpOverride": 0,
@@ -7529,14 +7545,14 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59814
+    "pathID": 59866
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4792
+    "pathID": 4810
    },
    "Volume": 0.5,
    "Pitch": 1.0
@@ -7547,7 +7563,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60086
+     "pathID": 60139
     },
     "Chance": 0.0024999999441206455,
     "Difficulties": -1
@@ -7561,7 +7577,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61601,
+  "_pathid": 61661,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -7638,7 +7654,7 @@
   "SizeRadius": 1.2000000476837158,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5976
+   "pathID": 6001
   },
   "Animator": null,
   "MinEnemySpacing": 1.0,
@@ -7648,22 +7664,22 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59814
+    "pathID": 59866
    },
    {
     "fileID": 0,
-    "pathID": 59836
+    "pathID": 59888
    },
    {
     "fileID": 0,
-    "pathID": 59835
+    "pathID": 59887
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4793
+    "pathID": 4811
    },
    "Volume": 0.5,
    "Pitch": 0.8500000238418579
@@ -7674,7 +7690,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60032
+     "pathID": 60084
     },
     "Chance": 1.0,
     "Difficulties": 1
@@ -7682,7 +7698,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60034
+     "pathID": 60086
     },
     "Chance": 1.0,
     "Difficulties": 2
@@ -7690,7 +7706,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60033
+     "pathID": 60085
     },
     "Chance": 1.0,
     "Difficulties": 4
@@ -7698,7 +7714,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59935
+     "pathID": 59987
     },
     "Chance": 0.05000000074505806,
     "Difficulties": -1
@@ -7706,7 +7722,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60100
+     "pathID": 60153
     },
     "Chance": 0.0006000000284984708,
     "Difficulties": -1
@@ -7720,7 +7736,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61602,
+  "_pathid": 61662,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -7797,11 +7813,11 @@
   "SizeRadius": 0.6000000238418579,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5976
+   "pathID": 6001
   },
   "Animator": {
    "fileID": 0,
-   "pathID": 54233
+   "pathID": 54275
   },
   "MinEnemySpacing": 1.0,
   "HighDifficultyHpOverride": 0,
@@ -7810,14 +7826,14 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59821
+    "pathID": 59873
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4888
+    "pathID": 4907
    },
    "Volume": 0.5,
    "Pitch": 2.0
@@ -7828,7 +7844,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60093
+     "pathID": 60146
     },
     "Chance": 0.0020000000949949026,
     "Difficulties": -1
@@ -7842,7 +7858,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61603,
+  "_pathid": 61663,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -7919,7 +7935,7 @@
   "SizeRadius": 1.0,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5976
+   "pathID": 6001
   },
   "Animator": null,
   "MinEnemySpacing": 1.0,
@@ -7929,14 +7945,14 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59814
+    "pathID": 59866
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4793
+    "pathID": 4811
    },
    "Volume": 0.5,
    "Pitch": 0.8500000238418579
@@ -7947,7 +7963,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60102
+     "pathID": 60155
     },
     "Chance": 0.0024999999441206455,
     "Difficulties": -1
@@ -7961,7 +7977,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61604,
+  "_pathid": 61664,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -8038,11 +8054,11 @@
   "SizeRadius": 0.6000000238418579,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5976
+   "pathID": 6001
   },
   "Animator": {
    "fileID": 0,
-   "pathID": 54262
+   "pathID": 54304
   },
   "MinEnemySpacing": 1.0,
   "HighDifficultyHpOverride": 0,
@@ -8051,14 +8067,14 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59814
+    "pathID": 59866
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4968
+    "pathID": 4987
    },
    "Volume": 0.5,
    "Pitch": 1.0
@@ -8069,7 +8085,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60074
+     "pathID": 60127
     },
     "Chance": 0.0024999999441206455,
     "Difficulties": -1
@@ -8083,7 +8099,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61605,
+  "_pathid": 61665,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -8160,11 +8176,11 @@
   "SizeRadius": 3.0,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5976
+   "pathID": 6001
   },
   "Animator": {
    "fileID": 0,
-   "pathID": 54255
+   "pathID": 54297
   },
   "MinEnemySpacing": 1.0,
   "HighDifficultyHpOverride": 0,
@@ -8173,14 +8189,14 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59832
+    "pathID": 59884
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 5011
+    "pathID": 5031
    },
    "Volume": 0.5,
    "Pitch": 1.0
@@ -8191,7 +8207,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60032
+     "pathID": 60084
     },
     "Chance": 1.0,
     "Difficulties": 1
@@ -8199,7 +8215,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60034
+     "pathID": 60086
     },
     "Chance": 1.0,
     "Difficulties": 2
@@ -8207,7 +8223,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60033
+     "pathID": 60085
     },
     "Chance": 1.0,
     "Difficulties": 4
@@ -8215,7 +8231,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59935
+     "pathID": 59987
     },
     "Chance": 0.05000000074505806,
     "Difficulties": -1
@@ -8223,7 +8239,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60090
+     "pathID": 60143
     },
     "Chance": 0.0006000000284984708,
     "Difficulties": -1
@@ -8237,7 +8253,7 @@
  },
  {
   "_name": "",
-  "_pathid": 61820,
+  "_pathid": 61881,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -8314,11 +8330,11 @@
   "SizeRadius": 1.0,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5976
+   "pathID": 6001
   },
   "Animator": {
    "fileID": 0,
-   "pathID": 54188
+   "pathID": 54230
   },
   "MinEnemySpacing": 1.0,
   "HighDifficultyHpOverride": 0,
@@ -8327,14 +8343,14 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59814
+    "pathID": 59866
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4849
+    "pathID": 4867
    },
    "Volume": 1.0,
    "Pitch": 1.0
@@ -8345,7 +8361,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60112
+     "pathID": 60165
     },
     "Chance": 0.0020000000949949026,
     "Difficulties": -1
@@ -8359,7 +8375,7 @@
  },
  {
   "_name": "",
-  "_pathid": 62003,
+  "_pathid": 62065,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -8436,7 +8452,7 @@
   "SizeRadius": 1.600000023841858,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5976
+   "pathID": 6001
   },
   "Animator": null,
   "MinEnemySpacing": 1.0,
@@ -8446,11 +8462,11 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59814
+    "pathID": 59866
    },
    {
     "fileID": 0,
-    "pathID": 59842
+    "pathID": 59894
    }
   ],
   "Phases": [
@@ -8459,11 +8475,11 @@
     "Abilities": [
      {
       "fileID": 0,
-      "pathID": 59814
+      "pathID": 59866
      },
      {
       "fileID": 0,
-      "pathID": 59842
+      "pathID": 59894
      }
     ]
    },
@@ -8472,11 +8488,11 @@
     "Abilities": [
      {
       "fileID": 0,
-      "pathID": 59814
+      "pathID": 59866
      },
      {
       "fileID": 0,
-      "pathID": 59840
+      "pathID": 59892
      }
     ]
    },
@@ -8485,15 +8501,15 @@
     "Abilities": [
      {
       "fileID": 0,
-      "pathID": 59814
+      "pathID": 59866
      },
      {
       "fileID": 0,
-      "pathID": 59842
+      "pathID": 59894
      },
      {
       "fileID": 0,
-      "pathID": 59841
+      "pathID": 59893
      }
     ]
    }
@@ -8501,7 +8517,7 @@
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4988
+    "pathID": 5007
    },
    "Volume": 1.0,
    "Pitch": 1.0
@@ -8512,7 +8528,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59936
+     "pathID": 59988
     },
     "Chance": 0.05000000074505806,
     "Difficulties": -1
@@ -8520,7 +8536,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60109
+     "pathID": 60162
     },
     "Chance": 0.00019999999494757503,
     "Difficulties": -1
@@ -8528,7 +8544,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60040
+     "pathID": 60092
     },
     "Chance": 0.20000000298023224,
     "Difficulties": -1
@@ -8536,7 +8552,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59939
+     "pathID": 59991
     },
     "Chance": 1.9999999494757503e-05,
     "Difficulties": -1
@@ -8544,7 +8560,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59946
+     "pathID": 59998
     },
     "Chance": 0.004999999888241291,
     "Difficulties": -1
@@ -8552,7 +8568,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59920
+     "pathID": 59972
     },
     "Chance": 0.000699999975040555,
     "Difficulties": 4
@@ -8566,7 +8582,7 @@
  },
  {
   "_name": "",
-  "_pathid": 62343,
+  "_pathid": 62407,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -8643,11 +8659,11 @@
   "SizeRadius": 0.800000011920929,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5976
+   "pathID": 6001
   },
   "Animator": {
    "fileID": 0,
-   "pathID": 54159
+   "pathID": 54201
   },
   "MinEnemySpacing": 1.0,
   "HighDifficultyHpOverride": 0,
@@ -8656,14 +8672,14 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59814
+    "pathID": 59866
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4888
+    "pathID": 4907
    },
    "Volume": 1.0,
    "Pitch": 2.0
@@ -8674,7 +8690,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60111
+     "pathID": 60164
     },
     "Chance": 0.0024999999441206455,
     "Difficulties": -1
@@ -8688,7 +8704,7 @@
  },
  {
   "_name": "",
-  "_pathid": 62395,
+  "_pathid": 62459,
   "_file": "sharedassets0.assets",
   "_level": {
    "__type__": "ObscuredInt",
@@ -8765,11 +8781,11 @@
   "SizeRadius": 1.0,
   "OnHitVFXPrefab": {
    "fileID": 0,
-   "pathID": 5976
+   "pathID": 6001
   },
   "Animator": {
    "fileID": 0,
-   "pathID": 54123
+   "pathID": 54165
   },
   "MinEnemySpacing": 1.0,
   "HighDifficultyHpOverride": 0,
@@ -8778,14 +8794,14 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 59816
+    "pathID": 59868
    }
   ],
   "Phases": [],
   "AbilitySound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4998
+    "pathID": 5017
    },
    "Volume": 1.0,
    "Pitch": 1.0
@@ -8796,7 +8812,7 @@
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60108
+     "pathID": 60161
     },
     "Chance": 0.0020000000949949026,
     "Difficulties": -1

@@ -1,7 +1,7 @@
 [
  {
   "_name": "IncreasePotionCharge1",
-  "_pathid": 5238,
+  "_pathid": 5378,
   "_file": "resources.assets",
   "_class": "LifeSkillEffect_StatModifier",
   "StatModifiers": [
@@ -37,7 +37,7 @@
  },
  {
   "_name": "CapacityNotable",
-  "_pathid": 60118,
+  "_pathid": 60171,
   "_file": "sharedassets0.assets",
   "_class": "LifeSkillEffect_StatModifier",
   "StatModifiers": [
@@ -73,7 +73,7 @@
  },
  {
   "_name": "DecreaseFishingTime1",
-  "_pathid": 60119,
+  "_pathid": 60172,
   "_file": "sharedassets0.assets",
   "_class": "LifeSkillEffect_FishingTime",
   "TimeReduction": 0.10000000149011612,
@@ -86,7 +86,7 @@
  },
  {
   "_name": "DecreaseFishingTime2",
-  "_pathid": 60120,
+  "_pathid": 60173,
   "_file": "sharedassets0.assets",
   "_class": "LifeSkillEffect_FishingTime",
   "TimeReduction": 0.15000000596046448,
@@ -99,7 +99,7 @@
  },
  {
   "_name": "DecreaseFishingTime3",
-  "_pathid": 60121,
+  "_pathid": 60174,
   "_file": "sharedassets0.assets",
   "_class": "LifeSkillEffect_FishingTime",
   "TimeReduction": 0.25,
@@ -112,7 +112,7 @@
  },
  {
   "_name": "DecreaseReviveCooldown",
-  "_pathid": 60122,
+  "_pathid": 60175,
   "_file": "sharedassets0.assets",
   "_class": "LifeSkillEffect_ReviveCooldown",
   "SecondsReduced": {
@@ -142,7 +142,7 @@
  },
  {
   "_name": "EnableAutoRecover",
-  "_pathid": 60123,
+  "_pathid": 60176,
   "_file": "sharedassets0.assets",
   "_class": "LifeSkillEffect_FeatureFlag",
   "Features": [
@@ -151,7 +151,7 @@
  },
  {
   "_name": "EnableAutoRefill",
-  "_pathid": 60124,
+  "_pathid": 60177,
   "_file": "sharedassets0.assets",
   "_class": "LifeSkillEffect_FeatureFlag",
   "Features": [
@@ -160,7 +160,7 @@
  },
  {
   "_name": "EnableCarriageAutoFillInventory",
-  "_pathid": 60125,
+  "_pathid": 60178,
   "_file": "sharedassets0.assets",
   "_class": "LifeSkillEffect_FeatureFlag",
   "Features": [
@@ -169,7 +169,7 @@
  },
  {
   "_name": "EnableCarriageAutoSalvage",
-  "_pathid": 60126,
+  "_pathid": 60179,
   "_file": "sharedassets0.assets",
   "_class": "LifeSkillEffect_FeatureFlag",
   "Features": [
@@ -178,7 +178,7 @@
  },
  {
   "_name": "EnableCarriageAutoSell",
-  "_pathid": 60127,
+  "_pathid": 60180,
   "_file": "sharedassets0.assets",
   "_class": "LifeSkillEffect_FeatureFlag",
   "Features": [
@@ -187,7 +187,7 @@
  },
  {
   "_name": "EnableOfflineRewards",
-  "_pathid": 60128,
+  "_pathid": 60181,
   "_file": "sharedassets0.assets",
   "_class": "LifeSkillEffect_FeatureFlag",
   "Features": [
@@ -196,7 +196,7 @@
  },
  {
   "_name": "GoldFindNotable",
-  "_pathid": 60129,
+  "_pathid": 60182,
   "_file": "sharedassets0.assets",
   "_class": "LifeSkillEffect_StatModifier",
   "StatModifiers": [
@@ -232,7 +232,7 @@
  },
  {
   "_name": "IncreaseCapacity1",
-  "_pathid": 60130,
+  "_pathid": 60183,
   "_file": "sharedassets0.assets",
   "_class": "LifeSkillEffect_StatModifier",
   "StatModifiers": [
@@ -268,7 +268,7 @@
  },
  {
   "_name": "IncreaseFishingSuccess1",
-  "_pathid": 60131,
+  "_pathid": 60184,
   "_file": "sharedassets0.assets",
   "_class": "LifeSkillEffect_FishingSuccess",
   "SuccessBonus": 0.25,
@@ -281,7 +281,7 @@
  },
  {
   "_name": "IncreaseFishingSuccess2",
-  "_pathid": 60132,
+  "_pathid": 60185,
   "_file": "sharedassets0.assets",
   "_class": "LifeSkillEffect_FishingSuccess",
   "SuccessBonus": 0.3499999940395355,
@@ -294,7 +294,7 @@
  },
  {
   "_name": "IncreaseGoldFind1",
-  "_pathid": 60133,
+  "_pathid": 60186,
   "_file": "sharedassets0.assets",
   "_class": "LifeSkillEffect_StatModifier",
   "StatModifiers": [
@@ -330,7 +330,7 @@
  },
  {
   "_name": "IncreaseMagicFind1",
-  "_pathid": 60134,
+  "_pathid": 60187,
   "_file": "sharedassets0.assets",
   "_class": "LifeSkillEffect_StatModifier",
   "StatModifiers": [
@@ -366,7 +366,7 @@
  },
  {
   "_name": "IncreaseMaterialFind1",
-  "_pathid": 60135,
+  "_pathid": 60188,
   "_file": "sharedassets0.assets",
   "_class": "LifeSkillEffect_StatModifier",
   "StatModifiers": [
@@ -402,7 +402,7 @@
  },
  {
   "_name": "IncreaseOfflineCap1",
-  "_pathid": 60136,
+  "_pathid": 60189,
   "_file": "sharedassets0.assets",
   "_class": "LifeSkillEffect_OfflineTimeCap",
   "HoursAdded": 2.0,
@@ -415,7 +415,7 @@
  },
  {
   "_name": "IncreasePotionFind1",
-  "_pathid": 60137,
+  "_pathid": 60190,
   "_file": "sharedassets0.assets",
   "_class": "LifeSkillEffect_StatModifier",
   "StatModifiers": [
@@ -451,12 +451,12 @@
  },
  {
   "_name": "IncreaseSoulCap1",
-  "_pathid": 60138,
+  "_pathid": 60191,
   "_file": "sharedassets0.assets",
   "_class": "LifeSkillEffect_MaterialCarryCap",
   "Material": {
    "fileID": 0,
-   "pathID": 60036
+   "pathID": 60088
   },
   "CapAdded": 100,
   "Token": {
@@ -468,12 +468,12 @@
  },
  {
   "_name": "IncreaseSoulCap2",
-  "_pathid": 60139,
+  "_pathid": 60192,
   "_file": "sharedassets0.assets",
   "_class": "LifeSkillEffect_MaterialCarryCap",
   "Material": {
    "fileID": 0,
-   "pathID": 60036
+   "pathID": 60088
   },
   "CapAdded": 200,
   "Token": {
@@ -485,12 +485,12 @@
  },
  {
   "_name": "IncreaseSoulCap3",
-  "_pathid": 60140,
+  "_pathid": 60193,
   "_file": "sharedassets0.assets",
   "_class": "LifeSkillEffect_MaterialCarryCap",
   "Material": {
    "fileID": 0,
-   "pathID": 60036
+   "pathID": 60088
   },
   "CapAdded": 300,
   "Token": {
@@ -502,12 +502,12 @@
  },
  {
   "_name": "IncreaseSoulCap4",
-  "_pathid": 60141,
+  "_pathid": 60194,
   "_file": "sharedassets0.assets",
   "_class": "LifeSkillEffect_MaterialCarryCap",
   "Material": {
    "fileID": 0,
-   "pathID": 60036
+   "pathID": 60088
   },
   "CapAdded": 400,
   "Token": {
@@ -519,7 +519,7 @@
  },
  {
   "_name": "IncreaseXPGain1",
-  "_pathid": 60142,
+  "_pathid": 60195,
   "_file": "sharedassets0.assets",
   "_class": "LifeSkillEffect_StatModifier",
   "StatModifiers": [
@@ -555,7 +555,7 @@
  },
  {
   "_name": "MagicFindNotable",
-  "_pathid": 60143,
+  "_pathid": 60196,
   "_file": "sharedassets0.assets",
   "_class": "LifeSkillEffect_StatModifier",
   "StatModifiers": [
@@ -591,7 +591,7 @@
  },
  {
   "_name": "MaterialFindNotable",
-  "_pathid": 60144,
+  "_pathid": 60197,
   "_file": "sharedassets0.assets",
   "_class": "LifeSkillEffect_StatModifier",
   "StatModifiers": [
@@ -627,7 +627,7 @@
  },
  {
   "_name": "OfflineCapNotable",
-  "_pathid": 60145,
+  "_pathid": 60198,
   "_file": "sharedassets0.assets",
   "_class": "LifeSkillEffect_OfflineTimeCap",
   "HoursAdded": 4.0,
@@ -640,7 +640,7 @@
  },
  {
   "_name": "PotionFindNotable",
-  "_pathid": 60146,
+  "_pathid": 60199,
   "_file": "sharedassets0.assets",
   "_class": "LifeSkillEffect_StatModifier",
   "StatModifiers": [
@@ -676,7 +676,7 @@
  },
  {
   "_name": "ReviveNotable",
-  "_pathid": 60147,
+  "_pathid": 60200,
   "_file": "sharedassets0.assets",
   "_class": "LifeSkillEffect_ReviveCooldown",
   "SecondsReduced": {
@@ -706,35 +706,35 @@
  },
  {
   "_name": "UnlockCombatPotionSlot",
-  "_pathid": 60148,
+  "_pathid": 60201,
   "_file": "sharedassets0.assets",
   "_class": "LifeSkillEffect_UnlockConsumableSlot",
   "Category": 1
  },
  {
   "_name": "UnlockFoodSlot",
-  "_pathid": 60149,
+  "_pathid": 60202,
   "_file": "sharedassets0.assets",
   "_class": "LifeSkillEffect_UnlockConsumableSlot",
   "Category": 3
  },
  {
   "_name": "UnlockStoragePage",
-  "_pathid": 60150,
+  "_pathid": 60203,
   "_file": "sharedassets0.assets",
   "_class": "LifeSkillEffect_UnlockStoragePage",
   "Pages": 1
  },
  {
   "_name": "UnlockUtilityPotionSlot",
-  "_pathid": 60151,
+  "_pathid": 60204,
   "_file": "sharedassets0.assets",
   "_class": "LifeSkillEffect_UnlockConsumableSlot",
   "Category": 2
  },
  {
   "_name": "XPGainNotable",
-  "_pathid": 60152,
+  "_pathid": 60205,
   "_file": "sharedassets0.assets",
   "_class": "LifeSkillEffect_StatModifier",
   "StatModifiers": [

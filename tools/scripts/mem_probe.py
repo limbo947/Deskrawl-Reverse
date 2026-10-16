@@ -11,11 +11,11 @@
 
 定位链（全部来自 data/schema/dump.cs，当前构建）：
   1) 锚点方法 RVA（反汇编前 192B 扫 rip 相对加载 -> 元数据用法槽）：
-       2026-10-10 补丁后按「同签名」在新 dump 重算（旧名→新名见 docs/08 §12.3）：
-       SaveSystem.egi(SaveContainer)       RVA 0x7BA6A0   （旧 eed 0x7A4360）
-       SaveSystem.egf(string)              RVA 0x7BA220   （旧 eea 0x7A3EE0）
-       SaveSystem.egd(CharacterMode)       RVA 0x7B9E00   （旧 edy 0x7A3AC0）
-       SaveSystem.egz()                    RVA 0x7BBFD0   （旧 eeu 0x7A5C60）
+       2026-10-16 补丁 1.0.3 后按「类+签名+Slot」在新 dump 重算（旧名→新名见 docs/08 §14）：
+       SaveSystem.ehq(SaveContainer)       RVA 0x7C7350   （旧 egi 0x7BA6A0）
+       SaveSystem.ehn(string)              RVA 0x7C6ED0   （旧 egf 0x7BA220）
+       SaveSystem.ehl(CharacterMode)       RVA 0x7C6AB0   （旧 egd 0x7B9E00）
+       SaveSystem.eih()                    RVA 0x7C8C80   （旧 egz 0x7BBFD0）
   2) 槽值 = Il2CppClass*(SaveSystem)，以类名 "SaveSystem" 自校验（name @ +0x10）
   3) static_fields：Il2CppClass 内偏移候选扫描，用「实例对象 klass 指针回指」自校验；
      nfi 位于 static_fields+0x0（dump.cs L390396 <nfi>k__BackingField // 0x0）
@@ -166,19 +166,19 @@ def module_base(h, mod_name):
 RIP_PREFIXES = {b'\x48\x8b', b'\x48\x8d', b'\x4c\x8b', b'\x4c\x8d'}
 RIP_MODRMS = {0x05, 0x0D, 0x15, 0x1D, 0x2D, 0x35, 0x3D}  # 0x25(rsp) 排除
 
-ANCHORS = [  # (说明, RVA) —— 2026-10-13 1.0.2b 补丁后重算（签名+Slot 匹配；旧名为 10-10 版）
-    ('SaveSystem.egi(SaveContainer)   旧 egj', 0x7BA6A0),
-    ('SaveSystem.egf(string)          旧 egg', 0x7BA220),
-    ('SaveSystem.egd(CharacterMode)   旧 ege', 0x7B9E00),
-    ('SaveSystem.egz()                旧 eha', 0x7BBFD0),
+ANCHORS = [  # (说明, RVA) —— 2026-10-16 1.0.3 补丁后重算（类+签名+Slot 匹配；旧名为 1.0.2b 版）
+    ('SaveSystem.ehq(SaveContainer)   旧 egi', 0x7C7350),
+    ('SaveSystem.ehn(string)          旧 egf', 0x7C6ED0),
+    ('SaveSystem.ehl(CharacterMode)   旧 egd', 0x7C6AB0),
+    ('SaveSystem.eih()                旧 egz', 0x7C8C80),
 ]
 
 # 路径 B：运行时单例静态 getter（无参返回单例实例）
 SINGLETON_GETTERS = [
-    # (说明, getter RVA, 期望返回类型类名) —— 2026-10-13 1.0.2b 补丁后重算
-    ('GameManager.dkg()   旧 dkh', 0x770C00, 'GameManager'),
-    ('Inventory.fbq()     旧 fbr', 0x4F7220, 'Inventory'),
-    ('Storage.fpi()       旧 fpj', 0x523D30, 'Storage'),
+    # (说明, getter RVA, 期望返回类型类名) —— 2026-10-16 1.0.3 补丁后重算
+    ('GameManager.dlo()   旧 dkg', 0x77D960, 'GameManager'),
+    ('Inventory.fdi()     旧 fbq', 0x4FD1D0, 'Inventory'),
+    ('Storage.frm()       旧 fpi', 0x52B390, 'Storage'),
 ]
 
 
@@ -214,8 +214,8 @@ def elem(h, first, i):
 # ---------------- ACTk (CodeStage Anti-Cheat Toolkit) 解码 ----------------
 # 算法经反汇编实证（GameAssembly 当前构建）：
 #   ObscuredInt/Long 读取 = (hiddenValue - currentCryptoKey) XOR currentCryptoKey
-#     （encrypt 为 key + (value ^ key)； Actk.ObscuredInt.Decrypt@0x457960 / Actk.ObscuredLong.Decrypt@0x454400）
-#   ObscuredFloat 读取 = bswap12(hiddenValue) XOR currentCryptoKey（Actk.ObscuredFloat.Decrypt@0x4568D0，
+#     （encrypt 为 key + (value ^ key)； Actk.ObscuredInt.Decrypt@0x459960 / Actk.ObscuredLong.Decrypt@0x456400）
+#   ObscuredFloat 读取 = bswap12(hiddenValue) XOR currentCryptoKey（Actk.ObscuredFloat.Decrypt@0x4588D0，
 #     加密 jyh = bswap12(bits ^ key)，b16<->b24 字节互换）
 # 布局：dump.cs L657166-657470；hash 字段为 FNV 校验（反篡改），读取时忽略
 def _s32(x):
@@ -247,7 +247,7 @@ def obsc_double(h, addr):  # 40B: hash@0 hidden@8 key@0x10 fake@0x18 oldByte8@0x
     if hidden is None or key is None:
         return None
     b = struct.pack('<Q', hidden)
-    # 字节置换（Actk.ObscuredDouble.Decrypt@0x455C30 反汇编实证）：swap(0,1) + 三循环 4->5->7->4
+    # 字节置换（Actk.ObscuredDouble.Decrypt@0x457C30 反汇编实证）：swap(0,1) + 三循环 4->5->7->4
     r = bytes([b[1], b[0], b[2], b[3], b[7], b[4], b[6], b[5]])
     bits = struct.unpack('<Q', r)[0] ^ key
     return struct.unpack('<d', struct.pack('<Q', bits))[0]
@@ -263,7 +263,7 @@ def obsc_float(h, addr):   # 16B+4: hash@0 hidden(i32)@4 key(i32)@8 fake@0xC old
 
 
 # ---------------- M2-0：IL2CPP Dictionary<StatType, ObscuredDouble> 遍历 ----------------
-# StatType 全表（dump.cs L371664-371734，稀疏 ID 0..65）；名称表镜像 deskrawl_calc.stattype.STAT_NAMES
+# StatType 全表（dump.cs；1.0.3 起稀疏 ID 0..66）；名称表镜像 deskrawl_calc.stattype.STAT_NAMES
 STAT_NAMES = {
     0: '力量', 1: '敏捷', 2: '智力', 3: '通用增伤', 4: '暴击率', 5: '暴击伤害', 6: '攻击速度%',
     7: '最大生命', 8: '护甲', 9: '魔抗', 10: '移动速度', 11: '击中回血', 12: '击杀回血',
@@ -277,6 +277,7 @@ STAT_NAMES = {
     50: '宝石孔位', 51: '物理减伤', 52: '火焰减伤', 53: '冰霜减伤', 54: '闪电减伤', 55: '奥术减伤',
     56: '受治疗效果加成', 57: '移动速度%', 58: '对远处敌人', 59: '魔抗%', 60: '暴击伤害减免',
     61: '特殊技能加成伤害', 62: '持续伤害', 63: '对灼烧的敌人', 64: '全局减伤', 65: '全伤害加成%',
+    66: '最终减伤',
 }
 
 DICT_SLOTS = [  # Player 的 7 个聚合字典（dump.cs L394237-394251），语义（Final/池）待对拍标注
@@ -338,9 +339,9 @@ def dump_stat_dicts(h, player):
     # 值域自检（任务验收：7 段可读、键=合法 StatType、暴击率∈[0,1]、生命>1204、力量>0）
     checks = [('7 段字典全部可读', not failed)]
     all_kv = [(lb, k, v) for lb, kv in found.items() for k, v in kv.items()]
-    bad_keys = sorted({k for _, k, _ in all_kv if not 0 <= k <= 65})
+    bad_keys = sorted({k for _, k, _ in all_kv if not 0 <= k <= 66})
     bad_vals = [(lb, k) for lb, k, v in all_kv if not math.isfinite(v)]
-    checks.append(('键均为合法 StatType(0..65)', not bad_keys))
+    checks.append(('键均为合法 StatType(0..66)', not bad_keys))
     checks.append(('值均为有限 double', not bad_vals))
     if bad_keys:
         checks.append((f'非法键清单 {bad_keys}', False))

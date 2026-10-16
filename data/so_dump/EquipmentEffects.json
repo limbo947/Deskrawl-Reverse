@@ -1,7 +1,7 @@
 [
  {
   "_name": "DivineBow1_ArcaneAOE",
-  "_pathid": 4794,
+  "_pathid": 4853,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_TriggerEffectsOnHit",
   "_managedRefs": {
@@ -26,7 +26,7 @@
      ],
      "AoEPrefab": {
       "fileID": 0,
-      "pathID": 1484
+      "pathID": 1554
      },
      "Location": 0,
      "FaceCastDirection": false,
@@ -50,11 +50,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 2,
-      "pathID": 15724
+      "pathID": 15751
      },
      "ImpactSFX": {
       "fileID": 2,
-      "pathID": 4884
+      "pathID": 4903
      },
      "ImpactSFXVolume": [
       0.4000000059604645,
@@ -68,10 +68,10 @@
      "AttackScaling": {
       "Base": {
        "__type__": "ObscuredFloat",
-       "hash": 1627770383,
-       "hiddenValue": 1779848842,
+       "hash": 726411297,
+       "hiddenValue": 366619207,
        "cryptoKey": 1427823175,
-       "value": 0.800000011920929,
+       "value": 2.75,
        "__tail__": "00000000000000000000000000000000"
       },
       "PerLevel": {
@@ -114,7 +114,7 @@
  },
  {
   "_name": "DivineHelm1_AllStats",
-  "_pathid": 4795,
+  "_pathid": 4854,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_AllStats",
   "StatModifiers": [],
@@ -124,7 +124,7 @@
  },
  {
   "_name": "DivineHelm2_DamageReduction",
-  "_pathid": 4796,
+  "_pathid": 4855,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_StatModifier",
   "StatModifiers": [
@@ -133,10 +133,10 @@
     "Type": 0,
     "Value": {
      "__type__": "ObscuredFloat",
-     "hash": 132727037,
-     "hiddenValue": 1770244333,
+     "hash": -628755087,
+     "hiddenValue": 1763365239,
      "cryptoKey": 1464370157,
-     "value": 0.25,
+     "value": 0.30000001192092896,
      "__tail__": "00000000000000000000000000000000"
     }
    }
@@ -145,8 +145,16 @@
   "SelfCondition": -1
  },
  {
+  "_name": "DivineHelm3_DamageMultiplier",
+  "_pathid": 4856,
+  "_file": "resources.assets",
+  "_class": "EquipmentEffect_DivineHelmet3",
+  "NormalEnemyMultiplier": 1.2000000476837158,
+  "EliteEnemyMultiplier": 1.399999976158142
+ },
+ {
   "_name": "DivineMace1_Crit",
-  "_pathid": 4797,
+  "_pathid": 4857,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_StatModifier",
   "StatModifiers": [
@@ -179,43 +187,51 @@
   "SelfCondition": -1
  },
  {
+  "_name": "DivineRing2_AlwaysHealthConditionalDamage",
+  "_pathid": 4858,
+  "_file": "resources.assets",
+  "_class": "EquipmentEffect_AlwaysHealthConditionalDamage"
+ },
+ {
   "_name": "DivineSword1_SoulHarvest",
-  "_pathid": 4798,
+  "_pathid": 4859,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_StatusOnHit",
   "StatusEffect": {
    "fileID": 0,
-   "pathID": 5247
+   "pathID": 5388
   },
   "FilterByTag": false,
   "Tag": 0,
   "TrackedAbility": null,
+  "ExcludedAbility": {
+   "fileID": 0,
+   "pathID": 4922
+  },
+  "RequireDirectHit": true,
   "Chance": 1.0,
   "StacksPerHit": 1,
-  "GainVFXPrefab": {
-   "fileID": 0,
-   "pathID": 1289
-  }
+  "GainVFXPrefab": null
  },
  {
   "_name": "DivineSword1_SoulImpact",
-  "_pathid": 4799,
+  "_pathid": 4860,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_SelfStatusStackTriggerAbility",
   "RequiredStatus": {
    "fileID": 0,
-   "pathID": 5247
+   "pathID": 5388
   },
   "RequiredStacks": 25,
   "TriggeredAbility": {
    "fileID": 0,
-   "pathID": 4845
+   "pathID": 4922
   },
   "SuppressKnockback": false
  },
  {
   "_name": "LegendaryAxe1_Damage",
-  "_pathid": 4800,
+  "_pathid": 4861,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_TriggerEffectsOnHit",
   "_managedRefs": {
@@ -230,7 +246,7 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 2,
-      "pathID": 23431
+      "pathID": 23459
      },
      "ImpactSFX": null,
      "ImpactSFXVolume": [
@@ -291,15 +307,16 @@
  },
  {
   "_name": "LegendaryAxe1_Freeze",
-  "_pathid": 4801,
+  "_pathid": 4862,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_AbilityTagApplyStatus",
   "Tag": 0,
+  "RequiredTag": 9999,
   "TrackedAbility": null,
   "Target": 0,
   "StatusEffect": {
    "fileID": 2,
-   "pathID": 60511
+   "pathID": 60567
   },
   "Chance": 0.029999999329447746,
   "StacksPerCast": 1,
@@ -308,7 +325,7 @@
  },
  {
   "_name": "LegendaryBelt3",
-  "_pathid": 4802,
+  "_pathid": 4863,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_TriggerEffectsOnPotionUse",
   "_managedRefs": {
@@ -333,7 +350,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 5250
+      "pathID": 5392
      },
      "Chance": {
       "Base": {
@@ -353,6 +370,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": true,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -361,7 +379,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 265
+     "__end__": 269
     }
    ]
   },
@@ -373,20 +391,32 @@
   "Chance": 1.0
  },
  {
+  "_name": "LegendaryBelt4_Frenzy",
+  "_pathid": 4864,
+  "_file": "resources.assets",
+  "_class": "EquipmentEffect_IronThornFrenzy",
+  "IronThornStatus": {
+   "fileID": 2,
+   "pathID": 60604
+  },
+  "HitsRequired": 2,
+  "Cooldown": 0.20000000298023224
+ },
+ {
   "_name": "LegendaryBoots1",
-  "_pathid": 4803,
+  "_pathid": 4865,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_StatusOnKill",
   "StatusEffect": {
    "fileID": 0,
-   "pathID": 5251
+   "pathID": 5393
   },
   "Chance": 1.0,
   "ElitesOnly": false
  },
  {
   "_name": "LegendaryBoots2",
-  "_pathid": 4804,
+  "_pathid": 4866,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_StatModifier",
   "StatModifiers": [
@@ -405,35 +435,62 @@
   ],
   "RequiredStatus": {
    "fileID": 2,
-   "pathID": 60519
+   "pathID": 60574
   },
   "SelfCondition": -1
  },
  {
+  "_name": "LegendaryBoots4",
+  "_pathid": 4867,
+  "_file": "resources.assets",
+  "_class": "EquipmentEffect_PotionDrops",
+  "Chance": 0.10000000149011612,
+  "Cooldown": 1.0
+ },
+ {
+  "_name": "LegendaryBoots5",
+  "_pathid": 4868,
+  "_file": "resources.assets",
+  "_class": "EquipmentEffect_StatusApplyStatus",
+  "TriggerStatus": {
+   "fileID": 2,
+   "pathID": 60567
+  },
+  "ResultStatus": {
+   "fileID": 0,
+   "pathID": 5404
+  },
+  "ProcChance": 1.0
+ },
+ {
   "_name": "LegendaryBow1",
-  "_pathid": 4805,
+  "_pathid": 4869,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_AbilityTriggerAbility",
   "Tag": 0,
   "TrackedAbility": null,
   "TriggeredAbility": {
    "fileID": 2,
-   "pathID": 59869
+   "pathID": 59921
   },
   "ProcChance": 0.10000000149011612,
-  "SuppressKnockback": false
+  "SuppressKnockback": false,
+  "CountsAsCast": false,
+  "DamageBonusPerCurrentMana": 0.0,
+  "HitStatus": null
  },
  {
   "_name": "LegendaryBow2",
-  "_pathid": 4806,
+  "_pathid": 4870,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_AbilityTagApplyStatus",
   "Tag": 11,
+  "RequiredTag": 9999,
   "TrackedAbility": null,
   "Target": 0,
   "StatusEffect": {
    "fileID": 0,
-   "pathID": 5245
+   "pathID": 5386
   },
   "Chance": 0.15000000596046448,
   "StacksPerCast": 1,
@@ -441,20 +498,62 @@
   "DamageBonusPerStack": 0.20000000298023224
  },
  {
+  "_name": "LegendaryBow3",
+  "_pathid": 4871,
+  "_file": "resources.assets",
+  "_class": "EquipmentEffect_AbilityTagApplyStatus",
+  "Tag": 1,
+  "RequiredTag": 7,
+  "TrackedAbility": {
+   "fileID": 2,
+   "pathID": 59914
+  },
+  "Target": 1,
+  "StatusEffect": {
+   "fileID": 0,
+   "pathID": 5391
+  },
+  "Chance": 0.10000000149011612,
+  "StacksPerCast": 1,
+  "ConsumeOnCast": false,
+  "DamageBonusPerStack": 0.0
+ },
+ {
+  "_name": "LegendaryBow3_RapidFire",
+  "_pathid": 4872,
+  "_file": "resources.assets",
+  "_class": "EquipmentEffect_AbilityTagApplyStatus",
+  "Tag": 1,
+  "RequiredTag": 7,
+  "TrackedAbility": {
+   "fileID": 2,
+   "pathID": 59916
+  },
+  "Target": 1,
+  "StatusEffect": {
+   "fileID": 0,
+   "pathID": 5391
+  },
+  "Chance": 0.25,
+  "StacksPerCast": 1,
+  "ConsumeOnCast": false,
+  "DamageBonusPerStack": 0.0
+ },
+ {
   "_name": "LegendaryChest3",
-  "_pathid": 4807,
+  "_pathid": 4873,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_StatusOnCritTaken",
   "StatusEffect": {
    "fileID": 0,
-   "pathID": 5252
+   "pathID": 5394
   },
   "InternalCooldown": 8.0,
   "Chance": 1.0
  },
  {
   "_name": "LegendaryChestArmor4",
-  "_pathid": 4809,
+  "_pathid": 4875,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_AbilityEffectOverride",
   "_managedRefs": {
@@ -479,7 +578,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 5259
+      "pathID": 5403
      },
      "Chance": {
       "Base": {
@@ -499,6 +598,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -507,13 +607,13 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 281
+     "__end__": 285
     }
    ]
   },
   "Ability": {
    "fileID": 2,
-   "pathID": 59881
+   "pathID": 59933
   },
   "CastsRequired": 1,
   "OverrideEffects": [
@@ -524,7 +624,7 @@
  },
  {
   "_name": "LegendaryChestArmor6",
-  "_pathid": 4810,
+  "_pathid": 4876,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_StatConversion",
   "SourceStat": 22,
@@ -533,43 +633,43 @@
  },
  {
   "_name": "LegendaryGloves1",
-  "_pathid": 4811,
+  "_pathid": 4877,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_FreeCast",
   "Tag": 9999,
   "TrackedAbility": {
    "fileID": 2,
-   "pathID": 59905
+   "pathID": 59957
   },
   "ProcChance": 0.30000001192092896
  },
  {
   "_name": "LegendaryGloves3",
-  "_pathid": 4812,
+  "_pathid": 4878,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_AbilityTagCritDamage",
   "Tag": 9999,
   "Ability": {
    "fileID": 2,
-   "pathID": 59898
+   "pathID": 59950
   },
   "BonusCritDamage": 1.5
  },
  {
   "_name": "LegendaryGloves4",
-  "_pathid": 4813,
+  "_pathid": 4879,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_StatPerStatusStack",
   "Status": {
    "fileID": 2,
-   "pathID": 60517
+   "pathID": 60572
   },
   "Stat": 22,
   "ValuePerStack": 0.01
  },
  {
   "_name": "LegendaryGloves5_KnifeBarrage",
-  "_pathid": 4814,
+  "_pathid": 4880,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_AbilityEffectOverride",
   "_managedRefs": {
@@ -609,7 +709,7 @@
      "ImpactVFXPrefab": null,
      "ImpactSFX": {
       "fileID": 2,
-      "pathID": 4848
+      "pathID": 4866
      },
      "ImpactSFXVolume": [
       0.5,
@@ -621,7 +721,7 @@
      ],
      "ProjectilePrefab": {
       "fileID": 2,
-      "pathID": 11667
+      "pathID": 11688
      },
      "TravelMode": 1,
      "Speed": 17.0,
@@ -714,7 +814,7 @@
   },
   "Ability": {
    "fileID": 2,
-   "pathID": 59860
+   "pathID": 59912
   },
   "CastsRequired": 1,
   "OverrideEffects": [
@@ -725,7 +825,7 @@
  },
  {
   "_name": "LegendaryGloves5_TwinArrows",
-  "_pathid": 4815,
+  "_pathid": 4881,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_AbilityEffectOverride",
   "_managedRefs": {
@@ -774,7 +874,7 @@
      ],
      "ProjectilePrefab": {
       "fileID": 2,
-      "pathID": 11655
+      "pathID": 11676
      },
      "TravelMode": 0,
      "Speed": 22.0,
@@ -818,11 +918,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 2,
-      "pathID": 24339
+      "pathID": 24369
      },
      "ImpactSFX": {
       "fileID": 2,
-      "pathID": 4842
+      "pathID": 4860
      },
      "ImpactSFXVolume": [
       0.5,
@@ -873,7 +973,7 @@
   },
   "Ability": {
    "fileID": 2,
-   "pathID": 59861
+   "pathID": 59913
   },
   "CastsRequired": 1,
   "OverrideEffects": [
@@ -884,7 +984,7 @@
  },
  {
   "_name": "LegendaryGloves6",
-  "_pathid": 4816,
+  "_pathid": 4882,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_StatModifier",
   "StatModifiers": [
@@ -905,8 +1005,49 @@
   "SelfCondition": -1
  },
  {
+  "_name": "LegendaryGloves7",
+  "_pathid": 4883,
+  "_file": "resources.assets",
+  "_class": "EquipmentEffect_CastSequenceDamage",
+  "Tag": 0,
+  "CastsRequired": 3,
+  "DamageBonus": 1.0
+ },
+ {
+  "_name": "LegendaryGloves8_Damage",
+  "_pathid": 4884,
+  "_file": "resources.assets",
+  "_class": "EquipmentEffect_DamagePerStatusStack",
+  "Status": {
+   "fileID": 0,
+   "pathID": 5397
+  },
+  "DamagePerStack": 0.07999999821186066
+ },
+ {
+  "_name": "LegendaryGloves8_OnHit",
+  "_pathid": 4885,
+  "_file": "resources.assets",
+  "_class": "EquipmentEffect_StatusOnHit",
+  "StatusEffect": {
+   "fileID": 0,
+   "pathID": 5397
+  },
+  "FilterByTag": false,
+  "Tag": 0,
+  "TrackedAbility": {
+   "fileID": 2,
+   "pathID": 59934
+  },
+  "ExcludedAbility": null,
+  "RequireDirectHit": false,
+  "Chance": 1.0,
+  "StacksPerHit": 1,
+  "GainVFXPrefab": null
+ },
+ {
   "_name": "LegendaryHammer1",
-  "_pathid": 4817,
+  "_pathid": 4886,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_AbilityOnCastCount",
   "_managedRefs": {
@@ -921,11 +1062,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 2,
-      "pathID": 19080
+      "pathID": 19108
      },
      "ImpactSFX": {
       "fileID": 2,
-      "pathID": 4897
+      "pathID": 4916
      },
      "ImpactSFXVolume": [
       1.0,
@@ -985,7 +1126,7 @@
   "TriggerVFXPrefab": null,
   "TriggerSFX": {
    "fileID": 0,
-   "pathID": 669
+   "pathID": 701
   },
   "TriggerSFXVolume": [
    1.0,
@@ -998,30 +1139,31 @@
  },
  {
   "_name": "LegendaryHelm1",
-  "_pathid": 4818,
+  "_pathid": 4887,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_StatusOnKill",
   "StatusEffect": {
    "fileID": 0,
-   "pathID": 5255
+   "pathID": 5398
   },
   "Chance": 1.0,
   "ElitesOnly": false
  },
  {
   "_name": "LegendaryHelm2",
-  "_pathid": 4819,
+  "_pathid": 4888,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_AbilityTagApplyStatus",
   "Tag": 9999,
+  "RequiredTag": 9999,
   "TrackedAbility": {
    "fileID": 2,
-   "pathID": 59907
+   "pathID": 59959
   },
   "Target": 0,
   "StatusEffect": {
    "fileID": 2,
-   "pathID": 60474
+   "pathID": 60528
   },
   "Chance": 0.30000001192092896,
   "StacksPerCast": 1,
@@ -1030,12 +1172,12 @@
  },
  {
   "_name": "LegendaryHelm3_Count",
-  "_pathid": 4820,
+  "_pathid": 4889,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_AbilityProjectileCount",
   "Ability": {
    "fileID": 2,
-   "pathID": 59878
+   "pathID": 59930
   },
   "ExtraProjectiles": 2,
   "OverrideDegreesBetweenProjectiles": false,
@@ -1043,37 +1185,38 @@
  },
  {
   "_name": "LegendaryHelm3_Lifetime",
-  "_pathid": 4821,
+  "_pathid": 4890,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_AbilityProjectileLifetime",
   "Ability": {
    "fileID": 2,
-   "pathID": 59878
+   "pathID": 59930
   },
   "LifetimeIncrease": -0.20000000298023224
  },
  {
   "_name": "LegendaryHelm3_Size",
-  "_pathid": 4822,
+  "_pathid": 4891,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_AbilityProjectileSize",
   "Ability": {
    "fileID": 2,
-   "pathID": 59878
+   "pathID": 59930
   },
   "SizeIncrease": -0.25
  },
  {
   "_name": "LegendaryHelm4",
-  "_pathid": 4823,
+  "_pathid": 4892,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_AbilityTagApplyStatus",
   "Tag": 0,
+  "RequiredTag": 9999,
   "TrackedAbility": null,
   "Target": 1,
   "StatusEffect": {
    "fileID": 0,
-   "pathID": 5248
+   "pathID": 5389
   },
   "Chance": 1.0,
   "StacksPerCast": 1,
@@ -1082,15 +1225,16 @@
  },
  {
   "_name": "LegendaryHelm4_ConsumeFocus",
-  "_pathid": 4824,
+  "_pathid": 4893,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_AbilityTagApplyStatus",
   "Tag": 1,
+  "RequiredTag": 9999,
   "TrackedAbility": null,
   "Target": 1,
   "StatusEffect": {
    "fileID": 0,
-   "pathID": 5248
+   "pathID": 5389
   },
   "Chance": 1.0,
   "StacksPerCast": 1,
@@ -1099,7 +1243,7 @@
  },
  {
   "_name": "LegendaryHelm5",
-  "_pathid": 4825,
+  "_pathid": 4894,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_StatModifier",
   "StatModifiers": [
@@ -1130,57 +1274,57 @@
   ],
   "RequiredStatus": {
    "fileID": 2,
-   "pathID": 60514
+   "pathID": 60569
   },
   "SelfCondition": -1
  },
  {
   "_name": "LegendaryNeck2",
-  "_pathid": 4826,
+  "_pathid": 4895,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_TriggerDotDetonation",
   "Tag": 9999,
   "TrackedAbility": {
    "fileID": 2,
-   "pathID": 59910
+   "pathID": 59962
   },
   "DotFilter": {
    "fileID": 2,
-   "pathID": 60474
+   "pathID": 60528
   },
   "Timing": 0,
   "Chance": 1.0,
   "ImpactVFXPrefab": {
    "fileID": 0,
-   "pathID": 2097
+   "pathID": 2167
   }
  },
  {
   "_name": "LegendaryNeck3",
-  "_pathid": 4827,
+  "_pathid": 4896,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_AbilitySpawnCount",
   "Ability": {
    "fileID": 2,
-   "pathID": 59891
+   "pathID": 59943
   },
   "ExtraSpawns": 1
  },
  {
   "_name": "LegendaryNeck4",
-  "_pathid": 4828,
+  "_pathid": 4897,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_BeingHitTriggerAbility",
   "TriggeredAbility": {
    "fileID": 2,
-   "pathID": 59889
+   "pathID": 59941
   },
   "ProcChance": 0.30000001192092896,
   "DescriptionKey": "LegendaryNeck4_Retaliation.Desc"
  },
  {
   "_name": "LegendaryNeck5",
-  "_pathid": 4829,
+  "_pathid": 4898,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_StatModifier",
   "StatModifiers": [
@@ -1201,8 +1345,38 @@
   "SelfCondition": 1
  },
  {
+  "_name": "LegendaryNeck6_Multishot",
+  "_pathid": 4899,
+  "_file": "resources.assets",
+  "_class": "EquipmentEffect_TriggerAbilityTwice",
+  "Tag": 1,
+  "TrackedAbility": {
+   "fileID": 2,
+   "pathID": 59915
+  },
+  "ProcChance": 1.0,
+  "Delay": 0.15000000596046448,
+  "SuppressKnockback": true
+ },
+ {
+  "_name": "LegendaryNeck7_Cleave",
+  "_pathid": 4900,
+  "_file": "resources.assets",
+  "_class": "EquipmentEffect_ConditionalDamage",
+  "Condition": 1,
+  "Status": null,
+  "DamageType": 0,
+  "BonusDamage": 1.5,
+  "Ability": {
+   "fileID": 2,
+   "pathID": 59953
+  },
+  "BaseBonusDamage": 1.5,
+  "DamagePerNegativeStatus": 0.699999988079071
+ },
+ {
   "_name": "LegendaryPants1",
-  "_pathid": 4830,
+  "_pathid": 4901,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_AbilityTagCritDamage",
   "Tag": 8,
@@ -1211,7 +1385,7 @@
  },
  {
   "_name": "LegendaryPants1_Arcane",
-  "_pathid": 4831,
+  "_pathid": 4902,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_AbilityTagCritDamage",
   "Tag": 13,
@@ -1220,7 +1394,7 @@
  },
  {
   "_name": "LegendaryPants1_Lightning",
-  "_pathid": 4832,
+  "_pathid": 4903,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_AbilityTagCritDamage",
   "Tag": 10,
@@ -1229,24 +1403,46 @@
  },
  {
   "_name": "LegendaryPants3",
-  "_pathid": 4833,
+  "_pathid": 4904,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_StatusOnKill",
   "StatusEffect": {
    "fileID": 0,
-   "pathID": 5256
+   "pathID": 5399
   },
   "Chance": 1.0,
   "ElitesOnly": false
  },
  {
+  "_name": "LegendaryPants4",
+  "_pathid": 4905,
+  "_file": "resources.assets",
+  "_class": "EquipmentEffect_StatModifier",
+  "StatModifiers": [
+   {
+    "Stat": 66,
+    "Type": 0,
+    "Value": {
+     "__type__": "ObscuredFloat",
+     "hash": -2066715153,
+     "hiddenValue": 344186605,
+     "cryptoKey": 1464370157,
+     "value": 300.0,
+     "__tail__": "00000000000000000000000000000000"
+    }
+   }
+  ],
+  "RequiredStatus": null,
+  "SelfCondition": -1
+ },
+ {
   "_name": "LegendaryRing1",
-  "_pathid": 4834,
+  "_pathid": 4906,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_AbilityProjectileCount",
   "Ability": {
    "fileID": 2,
-   "pathID": 59906
+   "pathID": 59958
   },
   "ExtraProjectiles": 2,
   "OverrideDegreesBetweenProjectiles": true,
@@ -1254,24 +1450,24 @@
  },
  {
   "_name": "LegendaryRing2",
-  "_pathid": 4835,
+  "_pathid": 4907,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_GainStatusEverySecond",
   "StatusEffect": {
    "fileID": 0,
-   "pathID": 5257
+   "pathID": 5400
   },
   "Condition": 2,
   "Interval": 1.0
  },
  {
   "_name": "LegendaryRing3",
-  "_pathid": 4836,
+  "_pathid": 4908,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_AbilityProjectileCount",
   "Ability": {
    "fileID": 2,
-   "pathID": 59880
+   "pathID": 59932
   },
   "ExtraProjectiles": 1,
   "OverrideDegreesBetweenProjectiles": false,
@@ -1279,7 +1475,7 @@
  },
  {
   "_name": "LegendaryRing4",
-  "_pathid": 4837,
+  "_pathid": 4909,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_AbilityEffectOverride",
   "_managedRefs": {
@@ -1293,12 +1489,12 @@
      "__type__": "SpawnProjectileEffect",
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
-      "fileID": 2,
-      "pathID": 21839
+      "fileID": 0,
+      "pathID": 2285
      },
      "ImpactSFX": {
       "fileID": 2,
-      "pathID": 4985
+      "pathID": 5004
      },
      "ImpactSFXVolume": [
       1.0,
@@ -1310,7 +1506,7 @@
      ],
      "ProjectilePrefab": {
       "fileID": 0,
-      "pathID": 1486
+      "pathID": 1556
      },
      "TravelMode": 0,
      "Speed": 14.0,
@@ -1354,7 +1550,7 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 2,
-      "pathID": 11219
+      "pathID": 11241
      },
      "ImpactSFX": null,
      "ImpactSFXVolume": [
@@ -1406,7 +1602,7 @@
   },
   "Ability": {
    "fileID": 2,
-   "pathID": 59886
+   "pathID": 59938
   },
   "CastsRequired": 4,
   "OverrideEffects": [
@@ -1417,7 +1613,7 @@
  },
  {
   "_name": "LegendaryRing6",
-  "_pathid": 4838,
+  "_pathid": 4910,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_AbilityModifier",
   "Tag": 13,
@@ -1426,8 +1622,39 @@
   "Modifier": 0.09000000357627869
  },
  {
+  "_name": "LegendaryRing8",
+  "_pathid": 4911,
+  "_file": "resources.assets",
+  "_class": "EquipmentEffect_AbilityTagApplyStatus",
+  "Tag": 1,
+  "RequiredTag": 9,
+  "TrackedAbility": null,
+  "Target": 0,
+  "StatusEffect": {
+   "fileID": 0,
+   "pathID": 5385
+  },
+  "Chance": 1.0,
+  "StacksPerCast": 1,
+  "ConsumeOnCast": false,
+  "DamageBonusPerStack": 0.20000000298023224
+ },
+ {
+  "_name": "LegendaryRing8CritDamage",
+  "_pathid": 4912,
+  "_file": "resources.assets",
+  "_class": "EquipmentEffect_ConditionalCritDamage",
+  "Condition": 5,
+  "Status": {
+   "fileID": 0,
+   "pathID": 5385
+  },
+  "BonusCritDamage": 0.05000000074505806,
+  "ScaleByStatusStacks": true
+ },
+ {
   "_name": "LegendaryShoulder1",
-  "_pathid": 4839,
+  "_pathid": 4913,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_StatConversion",
   "SourceStat": 8,
@@ -1436,15 +1663,16 @@
  },
  {
   "_name": "LegendaryShoulder2",
-  "_pathid": 4840,
+  "_pathid": 4914,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_AbilityTagApplyStatus",
   "Tag": 1,
+  "RequiredTag": 9999,
   "TrackedAbility": null,
   "Target": 1,
   "StatusEffect": {
    "fileID": 0,
-   "pathID": 5258
+   "pathID": 5401
   },
   "Chance": 1.0,
   "StacksPerCast": 1,
@@ -1452,38 +1680,77 @@
   "DamageBonusPerStack": 0.20000000298023224
  },
  {
+  "_name": "LegendaryShoulder4",
+  "_pathid": 4915,
+  "_file": "resources.assets",
+  "_class": "EquipmentEffect_ConditionalDamage",
+  "Condition": 3,
+  "Status": null,
+  "DamageType": 2,
+  "BonusDamage": 0.8999999761581421,
+  "Ability": null,
+  "BaseBonusDamage": 0.0,
+  "DamagePerNegativeStatus": 0.0
+ },
+ {
+  "_name": "LegendaryShoulder4_Poison",
+  "_pathid": 4916,
+  "_file": "resources.assets",
+  "_class": "EquipmentEffect_ConditionalDamage",
+  "Condition": 3,
+  "Status": null,
+  "DamageType": 4,
+  "BonusDamage": 0.8999999761581421,
+  "Ability": null,
+  "BaseBonusDamage": 0.0,
+  "DamagePerNegativeStatus": 0.0
+ },
+ {
+  "_name": "LegendaryShoulder5_Damage",
+  "_pathid": 4917,
+  "_file": "resources.assets",
+  "_class": "EquipmentEffect_DamagePerActiveSummon",
+  "SummoningAbility": {
+   "fileID": 2,
+   "pathID": 59935
+  },
+  "DamagePerSummon": 0.25
+ },
+ {
   "_name": "LegendaryStaff1",
-  "_pathid": 4841,
+  "_pathid": 4918,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_AbilityProjectileDeflect",
   "Ability": {
    "fileID": 2,
-   "pathID": 59887
+   "pathID": 59939
   },
-  "Deflects": 1,
+  "Deflects": 2,
   "Targeting": 1
  },
  {
   "_name": "LegendaryStaff2_Immobilized",
-  "_pathid": 4842,
+  "_pathid": 4919,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_ConditionalCritDamage",
   "Condition": 4,
   "Status": null,
-  "BonusCritDamage": 1.0
+  "BonusCritDamage": 1.0,
+  "ScaleByStatusStacks": false
  },
  {
   "_name": "LegendaryStaff2_Slowed",
-  "_pathid": 4843,
+  "_pathid": 4920,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_ConditionalCritDamage",
   "Condition": 2,
   "Status": null,
-  "BonusCritDamage": 1.0
+  "BonusCritDamage": 1.0,
+  "ScaleByStatusStacks": false
  },
  {
   "_name": "LegendarySword1",
-  "_pathid": 4844,
+  "_pathid": 4921,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_ConditionalCritChance",
   "Condition": 0,
@@ -1491,7 +1758,7 @@
  },
  {
   "_name": "HunterSetRune1_Effect2",
-  "_pathid": 5142,
+  "_pathid": 5281,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_AbilityModifier",
   "Tag": 14,
@@ -1501,15 +1768,16 @@
  },
  {
   "_name": "HunterSetRune1_Effect4_Mark",
-  "_pathid": 5143,
+  "_pathid": 5282,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_AbilityTagApplyStatus",
   "Tag": 14,
+  "RequiredTag": 9999,
   "TrackedAbility": null,
   "Target": 0,
   "StatusEffect": {
    "fileID": 0,
-   "pathID": 5246
+   "pathID": 5387
   },
   "Chance": 1.0,
   "StacksPerCast": 1,
@@ -1518,26 +1786,27 @@
  },
  {
   "_name": "HunterSetRune1_Effect6_Rearm",
-  "_pathid": 5144,
+  "_pathid": 5283,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_TrapRearm",
   "RearmDelay": 0.30000001192092896,
-  "MaxRearms": 2
+  "MaxRearms": 3
  },
  {
   "_name": "HunterSetRune2_Effect2",
-  "_pathid": 5146,
+  "_pathid": 5285,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_AbilityTagApplyStatus",
   "Tag": 1,
+  "RequiredTag": 9999,
   "TrackedAbility": {
    "fileID": 2,
-   "pathID": 59864
+   "pathID": 59916
   },
   "Target": 1,
   "StatusEffect": {
    "fileID": 2,
-   "pathID": 60505
+   "pathID": 60560
   },
   "Chance": 1.0,
   "StacksPerCast": 1,
@@ -1546,7 +1815,7 @@
  },
  {
   "_name": "HunterSetRune2_Effect3",
-  "_pathid": 5147,
+  "_pathid": 5286,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_AbilityEffectOverride",
   "_managedRefs": {
@@ -1562,7 +1831,7 @@
      "ImpactVFXPrefab": null,
      "ImpactSFX": {
       "fileID": 2,
-      "pathID": 4842
+      "pathID": 4860
      },
      "ImpactSFXVolume": [
       0.30000001192092896,
@@ -1574,7 +1843,7 @@
      ],
      "ProjectilePrefab": {
       "fileID": 2,
-      "pathID": 11652
+      "pathID": 11673
      },
      "TravelMode": 0,
      "Speed": 35.0,
@@ -1618,7 +1887,7 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 2,
-      "pathID": 5976
+      "pathID": 6001
      },
      "ImpactSFX": null,
      "ImpactSFXVolume": [
@@ -1633,18 +1902,18 @@
      "AttackScaling": {
       "Base": {
        "__type__": "ObscuredFloat",
-       "hash": -2115551783,
-       "hiddenValue": 1429464673,
-       "cryptoKey": 1800732754,
-       "value": 0.3499999940395355,
+       "hash": -2119459477,
+       "hiddenValue": 1353630827,
+       "cryptoKey": 1878498648,
+       "value": 0.699999988079071,
        "__tail__": "00000000000000000000000000000000"
       },
       "PerLevel": {
        "__type__": "ObscuredFloat",
-       "hash": -1819795919,
-       "hiddenValue": 1743587862,
-       "cryptoKey": 1531868848,
-       "value": 0.012000000104308128,
+       "hash": -1840481231,
+       "hiddenValue": 1713696256,
+       "cryptoKey": 1512751014,
+       "value": 0.024000000208616257,
        "__tail__": "00000000000000000000000000000000"
       }
      },
@@ -1670,7 +1939,7 @@
   },
   "Ability": {
    "fileID": 2,
-   "pathID": 59864
+   "pathID": 59916
   },
   "CastsRequired": 1,
   "OverrideEffects": [
@@ -1681,85 +1950,94 @@
  },
  {
   "_name": "HunterSetRune2_Effect4",
-  "_pathid": 5148,
+  "_pathid": 5287,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_AbilityChannelModifier",
   "Ability": {
    "fileID": 2,
-   "pathID": 59864
+   "pathID": 59916
   },
   "ChannelSpeedBonus": 0.30000001192092896,
   "AdditionalChannelDurationSeconds": 0.0
  },
  {
   "_name": "HunterSetRune3_Effect4",
-  "_pathid": 5150,
+  "_pathid": 5289,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_StatusApplyStatus",
   "TriggerStatus": {
    "fileID": 2,
-   "pathID": 60513
+   "pathID": 60568
   },
   "ResultStatus": {
    "fileID": 0,
-   "pathID": 5249
+   "pathID": 5390
   },
   "ProcChance": 1.0
  },
  {
   "_name": "HunterSetRune3_Effect6",
-  "_pathid": 5151,
+  "_pathid": 5290,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_AbilityTriggerAbility",
   "Tag": 0,
   "TrackedAbility": {
    "fileID": 2,
-   "pathID": 59858
+   "pathID": 59910
   },
   "TriggeredAbility": {
    "fileID": 0,
-   "pathID": 5152
+   "pathID": 5291
   },
   "ProcChance": 0.5,
-  "SuppressKnockback": false
+  "SuppressKnockback": false,
+  "CountsAsCast": false,
+  "DamageBonusPerCurrentMana": 0.0,
+  "HitStatus": null
  },
  {
   "_name": "MonkSetRune1_Effect2",
-  "_pathid": 5154,
+  "_pathid": 5293,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_StatPerStatusStack",
   "Status": {
    "fileID": 2,
-   "pathID": 60517
+   "pathID": 60572
   },
   "Stat": 23,
   "ValuePerStack": 0.03
  },
  {
   "_name": "MonkSetRune1_Effect3",
-  "_pathid": 5155,
+  "_pathid": 5294,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_AbilityTriggerAbility",
   "Tag": 0,
   "TrackedAbility": {
    "fileID": 2,
-   "pathID": 59873
+   "pathID": 59925
   },
   "TriggeredAbility": {
    "fileID": 2,
-   "pathID": 59879
+   "pathID": 59931
   },
   "ProcChance": 0.25,
-  "SuppressKnockback": true
+  "SuppressKnockback": true,
+  "CountsAsCast": true,
+  "DamageBonusPerCurrentMana": 0.004999999888241291,
+  "HitStatus": {
+   "fileID": 2,
+   "pathID": 60551
+  }
  },
  {
   "_name": "MonkSetRune2_Effect2",
-  "_pathid": 5157,
+  "_pathid": 5296,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_AbilityProjectileCount",
   "Ability": {
    "fileID": 2,
-   "pathID": 59880
+   "pathID": 59932
   },
   "ExtraProjectiles": 1,
   "OverrideDegreesBetweenProjectiles": false,
@@ -1767,7 +2045,7 @@
  },
  {
   "_name": "MonkSetRune2_Effect3",
-  "_pathid": 5158,
+  "_pathid": 5297,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_AbilityEffectOverride",
   "_managedRefs": {
@@ -1792,7 +2070,7 @@
      ],
      "ProjectilePrefab": {
       "fileID": 2,
-      "pathID": 11654
+      "pathID": 11675
      },
      "TravelMode": 2,
      "Speed": 10.0,
@@ -1841,7 +2119,7 @@
      "ImpactVFXPrefab": null,
      "ImpactSFX": {
       "fileID": 2,
-      "pathID": 4884
+      "pathID": 4903
      },
      "ImpactSFXVolume": [
       1.0,
@@ -1894,11 +2172,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 1764
+      "pathID": 1834
      },
      "ImpactSFX": {
       "fileID": 2,
-      "pathID": 4884
+      "pathID": 4903
      },
      "ImpactSFXVolume": [
       1.0,
@@ -1910,7 +2188,7 @@
      ],
      "ProjectilePrefab": {
       "fileID": 0,
-      "pathID": 1224
+      "pathID": 1296
      },
      "TravelMode": 0,
      "Speed": 18.0,
@@ -2003,7 +2281,7 @@
   },
   "Ability": {
    "fileID": 2,
-   "pathID": 59880
+   "pathID": 59932
   },
   "CastsRequired": 1,
   "OverrideEffects": [
@@ -2014,31 +2292,32 @@
  },
  {
   "_name": "MonkSetRune3_Effect2",
-  "_pathid": 5160,
+  "_pathid": 5299,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_AbilityModifier",
   "Tag": 1,
   "Ability": {
    "fileID": 2,
-   "pathID": 59877
+   "pathID": 59929
   },
   "Stat": 1,
   "Modifier": -0.5
  },
  {
   "_name": "MonkSetRune3_Effect4",
-  "_pathid": 5161,
+  "_pathid": 5300,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_AbilityTagApplyStatus",
   "Tag": 1,
+  "RequiredTag": 9999,
   "TrackedAbility": {
    "fileID": 2,
-   "pathID": 59877
+   "pathID": 59929
   },
   "Target": 0,
   "StatusEffect": {
    "fileID": 2,
-   "pathID": 60542
+   "pathID": 60598
   },
   "Chance": 1.0,
   "StacksPerCast": 1,
@@ -2047,7 +2326,7 @@
  },
  {
   "_name": "MonkSetRune3_Effect5",
-  "_pathid": 5162,
+  "_pathid": 5301,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_AbilityEffectOverride",
   "_managedRefs": {
@@ -2072,7 +2351,7 @@
      ],
      "ProjectilePrefab": {
       "fileID": 0,
-      "pathID": 1240
+      "pathID": 1313
      },
      "TravelMode": 0,
      "Speed": 20.0,
@@ -2117,7 +2396,7 @@
      "ImpactVFXPrefab": null,
      "ImpactSFX": {
       "fileID": 2,
-      "pathID": 4832
+      "pathID": 4850
      },
      "ImpactSFXVolume": [
       0.699999988079071,
@@ -2168,7 +2447,7 @@
   },
   "Ability": {
    "fileID": 2,
-   "pathID": 59877
+   "pathID": 59929
   },
   "CastsRequired": 1,
   "OverrideEffects": [
@@ -2179,13 +2458,13 @@
  },
  {
   "_name": "MonkSetRune3_Effect6",
-  "_pathid": 5163,
+  "_pathid": 5302,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_TriggerAbilityCooldownReduction",
   "Tag": 1,
   "TrackedAbility": {
    "fileID": 2,
-   "pathID": 59877
+   "pathID": 59929
   },
   "TargetAbility": null,
   "TargetTag": 2,
@@ -2195,46 +2474,47 @@
  },
  {
   "_name": "SorcererSetRune1_Effect2",
-  "_pathid": 5165,
+  "_pathid": 5304,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_AbilitySummonAbility",
   "SummoningAbility": {
    "fileID": 2,
-   "pathID": 59891
+   "pathID": 59943
   },
   "AddedAbility": {
    "fileID": 0,
-   "pathID": 4793
+   "pathID": 4852
   }
  },
  {
   "_name": "SorcererSetRune1_Effect3",
-  "_pathid": 5166,
+  "_pathid": 5305,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_AbilitySummonAbility",
   "SummoningAbility": {
    "fileID": 2,
-   "pathID": 59891
+   "pathID": 59943
   },
   "AddedAbility": {
    "fileID": 0,
-   "pathID": 4792
+   "pathID": 4851
   }
  },
  {
   "_name": "SorcererSetRune2_Effect2",
-  "_pathid": 5168,
+  "_pathid": 5307,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_AbilityTagApplyStatus",
   "Tag": 0,
+  "RequiredTag": 9999,
   "TrackedAbility": {
    "fileID": 2,
-   "pathID": 59887
+   "pathID": 59939
   },
   "Target": 0,
   "StatusEffect": {
    "fileID": 2,
-   "pathID": 60477
+   "pathID": 60532
   },
   "Chance": 1.0,
   "StacksPerCast": 1,
@@ -2243,31 +2523,166 @@
  },
  {
   "_name": "SorcererSetRune2_Effect3",
-  "_pathid": 5169,
+  "_pathid": 5308,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_AbilityProjectileCount",
   "Ability": {
    "fileID": 2,
-   "pathID": 59887
+   "pathID": 59939
   },
-  "ExtraProjectiles": 3,
+  "ExtraProjectiles": 4,
   "OverrideDegreesBetweenProjectiles": true,
   "DegreesBetweenProjectiles": 5.0
  },
  {
+  "_name": "SorcererSetRune2_Pierce",
+  "_pathid": 5309,
+  "_file": "resources.assets",
+  "_class": "EquipmentEffect_AbilityEffectOverride",
+  "_managedRefs": {
+   "__header__": [
+    2,
+    2
+   ],
+   "__items__": [
+    {
+     "__hash__": "4501d4be33090e79",
+     "__type__": "SpawnProjectileEffect",
+     "__asm__": "Assembly-CSharp",
+     "ImpactVFXPrefab": {
+      "fileID": 2,
+      "pathID": 23459
+     },
+     "ImpactSFX": {
+      "fileID": 2,
+      "pathID": 4874
+     },
+     "ImpactSFXVolume": [
+      0.20000000298023224,
+      0.3499999940395355
+     ],
+     "ImpactSFXPitch": [
+      0.6000000238418579,
+      0.800000011920929
+     ],
+     "ProjectilePrefab": {
+      "fileID": 2,
+      "pathID": 11689
+     },
+     "TravelMode": 0,
+     "Speed": 14.0,
+     "MaxLifetime": 4.0,
+     "IsHoming": false,
+     "PierceTargets": true,
+     "MaxPierceCount": 1,
+     "SpawnOffset": [
+      0.0,
+      1.0,
+      0.699999988079071
+     ],
+     "SizeMultiplier": 1.0,
+     "NumProjectiles": 1,
+     "DegreesBetweenProjectiles": 8.0,
+     "SpawnRadius": 0.0,
+     "OrbitRadius": 2.0,
+     "OrbitAngularSpeed": 180.0,
+     "WanderStrength": 45.0,
+     "WanderFrequency": 1.5,
+     "WanderRadius": 0.0,
+     "WanderCenter": 0,
+     "WanderSeekTurnRadius": 0.0,
+     "ParabolaTiming": 0,
+     "ArcMaxHeight": 2.0,
+     "ArcDuration": 0.699999988079071,
+     "RehitInterval": 0.0,
+     "HitAllInRadius": false,
+     "SplashRadius": 2.0,
+     "OnHitEffects": [
+      {
+       "__managed_ref_hash__": "4701d4be33090e79"
+      }
+     ],
+     "OnExpireEffects": [],
+     "__end__": 324
+    },
+    {
+     "__hash__": "4701d4be33090e79",
+     "__type__": "DamageEffect",
+     "__asm__": "Assembly-CSharp",
+     "ImpactVFXPrefab": null,
+     "ImpactSFX": null,
+     "ImpactSFXVolume": [
+      1.0,
+      1.0
+     ],
+     "ImpactSFXPitch": [
+      1.0,
+      1.0
+     ],
+     "BaseDamage": 0,
+     "AttackScaling": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 53880811,
+       "hiddenValue": 1384053370,
+       "cryptoKey": 1835617609,
+       "value": 1.149999976158142,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 294485031,
+       "hiddenValue": 1674505766,
+       "cryptoKey": 1591841295,
+       "value": 0.03500000014901161,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "CanCrit": true,
+     "IsDirect": true,
+     "DamageType": 2,
+     "MoveStutter": 0.0,
+     "AttackScalingToken": {
+      "Name": "weaponDamage",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     },
+     "BaseDamageToken": {
+      "Name": "",
+      "Format": "0",
+      "Suffix": "",
+      "Highlight": true
+     },
+     "__end__": 541
+    }
+   ]
+  },
+  "Ability": {
+   "fileID": 2,
+   "pathID": 59939
+  },
+  "CastsRequired": 1,
+  "OverrideEffects": [
+   {
+    "__managed_ref_hash__": "4501d4be33090e79"
+   }
+  ]
+ },
+ {
   "_name": "SorcererSetRune3_Effect2",
-  "_pathid": 5171,
+  "_pathid": 5311,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_AbilityStrikeSplash",
   "Ability": {
    "fileID": 2,
-   "pathID": 59898
+   "pathID": 59950
   },
   "Radius": 1.0
  },
  {
   "_name": "SorcererSetRune3_Effect3",
-  "_pathid": 5172,
+  "_pathid": 5312,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_AbilityEffectOverride",
   "_managedRefs": {
@@ -2309,11 +2724,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 2,
-      "pathID": 22572
+      "pathID": 22599
      },
      "ImpactSFX": {
       "fileID": 2,
-      "pathID": 4908
+      "pathID": 4927
      },
      "ImpactSFXVolume": [
       0.6000000238418579,
@@ -2376,7 +2791,7 @@
      ],
      "ZonePrefab": {
       "fileID": 0,
-      "pathID": 2413
+      "pathID": 2482
      },
      "Location": 1,
      "SpawnOffset": [
@@ -2389,7 +2804,7 @@
      "TriggerCount": 3,
      "TriggerInterval": 0.75,
      "Lifetime": 2.5,
-     "BlastRadius": 1.25,
+     "BlastRadius": 1.5,
      "ThrowDuration": 0.0,
      "ThrowArcHeight": 2.5,
      "ThrowOffset": [
@@ -2422,10 +2837,10 @@
      "AttackScaling": {
       "Base": {
        "__type__": "ObscuredFloat",
-       "hash": 170189967,
-       "hiddenValue": 1822008162,
-       "cryptoKey": 1403230562,
-       "value": 0.5,
+       "hash": 180532623,
+       "hiddenValue": 1895666194,
+       "cryptoKey": 1339227410,
+       "value": 0.75,
        "__tail__": "00000000000000000000000000000000"
       },
       "PerLevel": {
@@ -2459,7 +2874,7 @@
   },
   "Ability": {
    "fileID": 2,
-   "pathID": 59898
+   "pathID": 59950
   },
   "CastsRequired": 1,
   "OverrideEffects": [
@@ -2470,7 +2885,7 @@
  },
  {
   "_name": "WarriorSetRune1_Effect2",
-  "_pathid": 5174,
+  "_pathid": 5314,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_TriggerEffectsOnCrit",
   "_managedRefs": {
@@ -2556,7 +2971,7 @@
  },
  {
   "_name": "WarriorSetRune1_Effect3",
-  "_pathid": 5175,
+  "_pathid": 5315,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_StatModifier",
   "StatModifiers": [
@@ -2587,43 +3002,43 @@
   ],
   "RequiredStatus": {
    "fileID": 2,
-   "pathID": 60523
+   "pathID": 60578
   },
   "SelfCondition": -1
  },
  {
   "_name": "WarriorSetRune2_Effect2",
-  "_pathid": 5177,
+  "_pathid": 5317,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_AbilityChannelModifier",
   "Ability": {
    "fileID": 2,
-   "pathID": 59907
+   "pathID": 59959
   },
   "ChannelSpeedBonus": 0.25,
   "AdditionalChannelDurationSeconds": 3.0
  },
  {
   "_name": "WarriorSetRune2_Effect3",
-  "_pathid": 5178,
+  "_pathid": 5318,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_ChannelAllowedCastTag",
   "ChannelAbility": {
    "fileID": 2,
-   "pathID": 59907
+   "pathID": 59959
   },
   "AllowedTag": 2
  },
  {
   "_name": "WarriorSetRune3_Effect2",
-  "_pathid": 5180,
+  "_pathid": 5320,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_TriggerAbilityCooldownReduction",
   "Tag": 0,
   "TrackedAbility": null,
   "TargetAbility": {
    "fileID": 2,
-   "pathID": 59912
+   "pathID": 59964
   },
   "TargetTag": 9999,
   "RandomSingleTarget": false,
@@ -2632,38 +3047,41 @@
  },
  {
   "_name": "WarriorSetRune3_Effect4",
-  "_pathid": 5182,
+  "_pathid": 5322,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_ConditionalCritDamage",
   "Condition": 5,
   "Status": {
    "fileID": 0,
-   "pathID": 5263
+   "pathID": 5408
   },
-  "BonusCritDamage": 2.5
+  "BonusCritDamage": 2.5,
+  "ScaleByStatusStacks": false
  },
  {
   "_name": "WarriorSetRune4_Effect2",
-  "_pathid": 5184,
+  "_pathid": 5324,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_StatusOnHit",
   "StatusEffect": {
    "fileID": 0,
-   "pathID": 5262
+   "pathID": 5407
   },
   "FilterByTag": false,
   "Tag": 0,
   "TrackedAbility": {
    "fileID": 2,
-   "pathID": 59906
+   "pathID": 59958
   },
+  "ExcludedAbility": null,
+  "RequireDirectHit": false,
   "Chance": 1.0,
   "StacksPerHit": 1,
   "GainVFXPrefab": null
  },
  {
   "_name": "WarriorSetRune4_Effect3",
-  "_pathid": 5185,
+  "_pathid": 5325,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_AbilityEffectOverride",
   "_managedRefs": {
@@ -2688,7 +3106,7 @@
      ],
      "ProjectilePrefab": {
       "fileID": 2,
-      "pathID": 11653
+      "pathID": 11674
      },
      "TravelMode": 3,
      "Speed": 15.0,
@@ -2715,7 +3133,7 @@
      "ParabolaTiming": 0,
      "ArcMaxHeight": 2.0,
      "ArcDuration": 0.699999988079071,
-     "RehitInterval": 0.5,
+     "RehitInterval": 1.399999976158142,
      "HitAllInRadius": false,
      "SplashRadius": 1.5,
      "OnHitEffects": [
@@ -2733,7 +3151,7 @@
      "ImpactVFXPrefab": null,
      "ImpactSFX": {
       "fileID": 2,
-      "pathID": 4887
+      "pathID": 4906
      },
      "ImpactSFXVolume": [
       1.0,
@@ -2784,7 +3202,7 @@
   },
   "Ability": {
    "fileID": 2,
-   "pathID": 59906
+   "pathID": 59958
   },
   "CastsRequired": 1,
   "OverrideEffects": [
@@ -2795,7 +3213,7 @@
  },
  {
   "_name": "LegendaryChestArmor2_HpLoss",
-  "_pathid": 5253,
+  "_pathid": 5395,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_StatModifier",
   "StatModifiers": [
@@ -2817,7 +3235,7 @@
  },
  {
   "_name": "LegendaryChestArmor2_ThornIncrease",
-  "_pathid": 5254,
+  "_pathid": 5396,
   "_file": "resources.assets",
   "_class": "EquipmentEffect_StatModifier",
   "StatModifiers": [
@@ -2839,7 +3257,7 @@
  },
  {
   "_name": "LegendaryBelt1",
-  "_pathid": 59846,
+  "_pathid": 59898,
   "_file": "sharedassets0.assets",
   "_class": "EquipmentEffect_StatModifier",
   "StatModifiers": [
@@ -2861,7 +3279,7 @@
  },
  {
   "_name": "LegendaryBelt2",
-  "_pathid": 59847,
+  "_pathid": 59899,
   "_file": "sharedassets0.assets",
   "_class": "EquipmentEffect_TriggerEffectsOnPotionUse",
   "_managedRefs": {
@@ -2954,59 +3372,61 @@
  },
  {
   "_name": "LegendaryBoots3",
-  "_pathid": 59848,
+  "_pathid": 59900,
   "_file": "sharedassets0.assets",
   "_class": "EquipmentEffect_GainStatusEverySecond",
   "StatusEffect": {
    "fileID": 0,
-   "pathID": 60506
+   "pathID": 60561
   },
   "Condition": 1,
   "Interval": 1.0
  },
  {
   "_name": "LegendaryChestArmor5",
-  "_pathid": 59849,
+  "_pathid": 59901,
   "_file": "sharedassets0.assets",
   "_class": "EquipmentEffect_StatusOnLowHealth",
   "StatusEffect": {
    "fileID": 0,
-   "pathID": 60507
+   "pathID": 60562
   },
   "HealthThreshold": 0.30000001192092896,
   "InternalCooldown": 25.0
  },
  {
   "_name": "LegendaryGloves2",
-  "_pathid": 59850,
+  "_pathid": 59902,
   "_file": "sharedassets0.assets",
   "_class": "EquipmentEffect_StatusOnHit",
   "StatusEffect": {
    "fileID": 0,
-   "pathID": 60508
+   "pathID": 60563
   },
   "FilterByTag": false,
   "Tag": 0,
   "TrackedAbility": null,
+  "ExcludedAbility": null,
+  "RequireDirectHit": false,
   "Chance": 1.0,
   "StacksPerHit": 1,
   "GainVFXPrefab": null
  },
  {
   "_name": "LegendaryNeck1",
-  "_pathid": 59851,
+  "_pathid": 59903,
   "_file": "sharedassets0.assets",
   "_class": "EquipmentEffect_StatusOnResourceConsumed",
   "Resource": 0,
   "Threshold": 100,
   "StatusEffect": {
    "fileID": 0,
-   "pathID": 60509
+   "pathID": 60564
   }
  },
  {
   "_name": "LegendaryPants2",
-  "_pathid": 59852,
+  "_pathid": 59904,
   "_file": "sharedassets0.assets",
   "_class": "EquipmentEffect_TriggerEffectsOnPotionUse",
   "_managedRefs": {
@@ -3031,7 +3451,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60510
+      "pathID": 60565
      },
      "Chance": {
       "Base": {
@@ -3051,6 +3471,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": true,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -3059,7 +3480,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 265
+     "__end__": 269
     }
    ]
   },
@@ -3072,14 +3493,14 @@
  },
  {
   "_name": "LegendaryRing5",
-  "_pathid": 59853,
+  "_pathid": 59905,
   "_file": "sharedassets0.assets",
   "_class": "EquipmentEffect_DamagePerManaFraction",
   "MaxBonus": 0.5
  },
  {
   "_name": "LegendaryRing7",
-  "_pathid": 59854,
+  "_pathid": 59906,
   "_file": "sharedassets0.assets",
   "_class": "EquipmentEffect_StatModifier",
   "StatModifiers": [
@@ -3101,7 +3522,7 @@
  },
  {
   "_name": "LegendaryShoulder3",
-  "_pathid": 59855,
+  "_pathid": 59907,
   "_file": "sharedassets0.assets",
   "_class": "EquipmentEffect_TriggerKillEffectsOnHit",
   "Chance": 0.10000000149011612,

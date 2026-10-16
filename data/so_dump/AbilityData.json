@@ -1,7 +1,7 @@
 [
  {
   "_name": "EnemyBasicAttackLongerRange",
-  "_pathid": 4791,
+  "_pathid": 4850,
   "_file": "resources.assets",
   "_managedRefs": {
    "__header__": [
@@ -58,7 +58,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 761
+     "__end__": 765
     }
    ]
   },
@@ -168,6 +168,7 @@
     "__managed_ref_hash__": "4c0004033977ac12"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
@@ -192,7 +193,7 @@
  },
  {
   "_name": "FireElementalMeteor",
-  "_pathid": 4792,
+  "_pathid": 4851,
   "_file": "resources.assets",
   "_managedRefs": {
    "__header__": [
@@ -216,7 +217,7 @@
      ],
      "AoEPrefab": {
       "fileID": 2,
-      "pathID": 11663
+      "pathID": 11684
      },
      "Location": 0,
      "FaceCastDirection": false,
@@ -235,7 +236,7 @@
        "__managed_ref_hash__": "b100849a34317310"
       }
      ],
-     "__end__": 700
+     "__end__": 704
     },
     {
      "__hash__": "b000849a34317310",
@@ -243,7 +244,7 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 2,
-      "pathID": 11219
+      "pathID": 11241
      },
      "ImpactSFX": null,
      "ImpactSFXVolume": [
@@ -289,7 +290,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 917
+     "__end__": 921
     },
     {
      "__hash__": "b100849a34317310",
@@ -307,7 +308,7 @@
      ],
      "StatusEffect": {
       "fileID": 2,
-      "pathID": 60476
+      "pathID": 60530
      },
      "Chance": {
       "Base": {
@@ -327,6 +328,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -335,14 +337,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 1113
+     "__end__": 1121
     }
    ]
   },
   "AbilityName": "Fire Meteor",
   "Icon": {
    "fileID": 2,
-   "pathID": 5323
+   "pathID": 5342
   },
   "Tags": [
    2,
@@ -449,12 +451,13 @@
     "__managed_ref_hash__": "af00849a34317310"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 2,
-   "pathID": 4928
+   "pathID": 4947
   },
   "CastSFXVolume": [
    1.0,
@@ -476,7 +479,7 @@
  },
  {
   "_name": "FireElementalPyroblast",
-  "_pathid": 4793,
+  "_pathid": 4852,
   "_file": "resources.assets",
   "_managedRefs": {
    "__header__": [
@@ -489,12 +492,12 @@
      "__type__": "SpawnProjectileEffect",
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
-      "fileID": 2,
-      "pathID": 21839
+      "fileID": 0,
+      "pathID": 2285
      },
      "ImpactSFX": {
       "fileID": 2,
-      "pathID": 4985
+      "pathID": 5004
      },
      "ImpactSFXVolume": [
       1.0,
@@ -506,7 +509,7 @@
      ],
      "ProjectilePrefab": {
       "fileID": 0,
-      "pathID": 1486
+      "pathID": 1556
      },
      "TravelMode": 0,
      "Speed": 14.0,
@@ -542,7 +545,7 @@
       }
      ],
      "OnExpireEffects": [],
-     "__end__": 776
+     "__end__": 780
     },
     {
      "__hash__": "bc00309b14fcbe34",
@@ -550,7 +553,7 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 2,
-      "pathID": 11219
+      "pathID": 11241
      },
      "ImpactSFX": null,
      "ImpactSFXVolume": [
@@ -596,14 +599,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 993
+     "__end__": 997
     }
    ]
   },
   "AbilityName": "Fire Ball",
   "Icon": {
    "fileID": 2,
-   "pathID": 5373
+   "pathID": 5392
   },
   "Tags": [
    0,
@@ -710,12 +713,13 @@
     "__managed_ref_hash__": "bb00309b14fcbe34"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 2,
-   "pathID": 4831
+   "pathID": 4849
   },
   "CastSFXVolume": [
    0.6000000238418579,
@@ -737,22 +741,19 @@
  },
  {
   "_name": "DivineSword1_SoulImpact",
-  "_pathid": 4845,
+  "_pathid": 4922,
   "_file": "resources.assets",
   "_managedRefs": {
    "__header__": [
     2,
-    2
+    3
    ],
    "__items__": [
     {
      "__hash__": "6400822234e5db6a",
      "__type__": "DamageEffect",
      "__asm__": "Assembly-CSharp",
-     "ImpactVFXPrefab": {
-      "fileID": 2,
-      "pathID": 5975
-     },
+     "ImpactVFXPrefab": null,
      "ImpactSFX": null,
      "ImpactSFXVolume": [
       1.0,
@@ -797,7 +798,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 765
+     "__end__": 761
     },
     {
      "__hash__": "6500822234e5db6a",
@@ -815,7 +816,7 @@
      ],
      "StatusEffect": {
       "fileID": 2,
-      "pathID": 60496
+      "pathID": 60551
      },
      "Chance": {
       "Base": {
@@ -835,6 +836,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 0,
      "ChanceToken": {
@@ -844,13 +846,70 @@
       "Highlight": true
      },
      "__end__": 961
+    },
+    {
+     "__hash__": "6600822234e5db6a",
+     "__type__": "SpawnProjectileEffect",
+     "__asm__": "Assembly-CSharp",
+     "ImpactVFXPrefab": null,
+     "ImpactSFX": null,
+     "ImpactSFXVolume": [
+      1.0,
+      1.0
+     ],
+     "ImpactSFXPitch": [
+      1.0,
+      1.0
+     ],
+     "ProjectilePrefab": {
+      "fileID": 0,
+      "pathID": 1557
+     },
+     "TravelMode": 0,
+     "Speed": 8.0,
+     "MaxLifetime": 2.0,
+     "IsHoming": false,
+     "PierceTargets": true,
+     "MaxPierceCount": 2147483647,
+     "SpawnOffset": [
+      0.0,
+      1.2000000476837158,
+      0.0
+     ],
+     "SizeMultiplier": 1.0,
+     "NumProjectiles": 1,
+     "DegreesBetweenProjectiles": 15.0,
+     "SpawnRadius": 0.0,
+     "OrbitRadius": 2.0,
+     "OrbitAngularSpeed": 180.0,
+     "WanderStrength": 45.0,
+     "WanderFrequency": 1.5,
+     "WanderRadius": 0.0,
+     "WanderCenter": 0,
+     "WanderSeekTurnRadius": 0.0,
+     "ParabolaTiming": 0,
+     "ArcMaxHeight": 2.0,
+     "ArcDuration": 0.699999988079071,
+     "RehitInterval": 0.0,
+     "HitAllInRadius": false,
+     "SplashRadius": 0.0,
+     "OnHitEffects": [
+      {
+       "__managed_ref_hash__": "6400822234e5db6a"
+      },
+      {
+       "__managed_ref_hash__": "6500822234e5db6a"
+      }
+     ],
+     "OnExpireEffects": [],
+     "__end__": 1204
     }
    ]
   },
   "AbilityName": "Soul Impact",
   "Icon": {
    "fileID": 0,
-   "pathID": 879
+   "pathID": 934
   },
   "Tags": [
    2,
@@ -859,15 +918,15 @@
   ],
   "LevelRequirement": 1,
   "IsLockedInDemo": false,
-  "Targeting": 4,
+  "Targeting": 9,
   "Affinity": 0,
   "Range": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": 1776933601,
-    "hiddenValue": 545623181,
-    "cryptoKey": 1611433357,
-    "value": 4.0,
+    "hash": 753531571,
+    "hiddenValue": 341103181,
+    "cryptoKey": 1436701773,
+    "value": 15.0,
     "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
@@ -879,9 +938,9 @@
     "__tail__": "00000000000000000000000000000000"
    }
   },
-  "AoERadius": 4.0,
+  "AoERadius": 0.0,
   "ConeAngle": 0.0,
-  "LineWidth": 0.0,
+  "LineWidth": 0.20000000298023224,
   "TargetCount": 1,
   "ManaGain": 0.0,
   "ManaCost": {
@@ -955,21 +1014,16 @@
   "StowWeaponOnBack": false,
   "Effects": [
    {
-    "__managed_ref_hash__": "6400822234e5db6a"
-   },
-   {
-    "__managed_ref_hash__": "6500822234e5db6a"
+    "__managed_ref_hash__": "6600822234e5db6a"
    }
   ],
-  "CastVFXPrefab": {
-   "fileID": 0,
-   "pathID": 2055
-  },
+  "SuppressTargetHitVFX": true,
+  "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 668
+   "pathID": 700
   },
   "CastSFXVolume": [
    1.0,
@@ -991,7 +1045,7 @@
  },
  {
   "_name": "HunterSetRune3_VenomBurst",
-  "_pathid": 5152,
+  "_pathid": 5291,
   "_file": "resources.assets",
   "_managedRefs": {
    "__header__": [
@@ -1004,12 +1058,12 @@
      "__type__": "SpawnProjectileEffect",
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
-      "fileID": 0,
-      "pathID": 2058
+      "fileID": 2,
+      "pathID": 19918
      },
      "ImpactSFX": {
       "fileID": 2,
-      "pathID": 4943
+      "pathID": 4962
      },
      "ImpactSFXVolume": [
       1.0,
@@ -1021,7 +1075,7 @@
      ],
      "ProjectilePrefab": {
       "fileID": 0,
-      "pathID": 1485
+      "pathID": 1555
      },
      "TravelMode": 4,
      "Speed": 25.0,
@@ -1050,7 +1104,7 @@
      "ArcDuration": 0.6499999761581421,
      "RehitInterval": 0.0,
      "HitAllInRadius": true,
-     "SplashRadius": 1.100000023841858,
+     "SplashRadius": 1.7000000476837158,
      "OnHitEffects": [
       {
        "__managed_ref_hash__": "b000442349db003e"
@@ -1060,7 +1114,7 @@
       }
      ],
      "OnExpireEffects": [],
-     "__end__": 780
+     "__end__": 784
     },
     {
      "__hash__": "ae00442349db003e",
@@ -1078,7 +1132,7 @@
      ],
      "StatusEffect": {
       "fileID": 2,
-      "pathID": 60513
+      "pathID": 60568
      },
      "Chance": {
       "Base": {
@@ -1098,6 +1152,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 2,
      "OverrideAffinity": false,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -1106,7 +1161,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 981
+     "__end__": 989
     },
     {
      "__hash__": "b000442349db003e",
@@ -1115,7 +1170,7 @@
      "ImpactVFXPrefab": null,
      "ImpactSFX": {
       "fileID": 2,
-      "pathID": 4929
+      "pathID": 4948
      },
      "ImpactSFXVolume": [
       0.800000011920929,
@@ -1129,10 +1184,10 @@
      "AttackScaling": {
       "Base": {
        "__type__": "ObscuredFloat",
-       "hash": -611977469,
-       "hiddenValue": 1174205004,
-       "cryptoKey": 2053858774,
-       "value": 1.2000000476837158,
+       "hash": -1251229527,
+       "hiddenValue": 548121492,
+       "cryptoKey": 1613614578,
+       "value": 4.199999809265137,
        "__tail__": "00000000000000000000000000000000"
       },
       "PerLevel": {
@@ -1160,7 +1215,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 1201
+     "__end__": 1209
     }
    ]
   },
@@ -1271,6 +1326,7 @@
     "__managed_ref_hash__": "ad00442349db003e"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
@@ -1295,7 +1351,7 @@
  },
  {
   "_name": "SlaveDragonArmor",
-  "_pathid": 5242,
+  "_pathid": 5382,
   "_file": "resources.assets",
   "_managedRefs": {
    "__header__": [
@@ -1352,14 +1408,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 741
+     "__end__": 745
     }
    ]
   },
   "AbilityName": "Flame Armor",
   "Icon": {
    "fileID": 2,
-   "pathID": 5661
+   "pathID": 5682
   },
   "Tags": [
    2
@@ -1434,16 +1490,16 @@
    "Base": {
     "__type__": "ObscuredFloat",
     "hash": 723851361,
-    "hiddenValue": 1072710110,
-    "cryptoKey": 1061286110,
+    "hiddenValue": 1027930043,
+    "cryptoKey": 1039615163,
     "value": 0.0,
     "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
     "hash": 723851361,
-    "hiddenValue": 1473095678,
-    "cryptoKey": 1470615038,
+    "hiddenValue": 1531164441,
+    "cryptoKey": 1538736921,
     "value": 0.0,
     "__tail__": "00000000000000000000000000000000"
    }
@@ -1465,6 +1521,7 @@
     "__managed_ref_hash__": "0000c8495d090e79"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
@@ -1489,7 +1546,7 @@
  },
  {
   "_name": "SlaveDragonBreathe",
-  "_pathid": 5243,
+  "_pathid": 5383,
   "_file": "resources.assets",
   "_managedRefs": {
    "__header__": [
@@ -1503,7 +1560,7 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 2,
-      "pathID": 11219
+      "pathID": 11241
      },
      "ImpactSFX": null,
      "ImpactSFXVolume": [
@@ -1549,14 +1606,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 749
+     "__end__": 753
     }
    ]
   },
   "AbilityName": "Burning Breath",
   "Icon": {
    "fileID": 2,
-   "pathID": 5763
+   "pathID": 5784
   },
   "Tags": [
    1
@@ -1631,16 +1688,16 @@
    "Base": {
     "__type__": "ObscuredFloat",
     "hash": 723851361,
-    "hiddenValue": 1127523775,
-    "cryptoKey": 1134900415,
+    "hiddenValue": 1579229579,
+    "cryptoKey": 1579229579,
     "value": 0.0,
     "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
     "hash": 723851361,
-    "hiddenValue": 1658559068,
-    "cryptoKey": 1654315868,
+    "hiddenValue": 1464656567,
+    "cryptoKey": 1474448567,
     "value": 0.0,
     "__tail__": "00000000000000000000000000000000"
    }
@@ -1662,9 +1719,10 @@
     "__managed_ref_hash__": "0000c8495d090e79"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": {
    "fileID": 2,
-   "pathID": 16242
+   "pathID": 16269
   },
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
@@ -1689,7 +1747,7 @@
  },
  {
   "_name": "AirWarlordDamageUp",
-  "_pathid": 59801,
+  "_pathid": 59853,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -1713,7 +1771,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60498
+      "pathID": 60553
      },
      "Chance": {
       "Base": {
@@ -1733,6 +1791,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -1741,7 +1800,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 737
+     "__end__": 745
     }
    ]
   },
@@ -1851,12 +1910,13 @@
     "__managed_ref_hash__": "9700140e2fdb003e"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4812
+   "pathID": 4830
   },
   "CastSFXVolume": [
    1.0,
@@ -1878,7 +1938,7 @@
  },
  {
   "_name": "BeachCrabBossRevive",
-  "_pathid": 59802,
+  "_pathid": 59854,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -1892,7 +1952,7 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 9850
+      "pathID": 9872
      },
      "ImpactSFX": null,
      "ImpactSFXVolume": [
@@ -1904,7 +1964,7 @@
       1.0
      ],
      "HealthFraction": 1.0,
-     "__end__": 636
+     "__end__": 640
     }
    ]
   },
@@ -2014,12 +2074,13 @@
     "__managed_ref_hash__": "9e0030616a5d4954"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.10000000149011612,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4922
+   "pathID": 4941
   },
   "CastSFXVolume": [
    1.0,
@@ -2041,7 +2102,7 @@
  },
  {
   "_name": "BeachSerpentSpit",
-  "_pathid": 59803,
+  "_pathid": 59855,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -2055,11 +2116,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 23431
+      "pathID": 23459
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4827
+      "pathID": 4845
      },
      "ImpactSFXVolume": [
       0.6000000238418579,
@@ -2071,7 +2132,7 @@
      ],
      "ProjectilePrefab": {
       "fileID": 0,
-      "pathID": 11646
+      "pathID": 11667
      },
      "TravelMode": 0,
      "Speed": 12.0,
@@ -2107,7 +2168,7 @@
       }
      ],
      "OnExpireEffects": [],
-     "__end__": 772
+     "__end__": 776
     },
     {
      "__hash__": "4701d4be33090e79",
@@ -2158,7 +2219,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 981
+     "__end__": 985
     }
    ]
   },
@@ -2268,6 +2329,7 @@
     "__managed_ref_hash__": "4501d4be33090e79"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
@@ -2292,7 +2354,7 @@
  },
  {
   "_name": "BeachSquidExplode",
-  "_pathid": 59804,
+  "_pathid": 59856,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -2349,7 +2411,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 757
+     "__end__": 761
     }
    ]
   },
@@ -2459,15 +2521,16 @@
     "__managed_ref_hash__": "9e00ece95f5d4954"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": {
    "fileID": 0,
-   "pathID": 21038
+   "pathID": 21066
   },
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 5007
+   "pathID": 5027
   },
   "CastSFXVolume": [
    1.0,
@@ -2489,7 +2552,7 @@
  },
  {
   "_name": "BeachTurtleBossSpit",
-  "_pathid": 59805,
+  "_pathid": 59857,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -2513,7 +2576,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60477
+      "pathID": 60532
      },
      "Chance": {
       "Base": {
@@ -2533,6 +2596,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -2541,7 +2605,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 741
+     "__end__": 749
     },
     {
      "__hash__": "0000c8495d090e79",
@@ -2549,7 +2613,7 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 23431
+      "pathID": 23459
      },
      "ImpactSFX": null,
      "ImpactSFXVolume": [
@@ -2595,7 +2659,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 961
+     "__end__": 969
     }
    ]
   },
@@ -2708,15 +2772,16 @@
     "__managed_ref_hash__": "82012c6e0e5d4954"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": {
    "fileID": 0,
-   "pathID": 21211
+   "pathID": 21239
   },
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.10000000149011612,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4852
+   "pathID": 4870
   },
   "CastSFXVolume": [
    1.0,
@@ -2738,7 +2803,7 @@
  },
  {
   "_name": "DefiledKeepDragonSpew",
-  "_pathid": 59806,
+  "_pathid": 59858,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -2762,7 +2827,7 @@
      ],
      "ZonePrefab": {
       "fileID": 0,
-      "pathID": 25299
+      "pathID": 25330
      },
      "Location": 1,
      "SpawnOffset": [
@@ -2788,7 +2853,7 @@
        "__managed_ref_hash__": "0100c4dc43ba087f"
       }
      ],
-     "__end__": 720
+     "__end__": 724
     },
     {
      "__hash__": "0100c4dc43ba087f",
@@ -2796,11 +2861,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 15724
+      "pathID": 15751
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4954
+      "pathID": 4973
      },
      "ImpactSFXVolume": [
       1.0,
@@ -2845,7 +2910,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 929
+     "__end__": 933
     }
    ]
   },
@@ -2955,12 +3020,13 @@
     "__managed_ref_hash__": "0000c4dc43ba087f"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4854
+   "pathID": 4872
   },
   "CastSFXVolume": [
    1.0,
@@ -2982,7 +3048,7 @@
  },
  {
   "_name": "DefiledKeepDragonUndying",
-  "_pathid": 59807,
+  "_pathid": 59859,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -3006,7 +3072,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60500
+      "pathID": 60555
      },
      "Chance": {
       "Base": {
@@ -3026,6 +3092,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -3034,7 +3101,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 737
+     "__end__": 745
     }
    ]
   },
@@ -3144,12 +3211,13 @@
     "__managed_ref_hash__": "0300c4dc43ba087f"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4864
+   "pathID": 4883
   },
   "CastSFXVolume": [
    0.8999999761581421,
@@ -3171,7 +3239,7 @@
  },
  {
   "_name": "DefiledKeepReaperBasicAttack",
-  "_pathid": 59808,
+  "_pathid": 59860,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -3228,7 +3296,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 765
+     "__end__": 769
     },
     {
      "__hash__": "d50034843dba087f",
@@ -3291,7 +3359,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 1017
+     "__end__": 1021
     }
    ]
   },
@@ -3404,6 +3472,7 @@
     "__managed_ref_hash__": "d50034843dba087f"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
@@ -3426,12 +3495,12 @@
   "WeaponTrailWidth": 1.0,
   "WeaponTrailPrefab": {
    "fileID": 0,
-   "pathID": 6789
+   "pathID": 6814
   }
  },
  {
   "_name": "DefiledKeepReaperStorm",
-  "_pathid": 59809,
+  "_pathid": 59861,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -3445,11 +3514,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 19080
+      "pathID": 19108
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4897
+      "pathID": 4916
      },
      "ImpactSFXVolume": [
       1.0,
@@ -3494,7 +3563,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 757
+     "__end__": 761
     }
    ]
   },
@@ -3605,6 +3674,7 @@
     "__managed_ref_hash__": "d60034843dba087f"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
@@ -3629,7 +3699,7 @@
  },
  {
   "_name": "DefiledKeepScarabBurst",
-  "_pathid": 59810,
+  "_pathid": 59862,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -3643,7 +3713,7 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 16315
+      "pathID": 16341
      },
      "ImpactSFX": null,
      "ImpactSFXVolume": [
@@ -3656,7 +3726,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60503
+      "pathID": 60558
      },
      "Chance": {
       "Base": {
@@ -3676,6 +3746,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -3684,7 +3755,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 741
+     "__end__": 749
     }
    ]
   },
@@ -3795,15 +3866,16 @@
     "__managed_ref_hash__": "d20034843dba087f"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": {
    "fileID": 0,
-   "pathID": 19889
+   "pathID": 19918
   },
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4943
+   "pathID": 4962
   },
   "CastSFXVolume": [
    1.0,
@@ -3825,7 +3897,7 @@
  },
  {
   "_name": "DefiledKeepSuccubusHeal",
-  "_pathid": 59811,
+  "_pathid": 59863,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -3839,11 +3911,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 5965
+      "pathID": 5990
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4926
+      "pathID": 4945
      },
      "ImpactSFXVolume": [
       0.5,
@@ -3900,14 +3972,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 793
+     "__end__": 797
     }
    ]
   },
   "AbilityName": "Dark Communion",
   "Icon": {
    "fileID": 0,
-   "pathID": 5692
+   "pathID": 5713
   },
   "Tags": [
    2
@@ -4013,6 +4085,7 @@
     "__managed_ref_hash__": "9300cc5f62106a26"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
@@ -4037,7 +4110,7 @@
  },
  {
   "_name": "DefiledKeepSuccubusSpear",
-  "_pathid": 59812,
+  "_pathid": 59864,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -4052,7 +4125,7 @@
      "ImpactVFXPrefab": null,
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4911
+      "pathID": 4930
      },
      "ImpactSFXVolume": [
       1.0,
@@ -4064,7 +4137,7 @@
      ],
      "ProjectilePrefab": {
       "fileID": 0,
-      "pathID": 24098
+      "pathID": 24128
      },
      "TravelMode": 0,
      "Speed": 20.0,
@@ -4100,7 +4173,7 @@
       }
      ],
      "OnExpireEffects": [],
-     "__end__": 772
+     "__end__": 776
     },
     {
      "__hash__": "4701d4be33090e79",
@@ -4151,7 +4224,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 981
+     "__end__": 985
     }
    ]
   },
@@ -4261,6 +4334,7 @@
     "__managed_ref_hash__": "4501d4be33090e79"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
@@ -4285,7 +4359,7 @@
  },
  {
   "_name": "ElfMageFireBall",
-  "_pathid": 59813,
+  "_pathid": 59865,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -4300,7 +4374,7 @@
      "ImpactVFXPrefab": null,
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4911
+      "pathID": 4930
      },
      "ImpactSFXVolume": [
       1.0,
@@ -4312,7 +4386,7 @@
      ],
      "ProjectilePrefab": {
       "fileID": 0,
-      "pathID": 11659
+      "pathID": 11680
      },
      "TravelMode": 0,
      "Speed": 20.0,
@@ -4348,7 +4422,7 @@
       }
      ],
      "OnExpireEffects": [],
-     "__end__": 764
+     "__end__": 768
     },
     {
      "__hash__": "4701d4be33090e79",
@@ -4399,7 +4473,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 973
+     "__end__": 977
     }
    ]
   },
@@ -4478,16 +4552,16 @@
    "Base": {
     "__type__": "ObscuredFloat",
     "hash": 723851361,
-    "hiddenValue": 1413647213,
-    "cryptoKey": 1418412653,
+    "hiddenValue": 2060241311,
+    "cryptoKey": 2060045471,
     "value": 0.0,
     "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
     "hash": 723851361,
-    "hiddenValue": 1222127140,
-    "cryptoKey": 1211029540,
+    "hiddenValue": 1844575063,
+    "cryptoKey": 1845227863,
     "value": 0.0,
     "__tail__": "00000000000000000000000000000000"
    }
@@ -4509,6 +4583,7 @@
     "__managed_ref_hash__": "4501d4be33090e79"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
@@ -4533,7 +4608,7 @@
  },
  {
   "_name": "EnemyBasicAttack",
-  "_pathid": 59814,
+  "_pathid": 59866,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -4590,7 +4665,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 749
+     "__end__": 753
     }
    ]
   },
@@ -4669,16 +4744,16 @@
    "Base": {
     "__type__": "ObscuredFloat",
     "hash": 723851361,
-    "hiddenValue": 1302954904,
-    "cryptoKey": 1300474264,
+    "hiddenValue": 1915888053,
+    "cryptoKey": 1914778293,
     "value": 0.0,
     "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
     "hash": 723851361,
-    "hiddenValue": 1449793758,
-    "cryptoKey": 1444440798,
+    "hiddenValue": 1031528794,
+    "cryptoKey": 1038187354,
     "value": 0.0,
     "__tail__": "00000000000000000000000000000000"
    }
@@ -4700,6 +4775,7 @@
     "__managed_ref_hash__": "4c0004033977ac12"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
@@ -4724,7 +4800,7 @@
  },
  {
   "_name": "EnemyBasicAttackFrost",
-  "_pathid": 59815,
+  "_pathid": 59867,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -4738,11 +4814,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 23431
+      "pathID": 23459
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4852
+      "pathID": 4870
      },
      "ImpactSFXVolume": [
       0.6000000238418579,
@@ -4787,7 +4863,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 761
+     "__end__": 765
     }
    ]
   },
@@ -4897,6 +4973,7 @@
     "__managed_ref_hash__": "4c0004033977ac12"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
@@ -4921,7 +4998,7 @@
  },
  {
   "_name": "EnemyBasicAttackLongerRangeFIre",
-  "_pathid": 59816,
+  "_pathid": 59868,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -4935,7 +5012,7 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 21838
+      "pathID": 21867
      },
      "ImpactSFX": null,
      "ImpactSFXVolume": [
@@ -4981,7 +5058,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 765
+     "__end__": 769
     }
    ]
   },
@@ -5091,6 +5168,7 @@
     "__managed_ref_hash__": "4c0004033977ac12"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
@@ -5115,7 +5193,7 @@
  },
  {
   "_name": "EnemyBigHeal",
-  "_pathid": 59817,
+  "_pathid": 59869,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -5129,11 +5207,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 5965
+      "pathID": 5990
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4926
+      "pathID": 4945
      },
      "ImpactSFXVolume": [
       0.5,
@@ -5190,14 +5268,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 777
+     "__end__": 781
     }
    ]
   },
   "AbilityName": "Enemy Heal",
   "Icon": {
    "fileID": 0,
-   "pathID": 5692
+   "pathID": 5713
   },
   "Tags": [
    2
@@ -5303,6 +5381,7 @@
     "__managed_ref_hash__": "9300cc5f62106a26"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
@@ -5327,7 +5406,7 @@
  },
  {
   "_name": "EnemyDragonBreathe",
-  "_pathid": 59818,
+  "_pathid": 59870,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -5341,7 +5420,7 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 11219
+      "pathID": 11241
      },
      "ImpactSFX": null,
      "ImpactSFXVolume": [
@@ -5387,14 +5466,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 749
+     "__end__": 753
     }
    ]
   },
   "AbilityName": "Burning Breath",
   "Icon": {
    "fileID": 0,
-   "pathID": 5763
+   "pathID": 5784
   },
   "Tags": [
    1
@@ -5469,16 +5548,16 @@
    "Base": {
     "__type__": "ObscuredFloat",
     "hash": 723851361,
-    "hiddenValue": 1988638197,
-    "cryptoKey": 1983219957,
+    "hiddenValue": 1320067298,
+    "cryptoKey": 1319153378,
     "value": 0.0,
     "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
     "hash": 723851361,
-    "hiddenValue": 2060169177,
-    "cryptoKey": 2058341337,
+    "hiddenValue": 2025701594,
+    "cryptoKey": 2025897434,
     "value": 0.0,
     "__tail__": "00000000000000000000000000000000"
    }
@@ -5500,9 +5579,10 @@
     "__managed_ref_hash__": "0000c8495d090e79"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": {
    "fileID": 0,
-   "pathID": 16242
+   "pathID": 16269
   },
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
@@ -5527,7 +5607,7 @@
  },
  {
   "_name": "EnemyHowl",
-  "_pathid": 59819,
+  "_pathid": 59871,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -5551,7 +5631,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60529
+      "pathID": 60584
      },
      "Chance": {
       "Base": {
@@ -5571,6 +5651,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -5579,14 +5660,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 725
+     "__end__": 733
     }
    ]
   },
   "AbilityName": "Bloodmoon Howl",
   "Icon": {
    "fileID": 0,
-   "pathID": 5692
+   "pathID": 5713
   },
   "Tags": [
    2
@@ -5692,12 +5773,13 @@
     "__managed_ref_hash__": "940080299dfee829"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4900
+   "pathID": 4919
   },
   "CastSFXVolume": [
    1.0,
@@ -5719,7 +5801,7 @@
  },
  {
   "_name": "EnemyShootArrow",
-  "_pathid": 59820,
+  "_pathid": 59872,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -5734,7 +5816,7 @@
      "ImpactVFXPrefab": null,
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4944
+      "pathID": 4963
      },
      "ImpactSFXVolume": [
       0.6000000238418579,
@@ -5746,7 +5828,7 @@
      ],
      "ProjectilePrefab": {
       "fileID": 0,
-      "pathID": 11661
+      "pathID": 11682
      },
      "TravelMode": 0,
      "Speed": 25.0,
@@ -5782,7 +5864,7 @@
       }
      ],
      "OnExpireEffects": [],
-     "__end__": 764
+     "__end__": 768
     },
     {
      "__hash__": "4701d4be33090e79",
@@ -5833,7 +5915,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 973
+     "__end__": 977
     }
    ]
   },
@@ -5943,6 +6025,7 @@
     "__managed_ref_hash__": "4501d4be33090e79"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
@@ -5967,7 +6050,7 @@
  },
  {
   "_name": "FaeDragonArcaneBall",
-  "_pathid": 59821,
+  "_pathid": 59873,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -5981,11 +6064,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 11220
+      "pathID": 11242
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4949
+      "pathID": 4968
      },
      "ImpactSFXVolume": [
       1.0,
@@ -5997,7 +6080,7 @@
      ],
      "ProjectilePrefab": {
       "fileID": 0,
-      "pathID": 11650
+      "pathID": 11671
      },
      "TravelMode": 0,
      "Speed": 15.0,
@@ -6033,7 +6116,7 @@
       }
      ],
      "OnExpireEffects": [],
-     "__end__": 768
+     "__end__": 772
     },
     {
      "__hash__": "4701d4be33090e79",
@@ -6084,7 +6167,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 985
+     "__end__": 989
     }
    ]
   },
@@ -6194,6 +6277,7 @@
     "__managed_ref_hash__": "4501d4be33090e79"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
@@ -6218,7 +6302,7 @@
  },
  {
   "_name": "FireElementalFireball",
-  "_pathid": 59822,
+  "_pathid": 59874,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -6232,11 +6316,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 11219
+      "pathID": 11241
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4911
+      "pathID": 4930
      },
      "ImpactSFXVolume": [
       1.0,
@@ -6248,7 +6332,7 @@
      ],
      "ProjectilePrefab": {
       "fileID": 0,
-      "pathID": 11659
+      "pathID": 11680
      },
      "TravelMode": 0,
      "Speed": 20.0,
@@ -6284,7 +6368,7 @@
       }
      ],
      "OnExpireEffects": [],
-     "__end__": 776
+     "__end__": 780
     },
     {
      "__hash__": "4701d4be33090e79",
@@ -6335,7 +6419,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 993
+     "__end__": 997
     }
    ]
   },
@@ -6446,6 +6530,7 @@
     "__managed_ref_hash__": "4501d4be33090e79"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
@@ -6470,7 +6555,7 @@
  },
  {
   "_name": "HarpyWindSpell",
-  "_pathid": 59823,
+  "_pathid": 59875,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -6494,7 +6579,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60504
+      "pathID": 60559
      },
      "Chance": {
       "Base": {
@@ -6514,6 +6599,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -6522,7 +6608,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 725
+     "__end__": 733
     },
     {
      "__hash__": "4501d4be33090e79",
@@ -6531,7 +6617,7 @@
      "ImpactVFXPrefab": null,
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4976
+      "pathID": 4995
      },
      "ImpactSFXVolume": [
       1.0,
@@ -6543,7 +6629,7 @@
      ],
      "ProjectilePrefab": {
       "fileID": 0,
-      "pathID": 11669
+      "pathID": 11690
      },
      "TravelMode": 0,
      "Speed": 20.0,
@@ -6582,7 +6668,7 @@
       }
      ],
      "OnExpireEffects": [],
-     "__end__": 968
+     "__end__": 976
     },
     {
      "__hash__": "4701d4be33090e79",
@@ -6633,7 +6719,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 1177
+     "__end__": 1185
     }
    ]
   },
@@ -6743,12 +6829,13 @@
     "__managed_ref_hash__": "4501d4be33090e79"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4837
+   "pathID": 4855
   },
   "CastSFXVolume": [
    1.0,
@@ -6770,7 +6857,7 @@
  },
  {
   "_name": "HobgoblinBloodFrenzy",
-  "_pathid": 59824,
+  "_pathid": 59876,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -6794,7 +6881,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60501
+      "pathID": 60556
      },
      "Chance": {
       "Base": {
@@ -6814,6 +6901,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -6822,14 +6910,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 729
+     "__end__": 737
     }
    ]
   },
   "AbilityName": "Blood Frenzy",
   "Icon": {
    "fileID": 0,
-   "pathID": 5607
+   "pathID": 5628
   },
   "Tags": [
    2
@@ -6935,12 +7023,13 @@
     "__managed_ref_hash__": "980190021e97c266"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4812
+   "pathID": 4830
   },
   "CastSFXVolume": [
    0.6000000238418579,
@@ -6962,7 +7051,7 @@
  },
  {
   "_name": "ImpFireball",
-  "_pathid": 59825,
+  "_pathid": 59877,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -6976,11 +7065,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 11219
+      "pathID": 11241
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4911
+      "pathID": 4930
      },
      "ImpactSFXVolume": [
       1.0,
@@ -6992,7 +7081,7 @@
      ],
      "ProjectilePrefab": {
       "fileID": 0,
-      "pathID": 11659
+      "pathID": 11680
      },
      "TravelMode": 0,
      "Speed": 20.0,
@@ -7028,7 +7117,7 @@
       }
      ],
      "OnExpireEffects": [],
-     "__end__": 760
+     "__end__": 764
     },
     {
      "__hash__": "4701d4be33090e79",
@@ -7079,7 +7168,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 977
+     "__end__": 981
     }
    ]
   },
@@ -7189,6 +7278,7 @@
     "__managed_ref_hash__": "4501d4be33090e79"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
@@ -7213,7 +7303,7 @@
  },
  {
   "_name": "ManticoraPoisonSting",
-  "_pathid": 59826,
+  "_pathid": 59878,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -7237,7 +7327,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60503
+      "pathID": 60558
      },
      "Chance": {
       "Base": {
@@ -7257,6 +7347,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -7265,7 +7356,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 737
+     "__end__": 745
     },
     {
      "__hash__": "9900d4e1a18ef521",
@@ -7273,11 +7364,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 5970
+      "pathID": 5995
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4808
+      "pathID": 4826
      },
      "ImpactSFXVolume": [
       0.8999999761581421,
@@ -7322,7 +7413,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 949
+     "__end__": 957
     }
    ]
   },
@@ -7435,12 +7526,13 @@
     "__managed_ref_hash__": "9800d4e1a18ef521"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4783
+   "pathID": 4801
   },
   "CastSFXVolume": [
    1.0,
@@ -7462,7 +7554,7 @@
  },
  {
   "_name": "RaptorBleedAttack",
-  "_pathid": 59827,
+  "_pathid": 59879,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -7476,11 +7568,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 5975
+      "pathID": 6000
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4890
+      "pathID": 4909
      },
      "ImpactSFXVolume": [
       0.4000000059604645,
@@ -7525,7 +7617,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 761
+     "__end__": 765
     },
     {
      "__hash__": "9d0054a523db003e",
@@ -7543,7 +7635,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60499
+      "pathID": 60554
      },
      "Chance": {
       "Base": {
@@ -7563,6 +7655,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -7571,7 +7664,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 957
+     "__end__": 965
     }
    ]
   },
@@ -7684,6 +7777,7 @@
     "__managed_ref_hash__": "9d0054a523db003e"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
@@ -7708,7 +7802,7 @@
  },
  {
   "_name": "RedForestDragonBasicAttack",
-  "_pathid": 59828,
+  "_pathid": 59880,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -7722,11 +7816,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 5976
+      "pathID": 6001
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4996
+      "pathID": 5015
      },
      "ImpactSFXVolume": [
       1.0,
@@ -7738,7 +7832,7 @@
      ],
      "ProjectilePrefab": {
       "fileID": 0,
-      "pathID": 11651
+      "pathID": 11672
      },
      "TravelMode": 0,
      "Speed": 20.0,
@@ -7774,7 +7868,7 @@
       }
      ],
      "OnExpireEffects": [],
-     "__end__": 776
+     "__end__": 780
     },
     {
      "__hash__": "4701d4be33090e79",
@@ -7825,7 +7919,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 993
+     "__end__": 997
     }
    ]
   },
@@ -7935,6 +8029,7 @@
     "__managed_ref_hash__": "4501d4be33090e79"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
@@ -7959,7 +8054,7 @@
  },
  {
   "_name": "RedForestDragonDashAbility",
-  "_pathid": 59829,
+  "_pathid": 59881,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -8013,14 +8108,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 737
+     "__end__": 741
     }
    ]
   },
   "AbilityName": "Dash",
   "Icon": {
    "fileID": 0,
-   "pathID": 5763
+   "pathID": 5784
   },
   "Tags": [
    1
@@ -8126,15 +8221,16 @@
     "__managed_ref_hash__": "b400d82b2397c266"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": {
    "fileID": 0,
-   "pathID": 5966
+   "pathID": 5991
   },
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.6499999761581421,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4873
+   "pathID": 4892
   },
   "CastSFXVolume": [
    1.0,
@@ -8156,7 +8252,7 @@
  },
  {
   "_name": "RedForestDragonEarthAbility",
-  "_pathid": 59830,
+  "_pathid": 59882,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -8180,7 +8276,7 @@
      ],
      "AoEPrefab": {
       "fileID": 0,
-      "pathID": 16239
+      "pathID": 16266
      },
      "Location": 2,
      "FaceCastDirection": true,
@@ -8199,7 +8295,7 @@
        "__managed_ref_hash__": "b900d82b2397c266"
       }
      ],
-     "__end__": 704
+     "__end__": 708
     },
     {
      "__hash__": "b200d82b2397c266",
@@ -8207,11 +8303,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 5975
+      "pathID": 6000
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4996
+      "pathID": 5015
      },
      "ImpactSFXVolume": [
       1.0,
@@ -8256,7 +8352,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 913
+     "__end__": 917
     },
     {
      "__hash__": "b900d82b2397c266",
@@ -8274,7 +8370,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60542
+      "pathID": 60598
      },
      "Chance": {
       "Base": {
@@ -8294,6 +8390,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -8302,14 +8399,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 1109
+     "__end__": 1117
     }
    ]
   },
   "AbilityName": "Earth Spikes",
   "Icon": {
    "fileID": 0,
-   "pathID": 5763
+   "pathID": 5784
   },
   "Tags": [
    1
@@ -8415,12 +8512,13 @@
     "__managed_ref_hash__": "b100d82b2397c266"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": true,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4925
+   "pathID": 4944
   },
   "CastSFXVolume": [
    1.0,
@@ -8442,7 +8540,7 @@
  },
  {
   "_name": "RedForestGiantBoulderThrow",
-  "_pathid": 59831,
+  "_pathid": 59883,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -8456,11 +8554,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 5976
+      "pathID": 6001
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4859
+      "pathID": 4877
      },
      "ImpactSFXVolume": [
       0.800000011920929,
@@ -8472,7 +8570,7 @@
      ],
      "ProjectilePrefab": {
       "fileID": 0,
-      "pathID": 14569
+      "pathID": 14595
      },
      "TravelMode": 4,
      "Speed": 12.0,
@@ -8508,7 +8606,7 @@
       }
      ],
      "OnExpireEffects": [],
-     "__end__": 780
+     "__end__": 784
     },
     {
      "__hash__": "0feb6f858e164848",
@@ -8559,7 +8657,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 989
+     "__end__": 993
     }
    ]
   },
@@ -8669,6 +8767,7 @@
     "__managed_ref_hash__": "f3fd0fc571a4121e"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
@@ -8693,7 +8792,7 @@
  },
  {
   "_name": "SeparmatBleedAttack",
-  "_pathid": 59832,
+  "_pathid": 59884,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -8707,11 +8806,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 21113
+      "pathID": 21141
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4890
+      "pathID": 4909
      },
      "ImpactSFXVolume": [
       0.4000000059604645,
@@ -8756,7 +8855,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 761
+     "__end__": 765
     },
     {
      "__hash__": "9d0054a523db003e",
@@ -8774,7 +8873,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60499
+      "pathID": 60554
      },
      "Chance": {
       "Base": {
@@ -8794,6 +8893,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -8802,7 +8902,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 957
+     "__end__": 965
     }
    ]
   },
@@ -8915,6 +9015,7 @@
     "__managed_ref_hash__": "9d0054a523db003e"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
@@ -8939,7 +9040,7 @@
  },
  {
   "_name": "SnowhillFrostDragonIcebolt",
-  "_pathid": 59833,
+  "_pathid": 59885,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -8963,7 +9064,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60477
+      "pathID": 60532
      },
      "Chance": {
       "Base": {
@@ -8983,6 +9084,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -8991,7 +9093,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 749
+     "__end__": 757
     },
     {
      "__hash__": "4501d4be33090e79",
@@ -8999,11 +9101,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 23431
+      "pathID": 23459
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4863
+      "pathID": 4882
      },
      "ImpactSFXVolume": [
       1.0,
@@ -9015,7 +9117,7 @@
      ],
      "ProjectilePrefab": {
       "fileID": 0,
-      "pathID": 11644
+      "pathID": 11665
      },
      "TravelMode": 0,
      "Speed": 14.0,
@@ -9054,7 +9156,7 @@
       }
      ],
      "OnExpireEffects": [],
-     "__end__": 992
+     "__end__": 1000
     },
     {
      "__hash__": "4701d4be33090e79",
@@ -9105,7 +9207,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 1201
+     "__end__": 1209
     }
    ]
   },
@@ -9215,6 +9317,7 @@
     "__managed_ref_hash__": "4501d4be33090e79"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
@@ -9239,7 +9342,7 @@
  },
  {
   "_name": "SnowhillFrostDragonMelee",
-  "_pathid": 59834,
+  "_pathid": 59886,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -9253,7 +9356,7 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 12825
+      "pathID": 12849
      },
      "ImpactSFX": null,
      "ImpactSFXVolume": [
@@ -9299,7 +9402,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 757
+     "__end__": 761
     }
    ]
   },
@@ -9409,6 +9512,7 @@
     "__managed_ref_hash__": "4c0004033977ac12"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
@@ -9433,7 +9537,7 @@
  },
  {
   "_name": "SnowhillIceHoundCharge",
-  "_pathid": 59835,
+  "_pathid": 59887,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -9447,11 +9551,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 18077
+      "pathID": 18104
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4862
+      "pathID": 4880
      },
      "ImpactSFXVolume": [
       0.5,
@@ -9496,7 +9600,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 745
+     "__end__": 749
     },
     {
      "__hash__": "01003f069f44da74",
@@ -9548,14 +9652,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 953
+     "__end__": 957
     }
    ]
   },
   "AbilityName": "Charge",
   "Icon": {
    "fileID": 0,
-   "pathID": 5267
+   "pathID": 5287
   },
   "Tags": [
    1
@@ -9661,12 +9765,13 @@
     "__managed_ref_hash__": "01003f069f44da74"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4984
+   "pathID": 5003
   },
   "CastSFXVolume": [
    1.0,
@@ -9688,7 +9793,7 @@
  },
  {
   "_name": "SnowhillIceHoundLightningAttk",
-  "_pathid": 59836,
+  "_pathid": 59888,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -9702,7 +9807,7 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 18077
+      "pathID": 18104
      },
      "ImpactSFX": null,
      "ImpactSFXVolume": [
@@ -9748,7 +9853,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 769
+     "__end__": 773
     },
     {
      "__hash__": "c300b01135fcbe34",
@@ -9766,7 +9871,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60531
+      "pathID": 60587
      },
      "Chance": {
       "Base": {
@@ -9786,6 +9891,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -9794,7 +9900,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 965
+     "__end__": 973
     }
    ]
   },
@@ -9907,12 +10013,13 @@
     "__managed_ref_hash__": "c300b01135fcbe34"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4862
+   "pathID": 4880
   },
   "CastSFXVolume": [
    1.0,
@@ -9934,7 +10041,7 @@
  },
  {
   "_name": "SnowhillRockElementalLightingAttk",
-  "_pathid": 59837,
+  "_pathid": 59889,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -9948,7 +10055,7 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 15122
+      "pathID": 15148
      },
      "ImpactSFX": null,
      "ImpactSFXVolume": [
@@ -9994,7 +10101,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 765
+     "__end__": 769
     }
    ]
   },
@@ -10104,12 +10211,13 @@
     "__managed_ref_hash__": "4c0004033977ac12"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4862
+   "pathID": 4880
   },
   "CastSFXVolume": [
    1.0,
@@ -10131,7 +10239,7 @@
  },
  {
   "_name": "SnowhillWhelpSpit",
-  "_pathid": 59838,
+  "_pathid": 59890,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -10145,7 +10253,7 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 23431
+      "pathID": 23459
      },
      "ImpactSFX": null,
      "ImpactSFXVolume": [
@@ -10191,7 +10299,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 757
+     "__end__": 761
     }
    ]
   },
@@ -10301,15 +10409,16 @@
     "__managed_ref_hash__": "0000c8495d090e79"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": {
    "fileID": 0,
-   "pathID": 21210
+   "pathID": 21238
   },
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.25,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4852
+   "pathID": 4870
   },
   "CastSFXVolume": [
    0.699999988079071,
@@ -10331,7 +10440,7 @@
  },
  {
   "_name": "SpiderPoisonSpit",
-  "_pathid": 59839,
+  "_pathid": 59891,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -10345,11 +10454,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 16315
+      "pathID": 16341
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4929
+      "pathID": 4948
      },
      "ImpactSFXVolume": [
       0.5,
@@ -10361,7 +10470,7 @@
      ],
      "ProjectilePrefab": {
       "fileID": 0,
-      "pathID": 11666
+      "pathID": 11687
      },
      "TravelMode": 0,
      "Speed": 12.0,
@@ -10397,7 +10506,7 @@
       }
      ],
      "OnExpireEffects": [],
-     "__end__": 764
+     "__end__": 768
     },
     {
      "__hash__": "4701d4be33090e79",
@@ -10448,7 +10557,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 973
+     "__end__": 977
     }
    ]
   },
@@ -10558,6 +10667,7 @@
     "__managed_ref_hash__": "4501d4be33090e79"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
@@ -10582,7 +10692,7 @@
  },
  {
   "_name": "VolcanoDemonLordFireLaser",
-  "_pathid": 59840,
+  "_pathid": 59892,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -10606,7 +10716,7 @@
      ],
      "BeamPrefab": {
       "fileID": 0,
-      "pathID": 15965
+      "pathID": 15992
      },
      "MaxLength": 8.0,
      "Width": 0.5,
@@ -10622,7 +10732,7 @@
        "__managed_ref_hash__": "0200bb64a5391c55"
       }
      ],
-     "__end__": 700
+     "__end__": 704
     },
     {
      "__hash__": "0100bb64a5391c55",
@@ -10630,11 +10740,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 5973
+      "pathID": 5998
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4800
+      "pathID": 4818
      },
      "ImpactSFXVolume": [
       1.0,
@@ -10679,7 +10789,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 917
+     "__end__": 921
     },
     {
      "__hash__": "0200bb64a5391c55",
@@ -10697,7 +10807,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60476
+      "pathID": 60530
      },
      "Chance": {
       "Base": {
@@ -10717,6 +10827,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -10725,7 +10836,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 1113
+     "__end__": 1121
     }
    ]
   },
@@ -10836,12 +10947,13 @@
     "__managed_ref_hash__": "0000bb64a5391c55"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4946
+   "pathID": 4965
   },
   "CastSFXVolume": [
    1.0,
@@ -10863,7 +10975,7 @@
  },
  {
   "_name": "VolcanoDemonLordFlyingLaser",
-  "_pathid": 59841,
+  "_pathid": 59893,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -10887,7 +10999,7 @@
      ],
      "BeamPrefab": {
       "fileID": 0,
-      "pathID": 15965
+      "pathID": 15992
      },
      "MaxLength": 8.0,
      "Width": 0.5,
@@ -10903,7 +11015,7 @@
        "__managed_ref_hash__": "5640b9b24b88bb1f"
       }
      ],
-     "__end__": 696
+     "__end__": 700
     },
     {
      "__hash__": "5540b9b24b88bb1f",
@@ -10911,11 +11023,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 5973
+      "pathID": 5998
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4800
+      "pathID": 4818
      },
      "ImpactSFXVolume": [
       1.0,
@@ -10960,7 +11072,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 913
+     "__end__": 917
     },
     {
      "__hash__": "5640b9b24b88bb1f",
@@ -10978,7 +11090,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60476
+      "pathID": 60530
      },
      "Chance": {
       "Base": {
@@ -10998,6 +11110,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -11006,7 +11119,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 1109
+     "__end__": 1117
     }
    ]
   },
@@ -11110,7 +11223,7 @@
   "ChannelRecovery": 1.3300000429153442,
   "SelfStatusOnCast": {
    "fileID": 0,
-   "pathID": 60502
+   "pathID": 60557
   },
   "AnimationTrigger": "",
   "AnimationVariants": [],
@@ -11120,12 +11233,13 @@
     "__managed_ref_hash__": "5440b9b24b88bb1f"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4946
+   "pathID": 4965
   },
   "CastSFXVolume": [
    1.0,
@@ -11147,7 +11261,7 @@
  },
  {
   "_name": "VolcanoDemonLordWingSlam",
-  "_pathid": 59842,
+  "_pathid": 59894,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -11204,7 +11318,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 765
+     "__end__": 769
     }
    ]
   },
@@ -11315,6 +11429,7 @@
     "__managed_ref_hash__": "0040b9b24b88bb1f"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
@@ -11339,7 +11454,7 @@
  },
  {
   "_name": "VolcanoDragonFireball",
-  "_pathid": 59843,
+  "_pathid": 59895,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -11353,11 +11468,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 11219
+      "pathID": 11241
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4911
+      "pathID": 4930
      },
      "ImpactSFXVolume": [
       1.0,
@@ -11369,7 +11484,7 @@
      ],
      "ProjectilePrefab": {
       "fileID": 0,
-      "pathID": 11664
+      "pathID": 11685
      },
      "TravelMode": 0,
      "Speed": 20.0,
@@ -11405,7 +11520,7 @@
       }
      ],
      "OnExpireEffects": [],
-     "__end__": 772
+     "__end__": 776
     },
     {
      "__hash__": "c50128f84d97c266",
@@ -11456,7 +11571,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 989
+     "__end__": 993
     }
    ]
   },
@@ -11566,6 +11681,7 @@
     "__managed_ref_hash__": "c40128f84d97c266"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
@@ -11590,7 +11706,7 @@
  },
  {
   "_name": "VolcanoDragonMeteor",
-  "_pathid": 59844,
+  "_pathid": 59896,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -11614,7 +11730,7 @@
      ],
      "AoEPrefab": {
       "fileID": 0,
-      "pathID": 11663
+      "pathID": 11684
      },
      "Location": 1,
      "FaceCastDirection": false,
@@ -11630,7 +11746,7 @@
        "__managed_ref_hash__": "c70128f84d97c266"
       }
      ],
-     "__end__": 696
+     "__end__": 700
     },
     {
      "__hash__": "c70128f84d97c266",
@@ -11681,7 +11797,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 913
+     "__end__": 917
     },
     {
      "__hash__": "e80128f84d97c266",
@@ -11699,7 +11815,7 @@
      ],
      "ZonePrefab": {
       "fileID": 0,
-      "pathID": 16950
+      "pathID": 16976
      },
      "Location": 1,
      "SpawnOffset": [
@@ -11725,7 +11841,7 @@
        "__managed_ref_hash__": "e90128f84d97c266"
       }
      ],
-     "__end__": 1100
+     "__end__": 1104
     },
     {
      "__hash__": "e90128f84d97c266",
@@ -11776,7 +11892,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 1317
+     "__end__": 1321
     }
    ]
   },
@@ -11889,12 +12005,13 @@
     "__managed_ref_hash__": "e80128f84d97c266"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4823
+   "pathID": 4841
   },
   "CastSFXVolume": [
    1.0,
@@ -11916,7 +12033,7 @@
  },
  {
   "_name": "WaspPoisonSpit",
-  "_pathid": 59845,
+  "_pathid": 59897,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -11940,7 +12057,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60503
+      "pathID": 60558
      },
      "Chance": {
       "Base": {
@@ -11960,6 +12077,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -11968,7 +12086,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 725
+     "__end__": 733
     },
     {
      "__hash__": "4501d4be33090e79",
@@ -11976,11 +12094,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 16315
+      "pathID": 16341
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4911
+      "pathID": 4930
      },
      "ImpactSFXVolume": [
       1.0,
@@ -11992,7 +12110,7 @@
      ],
      "ProjectilePrefab": {
       "fileID": 0,
-      "pathID": 11670
+      "pathID": 11691
      },
      "TravelMode": 0,
      "Speed": 6.0,
@@ -12031,7 +12149,7 @@
       }
      ],
      "OnExpireEffects": [],
-     "__end__": 968
+     "__end__": 976
     },
     {
      "__hash__": "4701d4be33090e79",
@@ -12082,7 +12200,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 1177
+     "__end__": 1185
     }
    ]
   },
@@ -12192,6 +12310,7 @@
     "__managed_ref_hash__": "4501d4be33090e79"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
@@ -12216,7 +12335,7 @@
  },
  {
   "_name": "HunterBasicAttack1",
-  "_pathid": 59858,
+  "_pathid": 59910,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -12240,7 +12359,7 @@
      ],
      "ProjectilePrefab": {
       "fileID": 0,
-      "pathID": 11648
+      "pathID": 11669
      },
      "TravelMode": 0,
      "Speed": 25.0,
@@ -12279,7 +12398,7 @@
       }
      ],
      "OnExpireEffects": [],
-     "__end__": 780
+     "__end__": 784
     },
     {
      "__hash__": "ae00442349db003e",
@@ -12297,7 +12416,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60513
+      "pathID": 60568
      },
      "Chance": {
       "Base": {
@@ -12317,6 +12436,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -12325,7 +12445,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 981
+     "__end__": 989
     },
     {
      "__hash__": "b000442349db003e",
@@ -12334,7 +12454,7 @@
      "ImpactVFXPrefab": null,
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4929
+      "pathID": 4948
      },
      "ImpactSFXVolume": [
       0.800000011920929,
@@ -12379,14 +12499,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 1201
+     "__end__": 1209
     }
    ]
   },
   "AbilityName": "Poison Shot",
   "Icon": {
    "fileID": 0,
-   "pathID": 5520
+   "pathID": 5541
   },
   "Tags": [
    0,
@@ -12493,12 +12613,13 @@
     "__managed_ref_hash__": "ad00442349db003e"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4883
+   "pathID": 4902
   },
   "CastSFXVolume": [
    0.8500000238418579,
@@ -12518,12 +12639,12 @@
   "WeaponTrailWidth": 1.0,
   "WeaponTrailPrefab": {
    "fileID": 0,
-   "pathID": 9276
+   "pathID": 9299
   }
  },
  {
   "_name": "HunterBasicAttack2",
-  "_pathid": 59859,
+  "_pathid": 59911,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -12537,11 +12658,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 12021
+      "pathID": 12042
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4904
+      "pathID": 4923
      },
      "ImpactSFXVolume": [
       0.4000000059604645,
@@ -12553,7 +12674,7 @@
      ],
      "ProjectilePrefab": {
       "fileID": 0,
-      "pathID": 11662
+      "pathID": 11683
      },
      "TravelMode": 4,
      "Speed": 20.0,
@@ -12589,7 +12710,7 @@
       }
      ],
      "OnExpireEffects": [],
-     "__end__": 772
+     "__end__": 776
     },
     {
      "__hash__": "b000442349db003e",
@@ -12640,14 +12761,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 989
+     "__end__": 993
     }
    ]
   },
   "AbilityName": "Arcane Bomb",
   "Icon": {
    "fileID": 0,
-   "pathID": 5883
+   "pathID": 5905
   },
   "Tags": [
    0,
@@ -12754,12 +12875,13 @@
     "__managed_ref_hash__": "ad00442349db003e"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4803
+   "pathID": 4821
   },
   "CastSFXVolume": [
    0.6000000238418579,
@@ -12779,12 +12901,12 @@
   "WeaponTrailWidth": 1.0,
   "WeaponTrailPrefab": {
    "fileID": 0,
-   "pathID": 9276
+   "pathID": 9299
   }
  },
  {
   "_name": "HunterBasicAttack3",
-  "_pathid": 59860,
+  "_pathid": 59912,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -12814,7 +12936,7 @@
        "__managed_ref_hash__": "ae0038e0915d4954"
       }
      ],
-     "__end__": 668
+     "__end__": 672
     },
     {
      "__hash__": "ae0038e0915d4954",
@@ -12823,7 +12945,7 @@
      "ImpactVFXPrefab": null,
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4848
+      "pathID": 4866
      },
      "ImpactSFXVolume": [
       0.5,
@@ -12835,7 +12957,7 @@
      ],
      "ProjectilePrefab": {
       "fileID": 0,
-      "pathID": 11667
+      "pathID": 11688
      },
      "TravelMode": 0,
      "Speed": 17.0,
@@ -12871,7 +12993,7 @@
       }
      ],
      "OnExpireEffects": [],
-     "__end__": 900
+     "__end__": 904
     },
     {
      "__hash__": "af0038e0915d4954",
@@ -12922,14 +13044,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 1117
+     "__end__": 1121
     }
    ]
   },
   "AbilityName": "Knife Barrage",
   "Icon": {
    "fileID": 0,
-   "pathID": 5801
+   "pathID": 5822
   },
   "Tags": [
    0,
@@ -13036,12 +13158,13 @@
     "__managed_ref_hash__": "ad0038e0915d4954"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4799
+   "pathID": 4817
   },
   "CastSFXVolume": [
    0.699999988079071,
@@ -13061,12 +13184,12 @@
   "WeaponTrailWidth": 1.0,
   "WeaponTrailPrefab": {
    "fileID": 0,
-   "pathID": 24242
+   "pathID": 24272
   }
  },
  {
   "_name": "HunterBasicAttack4",
-  "_pathid": 59861,
+  "_pathid": 59913,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -13096,7 +13219,7 @@
        "__managed_ref_hash__": "53003c8854317310"
       }
      ],
-     "__end__": 672
+     "__end__": 676
     },
     {
      "__hash__": "53003c8854317310",
@@ -13114,7 +13237,7 @@
      ],
      "ProjectilePrefab": {
       "fileID": 0,
-      "pathID": 11655
+      "pathID": 11676
      },
      "TravelMode": 4,
      "Speed": 22.0,
@@ -13150,7 +13273,7 @@
       }
      ],
      "OnExpireEffects": [],
-     "__end__": 904
+     "__end__": 908
     },
     {
      "__hash__": "54003c8854317310",
@@ -13158,11 +13281,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 24339
+      "pathID": 24369
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4842
+      "pathID": 4860
      },
      "ImpactSFXVolume": [
       0.5,
@@ -13207,14 +13330,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 1121
+     "__end__": 1125
     }
    ]
   },
   "AbilityName": "hunter basic attack4",
   "Icon": {
    "fileID": 0,
-   "pathID": 5663
+   "pathID": 5684
   },
   "Tags": [
    0,
@@ -13321,12 +13444,13 @@
     "__managed_ref_hash__": "52003c8854317310"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 5013
+   "pathID": 5033
   },
   "CastSFXVolume": [
    0.5,
@@ -13346,12 +13470,12 @@
   "WeaponTrailWidth": 1.0,
   "WeaponTrailPrefab": {
    "fileID": 0,
-   "pathID": 24242
+   "pathID": 24272
   }
  },
  {
   "_name": "HunterHeavyAttack1",
-  "_pathid": 59862,
+  "_pathid": 59914,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -13375,7 +13499,7 @@
      ],
      "ProjectilePrefab": {
       "fileID": 0,
-      "pathID": 11647
+      "pathID": 11668
      },
      "TravelMode": 0,
      "Speed": 30.0,
@@ -13411,7 +13535,7 @@
       }
      ],
      "OnExpireEffects": [],
-     "__end__": 772
+     "__end__": 776
     },
     {
      "__hash__": "9b007ce357db003e",
@@ -13419,11 +13543,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 5976
+      "pathID": 6001
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4910
+      "pathID": 4929
      },
      "ImpactSFXVolume": [
       1.0,
@@ -13468,14 +13592,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 985
+     "__end__": 989
     }
    ]
   },
   "AbilityName": "Steady Shot",
   "Icon": {
    "fileID": 0,
-   "pathID": 5290
+   "pathID": 5310
   },
   "Tags": [
    1,
@@ -13582,12 +13706,13 @@
     "__managed_ref_hash__": "9a007ce357db003e"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4896
+   "pathID": 4915
   },
   "CastSFXVolume": [
    1.0,
@@ -13607,12 +13732,12 @@
   "WeaponTrailWidth": 1.0,
   "WeaponTrailPrefab": {
    "fileID": 0,
-   "pathID": 19658
+   "pathID": 19686
   }
  },
  {
   "_name": "HunterHeavyAttack2",
-  "_pathid": 59863,
+  "_pathid": 59915,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -13626,7 +13751,7 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 15724
+      "pathID": 15751
      },
      "ImpactSFX": null,
      "ImpactSFXVolume": [
@@ -13672,14 +13797,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 757
+     "__end__": 761
     }
    ]
   },
   "AbilityName": "Multishot",
   "Icon": {
    "fileID": 0,
-   "pathID": 5420
+   "pathID": 5439
   },
   "Tags": [
    1,
@@ -13733,10 +13858,10 @@
   "Cooldown": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": 180532623,
-    "hiddenValue": 1243968264,
-    "cryptoKey": 1966286088,
-    "value": 0.75,
+    "hash": -632662781,
+    "hiddenValue": 2044518980,
+    "cryptoKey": 1190872542,
+    "value": 0.6000000238418579,
     "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
@@ -13773,7 +13898,7 @@
   "ChannelLoopAnimBool": "",
   "ChannelAllowedCastTags": [],
   "IsStandingUponCasting": true,
-  "StandingTime": 1.0,
+  "StandingTime": 0.6000000238418579,
   "Trigger": 0,
   "ChannelWindup": 0.0,
   "ChannelRecovery": 0.0,
@@ -13786,15 +13911,16 @@
     "__managed_ref_hash__": "0270791deba7096b"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": {
    "fileID": 0,
-   "pathID": 6769
+   "pathID": 6794
   },
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.3499999940395355,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4875
+   "pathID": 4894
   },
   "CastSFXVolume": [
    0.8999999761581421,
@@ -13816,7 +13942,7 @@
  },
  {
   "_name": "HunterHeavyAttack3",
-  "_pathid": 59864,
+  "_pathid": 59916,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -13831,7 +13957,7 @@
      "ImpactVFXPrefab": null,
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4842
+      "pathID": 4860
      },
      "ImpactSFXVolume": [
       0.30000001192092896,
@@ -13843,7 +13969,7 @@
      ],
      "ProjectilePrefab": {
       "fileID": 0,
-      "pathID": 11652
+      "pathID": 11673
      },
      "TravelMode": 0,
      "Speed": 35.0,
@@ -13879,7 +14005,7 @@
       }
      ],
      "OnExpireEffects": [],
-     "__end__": 776
+     "__end__": 780
     },
     {
      "__hash__": "9000cc98938ef521",
@@ -13887,7 +14013,7 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 5976
+      "pathID": 6001
      },
      "ImpactSFX": null,
      "ImpactSFXVolume": [
@@ -13933,14 +14059,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 993
+     "__end__": 997
     }
    ]
   },
   "AbilityName": "Rapid Fire",
   "Icon": {
    "fileID": 0,
-   "pathID": 5603
+   "pathID": 5624
   },
   "Tags": [
    1,
@@ -14047,12 +14173,13 @@
     "__managed_ref_hash__": "8f00cc98938ef521"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4916
+   "pathID": 4935
   },
   "CastSFXVolume": [
    0.699999988079071,
@@ -14074,7 +14201,7 @@
  },
  {
   "_name": "HunterHeavyAttack4",
-  "_pathid": 59865,
+  "_pathid": 59917,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -14088,11 +14215,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 19889
+      "pathID": 19918
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4830
+      "pathID": 4848
      },
      "ImpactSFXVolume": [
       1.0,
@@ -14104,7 +14231,7 @@
      ],
      "ProjectilePrefab": {
       "fileID": 0,
-      "pathID": 11645
+      "pathID": 11666
      },
      "TravelMode": 0,
      "Speed": 28.0,
@@ -14143,7 +14270,7 @@
       }
      ],
      "OnExpireEffects": [],
-     "__end__": 792
+     "__end__": 796
     },
     {
      "__hash__": "b700ec915e317310",
@@ -14194,7 +14321,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 1009
+     "__end__": 1013
     },
     {
      "__hash__": "c100ec915e317310",
@@ -14212,7 +14339,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60513
+      "pathID": 60568
      },
      "Chance": {
       "Base": {
@@ -14232,22 +14359,23 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 2,
      "OverrideAffinity": false,
      "AffinityOverride": 1,
      "ChanceToken": {
-      "Name": "",
+      "Name": "chance",
       "Format": "0%",
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 1205
+     "__end__": 1221
     }
    ]
   },
   "AbilityName": "hunter heavy attack 4",
   "Icon": {
    "fileID": 0,
-   "pathID": 5430
+   "pathID": 5449
   },
   "Tags": [
    1,
@@ -14354,12 +14482,13 @@
     "__managed_ref_hash__": "b600ec915e317310"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4877
+   "pathID": 4896
   },
   "CastSFXVolume": [
    1.0,
@@ -14379,76 +14508,30 @@
   "WeaponTrailWidth": 1.0,
   "WeaponTrailPrefab": {
    "fileID": 0,
-   "pathID": 11720
+   "pathID": 11741
   }
  },
  {
   "_name": "HunterSpecial1",
-  "_pathid": 59866,
+  "_pathid": 59918,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
     2,
-    4
+    3
    ],
    "__items__": [
-    {
-     "__hash__": "d400f07287fcbe34",
-     "__type__": "ApplyStatusEffectEffect",
-     "__asm__": "Assembly-CSharp",
-     "ImpactVFXPrefab": null,
-     "ImpactSFX": null,
-     "ImpactSFXVolume": [
-      1.0,
-      1.0
-     ],
-     "ImpactSFXPitch": [
-      1.0,
-      1.0
-     ],
-     "StatusEffect": {
-      "fileID": 0,
-      "pathID": 60513
-     },
-     "Chance": {
-      "Base": {
-       "__type__": "ObscuredFloat",
-       "hash": 149504655,
-       "hiddenValue": 2075426157,
-       "cryptoKey": 1157477485,
-       "value": 1.0,
-       "__tail__": "00000000000000000000000000000000"
-      },
-      "PerLevel": {
-       "__type__": "ObscuredFloat",
-       "hash": 723851361,
-       "hiddenValue": 1865912867,
-       "cryptoKey": 1871853347,
-       "value": 0.0,
-       "__tail__": "00000000000000000000000000000000"
-      }
-     },
-     "OverrideAffinity": false,
-     "AffinityOverride": 1,
-     "ChanceToken": {
-      "Name": "chance",
-      "Format": "0%",
-      "Suffix": "",
-      "Highlight": true
-     },
-     "__end__": 741
-    },
     {
      "__hash__": "9b0138e0915d4954",
      "__type__": "SpawnGroundZoneEffect",
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 22347
+      "pathID": 22374
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4788
+      "pathID": 4806
      },
      "ImpactSFXVolume": [
       1.0,
@@ -14460,7 +14543,7 @@
      ],
      "ZonePrefab": {
       "fileID": 0,
-      "pathID": 24908
+      "pathID": 24939
      },
      "Location": 1,
      "SpawnOffset": [
@@ -14486,13 +14569,10 @@
        "__managed_ref_hash__": "9c0138e0915d4954"
       },
       {
-       "__managed_ref_hash__": "d400f07287fcbe34"
-      },
-      {
        "__managed_ref_hash__": "af0138e0915d4954"
       }
      ],
-     "__end__": 944
+     "__end__": 736
     },
     {
      "__hash__": "9c0138e0915d4954",
@@ -14510,7 +14590,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60513
+      "pathID": 60568
      },
      "Chance": {
       "Base": {
@@ -14530,6 +14610,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 3,
      "OverrideAffinity": false,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -14538,7 +14619,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 1145
+     "__end__": 941
     },
     {
      "__hash__": "af0138e0915d4954",
@@ -14546,7 +14627,7 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 16315
+      "pathID": 16341
      },
      "ImpactSFX": null,
      "ImpactSFXVolume": [
@@ -14592,14 +14673,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 1361
+     "__end__": 1157
     }
    ]
   },
   "AbilityName": "Poison Trap",
   "Icon": {
    "fileID": 0,
-   "pathID": 5903
+   "pathID": 5928
   },
   "Tags": [
    2,
@@ -14707,12 +14788,13 @@
     "__managed_ref_hash__": "9b0138e0915d4954"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4782
+   "pathID": 4800
   },
   "CastSFXVolume": [
    1.0,
@@ -14734,7 +14816,7 @@
  },
  {
   "_name": "HunterSpecial2",
-  "_pathid": 59867,
+  "_pathid": 59919,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -14758,7 +14840,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60522
+      "pathID": 60577
      },
      "Chance": {
       "Base": {
@@ -14778,6 +14860,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -14786,7 +14869,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 753
+     "__end__": 761
     },
     {
      "__hash__": "b1002c3c975d4954",
@@ -14827,7 +14910,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 925
+     "__end__": 933
     },
     {
      "__hash__": "b2002c3c975d4954",
@@ -14835,7 +14918,7 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 10278
+      "pathID": 10301
      },
      "ImpactSFX": null,
      "ImpactSFXVolume": [
@@ -14881,14 +14964,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 1145
+     "__end__": 1153
     }
    ]
   },
   "AbilityName": "Shockwave",
   "Icon": {
    "fileID": 0,
-   "pathID": 5388
+   "pathID": 5407
   },
   "Tags": [
    2,
@@ -14901,10 +14984,10 @@
   "Range": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": 149504655,
-    "hiddenValue": 22559951,
-    "cryptoKey": 1052530895,
-    "value": 1.0,
+    "hash": 700606113,
+    "hiddenValue": 69381901,
+    "cryptoKey": 1144988173,
+    "value": 4.5,
     "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
@@ -15001,15 +15084,16 @@
     "__managed_ref_hash__": "b2002c3c975d4954"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": {
    "fileID": 0,
-   "pathID": 17637
+   "pathID": 17663
   },
   "CastVFXFacesForward": true,
   "CastVFXDelay": 0.25,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4810
+   "pathID": 4828
   },
   "CastSFXVolume": [
    1.0,
@@ -15031,7 +15115,7 @@
  },
  {
   "_name": "HunterSpecial3",
-  "_pathid": 59868,
+  "_pathid": 59920,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -15040,7 +15124,7 @@
    ],
    "__items__": [
     {
-     "__hash__": "c00030b218c4684b",
+     "__hash__": "c00030c2a1fcbe34",
      "__type__": "ApplyStatusEffectEffect",
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": null,
@@ -15055,26 +15139,27 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60477
+      "pathID": 60552
      },
      "Chance": {
       "Base": {
        "__type__": "ObscuredFloat",
        "hash": 149504655,
-       "hiddenValue": 1891088168,
-       "cryptoKey": 1329051432,
+       "hiddenValue": 1483318016,
+       "cryptoKey": 1730373888,
        "value": 1.0,
        "__tail__": "00000000000000000000000000000000"
       },
       "PerLevel": {
        "__type__": "ObscuredFloat",
        "hash": 723851361,
-       "hiddenValue": 1932116472,
-       "cryptoKey": 1942039032,
+       "hiddenValue": 1656117402,
+       "cryptoKey": 1649981082,
        "value": 0.0,
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -15083,7 +15168,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 729
+     "__end__": 741
     },
     {
      "__hash__": "9b0138e0915d4954",
@@ -15091,11 +15176,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 15323
+      "pathID": 19785
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4818
+      "pathID": 4836
      },
      "ImpactSFXVolume": [
       1.0,
@@ -15107,7 +15192,7 @@
      ],
      "ZonePrefab": {
       "fileID": 0,
-      "pathID": 24907
+      "pathID": 24938
      },
      "Location": 1,
      "SpawnOffset": [
@@ -15133,13 +15218,13 @@
        "__managed_ref_hash__": "9c0138e0915d4954"
       },
       {
-       "__managed_ref_hash__": "c00030b218c4684b"
+       "__managed_ref_hash__": "af0138e0915d4954"
       },
       {
-       "__managed_ref_hash__": "af0138e0915d4954"
+       "__managed_ref_hash__": "c00030c2a1fcbe34"
       }
      ],
-     "__end__": 932
+     "__end__": 944
     },
     {
      "__hash__": "9c0138e0915d4954",
@@ -15157,7 +15242,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60512
+      "pathID": 60527
      },
      "Chance": {
       "Base": {
@@ -15177,6 +15262,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -15185,7 +15271,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 1133
+     "__end__": 1149
     },
     {
      "__hash__": "af0138e0915d4954",
@@ -15193,7 +15279,7 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 23431
+      "pathID": 23459
      },
      "ImpactSFX": null,
      "ImpactSFXVolume": [
@@ -15225,7 +15311,7 @@
      },
      "CanCrit": true,
      "IsDirect": true,
-     "DamageType": 2,
+     "DamageType": 5,
      "MoveStutter": 0.0,
      "AttackScalingToken": {
       "Name": "weaponDamage",
@@ -15239,18 +15325,19 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 1353
+     "__end__": 1369
     }
    ]
   },
   "AbilityName": "Frost Trap",
   "Icon": {
    "fileID": 0,
-   "pathID": 5294
+   "pathID": 5480
   },
   "Tags": [
    2,
-   14
+   14,
+   13
   ],
   "LevelRequirement": 45,
   "IsLockedInDemo": true,
@@ -15353,12 +15440,13 @@
     "__managed_ref_hash__": "9b0138e0915d4954"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4782
+   "pathID": 4800
   },
   "CastSFXVolume": [
    1.0,
@@ -15380,7 +15468,7 @@
  },
  {
   "_name": "HunterSpecial4",
-  "_pathid": 59869,
+  "_pathid": 59921,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -15394,11 +15482,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 15724
+      "pathID": 15751
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4899
+      "pathID": 4918
      },
      "ImpactSFXVolume": [
       0.30000001192092896,
@@ -15410,7 +15498,7 @@
      ],
      "AoEPrefab": {
       "fileID": 0,
-      "pathID": 23427
+      "pathID": 23455
      },
      "Location": 0,
      "FaceCastDirection": false,
@@ -15426,7 +15514,7 @@
        "__managed_ref_hash__": "b00050cd74317310"
       }
      ],
-     "__end__": 692
+     "__end__": 696
     },
     {
      "__hash__": "b00050cd74317310",
@@ -15477,14 +15565,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 909
+     "__end__": 913
     }
    ]
   },
   "AbilityName": "Rain of Arrows",
   "Icon": {
    "fileID": 0,
-   "pathID": 5456
+   "pathID": 5475
   },
   "Tags": [
    2,
@@ -15591,12 +15679,13 @@
     "__managed_ref_hash__": "af0050cd74317310"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4875
+   "pathID": 4894
   },
   "CastSFXVolume": [
    1.0,
@@ -15618,7 +15707,7 @@
  },
  {
   "_name": "HunterSpecial5",
-  "_pathid": 59870,
+  "_pathid": 59922,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -15642,7 +15731,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60514
+      "pathID": 60569
      },
      "Chance": {
       "Base": {
@@ -15662,6 +15751,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -15670,14 +15760,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 725
+     "__end__": 733
     }
    ]
   },
   "AbilityName": "hunter special 5",
   "Icon": {
    "fileID": 0,
-   "pathID": 5946
+   "pathID": 5971
   },
   "Tags": [
    2
@@ -15783,6 +15873,7 @@
     "__managed_ref_hash__": "50015c5f8377ac12"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
@@ -15807,7 +15898,7 @@
  },
  {
   "_name": "HunterSpecial6",
-  "_pathid": 59871,
+  "_pathid": 59923,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -15821,11 +15912,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 7289
+      "pathID": 7314
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4958
+      "pathID": 4977
      },
      "ImpactSFXVolume": [
       0.4000000059604645,
@@ -15837,7 +15928,7 @@
      ],
      "ProjectilePrefab": {
       "fileID": 0,
-      "pathID": 11656
+      "pathID": 11677
      },
      "TravelMode": 4,
      "Speed": 20.0,
@@ -15876,7 +15967,7 @@
       }
      ],
      "OnExpireEffects": [],
-     "__end__": 780
+     "__end__": 784
     },
     {
      "__hash__": "b300348477317310",
@@ -15894,7 +15985,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60542
+      "pathID": 60598
      },
      "Chance": {
       "Base": {
@@ -15914,6 +16005,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -15922,7 +16014,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 973
+     "__end__": 981
     },
     {
      "__hash__": "c00030c2a1fcbe34",
@@ -15940,7 +16032,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60497
+      "pathID": 60552
      },
      "Chance": {
       "Base": {
@@ -15960,6 +16052,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -15968,14 +16061,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 1169
+     "__end__": 1181
     }
    ]
   },
   "AbilityName": "hunter special 6",
   "Icon": {
    "fileID": 0,
-   "pathID": 5487
+   "pathID": 5508
   },
   "Tags": [
    2,
@@ -15988,10 +16081,10 @@
   "Range": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": 1819516403,
-    "hiddenValue": 427255036,
-    "cryptoKey": 1480882172,
-    "value": 10.0,
+    "hash": 743188915,
+    "hiddenValue": 808983918,
+    "cryptoKey": 1898788974,
+    "value": 11.0,
     "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
@@ -16082,12 +16175,13 @@
     "__managed_ref_hash__": "b100348477317310"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4877
+   "pathID": 4896
   },
   "CastSFXVolume": [
    0.6000000238418579,
@@ -16109,7 +16203,7 @@
  },
  {
   "_name": "MonkBasicAttack1",
-  "_pathid": 59872,
+  "_pathid": 59924,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -16139,7 +16233,7 @@
       }
      ],
      "ReplacesOtherEffects": true,
-     "__end__": 681
+     "__end__": 685
     },
     {
      "__hash__": "9700607413db003e",
@@ -16147,11 +16241,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 12313
+      "pathID": 12334
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4980
+      "pathID": 4999
      },
      "ImpactSFXVolume": [
       0.5,
@@ -16196,7 +16290,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 897
+     "__end__": 901
     },
     {
      "__hash__": "9800607413db003e",
@@ -16205,7 +16299,7 @@
      "ImpactVFXPrefab": null,
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4977
+      "pathID": 4996
      },
      "ImpactSFXVolume": [
       0.6000000238418579,
@@ -16250,14 +16344,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 1113
+     "__end__": 1117
     }
    ]
   },
   "AbilityName": "Monk Basic Attack 1",
   "Icon": {
    "fileID": 0,
-   "pathID": 5678
+   "pathID": 5699
   },
   "Tags": [
    0,
@@ -16369,12 +16463,13 @@
     "__managed_ref_hash__": "9800607413db003e"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4865
+   "pathID": 4884
   },
   "CastSFXVolume": [
    0.8999999761581421,
@@ -16394,12 +16489,12 @@
   "WeaponTrailWidth": 1.0,
   "WeaponTrailPrefab": {
    "fileID": 0,
-   "pathID": 9276
+   "pathID": 9299
   }
  },
  {
   "_name": "MonkBasicAttack2",
-  "_pathid": 59873,
+  "_pathid": 59925,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -16413,11 +16508,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 18418
+      "pathID": 18444
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4985
+      "pathID": 5004
      },
      "ImpactSFXVolume": [
       0.5,
@@ -16462,7 +16557,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 777
+     "__end__": 781
     },
     {
      "__hash__": "9b00607413db003e",
@@ -16480,7 +16575,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60517
+      "pathID": 60572
      },
      "Chance": {
       "Base": {
@@ -16500,6 +16595,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": true,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -16508,14 +16604,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 973
+     "__end__": 981
     }
    ]
   },
   "AbilityName": "Monk Basic Attack 2",
   "Icon": {
    "fileID": 0,
-   "pathID": 5448
+   "pathID": 5467
   },
   "Tags": [
    0,
@@ -16627,12 +16723,13 @@
     "__managed_ref_hash__": "9b00607413db003e"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4804
+   "pathID": 4822
   },
   "CastSFXVolume": [
    0.4000000059604645,
@@ -16652,12 +16749,12 @@
   "WeaponTrailWidth": 1.0,
   "WeaponTrailPrefab": {
    "fileID": 0,
-   "pathID": 25803
+   "pathID": 25834
   }
  },
  {
   "_name": "MonkBasicAttack3",
-  "_pathid": 59874,
+  "_pathid": 59926,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -16687,7 +16784,7 @@
       }
      ],
      "ReplacesOtherEffects": true,
-     "__end__": 685
+     "__end__": 689
     },
     {
      "__hash__": "9800448819db003e",
@@ -16696,7 +16793,7 @@
      "ImpactVFXPrefab": null,
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4891
+      "pathID": 4910
      },
      "ImpactSFXVolume": [
       0.800000011920929,
@@ -16741,7 +16838,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 901
+     "__end__": 905
     },
     {
      "__hash__": "9c00448819db003e",
@@ -16750,7 +16847,7 @@
      "ImpactVFXPrefab": null,
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4776
+      "pathID": 4794
      },
      "ImpactSFXVolume": [
       0.20000000298023224,
@@ -16762,7 +16859,7 @@
      ],
      "AoEPrefab": {
       "fileID": 0,
-      "pathID": 20170
+      "pathID": 20199
      },
      "Location": 0,
      "FaceCastDirection": false,
@@ -16778,7 +16875,7 @@
        "__managed_ref_hash__": "9e00448819db003e"
       }
      ],
-     "__end__": 1056
+     "__end__": 1060
     },
     {
      "__hash__": "9e00448819db003e",
@@ -16786,7 +16883,7 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 12313
+      "pathID": 12334
      },
      "ImpactSFX": null,
      "ImpactSFXVolume": [
@@ -16832,14 +16929,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 1269
+     "__end__": 1273
     }
    ]
   },
   "AbilityName": "Monk Basic Attack 3",
   "Icon": {
    "fileID": 0,
-   "pathID": 5700
+   "pathID": 5721
   },
   "Tags": [
    0,
@@ -16952,12 +17049,13 @@
     "__managed_ref_hash__": "9800448819db003e"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4865
+   "pathID": 4884
   },
   "CastSFXVolume": [
    0.8999999761581421,
@@ -16977,12 +17075,12 @@
   "WeaponTrailWidth": 1.0,
   "WeaponTrailPrefab": {
    "fileID": 0,
-   "pathID": 11720
+   "pathID": 11741
   }
  },
  {
   "_name": "MonkBasicAttack4",
-  "_pathid": 59875,
+  "_pathid": 59927,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -17012,7 +17110,7 @@
       }
      ],
      "ReplacesOtherEffects": true,
-     "__end__": 673
+     "__end__": 677
     },
     {
      "__hash__": "af00a0004497c266",
@@ -17030,7 +17128,7 @@
      ],
      "ProjectilePrefab": {
       "fileID": 0,
-      "pathID": 11660
+      "pathID": 11681
      },
      "TravelMode": 0,
      "Speed": 16.0,
@@ -17066,7 +17164,7 @@
       }
      ],
      "OnExpireEffects": [],
-     "__end__": 908
+     "__end__": 912
     },
     {
      "__hash__": "b000a0004497c266",
@@ -17084,7 +17182,7 @@
      ],
      "ProjectilePrefab": {
       "fileID": 0,
-      "pathID": 11660
+      "pathID": 11681
      },
      "TravelMode": 0,
      "Speed": 12.0,
@@ -17123,7 +17221,7 @@
       }
      ],
      "OnExpireEffects": [],
-     "__end__": 1148
+     "__end__": 1152
     },
     {
      "__hash__": "b100a0004497c266",
@@ -17131,11 +17229,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 18418
+      "pathID": 18444
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4995
+      "pathID": 5014
      },
      "ImpactSFXVolume": [
       0.699999988079071,
@@ -17180,7 +17278,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 1361
+     "__end__": 1365
     },
     {
      "__hash__": "b400a0004497c266",
@@ -17188,11 +17286,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 18418
+      "pathID": 18444
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4995
+      "pathID": 5014
      },
      "ImpactSFXVolume": [
       0.699999988079071,
@@ -17237,7 +17335,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 1577
+     "__end__": 1581
     },
     {
      "__hash__": "b500a0004497c266",
@@ -17245,11 +17343,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 10279
+      "pathID": 10302
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4953
+      "pathID": 4972
      },
      "ImpactSFXVolume": [
       0.6000000238418579,
@@ -17306,14 +17404,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 1833
+     "__end__": 1837
     }
    ]
   },
   "AbilityName": "Chi Bolt",
   "Icon": {
    "fileID": 0,
-   "pathID": 5873
+   "pathID": 5895
   },
   "Tags": [
    0,
@@ -17426,12 +17524,13 @@
     "__managed_ref_hash__": "af00a0004497c266"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4971
+   "pathID": 4990
   },
   "CastSFXVolume": [
    0.800000011920929,
@@ -17453,7 +17552,7 @@
  },
  {
   "_name": "MonkHeavyAttack1",
-  "_pathid": 59876,
+  "_pathid": 59928,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -17467,11 +17566,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 17841
+      "pathID": 17867
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4836
+      "pathID": 4854
      },
      "ImpactSFXVolume": [
       0.8999999761581421,
@@ -17516,7 +17615,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 765
+     "__end__": 769
     },
     {
      "__hash__": "9600442349db003e",
@@ -17525,7 +17624,7 @@
      "ImpactVFXPrefab": null,
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4885
+      "pathID": 4904
      },
      "ImpactSFXVolume": [
       1.0,
@@ -17537,7 +17636,7 @@
      ],
      "AoEPrefab": {
       "fileID": 0,
-      "pathID": 24300
+      "pathID": 24330
      },
      "Location": 0,
      "FaceCastDirection": false,
@@ -17553,7 +17652,7 @@
        "__managed_ref_hash__": "9700442349db003e"
       }
      ],
-     "__end__": 920
+     "__end__": 924
     },
     {
      "__hash__": "9700442349db003e",
@@ -17561,7 +17660,7 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 12313
+      "pathID": 12334
      },
      "ImpactSFX": null,
      "ImpactSFXVolume": [
@@ -17607,14 +17706,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 1133
+     "__end__": 1137
     }
    ]
   },
   "AbilityName": "Monk Heavy Attack 1",
   "Icon": {
    "fileID": 0,
-   "pathID": 5511
+   "pathID": 5532
   },
   "Tags": [
    1,
@@ -17724,12 +17823,13 @@
     "__managed_ref_hash__": "4c0004033977ac12"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4823
+   "pathID": 4841
   },
   "CastSFXVolume": [
    1.0,
@@ -17749,12 +17849,12 @@
   "WeaponTrailWidth": 1.0,
   "WeaponTrailPrefab": {
    "fileID": 0,
-   "pathID": 11720
+   "pathID": 11741
   }
  },
  {
   "_name": "MonkHeavyAttack2",
-  "_pathid": 59877,
+  "_pathid": 59929,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -17769,7 +17869,7 @@
      "ImpactVFXPrefab": null,
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4832
+      "pathID": 4850
      },
      "ImpactSFXVolume": [
       0.699999988079071,
@@ -17814,14 +17914,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 761
+     "__end__": 765
     }
    ]
   },
   "AbilityName": "Monk Heavy Attack 2",
   "Icon": {
    "fileID": 0,
-   "pathID": 5867
+   "pathID": 5889
   },
   "Tags": [
    1,
@@ -17929,15 +18029,16 @@
     "__managed_ref_hash__": "a100607413db003e"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": {
    "fileID": 0,
-   "pathID": 16471
+   "pathID": 16497
   },
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.4000000059604645,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4914
+   "pathID": 4933
   },
   "CastSFXVolume": [
    0.5,
@@ -17957,12 +18058,12 @@
   "WeaponTrailWidth": 1.0,
   "WeaponTrailPrefab": {
    "fileID": 0,
-   "pathID": 11720
+   "pathID": 11741
   }
  },
  {
   "_name": "MonkHeavyAttack3",
-  "_pathid": 59878,
+  "_pathid": 59930,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -17986,7 +18087,7 @@
      ],
      "ProjectilePrefab": {
       "fileID": 0,
-      "pathID": 11658
+      "pathID": 11679
      },
      "TravelMode": 3,
      "Speed": 2.0,
@@ -18022,7 +18123,7 @@
       }
      ],
      "OnExpireEffects": [],
-     "__end__": 776
+     "__end__": 784
     },
     {
      "__hash__": "a400448819db003e",
@@ -18031,7 +18132,7 @@
      "ImpactVFXPrefab": null,
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4986
+      "pathID": 5005
      },
      "ImpactSFXVolume": [
       0.800000011920929,
@@ -18053,10 +18154,10 @@
       },
       "PerLevel": {
        "__type__": "ObscuredFloat",
-       "hash": 557103469,
-       "hiddenValue": 1996654695,
-       "cryptoKey": 1274921192,
-       "value": 0.014999999664723873,
+       "hash": 1556752217,
+       "hiddenValue": 1198676014,
+       "cryptoKey": 2073345763,
+       "value": 0.02500000037252903,
        "__tail__": "00000000000000000000000000000000"
       }
      },
@@ -18066,7 +18167,7 @@
      "MoveStutter": 0.0,
      "AttackScalingToken": {
       "Name": "damage",
-      "Format": "0%",
+      "Format": "0.#%",
       "Suffix": "",
       "Highlight": true
      },
@@ -18076,18 +18177,19 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 989
+     "__end__": 997
     }
    ]
   },
   "AbilityName": "Monk Heavy Attack 3",
   "Icon": {
    "fileID": 0,
-   "pathID": 5519
+   "pathID": 5540
   },
   "Tags": [
    1,
-   7
+   7,
+   12
   ],
   "LevelRequirement": 35,
   "IsLockedInDemo": false,
@@ -18190,12 +18292,13 @@
     "__managed_ref_hash__": "a300448819db003e"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4997
+   "pathID": 5016
   },
   "CastSFXVolume": [
    0.5,
@@ -18215,17 +18318,17 @@
   "WeaponTrailWidth": 1.0,
   "WeaponTrailPrefab": {
    "fileID": 0,
-   "pathID": 23819
+   "pathID": 23847
   }
  },
  {
   "_name": "MonkHeavyAttack4",
-  "_pathid": 59879,
+  "_pathid": 59931,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
     2,
-    2
+    3
    ],
    "__items__": [
     {
@@ -18277,7 +18380,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 765
+     "__end__": 761
     },
     {
      "__hash__": "b800000c3e97c266",
@@ -18297,18 +18400,18 @@
      "Distance": {
       "Base": {
        "__type__": "ObscuredFloat",
-       "hash": 159847311,
-       "hiddenValue": 1700420940,
-       "cryptoKey": 1520261708,
-       "value": 1.5,
+       "hash": 149504655,
+       "hiddenValue": 1812779112,
+       "cryptoKey": 1397754984,
+       "value": 1.0,
        "__tail__": "00000000000000000000000000000000"
       },
       "PerLevel": {
        "__type__": "ObscuredFloat",
-       "hash": 1458579341,
-       "hiddenValue": 1253351937,
-       "cryptoKey": 1979802379,
-       "value": 0.019999999552965164,
+       "hash": 723851361,
+       "hiddenValue": 1095821700,
+       "cryptoKey": 1105809540,
+       "value": 0.0,
        "__tail__": "00000000000000000000000000000000"
       }
      },
@@ -18318,14 +18421,71 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 937
+     "__end__": 933
+    },
+    {
+     "__hash__": "be00a89d28895e6e",
+     "__type__": "SpawnProjectileEffect",
+     "__asm__": "Assembly-CSharp",
+     "ImpactVFXPrefab": null,
+     "ImpactSFX": null,
+     "ImpactSFXVolume": [
+      1.0,
+      1.0
+     ],
+     "ImpactSFXPitch": [
+      1.0,
+      1.0
+     ],
+     "ProjectilePrefab": {
+      "fileID": 0,
+      "pathID": 22097
+     },
+     "TravelMode": 0,
+     "Speed": 8.0,
+     "MaxLifetime": 0.44999998807907104,
+     "IsHoming": false,
+     "PierceTargets": true,
+     "MaxPierceCount": 2147483647,
+     "SpawnOffset": [
+      0.0,
+      0.05000000074505806,
+      0.0
+     ],
+     "SizeMultiplier": 1.0,
+     "NumProjectiles": 1,
+     "DegreesBetweenProjectiles": 15.0,
+     "SpawnRadius": 0.0,
+     "OrbitRadius": 2.0,
+     "OrbitAngularSpeed": 180.0,
+     "WanderStrength": 45.0,
+     "WanderFrequency": 1.5,
+     "WanderRadius": 0.0,
+     "WanderCenter": 0,
+     "WanderSeekTurnRadius": 0.0,
+     "ParabolaTiming": 0,
+     "ArcMaxHeight": 2.0,
+     "ArcDuration": 0.699999988079071,
+     "RehitInterval": 0.0,
+     "HitAllInRadius": false,
+     "SplashRadius": 1.5,
+     "OnHitEffects": [
+      {
+       "__managed_ref_hash__": "b700000c3e97c266"
+      },
+      {
+       "__managed_ref_hash__": "b800000c3e97c266"
+      }
+     ],
+     "OnExpireEffects": [],
+     "__end__": 1176
     }
    ]
   },
   "AbilityName": "Golden Palms",
   "Icon": {
    "fileID": 0,
-   "pathID": 5411
+   "pathID": 5430
   },
   "Tags": [
    1,
@@ -18340,17 +18500,17 @@
   "Range": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": 159847311,
-    "hiddenValue": 2010047668,
-    "cryptoKey": 1210371764,
-    "value": 1.5,
+    "hash": 1732878445,
+    "hiddenValue": 925303534,
+    "cryptoKey": 1998306932,
+    "value": 2.4000000953674316,
     "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
     "hash": 723851361,
-    "hiddenValue": 1099740253,
-    "cryptoKey": 1102351453,
+    "hiddenValue": 2134531269,
+    "cryptoKey": 2136750789,
     "value": 0.0,
     "__tail__": "00000000000000000000000000000000"
    }
@@ -18431,21 +18591,16 @@
   "StowWeaponOnBack": true,
   "Effects": [
    {
-    "__managed_ref_hash__": "b700000c3e97c266"
-   },
-   {
-    "__managed_ref_hash__": "b800000c3e97c266"
+    "__managed_ref_hash__": "be00a89d28895e6e"
    }
   ],
-  "CastVFXPrefab": {
-   "fileID": 0,
-   "pathID": 16472
-  },
+  "SuppressTargetHitVFX": false,
+  "CastVFXPrefab": null,
   "CastVFXFacesForward": true,
-  "CastVFXDelay": 0.550000011920929,
+  "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4870
+   "pathID": 4889
   },
   "CastSFXVolume": [
    0.6000000238418579,
@@ -18467,7 +18622,7 @@
  },
  {
   "_name": "MonkSpecial1",
-  "_pathid": 59880,
+  "_pathid": 59932,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -18491,7 +18646,7 @@
      ],
      "ProjectilePrefab": {
       "fileID": 0,
-      "pathID": 11654
+      "pathID": 11675
      },
      "TravelMode": 2,
      "Speed": 10.0,
@@ -18527,7 +18682,7 @@
       }
      ],
      "OnExpireEffects": [],
-     "__end__": 764
+     "__end__": 768
     },
     {
      "__hash__": "a600607413db003e",
@@ -18535,11 +18690,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 10278
+      "pathID": 10301
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4884
+      "pathID": 4903
      },
      "ImpactSFXVolume": [
       1.0,
@@ -18584,14 +18739,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 977
+     "__end__": 981
     }
    ]
   },
   "AbilityName": "Monk Special 1",
   "Icon": {
    "fileID": 0,
-   "pathID": 5570
+   "pathID": 5591
   },
   "Tags": [
    2,
@@ -18698,12 +18853,13 @@
     "__managed_ref_hash__": "a500607413db003e"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4987
+   "pathID": 5006
   },
   "CastSFXVolume": [
    0.4000000059604645,
@@ -18725,7 +18881,7 @@
  },
  {
   "_name": "MonkSpecial2",
-  "_pathid": 59881,
+  "_pathid": 59933,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -18749,7 +18905,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60518
+      "pathID": 60573
      },
      "Chance": {
       "Base": {
@@ -18769,6 +18925,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -18777,14 +18934,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 725
+     "__end__": 733
     }
    ]
   },
   "AbilityName": "Monk Special 2",
   "Icon": {
    "fileID": 0,
-   "pathID": 5359
+   "pathID": 5378
   },
   "Tags": [
    2,
@@ -18891,12 +19048,13 @@
     "__managed_ref_hash__": "4b015c5f8377ac12"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4880
+   "pathID": 4899
   },
   "CastSFXVolume": [
    0.6000000238418579,
@@ -18918,7 +19076,7 @@
  },
  {
   "_name": "MonkSpecial3",
-  "_pathid": 59882,
+  "_pathid": 59934,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -18979,7 +19137,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 737
+     "__end__": 741
     },
     {
      "__hash__": "02003f069f44da74",
@@ -18997,7 +19155,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60531
+      "pathID": 60587
      },
      "Chance": {
       "Base": {
@@ -19017,6 +19175,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 0,
      "ChanceToken": {
@@ -19025,7 +19184,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 933
+     "__end__": 941
     },
     {
      "__hash__": "03003f069f44da74",
@@ -19033,11 +19192,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 21789
+      "pathID": 21818
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4992
+      "pathID": 5011
      },
      "ImpactSFXVolume": [
       0.6000000238418579,
@@ -19082,14 +19241,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 1153
+     "__end__": 1161
     }
    ]
   },
   "AbilityName": "Charge",
   "Icon": {
    "fileID": 0,
-   "pathID": 5938
+   "pathID": 5963
   },
   "Tags": [
    2,
@@ -19196,12 +19355,13 @@
     "__managed_ref_hash__": "01003f069f44da74"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4942
+   "pathID": 4961
   },
   "CastSFXVolume": [
    0.699999988079071,
@@ -19221,12 +19381,12 @@
   "WeaponTrailWidth": 1.0,
   "WeaponTrailPrefab": {
    "fileID": 0,
-   "pathID": 23819
+   "pathID": 23847
   }
  },
  {
   "_name": "MonkSpecial4",
-  "_pathid": 59883,
+  "_pathid": 59935,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -19250,7 +19410,7 @@
      ],
      "Prefab": {
       "fileID": 0,
-      "pathID": 15075
+      "pathID": 15101
      },
      "Location": 0,
      "SpawnOffset": [
@@ -19284,7 +19444,7 @@
      "EchoDelay": 0.10000000149011612,
      "SpawnDespawnVFXPrefab": {
       "fileID": 0,
-      "pathID": 23839
+      "pathID": 23867
      },
      "BodyMaterialOverride": {
       "fileID": 0,
@@ -19296,14 +19456,14 @@
       "Suffix": "s",
       "Highlight": true
      },
-     "__end__": 801
+     "__end__": 805
     }
    ]
   },
   "AbilityName": "Spirit Twin",
   "Icon": {
    "fileID": 0,
-   "pathID": 5268
+   "pathID": 5288
   },
   "Tags": [
    2,
@@ -19411,12 +19571,13 @@
     "__managed_ref_hash__": "960128f84d97c266"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4918
+   "pathID": 4937
   },
   "CastSFXVolume": [
    1.0,
@@ -19438,7 +19599,7 @@
  },
  {
   "_name": "MonkSpecial5",
-  "_pathid": 59884,
+  "_pathid": 59936,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -19462,7 +19623,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60519
+      "pathID": 60574
      },
      "Chance": {
       "Base": {
@@ -19482,6 +19643,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -19490,14 +19652,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 721
+     "__end__": 729
     }
    ]
   },
   "AbilityName": "Wind Steps",
   "Icon": {
    "fileID": 0,
-   "pathID": 5232
+   "pathID": 5252
   },
   "Tags": [
    2,
@@ -19604,12 +19766,13 @@
     "__managed_ref_hash__": "9d0128f84d97c266"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4837
+   "pathID": 4855
   },
   "CastSFXVolume": [
    0.699999988079071,
@@ -19631,7 +19794,7 @@
  },
  {
   "_name": "MonkSpecial6",
-  "_pathid": 59885,
+  "_pathid": 59937,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -19655,7 +19818,7 @@
      ],
      "AoEPrefab": {
       "fileID": 0,
-      "pathID": 24301
+      "pathID": 24331
      },
      "Location": 2,
      "FaceCastDirection": false,
@@ -19674,7 +19837,7 @@
        "__managed_ref_hash__": "bc0128f84d97c266"
       }
      ],
-     "__end__": 708
+     "__end__": 712
     },
     {
      "__hash__": "bb0128f84d97c266",
@@ -19683,7 +19846,7 @@
      "ImpactVFXPrefab": null,
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4778
+      "pathID": 4796
      },
      "ImpactSFXVolume": [
       1.0,
@@ -19728,7 +19891,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 921
+     "__end__": 925
     },
     {
      "__hash__": "bc0128f84d97c266",
@@ -19746,7 +19909,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60496
+      "pathID": 60551
      },
      "Chance": {
       "Base": {
@@ -19766,6 +19929,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -19774,14 +19938,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 1117
+     "__end__": 1125
     }
    ]
   },
   "AbilityName": "Divine Thunder",
   "Icon": {
    "fileID": 0,
-   "pathID": 5278
+   "pathID": 5298
   },
   "Tags": [
    2,
@@ -19889,12 +20053,13 @@
     "__managed_ref_hash__": "ba0128f84d97c266"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 5016
+   "pathID": 5036
   },
   "CastSFXVolume": [
    0.800000011920929,
@@ -19916,7 +20081,7 @@
  },
  {
   "_name": "SorcererBasicAttack1",
-  "_pathid": 59886,
+  "_pathid": 59938,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -19930,11 +20095,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 21838
+      "pathID": 21867
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4975
+      "pathID": 4994
      },
      "ImpactSFXVolume": [
       0.6000000238418579,
@@ -19946,7 +20111,7 @@
      ],
      "ProjectilePrefab": {
       "fileID": 0,
-      "pathID": 11649
+      "pathID": 11670
      },
      "TravelMode": 0,
      "Speed": 18.0,
@@ -19982,7 +20147,7 @@
       }
      ],
      "OnExpireEffects": [],
-     "__end__": 772
+     "__end__": 776
     },
     {
      "__hash__": "4701d4be33090e79",
@@ -19990,7 +20155,7 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 11219
+      "pathID": 11241
      },
      "ImpactSFX": null,
      "ImpactSFXVolume": [
@@ -20036,14 +20201,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 989
+     "__end__": 993
     }
    ]
   },
   "AbilityName": "Fire Ball",
   "Icon": {
    "fileID": 0,
-   "pathID": 5373
+   "pathID": 5392
   },
   "Tags": [
    0,
@@ -20150,12 +20315,13 @@
     "__managed_ref_hash__": "4501d4be33090e79"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4831
+   "pathID": 4849
   },
   "CastSFXVolume": [
    0.6000000238418579,
@@ -20177,7 +20343,7 @@
  },
  {
   "_name": "SorcererBasicAttack2",
-  "_pathid": 59887,
+  "_pathid": 59939,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -20191,11 +20357,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 23431
+      "pathID": 23459
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4856
+      "pathID": 4874
      },
      "ImpactSFXVolume": [
       0.20000000298023224,
@@ -20207,11 +20373,11 @@
      ],
      "ProjectilePrefab": {
       "fileID": 0,
-      "pathID": 11668
+      "pathID": 11689
      },
      "TravelMode": 0,
      "Speed": 14.0,
-     "MaxLifetime": 4.0,
+     "MaxLifetime": 2.5,
      "IsHoming": false,
      "PierceTargets": false,
      "MaxPierceCount": 0,
@@ -20243,7 +20409,7 @@
       }
      ],
      "OnExpireEffects": [],
-     "__end__": 772
+     "__end__": 776
     },
     {
      "__hash__": "4701d4be33090e79",
@@ -20263,18 +20429,18 @@
      "AttackScaling": {
       "Base": {
        "__type__": "ObscuredFloat",
-       "hash": 1307995975,
-       "hiddenValue": 2037617725,
-       "cryptoKey": 1190270299,
-       "value": 0.8999999761581421,
+       "hash": 53880811,
+       "hiddenValue": 1384053370,
+       "cryptoKey": 1835617609,
+       "value": 1.149999976158142,
        "__tail__": "00000000000000000000000000000000"
       },
       "PerLevel": {
        "__type__": "ObscuredFloat",
-       "hash": 536418157,
-       "hiddenValue": 1698493226,
-       "cryptoKey": 1493630629,
-       "value": 0.029999999329447746,
+       "hash": 294485031,
+       "hiddenValue": 1674505766,
+       "cryptoKey": 1591841295,
+       "value": 0.03500000014901161,
        "__tail__": "00000000000000000000000000000000"
       }
      },
@@ -20294,14 +20460,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 989
+     "__end__": 993
     }
    ]
   },
   "AbilityName": "Ice Shards",
   "Icon": {
    "fileID": 0,
-   "pathID": 5725
+   "pathID": 5746
   },
   "Tags": [
    0,
@@ -20408,12 +20574,13 @@
     "__managed_ref_hash__": "4501d4be33090e79"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4889
+   "pathID": 4908
   },
   "CastSFXVolume": [
    0.800000011920929,
@@ -20435,7 +20602,7 @@
  },
  {
   "_name": "SorcererBasicAttack3",
-  "_pathid": 59888,
+  "_pathid": 59940,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -20449,7 +20616,7 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 18078
+      "pathID": 18105
      },
      "ImpactSFX": null,
      "ImpactSFXVolume": [
@@ -20495,14 +20662,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 761
+     "__end__": 765
     }
    ]
   },
   "AbilityName": "Lightning Attack",
   "Icon": {
    "fileID": 0,
-   "pathID": 5248
+   "pathID": 5268
   },
   "Tags": [
    0,
@@ -20609,15 +20776,16 @@
     "__managed_ref_hash__": "93002ce39c106a26"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": {
    "fileID": 0,
-   "pathID": 14870
+   "pathID": 14896
   },
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.25,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4862
+   "pathID": 4880
   },
   "CastSFXVolume": [
    0.699999988079071,
@@ -20639,7 +20807,7 @@
  },
  {
   "_name": "SorcererBasicAttack4",
-  "_pathid": 59889,
+  "_pathid": 59941,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -20653,7 +20821,7 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 22573
+      "pathID": 22600
      },
      "ImpactSFX": null,
      "ImpactSFXVolume": [
@@ -20668,18 +20836,18 @@
      "AttackScaling": {
       "Base": {
        "__type__": "ObscuredFloat",
-       "hash": 170189967,
-       "hiddenValue": 1787566653,
-       "cryptoKey": 1427803197,
-       "value": 0.5,
+       "hash": -632662781,
+       "hiddenValue": 1891284193,
+       "cryptoKey": 1336746875,
+       "value": 0.6000000238418579,
        "__tail__": "00000000000000000000000000000000"
       },
       "PerLevel": {
        "__type__": "ObscuredFloat",
-       "hash": 557103469,
-       "hiddenValue": 1104339621,
-       "cryptoKey": 2107052074,
-       "value": 0.014999999664723873,
+       "hash": 1458579341,
+       "hiddenValue": 1110718771,
+       "cryptoKey": 2124079929,
+       "value": 0.019999999552965164,
        "__tail__": "00000000000000000000000000000000"
       }
      },
@@ -20699,7 +20867,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 777
+     "__end__": 781
     },
     {
      "__hash__": "c100b0372f317310",
@@ -20719,18 +20887,18 @@
      "AttackScaling": {
       "Base": {
        "__type__": "ObscuredFloat",
-       "hash": 170189967,
-       "hiddenValue": 1261572019,
-       "cryptoKey": 1947153075,
-       "value": 0.5,
+       "hash": -632662781,
+       "hiddenValue": 1944515051,
+       "cryptoKey": 1290305393,
+       "value": 0.6000000238418579,
        "__tail__": "00000000000000000000000000000000"
       },
       "PerLevel": {
        "__type__": "ObscuredFloat",
-       "hash": 557103469,
-       "hiddenValue": 1624865607,
-       "cryptoKey": 1544428488,
-       "value": 0.014999999664723873,
+       "hash": 1458579341,
+       "hiddenValue": 36251369,
+       "cryptoKey": 1048968931,
+       "value": 0.019999999552965164,
        "__tail__": "00000000000000000000000000000000"
       }
      },
@@ -20750,14 +20918,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 997
+     "__end__": 1001
     }
    ]
   },
   "AbilityName": "Flame Lightning",
   "Icon": {
    "fileID": 0,
-   "pathID": 5881
+   "pathID": 5903
   },
   "Tags": [
    0,
@@ -20868,12 +21036,13 @@
     "__managed_ref_hash__": "c100b0372f317310"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4908
+   "pathID": 4927
   },
   "CastSFXVolume": [
    0.30000001192092896,
@@ -20895,7 +21064,7 @@
  },
  {
   "_name": "SorcererSpecial1",
-  "_pathid": 59890,
+  "_pathid": 59942,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -20909,11 +21078,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 23431
+      "pathID": 23459
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4861
+      "pathID": 4879
      },
      "ImpactSFXVolume": [
       0.699999988079071,
@@ -20925,7 +21094,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60511
+      "pathID": 60567
      },
      "Chance": {
       "Base": {
@@ -20945,6 +21114,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -20953,7 +21123,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 729
+     "__end__": 737
     },
     {
      "__hash__": "9800d484205d4954",
@@ -21004,14 +21174,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 949
+     "__end__": 957
     }
    ]
   },
   "AbilityName": "Ice Nova",
   "Icon": {
    "fileID": 0,
-   "pathID": 5287
+   "pathID": 5307
   },
   "Tags": [
    2,
@@ -21121,15 +21291,16 @@
     "__managed_ref_hash__": "9800d484205d4954"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": {
    "fileID": 0,
-   "pathID": 20169
+   "pathID": 20198
   },
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4818
+   "pathID": 4836
   },
   "CastSFXVolume": [
    1.0,
@@ -21151,7 +21322,7 @@
  },
  {
   "_name": "SorcererSpecial2",
-  "_pathid": 59891,
+  "_pathid": 59943,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -21175,7 +21346,7 @@
      ],
      "Prefab": {
       "fileID": 0,
-      "pathID": 15074
+      "pathID": 15100
      },
      "Location": 0,
      "SpawnOffset": [
@@ -21207,14 +21378,14 @@
      "Abilities": [
       {
        "fileID": 0,
-       "pathID": 59822
+       "pathID": 59874
       }
      ],
      "EchoCasterAttacks": false,
      "EchoDelay": 0.20000000298023224,
      "SpawnDespawnVFXPrefab": {
       "fileID": 0,
-      "pathID": 6213
+      "pathID": 6238
      },
      "BodyMaterialOverride": null,
      "LifetimeToken": {
@@ -21223,14 +21394,14 @@
       "Suffix": "s",
       "Highlight": true
      },
-     "__end__": 809
+     "__end__": 813
     }
    ]
   },
   "AbilityName": "Fire Elemental",
   "Icon": {
    "fileID": 0,
-   "pathID": 5738
+   "pathID": 5759
   },
   "Tags": [
    2,
@@ -21337,6 +21508,7 @@
     "__managed_ref_hash__": "7b01881ca2106a26"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
@@ -21361,7 +21533,7 @@
  },
  {
   "_name": "SorcererSpecial3",
-  "_pathid": 59892,
+  "_pathid": 59944,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -21385,7 +21557,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60515
+      "pathID": 60570
      },
      "Chance": {
       "Base": {
@@ -21405,6 +21577,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": true,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -21413,14 +21586,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 725
+     "__end__": 733
     }
    ]
   },
   "AbilityName": "Ice Block",
   "Icon": {
    "fileID": 0,
-   "pathID": 5303
+   "pathID": 5322
   },
   "Tags": [
    2,
@@ -21527,6 +21700,7 @@
     "__managed_ref_hash__": "bc00b0372f317310"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
@@ -21551,7 +21725,7 @@
  },
  {
   "_name": "SorcererSpecial4",
-  "_pathid": 59893,
+  "_pathid": 59945,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -21575,7 +21749,7 @@
      ],
      "AoEPrefab": {
       "fileID": 0,
-      "pathID": 11663
+      "pathID": 11684
      },
      "Location": 0,
      "FaceCastDirection": false,
@@ -21594,7 +21768,7 @@
        "__managed_ref_hash__": "b100849a34317310"
       }
      ],
-     "__end__": 696
+     "__end__": 700
     },
     {
      "__hash__": "b000849a34317310",
@@ -21602,7 +21776,7 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 11219
+      "pathID": 11241
      },
      "ImpactSFX": null,
      "ImpactSFXVolume": [
@@ -21648,7 +21822,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 913
+     "__end__": 917
     },
     {
      "__hash__": "b100849a34317310",
@@ -21666,7 +21840,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60476
+      "pathID": 60530
      },
      "Chance": {
       "Base": {
@@ -21686,6 +21860,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -21694,14 +21869,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 1109
+     "__end__": 1117
     }
    ]
   },
   "AbilityName": "Fire Meteor",
   "Icon": {
    "fileID": 0,
-   "pathID": 5323
+   "pathID": 5342
   },
   "Tags": [
    2,
@@ -21714,10 +21889,10 @@
   "Range": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": 1819516403,
-    "hiddenValue": 535660161,
-    "cryptoKey": 1587998081,
-    "value": 10.0,
+    "hash": 205025171,
+    "hiddenValue": 766672719,
+    "cryptoKey": 1816638031,
+    "value": 11.5,
     "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
@@ -21808,12 +21983,13 @@
     "__managed_ref_hash__": "af00849a34317310"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4928
+   "pathID": 4947
   },
   "CastSFXVolume": [
    1.0,
@@ -21835,7 +22011,7 @@
  },
  {
   "_name": "SorcererSpecial5",
-  "_pathid": 59894,
+  "_pathid": 59946,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -21859,7 +22035,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60516
+      "pathID": 60571
      },
      "Chance": {
       "Base": {
@@ -21879,6 +22055,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -21887,14 +22064,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 721
+     "__end__": 729
     }
    ]
   },
   "AbilityName": "Flame Aura",
   "Icon": {
    "fileID": 0,
-   "pathID": 5310
+   "pathID": 5329
   },
   "Tags": [
    2
@@ -21906,10 +22083,10 @@
   "Range": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": 753531571,
-    "hiddenValue": 341103181,
-    "cryptoKey": 1436701773,
-    "value": 15.0,
+    "hash": 748411699,
+    "hiddenValue": 233005683,
+    "cryptoKey": 1278403443,
+    "value": 13.0,
     "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
@@ -22000,12 +22177,13 @@
     "__managed_ref_hash__": "b400849a34317310"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4927
+   "pathID": 4946
   },
   "CastSFXVolume": [
    1.0,
@@ -22027,7 +22205,7 @@
  },
  {
   "_name": "SorcererSpecial6",
-  "_pathid": 59895,
+  "_pathid": 59947,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -22051,7 +22229,7 @@
      ],
      "ZonePrefab": {
       "fileID": 0,
-      "pathID": 24910
+      "pathID": 24941
      },
      "Location": 1,
      "SpawnOffset": [
@@ -22080,7 +22258,7 @@
        "__managed_ref_hash__": "b700849a34317310"
       }
      ],
-     "__end__": 728
+     "__end__": 732
     },
     {
      "__hash__": "b600849a34317310",
@@ -22098,7 +22276,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60522
+      "pathID": 60577
      },
      "Chance": {
       "Base": {
@@ -22118,6 +22296,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -22126,7 +22305,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 929
+     "__end__": 937
     },
     {
      "__hash__": "b700849a34317310",
@@ -22134,11 +22313,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 18078
+      "pathID": 18105
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4884
+      "pathID": 4903
      },
      "ImpactSFXVolume": [
       0.4000000059604645,
@@ -22183,14 +22362,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 1149
+     "__end__": 1157
     }
    ]
   },
   "AbilityName": "Lightning Cloud",
   "Icon": {
    "fileID": 0,
-   "pathID": 5242
+   "pathID": 5262
   },
   "Tags": [
    2,
@@ -22203,10 +22382,10 @@
   "Range": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": 738069043,
-    "hiddenValue": 698905996,
-    "cryptoKey": 1751492748,
-    "value": 9.0,
+    "hash": 743188915,
+    "hiddenValue": 756842767,
+    "cryptoKey": 1823546383,
+    "value": 11.0,
     "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
@@ -22297,12 +22476,13 @@
     "__managed_ref_hash__": "b500849a34317310"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4836
+   "pathID": 4854
   },
   "CastSFXVolume": [
    1.0,
@@ -22324,7 +22504,7 @@
  },
  {
   "_name": "SorcererStrongAttack1",
-  "_pathid": 59896,
+  "_pathid": 59948,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -22348,7 +22528,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60476
+      "pathID": 60530
      },
      "Chance": {
       "Base": {
@@ -22368,6 +22548,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -22376,7 +22557,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 749
+     "__end__": 757
     },
     {
      "__hash__": "0000c8495d090e79",
@@ -22384,7 +22565,7 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 11219
+      "pathID": 11241
      },
      "ImpactSFX": null,
      "ImpactSFXVolume": [
@@ -22430,14 +22611,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 969
+     "__end__": 977
     }
    ]
   },
   "AbilityName": "Flame Breathe",
   "Icon": {
    "fileID": 0,
-   "pathID": 5763
+   "pathID": 5784
   },
   "Tags": [
    1,
@@ -22547,15 +22728,16 @@
     "__managed_ref_hash__": "82012c6e0e5d4954"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": {
    "fileID": 0,
-   "pathID": 16241
+   "pathID": 16268
   },
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.10000000149011612,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4834
+   "pathID": 4852
   },
   "CastSFXVolume": [
    1.0,
@@ -22577,7 +22759,7 @@
  },
  {
   "_name": "SorcererStrongAttack2",
-  "_pathid": 59897,
+  "_pathid": 59949,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -22592,7 +22774,7 @@
      "ImpactVFXPrefab": null,
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4886
+      "pathID": 4905
      },
      "ImpactSFXVolume": [
       0.4000000059604645,
@@ -22604,7 +22786,7 @@
      ],
      "AoEPrefab": {
       "fileID": 0,
-      "pathID": 11657
+      "pathID": 11678
      },
      "Location": 0,
      "FaceCastDirection": false,
@@ -22623,7 +22805,7 @@
        "__managed_ref_hash__": "7000c41e58090e79"
       }
      ],
-     "__end__": 704
+     "__end__": 708
     },
     {
      "__hash__": "6f00c41e58090e79",
@@ -22674,7 +22856,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 921
+     "__end__": 925
     },
     {
      "__hash__": "7000c41e58090e79",
@@ -22692,7 +22874,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60477
+      "pathID": 60532
      },
      "Chance": {
       "Base": {
@@ -22712,6 +22894,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -22720,14 +22903,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 1117
+     "__end__": 1125
     }
    ]
   },
   "AbilityName": "Ice Meteor",
   "Icon": {
    "fileID": 0,
-   "pathID": 5750
+   "pathID": 5771
   },
   "Tags": [
    1,
@@ -22834,6 +23017,7 @@
     "__managed_ref_hash__": "6e00c41e58090e79"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
@@ -22858,7 +23042,7 @@
  },
  {
   "_name": "SorcererStrongAttack3",
-  "_pathid": 59898,
+  "_pathid": 59950,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -22888,7 +23072,7 @@
        "__managed_ref_hash__": "9900e0509e106a26"
       }
      ],
-     "__end__": 672
+     "__end__": 676
     },
     {
      "__hash__": "9900e0509e106a26",
@@ -22896,11 +23080,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 22572
+      "pathID": 22599
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4908
+      "pathID": 4927
      },
      "ImpactSFXVolume": [
       0.6000000238418579,
@@ -22945,14 +23129,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 889
+     "__end__": 893
     }
    ]
   },
   "AbilityName": "Lightning Storm",
   "Icon": {
    "fileID": 0,
-   "pathID": 5298
+   "pathID": 5317
   },
   "Tags": [
    1,
@@ -22965,10 +23149,10 @@
   "Range": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": 1814396531,
-    "hiddenValue": 409869189,
-    "cryptoKey": 1494969989,
-    "value": 8.0,
+    "hash": 1819516403,
+    "hiddenValue": 2145173146,
+    "cryptoKey": 1050598554,
+    "value": 10.0,
     "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
@@ -22980,7 +23164,7 @@
     "__tail__": "00000000000000000000000000000000"
    }
   },
-  "AoERadius": 30.0,
+  "AoERadius": 14.0,
   "ConeAngle": 60.0,
   "LineWidth": 0.0,
   "TargetCount": 1,
@@ -23059,6 +23243,7 @@
     "__managed_ref_hash__": "9800e0509e106a26"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
@@ -23083,7 +23268,7 @@
  },
  {
   "_name": "SorcererStrongAttack4",
-  "_pathid": 59899,
+  "_pathid": 59951,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -23107,7 +23292,7 @@
      ],
      "BeamPrefab": {
       "fileID": 0,
-      "pathID": 24909
+      "pathID": 24940
      },
      "MaxLength": 10.5,
      "Width": 0.25,
@@ -23120,7 +23305,7 @@
        "__managed_ref_hash__": "0000c8495d090e79"
       }
      ],
-     "__end__": 700
+     "__end__": 704
     },
     {
      "__hash__": "0000c8495d090e79",
@@ -23128,7 +23313,7 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 23431
+      "pathID": 23459
      },
      "ImpactSFX": null,
      "ImpactSFXVolume": [
@@ -23174,14 +23359,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 917
+     "__end__": 921
     }
    ]
   },
   "AbilityName": "mage strong attack 4",
   "Icon": {
    "fileID": 0,
-   "pathID": 5284
+   "pathID": 5304
   },
   "Tags": [
    1,
@@ -23288,12 +23473,13 @@
     "__managed_ref_hash__": "af0000c32d317310"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4913
+   "pathID": 4932
   },
   "CastSFXVolume": [
    1.0,
@@ -23315,7 +23501,7 @@
  },
  {
   "_name": "WarriorBasicAttack",
-  "_pathid": 59900,
+  "_pathid": 59952,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -23330,7 +23516,7 @@
      "ImpactVFXPrefab": null,
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4929
+      "pathID": 4948
      },
      "ImpactSFXVolume": [
       0.800000011920929,
@@ -23375,7 +23561,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 781
+     "__end__": 785
     },
     {
      "__hash__": "8500fcbf8c69614a",
@@ -23393,7 +23579,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60542
+      "pathID": 60598
      },
      "Chance": {
       "Base": {
@@ -23413,6 +23599,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -23421,14 +23608,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 985
+     "__end__": 993
     }
    ]
   },
   "AbilityName": "Valiant Strike",
   "Icon": {
    "fileID": 0,
-   "pathID": 5802
+   "pathID": 5823
   },
   "Tags": [
    0,
@@ -23504,16 +23691,16 @@
    "Base": {
     "__type__": "ObscuredFloat",
     "hash": 723851361,
-    "hiddenValue": 2007108698,
-    "cryptoKey": 1997316698,
+    "hiddenValue": 1944734550,
+    "cryptoKey": 1934355030,
     "value": 0.0,
     "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
     "hash": 723851361,
-    "hiddenValue": 1314880750,
-    "cryptoKey": 1316773870,
+    "hiddenValue": 2064396853,
+    "cryptoKey": 2066877493,
     "value": 0.0,
     "__tail__": "00000000000000000000000000000000"
    }
@@ -23540,12 +23727,13 @@
     "__managed_ref_hash__": "8500fcbf8c69614a"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4809
+   "pathID": 4827
   },
   "CastSFXVolume": [
    0.8500000238418579,
@@ -23565,12 +23753,12 @@
   "WeaponTrailWidth": 1.0,
   "WeaponTrailPrefab": {
    "fileID": 0,
-   "pathID": 9276
+   "pathID": 9299
   }
  },
  {
   "_name": "WarriorBasicAttack2",
-  "_pathid": 59901,
+  "_pathid": 59953,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -23585,7 +23773,7 @@
      "ImpactVFXPrefab": null,
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4929
+      "pathID": 4948
      },
      "ImpactSFXVolume": [
       0.800000011920929,
@@ -23630,14 +23818,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 769
+     "__end__": 773
     }
    ]
   },
   "AbilityName": "Cleave",
   "Icon": {
    "fileID": 0,
-   "pathID": 5432
+   "pathID": 5451
   },
   "Tags": [
    0,
@@ -23714,16 +23902,16 @@
    "Base": {
     "__type__": "ObscuredFloat",
     "hash": 723851361,
-    "hiddenValue": 1101630326,
-    "cryptoKey": 1099671926,
+    "hiddenValue": 1118572623,
+    "cryptoKey": 1108388943,
     "value": 0.0,
     "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
     "hash": 723851361,
-    "hiddenValue": 2059655382,
-    "cryptoKey": 2061026262,
+    "hiddenValue": 2135444343,
+    "cryptoKey": 2135640183,
     "value": 0.0,
     "__tail__": "00000000000000000000000000000000"
    }
@@ -23747,12 +23935,13 @@
     "__managed_ref_hash__": "4c0004033977ac12"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4809
+   "pathID": 4827
   },
   "CastSFXVolume": [
    0.8999999761581421,
@@ -23772,12 +23961,12 @@
   "WeaponTrailWidth": 1.0,
   "WeaponTrailPrefab": {
    "fileID": 0,
-   "pathID": 25803
+   "pathID": 25834
   }
  },
  {
   "_name": "WarriorBasicAttack3",
-  "_pathid": 59902,
+  "_pathid": 59954,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -23792,7 +23981,7 @@
      "ImpactVFXPrefab": null,
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4951
+      "pathID": 4970
      },
      "ImpactSFXVolume": [
       0.8999999761581421,
@@ -23837,7 +24026,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 769
+     "__end__": 773
     },
     {
      "__hash__": "8600fcbf8c69614a",
@@ -23855,7 +24044,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60474
+      "pathID": 60528
      },
      "Chance": {
       "Base": {
@@ -23875,6 +24064,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -23883,14 +24073,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 973
+     "__end__": 981
     }
    ]
   },
   "AbilityName": "Bloodblade",
   "Icon": {
    "fileID": 0,
-   "pathID": 5633
+   "pathID": 5654
   },
   "Tags": [
    0,
@@ -24001,12 +24191,13 @@
     "__managed_ref_hash__": "8600fcbf8c69614a"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4947
+   "pathID": 4966
   },
   "CastSFXVolume": [
    0.6000000238418579,
@@ -24026,12 +24217,12 @@
   "WeaponTrailWidth": 1.0,
   "WeaponTrailPrefab": {
    "fileID": 0,
-   "pathID": 24242
+   "pathID": 24272
   }
  },
  {
   "_name": "WarriorBasicAttack4",
-  "_pathid": 59903,
+  "_pathid": 59955,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -24046,7 +24237,7 @@
      "ImpactVFXPrefab": null,
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4964
+      "pathID": 4983
      },
      "ImpactSFXVolume": [
       0.4000000059604645,
@@ -24091,7 +24282,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 777
+     "__end__": 781
     },
     {
      "__hash__": "8600fcbf8c69614a",
@@ -24109,7 +24300,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60544
+      "pathID": 60600
      },
      "Chance": {
       "Base": {
@@ -24129,6 +24320,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": true,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -24137,14 +24329,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 973
+     "__end__": 981
     }
    ]
   },
   "AbilityName": "Steady Blow",
   "Icon": {
    "fileID": 0,
-   "pathID": 5634
+   "pathID": 5655
   },
   "Tags": [
    0,
@@ -24256,12 +24448,13 @@
     "__managed_ref_hash__": "8600fcbf8c69614a"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4921
+   "pathID": 4940
   },
   "CastSFXVolume": [
    0.6000000238418579,
@@ -24281,12 +24474,12 @@
   "WeaponTrailWidth": 1.0,
   "WeaponTrailPrefab": {
    "fileID": 0,
-   "pathID": 16465
+   "pathID": 16491
   }
  },
  {
   "_name": "WarriorFlameStrikeSplash",
-  "_pathid": 59904,
+  "_pathid": 59956,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -24300,7 +24493,7 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 11219
+      "pathID": 11241
      },
      "ImpactSFX": null,
      "ImpactSFXVolume": [
@@ -24346,14 +24539,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 757
+     "__end__": 761
     }
    ]
   },
   "AbilityName": "Spreading Flame",
   "Icon": {
    "fileID": 0,
-   "pathID": 5925
+   "pathID": 5950
   },
   "Tags": [
    8,
@@ -24461,6 +24654,7 @@
     "__managed_ref_hash__": "2e00822234e5db6a"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
@@ -24485,7 +24679,7 @@
  },
  {
   "_name": "WarriorHeavyAttack1",
-  "_pathid": 59905,
+  "_pathid": 59957,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -24500,7 +24694,7 @@
      "ImpactVFXPrefab": null,
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4978
+      "pathID": 4997
      },
      "ImpactSFXVolume": [
       0.5,
@@ -24545,14 +24739,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 757
+     "__end__": 761
     }
    ]
   },
   "AbilityName": "Flame Strike",
   "Icon": {
    "fileID": 0,
-   "pathID": 5925
+   "pathID": 5950
   },
   "Tags": [
    1,
@@ -24659,12 +24853,13 @@
     "__managed_ref_hash__": "4c0004033977ac12"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4879
+   "pathID": 4898
   },
   "CastSFXVolume": [
    1.0,
@@ -24684,12 +24879,12 @@
   "WeaponTrailWidth": 4.0,
   "WeaponTrailPrefab": {
    "fileID": 0,
-   "pathID": 19658
+   "pathID": 19686
   }
  },
  {
   "_name": "WarriorHeavyAttack2",
-  "_pathid": 59906,
+  "_pathid": 59958,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -24713,7 +24908,7 @@
      ],
      "ProjectilePrefab": {
       "fileID": 0,
-      "pathID": 11653
+      "pathID": 11674
      },
      "TravelMode": 0,
      "Speed": 20.0,
@@ -24749,7 +24944,7 @@
       }
      ],
      "OnExpireEffects": [],
-     "__end__": 780
+     "__end__": 784
     },
     {
      "__hash__": "5e0008868877ac12",
@@ -24758,7 +24953,7 @@
      "ImpactVFXPrefab": null,
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4887
+      "pathID": 4906
      },
      "ImpactSFXVolume": [
       1.0,
@@ -24803,14 +24998,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 997
+     "__end__": 1001
     }
    ]
   },
   "AbilityName": "Half Moon Slash",
   "Icon": {
    "fileID": 0,
-   "pathID": 5722
+   "pathID": 5743
   },
   "Tags": [
    1,
@@ -24918,12 +25113,13 @@
     "__managed_ref_hash__": "5d0008868877ac12"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4914
+   "pathID": 4933
   },
   "CastSFXVolume": [
    1.0,
@@ -24943,12 +25139,12 @@
   "WeaponTrailWidth": 1.0,
   "WeaponTrailPrefab": {
    "fileID": 0,
-   "pathID": 11720
+   "pathID": 11741
   }
  },
  {
   "_name": "WarriorHeavyAttack3",
-  "_pathid": 59907,
+  "_pathid": 59959,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -24963,7 +25159,7 @@
      "ImpactVFXPrefab": null,
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4981
+      "pathID": 5000
      },
      "ImpactSFXVolume": [
       0.25,
@@ -25008,14 +25204,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 773
+     "__end__": 777
     }
    ]
   },
   "AbilityName": "Whirlwind",
   "Icon": {
    "fileID": 0,
-   "pathID": 5418
+   "pathID": 5437
   },
   "Tags": [
    1,
@@ -25125,12 +25321,13 @@
     "__managed_ref_hash__": "8f00cc98938ef521"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4994
+   "pathID": 5013
   },
   "CastSFXVolume": [
    0.20000000298023224,
@@ -25150,12 +25347,12 @@
   "WeaponTrailWidth": 7.0,
   "WeaponTrailPrefab": {
    "fileID": 0,
-   "pathID": 25802
+   "pathID": 25833
   }
  },
  {
   "_name": "WarriorHeavyAttack4",
-  "_pathid": 59908,
+  "_pathid": 59960,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -25188,7 +25385,7 @@
        "__managed_ref_hash__": "0300527a71f2f82d"
       }
      ],
-     "__end__": 680
+     "__end__": 684
     },
     {
      "__hash__": "0200527a71f2f82d",
@@ -25196,11 +25393,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 5961
+      "pathID": 5986
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4874
+      "pathID": 4893
      },
      "ImpactSFXVolume": [
       0.5,
@@ -25245,7 +25442,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 897
+     "__end__": 901
     },
     {
      "__hash__": "0300527a71f2f82d",
@@ -25263,7 +25460,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60474
+      "pathID": 60528
      },
      "Chance": {
       "Base": {
@@ -25283,6 +25480,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 0,
      "ChanceToken": {
@@ -25291,14 +25489,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 1093
+     "__end__": 1101
     }
    ]
   },
   "AbilityName": "Rending Onslaught",
   "Icon": {
    "fileID": 0,
-   "pathID": 5792
+   "pathID": 5813
   },
   "Tags": [
    1,
@@ -25405,12 +25603,13 @@
     "__managed_ref_hash__": "0100527a71f2f82d"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4961
+   "pathID": 4980
   },
   "CastSFXVolume": [
    0.8999999761581421,
@@ -25430,12 +25629,12 @@
   "WeaponTrailWidth": 6.0,
   "WeaponTrailPrefab": {
    "fileID": 0,
-   "pathID": 24242
+   "pathID": 24272
   }
  },
  {
   "_name": "WarriorRageShield",
-  "_pathid": 59909,
+  "_pathid": 59961,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -25459,7 +25658,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60523
+      "pathID": 60578
      },
      "Chance": {
       "Base": {
@@ -25479,6 +25678,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -25487,14 +25687,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 729
+     "__end__": 737
     }
    ]
   },
   "AbilityName": "Rage Shield",
   "Icon": {
    "fileID": 0,
-   "pathID": 5872
+   "pathID": 5894
   },
   "Tags": [
    2,
@@ -25570,16 +25770,16 @@
    "Base": {
     "__type__": "ObscuredFloat",
     "hash": 723851361,
-    "hiddenValue": 1248265085,
-    "cryptoKey": 1241737085,
+    "hiddenValue": 1987574858,
+    "cryptoKey": 1996257098,
     "value": 0.0,
     "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
     "hash": 723851361,
-    "hiddenValue": 1396406415,
-    "cryptoKey": 1400388495,
+    "hiddenValue": 1427115167,
+    "cryptoKey": 1426854047,
     "value": 0.0,
     "__tail__": "00000000000000000000000000000000"
    }
@@ -25601,12 +25801,13 @@
     "__managed_ref_hash__": "4b015c5f8377ac12"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4782
+   "pathID": 4800
   },
   "CastSFXVolume": [
    1.0,
@@ -25628,7 +25829,7 @@
  },
  {
   "_name": "WarriorRageShout",
-  "_pathid": 59910,
+  "_pathid": 59962,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -25652,7 +25853,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60551
+      "pathID": 60607
      },
      "Chance": {
       "Base": {
@@ -25672,6 +25873,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -25680,14 +25882,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 725
+     "__end__": 733
     }
    ]
   },
   "AbilityName": "Rage Shout",
   "Icon": {
    "fileID": 0,
-   "pathID": 5589
+   "pathID": 5610
   },
   "Tags": [
    2,
@@ -25794,12 +25996,13 @@
     "__managed_ref_hash__": "50015c5f8377ac12"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4796
+   "pathID": 4814
   },
   "CastSFXVolume": [
    0.4000000059604645,
@@ -25821,7 +26024,7 @@
  },
  {
   "_name": "WarriorSpecial3",
-  "_pathid": 59911,
+  "_pathid": 59963,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -25845,7 +26048,7 @@
      ],
      "ProjectilePrefab": {
       "fileID": 0,
-      "pathID": 11643
+      "pathID": 11664
      },
      "TravelMode": 0,
      "Speed": 30.0,
@@ -25887,7 +26090,7 @@
       }
      ],
      "OnExpireEffects": [],
-     "__end__": 784
+     "__end__": 788
     },
     {
      "__hash__": "020036a6268b066b",
@@ -25905,7 +26108,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60542
+      "pathID": 60598
      },
      "Chance": {
       "Base": {
@@ -25925,6 +26128,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 0,
      "ChanceToken": {
@@ -25933,7 +26137,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 977
+     "__end__": 985
     },
     {
      "__hash__": "040036a6268b066b",
@@ -25942,7 +26146,7 @@
      "ImpactVFXPrefab": null,
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4844
+      "pathID": 4862
      },
      "ImpactSFXVolume": [
       1.0,
@@ -25987,7 +26191,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 1197
+     "__end__": 1205
     },
     {
      "__hash__": "050036a6268b066b",
@@ -26005,14 +26209,14 @@
      ],
      "Speed": 13.0,
      "ExtraStandoff": 0.0,
-     "__end__": 1296
+     "__end__": 1304
     }
    ]
   },
   "AbilityName": "Deadly Hook",
   "Icon": {
    "fileID": 0,
-   "pathID": 5798
+   "pathID": 5819
   },
   "Tags": [
    2,
@@ -26119,12 +26323,13 @@
     "__managed_ref_hash__": "010036a6268b066b"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4974
+   "pathID": 4993
   },
   "CastSFXVolume": [
    1.0,
@@ -26144,12 +26349,12 @@
   "WeaponTrailWidth": 1.0,
   "WeaponTrailPrefab": {
    "fileID": 0,
-   "pathID": 23819
+   "pathID": 23847
   }
  },
  {
   "_name": "WarriorSpecial4",
-  "_pathid": 59912,
+  "_pathid": 59964,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -26173,7 +26378,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60531
+      "pathID": 60587
      },
      "Chance": {
       "Base": {
@@ -26193,6 +26398,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 0,
      "ChanceToken": {
@@ -26201,7 +26407,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 741
+     "__end__": 749
     },
     {
      "__hash__": "42023eb667847b4d",
@@ -26210,7 +26416,7 @@
      "ImpactVFXPrefab": null,
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4898
+      "pathID": 4917
      },
      "ImpactSFXVolume": [
       1.0,
@@ -26255,14 +26461,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 961
+     "__end__": 969
     }
    ]
   },
   "AbilityName": "Earthstrike",
   "Icon": {
    "fileID": 0,
-   "pathID": 5623
+   "pathID": 5644
   },
   "Tags": [
    2,
@@ -26373,15 +26579,16 @@
     "__managed_ref_hash__": "42023eb667847b4d"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": {
    "fileID": 0,
-   "pathID": 5958
+   "pathID": 5983
   },
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.20000000298023224,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4798
+   "pathID": 4816
   },
   "CastSFXVolume": [
    1.0,
@@ -26403,7 +26610,7 @@
  },
  {
   "_name": "WarriorSpecial5",
-  "_pathid": 59913,
+  "_pathid": 59965,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -26427,7 +26634,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60548
+      "pathID": 60604
      },
      "Chance": {
       "Base": {
@@ -26447,6 +26654,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": true,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -26455,14 +26663,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 729
+     "__end__": 737
     }
    ]
   },
   "AbilityName": "Iron Thorn",
   "Icon": {
    "fileID": 0,
-   "pathID": 5561
+   "pathID": 5582
   },
   "Tags": [
    2,
@@ -26570,12 +26778,13 @@
     "__managed_ref_hash__": "65000c3d7b2b0e3e"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4952
+   "pathID": 4971
   },
   "CastSFXVolume": [
    1.0,
@@ -26597,7 +26806,7 @@
  },
  {
   "_name": "WarriorSpecial6",
-  "_pathid": 59914,
+  "_pathid": 59966,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -26676,7 +26885,7 @@
       "Suffix": "x",
       "Highlight": true
      },
-     "__end__": 825
+     "__end__": 829
     },
     {
      "__hash__": "032a0621697adc4d",
@@ -26694,7 +26903,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60550
+      "pathID": 60606
      },
      "Chance": {
       "Base": {
@@ -26714,6 +26923,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 0,
      "ChanceToken": {
@@ -26722,14 +26932,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 1021
+     "__end__": 1029
     }
    ]
   },
   "AbilityName": "Molten Might",
   "Icon": {
    "fileID": 0,
-   "pathID": 5940
+   "pathID": 5965
   },
   "Tags": [
    2,
@@ -26840,15 +27050,16 @@
     "__managed_ref_hash__": "032a0621697adc4d"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": {
    "fileID": 0,
-   "pathID": 5959
+   "pathID": 5984
   },
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4814
+   "pathID": 4832
   },
   "CastSFXVolume": [
    0.8999999761581421,
@@ -26870,7 +27081,7 @@
  },
  {
   "_name": "BeachTurtleSlaveSpit",
-  "_pathid": 60393,
+  "_pathid": 60446,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -26894,7 +27105,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60477
+      "pathID": 60532
      },
      "Chance": {
       "Base": {
@@ -26914,6 +27125,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -26922,14 +27134,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 737
+     "__end__": 745
     }
    ]
   },
   "AbilityName": "Turtle slave Spit",
   "Icon": {
    "fileID": 0,
-   "pathID": 5404
+   "pathID": 5423
   },
   "Tags": [
    1
@@ -27035,15 +27247,16 @@
     "__managed_ref_hash__": "82012c6e0e5d4954"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": {
    "fileID": 0,
-   "pathID": 21211
+   "pathID": 21239
   },
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.10000000149011612,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4852
+   "pathID": 4870
   },
   "CastSFXVolume": [
    1.0,
@@ -27065,7 +27278,7 @@
  },
  {
   "_name": "SlaveAirWarlordBuff",
-  "_pathid": 60394,
+  "_pathid": 60447,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -27089,7 +27302,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60524
+      "pathID": 60579
      },
      "Chance": {
       "Base": {
@@ -27109,6 +27322,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -27117,14 +27331,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 741
+     "__end__": 749
     }
    ]
   },
   "AbilityName": "Power of Redrock Lord",
   "Icon": {
    "fileID": 0,
-   "pathID": 5692
+   "pathID": 5713
   },
   "Tags": [
    2
@@ -27230,12 +27444,13 @@
     "__managed_ref_hash__": "940080299dfee829"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4812
+   "pathID": 4830
   },
   "CastSFXVolume": [
    1.0,
@@ -27257,7 +27472,7 @@
  },
  {
   "_name": "SlaveBigTreantHeal",
-  "_pathid": 60395,
+  "_pathid": 60448,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -27271,11 +27486,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 5965
+      "pathID": 5990
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4953
+      "pathID": 4972
      },
      "ImpactSFXVolume": [
       1.0,
@@ -27332,14 +27547,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 789
+     "__end__": 793
     }
    ]
   },
   "AbilityName": "Recover",
   "Icon": {
    "fileID": 0,
-   "pathID": 5380
+   "pathID": 5399
   },
   "Tags": [
    2
@@ -27445,12 +27660,13 @@
     "__managed_ref_hash__": "9b00b4a55f8ef521"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4922
+   "pathID": 4941
   },
   "CastSFXVolume": [
    1.0,
@@ -27472,7 +27688,7 @@
  },
  {
   "_name": "SlaveCinderLordWrath",
-  "_pathid": 60396,
+  "_pathid": 60449,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -27496,7 +27712,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60525
+      "pathID": 60580
      },
      "Chance": {
       "Base": {
@@ -27516,6 +27732,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 0,
      "ChanceToken": {
@@ -27524,14 +27741,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 729
+     "__end__": 737
     }
    ]
   },
   "AbilityName": "Ashen Wrath",
   "Icon": {
    "fileID": 0,
-   "pathID": 5490
+   "pathID": 5511
   },
   "Tags": [
    2
@@ -27637,12 +27854,13 @@
     "__managed_ref_hash__": "fc05969ffed5fe0a"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4813
+   "pathID": 4831
   },
   "CastSFXVolume": [
    0.6000000238418579,
@@ -27664,7 +27882,7 @@
  },
  {
   "_name": "SlaveCrimsonValeSpikes",
-  "_pathid": 60397,
+  "_pathid": 60450,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -27688,7 +27906,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60542
+      "pathID": 60598
      },
      "Chance": {
       "Base": {
@@ -27708,6 +27926,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 0,
      "ChanceToken": {
@@ -27716,7 +27935,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 733
+     "__end__": 741
     },
     {
      "__hash__": "9986a810e9554e0d",
@@ -27734,7 +27953,7 @@
      ],
      "AoEPrefab": {
       "fileID": 0,
-      "pathID": 16239
+      "pathID": 16266
      },
      "Location": 1,
      "FaceCastDirection": true,
@@ -27753,7 +27972,7 @@
        "__managed_ref_hash__": "8e35d12b7ca9d80a"
       }
      ],
-     "__end__": 896
+     "__end__": 904
     },
     {
      "__hash__": "00696b92a07a9e20",
@@ -27761,11 +27980,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 5975
+      "pathID": 6000
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4996
+      "pathID": 5015
      },
      "ImpactSFXVolume": [
       1.0,
@@ -27810,14 +28029,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 1105
+     "__end__": 1113
     }
    ]
   },
   "AbilityName": "Earth Spikes",
   "Icon": {
    "fileID": 0,
-   "pathID": 5763
+   "pathID": 5784
   },
   "Tags": [
    2
@@ -27923,12 +28142,13 @@
     "__managed_ref_hash__": "9986a810e9554e0d"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4925
+   "pathID": 4944
   },
   "CastSFXVolume": [
    1.0,
@@ -27950,7 +28170,7 @@
  },
  {
   "_name": "SlaveEmberfangBreath",
-  "_pathid": 60398,
+  "_pathid": 60451,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -27974,7 +28194,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60476
+      "pathID": 60530
      },
      "Chance": {
       "Base": {
@@ -27994,6 +28214,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 0,
      "ChanceToken": {
@@ -28002,7 +28223,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 729
+     "__end__": 737
     },
     {
      "__hash__": "c40128f84d97c266",
@@ -28010,11 +28231,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 11219
+      "pathID": 11241
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4911
+      "pathID": 4930
      },
      "ImpactSFXVolume": [
       1.0,
@@ -28026,7 +28247,7 @@
      ],
      "ProjectilePrefab": {
       "fileID": 0,
-      "pathID": 11664
+      "pathID": 11685
      },
      "TravelMode": 0,
      "Speed": 20.0,
@@ -28065,7 +28286,7 @@
       }
      ],
      "OnExpireEffects": [],
-     "__end__": 972
+     "__end__": 980
     },
     {
      "__hash__": "c50128f84d97c266",
@@ -28116,14 +28337,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 1189
+     "__end__": 1197
     }
    ]
   },
   "AbilityName": "Ember Breath",
   "Icon": {
    "fileID": 0,
-   "pathID": 5756
+   "pathID": 5777
   },
   "Tags": [
    2
@@ -28229,12 +28450,13 @@
     "__managed_ref_hash__": "c40128f84d97c266"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4851
+   "pathID": 4869
   },
   "CastSFXVolume": [
    1.0,
@@ -28256,7 +28478,7 @@
  },
  {
   "_name": "SlaveFrostDragonIceShard",
-  "_pathid": 60399,
+  "_pathid": 60452,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -28270,11 +28492,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 23431
+      "pathID": 23459
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4856
+      "pathID": 4874
      },
      "ImpactSFXVolume": [
       1.0,
@@ -28286,7 +28508,7 @@
      ],
      "ProjectilePrefab": {
       "fileID": 0,
-      "pathID": 11644
+      "pathID": 11665
      },
      "TravelMode": 0,
      "Speed": 18.0,
@@ -28322,7 +28544,7 @@
       }
      ],
      "OnExpireEffects": [],
-     "__end__": 780
+     "__end__": 784
     },
     {
      "__hash__": "c50128f84d97c266",
@@ -28373,14 +28595,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 997
+     "__end__": 1001
     }
    ]
   },
   "AbilityName": "Glacial Shard",
   "Icon": {
    "fileID": 0,
-   "pathID": 5725
+   "pathID": 5746
   },
   "Tags": [
    2,
@@ -28487,12 +28709,13 @@
     "__managed_ref_hash__": "c40128f84d97c266"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4889
+   "pathID": 4908
   },
   "CastSFXVolume": [
    1.0,
@@ -28514,7 +28737,7 @@
  },
  {
   "_name": "SlaveGoblinGiantSmash",
-  "_pathid": 60400,
+  "_pathid": 60453,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -28561,7 +28784,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 725
+     "__end__": 729
     },
     {
      "__hash__": "e8d6876ddaa86931",
@@ -28569,7 +28792,7 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 16240
+      "pathID": 16267
      },
      "ImpactSFX": null,
      "ImpactSFXVolume": [
@@ -28615,7 +28838,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 937
+     "__end__": 941
     },
     {
      "__hash__": "203ebfffb4cd4d33",
@@ -28633,7 +28856,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60522
+      "pathID": 60577
      },
      "Chance": {
       "Base": {
@@ -28653,6 +28876,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 0,
      "ChanceToken": {
@@ -28661,14 +28885,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 1133
+     "__end__": 1141
     }
    ]
   },
   "AbilityName": "Club Smash",
   "Icon": {
    "fileID": 0,
-   "pathID": 5516
+   "pathID": 5537
   },
   "Tags": [
    2
@@ -28780,12 +29004,13 @@
     "__managed_ref_hash__": "f92d3ab4b0d2b317"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4820
+   "pathID": 4838
   },
   "CastSFXVolume": [
    1.0,
@@ -28807,7 +29032,7 @@
  },
  {
   "_name": "SlaveHarpyWind",
-  "_pathid": 60401,
+  "_pathid": 60454,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -28821,7 +29046,7 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 24345
+      "pathID": 24375
      },
      "ImpactSFX": null,
      "ImpactSFXVolume": [
@@ -28834,7 +29059,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60526
+      "pathID": 60581
      },
      "Chance": {
       "Base": {
@@ -28854,6 +29079,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 0,
      "ChanceToken": {
@@ -28862,14 +29088,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 721
+     "__end__": 729
     }
    ]
   },
   "AbilityName": "Tailwind",
   "Icon": {
    "fileID": 0,
-   "pathID": 5734
+   "pathID": 5755
   },
   "Tags": [
    2
@@ -28975,12 +29201,13 @@
     "__managed_ref_hash__": "bbd06571cc9c7f1f"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4789
+   "pathID": 4807
   },
   "CastSFXVolume": [
    1.0,
@@ -29002,7 +29229,7 @@
  },
  {
   "_name": "SlaveIceHoundCapacitorShell",
-  "_pathid": 60402,
+  "_pathid": 60455,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -29026,7 +29253,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60527
+      "pathID": 60582
      },
      "Chance": {
       "Base": {
@@ -29046,6 +29273,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 0,
      "ChanceToken": {
@@ -29054,14 +29282,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 741
+     "__end__": 749
     }
    ]
   },
   "AbilityName": "Capacitor Shell",
   "Icon": {
    "fileID": 0,
-   "pathID": 5467
+   "pathID": 5487
   },
   "Tags": [
    2
@@ -29167,12 +29395,13 @@
     "__managed_ref_hash__": "fc05969ffed5fe0a"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4793
+   "pathID": 4811
   },
   "CastSFXVolume": [
    1.0,
@@ -29194,7 +29423,7 @@
  },
  {
   "_name": "SlaveManticoraSting",
-  "_pathid": 60403,
+  "_pathid": 60456,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -29208,11 +29437,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 16315
+      "pathID": 16341
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4911
+      "pathID": 4930
      },
      "ImpactSFXVolume": [
       1.0,
@@ -29224,7 +29453,7 @@
      ],
      "ProjectilePrefab": {
       "fileID": 0,
-      "pathID": 11670
+      "pathID": 11691
      },
      "TravelMode": 0,
      "Speed": 20.0,
@@ -29263,7 +29492,7 @@
       }
      ],
      "OnExpireEffects": [],
-     "__end__": 776
+     "__end__": 780
     },
     {
      "__hash__": "9700b04909db003e",
@@ -29314,7 +29543,7 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 985
+     "__end__": 989
     },
     {
      "__hash__": "9800b04909db003e",
@@ -29332,7 +29561,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60503
+      "pathID": 60558
      },
      "Chance": {
       "Base": {
@@ -29352,6 +29581,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -29360,14 +29590,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 1181
+     "__end__": 1189
     }
    ]
   },
   "AbilityName": "Poison Sting",
   "Icon": {
    "fileID": 0,
-   "pathID": 5324
+   "pathID": 5343
   },
   "Tags": [
    2
@@ -29473,12 +29703,13 @@
     "__managed_ref_hash__": "9600b04909db003e"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4915
+   "pathID": 4934
   },
   "CastSFXVolume": [
    1.0,
@@ -29500,7 +29731,7 @@
  },
  {
   "_name": "SlaveReaperSoulArc",
-  "_pathid": 60404,
+  "_pathid": 60457,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -29530,7 +29761,7 @@
        "__managed_ref_hash__": "bc008c7809ba087f"
       }
      ],
-     "__end__": 660
+     "__end__": 664
     },
     {
      "__hash__": "bc008c7809ba087f",
@@ -29538,11 +29769,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 22572
+      "pathID": 22599
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4836
+      "pathID": 4854
      },
      "ImpactSFXVolume": [
       1.0,
@@ -29587,14 +29818,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 869
+     "__end__": 873
     }
    ]
   },
   "AbilityName": "Soul Arc",
   "Icon": {
    "fileID": 0,
-   "pathID": 5248
+   "pathID": 5268
   },
   "Tags": [
    2,
@@ -29701,12 +29932,13 @@
     "__managed_ref_hash__": "bb008c7809ba087f"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4862
+   "pathID": 4880
   },
   "CastSFXVolume": [
    1.0,
@@ -29728,7 +29960,7 @@
  },
  {
   "_name": "SlaveSpiderQueenMana",
-  "_pathid": 60405,
+  "_pathid": 60458,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -29742,7 +29974,7 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 10280
+      "pathID": 10303
      },
      "ImpactSFX": null,
      "ImpactSFXVolume": [
@@ -29810,14 +30042,14 @@
       "Suffix": "x",
       "Highlight": true
      },
-     "__end__": 825
+     "__end__": 829
     }
    ]
   },
   "AbilityName": "Mana Injection",
   "Icon": {
    "fileID": 0,
-   "pathID": 5690
+   "pathID": 5711
   },
   "Tags": [
    2
@@ -29923,12 +30155,13 @@
     "__managed_ref_hash__": "44bd64e669d3872c"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4950
+   "pathID": 4969
   },
   "CastSFXVolume": [
    1.0,
@@ -29950,7 +30183,7 @@
  },
  {
   "_name": "SlaveWaterDragonManaSurge",
-  "_pathid": 60406,
+  "_pathid": 60459,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -29974,7 +30207,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60528
+      "pathID": 60583
      },
      "Chance": {
       "Base": {
@@ -29994,6 +30227,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -30002,14 +30236,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 737
+     "__end__": 745
     }
    ]
   },
   "AbilityName": "Mana Monsoon",
   "Icon": {
    "fileID": 0,
-   "pathID": 5599
+   "pathID": 5620
   },
   "Tags": [
    2
@@ -30115,12 +30349,13 @@
     "__managed_ref_hash__": "940080299dfee829"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4838
+   "pathID": 4856
   },
   "CastSFXVolume": [
    0.5,
@@ -30142,7 +30377,7 @@
  },
  {
   "_name": "SlaveWerewolfHowl",
-  "_pathid": 60407,
+  "_pathid": 60460,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -30166,7 +30401,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60529
+      "pathID": 60584
      },
      "Chance": {
       "Base": {
@@ -30186,6 +30421,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 1,
      "ChanceToken": {
@@ -30194,14 +30430,14 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 733
+     "__end__": 741
     }
    ]
   },
   "AbilityName": "Bloodmoon Howl",
   "Icon": {
    "fileID": 0,
-   "pathID": 5692
+   "pathID": 5713
   },
   "Tags": [
    2
@@ -30276,16 +30512,16 @@
    "Base": {
     "__type__": "ObscuredFloat",
     "hash": 723851361,
-    "hiddenValue": 1384615897,
-    "cryptoKey": 1385138137,
+    "hiddenValue": 1088421861,
+    "cryptoKey": 1090510821,
     "value": 0.0,
     "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
     "hash": 723851361,
-    "hiddenValue": 1978437644,
-    "cryptoKey": 1972431884,
+    "hiddenValue": 1731663412,
+    "cryptoKey": 1729509172,
     "value": 0.0,
     "__tail__": "00000000000000000000000000000000"
    }
@@ -30307,12 +30543,13 @@
     "__managed_ref_hash__": "940080299dfee829"
    }
   ],
+  "SuppressTargetHitVFX": false,
   "CastVFXPrefab": null,
   "CastVFXFacesForward": false,
   "CastVFXDelay": 0.0,
   "CastSFX": {
    "fileID": 0,
-   "pathID": 4900
+   "pathID": 4919
   },
   "CastSFXVolume": [
    1.0,

@@ -14,7 +14,7 @@ from mem_probe import (find_process, module_base, read_mem, u32, u64, valid_ptr)
 k32 = ctypes.WinDLL('kernel32', use_last_error=True)
 
 # dzg/dyt 共用的状态类 usage slot（VA → 运行时重定位）
-STATE_SLOT_VA = 0x183A2A4D8
+STATE_SLOT_VA = 0x183A62170
 
 
 def klass_name_of_obj(h, obj):
@@ -60,11 +60,13 @@ def main():
             entries_ptr = u64(h, p + 0x18)      # Dictionary.entries 引用
             count = int.from_bytes(read_mem(h, p + 0x20, 4) or b'\0\0\0\0', 'little')
             print(f'    Dictionary count={count} entries@{entries_ptr:#x}')
-            # il2cpp Dictionary: buckets@0x10? entries@0x18, count@0x20, 步长见实测
+            # il2cpp Dictionary<StatType,int>（**不是** double 字典）：Entry = hash@0/next@4/key@8/value@C，
+            # 步长 0x10；数组数据区自 entries+0x20 起。曾误用 Dictionary<StatType,double> 的 0x18 步长
+            # 与 value@0x10，把 {14:3, 57:39} 印成 key=14 value=57（2026-10-16 实机对拍 memory_import 发现）。
             for i in range(min(count, 80)):
-                ent = entries_ptr + 0x20 + i * 0x18      # 假设 stride 0x18（hash/key/value）
+                ent = entries_ptr + 0x20 + i * 0x10
                 key = u32(h, ent + 0x8)
-                val = u32(h, ent + 0x10)
+                val = u32(h, ent + 0xC)
                 if key or val:
                     print(f'    [{i}] key(stat)={key} value(points)={val}')
         elif nm and 'Paragon' in str(nm):

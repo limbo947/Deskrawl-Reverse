@@ -1,11 +1,11 @@
 [
  {
   "_name": "LifeSkill 1",
-  "_pathid": 60153,
+  "_pathid": 60206,
   "_file": "sharedassets0.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 5671
+   "pathID": 5692
   },
   "MaxLevel": 1,
   "GoldCosts": [
@@ -13,24 +13,24 @@
   ],
   "Prerequisite": {
    "fileID": 0,
-   "pathID": 60237
+   "pathID": 60290
   },
   "IsLockedInDemo": false,
   "Effects": [
    {
     "fileID": 0,
-    "pathID": 60133
+    "pathID": 60186
    }
   ],
   "IsNotable": false
  },
  {
   "_name": "LifeSkill 10",
-  "_pathid": 60154,
+  "_pathid": 60207,
   "_file": "sharedassets0.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 5671
+   "pathID": 5692
   },
   "MaxLevel": 1,
   "GoldCosts": [
@@ -38,1878 +38,28 @@
   ],
   "Prerequisite": {
    "fileID": 0,
-   "pathID": 60153
+   "pathID": 60206
   },
   "IsLockedInDemo": false,
   "Effects": [
    {
     "fileID": 0,
-    "pathID": 60133
+    "pathID": 60186
    }
   ],
   "IsNotable": false
  },
  {
   "_name": "LifeSkill 11",
-  "_pathid": 60155,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5698
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   500
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60175
-  },
-  "IsLockedInDemo": false,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60124
-   }
-  ],
-  "IsNotable": false
- },
- {
-  "_name": "LifeSkill 12",
-  "_pathid": 60156,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5443
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   2500
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60175
-  },
-  "IsLockedInDemo": false,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60148
-   }
-  ],
-  "IsNotable": false
- },
- {
-  "_name": "LifeSkill 13",
-  "_pathid": 60157,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5687
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   20000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60208
-  },
-  "IsLockedInDemo": false,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60150
-   }
-  ],
-  "IsNotable": false
- },
- {
-  "_name": "LifeSkill 14",
-  "_pathid": 60158,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5849
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   6000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60197
-  },
-  "IsLockedInDemo": false,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60135
-   }
-  ],
-  "IsNotable": false
- },
- {
-  "_name": "LifeSkill 15",
-  "_pathid": 60159,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5791
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   6000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60197
-  },
-  "IsLockedInDemo": false,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60134
-   }
-  ],
-  "IsNotable": false
- },
- {
-  "_name": "LifeSkill 16",
-  "_pathid": 60160,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5671
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   6000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60197
-  },
-  "IsLockedInDemo": false,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60133
-   }
-  ],
-  "IsNotable": false
- },
- {
-  "_name": "LifeSkill 17",
-  "_pathid": 60161,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5522
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   30000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60157
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60146
-   }
-  ],
-  "IsNotable": false
- },
- {
-  "_name": "LifeSkill 18",
-  "_pathid": 60162,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5522
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   20000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60157
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60137
-   }
-  ],
-  "IsNotable": false
- },
- {
-  "_name": "LifeSkill 19",
-  "_pathid": 60163,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5791
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   20000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60157
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60134
-   }
-  ],
-  "IsNotable": false
- },
- {
-  "_name": "LifeSkill 2",
-  "_pathid": 60164,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5791
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   150
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60237
-  },
-  "IsLockedInDemo": false,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60134
-   }
-  ],
-  "IsNotable": false
- },
- {
-  "_name": "LifeSkill 20",
-  "_pathid": 60165,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5671
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   6000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60156
-  },
-  "IsLockedInDemo": false,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60133
-   }
-  ],
-  "IsNotable": false
- },
- {
-  "_name": "LifeSkill 21",
-  "_pathid": 60166,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5849
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   6000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60156
-  },
-  "IsLockedInDemo": false,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60135
-   }
-  ],
-  "IsNotable": false
- },
- {
-  "_name": "LifeSkill 22",
-  "_pathid": 60167,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5348
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   6000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60156
-  },
-  "IsLockedInDemo": false,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60130
-   }
-  ],
-  "IsNotable": false
- },
- {
-  "_name": "LifeSkill 23",
-  "_pathid": 60168,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5522
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   6000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60155
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60137
-   }
-  ],
-  "IsNotable": false
- },
- {
-  "_name": "LifeSkill 24",
-  "_pathid": 60169,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5791
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   6000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60155
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60134
-   }
-  ],
-  "IsNotable": false
- },
- {
-  "_name": "LifeSkill 25",
-  "_pathid": 60170,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5305
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   6000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60155
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60122
-   }
-  ],
-  "IsNotable": false
- },
- {
-  "_name": "LifeSkill 26",
-  "_pathid": 60171,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5791
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   20000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60219
-  },
-  "IsLockedInDemo": false,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60143
-   }
-  ],
-  "IsNotable": false
- },
- {
-  "_name": "LifeSkill 27",
-  "_pathid": 60172,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5671
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   6000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60219
-  },
-  "IsLockedInDemo": false,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60133
-   }
-  ],
-  "IsNotable": false
- },
- {
-  "_name": "LifeSkill 28",
-  "_pathid": 60173,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5924
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   6000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60219
-  },
-  "IsLockedInDemo": false,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60142
-   }
-  ],
-  "IsNotable": false
- },
- {
-  "_name": "LifeSkill 29",
-  "_pathid": 60174,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5551
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   5000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60230
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60131
-   }
-  ],
-  "IsNotable": false
- },
- {
-  "_name": "LifeSkill 3",
-  "_pathid": 60175,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5305
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   150
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60237
-  },
-  "IsLockedInDemo": false,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60122
-   }
-  ],
-  "IsNotable": false
- },
- {
-  "_name": "LifeSkill 30",
-  "_pathid": 60176,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5783
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   5000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60230
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60119
-   }
-  ],
-  "IsNotable": false
- },
- {
-  "_name": "LifeSkill 31",
-  "_pathid": 60177,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5457
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   6000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60230
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60139
-   }
-  ],
-  "IsNotable": false
- },
- {
-  "_name": "LifeSkill 32",
-  "_pathid": 60178,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5849
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   6000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60154
-  },
-  "IsLockedInDemo": false,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60135
-   }
-  ],
-  "IsNotable": false
- },
- {
-  "_name": "LifeSkill 33",
-  "_pathid": 60179,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5658
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   20000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60154
-  },
-  "IsLockedInDemo": false,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60136
-   }
-  ],
-  "IsNotable": false
- },
- {
-  "_name": "LifeSkill 34",
-  "_pathid": 60180,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5924
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   6000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60154
-  },
-  "IsLockedInDemo": false,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60142
-   }
-  ],
-  "IsNotable": false
- },
- {
-  "_name": "LifeSkill 35",
-  "_pathid": 60181,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5647
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   6000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60236
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60125
-   }
-  ],
-  "IsNotable": false
- },
- {
-  "_name": "LifeSkill 36",
-  "_pathid": 60182,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5791
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   6000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60236
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60134
-   }
-  ],
-  "IsNotable": false
- },
- {
-  "_name": "LifeSkill 37",
-  "_pathid": 60183,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5348
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   6000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60236
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60130
-   }
-  ],
-  "IsNotable": false
- },
- {
-  "_name": "LifeSkill 38",
-  "_pathid": 60184,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5348
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   8000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60183
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60130
-   }
-  ],
-  "IsNotable": false
- },
- {
-  "_name": "LifeSkill 39",
-  "_pathid": 60185,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5522
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   8000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60182
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60146
-   }
-  ],
-  "IsNotable": true
- },
- {
-  "_name": "LifeSkill 4",
-  "_pathid": 60186,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5924
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   150
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60237
-  },
-  "IsLockedInDemo": false,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60142
-   }
-  ],
-  "IsNotable": false
- },
- {
-  "_name": "LifeSkill 40",
-  "_pathid": 60187,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5671
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   8000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60181
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60133
-   }
-  ],
-  "IsNotable": false
- },
- {
-  "_name": "LifeSkill 41",
-  "_pathid": 60188,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5924
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   8000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60180
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60142
-   }
-  ],
-  "IsNotable": false
- },
- {
-  "_name": "LifeSkill 42",
-  "_pathid": 60189,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5658
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   35000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60179
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60136
-   }
-  ],
-  "IsNotable": false
- },
- {
-  "_name": "LifeSkill 43",
-  "_pathid": 60190,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5849
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   8000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60178
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60144
-   }
-  ],
-  "IsNotable": true
- },
- {
-  "_name": "LifeSkill 44",
-  "_pathid": 60191,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5457
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   8000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60177
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60140
-   }
-  ],
-  "IsNotable": false
- },
- {
-  "_name": "LifeSkill 45",
-  "_pathid": 60192,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5783
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   8000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60176
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60120
-   }
-  ],
-  "IsNotable": false
- },
- {
-  "_name": "LifeSkill 46",
-  "_pathid": 60193,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5551
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   8000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60174
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60132
-   }
-  ],
-  "IsNotable": true
- },
- {
-  "_name": "LifeSkill 47",
-  "_pathid": 60194,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5348
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   20000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60171
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60130
-   }
-  ],
-  "IsNotable": false
- },
- {
-  "_name": "LifeSkill 48",
-  "_pathid": 60195,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5671
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   8000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60172
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60129
-   }
-  ],
-  "IsNotable": true
- },
- {
-  "_name": "LifeSkill 49",
-  "_pathid": 60196,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5924
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   8000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60173
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60142
-   }
-  ],
-  "IsNotable": false
- },
- {
-  "_name": "LifeSkill 5",
-  "_pathid": 60197,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5552
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   750
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60186
-  },
-  "IsLockedInDemo": false,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60128
-   }
-  ],
-  "IsNotable": false
- },
- {
-  "_name": "LifeSkill 50",
-  "_pathid": 60198,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5305
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   8000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60170
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60147
-   }
-  ],
-  "IsNotable": true
- },
- {
-  "_name": "LifeSkill 51",
-  "_pathid": 60199,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5924
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   8000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60169
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60142
-   }
-  ],
-  "IsNotable": false
- },
- {
-  "_name": "LifeSkill 52",
-  "_pathid": 60200,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5522
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   8000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60168
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60137
-   }
-  ],
-  "IsNotable": false
- },
- {
-  "_name": "LifeSkill 53",
-  "_pathid": 60201,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5849
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   8000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60166
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60144
-   }
-  ],
-  "IsNotable": true
- },
- {
-  "_name": "LifeSkill 54",
-  "_pathid": 60202,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5348
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   8000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60167
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60118
-   }
-  ],
-  "IsNotable": true
- },
- {
-  "_name": "LifeSkill 55",
-  "_pathid": 60203,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5849
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   8000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60165
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60135
-   }
-  ],
-  "IsNotable": false
- },
- {
-  "_name": "LifeSkill 56",
-  "_pathid": 60204,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5305
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   25000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60163
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60122
-   }
-  ],
-  "IsNotable": false
- },
- {
-  "_name": "LifeSkill 57",
-  "_pathid": 60205,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5522
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   25000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60162
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60137
-   }
-  ],
-  "IsNotable": false
- },
- {
-  "_name": "LifeSkill 58",
-  "_pathid": 60206,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5598
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   35000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60184
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60126
-   }
-  ],
-  "IsNotable": true
- },
- {
-  "_name": "LifeSkill 59",
-  "_pathid": 60207,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5671
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   8000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60160
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60129
-   }
-  ],
-  "IsNotable": true
- },
- {
-  "_name": "LifeSkill 6",
   "_pathid": 60208,
   "_file": "sharedassets0.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 5348
+   "pathID": 5719
   },
   "MaxLevel": 1,
   "GoldCosts": [
    500
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60186
-  },
-  "IsLockedInDemo": false,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60130
-   }
-  ],
-  "IsNotable": false
- },
- {
-  "_name": "LifeSkill 60",
-  "_pathid": 60209,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5849
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   8000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60158
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60135
-   }
-  ],
-  "IsNotable": false
- },
- {
-  "_name": "LifeSkill 61",
-  "_pathid": 60210,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5791
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   8000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60159
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60134
-   }
-  ],
-  "IsNotable": false
- },
- {
-  "_name": "LifeSkill 62",
-  "_pathid": 60211,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5849
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   15000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60161
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60144
-   }
-  ],
-  "IsNotable": true
- },
- {
-  "_name": "LifeSkill 63",
-  "_pathid": 60212,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5671
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   15000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60187
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60129
-   }
-  ],
-  "IsNotable": true
- },
- {
-  "_name": "LifeSkill 64",
-  "_pathid": 60213,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5924
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   15000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60188
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60152
-   }
-  ],
-  "IsNotable": true
- },
- {
-  "_name": "LifeSkill 65",
-  "_pathid": 60214,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5658
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   50000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60189
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60145
-   }
-  ],
-  "IsNotable": true
- },
- {
-  "_name": "LifeSkill 66",
-  "_pathid": 60215,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5457
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   15000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60191
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60141
-   }
-  ],
-  "IsNotable": true
- },
- {
-  "_name": "LifeSkill 67",
-  "_pathid": 60216,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5783
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   15000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60192
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60121
-   }
-  ],
-  "IsNotable": true
- },
- {
-  "_name": "LifeSkill 68",
-  "_pathid": 60217,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5348
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   25000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60194
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60118
-   }
-  ],
-  "IsNotable": true
- },
- {
-  "_name": "LifeSkill 69",
-  "_pathid": 60218,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5924
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   15000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60196
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60152
-   }
-  ],
-  "IsNotable": true
- },
- {
-  "_name": "LifeSkill 7",
-  "_pathid": 60219,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5348
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   500
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60164
-  },
-  "IsLockedInDemo": false,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60130
-   }
-  ],
-  "IsNotable": false
- },
- {
-  "_name": "LifeSkill 70",
-  "_pathid": 60220,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5924
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   15000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60199
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60152
-   }
-  ],
-  "IsNotable": true
- },
- {
-  "_name": "LifeSkill 71",
-  "_pathid": 60221,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5522
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   15000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60201
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60146
-   }
-  ],
-  "IsNotable": true
- },
- {
-  "_name": "LifeSkill 72",
-  "_pathid": 60222,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5671
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   15000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60203
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60129
-   }
-  ],
-  "IsNotable": true
- },
- {
-  "_name": "LifeSkill 73",
-  "_pathid": 60223,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5687
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   100000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60204
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60150
-   }
-  ],
-  "IsNotable": true
- },
- {
-  "_name": "LifeSkill 74",
-  "_pathid": 60224,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5849
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   15000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60209
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60144
-   }
-  ],
-  "IsNotable": true
- },
- {
-  "_name": "LifeSkill 75",
-  "_pathid": 60225,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5791
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   15000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60210
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60143
-   }
-  ],
-  "IsNotable": true
- },
- {
-  "_name": "LifeSkill 76",
-  "_pathid": 60226,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5687
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   54000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60193
-  },
-  "IsLockedInDemo": true,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60150
-   }
-  ],
-  "IsNotable": true
- },
- {
-  "_name": "LifeSkill 77",
-  "_pathid": 60227,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5924
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   100000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60205
-  },
-  "IsLockedInDemo": false,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60152
-   }
-  ],
-  "IsNotable": true
- },
- {
-  "_name": "LifeSkill 78",
-  "_pathid": 60228,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5442
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   25000
-  ],
-  "Prerequisite": {
-   "fileID": 0,
-   "pathID": 60200
-  },
-  "IsLockedInDemo": false,
-  "Effects": [
-   {
-    "fileID": 0,
-    "pathID": 60151
-   }
-  ],
-  "IsNotable": false
- },
- {
-  "_name": "LifeSkill 79",
-  "_pathid": 60229,
-  "_file": "sharedassets0.assets",
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5812
-  },
-  "MaxLevel": 1,
-  "GoldCosts": [
-   100000
   ],
   "Prerequisite": {
    "fileID": 0,
@@ -1919,18 +69,1868 @@
   "Effects": [
    {
     "fileID": 0,
-    "pathID": 60149
+    "pathID": 60177
+   }
+  ],
+  "IsNotable": false
+ },
+ {
+  "_name": "LifeSkill 12",
+  "_pathid": 60209,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5462
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   2500
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60228
+  },
+  "IsLockedInDemo": false,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60201
+   }
+  ],
+  "IsNotable": false
+ },
+ {
+  "_name": "LifeSkill 13",
+  "_pathid": 60210,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5708
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   20000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60261
+  },
+  "IsLockedInDemo": false,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60203
+   }
+  ],
+  "IsNotable": false
+ },
+ {
+  "_name": "LifeSkill 14",
+  "_pathid": 60211,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5871
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   6000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60250
+  },
+  "IsLockedInDemo": false,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60188
+   }
+  ],
+  "IsNotable": false
+ },
+ {
+  "_name": "LifeSkill 15",
+  "_pathid": 60212,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5812
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   6000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60250
+  },
+  "IsLockedInDemo": false,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60187
+   }
+  ],
+  "IsNotable": false
+ },
+ {
+  "_name": "LifeSkill 16",
+  "_pathid": 60213,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5692
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   6000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60250
+  },
+  "IsLockedInDemo": false,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60186
+   }
+  ],
+  "IsNotable": false
+ },
+ {
+  "_name": "LifeSkill 17",
+  "_pathid": 60214,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5543
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   30000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60210
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60199
+   }
+  ],
+  "IsNotable": false
+ },
+ {
+  "_name": "LifeSkill 18",
+  "_pathid": 60215,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5543
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   20000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60210
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60190
+   }
+  ],
+  "IsNotable": false
+ },
+ {
+  "_name": "LifeSkill 19",
+  "_pathid": 60216,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5812
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   20000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60210
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60187
+   }
+  ],
+  "IsNotable": false
+ },
+ {
+  "_name": "LifeSkill 2",
+  "_pathid": 60217,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5812
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   150
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60290
+  },
+  "IsLockedInDemo": false,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60187
+   }
+  ],
+  "IsNotable": false
+ },
+ {
+  "_name": "LifeSkill 20",
+  "_pathid": 60218,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5692
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   6000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60209
+  },
+  "IsLockedInDemo": false,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60186
+   }
+  ],
+  "IsNotable": false
+ },
+ {
+  "_name": "LifeSkill 21",
+  "_pathid": 60219,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5871
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   6000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60209
+  },
+  "IsLockedInDemo": false,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60188
+   }
+  ],
+  "IsNotable": false
+ },
+ {
+  "_name": "LifeSkill 22",
+  "_pathid": 60220,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5367
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   6000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60209
+  },
+  "IsLockedInDemo": false,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60183
+   }
+  ],
+  "IsNotable": false
+ },
+ {
+  "_name": "LifeSkill 23",
+  "_pathid": 60221,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5543
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   6000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60208
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60190
+   }
+  ],
+  "IsNotable": false
+ },
+ {
+  "_name": "LifeSkill 24",
+  "_pathid": 60222,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5812
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   6000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60208
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60187
+   }
+  ],
+  "IsNotable": false
+ },
+ {
+  "_name": "LifeSkill 25",
+  "_pathid": 60223,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5324
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   6000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60208
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60175
+   }
+  ],
+  "IsNotable": false
+ },
+ {
+  "_name": "LifeSkill 26",
+  "_pathid": 60224,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5812
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   20000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60272
+  },
+  "IsLockedInDemo": false,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60196
+   }
+  ],
+  "IsNotable": false
+ },
+ {
+  "_name": "LifeSkill 27",
+  "_pathid": 60225,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5692
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   6000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60272
+  },
+  "IsLockedInDemo": false,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60186
+   }
+  ],
+  "IsNotable": false
+ },
+ {
+  "_name": "LifeSkill 28",
+  "_pathid": 60226,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5949
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   6000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60272
+  },
+  "IsLockedInDemo": false,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60195
+   }
+  ],
+  "IsNotable": false
+ },
+ {
+  "_name": "LifeSkill 29",
+  "_pathid": 60227,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5572
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   5000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60283
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60184
+   }
+  ],
+  "IsNotable": false
+ },
+ {
+  "_name": "LifeSkill 3",
+  "_pathid": 60228,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5324
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   150
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60290
+  },
+  "IsLockedInDemo": false,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60175
+   }
+  ],
+  "IsNotable": false
+ },
+ {
+  "_name": "LifeSkill 30",
+  "_pathid": 60229,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5804
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   5000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60283
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60172
+   }
+  ],
+  "IsNotable": false
+ },
+ {
+  "_name": "LifeSkill 31",
+  "_pathid": 60230,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5476
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   6000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60283
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60192
+   }
+  ],
+  "IsNotable": false
+ },
+ {
+  "_name": "LifeSkill 32",
+  "_pathid": 60231,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5871
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   6000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60207
+  },
+  "IsLockedInDemo": false,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60188
+   }
+  ],
+  "IsNotable": false
+ },
+ {
+  "_name": "LifeSkill 33",
+  "_pathid": 60232,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5679
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   20000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60207
+  },
+  "IsLockedInDemo": false,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60189
+   }
+  ],
+  "IsNotable": false
+ },
+ {
+  "_name": "LifeSkill 34",
+  "_pathid": 60233,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5949
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   6000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60207
+  },
+  "IsLockedInDemo": false,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60195
+   }
+  ],
+  "IsNotable": false
+ },
+ {
+  "_name": "LifeSkill 35",
+  "_pathid": 60234,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5668
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   6000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60289
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60178
+   }
+  ],
+  "IsNotable": false
+ },
+ {
+  "_name": "LifeSkill 36",
+  "_pathid": 60235,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5812
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   6000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60289
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60187
+   }
+  ],
+  "IsNotable": false
+ },
+ {
+  "_name": "LifeSkill 37",
+  "_pathid": 60236,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5367
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   6000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60289
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60183
+   }
+  ],
+  "IsNotable": false
+ },
+ {
+  "_name": "LifeSkill 38",
+  "_pathid": 60237,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5367
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   8000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60236
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60183
+   }
+  ],
+  "IsNotable": false
+ },
+ {
+  "_name": "LifeSkill 39",
+  "_pathid": 60238,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5543
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   8000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60235
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60199
+   }
+  ],
+  "IsNotable": true
+ },
+ {
+  "_name": "LifeSkill 4",
+  "_pathid": 60239,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5949
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   150
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60290
+  },
+  "IsLockedInDemo": false,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60195
+   }
+  ],
+  "IsNotable": false
+ },
+ {
+  "_name": "LifeSkill 40",
+  "_pathid": 60240,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5692
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   8000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60234
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60186
+   }
+  ],
+  "IsNotable": false
+ },
+ {
+  "_name": "LifeSkill 41",
+  "_pathid": 60241,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5949
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   8000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60233
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60195
+   }
+  ],
+  "IsNotable": false
+ },
+ {
+  "_name": "LifeSkill 42",
+  "_pathid": 60242,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5679
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   35000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60232
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60189
+   }
+  ],
+  "IsNotable": false
+ },
+ {
+  "_name": "LifeSkill 43",
+  "_pathid": 60243,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5871
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   8000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60231
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60197
+   }
+  ],
+  "IsNotable": true
+ },
+ {
+  "_name": "LifeSkill 44",
+  "_pathid": 60244,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5476
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   8000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60230
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60193
+   }
+  ],
+  "IsNotable": false
+ },
+ {
+  "_name": "LifeSkill 45",
+  "_pathid": 60245,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5804
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   8000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60229
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60173
+   }
+  ],
+  "IsNotable": false
+ },
+ {
+  "_name": "LifeSkill 46",
+  "_pathid": 60246,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5572
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   8000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60227
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60185
+   }
+  ],
+  "IsNotable": true
+ },
+ {
+  "_name": "LifeSkill 47",
+  "_pathid": 60247,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5367
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   20000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60224
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60183
+   }
+  ],
+  "IsNotable": false
+ },
+ {
+  "_name": "LifeSkill 48",
+  "_pathid": 60248,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5692
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   8000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60225
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60182
+   }
+  ],
+  "IsNotable": true
+ },
+ {
+  "_name": "LifeSkill 49",
+  "_pathid": 60249,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5949
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   8000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60226
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60195
+   }
+  ],
+  "IsNotable": false
+ },
+ {
+  "_name": "LifeSkill 5",
+  "_pathid": 60250,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5573
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   750
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60239
+  },
+  "IsLockedInDemo": false,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60181
+   }
+  ],
+  "IsNotable": false
+ },
+ {
+  "_name": "LifeSkill 50",
+  "_pathid": 60251,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5324
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   8000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60223
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60200
+   }
+  ],
+  "IsNotable": true
+ },
+ {
+  "_name": "LifeSkill 51",
+  "_pathid": 60252,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5949
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   8000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60222
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60195
+   }
+  ],
+  "IsNotable": false
+ },
+ {
+  "_name": "LifeSkill 52",
+  "_pathid": 60253,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5543
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   8000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60221
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60190
+   }
+  ],
+  "IsNotable": false
+ },
+ {
+  "_name": "LifeSkill 53",
+  "_pathid": 60254,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5871
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   8000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60219
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60197
+   }
+  ],
+  "IsNotable": true
+ },
+ {
+  "_name": "LifeSkill 54",
+  "_pathid": 60255,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5367
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   8000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60220
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60171
+   }
+  ],
+  "IsNotable": true
+ },
+ {
+  "_name": "LifeSkill 55",
+  "_pathid": 60256,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5871
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   8000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60218
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60188
+   }
+  ],
+  "IsNotable": false
+ },
+ {
+  "_name": "LifeSkill 56",
+  "_pathid": 60257,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5324
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   25000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60216
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60175
+   }
+  ],
+  "IsNotable": false
+ },
+ {
+  "_name": "LifeSkill 57",
+  "_pathid": 60258,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5543
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   25000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60215
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60190
+   }
+  ],
+  "IsNotable": false
+ },
+ {
+  "_name": "LifeSkill 58",
+  "_pathid": 60259,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5619
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   35000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60237
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60179
+   }
+  ],
+  "IsNotable": true
+ },
+ {
+  "_name": "LifeSkill 59",
+  "_pathid": 60260,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5692
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   8000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60213
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60182
+   }
+  ],
+  "IsNotable": true
+ },
+ {
+  "_name": "LifeSkill 6",
+  "_pathid": 60261,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5367
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   500
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60239
+  },
+  "IsLockedInDemo": false,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60183
+   }
+  ],
+  "IsNotable": false
+ },
+ {
+  "_name": "LifeSkill 60",
+  "_pathid": 60262,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5871
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   8000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60211
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60188
+   }
+  ],
+  "IsNotable": false
+ },
+ {
+  "_name": "LifeSkill 61",
+  "_pathid": 60263,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5812
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   8000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60212
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60187
+   }
+  ],
+  "IsNotable": false
+ },
+ {
+  "_name": "LifeSkill 62",
+  "_pathid": 60264,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5871
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   15000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60214
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60197
+   }
+  ],
+  "IsNotable": true
+ },
+ {
+  "_name": "LifeSkill 63",
+  "_pathid": 60265,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5692
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   15000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60240
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60182
+   }
+  ],
+  "IsNotable": true
+ },
+ {
+  "_name": "LifeSkill 64",
+  "_pathid": 60266,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5949
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   15000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60241
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60205
+   }
+  ],
+  "IsNotable": true
+ },
+ {
+  "_name": "LifeSkill 65",
+  "_pathid": 60267,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5679
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   50000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60242
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60198
+   }
+  ],
+  "IsNotable": true
+ },
+ {
+  "_name": "LifeSkill 66",
+  "_pathid": 60268,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5476
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   15000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60244
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60194
+   }
+  ],
+  "IsNotable": true
+ },
+ {
+  "_name": "LifeSkill 67",
+  "_pathid": 60269,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5804
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   15000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60245
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60174
+   }
+  ],
+  "IsNotable": true
+ },
+ {
+  "_name": "LifeSkill 68",
+  "_pathid": 60270,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5367
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   25000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60247
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60171
+   }
+  ],
+  "IsNotable": true
+ },
+ {
+  "_name": "LifeSkill 69",
+  "_pathid": 60271,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5949
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   15000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60249
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60205
+   }
+  ],
+  "IsNotable": true
+ },
+ {
+  "_name": "LifeSkill 7",
+  "_pathid": 60272,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5367
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   500
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60217
+  },
+  "IsLockedInDemo": false,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60183
+   }
+  ],
+  "IsNotable": false
+ },
+ {
+  "_name": "LifeSkill 70",
+  "_pathid": 60273,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5949
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   15000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60252
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60205
+   }
+  ],
+  "IsNotable": true
+ },
+ {
+  "_name": "LifeSkill 71",
+  "_pathid": 60274,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5543
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   15000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60254
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60199
+   }
+  ],
+  "IsNotable": true
+ },
+ {
+  "_name": "LifeSkill 72",
+  "_pathid": 60275,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5692
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   15000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60256
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60182
+   }
+  ],
+  "IsNotable": true
+ },
+ {
+  "_name": "LifeSkill 73",
+  "_pathid": 60276,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5708
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   100000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60257
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60203
+   }
+  ],
+  "IsNotable": true
+ },
+ {
+  "_name": "LifeSkill 74",
+  "_pathid": 60277,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5871
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   15000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60262
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60197
+   }
+  ],
+  "IsNotable": true
+ },
+ {
+  "_name": "LifeSkill 75",
+  "_pathid": 60278,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5812
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   15000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60263
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60196
+   }
+  ],
+  "IsNotable": true
+ },
+ {
+  "_name": "LifeSkill 76",
+  "_pathid": 60279,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5708
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   54000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60246
+  },
+  "IsLockedInDemo": true,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60203
+   }
+  ],
+  "IsNotable": true
+ },
+ {
+  "_name": "LifeSkill 77",
+  "_pathid": 60280,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5949
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   100000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60258
+  },
+  "IsLockedInDemo": false,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60205
+   }
+  ],
+  "IsNotable": true
+ },
+ {
+  "_name": "LifeSkill 78",
+  "_pathid": 60281,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5461
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   25000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60253
+  },
+  "IsLockedInDemo": false,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60204
+   }
+  ],
+  "IsNotable": false
+ },
+ {
+  "_name": "LifeSkill 79",
+  "_pathid": 60282,
+  "_file": "sharedassets0.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5833
+  },
+  "MaxLevel": 1,
+  "GoldCosts": [
+   100000
+  ],
+  "Prerequisite": {
+   "fileID": 0,
+   "pathID": 60281
+  },
+  "IsLockedInDemo": false,
+  "Effects": [
+   {
+    "fileID": 0,
+    "pathID": 60202
    }
   ],
   "IsNotable": true
  },
  {
   "_name": "LifeSkill 8",
-  "_pathid": 60230,
+  "_pathid": 60283,
   "_file": "sharedassets0.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 5457
+   "pathID": 5476
   },
   "MaxLevel": 1,
   "GoldCosts": [
@@ -1938,24 +1938,24 @@
   ],
   "Prerequisite": {
    "fileID": 0,
-   "pathID": 60164
+   "pathID": 60217
   },
   "IsLockedInDemo": true,
   "Effects": [
    {
     "fileID": 0,
-    "pathID": 60138
+    "pathID": 60191
    }
   ],
   "IsNotable": false
  },
  {
   "_name": "LifeSkill 80",
-  "_pathid": 60231,
+  "_pathid": 60284,
   "_file": "sharedassets0.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 5924
+   "pathID": 5949
   },
   "MaxLevel": 1,
   "GoldCosts": [
@@ -1963,24 +1963,24 @@
   ],
   "Prerequisite": {
    "fileID": 0,
-   "pathID": 60229
+   "pathID": 60282
   },
   "IsLockedInDemo": false,
   "Effects": [
    {
     "fileID": 0,
-    "pathID": 60152
+    "pathID": 60205
    }
   ],
   "IsNotable": true
  },
  {
   "_name": "LifeSkill 81",
-  "_pathid": 60232,
+  "_pathid": 60285,
   "_file": "sharedassets0.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 5671
+   "pathID": 5692
   },
   "MaxLevel": 1,
   "GoldCosts": [
@@ -1988,24 +1988,24 @@
   ],
   "Prerequisite": {
    "fileID": 0,
-   "pathID": 60229
+   "pathID": 60282
   },
   "IsLockedInDemo": false,
   "Effects": [
    {
     "fileID": 0,
-    "pathID": 60129
+    "pathID": 60182
    }
   ],
   "IsNotable": true
  },
  {
   "_name": "LifeSkill 82",
-  "_pathid": 60233,
+  "_pathid": 60286,
   "_file": "sharedassets0.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 5348
+   "pathID": 5367
   },
   "MaxLevel": 1,
   "GoldCosts": [
@@ -2013,24 +2013,24 @@
   ],
   "Prerequisite": {
    "fileID": 0,
-   "pathID": 60229
+   "pathID": 60282
   },
   "IsLockedInDemo": false,
   "Effects": [
    {
     "fileID": 0,
-    "pathID": 60118
+    "pathID": 60171
    }
   ],
   "IsNotable": true
  },
  {
   "_name": "LifeSkill 83",
-  "_pathid": 60234,
+  "_pathid": 60287,
   "_file": "sharedassets0.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 5924
+   "pathID": 5949
   },
   "MaxLevel": 1,
   "GoldCosts": [
@@ -2038,24 +2038,24 @@
   ],
   "Prerequisite": {
    "fileID": 0,
-   "pathID": 60223
+   "pathID": 60276
   },
   "IsLockedInDemo": false,
   "Effects": [
    {
     "fileID": 0,
-    "pathID": 60152
+    "pathID": 60205
    }
   ],
   "IsNotable": true
  },
  {
   "_name": "LifeSkill 84",
-  "_pathid": 60235,
+  "_pathid": 60288,
   "_file": "sharedassets0.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 5671
+   "pathID": 5692
   },
   "MaxLevel": 1,
   "GoldCosts": [
@@ -2063,24 +2063,24 @@
   ],
   "Prerequisite": {
    "fileID": 0,
-   "pathID": 60227
+   "pathID": 60280
   },
   "IsLockedInDemo": false,
   "Effects": [
    {
     "fileID": 0,
-    "pathID": 60129
+    "pathID": 60182
    }
   ],
   "IsNotable": true
  },
  {
   "_name": "LifeSkill 9",
-  "_pathid": 60236,
+  "_pathid": 60289,
   "_file": "sharedassets0.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 5598
+   "pathID": 5619
   },
   "MaxLevel": 1,
   "GoldCosts": [
@@ -2088,24 +2088,24 @@
   ],
   "Prerequisite": {
    "fileID": 0,
-   "pathID": 60153
+   "pathID": 60206
   },
   "IsLockedInDemo": false,
   "Effects": [
    {
     "fileID": 0,
-    "pathID": 60127
+    "pathID": 60180
    }
   ],
   "IsNotable": false
  },
  {
   "_name": "LifeSkill",
-  "_pathid": 60237,
+  "_pathid": 60290,
   "_file": "sharedassets0.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 5219
+   "pathID": 5239
   },
   "MaxLevel": 1,
   "GoldCosts": [
@@ -2116,7 +2116,7 @@
   "Effects": [
    {
     "fileID": 0,
-    "pathID": 60123
+    "pathID": 60176
    }
   ],
   "IsNotable": false

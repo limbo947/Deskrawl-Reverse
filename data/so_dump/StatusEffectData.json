@@ -1,7 +1,67 @@
 [
  {
+  "_name": "Brittle",
+  "_pathid": 5385,
+  "_file": "resources.assets",
+  "_managedRefs": {
+   "__header__": [
+    2,
+    0
+   ],
+   "__items__": []
+  },
+  "Icon": {
+   "fileID": 2,
+   "pathID": 5851
+  },
+  "ShowInTooltipExplanation": true,
+  "Stackable": true,
+  "MaxStacks": 100,
+  "Duration": {
+   "Base": {
+    "__type__": "ObscuredFloat",
+    "hash": 1787276257,
+    "hiddenValue": 865844944,
+    "cryptoKey": 1937677264,
+    "value": 6.0,
+    "__tail__": "00000000000000000000000000000000"
+   },
+   "PerLevel": {
+    "__type__": "ObscuredFloat",
+    "hash": 723851361,
+    "hiddenValue": 1757781941,
+    "cryptoKey": 1755301301,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
+   }
+  },
+  "DurationToken": {
+   "Name": "",
+   "Format": "0.#",
+   "Suffix": "s",
+   "Highlight": true
+  },
+  "TickRate": 0.0,
+  "PersistAcrossSessions": false,
+  "Behaviors": [],
+  "ScaleUpTarget": false,
+  "ScalePerStack": 0.20000000298023224,
+  "ScaleLerpTime": 0.25,
+  "AnimatorBool": "",
+  "PersistentVFXPrefab": null,
+  "PersistentVFXAnchor": 0,
+  "ApplyColorTint": false,
+  "TintColor": [
+   1.0,
+   1.0,
+   1.0,
+   1.0
+  ],
+  "HpOrbMaterial": null
+ },
+ {
   "_name": "CrowAttack",
-  "_pathid": 5245,
+  "_pathid": 5386,
   "_file": "resources.assets",
   "_managedRefs": {
    "__header__": [
@@ -29,7 +89,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 876
+   "pathID": 930
   },
   "ShowInTooltipExplanation": true,
   "Stackable": false,
@@ -71,7 +131,7 @@
   "AnimatorBool": "",
   "PersistentVFXPrefab": {
    "fileID": 0,
-   "pathID": 2420
+   "pathID": 2489
   },
   "PersistentVFXAnchor": 1,
   "ApplyColorTint": false,
@@ -85,7 +145,7 @@
  },
  {
   "_name": "DeathMark",
-  "_pathid": 5246,
+  "_pathid": 5387,
   "_file": "resources.assets",
   "_managedRefs": {
    "__header__": [
@@ -110,7 +170,7 @@
   },
   "Icon": {
    "fileID": 2,
-   "pathID": 5556
+   "pathID": 5577
   },
   "ShowInTooltipExplanation": true,
   "Stackable": false,
@@ -152,7 +212,7 @@
   "AnimatorBool": "",
   "PersistentVFXPrefab": {
    "fileID": 0,
-   "pathID": 2204
+   "pathID": 2272
   },
   "PersistentVFXAnchor": 2,
   "ApplyColorTint": false,
@@ -166,7 +226,7 @@
  },
  {
   "_name": "DivineSword1_HarvestOfSouls",
-  "_pathid": 5247,
+  "_pathid": 5388,
   "_file": "resources.assets",
   "_managedRefs": {
    "__header__": [
@@ -177,7 +237,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 798
+   "pathID": 848
   },
   "ShowInTooltipExplanation": false,
   "Stackable": true,
@@ -226,7 +286,7 @@
  },
  {
   "_name": "Focus",
-  "_pathid": 5248,
+  "_pathid": 5389,
   "_file": "resources.assets",
   "_managedRefs": {
    "__header__": [
@@ -237,7 +297,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 943
+   "pathID": 1003
   },
   "ShowInTooltipExplanation": true,
   "Stackable": true,
@@ -286,7 +346,7 @@
  },
  {
   "_name": "HunterSetRune3_VenomSlow",
-  "_pathid": 5249,
+  "_pathid": 5390,
   "_file": "resources.assets",
   "_managedRefs": {
    "__header__": [
@@ -362,7 +422,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 702
+   "pathID": 735
   },
   "ShowInTooltipExplanation": true,
   "Stackable": false,
@@ -414,8 +474,109 @@
   "HpOrbMaterial": null
  },
  {
+  "_name": "KillingFocus",
+  "_pathid": 5391,
+  "_file": "resources.assets",
+  "_managedRefs": {
+   "__header__": [
+    2,
+    1
+   ],
+   "__items__": [
+    {
+     "__hash__": "950080299dfee829",
+     "__type__": "StatModifierBehavior",
+     "__asm__": "Assembly-CSharp",
+     "Modifiers": [
+      {
+       "Stat": 23,
+       "Type": 0,
+       "Value": {
+        "Base": {
+         "__type__": "ObscuredFloat",
+         "hash": 1807961569,
+         "hiddenValue": 742759674,
+         "cryptoKey": 1826375162,
+         "value": 3.0,
+         "__tail__": "00000000000000000000000000000000"
+        },
+        "PerLevel": {
+         "__type__": "ObscuredFloat",
+         "hash": 723851361,
+         "hiddenValue": 1764501405,
+         "cryptoKey": 1764175005,
+         "value": 0.0,
+         "__tail__": "00000000000000000000000000000000"
+        }
+       },
+       "Token": {
+        "Name": "value",
+        "Format": "0%",
+        "Suffix": "",
+        "Highlight": true
+       }
+      }
+     ],
+     "__end__": 397
+    }
+   ]
+  },
+  "Icon": {
+   "fileID": 0,
+   "pathID": 831
+  },
+  "ShowInTooltipExplanation": true,
+  "Stackable": false,
+  "MaxStacks": 1,
+  "Duration": {
+   "Base": {
+    "__type__": "ObscuredFloat",
+    "hash": 1807961569,
+    "hiddenValue": 742759674,
+    "cryptoKey": 1826375162,
+    "value": 3.0,
+    "__tail__": "00000000000000000000000000000000"
+   },
+   "PerLevel": {
+    "__type__": "ObscuredFloat",
+    "hash": 723851361,
+    "hiddenValue": 1607912192,
+    "cryptoKey": 1607194112,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
+   }
+  },
+  "DurationToken": {
+   "Name": "duration",
+   "Format": "0.#",
+   "Suffix": "s",
+   "Highlight": true
+  },
+  "TickRate": 0.0,
+  "PersistAcrossSessions": false,
+  "Behaviors": [
+   {
+    "__managed_ref_hash__": "950080299dfee829"
+   }
+  ],
+  "ScaleUpTarget": false,
+  "ScalePerStack": 0.20000000298023224,
+  "ScaleLerpTime": 0.25,
+  "AnimatorBool": "",
+  "PersistentVFXPrefab": null,
+  "PersistentVFXAnchor": 0,
+  "ApplyColorTint": false,
+  "TintColor": [
+   1.0,
+   1.0,
+   1.0,
+   1.0
+  ],
+  "HpOrbMaterial": null
+ },
+ {
   "_name": "LegendaryBelt3",
-  "_pathid": 5250,
+  "_pathid": 5392,
   "_file": "resources.assets",
   "_managedRefs": {
    "__header__": [
@@ -463,7 +624,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 783
+   "pathID": 829
   },
   "ShowInTooltipExplanation": false,
   "Stackable": false,
@@ -516,7 +677,7 @@
  },
  {
   "_name": "LegendaryBoots1",
-  "_pathid": 5251,
+  "_pathid": 5393,
   "_file": "resources.assets",
   "_managedRefs": {
    "__header__": [
@@ -564,7 +725,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 749
+   "pathID": 788
   },
   "ShowInTooltipExplanation": false,
   "Stackable": false,
@@ -617,7 +778,7 @@
  },
  {
   "_name": "LegendaryChest3",
-  "_pathid": 5252,
+  "_pathid": 5394,
   "_file": "resources.assets",
   "_managedRefs": {
    "__header__": [
@@ -647,6 +808,24 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "MaxManaPercent": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 1385556764,
+       "cryptoKey": 1391170844,
+       "value": 0.0,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 2071128156,
+       "cryptoKey": 2078831196,
+       "value": 0.0,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
      "AddOnReapply": false,
      "MaxHPPercentToken": {
       "Name": "shield",
@@ -654,13 +833,19 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 389
+     "MaxManaPercentToken": {
+      "Name": "",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     },
+     "__end__": 465
     }
    ]
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 959
+   "pathID": 1022
   },
   "ShowInTooltipExplanation": true,
   "Stackable": false,
@@ -702,7 +887,7 @@
   "AnimatorBool": "",
   "PersistentVFXPrefab": {
    "fileID": 0,
-   "pathID": 1276
+   "pathID": 1349
   },
   "PersistentVFXAnchor": 0,
   "ApplyColorTint": false,
@@ -715,8 +900,68 @@
   "HpOrbMaterial": null
  },
  {
+  "_name": "LegendaryGloves8Status",
+  "_pathid": 5397,
+  "_file": "resources.assets",
+  "_managedRefs": {
+   "__header__": [
+    2,
+    0
+   ],
+   "__items__": []
+  },
+  "Icon": {
+   "fileID": 0,
+   "pathID": 964
+  },
+  "ShowInTooltipExplanation": false,
+  "Stackable": true,
+  "MaxStacks": 20,
+  "Duration": {
+   "Base": {
+    "__type__": "ObscuredFloat",
+    "hash": 1782053473,
+    "hiddenValue": 973892752,
+    "cryptoKey": 2060192912,
+    "value": 5.0,
+    "__tail__": "00000000000000000000000000000000"
+   },
+   "PerLevel": {
+    "__type__": "ObscuredFloat",
+    "hash": 723851361,
+    "hiddenValue": 1129425317,
+    "cryptoKey": 1135169957,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
+   }
+  },
+  "DurationToken": {
+   "Name": "duration",
+   "Format": "0.#",
+   "Suffix": "s",
+   "Highlight": true
+  },
+  "TickRate": 0.0,
+  "PersistAcrossSessions": false,
+  "Behaviors": [],
+  "ScaleUpTarget": false,
+  "ScalePerStack": 0.20000000298023224,
+  "ScaleLerpTime": 0.25,
+  "AnimatorBool": "",
+  "PersistentVFXPrefab": null,
+  "PersistentVFXAnchor": 1,
+  "ApplyColorTint": false,
+  "TintColor": [
+   1.0,
+   1.0,
+   1.0,
+   1.0
+  ],
+  "HpOrbMaterial": null
+ },
+ {
   "_name": "LegendaryHelm1",
-  "_pathid": 5255,
+  "_pathid": 5398,
   "_file": "resources.assets",
   "_managedRefs": {
    "__header__": [
@@ -764,7 +1009,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 793
+   "pathID": 843
   },
   "ShowInTooltipExplanation": false,
   "Stackable": false,
@@ -806,7 +1051,7 @@
   "AnimatorBool": "",
   "PersistentVFXPrefab": {
    "fileID": 2,
-   "pathID": 13689
+   "pathID": 13714
   },
   "PersistentVFXAnchor": 0,
   "ApplyColorTint": false,
@@ -820,7 +1065,7 @@
  },
  {
   "_name": "LegendaryPants3",
-  "_pathid": 5256,
+  "_pathid": 5399,
   "_file": "resources.assets",
   "_managedRefs": {
    "__header__": [
@@ -868,7 +1113,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 958
+   "pathID": 1021
   },
   "ShowInTooltipExplanation": false,
   "Stackable": false,
@@ -921,7 +1166,7 @@
  },
  {
   "_name": "LegendaryRing2",
-  "_pathid": 5257,
+  "_pathid": 5400,
   "_file": "resources.assets",
   "_managedRefs": {
    "__header__": [
@@ -969,7 +1214,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 778
+   "pathID": 823
   },
   "ShowInTooltipExplanation": false,
   "Stackable": true,
@@ -1022,7 +1267,7 @@
  },
  {
   "_name": "LegendaryShoulder2",
-  "_pathid": 5258,
+  "_pathid": 5401,
   "_file": "resources.assets",
   "_managedRefs": {
    "__header__": [
@@ -1126,7 +1371,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 748
+   "pathID": 787
   },
   "ShowInTooltipExplanation": false,
   "Stackable": true,
@@ -1178,8 +1423,82 @@
   "HpOrbMaterial": null
  },
  {
+  "_name": "FrozenLong",
+  "_pathid": 5402,
+  "_file": "resources.assets",
+  "_managedRefs": {
+   "__header__": [
+    2,
+    1
+   ],
+   "__items__": [
+    {
+     "__hash__": "9a002870135d4954",
+     "__type__": "ImmobilizedBehavior",
+     "__asm__": "Assembly-CSharp",
+     "__end__": 304
+    }
+   ]
+  },
+  "Icon": {
+   "fileID": 2,
+   "pathID": 5602
+  },
+  "ShowInTooltipExplanation": true,
+  "Stackable": false,
+  "MaxStacks": 1,
+  "Duration": {
+   "Base": {
+    "__type__": "ObscuredFloat",
+    "hash": 1782053473,
+    "hiddenValue": 402105236,
+    "cryptoKey": 1459877780,
+    "value": 5.0,
+    "__tail__": "00000000000000000000000000000000"
+   },
+   "PerLevel": {
+    "__type__": "ObscuredFloat",
+    "hash": 723851361,
+    "hiddenValue": 1439674059,
+    "cryptoKey": 1437519819,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
+   }
+  },
+  "DurationToken": {
+   "Name": "duration",
+   "Format": "0.#",
+   "Suffix": "s",
+   "Highlight": true
+  },
+  "TickRate": 1.0,
+  "PersistAcrossSessions": false,
+  "Behaviors": [
+   {
+    "__managed_ref_hash__": "9a002870135d4954"
+   }
+  ],
+  "ScaleUpTarget": false,
+  "ScalePerStack": 0.20000000298023224,
+  "ScaleLerpTime": 0.25,
+  "AnimatorBool": "",
+  "PersistentVFXPrefab": {
+   "fileID": 2,
+   "pathID": 5987
+  },
+  "PersistentVFXAnchor": 0,
+  "ApplyColorTint": false,
+  "TintColor": [
+   0.37061989307403564,
+   0.7318117022514343,
+   1.0,
+   1.0
+  ],
+  "HpOrbMaterial": null
+ },
+ {
   "_name": "MonkSpecial2StormStatus",
-  "_pathid": 5259,
+  "_pathid": 5403,
   "_file": "resources.assets",
   "_managedRefs": {
    "__header__": [
@@ -1199,12 +1518,12 @@
      "Radius": 4.0,
      "PulseVFXPrefab": {
       "fileID": 0,
-      "pathID": 1277
+      "pathID": 1350
      },
      "PulseVFXLifetime": 1.0,
      "PulseSFX": {
       "fileID": 2,
-      "pathID": 4778
+      "pathID": 4796
      },
      "PulseSFXVolume": [
       1.0,
@@ -1271,7 +1590,7 @@
   },
   "Icon": {
    "fileID": 2,
-   "pathID": 5359
+   "pathID": 5378
   },
   "ShowInTooltipExplanation": false,
   "Stackable": false,
@@ -1313,7 +1632,7 @@
   "AnimatorBool": "",
   "PersistentVFXPrefab": {
    "fileID": 2,
-   "pathID": 7907
+   "pathID": 7930
   },
   "PersistentVFXAnchor": 0,
   "ApplyColorTint": false,
@@ -1326,8 +1645,103 @@
   "HpOrbMaterial": null
  },
  {
+  "_name": "NumbingCold",
+  "_pathid": 5404,
+  "_file": "resources.assets",
+  "_managedRefs": {
+   "__header__": [
+    2,
+    1
+   ],
+   "__items__": [
+    {
+     "__hash__": "880064e978fee829",
+     "__type__": "DamageDealtReductionBehavior",
+     "__asm__": "Assembly-CSharp",
+     "ReductionPercent": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": -628755087,
+       "hiddenValue": 1757885354,
+       "cryptoKey": 1454005808,
+       "value": 0.30000001192092896,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 1653104884,
+       "cryptoKey": 1650493684,
+       "value": 0.0,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "ReductionToken": {
+      "Name": "value",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     },
+     "__end__": 393
+    }
+   ]
+  },
+  "Icon": {
+   "fileID": 0,
+   "pathID": 749
+  },
+  "ShowInTooltipExplanation": true,
+  "Stackable": false,
+  "MaxStacks": 1,
+  "Duration": {
+   "Base": {
+    "__type__": "ObscuredFloat",
+    "hash": 1807961569,
+    "hiddenValue": 163330037,
+    "cryptoKey": 1232583925,
+    "value": 3.0,
+    "__tail__": "00000000000000000000000000000000"
+   },
+   "PerLevel": {
+    "__type__": "ObscuredFloat",
+    "hash": 723851361,
+    "hiddenValue": 1653104884,
+    "cryptoKey": 1650493684,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
+   }
+  },
+  "DurationToken": {
+   "Name": "duration",
+   "Format": "0.#",
+   "Suffix": "s",
+   "Highlight": true
+  },
+  "TickRate": 0.0,
+  "PersistAcrossSessions": false,
+  "Behaviors": [
+   {
+    "__managed_ref_hash__": "880064e978fee829"
+   }
+  ],
+  "ScaleUpTarget": false,
+  "ScalePerStack": 0.20000000298023224,
+  "ScaleLerpTime": 0.25,
+  "AnimatorBool": "",
+  "PersistentVFXPrefab": null,
+  "PersistentVFXAnchor": 1,
+  "ApplyColorTint": false,
+  "TintColor": [
+   0.37061989307403564,
+   0.7318117022514343,
+   1.0,
+   1.0
+  ],
+  "HpOrbMaterial": null
+ },
+ {
   "_name": "MonkTalent12",
-  "_pathid": 5260,
+  "_pathid": 5405,
   "_file": "resources.assets",
   "_managedRefs": {
    "__header__": [
@@ -1375,7 +1789,7 @@
   },
   "Icon": {
    "fileID": 2,
-   "pathID": 5743
+   "pathID": 5764
   },
   "ShowInTooltipExplanation": false,
   "Stackable": false,
@@ -1428,7 +1842,7 @@
  },
  {
   "_name": "WarriorTalent20",
-  "_pathid": 5261,
+  "_pathid": 5406,
   "_file": "resources.assets",
   "_managedRefs": {
    "__header__": [
@@ -1476,7 +1890,7 @@
   },
   "Icon": {
    "fileID": 2,
-   "pathID": 5806
+   "pathID": 5827
   },
   "ShowInTooltipExplanation": false,
   "Stackable": false,
@@ -1529,7 +1943,7 @@
  },
  {
   "_name": "WarriorCrescentMomentum",
-  "_pathid": 5262,
+  "_pathid": 5407,
   "_file": "resources.assets",
   "_managedRefs": {
    "__header__": [
@@ -1605,7 +2019,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 1005
+   "pathID": 1075
   },
   "ShowInTooltipExplanation": true,
   "Stackable": true,
@@ -1658,7 +2072,7 @@
  },
  {
   "_name": "WarriorFractured",
-  "_pathid": 5263,
+  "_pathid": 5408,
   "_file": "resources.assets",
   "_managedRefs": {
    "__header__": [
@@ -1669,7 +2083,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 989
+   "pathID": 1055
   },
   "ShowInTooltipExplanation": true,
   "Stackable": false,
@@ -1717,8 +2131,82 @@
   "HpOrbMaterial": null
  },
  {
+  "_name": "ArcaneGrip",
+  "_pathid": 60527,
+  "_file": "sharedassets0.assets",
+  "_managedRefs": {
+   "__header__": [
+    2,
+    1
+   ],
+   "__items__": [
+    {
+     "__hash__": "9a002870135d4954",
+     "__type__": "ImmobilizedBehavior",
+     "__asm__": "Assembly-CSharp",
+     "__end__": 304
+    }
+   ]
+  },
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5480
+  },
+  "ShowInTooltipExplanation": true,
+  "Stackable": false,
+  "MaxStacks": 1,
+  "Duration": {
+   "Base": {
+    "__type__": "ObscuredFloat",
+    "hash": 1782053473,
+    "hiddenValue": 611938630,
+    "cryptoKey": 1691449670,
+    "value": 5.0,
+    "__tail__": "00000000000000000000000000000000"
+   },
+   "PerLevel": {
+    "__type__": "ObscuredFloat",
+    "hash": 723851361,
+    "hiddenValue": 1439674059,
+    "cryptoKey": 1437519819,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
+   }
+  },
+  "DurationToken": {
+   "Name": "duration",
+   "Format": "0.#",
+   "Suffix": "s",
+   "Highlight": true
+  },
+  "TickRate": 1.0,
+  "PersistAcrossSessions": false,
+  "Behaviors": [
+   {
+    "__managed_ref_hash__": "9a002870135d4954"
+   }
+  ],
+  "ScaleUpTarget": false,
+  "ScalePerStack": 0.20000000298023224,
+  "ScaleLerpTime": 0.25,
+  "AnimatorBool": "",
+  "PersistentVFXPrefab": {
+   "fileID": 0,
+   "pathID": 26038
+  },
+  "PersistentVFXAnchor": 1,
+  "ApplyColorTint": false,
+  "TintColor": [
+   0.37061989307403564,
+   0.7318117022514343,
+   1.0,
+   1.0
+  ],
+  "HpOrbMaterial": null
+ },
+ {
   "_name": "Bleeding",
-  "_pathid": 60474,
+  "_pathid": 60528,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -1746,7 +2234,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5503
+   "pathID": 5524
   },
   "ShowInTooltipExplanation": true,
   "Stackable": false,
@@ -1799,7 +2287,7 @@
  },
  {
   "_name": "BossTenacity",
-  "_pathid": 60475,
+  "_pathid": 60529,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -1819,7 +2307,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5866
+   "pathID": 5888
   },
   "ShowInTooltipExplanation": false,
   "Stackable": false,
@@ -1872,7 +2360,7 @@
  },
  {
   "_name": "Burn",
-  "_pathid": 60476,
+  "_pathid": 60530,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -1900,7 +2388,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5352
+   "pathID": 5371
   },
   "ShowInTooltipExplanation": true,
   "Stackable": false,
@@ -1908,10 +2396,10 @@
   "Duration": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": 1807961569,
-    "hiddenValue": 412416760,
-    "cryptoKey": 1488622840,
-    "value": 3.0,
+    "hash": 1776933601,
+    "hiddenValue": 18204557,
+    "cryptoKey": 1095177613,
+    "value": 4.0,
     "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
@@ -1942,7 +2430,7 @@
   "AnimatorBool": "",
   "PersistentVFXPrefab": {
    "fileID": 0,
-   "pathID": 25717
+   "pathID": 25748
   },
   "PersistentVFXAnchor": 1,
   "ApplyColorTint": false,
@@ -1955,8 +2443,128 @@
   "HpOrbMaterial": null
  },
  {
+  "_name": "ChiWardShield",
+  "_pathid": 60531,
+  "_file": "sharedassets0.assets",
+  "_managedRefs": {
+   "__header__": [
+    2,
+    1
+   ],
+   "__items__": [
+    {
+     "__hash__": "2d00c5710b7a466b",
+     "__type__": "ShieldBehavior",
+     "__asm__": "Assembly-CSharp",
+     "MaxHPPercent": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 1757781941,
+       "cryptoKey": 1755301301,
+       "value": 0.0,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 1757781941,
+       "cryptoKey": 1755301301,
+       "value": 0.0,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "MaxManaPercent": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 1782053473,
+       "hiddenValue": 684015541,
+       "cryptoKey": 1755301301,
+       "value": 5.0,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 1757781941,
+       "cryptoKey": 1755301301,
+       "value": 0.0,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
+     "AddOnReapply": false,
+     "MaxHPPercentToken": {
+      "Name": "",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     },
+     "MaxManaPercentToken": {
+      "Name": "shield",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     },
+     "__end__": 457
+    }
+   ]
+  },
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5911
+  },
+  "ShowInTooltipExplanation": false,
+  "Stackable": false,
+  "MaxStacks": 1,
+  "Duration": {
+   "Base": {
+    "__type__": "ObscuredFloat",
+    "hash": 1787276257,
+    "hiddenValue": 684023733,
+    "cryptoKey": 1755301301,
+    "value": 6.0,
+    "__tail__": "00000000000000000000000000000000"
+   },
+   "PerLevel": {
+    "__type__": "ObscuredFloat",
+    "hash": 723851361,
+    "hiddenValue": 1757781941,
+    "cryptoKey": 1755301301,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
+   }
+  },
+  "DurationToken": {
+   "Name": "",
+   "Format": "0.#",
+   "Suffix": "s",
+   "Highlight": true
+  },
+  "TickRate": 0.0,
+  "PersistAcrossSessions": false,
+  "Behaviors": [
+   {
+    "__managed_ref_hash__": "2d00c5710b7a466b"
+   }
+  ],
+  "ScaleUpTarget": false,
+  "ScalePerStack": 0.20000000298023224,
+  "ScaleLerpTime": 0.25,
+  "AnimatorBool": "",
+  "PersistentVFXPrefab": null,
+  "PersistentVFXAnchor": 0,
+  "ApplyColorTint": false,
+  "TintColor": [
+   1.0,
+   1.0,
+   1.0,
+   1.0
+  ],
+  "HpOrbMaterial": null
+ },
+ {
   "_name": "Chill",
-  "_pathid": 60477,
+  "_pathid": 60532,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -2032,7 +2640,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5465
+   "pathID": 5485
   },
   "ShowInTooltipExplanation": true,
   "Stackable": false,
@@ -2085,7 +2693,7 @@
  },
  {
   "_name": "ArmorPotion1",
-  "_pathid": 60478,
+  "_pathid": 60533,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -2133,7 +2741,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5471
+   "pathID": 5491
   },
   "ShowInTooltipExplanation": true,
   "Stackable": false,
@@ -2186,7 +2794,7 @@
  },
  {
   "_name": "AttackSpeedPotion1",
-  "_pathid": 60479,
+  "_pathid": 60534,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -2234,7 +2842,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5694
+   "pathID": 5715
   },
   "ShowInTooltipExplanation": true,
   "Stackable": false,
@@ -2287,7 +2895,7 @@
  },
  {
   "_name": "AttackSpeedPotion2",
-  "_pathid": 60480,
+  "_pathid": 60535,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -2335,7 +2943,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5706
+   "pathID": 5727
   },
   "ShowInTooltipExplanation": true,
   "Stackable": false,
@@ -2388,7 +2996,7 @@
  },
  {
   "_name": "CinderbloodPotion",
-  "_pathid": 60481,
+  "_pathid": 60536,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -2436,7 +3044,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5392
+   "pathID": 5411
   },
   "ShowInTooltipExplanation": true,
   "Stackable": false,
@@ -2489,7 +3097,7 @@
  },
  {
   "_name": "CrimsonHuntPotion",
-  "_pathid": 60482,
+  "_pathid": 60537,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -2537,7 +3145,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5751
+   "pathID": 5772
   },
   "ShowInTooltipExplanation": true,
   "Stackable": false,
@@ -2590,7 +3198,7 @@
  },
  {
   "_name": "CritPotion1",
-  "_pathid": 60483,
+  "_pathid": 60538,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -2638,7 +3246,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5823
+   "pathID": 5844
   },
   "ShowInTooltipExplanation": true,
   "Stackable": false,
@@ -2691,7 +3299,7 @@
  },
  {
   "_name": "CritPotion2",
-  "_pathid": 60484,
+  "_pathid": 60539,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -2739,7 +3347,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5443
+   "pathID": 5462
   },
   "ShowInTooltipExplanation": true,
   "Stackable": false,
@@ -2792,7 +3400,7 @@
  },
  {
   "_name": "DodgePotion1",
-  "_pathid": 60485,
+  "_pathid": 60540,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -2840,7 +3448,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5259
+   "pathID": 5279
   },
   "ShowInTooltipExplanation": true,
   "Stackable": false,
@@ -2893,7 +3501,7 @@
  },
  {
   "_name": "ExpPotion1",
-  "_pathid": 60486,
+  "_pathid": 60541,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -2941,7 +3549,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5764
+   "pathID": 5785
   },
   "ShowInTooltipExplanation": true,
   "Stackable": false,
@@ -2994,7 +3602,7 @@
  },
  {
   "_name": "FrostmindPotion",
-  "_pathid": 60487,
+  "_pathid": 60542,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -3042,7 +3650,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5275
+   "pathID": 5295
   },
   "ShowInTooltipExplanation": true,
   "Stackable": false,
@@ -3095,7 +3703,7 @@
  },
  {
   "_name": "GoldPotion1",
-  "_pathid": 60488,
+  "_pathid": 60543,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -3143,7 +3751,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5818
+   "pathID": 5839
   },
   "ShowInTooltipExplanation": true,
   "Stackable": false,
@@ -3196,7 +3804,7 @@
  },
  {
   "_name": "MovementPotion1",
-  "_pathid": 60489,
+  "_pathid": 60544,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -3244,7 +3852,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5231
+   "pathID": 5251
   },
   "ShowInTooltipExplanation": true,
   "Stackable": false,
@@ -3297,7 +3905,7 @@
  },
  {
   "_name": "PotionFish1",
-  "_pathid": 60490,
+  "_pathid": 60545,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -3345,7 +3953,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5383
+   "pathID": 5402
   },
   "ShowInTooltipExplanation": true,
   "Stackable": false,
@@ -3398,7 +4006,7 @@
  },
  {
   "_name": "PotionFish2",
-  "_pathid": 60491,
+  "_pathid": 60546,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -3446,7 +4054,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5509
+   "pathID": 5530
   },
   "ShowInTooltipExplanation": true,
   "Stackable": false,
@@ -3499,7 +4107,7 @@
  },
  {
   "_name": "PotionFish3",
-  "_pathid": 60492,
+  "_pathid": 60547,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -3547,7 +4155,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5390
+   "pathID": 5409
   },
   "ShowInTooltipExplanation": true,
   "Stackable": false,
@@ -3600,7 +4208,7 @@
  },
  {
   "_name": "PotionFish4",
-  "_pathid": 60493,
+  "_pathid": 60548,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -3648,7 +4256,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5342
+   "pathID": 5361
   },
   "ShowInTooltipExplanation": true,
   "Stackable": false,
@@ -3701,7 +4309,7 @@
  },
  {
   "_name": "StormheartPotion",
-  "_pathid": 60494,
+  "_pathid": 60549,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -3749,7 +4357,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5787
+   "pathID": 5808
   },
   "ShowInTooltipExplanation": true,
   "Stackable": false,
@@ -3802,7 +4410,7 @@
  },
  {
   "_name": "WyrmwardPotion",
-  "_pathid": 60495,
+  "_pathid": 60550,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -3850,7 +4458,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5357
+   "pathID": 5376
   },
   "ShowInTooltipExplanation": true,
   "Stackable": false,
@@ -3903,7 +4511,7 @@
  },
  {
   "_name": "Dazed",
-  "_pathid": 60496,
+  "_pathid": 60551,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -3979,7 +4587,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5577
+   "pathID": 5598
   },
   "ShowInTooltipExplanation": true,
   "Stackable": false,
@@ -4021,7 +4629,7 @@
   "AnimatorBool": "",
   "PersistentVFXPrefab": {
    "fileID": 0,
-   "pathID": 5964
+   "pathID": 5989
   },
   "PersistentVFXAnchor": 2,
   "ApplyColorTint": false,
@@ -4035,7 +4643,7 @@
  },
  {
   "_name": "Dizzy",
-  "_pathid": 60497,
+  "_pathid": 60552,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -4075,15 +4683,43 @@
         "Suffix": "",
         "Highlight": true
        }
+      },
+      {
+       "Stat": 6,
+       "Type": 2,
+       "Value": {
+        "Base": {
+         "__type__": "ObscuredFloat",
+         "hash": -2014808067,
+         "hiddenValue": -170375357,
+         "cryptoKey": 1271388227,
+         "value": -0.25,
+         "__tail__": "00000000000000000000000000000000"
+        },
+        "PerLevel": {
+         "__type__": "ObscuredFloat",
+         "hash": 723851361,
+         "hiddenValue": 1543774632,
+         "cryptoKey": 1545667752,
+         "value": 0.0,
+         "__tail__": "00000000000000000000000000000000"
+        }
+       },
+       "Token": {
+        "Name": "attackSpeed",
+        "Format": "0%;0%",
+        "Suffix": "",
+        "Highlight": true
+       }
       }
      ],
-     "__end__": 401
+     "__end__": 501
     }
    ]
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5578
+   "pathID": 5599
   },
   "ShowInTooltipExplanation": true,
   "Stackable": false,
@@ -4125,7 +4761,7 @@
   "AnimatorBool": "",
   "PersistentVFXPrefab": {
    "fileID": 0,
-   "pathID": 5964
+   "pathID": 5989
   },
   "PersistentVFXAnchor": 2,
   "ApplyColorTint": false,
@@ -4139,7 +4775,7 @@
  },
  {
   "_name": "EnemyAirWarlordScaleUp",
-  "_pathid": 60498,
+  "_pathid": 60553,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -4187,7 +4823,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5347
+   "pathID": 5366
   },
   "ShowInTooltipExplanation": false,
   "Stackable": true,
@@ -4240,7 +4876,7 @@
  },
  {
   "_name": "EnemyBleeding",
-  "_pathid": 60499,
+  "_pathid": 60554,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -4268,7 +4904,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5503
+   "pathID": 5524
   },
   "ShowInTooltipExplanation": true,
   "Stackable": false,
@@ -4319,12 +4955,12 @@
   ],
   "HpOrbMaterial": {
    "fileID": 0,
-   "pathID": 874
+   "pathID": 878
   }
  },
  {
   "_name": "EnemyDefiledWyrmRegen",
-  "_pathid": 60500,
+  "_pathid": 60555,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -4394,7 +5030,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5546
+   "pathID": 5567
   },
   "ShowInTooltipExplanation": false,
   "Stackable": false,
@@ -4436,7 +5072,7 @@
   "AnimatorBool": "",
   "PersistentVFXPrefab": {
    "fileID": 0,
-   "pathID": 17264
+   "pathID": 17290
   },
   "PersistentVFXAnchor": 1,
   "ApplyColorTint": false,
@@ -4450,7 +5086,7 @@
  },
  {
   "_name": "EnemyHobgoblinFrenzy",
-  "_pathid": 60501,
+  "_pathid": 60556,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -4498,7 +5134,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5607
+   "pathID": 5628
   },
   "ShowInTooltipExplanation": false,
   "Stackable": true,
@@ -4540,7 +5176,7 @@
   "AnimatorBool": "",
   "PersistentVFXPrefab": {
    "fileID": 0,
-   "pathID": 13690
+   "pathID": 13715
   },
   "PersistentVFXAnchor": 0,
   "ApplyColorTint": false,
@@ -4554,7 +5190,7 @@
  },
  {
   "_name": "EnemyImmune",
-  "_pathid": 60502,
+  "_pathid": 60557,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -4572,7 +5208,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5866
+   "pathID": 5888
   },
   "ShowInTooltipExplanation": false,
   "Stackable": false,
@@ -4625,7 +5261,7 @@
  },
  {
   "_name": "EnemyPoison",
-  "_pathid": 60503,
+  "_pathid": 60558,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -4653,7 +5289,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5256
+   "pathID": 5276
   },
   "ShowInTooltipExplanation": true,
   "Stackable": true,
@@ -4704,12 +5340,12 @@
   ],
   "HpOrbMaterial": {
    "fileID": 0,
-   "pathID": 875
+   "pathID": 879
   }
  },
  {
   "_name": "EnemySlow",
-  "_pathid": 60504,
+  "_pathid": 60559,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -4757,7 +5393,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5885
+   "pathID": 5907
   },
   "ShowInTooltipExplanation": true,
   "Stackable": false,
@@ -4810,7 +5446,7 @@
  },
  {
   "_name": "HunterSetRune2_RapidFireGuard",
-  "_pathid": 60505,
+  "_pathid": 60560,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -4854,7 +5490,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5491
+   "pathID": 5512
   },
   "ShowInTooltipExplanation": false,
   "Stackable": false,
@@ -4896,7 +5532,7 @@
   "AnimatorBool": "",
   "PersistentVFXPrefab": {
    "fileID": 0,
-   "pathID": 15641
+   "pathID": 15668
   },
   "PersistentVFXAnchor": 1,
   "ApplyColorTint": false,
@@ -4910,7 +5546,7 @@
  },
  {
   "_name": "LegendaryBoots3",
-  "_pathid": 60506,
+  "_pathid": 60561,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -4980,7 +5616,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5737
+   "pathID": 5758
   },
   "ShowInTooltipExplanation": false,
   "Stackable": false,
@@ -5033,7 +5669,7 @@
  },
  {
   "_name": "LegendaryChestArmor5",
-  "_pathid": 60507,
+  "_pathid": 60562,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -5051,7 +5687,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5467
+   "pathID": 5487
   },
   "ShowInTooltipExplanation": false,
   "Stackable": false,
@@ -5104,7 +5740,7 @@
  },
  {
   "_name": "LegendaryGloves2",
-  "_pathid": 60508,
+  "_pathid": 60563,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -5152,7 +5788,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5512
+   "pathID": 5533
   },
   "ShowInTooltipExplanation": false,
   "Stackable": true,
@@ -5205,7 +5841,7 @@
  },
  {
   "_name": "LegendaryNeck1",
-  "_pathid": 60509,
+  "_pathid": 60564,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -5253,7 +5889,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5740
+   "pathID": 5761
   },
   "ShowInTooltipExplanation": false,
   "Stackable": false,
@@ -5306,7 +5942,7 @@
  },
  {
   "_name": "LegendaryPants2",
-  "_pathid": 60510,
+  "_pathid": 60565,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -5350,7 +5986,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5793
+   "pathID": 5814
   },
   "ShowInTooltipExplanation": false,
   "Stackable": false,
@@ -5402,8 +6038,68 @@
   "HpOrbMaterial": null
  },
  {
+  "_name": "Exposed",
+  "_pathid": 60566,
+  "_file": "sharedassets0.assets",
+  "_managedRefs": {
+   "__header__": [
+    2,
+    0
+   ],
+   "__items__": []
+  },
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5345
+  },
+  "ShowInTooltipExplanation": true,
+  "Stackable": true,
+  "MaxStacks": 5,
+  "Duration": {
+   "Base": {
+    "__type__": "ObscuredFloat",
+    "hash": 1807961569,
+    "hiddenValue": 2093833869,
+    "cryptoKey": 1008651661,
+    "value": 3.0,
+    "__tail__": "00000000000000000000000000000000"
+   },
+   "PerLevel": {
+    "__type__": "ObscuredFloat",
+    "hash": 723851361,
+    "hiddenValue": 1770799574,
+    "cryptoKey": 1765903574,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
+   }
+  },
+  "DurationToken": {
+   "Name": "exposedDuration",
+   "Format": "0.#",
+   "Suffix": "s",
+   "Highlight": true
+  },
+  "TickRate": 0.0,
+  "PersistAcrossSessions": false,
+  "Behaviors": [],
+  "ScaleUpTarget": false,
+  "ScalePerStack": 0.20000000298023224,
+  "ScaleLerpTime": 0.25,
+  "AnimatorBool": "",
+  "PersistentVFXPrefab": null,
+  "PersistentVFXAnchor": 1,
+  "ApplyColorTint": false,
+  "TintColor": [
+   0.37061989307403564,
+   0.7318117022514343,
+   1.0,
+   1.0
+  ],
+  "HpOrbMaterial": null
+ },
+ {
   "_name": "Frozen",
-  "_pathid": 60511,
+  "_pathid": 60567,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -5421,7 +6117,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5581
+   "pathID": 5602
   },
   "ShowInTooltipExplanation": true,
   "Stackable": false,
@@ -5463,81 +6159,7 @@
   "AnimatorBool": "",
   "PersistentVFXPrefab": {
    "fileID": 0,
-   "pathID": 5962
-  },
-  "PersistentVFXAnchor": 0,
-  "ApplyColorTint": false,
-  "TintColor": [
-   0.37061989307403564,
-   0.7318117022514343,
-   1.0,
-   1.0
-  ],
-  "HpOrbMaterial": null
- },
- {
-  "_name": "FrozenLong",
-  "_pathid": 60512,
-  "_file": "sharedassets0.assets",
-  "_managedRefs": {
-   "__header__": [
-    2,
-    1
-   ],
-   "__items__": [
-    {
-     "__hash__": "9a002870135d4954",
-     "__type__": "ImmobilizedBehavior",
-     "__asm__": "Assembly-CSharp",
-     "__end__": 304
-    }
-   ]
-  },
-  "Icon": {
-   "fileID": 0,
-   "pathID": 5581
-  },
-  "ShowInTooltipExplanation": true,
-  "Stackable": false,
-  "MaxStacks": 1,
-  "Duration": {
-   "Base": {
-    "__type__": "ObscuredFloat",
-    "hash": 1782053473,
-    "hiddenValue": 402105236,
-    "cryptoKey": 1459877780,
-    "value": 5.0,
-    "__tail__": "00000000000000000000000000000000"
-   },
-   "PerLevel": {
-    "__type__": "ObscuredFloat",
-    "hash": 723851361,
-    "hiddenValue": 1439674059,
-    "cryptoKey": 1437519819,
-    "value": 0.0,
-    "__tail__": "00000000000000000000000000000000"
-   }
-  },
-  "DurationToken": {
-   "Name": "duration",
-   "Format": "0.#",
-   "Suffix": "s",
-   "Highlight": true
-  },
-  "TickRate": 1.0,
-  "PersistAcrossSessions": false,
-  "Behaviors": [
-   {
-    "__managed_ref_hash__": "9a002870135d4954"
-   }
-  ],
-  "ScaleUpTarget": false,
-  "ScalePerStack": 0.20000000298023224,
-  "ScaleLerpTime": 0.25,
-  "AnimatorBool": "",
-  "PersistentVFXPrefab": {
-   "fileID": 0,
-   "pathID": 5962
+   "pathID": 5987
   },
   "PersistentVFXAnchor": 0,
   "ApplyColorTint": false,
@@ -5551,7 +6173,7 @@
  },
  {
   "_name": "HunterPoison",
-  "_pathid": 60513,
+  "_pathid": 60568,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -5563,7 +6185,7 @@
      "__hash__": "8700fcbf8c69614a",
      "__type__": "DamageOverTimeBehavior",
      "__asm__": "Assembly-CSharp",
-     "DamagePerTick": 0.5,
+     "DamagePerTick": 0.75,
      "DamageType": 4,
      "CanCrit": false,
      "ReapplyMode": 2,
@@ -5579,11 +6201,11 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5256
+   "pathID": 5276
   },
   "ShowInTooltipExplanation": true,
   "Stackable": true,
-  "MaxStacks": 100,
+  "MaxStacks": 150,
   "Duration": {
    "Base": {
     "__type__": "ObscuredFloat",
@@ -5630,12 +6252,12 @@
   ],
   "HpOrbMaterial": {
    "fileID": 0,
-   "pathID": 875
+   "pathID": 879
   }
  },
  {
   "_name": "HunterSpecial5Status",
-  "_pathid": 60514,
+  "_pathid": 60569,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -5711,7 +6333,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5946
+   "pathID": 5971
   },
   "ShowInTooltipExplanation": false,
   "Stackable": false,
@@ -5753,7 +6375,7 @@
   "AnimatorBool": "",
   "PersistentVFXPrefab": {
    "fileID": 0,
-   "pathID": 12835
+   "pathID": 12859
   },
   "PersistentVFXAnchor": 0,
   "ApplyColorTint": false,
@@ -5767,7 +6389,7 @@
  },
  {
   "_name": "IceBlock",
-  "_pathid": 60515,
+  "_pathid": 60570,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -5793,11 +6415,11 @@
      "Radius": 4.0,
      "CastVFXPrefab": {
       "fileID": 0,
-      "pathID": 9151
+      "pathID": 9173
      },
      "CastSFX": {
       "fileID": 0,
-      "pathID": 4774
+      "pathID": 4792
      },
      "CastSFXVolume": [
       1.0,
@@ -5815,7 +6437,7 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 23431
+      "pathID": 23459
      },
      "ImpactSFX": null,
      "ImpactSFXVolume": [
@@ -5873,7 +6495,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5303
+   "pathID": 5322
   },
   "ShowInTooltipExplanation": true,
   "Stackable": false,
@@ -5921,7 +6543,7 @@
   "AnimatorBool": "Frozen",
   "PersistentVFXPrefab": {
    "fileID": 0,
-   "pathID": 5968
+   "pathID": 5993
   },
   "PersistentVFXAnchor": 1,
   "ApplyColorTint": true,
@@ -5935,7 +6557,7 @@
  },
  {
   "_name": "MageFlameAura",
-  "_pathid": 60516,
+  "_pathid": 60571,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -6011,7 +6633,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5310
+   "pathID": 5329
   },
   "ShowInTooltipExplanation": false,
   "Stackable": false,
@@ -6053,7 +6675,7 @@
   "AnimatorBool": "",
   "PersistentVFXPrefab": {
    "fileID": 0,
-   "pathID": 22103
+   "pathID": 22131
   },
   "PersistentVFXAnchor": 0,
   "ApplyColorTint": false,
@@ -6067,7 +6689,7 @@
  },
  {
   "_name": "MonkBasicAttack2Status",
-  "_pathid": 60517,
+  "_pathid": 60572,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -6115,7 +6737,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5448
+   "pathID": 5467
   },
   "ShowInTooltipExplanation": false,
   "Stackable": true,
@@ -6157,7 +6779,7 @@
   "AnimatorBool": "",
   "PersistentVFXPrefab": {
    "fileID": 0,
-   "pathID": 22104
+   "pathID": 22132
   },
   "PersistentVFXAnchor": 1,
   "ApplyColorTint": false,
@@ -6171,7 +6793,7 @@
  },
  {
   "_name": "MonkSpecial2Status",
-  "_pathid": 60518,
+  "_pathid": 60573,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -6241,7 +6863,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5359
+   "pathID": 5378
   },
   "ShowInTooltipExplanation": false,
   "Stackable": false,
@@ -6283,7 +6905,7 @@
   "AnimatorBool": "",
   "PersistentVFXPrefab": {
    "fileID": 0,
-   "pathID": 7907
+   "pathID": 7930
   },
   "PersistentVFXAnchor": 0,
   "ApplyColorTint": false,
@@ -6297,7 +6919,7 @@
  },
  {
   "_name": "MonkSpecial5Status",
-  "_pathid": 60519,
+  "_pathid": 60574,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -6345,7 +6967,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5232
+   "pathID": 5252
   },
   "ShowInTooltipExplanation": false,
   "Stackable": false,
@@ -6387,7 +7009,7 @@
   "AnimatorBool": "",
   "PersistentVFXPrefab": {
    "fileID": 0,
-   "pathID": 24346
+   "pathID": 24376
   },
   "PersistentVFXAnchor": 0,
   "ApplyColorTint": false,
@@ -6401,7 +7023,7 @@
  },
  {
   "_name": "MythicBossEnrageCountdown",
-  "_pathid": 60520,
+  "_pathid": 60575,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -6447,7 +7069,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60521
+      "pathID": 60576
      },
      "Chance": {
       "Base": {
@@ -6467,6 +7089,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 0,
      "ChanceToken": {
@@ -6475,13 +7098,13 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 569
+     "__end__": 573
     }
    ]
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5408
+   "pathID": 5427
   },
   "ShowInTooltipExplanation": true,
   "Stackable": false,
@@ -6534,7 +7157,7 @@
  },
  {
   "_name": "MythicBossEnraged",
-  "_pathid": 60521,
+  "_pathid": 60576,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -6547,6 +7170,34 @@
      "__type__": "StatModifierBehavior",
      "__asm__": "Assembly-CSharp",
      "Modifiers": [
+      {
+       "Stat": 10,
+       "Type": 2,
+       "Value": {
+        "Base": {
+         "__type__": "ObscuredFloat",
+         "hash": 1797618913,
+         "hiddenValue": 765791455,
+         "cryptoKey": 1829545439,
+         "value": 2.0,
+         "__tail__": "00000000000000000000000000000000"
+        },
+        "PerLevel": {
+         "__type__": "ObscuredFloat",
+         "hash": 723851361,
+         "hiddenValue": 1230780176,
+         "cryptoKey": 1228364816,
+         "value": 0.0,
+         "__tail__": "00000000000000000000000000000000"
+        }
+       },
+       "Token": {
+        "Name": "",
+        "Format": "0.#",
+        "Suffix": "",
+        "Highlight": true
+       }
+      },
       {
        "Stat": 6,
        "Type": 2,
@@ -6632,13 +7283,13 @@
        }
       }
      ],
-     "__end__": 557
+     "__end__": 641
     }
    ]
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5589
+   "pathID": 5610
   },
   "ShowInTooltipExplanation": true,
   "Stackable": false,
@@ -6680,7 +7331,7 @@
   "AnimatorBool": "",
   "PersistentVFXPrefab": {
    "fileID": 0,
-   "pathID": 22102
+   "pathID": 22130
   },
   "PersistentVFXAnchor": 1,
   "ApplyColorTint": false,
@@ -6694,7 +7345,7 @@
  },
  {
   "_name": "QuickStun",
-  "_pathid": 60522,
+  "_pathid": 60577,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -6712,7 +7363,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5513
+   "pathID": 5534
   },
   "ShowInTooltipExplanation": true,
   "Stackable": false,
@@ -6754,7 +7405,7 @@
   "AnimatorBool": "",
   "PersistentVFXPrefab": {
    "fileID": 0,
-   "pathID": 5960
+   "pathID": 5985
   },
   "PersistentVFXAnchor": 2,
   "ApplyColorTint": false,
@@ -6768,7 +7419,7 @@
  },
  {
   "_name": "RageShieldStatus",
-  "_pathid": 60523,
+  "_pathid": 60578,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -6798,6 +7449,24 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "MaxManaPercent": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 1377742574,
+       "cryptoKey": 1387142894,
+       "value": 0.0,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 1280767031,
+       "cryptoKey": 1291081271,
+       "value": 0.0,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
      "AddOnReapply": false,
      "MaxHPPercentToken": {
       "Name": "shield",
@@ -6805,13 +7474,19 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 389
+     "MaxManaPercentToken": {
+      "Name": "",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     },
+     "__end__": 465
     }
    ]
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5872
+   "pathID": 5894
   },
   "ShowInTooltipExplanation": false,
   "Stackable": false,
@@ -6853,7 +7528,7 @@
   "AnimatorBool": "",
   "PersistentVFXPrefab": {
    "fileID": 0,
-   "pathID": 7906
+   "pathID": 7929
   },
   "PersistentVFXAnchor": 0,
   "ApplyColorTint": false,
@@ -6867,7 +7542,7 @@
  },
  {
   "_name": "SlaveAirWarlordBuff",
-  "_pathid": 60524,
+  "_pathid": 60579,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -6915,7 +7590,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5347
+   "pathID": 5366
   },
   "ShowInTooltipExplanation": true,
   "Stackable": false,
@@ -6968,7 +7643,7 @@
  },
  {
   "_name": "SlaveCinderLordWrath",
-  "_pathid": 60525,
+  "_pathid": 60580,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -7016,7 +7691,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5490
+   "pathID": 5511
   },
   "ShowInTooltipExplanation": true,
   "Stackable": false,
@@ -7058,7 +7733,7 @@
   "AnimatorBool": "",
   "PersistentVFXPrefab": {
    "fileID": 0,
-   "pathID": 11665
+   "pathID": 11686
   },
   "PersistentVFXAnchor": 2,
   "ApplyColorTint": false,
@@ -7072,7 +7747,7 @@
  },
  {
   "_name": "SlaveHarpyWind",
-  "_pathid": 60526,
+  "_pathid": 60581,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -7120,7 +7795,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5734
+   "pathID": 5755
   },
   "ShowInTooltipExplanation": true,
   "Stackable": false,
@@ -7173,7 +7848,7 @@
  },
  {
   "_name": "SlaveIceHoundCapacitorShell",
-  "_pathid": 60527,
+  "_pathid": 60582,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -7203,6 +7878,24 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "MaxManaPercent": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 1355149406,
+       "cryptoKey": 1357956446,
+       "value": 0.0,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 1481386533,
+       "cryptoKey": 1479167013,
+       "value": 0.0,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
      "AddOnReapply": false,
      "MaxHPPercentToken": {
       "Name": "shield",
@@ -7210,7 +7903,13 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 417
+     "MaxManaPercentToken": {
+      "Name": "",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     },
+     "__end__": 493
     },
     {
      "__hash__": "2700822234e5db6a",
@@ -7224,11 +7923,11 @@
      "Radius": 3.5999999046325684,
      "CastVFXPrefab": {
       "fileID": 0,
-      "pathID": 15122
+      "pathID": 15148
      },
      "CastSFX": {
       "fileID": 0,
-      "pathID": 4862
+      "pathID": 4880
      },
      "CastSFXVolume": [
       1.0,
@@ -7238,7 +7937,7 @@
       1.0,
       1.0
      ],
-     "__end__": 532
+     "__end__": 608
     },
     {
      "__hash__": "2800822234e5db6a",
@@ -7256,7 +7955,7 @@
      ],
      "StatusEffect": {
       "fileID": 0,
-      "pathID": 60522
+      "pathID": 60577
      },
      "Chance": {
       "Base": {
@@ -7276,6 +7975,7 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "Stacks": 1,
      "OverrideAffinity": false,
      "AffinityOverride": 0,
      "ChanceToken": {
@@ -7284,13 +7984,13 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 725
+     "__end__": 805
     }
    ]
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5467
+   "pathID": 5487
   },
   "ShowInTooltipExplanation": false,
   "Stackable": false,
@@ -7335,7 +8035,7 @@
   "AnimatorBool": "",
   "PersistentVFXPrefab": {
    "fileID": 0,
-   "pathID": 10878
+   "pathID": 10900
   },
   "PersistentVFXAnchor": 1,
   "ApplyColorTint": false,
@@ -7349,7 +8049,7 @@
  },
  {
   "_name": "SlaveWaterDragonManaSurge",
-  "_pathid": 60528,
+  "_pathid": 60583,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -7397,7 +8097,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5599
+   "pathID": 5620
   },
   "ShowInTooltipExplanation": true,
   "Stackable": false,
@@ -7439,7 +8139,7 @@
   "AnimatorBool": "",
   "PersistentVFXPrefab": {
    "fileID": 0,
-   "pathID": 15743
+   "pathID": 15770
   },
   "PersistentVFXAnchor": 0,
   "ApplyColorTint": false,
@@ -7453,7 +8153,7 @@
  },
  {
   "_name": "SlaveWerewolfHowl",
-  "_pathid": 60529,
+  "_pathid": 60584,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -7501,7 +8201,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5262
+   "pathID": 5282
   },
   "ShowInTooltipExplanation": true,
   "Stackable": false,
@@ -7543,7 +8243,7 @@
   "AnimatorBool": "",
   "PersistentVFXPrefab": {
    "fileID": 0,
-   "pathID": 13689
+   "pathID": 13714
   },
   "PersistentVFXAnchor": 0,
   "ApplyColorTint": false,
@@ -7556,8 +8256,68 @@
   "HpOrbMaterial": null
  },
  {
+  "_name": "SoloSelfFound",
+  "_pathid": 60585,
+  "_file": "sharedassets0.assets",
+  "_managedRefs": {
+   "__header__": [
+    2,
+    0
+   ],
+   "__items__": []
+  },
+  "Icon": {
+   "fileID": 0,
+   "pathID": 5365
+  },
+  "ShowInTooltipExplanation": false,
+  "Stackable": false,
+  "MaxStacks": 1,
+  "Duration": {
+   "Base": {
+    "__type__": "ObscuredFloat",
+    "hash": 1782053473,
+    "hiddenValue": 246744496,
+    "cryptoKey": 1319482800,
+    "value": 5.0,
+    "__tail__": "00000000000000000000000000000000"
+   },
+   "PerLevel": {
+    "__type__": "ObscuredFloat",
+    "hash": 723851361,
+    "hiddenValue": 1473232073,
+    "cryptoKey": 1471991753,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
+   }
+  },
+  "DurationToken": {
+   "Name": "",
+   "Format": "0.#",
+   "Suffix": "s",
+   "Highlight": true
+  },
+  "TickRate": 0.0,
+  "PersistAcrossSessions": false,
+  "Behaviors": [],
+  "ScaleUpTarget": false,
+  "ScalePerStack": 0.20000000298023224,
+  "ScaleLerpTime": 0.25,
+  "AnimatorBool": "",
+  "PersistentVFXPrefab": null,
+  "PersistentVFXAnchor": 1,
+  "ApplyColorTint": false,
+  "TintColor": [
+   1.0,
+   1.0,
+   1.0,
+   1.0
+  ],
+  "HpOrbMaterial": null
+ },
+ {
   "_name": "StaticElectricity",
-  "_pathid": 60530,
+  "_pathid": 60586,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -7601,11 +8361,11 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5769
+   "pathID": 5790
   },
   "ShowInTooltipExplanation": true,
   "Stackable": true,
-  "MaxStacks": 5,
+  "MaxStacks": 10,
   "Duration": {
    "Base": {
     "__type__": "ObscuredFloat",
@@ -7643,7 +8403,7 @@
   "AnimatorBool": "",
   "PersistentVFXPrefab": {
    "fileID": 0,
-   "pathID": 18079
+   "pathID": 18106
   },
   "PersistentVFXAnchor": 1,
   "ApplyColorTint": false,
@@ -7657,7 +8417,7 @@
  },
  {
   "_name": "Stunned",
-  "_pathid": 60531,
+  "_pathid": 60587,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -7675,7 +8435,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5513
+   "pathID": 5534
   },
   "ShowInTooltipExplanation": true,
   "Stackable": false,
@@ -7717,7 +8477,7 @@
   "AnimatorBool": "",
   "PersistentVFXPrefab": {
    "fileID": 0,
-   "pathID": 5960
+   "pathID": 5985
   },
   "PersistentVFXAnchor": 2,
   "ApplyColorTint": false,
@@ -7731,7 +8491,7 @@
  },
  {
   "_name": "ArcaneCharge",
-  "_pathid": 60532,
+  "_pathid": 60588,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -7779,7 +8539,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5222
+   "pathID": 5242
   },
   "ShowInTooltipExplanation": true,
   "Stackable": true,
@@ -7832,7 +8592,7 @@
  },
  {
   "_name": "ArcaneCorrosion",
-  "_pathid": 60533,
+  "_pathid": 60589,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -7843,7 +8603,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5846
+   "pathID": 5868
   },
   "ShowInTooltipExplanation": true,
   "Stackable": true,
@@ -7892,7 +8652,7 @@
  },
  {
   "_name": "MonkGatheredForce",
-  "_pathid": 60534,
+  "_pathid": 60590,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -7903,7 +8663,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5322
+   "pathID": 5341
   },
   "ShowInTooltipExplanation": false,
   "Stackable": true,
@@ -7952,7 +8712,7 @@
  },
  {
   "_name": "MonkIronConstitution",
-  "_pathid": 60535,
+  "_pathid": 60591,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -7967,10 +8727,10 @@
      "ReductionPercent": {
       "Base": {
        "__type__": "ObscuredFloat",
-       "hash": 1610992765,
-       "hiddenValue": 1443484536,
+       "hash": -632662781,
+       "hiddenValue": 1465681455,
        "cryptoKey": 1755301301,
-       "value": 0.20000000298023224,
+       "value": 0.6000000238418579,
        "__tail__": "00000000000000000000000000000000"
       },
       "PerLevel": {
@@ -7996,7 +8756,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5320
+   "pathID": 5339
   },
   "ShowInTooltipExplanation": false,
   "Stackable": false,
@@ -8004,10 +8764,10 @@
   "Duration": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": 1807961569,
-    "hiddenValue": 684056501,
+    "hash": 1787276257,
+    "hiddenValue": 684023733,
     "cryptoKey": 1755301301,
-    "value": 3.0,
+    "value": 6.0,
     "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
@@ -8049,7 +8809,7 @@
  },
  {
   "_name": "MonkSpiritStreamDamageReduction",
-  "_pathid": 60536,
+  "_pathid": 60592,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -8093,7 +8853,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5226
+   "pathID": 5246
   },
   "ShowInTooltipExplanation": false,
   "Stackable": false,
@@ -8146,7 +8906,7 @@
  },
  {
   "_name": "MonkTalent30",
-  "_pathid": 60537,
+  "_pathid": 60593,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -8194,7 +8954,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5734
+   "pathID": 5755
   },
   "ShowInTooltipExplanation": false,
   "Stackable": false,
@@ -8247,7 +9007,7 @@
  },
  {
   "_name": "MonkTalent43",
-  "_pathid": 60538,
+  "_pathid": 60594,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -8295,7 +9055,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5899
+   "pathID": 5923
   },
   "ShowInTooltipExplanation": false,
   "Stackable": false,
@@ -8348,7 +9108,7 @@
  },
  {
   "_name": "SorcererTalent40",
-  "_pathid": 60539,
+  "_pathid": 60595,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -8396,7 +9156,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5454
+   "pathID": 5473
   },
   "ShowInTooltipExplanation": false,
   "Stackable": false,
@@ -8449,7 +9209,7 @@
  },
  {
   "_name": "WarriorDemoralized",
-  "_pathid": 60540,
+  "_pathid": 60596,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -8491,7 +9251,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5746
+   "pathID": 5767
   },
   "ShowInTooltipExplanation": false,
   "Stackable": false,
@@ -8544,7 +9304,7 @@
  },
  {
   "_name": "WarriorTalent10",
-  "_pathid": 60541,
+  "_pathid": 60597,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -8592,7 +9352,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5514
+   "pathID": 5535
   },
   "ShowInTooltipExplanation": false,
   "Stackable": true,
@@ -8645,7 +9405,7 @@
  },
  {
   "_name": "Vulnerable",
-  "_pathid": 60542,
+  "_pathid": 60598,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -8663,7 +9423,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5768
+   "pathID": 5789
   },
   "ShowInTooltipExplanation": false,
   "Stackable": false,
@@ -8716,7 +9476,7 @@
  },
  {
   "_name": "WarriorBloodlust",
-  "_pathid": 60543,
+  "_pathid": 60599,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -8727,7 +9487,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5714
+   "pathID": 5735
   },
   "ShowInTooltipExplanation": false,
   "Stackable": true,
@@ -8776,7 +9536,7 @@
  },
  {
   "_name": "WarriorBulwark",
-  "_pathid": 60544,
+  "_pathid": 60600,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -8852,7 +9612,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5857
+   "pathID": 5879
   },
   "ShowInTooltipExplanation": true,
   "Stackable": true,
@@ -8905,7 +9665,7 @@
  },
  {
   "_name": "WarriorChargedReady",
-  "_pathid": 60545,
+  "_pathid": 60601,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -8953,7 +9713,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5798
+   "pathID": 5819
   },
   "ShowInTooltipExplanation": false,
   "Stackable": false,
@@ -9006,7 +9766,7 @@
  },
  {
   "_name": "WarriorChargedStacks",
-  "_pathid": 60546,
+  "_pathid": 60602,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -9017,7 +9777,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5798
+   "pathID": 5819
   },
   "ShowInTooltipExplanation": false,
   "Stackable": true,
@@ -9066,7 +9826,7 @@
  },
  {
   "_name": "WarriorInnerFurnace",
-  "_pathid": 60547,
+  "_pathid": 60603,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -9142,7 +9902,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5940
+   "pathID": 5965
   },
   "ShowInTooltipExplanation": false,
   "Stackable": false,
@@ -9195,7 +9955,7 @@
  },
  {
   "_name": "WarriorIronThorn",
-  "_pathid": 60548,
+  "_pathid": 60604,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -9251,12 +10011,12 @@
      "Radius": 2.0,
      "PulseVFXPrefab": {
       "fileID": 0,
-      "pathID": 13294
+      "pathID": 13319
      },
      "PulseVFXLifetime": 1.0,
      "PulseSFX": {
       "fileID": 0,
-      "pathID": 4933
+      "pathID": 4952
      },
      "PulseSFXVolume": [
       1.0,
@@ -9274,11 +10034,11 @@
      "__asm__": "Assembly-CSharp",
      "ImpactVFXPrefab": {
       "fileID": 0,
-      "pathID": 5976
+      "pathID": 6001
      },
      "ImpactSFX": {
       "fileID": 0,
-      "pathID": 4996
+      "pathID": 5015
      },
      "ImpactSFXVolume": [
       1.0,
@@ -9311,7 +10071,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5696
+   "pathID": 5717
   },
   "ShowInTooltipExplanation": false,
   "Stackable": false,
@@ -9356,7 +10116,7 @@
   "AnimatorBool": "",
   "PersistentVFXPrefab": {
    "fileID": 0,
-   "pathID": 13296
+   "pathID": 13321
   },
   "PersistentVFXAnchor": 0,
   "ApplyColorTint": false,
@@ -9370,7 +10130,7 @@
  },
  {
   "_name": "WarriorIronward",
-  "_pathid": 60549,
+  "_pathid": 60605,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -9400,6 +10160,24 @@
        "__tail__": "00000000000000000000000000000000"
       }
      },
+     "MaxManaPercent": {
+      "Base": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 1967349799,
+       "cryptoKey": 1969242919,
+       "value": 0.0,
+       "__tail__": "00000000000000000000000000000000"
+      },
+      "PerLevel": {
+       "__type__": "ObscuredFloat",
+       "hash": 723851361,
+       "hiddenValue": 1230312863,
+       "cryptoKey": 1226134943,
+       "value": 0.0,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     },
      "AddOnReapply": true,
      "MaxHPPercentToken": {
       "Name": "shield",
@@ -9407,13 +10185,19 @@
       "Suffix": "",
       "Highlight": true
      },
-     "__end__": 389
+     "MaxManaPercentToken": {
+      "Name": "",
+      "Format": "0%",
+      "Suffix": "",
+      "Highlight": true
+     },
+     "__end__": 465
     }
    ]
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5467
+   "pathID": 5487
   },
   "ShowInTooltipExplanation": false,
   "Stackable": false,
@@ -9466,7 +10250,7 @@
  },
  {
   "_name": "WarriorMoltenMight",
-  "_pathid": 60550,
+  "_pathid": 60606,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -9542,7 +10326,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5940
+   "pathID": 5965
   },
   "ShowInTooltipExplanation": false,
   "Stackable": false,
@@ -9584,7 +10368,7 @@
   "AnimatorBool": "",
   "PersistentVFXPrefab": {
    "fileID": 0,
-   "pathID": 13295
+   "pathID": 13320
   },
   "PersistentVFXAnchor": 0,
   "ApplyColorTint": false,
@@ -9598,7 +10382,7 @@
  },
  {
   "_name": "WarriorRageShout",
-  "_pathid": 60551,
+  "_pathid": 60607,
   "_file": "sharedassets0.assets",
   "_managedRefs": {
    "__header__": [
@@ -9646,7 +10430,7 @@
   },
   "Icon": {
    "fileID": 0,
-   "pathID": 5589
+   "pathID": 5610
   },
   "ShowInTooltipExplanation": false,
   "Stackable": false,
@@ -9688,7 +10472,7 @@
   "AnimatorBool": "",
   "PersistentVFXPrefab": {
    "fileID": 0,
-   "pathID": 22104
+   "pathID": 22132
   },
   "PersistentVFXAnchor": 1,
   "ApplyColorTint": false,

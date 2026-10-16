@@ -35,7 +35,7 @@ def selftest():
     ok.append(('暴伤× = 4.812', abs(m.crit_multiplier() - 4.812) < 1e-9))
     ok.append(('暴击率封顶 0.85', abs(m.crit_chance() - 0.85) < 1e-9))
 
-    # 3b) 封顶 1.0.2b：CDR 0.80、减伤 0.90（StatCap.GetCap@0x4AC490 实证）
+    # 3b) 封顶 1.0.2b：CDR 0.80、减伤 0.90（StatCap.GetCap@0x4AECB0 实证）
     s2 = StatSheet()
     s2.add_mod(Modifier(StatType.CooldownReduction, ModifierType.Flat, 0.95))
     s2.add_mod(Modifier(StatType.DamageReduction, ModifierType.Flat, 0.95))
@@ -62,12 +62,24 @@ def selftest():
     e1 = mt.compute(Target(hp_fraction=0.5, vulnerable=True), rng=_rnd.Random(0)).expected_mult
     ok.append(('易伤倍率 = 1.3', abs(e1 / e0 - 1.3) < 1e-9))
 
-    # 7) 主属性加成（Player.CalcDamage@0x511060，补丁前 bjr@0x509D80）：(武器伤害 + Damage(3)) ×(1 + Final(主属性)/100)
+    # 7) 主属性加成（Player.CalcDamage@0x518230，补丁前 bjr@0x509D80）：(武器伤害 + Damage(3)) ×(1 + Final(主属性)/100)
     s = StatSheet({StatType.WeaponDamage: 100, StatType.Damage: 50, StatType.Strength: 451})
     m = DamageModel(s, DamageType.Physical, primary_stat=StatType.Strength)
     ok.append(('主属性 ×5.51（力量 451 实测值）', abs(m.attack_damage() - 150.0 * 5.51) < 1e-9))
     ok.append(('未设主属性 ×1.0（兼容非玩家路径）',
                abs(DamageModel(s, DamageType.Physical).attack_damage() - 150.0) < 1e-9))
+
+    # 8) 最终减伤（FinalDamageReduction=66，1.0.3 新增）：乘区之后的一次**绝对减法**、下限 0
+    #    指令级依据：Character.ApplyDamage@0x1806893E0 尾部 `subsd xmm6, clamp(Final(66))` → max(0, trunc(·))
+    s = StatSheet({StatType.WeaponDamage: 1000})
+    m = DamageModel(s, DamageType.Physical)
+    base = m.compute(Target(level=70), attack_speed=1.0, rng=_rnd.Random(0)).effective_dps
+    red = m.compute(Target(level=70, final_damage_reduction=50.0), attack_speed=1.0,
+                    rng=_rnd.Random(0)).effective_dps
+    ok.append(('最终减伤 = 绝对减法（DPS −50）', abs(base - red - 50.0) < 1e-6))
+    floor = m.compute(Target(level=70, final_damage_reduction=1e9), attack_speed=1.0,
+                      rng=_rnd.Random(0)).effective_dps
+    ok.append(('最终减伤下限：伤害不为负（保底 1/击）', abs(floor - 1.0) < 1e-9))
 
     for desc, good in ok:
         print(f'  [{"PASS" if good else "FAIL"}] {desc}')

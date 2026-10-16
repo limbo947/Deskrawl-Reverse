@@ -8,9 +8,10 @@
   bko : condMul = 1 + Σ(命中的条件伤害项)                                     ✅ 6.2.2
   crit: critChance = clamp(Final(CritChance)+buff+cond, 0, 0.85)             ✅ 6.2.3
         critMul    = 1 + Final(CritDamage)+equip
-  封顶 1.0.2b：CDR 0.85→0.80；通用/元素减伤上限 90%（StatCap.GetCap@0x4AC490 实证）
+  封顶 1.0.2b：CDR 0.85→0.80；通用/元素减伤上限 90%（StatCap.GetCap@0x4AECB0 实证）
   armor: resist/(resist + 50 × max(1, level))                                ✅ 6.2.4
   减伤 : ×(1-armorResist)×(1-elemRed)×(1-DamageReduction)                    ✅
+  最终减伤: − Final(FinalDamageReduction)，下限 0（乘区之后的一次绝对减法）      ✅ 6.2.7
   易伤 : ×1.3（固定），另 VulnerableDamage 计入条件池                          ✅ 6.2.5
   最低伤害 1；命中浮动 ×U(0.9,1.1)                                            ✅
 
@@ -136,6 +137,10 @@ class Target:
     magic_resist: float = 0.0
     elem_reduction: Dict[int, float] = field(default_factory=dict)  # DamageType -> 值
     damage_reduction: float = 0.0
+    # 最终减伤（StatType.FinalDamageReduction=66，1.0.3 新增）：**绝对量**，在所有乘区之后一次性减法、下限 0。
+    # 指令级依据：Character.ApplyDamage@0x1806893E0 尾部 `subsd xmm6, clamp(Final(66))` → `max(0, trunc(·))`，
+    # 且该 stat 走 StatCap.Clamp（GetCap 落 inf 分支→无上限）。见 docs/04 §6.2.7。
+    final_damage_reduction: float = 0.0
     vulnerable: bool = False
     slowed: bool = False
     immobilized: bool = False
@@ -149,7 +154,7 @@ class Target:
         return self.armor if int(damage_type) == int(DamageType.Physical) else self.magic_resist
 
     def armor_resist(self, damage_type: int) -> float:
-        """armorResist = resist / (resist + 50 × max(1, level))。常量 50 @ 0x18364FAD0（补丁前 0x18363F120，见 docs/08 §13.2）。"""
+        """armorResist = resist / (resist + 50 × max(1, level))。常量 50 @ 0x183681610（补丁前 0x18363F120，见 docs/08 §13.2）。"""
         r = self.resist(damage_type)
         return r / (r + 50.0 * max(1, self.level)) if (r + 50.0) > 0 else 0.0
 
@@ -230,9 +235,9 @@ class DamageModel:
     def crit_multiplier(self) -> float:
         return 1.0 + self.sheet.final(StatType.CritDamage) + self.equip_crit_damage
 
-    # --- 攻击方基础伤害（Player.CalcDamage@0x511060：武器伤害 + 通用增伤(3)，再乘主属性加成）---
+    # --- 攻击方基础伤害（Player.CalcDamage@0x518230：武器伤害 + 通用增伤(3)，再乘主属性加成）---
     def primary_stat_multiplier(self) -> float:
-        """×(1 + Final(职业主属性)/100)。主属性由 Player.PrimaryStatValue@0x4FACF0 给出
+        """×(1 + Final(职业主属性)/100)。主属性由 Player.PrimaryStatValue@0x500CA0 给出
         （英雄职业主属性：0=力量/1=敏捷/2=智力，Barbarian=0 实证）；None=不启用。
 
         游戏内力量 tooltip「当前提升 451% 伤害」即 451 代入本式（×5.51），2026-10-09 截图实证。
@@ -283,9 +288,14 @@ class DamageModel:
         dmg *= vuln
         dmg *= self.damage_dealt_mult
         dmg *= am * er * gr
+        # 最终减伤：乘区之后的**绝对减法**（非倍率），下限 0（游戏 trunc+max(0,·)，见 docs/04 §6.2.7）
+        if target.final_damage_reduction:
+            dmg = max(0.0, dmg - max(0.0, target.final_damage_reduction))
         dmg = max(1.0, dmg)
 
-        # 期望倍率（暴击期望，用于装备对比，避免随机噪声）
+        # 期望倍率（暴击期望，用于装备对比，避免随机噪声）。
+        # 注：最终减伤是绝对量、无法折进倍率，故 expected/final_mult **不含**它——装备对比走倍率口径，
+        # 该项只影响单次绝对伤害（对攻击方 DPS 无影响：66 是受击方属性）。
         expected = type_mul * (1.0 + cc * (cm - 1.0)) * cond * vuln * self.damage_dealt_mult * am * er * gr
         final_mult = type_mul * (cm if is_crit else 1.0) * cond * vuln * self.damage_dealt_mult * am * er * gr
 
@@ -295,7 +305,11 @@ class DamageModel:
                              global_red_mult=gr, final_mult=final_mult,
                              expected_mult=expected)
         if attack_speed is not None:
-            bd.effective_dps = atk * expected * attack_speed
+            # 最终减伤折进**绝对**期望伤害（不是倍率）：exp_hit = max(1, atk×expected − Final(66))
+            exp_hit = atk * expected
+            if target.final_damage_reduction:
+                exp_hit = max(1.0, exp_hit - max(0.0, target.final_damage_reduction))
+            bd.effective_dps = exp_hit * attack_speed
         return bd
 
     def effective_attack_speed(self, base_speed: float) -> float:

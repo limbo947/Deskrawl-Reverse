@@ -1,20 +1,20 @@
 [
  {
   "_name": "PotionPlaceholder",
-  "_pathid": 5240,
+  "_pathid": 5380,
   "_file": "resources.assets",
   "Ingredients": [
    {
     "Item": {
      "fileID": 2,
-     "pathID": 60045
+     "pathID": 60098
     },
     "Amount": 2
    }
   ],
   "OutputItem": {
    "fileID": 2,
-   "pathID": 59927
+   "pathID": 59979
   },
   "OutputQuantity": 1,
   "GoldCost": 0,
@@ -22,13 +22,13 @@
  },
  {
   "_name": "UpgradeRecipeUncommon",
-  "_pathid": 5241,
+  "_pathid": 5381,
   "_file": "resources.assets",
   "Ingredients": [
    {
     "Item": {
      "fileID": 2,
-     "pathID": 60041
+     "pathID": 60094
     },
     "Amount": 2
    }
@@ -40,20 +40,20 @@
  },
  {
   "_name": "GemUpgradeAmethyst2",
-  "_pathid": 60344,
+  "_pathid": 60397,
   "_file": "sharedassets0.assets",
   "Ingredients": [
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59980
+     "pathID": 60032
     },
     "Amount": 10
    }
   ],
   "OutputItem": {
    "fileID": 0,
-   "pathID": 59981
+   "pathID": 60033
   },
   "OutputQuantity": 1,
   "GoldCost": 300,
@@ -61,20 +61,20 @@
  },
  {
   "_name": "GemUpgradeAmethyst3",
-  "_pathid": 60345,
+  "_pathid": 60398,
   "_file": "sharedassets0.assets",
   "Ingredients": [
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59981
+     "pathID": 60033
     },
     "Amount": 10
    }
   ],
   "OutputItem": {
    "fileID": 0,
-   "pathID": 59982
+   "pathID": 60034
   },
   "OutputQuantity": 1,
   "GoldCost": 1300,
@@ -82,20 +82,20 @@
  },
  {
   "_name": "GemUpgradeAmethyst4",
-  "_pathid": 60346,
+  "_pathid": 60399,
   "_file": "sharedassets0.assets",
   "Ingredients": [
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59982
+     "pathID": 60034
     },
     "Amount": 10
    }
   ],
   "OutputItem": {
    "fileID": 0,
-   "pathID": 59983
+   "pathID": 60035
   },
   "OutputQuantity": 1,
   "GoldCost": 5500,
@@ -103,20 +103,20 @@
  },
  {
   "_name": "GemUpgradeAmethyst5",
-  "_pathid": 60347,
+  "_pathid": 60400,
   "_file": "sharedassets0.assets",
   "Ingredients": [
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59983
+     "pathID": 60035
     },
     "Amount": 10
    }
   ],
   "OutputItem": {
    "fileID": 0,
-   "pathID": 59984
+   "pathID": 60036
   },
   "OutputQuantity": 1,
   "GoldCost": 23000,
@@ -124,20 +124,20 @@
  },
  {
   "_name": "GemUpgradeAmethyst6",
-  "_pathid": 60348,
+  "_pathid": 60401,
   "_file": "sharedassets0.assets",
   "Ingredients": [
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59984
+     "pathID": 60036
     },
     "Amount": 10
    }
   ],
   "OutputItem": {
    "fileID": 0,
-   "pathID": 59985
+   "pathID": 60037
   },
   "OutputQuantity": 1,
   "GoldCost": 100000,
@@ -145,20 +145,20 @@
  },
  {
   "_name": "GemUpgradeDiamond2",
-  "_pathid": 60349,
+  "_pathid": 60402,
   "_file": "sharedassets0.assets",
   "Ingredients": [
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59986
+     "pathID": 60038
     },
     "Amount": 10
    }
   ],
   "OutputItem": {
    "fileID": 0,
-   "pathID": 59987
+   "pathID": 60039
   },
   "OutputQuantity": 1,
   "GoldCost": 300,
@@ -166,20 +166,20 @@
  },
  {
   "_name": "GemUpgradeDiamond3",
-  "_pathid": 60350,
+  "_pathid": 60403,
   "_file": "sharedassets0.assets",
   "Ingredients": [
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59987
+     "pathID": 60039
     },
     "Amount": 10
    }
   ],
   "OutputItem": {
    "fileID": 0,
-   "pathID": 59988
+   "pathID": 60040
   },
   "OutputQuantity": 1,
   "GoldCost": 1300,
@@ -187,20 +187,20 @@
  },
  {
   "_name": "GemUpgradeDiamond4",
-  "_pathid": 60351,
+  "_pathid": 60404,
   "_file": "sharedassets0.assets",
   "Ingredients": [
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59988
+     "pathID": 60040
     },
     "Amount": 10
    }
   ],
   "OutputItem": {
    "fileID": 0,
-   "pathID": 59989
+   "pathID": 60041
   },
   "OutputQuantity": 1,
   "GoldCost": 5500,
@@ -208,20 +208,20 @@
  },
  {
   "_name": "GemUpgradeDiamond5",
-  "_pathid": 60352,
+  "_pathid": 60405,
   "_file": "sharedassets0.assets",
   "Ingredients": [
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59989
+     "pathID": 60041
     },
     "Amount": 10
    }
   ],
   "OutputItem": {
    "fileID": 0,
-   "pathID": 59990
+   "pathID": 60042
   },
   "OutputQuantity": 1,
   "GoldCost": 23000,
@@ -229,20 +229,20 @@
  },
  {
   "_name": "GemUpgradeDiamond6",
-  "_pathid": 60353,
+  "_pathid": 60406,
   "_file": "sharedassets0.assets",
   "Ingredients": [
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59990
+     "pathID": 60042
     },
     "Amount": 10
    }
   ],
   "OutputItem": {
    "fileID": 0,
-   "pathID": 59991
+   "pathID": 60043
   },
   "OutputQuantity": 1,
   "GoldCost": 100000,
@@ -250,20 +250,20 @@
  },
  {
   "_name": "GemUpgradeEmerald2",
-  "_pathid": 60354,
+  "_pathid": 60407,
   "_file": "sharedassets0.assets",
   "Ingredients": [
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59992
+     "pathID": 60044
     },
     "Amount": 10
    }
   ],
   "OutputItem": {
    "fileID": 0,
-   "pathID": 59993
+   "pathID": 60045
   },
   "OutputQuantity": 1,
   "GoldCost": 300,
@@ -271,20 +271,20 @@
  },
  {
   "_name": "GemUpgradeEmerald3",
-  "_pathid": 60355,
+  "_pathid": 60408,
   "_file": "sharedassets0.assets",
   "Ingredients": [
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59993
+     "pathID": 60045
     },
     "Amount": 10
    }
   ],
   "OutputItem": {
    "fileID": 0,
-   "pathID": 59994
+   "pathID": 60046
   },
   "OutputQuantity": 1,
   "GoldCost": 1300,
@@ -292,20 +292,20 @@
  },
  {
   "_name": "GemUpgradeEmerald4",
-  "_pathid": 60356,
+  "_pathid": 60409,
   "_file": "sharedassets0.assets",
   "Ingredients": [
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59994
+     "pathID": 60046
     },
     "Amount": 10
    }
   ],
   "OutputItem": {
    "fileID": 0,
-   "pathID": 59995
+   "pathID": 60047
   },
   "OutputQuantity": 1,
   "GoldCost": 5500,
@@ -313,20 +313,20 @@
  },
  {
   "_name": "GemUpgradeEmerald5",
-  "_pathid": 60357,
+  "_pathid": 60410,
   "_file": "sharedassets0.assets",
   "Ingredients": [
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59995
+     "pathID": 60047
     },
     "Amount": 10
    }
   ],
   "OutputItem": {
    "fileID": 0,
-   "pathID": 59996
+   "pathID": 60048
   },
   "OutputQuantity": 1,
   "GoldCost": 23000,
@@ -334,665 +334,7 @@
  },
  {
   "_name": "GemUpgradeEmerald6",
-  "_pathid": 60358,
-  "_file": "sharedassets0.assets",
-  "Ingredients": [
-   {
-    "Item": {
-     "fileID": 0,
-     "pathID": 59996
-    },
-    "Amount": 10
-   }
-  ],
-  "OutputItem": {
-   "fileID": 0,
-   "pathID": 59997
-  },
-  "OutputQuantity": 1,
-  "GoldCost": 100000,
-  "IsLockedInDemo": false
- },
- {
-  "_name": "GemUpgradeRuby2",
-  "_pathid": 60359,
-  "_file": "sharedassets0.assets",
-  "Ingredients": [
-   {
-    "Item": {
-     "fileID": 0,
-     "pathID": 59998
-    },
-    "Amount": 10
-   }
-  ],
-  "OutputItem": {
-   "fileID": 0,
-   "pathID": 59999
-  },
-  "OutputQuantity": 1,
-  "GoldCost": 300,
-  "IsLockedInDemo": false
- },
- {
-  "_name": "GemUpgradeRuby3",
-  "_pathid": 60360,
-  "_file": "sharedassets0.assets",
-  "Ingredients": [
-   {
-    "Item": {
-     "fileID": 0,
-     "pathID": 59999
-    },
-    "Amount": 10
-   }
-  ],
-  "OutputItem": {
-   "fileID": 0,
-   "pathID": 60000
-  },
-  "OutputQuantity": 1,
-  "GoldCost": 1300,
-  "IsLockedInDemo": false
- },
- {
-  "_name": "GemUpgradeRuby4",
-  "_pathid": 60361,
-  "_file": "sharedassets0.assets",
-  "Ingredients": [
-   {
-    "Item": {
-     "fileID": 0,
-     "pathID": 60000
-    },
-    "Amount": 10
-   }
-  ],
-  "OutputItem": {
-   "fileID": 0,
-   "pathID": 60001
-  },
-  "OutputQuantity": 1,
-  "GoldCost": 5500,
-  "IsLockedInDemo": false
- },
- {
-  "_name": "GemUpgradeRuby5",
-  "_pathid": 60362,
-  "_file": "sharedassets0.assets",
-  "Ingredients": [
-   {
-    "Item": {
-     "fileID": 0,
-     "pathID": 60001
-    },
-    "Amount": 10
-   }
-  ],
-  "OutputItem": {
-   "fileID": 0,
-   "pathID": 60002
-  },
-  "OutputQuantity": 1,
-  "GoldCost": 23000,
-  "IsLockedInDemo": false
- },
- {
-  "_name": "GemUpgradeRuby6",
-  "_pathid": 60363,
-  "_file": "sharedassets0.assets",
-  "Ingredients": [
-   {
-    "Item": {
-     "fileID": 0,
-     "pathID": 60002
-    },
-    "Amount": 10
-   }
-  ],
-  "OutputItem": {
-   "fileID": 0,
-   "pathID": 60003
-  },
-  "OutputQuantity": 1,
-  "GoldCost": 100000,
-  "IsLockedInDemo": false
- },
- {
-  "_name": "GemUpgradeSapphire2",
-  "_pathid": 60364,
-  "_file": "sharedassets0.assets",
-  "Ingredients": [
-   {
-    "Item": {
-     "fileID": 0,
-     "pathID": 60004
-    },
-    "Amount": 10
-   }
-  ],
-  "OutputItem": {
-   "fileID": 0,
-   "pathID": 60005
-  },
-  "OutputQuantity": 1,
-  "GoldCost": 300,
-  "IsLockedInDemo": false
- },
- {
-  "_name": "GemUpgradeSapphire3",
-  "_pathid": 60365,
-  "_file": "sharedassets0.assets",
-  "Ingredients": [
-   {
-    "Item": {
-     "fileID": 0,
-     "pathID": 60005
-    },
-    "Amount": 10
-   }
-  ],
-  "OutputItem": {
-   "fileID": 0,
-   "pathID": 60006
-  },
-  "OutputQuantity": 1,
-  "GoldCost": 1300,
-  "IsLockedInDemo": false
- },
- {
-  "_name": "GemUpgradeSapphire4",
-  "_pathid": 60366,
-  "_file": "sharedassets0.assets",
-  "Ingredients": [
-   {
-    "Item": {
-     "fileID": 0,
-     "pathID": 60006
-    },
-    "Amount": 10
-   }
-  ],
-  "OutputItem": {
-   "fileID": 0,
-   "pathID": 60007
-  },
-  "OutputQuantity": 1,
-  "GoldCost": 5500,
-  "IsLockedInDemo": false
- },
- {
-  "_name": "GemUpgradeSapphire5",
-  "_pathid": 60367,
-  "_file": "sharedassets0.assets",
-  "Ingredients": [
-   {
-    "Item": {
-     "fileID": 0,
-     "pathID": 60007
-    },
-    "Amount": 10
-   }
-  ],
-  "OutputItem": {
-   "fileID": 0,
-   "pathID": 60008
-  },
-  "OutputQuantity": 1,
-  "GoldCost": 23000,
-  "IsLockedInDemo": false
- },
- {
-  "_name": "GemUpgradeSapphire6",
-  "_pathid": 60368,
-  "_file": "sharedassets0.assets",
-  "Ingredients": [
-   {
-    "Item": {
-     "fileID": 0,
-     "pathID": 60008
-    },
-    "Amount": 10
-   }
-  ],
-  "OutputItem": {
-   "fileID": 0,
-   "pathID": 60009
-  },
-  "OutputQuantity": 1,
-  "GoldCost": 100000,
-  "IsLockedInDemo": false
- },
- {
-  "_name": "GemUpgradeTopaz2",
-  "_pathid": 60369,
-  "_file": "sharedassets0.assets",
-  "Ingredients": [
-   {
-    "Item": {
-     "fileID": 0,
-     "pathID": 60010
-    },
-    "Amount": 10
-   }
-  ],
-  "OutputItem": {
-   "fileID": 0,
-   "pathID": 60011
-  },
-  "OutputQuantity": 1,
-  "GoldCost": 300,
-  "IsLockedInDemo": false
- },
- {
-  "_name": "GemUpgradeTopaz3",
-  "_pathid": 60370,
-  "_file": "sharedassets0.assets",
-  "Ingredients": [
-   {
-    "Item": {
-     "fileID": 0,
-     "pathID": 60011
-    },
-    "Amount": 10
-   }
-  ],
-  "OutputItem": {
-   "fileID": 0,
-   "pathID": 60012
-  },
-  "OutputQuantity": 1,
-  "GoldCost": 1300,
-  "IsLockedInDemo": false
- },
- {
-  "_name": "GemUpgradeTopaz4",
-  "_pathid": 60371,
-  "_file": "sharedassets0.assets",
-  "Ingredients": [
-   {
-    "Item": {
-     "fileID": 0,
-     "pathID": 60012
-    },
-    "Amount": 10
-   }
-  ],
-  "OutputItem": {
-   "fileID": 0,
-   "pathID": 60013
-  },
-  "OutputQuantity": 1,
-  "GoldCost": 5500,
-  "IsLockedInDemo": false
- },
- {
-  "_name": "GemUpgradeTopaz5",
-  "_pathid": 60372,
-  "_file": "sharedassets0.assets",
-  "Ingredients": [
-   {
-    "Item": {
-     "fileID": 0,
-     "pathID": 60013
-    },
-    "Amount": 10
-   }
-  ],
-  "OutputItem": {
-   "fileID": 0,
-   "pathID": 60014
-  },
-  "OutputQuantity": 1,
-  "GoldCost": 23000,
-  "IsLockedInDemo": false
- },
- {
-  "_name": "GemUpgradeTopaz6",
-  "_pathid": 60373,
-  "_file": "sharedassets0.assets",
-  "Ingredients": [
-   {
-    "Item": {
-     "fileID": 0,
-     "pathID": 60014
-    },
-    "Amount": 10
-   }
-  ],
-  "OutputItem": {
-   "fileID": 0,
-   "pathID": 60015
-  },
-  "OutputQuantity": 1,
-  "GoldCost": 100000,
-  "IsLockedInDemo": false
- },
- {
-  "_name": "ArmorPotionLv1",
-  "_pathid": 60374,
-  "_file": "sharedassets0.assets",
-  "Ingredients": [
-   {
-    "Item": {
-     "fileID": 0,
-     "pathID": 60046
-    },
-    "Amount": 6
-   },
-   {
-    "Item": {
-     "fileID": 0,
-     "pathID": 60026
-    },
-    "Amount": 2
-   }
-  ],
-  "OutputItem": {
-   "fileID": 0,
-   "pathID": 59922
-  },
-  "OutputQuantity": 1,
-  "GoldCost": 0,
-  "IsLockedInDemo": false
- },
- {
-  "_name": "AttackSpeedPotionLv1",
-  "_pathid": 60375,
-  "_file": "sharedassets0.assets",
-  "Ingredients": [
-   {
-    "Item": {
-     "fileID": 0,
-     "pathID": 60045
-    },
-    "Amount": 3
-   },
-   {
-    "Item": {
-     "fileID": 0,
-     "pathID": 60032
-    },
-    "Amount": 1
-   }
-  ],
-  "OutputItem": {
-   "fileID": 0,
-   "pathID": 59923
-  },
-  "OutputQuantity": 1,
-  "GoldCost": 0,
-  "IsLockedInDemo": false
- },
- {
-  "_name": "AttackSpeedPotionLv2",
-  "_pathid": 60376,
-  "_file": "sharedassets0.assets",
-  "Ingredients": [
-   {
-    "Item": {
-     "fileID": 0,
-     "pathID": 60047
-    },
-    "Amount": 6
-   },
-   {
-    "Item": {
-     "fileID": 0,
-     "pathID": 60029
-    },
-    "Amount": 2
-   }
-  ],
-  "OutputItem": {
-   "fileID": 0,
-   "pathID": 59924
-  },
-  "OutputQuantity": 1,
-  "GoldCost": 0,
-  "IsLockedInDemo": false
- },
- {
-  "_name": "CinderbloodPotionRecipe",
-  "_pathid": 60377,
-  "_file": "sharedassets0.assets",
-  "Ingredients": [
-   {
-    "Item": {
-     "fileID": 0,
-     "pathID": 60049
-    },
-    "Amount": 6
-   },
-   {
-    "Item": {
-     "fileID": 0,
-     "pathID": 60040
-    },
-    "Amount": 2
-   }
-  ],
-  "OutputItem": {
-   "fileID": 0,
-   "pathID": 59925
-  },
-  "OutputQuantity": 1,
-  "GoldCost": 0,
-  "IsLockedInDemo": true
- },
- {
-  "_name": "CrimsonHuntPotionRecipe",
-  "_pathid": 60378,
-  "_file": "sharedassets0.assets",
-  "Ingredients": [
-   {
-    "Item": {
-     "fileID": 0,
-     "pathID": 60047
-    },
-    "Amount": 6
-   },
-   {
-    "Item": {
-     "fileID": 0,
-     "pathID": 60031
-    },
-    "Amount": 2
-   }
-  ],
-  "OutputItem": {
-   "fileID": 0,
-   "pathID": 59926
-  },
-  "OutputQuantity": 1,
-  "GoldCost": 0,
-  "IsLockedInDemo": true
- },
- {
-  "_name": "CritPotionLv1",
-  "_pathid": 60379,
-  "_file": "sharedassets0.assets",
-  "Ingredients": [
-   {
-    "Item": {
-     "fileID": 0,
-     "pathID": 60045
-    },
-    "Amount": 3
-   },
-   {
-    "Item": {
-     "fileID": 0,
-     "pathID": 60032
-    },
-    "Amount": 1
-   }
-  ],
-  "OutputItem": {
-   "fileID": 0,
-   "pathID": 59927
-  },
-  "OutputQuantity": 1,
-  "GoldCost": 0,
-  "IsLockedInDemo": false
- },
- {
-  "_name": "CritPotionLv2",
-  "_pathid": 60380,
-  "_file": "sharedassets0.assets",
-  "Ingredients": [
-   {
-    "Item": {
-     "fileID": 0,
-     "pathID": 60047
-    },
-    "Amount": 6
-   },
-   {
-    "Item": {
-     "fileID": 0,
-     "pathID": 60028
-    },
-    "Amount": 2
-   }
-  ],
-  "OutputItem": {
-   "fileID": 0,
-   "pathID": 59928
-  },
-  "OutputQuantity": 1,
-  "GoldCost": 0,
-  "IsLockedInDemo": false
- },
- {
-  "_name": "DodgePotionLv1",
-  "_pathid": 60381,
-  "_file": "sharedassets0.assets",
-  "Ingredients": [
-   {
-    "Item": {
-     "fileID": 0,
-     "pathID": 60044
-    },
-    "Amount": 10
-   },
-   {
-    "Item": {
-     "fileID": 0,
-     "pathID": 60032
-    },
-    "Amount": 1
-   }
-  ],
-  "OutputItem": {
-   "fileID": 0,
-   "pathID": 59929
-  },
-  "OutputQuantity": 1,
-  "GoldCost": 0,
-  "IsLockedInDemo": false
- },
- {
-  "_name": "ExpPotionLv1",
-  "_pathid": 60382,
-  "_file": "sharedassets0.assets",
-  "Ingredients": [
-   {
-    "Item": {
-     "fileID": 0,
-     "pathID": 60044
-    },
-    "Amount": 15
-   }
-  ],
-  "OutputItem": {
-   "fileID": 0,
-   "pathID": 59930
-  },
-  "OutputQuantity": 1,
-  "GoldCost": 0,
-  "IsLockedInDemo": false
- },
- {
-  "_name": "FrostmindPotionRecipe",
-  "_pathid": 60383,
-  "_file": "sharedassets0.assets",
-  "Ingredients": [
-   {
-    "Item": {
-     "fileID": 0,
-     "pathID": 60045
-    },
-    "Amount": 6
-   },
-   {
-    "Item": {
-     "fileID": 0,
-     "pathID": 60035
-    },
-    "Amount": 2
-   }
-  ],
-  "OutputItem": {
-   "fileID": 0,
-   "pathID": 59931
-  },
-  "OutputQuantity": 1,
-  "GoldCost": 0,
-  "IsLockedInDemo": true
- },
- {
-  "_name": "GoldPotionLv1",
-  "_pathid": 60384,
-  "_file": "sharedassets0.assets",
-  "Ingredients": [
-   {
-    "Item": {
-     "fileID": 0,
-     "pathID": 60045
-    },
-    "Amount": 3
-   },
-   {
-    "Item": {
-     "fileID": 0,
-     "pathID": 60042
-    },
-    "Amount": 2
-   }
-  ],
-  "OutputItem": {
-   "fileID": 0,
-   "pathID": 59932
-  },
-  "OutputQuantity": 1,
-  "GoldCost": 0,
-  "IsLockedInDemo": false
- },
- {
-  "_name": "MovementPotiontLv1",
-  "_pathid": 60385,
-  "_file": "sharedassets0.assets",
-  "Ingredients": [
-   {
-    "Item": {
-     "fileID": 0,
-     "pathID": 60045
-    },
-    "Amount": 4
-   }
-  ],
-  "OutputItem": {
-   "fileID": 0,
-   "pathID": 59933
-  },
-  "OutputQuantity": 1,
-  "GoldCost": 0,
-  "IsLockedInDemo": false
- },
- {
-  "_name": "StormheartPotionRecipe",
-  "_pathid": 60386,
+  "_pathid": 60411,
   "_file": "sharedassets0.assets",
   "Ingredients": [
    {
@@ -1000,19 +342,677 @@
      "fileID": 0,
      "pathID": 60048
     },
+    "Amount": 10
+   }
+  ],
+  "OutputItem": {
+   "fileID": 0,
+   "pathID": 60049
+  },
+  "OutputQuantity": 1,
+  "GoldCost": 100000,
+  "IsLockedInDemo": false
+ },
+ {
+  "_name": "GemUpgradeRuby2",
+  "_pathid": 60412,
+  "_file": "sharedassets0.assets",
+  "Ingredients": [
+   {
+    "Item": {
+     "fileID": 0,
+     "pathID": 60050
+    },
+    "Amount": 10
+   }
+  ],
+  "OutputItem": {
+   "fileID": 0,
+   "pathID": 60051
+  },
+  "OutputQuantity": 1,
+  "GoldCost": 300,
+  "IsLockedInDemo": false
+ },
+ {
+  "_name": "GemUpgradeRuby3",
+  "_pathid": 60413,
+  "_file": "sharedassets0.assets",
+  "Ingredients": [
+   {
+    "Item": {
+     "fileID": 0,
+     "pathID": 60051
+    },
+    "Amount": 10
+   }
+  ],
+  "OutputItem": {
+   "fileID": 0,
+   "pathID": 60052
+  },
+  "OutputQuantity": 1,
+  "GoldCost": 1300,
+  "IsLockedInDemo": false
+ },
+ {
+  "_name": "GemUpgradeRuby4",
+  "_pathid": 60414,
+  "_file": "sharedassets0.assets",
+  "Ingredients": [
+   {
+    "Item": {
+     "fileID": 0,
+     "pathID": 60052
+    },
+    "Amount": 10
+   }
+  ],
+  "OutputItem": {
+   "fileID": 0,
+   "pathID": 60053
+  },
+  "OutputQuantity": 1,
+  "GoldCost": 5500,
+  "IsLockedInDemo": false
+ },
+ {
+  "_name": "GemUpgradeRuby5",
+  "_pathid": 60415,
+  "_file": "sharedassets0.assets",
+  "Ingredients": [
+   {
+    "Item": {
+     "fileID": 0,
+     "pathID": 60053
+    },
+    "Amount": 10
+   }
+  ],
+  "OutputItem": {
+   "fileID": 0,
+   "pathID": 60054
+  },
+  "OutputQuantity": 1,
+  "GoldCost": 23000,
+  "IsLockedInDemo": false
+ },
+ {
+  "_name": "GemUpgradeRuby6",
+  "_pathid": 60416,
+  "_file": "sharedassets0.assets",
+  "Ingredients": [
+   {
+    "Item": {
+     "fileID": 0,
+     "pathID": 60054
+    },
+    "Amount": 10
+   }
+  ],
+  "OutputItem": {
+   "fileID": 0,
+   "pathID": 60055
+  },
+  "OutputQuantity": 1,
+  "GoldCost": 100000,
+  "IsLockedInDemo": false
+ },
+ {
+  "_name": "GemUpgradeSapphire2",
+  "_pathid": 60417,
+  "_file": "sharedassets0.assets",
+  "Ingredients": [
+   {
+    "Item": {
+     "fileID": 0,
+     "pathID": 60056
+    },
+    "Amount": 10
+   }
+  ],
+  "OutputItem": {
+   "fileID": 0,
+   "pathID": 60057
+  },
+  "OutputQuantity": 1,
+  "GoldCost": 300,
+  "IsLockedInDemo": false
+ },
+ {
+  "_name": "GemUpgradeSapphire3",
+  "_pathid": 60418,
+  "_file": "sharedassets0.assets",
+  "Ingredients": [
+   {
+    "Item": {
+     "fileID": 0,
+     "pathID": 60057
+    },
+    "Amount": 10
+   }
+  ],
+  "OutputItem": {
+   "fileID": 0,
+   "pathID": 60058
+  },
+  "OutputQuantity": 1,
+  "GoldCost": 1300,
+  "IsLockedInDemo": false
+ },
+ {
+  "_name": "GemUpgradeSapphire4",
+  "_pathid": 60419,
+  "_file": "sharedassets0.assets",
+  "Ingredients": [
+   {
+    "Item": {
+     "fileID": 0,
+     "pathID": 60058
+    },
+    "Amount": 10
+   }
+  ],
+  "OutputItem": {
+   "fileID": 0,
+   "pathID": 60059
+  },
+  "OutputQuantity": 1,
+  "GoldCost": 5500,
+  "IsLockedInDemo": false
+ },
+ {
+  "_name": "GemUpgradeSapphire5",
+  "_pathid": 60420,
+  "_file": "sharedassets0.assets",
+  "Ingredients": [
+   {
+    "Item": {
+     "fileID": 0,
+     "pathID": 60059
+    },
+    "Amount": 10
+   }
+  ],
+  "OutputItem": {
+   "fileID": 0,
+   "pathID": 60060
+  },
+  "OutputQuantity": 1,
+  "GoldCost": 23000,
+  "IsLockedInDemo": false
+ },
+ {
+  "_name": "GemUpgradeSapphire6",
+  "_pathid": 60421,
+  "_file": "sharedassets0.assets",
+  "Ingredients": [
+   {
+    "Item": {
+     "fileID": 0,
+     "pathID": 60060
+    },
+    "Amount": 10
+   }
+  ],
+  "OutputItem": {
+   "fileID": 0,
+   "pathID": 60061
+  },
+  "OutputQuantity": 1,
+  "GoldCost": 100000,
+  "IsLockedInDemo": false
+ },
+ {
+  "_name": "GemUpgradeTopaz2",
+  "_pathid": 60422,
+  "_file": "sharedassets0.assets",
+  "Ingredients": [
+   {
+    "Item": {
+     "fileID": 0,
+     "pathID": 60062
+    },
+    "Amount": 10
+   }
+  ],
+  "OutputItem": {
+   "fileID": 0,
+   "pathID": 60063
+  },
+  "OutputQuantity": 1,
+  "GoldCost": 300,
+  "IsLockedInDemo": false
+ },
+ {
+  "_name": "GemUpgradeTopaz3",
+  "_pathid": 60423,
+  "_file": "sharedassets0.assets",
+  "Ingredients": [
+   {
+    "Item": {
+     "fileID": 0,
+     "pathID": 60063
+    },
+    "Amount": 10
+   }
+  ],
+  "OutputItem": {
+   "fileID": 0,
+   "pathID": 60064
+  },
+  "OutputQuantity": 1,
+  "GoldCost": 1300,
+  "IsLockedInDemo": false
+ },
+ {
+  "_name": "GemUpgradeTopaz4",
+  "_pathid": 60424,
+  "_file": "sharedassets0.assets",
+  "Ingredients": [
+   {
+    "Item": {
+     "fileID": 0,
+     "pathID": 60064
+    },
+    "Amount": 10
+   }
+  ],
+  "OutputItem": {
+   "fileID": 0,
+   "pathID": 60065
+  },
+  "OutputQuantity": 1,
+  "GoldCost": 5500,
+  "IsLockedInDemo": false
+ },
+ {
+  "_name": "GemUpgradeTopaz5",
+  "_pathid": 60425,
+  "_file": "sharedassets0.assets",
+  "Ingredients": [
+   {
+    "Item": {
+     "fileID": 0,
+     "pathID": 60065
+    },
+    "Amount": 10
+   }
+  ],
+  "OutputItem": {
+   "fileID": 0,
+   "pathID": 60066
+  },
+  "OutputQuantity": 1,
+  "GoldCost": 23000,
+  "IsLockedInDemo": false
+ },
+ {
+  "_name": "GemUpgradeTopaz6",
+  "_pathid": 60426,
+  "_file": "sharedassets0.assets",
+  "Ingredients": [
+   {
+    "Item": {
+     "fileID": 0,
+     "pathID": 60066
+    },
+    "Amount": 10
+   }
+  ],
+  "OutputItem": {
+   "fileID": 0,
+   "pathID": 60067
+  },
+  "OutputQuantity": 1,
+  "GoldCost": 100000,
+  "IsLockedInDemo": false
+ },
+ {
+  "_name": "ArmorPotionLv1",
+  "_pathid": 60427,
+  "_file": "sharedassets0.assets",
+  "Ingredients": [
+   {
+    "Item": {
+     "fileID": 0,
+     "pathID": 60099
+    },
     "Amount": 6
    },
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60030
+     "pathID": 60078
     },
     "Amount": 2
    }
   ],
   "OutputItem": {
    "fileID": 0,
-   "pathID": 59934
+   "pathID": 59974
+  },
+  "OutputQuantity": 1,
+  "GoldCost": 0,
+  "IsLockedInDemo": false
+ },
+ {
+  "_name": "AttackSpeedPotionLv1",
+  "_pathid": 60428,
+  "_file": "sharedassets0.assets",
+  "Ingredients": [
+   {
+    "Item": {
+     "fileID": 0,
+     "pathID": 60098
+    },
+    "Amount": 3
+   },
+   {
+    "Item": {
+     "fileID": 0,
+     "pathID": 60081
+    },
+    "Amount": 1
+   }
+  ],
+  "OutputItem": {
+   "fileID": 0,
+   "pathID": 59975
+  },
+  "OutputQuantity": 1,
+  "GoldCost": 0,
+  "IsLockedInDemo": false
+ },
+ {
+  "_name": "AttackSpeedPotionLv2",
+  "_pathid": 60429,
+  "_file": "sharedassets0.assets",
+  "Ingredients": [
+   {
+    "Item": {
+     "fileID": 0,
+     "pathID": 60100
+    },
+    "Amount": 6
+   },
+   {
+    "Item": {
+     "fileID": 0,
+     "pathID": 60081
+    },
+    "Amount": 2
+   }
+  ],
+  "OutputItem": {
+   "fileID": 0,
+   "pathID": 59976
+  },
+  "OutputQuantity": 1,
+  "GoldCost": 0,
+  "IsLockedInDemo": false
+ },
+ {
+  "_name": "CinderbloodPotionRecipe",
+  "_pathid": 60430,
+  "_file": "sharedassets0.assets",
+  "Ingredients": [
+   {
+    "Item": {
+     "fileID": 0,
+     "pathID": 60102
+    },
+    "Amount": 6
+   },
+   {
+    "Item": {
+     "fileID": 0,
+     "pathID": 60092
+    },
+    "Amount": 2
+   }
+  ],
+  "OutputItem": {
+   "fileID": 0,
+   "pathID": 59977
+  },
+  "OutputQuantity": 1,
+  "GoldCost": 0,
+  "IsLockedInDemo": true
+ },
+ {
+  "_name": "CrimsonHuntPotionRecipe",
+  "_pathid": 60431,
+  "_file": "sharedassets0.assets",
+  "Ingredients": [
+   {
+    "Item": {
+     "fileID": 0,
+     "pathID": 60100
+    },
+    "Amount": 6
+   },
+   {
+    "Item": {
+     "fileID": 0,
+     "pathID": 60083
+    },
+    "Amount": 2
+   }
+  ],
+  "OutputItem": {
+   "fileID": 0,
+   "pathID": 59978
+  },
+  "OutputQuantity": 1,
+  "GoldCost": 0,
+  "IsLockedInDemo": true
+ },
+ {
+  "_name": "CritPotionLv1",
+  "_pathid": 60432,
+  "_file": "sharedassets0.assets",
+  "Ingredients": [
+   {
+    "Item": {
+     "fileID": 0,
+     "pathID": 60098
+    },
+    "Amount": 3
+   },
+   {
+    "Item": {
+     "fileID": 0,
+     "pathID": 60080
+    },
+    "Amount": 1
+   }
+  ],
+  "OutputItem": {
+   "fileID": 0,
+   "pathID": 59979
+  },
+  "OutputQuantity": 1,
+  "GoldCost": 0,
+  "IsLockedInDemo": false
+ },
+ {
+  "_name": "CritPotionLv2",
+  "_pathid": 60433,
+  "_file": "sharedassets0.assets",
+  "Ingredients": [
+   {
+    "Item": {
+     "fileID": 0,
+     "pathID": 60100
+    },
+    "Amount": 6
+   },
+   {
+    "Item": {
+     "fileID": 0,
+     "pathID": 60080
+    },
+    "Amount": 2
+   }
+  ],
+  "OutputItem": {
+   "fileID": 0,
+   "pathID": 59980
+  },
+  "OutputQuantity": 1,
+  "GoldCost": 0,
+  "IsLockedInDemo": false
+ },
+ {
+  "_name": "DodgePotionLv1",
+  "_pathid": 60434,
+  "_file": "sharedassets0.assets",
+  "Ingredients": [
+   {
+    "Item": {
+     "fileID": 0,
+     "pathID": 60097
+    },
+    "Amount": 10
+   },
+   {
+    "Item": {
+     "fileID": 0,
+     "pathID": 60093
+    },
+    "Amount": 1
+   }
+  ],
+  "OutputItem": {
+   "fileID": 0,
+   "pathID": 59981
+  },
+  "OutputQuantity": 1,
+  "GoldCost": 0,
+  "IsLockedInDemo": false
+ },
+ {
+  "_name": "ExpPotionLv1",
+  "_pathid": 60435,
+  "_file": "sharedassets0.assets",
+  "Ingredients": [
+   {
+    "Item": {
+     "fileID": 0,
+     "pathID": 60097
+    },
+    "Amount": 15
+   }
+  ],
+  "OutputItem": {
+   "fileID": 0,
+   "pathID": 59982
+  },
+  "OutputQuantity": 1,
+  "GoldCost": 0,
+  "IsLockedInDemo": false
+ },
+ {
+  "_name": "FrostmindPotionRecipe",
+  "_pathid": 60436,
+  "_file": "sharedassets0.assets",
+  "Ingredients": [
+   {
+    "Item": {
+     "fileID": 0,
+     "pathID": 60098
+    },
+    "Amount": 6
+   },
+   {
+    "Item": {
+     "fileID": 0,
+     "pathID": 60087
+    },
+    "Amount": 2
+   }
+  ],
+  "OutputItem": {
+   "fileID": 0,
+   "pathID": 59983
+  },
+  "OutputQuantity": 1,
+  "GoldCost": 0,
+  "IsLockedInDemo": true
+ },
+ {
+  "_name": "GoldPotionLv1",
+  "_pathid": 60437,
+  "_file": "sharedassets0.assets",
+  "Ingredients": [
+   {
+    "Item": {
+     "fileID": 0,
+     "pathID": 60098
+    },
+    "Amount": 3
+   },
+   {
+    "Item": {
+     "fileID": 0,
+     "pathID": 60095
+    },
+    "Amount": 2
+   }
+  ],
+  "OutputItem": {
+   "fileID": 0,
+   "pathID": 59984
+  },
+  "OutputQuantity": 1,
+  "GoldCost": 0,
+  "IsLockedInDemo": false
+ },
+ {
+  "_name": "MovementPotiontLv1",
+  "_pathid": 60438,
+  "_file": "sharedassets0.assets",
+  "Ingredients": [
+   {
+    "Item": {
+     "fileID": 0,
+     "pathID": 60098
+    },
+    "Amount": 4
+   }
+  ],
+  "OutputItem": {
+   "fileID": 0,
+   "pathID": 59985
+  },
+  "OutputQuantity": 1,
+  "GoldCost": 0,
+  "IsLockedInDemo": false
+ },
+ {
+  "_name": "StormheartPotionRecipe",
+  "_pathid": 60439,
+  "_file": "sharedassets0.assets",
+  "Ingredients": [
+   {
+    "Item": {
+     "fileID": 0,
+     "pathID": 60101
+    },
+    "Amount": 6
+   },
+   {
+    "Item": {
+     "fileID": 0,
+     "pathID": 60082
+    },
+    "Amount": 2
+   }
+  ],
+  "OutputItem": {
+   "fileID": 0,
+   "pathID": 59986
   },
   "OutputQuantity": 1,
   "GoldCost": 0,
@@ -1020,27 +1020,27 @@
  },
  {
   "_name": "WyrmwardPotionRecipe",
-  "_pathid": 60387,
+  "_pathid": 60440,
   "_file": "sharedassets0.assets",
   "Ingredients": [
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60046
+     "pathID": 60099
     },
     "Amount": 6
    },
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60027
+     "pathID": 60079
     },
     "Amount": 2
    }
   ],
   "OutputItem": {
    "fileID": 0,
-   "pathID": 59938
+   "pathID": 59990
   },
   "OutputQuantity": 1,
   "GoldCost": 0,
@@ -1048,13 +1048,13 @@
  },
  {
   "_name": "UpgradeRecipeCommon",
-  "_pathid": 60388,
+  "_pathid": 60441,
   "_file": "sharedassets0.assets",
   "Ingredients": [
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60041
+     "pathID": 60094
     },
     "Amount": 1
    }
@@ -1066,27 +1066,27 @@
  },
  {
   "_name": "UpgradeRecipeDivine",
-  "_pathid": 60389,
+  "_pathid": 60442,
   "_file": "sharedassets0.assets",
   "Ingredients": [
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60041
+     "pathID": 60094
     },
     "Amount": 5
    },
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60042
+     "pathID": 60095
     },
     "Amount": 3
    },
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60043
+     "pathID": 60096
     },
     "Amount": 2
    }
@@ -1098,27 +1098,27 @@
  },
  {
   "_name": "UpgradeRecipeLegendary",
-  "_pathid": 60390,
+  "_pathid": 60443,
   "_file": "sharedassets0.assets",
   "Ingredients": [
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60041
+     "pathID": 60094
     },
     "Amount": 3
    },
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60042
+     "pathID": 60095
     },
     "Amount": 2
    },
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60043
+     "pathID": 60096
     },
     "Amount": 1
    }
@@ -1130,20 +1130,20 @@
  },
  {
   "_name": "UpgradeRecipeRare",
-  "_pathid": 60391,
+  "_pathid": 60444,
   "_file": "sharedassets0.assets",
   "Ingredients": [
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60041
+     "pathID": 60094
     },
     "Amount": 2
    },
    {
     "Item": {
      "fileID": 0,
-     "pathID": 60042
+     "pathID": 60095
     },
     "Amount": 1
    }
@@ -1155,13 +1155,13 @@
  },
  {
   "_name": "UpgradeRecipeSpecial",
-  "_pathid": 60392,
+  "_pathid": 60445,
   "_file": "sharedassets0.assets",
   "Ingredients": [
    {
     "Item": {
      "fileID": 0,
-     "pathID": 59921
+     "pathID": 59973
     },
     "Amount": 1
    }

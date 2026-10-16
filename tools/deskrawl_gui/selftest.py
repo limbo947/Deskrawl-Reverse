@@ -463,7 +463,7 @@ def _rank_checks(rep: Report):
 
     gd = GameData()
     profile = CharacterProfile.demo()
-    expected = {'gem': 36, 'rune': 151, 'talent': 186, 'runeset': 13}
+    expected = {'gem': 36, 'rune': 199, 'talent': 186, 'runeset': 13}
     params = {'gem': (1, 2), 'rune': (3, 2), 'talent': (5, 2), 'runeset': (2, 2)}
 
     def manual(kind, name, level, category):

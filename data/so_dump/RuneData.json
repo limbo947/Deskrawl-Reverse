@@ -1,11 +1,11 @@
 [
  {
   "_name": "HunterSetRune1_1",
-  "_pathid": 5041,
+  "_pathid": 5132,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 902
+   "pathID": 960
   },
   "Type": 5,
   "Rarity": 5,
@@ -42,7 +42,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59866
+     "pathID": 59918
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -56,17 +56,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5141
+   "pathID": 5280
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "HunterSetRune1_2",
-  "_pathid": 5042,
+  "_pathid": 5133,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 881
+   "pathID": 936
   },
   "Type": 5,
   "Rarity": 5,
@@ -103,7 +103,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59868
+     "pathID": 59920
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -117,17 +117,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5141
+   "pathID": 5280
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "HunterSetRune1_3",
-  "_pathid": 5043,
+  "_pathid": 5134,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 1013
+   "pathID": 1084
   },
   "Type": 5,
   "Rarity": 5,
@@ -191,17 +191,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5141
+   "pathID": 5280
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "HunterSetRune1_4",
-  "_pathid": 5044,
+  "_pathid": 5135,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 974
+   "pathID": 1039
   },
   "Type": 5,
   "Rarity": 5,
@@ -265,17 +265,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5141
+   "pathID": 5280
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "HunterSetRune1_5",
-  "_pathid": 5045,
+  "_pathid": 5136,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 794
+   "pathID": 844
   },
   "Type": 5,
   "Rarity": 5,
@@ -339,17 +339,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5141
+   "pathID": 5280
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "HunterSetRune1_6",
-  "_pathid": 5046,
+  "_pathid": 5137,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 698
+   "pathID": 731
   },
   "Type": 5,
   "Rarity": 5,
@@ -413,17 +413,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5141
+   "pathID": 5280
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "HunterSetRune2_1",
-  "_pathid": 5047,
+  "_pathid": 5138,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 795
+   "pathID": 845
   },
   "Type": 5,
   "Rarity": 5,
@@ -460,7 +460,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59864
+     "pathID": 59916
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -474,17 +474,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5145
+   "pathID": 5284
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "HunterSetRune2_2",
-  "_pathid": 5048,
+  "_pathid": 5139,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 980
+   "pathID": 1046
   },
   "Type": 5,
   "Rarity": 5,
@@ -548,17 +548,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5145
+   "pathID": 5284
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "HunterSetRune2_3",
-  "_pathid": 5049,
+  "_pathid": 5140,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 936
+   "pathID": 996
   },
   "Type": 5,
   "Rarity": 5,
@@ -622,17 +622,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5145
+   "pathID": 5284
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "HunterSetRune2_4",
-  "_pathid": 5050,
+  "_pathid": 5141,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 880
+   "pathID": 935
   },
   "Type": 5,
   "Rarity": 5,
@@ -696,17 +696,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5145
+   "pathID": 5284
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "HunterSetRune2_5",
-  "_pathid": 5051,
+  "_pathid": 5142,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 967
+   "pathID": 1032
   },
   "Type": 5,
   "Rarity": 5,
@@ -770,17 +770,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5145
+   "pathID": 5284
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "HunterSetRune2_6",
-  "_pathid": 5052,
+  "_pathid": 5143,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 807
+   "pathID": 857
   },
   "Type": 5,
   "Rarity": 5,
@@ -844,17 +844,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5145
+   "pathID": 5284
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "HunterSetRune3_1",
-  "_pathid": 5053,
+  "_pathid": 5144,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 811
+   "pathID": 861
   },
   "Type": 5,
   "Rarity": 5,
@@ -891,7 +891,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59858
+     "pathID": 59910
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -905,17 +905,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5149
+   "pathID": 5288
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "HunterSetRune3_2",
-  "_pathid": 5054,
+  "_pathid": 5145,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 892
+   "pathID": 949
   },
   "Type": 5,
   "Rarity": 5,
@@ -952,7 +952,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59858
+     "pathID": 59910
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -966,17 +966,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5149
+   "pathID": 5288
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "HunterSetRune3_3",
-  "_pathid": 5055,
+  "_pathid": 5146,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 957
+   "pathID": 1020
   },
   "Type": 5,
   "Rarity": 5,
@@ -1040,17 +1040,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5149
+   "pathID": 5288
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "HunterSetRune3_4",
-  "_pathid": 5056,
+  "_pathid": 5147,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 716
+   "pathID": 753
   },
   "Type": 5,
   "Rarity": 5,
@@ -1114,17 +1114,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5149
+   "pathID": 5288
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "HunterSetRune3_5",
-  "_pathid": 5057,
+  "_pathid": 5148,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 686
+   "pathID": 719
   },
   "Type": 5,
   "Rarity": 5,
@@ -1188,17 +1188,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5149
+   "pathID": 5288
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "HunterSetRune3_6",
-  "_pathid": 5058,
+  "_pathid": 5149,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 925
+   "pathID": 985
   },
   "Type": 5,
   "Rarity": 5,
@@ -1262,17 +1262,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5149
+   "pathID": 5288
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "LegendaryRune_HunterBasicAttack1",
-  "_pathid": 5059,
+  "_pathid": 5150,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 816
+   "pathID": 866
   },
   "Type": 5,
   "Rarity": 3,
@@ -1309,7 +1309,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59858
+     "pathID": 59910
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -1349,11 +1349,11 @@
  },
  {
   "_name": "LegendaryRune_HunterBasicAttack2",
-  "_pathid": 5060,
+  "_pathid": 5151,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 948
+   "pathID": 1009
   },
   "Type": 5,
   "Rarity": 3,
@@ -1390,7 +1390,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59859
+     "pathID": 59911
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -1430,11 +1430,11 @@
  },
  {
   "_name": "LegendaryRune_HunterBasicAttack3",
-  "_pathid": 5061,
+  "_pathid": 5152,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 777
+   "pathID": 822
   },
   "Type": 5,
   "Rarity": 3,
@@ -1471,7 +1471,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59860
+     "pathID": 59912
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -1510,12 +1510,93 @@
   "AllowDuplicateEquip": true
  },
  {
-  "_name": "LegendaryRune_HunterHeavyAttack1",
-  "_pathid": 5062,
+  "_name": "LegendaryRune_HunterBasicAttack4",
+  "_pathid": 5153,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 883
+   "pathID": 1059
+  },
+  "Type": 5,
+  "Rarity": 3,
+  "SellPrice": 5000,
+  "MinDropLevel": 45,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 1,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 4,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [
+   {
+    "AllAbilities": false,
+    "Ability": {
+     "fileID": 2,
+     "pathID": 59913
+    },
+    "Levels": 4,
+    "EveryNRuneLevels": 3
+   }
+  ],
+  "FixedStats": [],
+  "SteamItemDefId": 4110,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "Attributes": [
+   {
+    "Stat": 1,
+    "Modifier": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 753531571,
+      "hiddenValue": 2100205425,
+      "cryptoKey": 1021783665,
+      "value": 15.0,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 149504655,
+      "hiddenValue": 1134718041,
+      "cryptoKey": 2095882841,
+      "value": 1.0,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    }
+   }
+  ],
+  "Effects": [],
+  "Set": null,
+  "AllowDuplicateEquip": true
+ },
+ {
+  "_name": "LegendaryRune_HunterHeavyAttack1",
+  "_pathid": 5154,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 938
   },
   "Type": 5,
   "Rarity": 3,
@@ -1552,7 +1633,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59862
+     "pathID": 59914
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -1592,11 +1673,11 @@
  },
  {
   "_name": "LegendaryRune_HunterHeavyAttack2",
-  "_pathid": 5063,
+  "_pathid": 5155,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 739
+   "pathID": 777
   },
   "Type": 5,
   "Rarity": 3,
@@ -1633,7 +1714,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59863
+     "pathID": 59915
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -1673,11 +1754,11 @@
  },
  {
   "_name": "LegendaryRune_HunterHeavyAttack3",
-  "_pathid": 5064,
+  "_pathid": 5156,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 734
+   "pathID": 771
   },
   "Type": 5,
   "Rarity": 3,
@@ -1714,7 +1795,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59864
+     "pathID": 59916
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -1753,12 +1834,93 @@
   "AllowDuplicateEquip": true
  },
  {
-  "_name": "LegendaryRune_HunterSpecial1",
-  "_pathid": 5065,
+  "_name": "LegendaryRune_HunterHeavyAttack4",
+  "_pathid": 5157,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 743
+   "pathID": 801
+  },
+  "Type": 5,
+  "Rarity": 3,
+  "SellPrice": 5000,
+  "MinDropLevel": 50,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 1,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 4,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [
+   {
+    "AllAbilities": false,
+    "Ability": {
+     "fileID": 2,
+     "pathID": 59917
+    },
+    "Levels": 4,
+    "EveryNRuneLevels": 3
+   }
+  ],
+  "FixedStats": [],
+  "SteamItemDefId": 4111,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "Attributes": [
+   {
+    "Stat": 14,
+    "Modifier": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 753531571,
+      "hiddenValue": 463742154,
+      "cryptoKey": 1515496650,
+      "value": 15.0,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 149504655,
+      "hiddenValue": 1650365840,
+      "cryptoKey": 1561681552,
+      "value": 1.0,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    }
+   }
+  ],
+  "Effects": [],
+  "Set": null,
+  "AllowDuplicateEquip": true
+ },
+ {
+  "_name": "LegendaryRune_HunterSpecial1",
+  "_pathid": 5158,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 781
   },
   "Type": 5,
   "Rarity": 3,
@@ -1795,7 +1957,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59866
+     "pathID": 59918
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -1835,11 +1997,11 @@
  },
  {
   "_name": "LegendaryRune_HunterSpecial2",
-  "_pathid": 5066,
+  "_pathid": 5159,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 725
+   "pathID": 762
   },
   "Type": 5,
   "Rarity": 3,
@@ -1876,7 +2038,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59867
+     "pathID": 59919
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -1915,12 +2077,336 @@
   "AllowDuplicateEquip": true
  },
  {
-  "_name": "LegendaryRune_MonkBasicAttack1",
-  "_pathid": 5067,
+  "_name": "LegendaryRune_HunterSpecial3",
+  "_pathid": 5160,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 733
+   "pathID": 814
+  },
+  "Type": 5,
+  "Rarity": 3,
+  "SellPrice": 5000,
+  "MinDropLevel": 45,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 1,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 4,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [
+   {
+    "AllAbilities": false,
+    "Ability": {
+     "fileID": 2,
+     "pathID": 59920
+    },
+    "Levels": 4,
+    "EveryNRuneLevels": 3
+   }
+  ],
+  "FixedStats": [],
+  "SteamItemDefId": 4112,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "Attributes": [
+   {
+    "Stat": 59,
+    "Modifier": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 523548233,
+      "hiddenValue": 1942601253,
+      "cryptoKey": 1305152426,
+      "value": 0.23999999463558197,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1556752217,
+      "hiddenValue": 1676060415,
+      "cryptoKey": 1600793138,
+      "value": 0.02500000037252903,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    }
+   }
+  ],
+  "Effects": [],
+  "Set": null,
+  "AllowDuplicateEquip": true
+ },
+ {
+  "_name": "LegendaryRune_HunterSpecial4",
+  "_pathid": 5161,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 790
+  },
+  "Type": 5,
+  "Rarity": 3,
+  "SellPrice": 5000,
+  "MinDropLevel": 30,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 1,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 4,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [
+   {
+    "AllAbilities": false,
+    "Ability": {
+     "fileID": 2,
+     "pathID": 59921
+    },
+    "Levels": 4,
+    "EveryNRuneLevels": 3
+   }
+  ],
+  "FixedStats": [],
+  "SteamItemDefId": 4113,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "Attributes": [
+   {
+    "Stat": 42,
+    "Modifier": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": -649440399,
+      "hiddenValue": 1641615206,
+      "cryptoKey": 1595293948,
+      "value": 0.15000000596046448,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1479264653,
+      "hiddenValue": 1367337576,
+      "cryptoKey": 1841932386,
+      "value": 0.009999999776482582,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    }
+   }
+  ],
+  "Effects": [],
+  "Set": null,
+  "AllowDuplicateEquip": true
+ },
+ {
+  "_name": "LegendaryRune_HunterSpecial5",
+  "_pathid": 5162,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 1072
+  },
+  "Type": 5,
+  "Rarity": 3,
+  "SellPrice": 5000,
+  "MinDropLevel": 40,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 1,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 4,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [
+   {
+    "AllAbilities": false,
+    "Ability": {
+     "fileID": 2,
+     "pathID": 59922
+    },
+    "Levels": 4,
+    "EveryNRuneLevels": 3
+   }
+  ],
+  "FixedStats": [],
+  "SteamItemDefId": 4114,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "Attributes": [
+   {
+    "Stat": 44,
+    "Modifier": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 523548233,
+      "hiddenValue": 1633275766,
+      "cryptoKey": 1606065145,
+      "value": 0.23999999463558197,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1556752217,
+      "hiddenValue": 1847514484,
+      "cryptoKey": 1377424057,
+      "value": 0.02500000037252903,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    }
+   }
+  ],
+  "Effects": [],
+  "Set": null,
+  "AllowDuplicateEquip": true
+ },
+ {
+  "_name": "LegendaryRune_HunterSpecial6",
+  "_pathid": 5163,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 1011
+  },
+  "Type": 5,
+  "Rarity": 3,
+  "SellPrice": 5000,
+  "MinDropLevel": 25,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 1,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 4,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [
+   {
+    "AllAbilities": false,
+    "Ability": {
+     "fileID": 2,
+     "pathID": 59923
+    },
+    "Levels": 4,
+    "EveryNRuneLevels": 3
+   }
+  ],
+  "FixedStats": [],
+  "SteamItemDefId": 4115,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "Attributes": [
+   {
+    "Stat": 57,
+    "Modifier": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": -249559729,
+      "hiddenValue": 2143665045,
+      "cryptoKey": 1111415597,
+      "value": 0.06499999761581421,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1374691251,
+      "hiddenValue": 1275347809,
+      "cryptoKey": 2011222891,
+      "value": 0.004999999888241291,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    }
+   }
+  ],
+  "Effects": [],
+  "Set": null,
+  "AllowDuplicateEquip": true
+ },
+ {
+  "_name": "LegendaryRune_MonkBasicAttack1",
+  "_pathid": 5164,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 770
   },
   "Type": 5,
   "Rarity": 3,
@@ -1957,7 +2443,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59872
+     "pathID": 59924
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -1997,11 +2483,11 @@
  },
  {
   "_name": "LegendaryRune_MonkBasicAttack2",
-  "_pathid": 5068,
+  "_pathid": 5165,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 1010
+   "pathID": 1081
   },
   "Type": 5,
   "Rarity": 3,
@@ -2038,7 +2524,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59873
+     "pathID": 59925
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -2078,11 +2564,11 @@
  },
  {
   "_name": "LegendaryRune_MonkBasicAttack3",
-  "_pathid": 5069,
+  "_pathid": 5166,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 887
+   "pathID": 942
   },
   "Type": 5,
   "Rarity": 3,
@@ -2119,7 +2605,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59874
+     "pathID": 59926
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -2158,12 +2644,93 @@
   "AllowDuplicateEquip": true
  },
  {
-  "_name": "LegendaryRune_MonkHeavyAttack1",
-  "_pathid": 5070,
+  "_name": "LegendaryRune_MonkBasicAttack4",
+  "_pathid": 5167,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 963
+   "pathID": 792
+  },
+  "Type": 5,
+  "Rarity": 3,
+  "SellPrice": 5000,
+  "MinDropLevel": 45,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 1,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 8,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [
+   {
+    "AllAbilities": false,
+    "Ability": {
+     "fileID": 2,
+     "pathID": 59927
+    },
+    "Levels": 4,
+    "EveryNRuneLevels": 3
+   }
+  ],
+  "FixedStats": [],
+  "SteamItemDefId": 4116,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "Attributes": [
+   {
+    "Stat": 1,
+    "Modifier": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 753531571,
+      "hiddenValue": 2100205425,
+      "cryptoKey": 1021783665,
+      "value": 15.0,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 149504655,
+      "hiddenValue": 1134718041,
+      "cryptoKey": 2095882841,
+      "value": 1.0,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    }
+   }
+  ],
+  "Effects": [],
+  "Set": null,
+  "AllowDuplicateEquip": true
+ },
+ {
+  "_name": "LegendaryRune_MonkHeavyAttack1",
+  "_pathid": 5168,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 1028
   },
   "Type": 5,
   "Rarity": 3,
@@ -2200,7 +2767,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59876
+     "pathID": 59928
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -2240,11 +2807,11 @@
  },
  {
   "_name": "LegendaryRune_MonkHeavyAttack2",
-  "_pathid": 5071,
+  "_pathid": 5169,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 909
+   "pathID": 969
   },
   "Type": 5,
   "Rarity": 3,
@@ -2281,7 +2848,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59877
+     "pathID": 59929
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -2321,11 +2888,11 @@
  },
  {
   "_name": "LegendaryRune_MonkHeavyAttack3",
-  "_pathid": 5072,
+  "_pathid": 5170,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 912
+   "pathID": 972
   },
   "Type": 5,
   "Rarity": 3,
@@ -2362,7 +2929,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59878
+     "pathID": 59930
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -2401,12 +2968,93 @@
   "AllowDuplicateEquip": true
  },
  {
-  "_name": "LegendaryRune_MonkSpecial1",
-  "_pathid": 5073,
+  "_name": "LegendaryRune_MonkHeavyAttack4",
+  "_pathid": 5171,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 956
+   "pathID": 943
+  },
+  "Type": 5,
+  "Rarity": 3,
+  "SellPrice": 5000,
+  "MinDropLevel": 50,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 1,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 8,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [
+   {
+    "AllAbilities": false,
+    "Ability": {
+     "fileID": 2,
+     "pathID": 59931
+    },
+    "Levels": 4,
+    "EveryNRuneLevels": 3
+   }
+  ],
+  "FixedStats": [],
+  "SteamItemDefId": 4117,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "Attributes": [
+   {
+    "Stat": 14,
+    "Modifier": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 753531571,
+      "hiddenValue": 463742154,
+      "cryptoKey": 1515496650,
+      "value": 15.0,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 149504655,
+      "hiddenValue": 1650365840,
+      "cryptoKey": 1561681552,
+      "value": 1.0,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    }
+   }
+  ],
+  "Effects": [],
+  "Set": null,
+  "AllowDuplicateEquip": true
+ },
+ {
+  "_name": "LegendaryRune_MonkSpecial1",
+  "_pathid": 5172,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 1019
   },
   "Type": 5,
   "Rarity": 3,
@@ -2443,7 +3091,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59880
+     "pathID": 59932
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -2483,11 +3131,11 @@
  },
  {
   "_name": "LegendaryRune_MonkSpecial2",
-  "_pathid": 5074,
+  "_pathid": 5173,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 1001
+   "pathID": 1069
   },
   "Type": 5,
   "Rarity": 3,
@@ -2524,7 +3172,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59881
+     "pathID": 59933
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -2563,12 +3211,336 @@
   "AllowDuplicateEquip": true
  },
  {
-  "_name": "LegendaryRune_SorcererBasicAttack1",
-  "_pathid": 5075,
+  "_name": "LegendaryRune_MonkSpecial3",
+  "_pathid": 5174,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 937
+   "pathID": 1015
+  },
+  "Type": 5,
+  "Rarity": 3,
+  "SellPrice": 5000,
+  "MinDropLevel": 25,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 1,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 8,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [
+   {
+    "AllAbilities": false,
+    "Ability": {
+     "fileID": 2,
+     "pathID": 59934
+    },
+    "Levels": 4,
+    "EveryNRuneLevels": 3
+   }
+  ],
+  "FixedStats": [],
+  "SteamItemDefId": 4118,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "Attributes": [
+   {
+    "Stat": 57,
+    "Modifier": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": -249559729,
+      "hiddenValue": 2143665045,
+      "cryptoKey": 1111415597,
+      "value": 0.06499999761581421,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1374691251,
+      "hiddenValue": 1275347809,
+      "cryptoKey": 2011222891,
+      "value": 0.004999999888241291,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    }
+   }
+  ],
+  "Effects": [],
+  "Set": null,
+  "AllowDuplicateEquip": true
+ },
+ {
+  "_name": "LegendaryRune_MonkSpecial4",
+  "_pathid": 5175,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 786
+  },
+  "Type": 5,
+  "Rarity": 3,
+  "SellPrice": 5000,
+  "MinDropLevel": 30,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 1,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 8,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [
+   {
+    "AllAbilities": false,
+    "Ability": {
+     "fileID": 2,
+     "pathID": 59935
+    },
+    "Levels": 4,
+    "EveryNRuneLevels": 3
+   }
+  ],
+  "FixedStats": [],
+  "SteamItemDefId": 4119,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "Attributes": [
+   {
+    "Stat": 42,
+    "Modifier": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": -649440399,
+      "hiddenValue": 1641615206,
+      "cryptoKey": 1595293948,
+      "value": 0.15000000596046448,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1479264653,
+      "hiddenValue": 1367337576,
+      "cryptoKey": 1841932386,
+      "value": 0.009999999776482582,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    }
+   }
+  ],
+  "Effects": [],
+  "Set": null,
+  "AllowDuplicateEquip": true
+ },
+ {
+  "_name": "LegendaryRune_MonkSpecial5",
+  "_pathid": 5176,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 737
+  },
+  "Type": 5,
+  "Rarity": 3,
+  "SellPrice": 5000,
+  "MinDropLevel": 40,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 1,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 8,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [
+   {
+    "AllAbilities": false,
+    "Ability": {
+     "fileID": 2,
+     "pathID": 59936
+    },
+    "Levels": 4,
+    "EveryNRuneLevels": 3
+   }
+  ],
+  "FixedStats": [],
+  "SteamItemDefId": 4120,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "Attributes": [
+   {
+    "Stat": 44,
+    "Modifier": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 523548233,
+      "hiddenValue": 1633275766,
+      "cryptoKey": 1606065145,
+      "value": 0.23999999463558197,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1556752217,
+      "hiddenValue": 1847514484,
+      "cryptoKey": 1377424057,
+      "value": 0.02500000037252903,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    }
+   }
+  ],
+  "Effects": [],
+  "Set": null,
+  "AllowDuplicateEquip": true
+ },
+ {
+  "_name": "LegendaryRune_MonkSpecial6",
+  "_pathid": 5177,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 840
+  },
+  "Type": 5,
+  "Rarity": 3,
+  "SellPrice": 5000,
+  "MinDropLevel": 45,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 1,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 8,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [
+   {
+    "AllAbilities": false,
+    "Ability": {
+     "fileID": 2,
+     "pathID": 59937
+    },
+    "Levels": 4,
+    "EveryNRuneLevels": 3
+   }
+  ],
+  "FixedStats": [],
+  "SteamItemDefId": 4121,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "Attributes": [
+   {
+    "Stat": 59,
+    "Modifier": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 523548233,
+      "hiddenValue": 1942601253,
+      "cryptoKey": 1305152426,
+      "value": 0.23999999463558197,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1556752217,
+      "hiddenValue": 1676060415,
+      "cryptoKey": 1600793138,
+      "value": 0.02500000037252903,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    }
+   }
+  ],
+  "Effects": [],
+  "Set": null,
+  "AllowDuplicateEquip": true
+ },
+ {
+  "_name": "LegendaryRune_SorcererBasicAttack1",
+  "_pathid": 5178,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 997
   },
   "Type": 5,
   "Rarity": 3,
@@ -2605,7 +3577,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59886
+     "pathID": 59938
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -2645,11 +3617,11 @@
  },
  {
   "_name": "LegendaryRune_SorcererBasicAttack2",
-  "_pathid": 5076,
+  "_pathid": 5179,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 931
+   "pathID": 991
   },
   "Type": 5,
   "Rarity": 3,
@@ -2686,7 +3658,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59887
+     "pathID": 59939
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -2726,11 +3698,11 @@
  },
  {
   "_name": "LegendaryRune_SorcererBasicAttack3",
-  "_pathid": 5077,
+  "_pathid": 5180,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 924
+   "pathID": 984
   },
   "Type": 5,
   "Rarity": 3,
@@ -2767,7 +3739,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59888
+     "pathID": 59940
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -2806,12 +3778,93 @@
   "AllowDuplicateEquip": true
  },
  {
-  "_name": "LegendaryRune_SorcererSpecial1",
-  "_pathid": 5078,
+  "_name": "LegendaryRune_SorcererBasicAttack4",
+  "_pathid": 5181,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 801
+   "pathID": 718
+  },
+  "Type": 5,
+  "Rarity": 3,
+  "SellPrice": 5000,
+  "MinDropLevel": 45,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 1,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 2,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [
+   {
+    "AllAbilities": false,
+    "Ability": {
+     "fileID": 2,
+     "pathID": 59941
+    },
+    "Levels": 4,
+    "EveryNRuneLevels": 3
+   }
+  ],
+  "FixedStats": [],
+  "SteamItemDefId": 4122,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "Attributes": [
+   {
+    "Stat": 2,
+    "Modifier": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 753531571,
+      "hiddenValue": 391392339,
+      "cryptoKey": 1448891475,
+      "value": 15.0,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 149504655,
+      "hiddenValue": 910419682,
+      "cryptoKey": 157696994,
+      "value": 1.0,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    }
+   }
+  ],
+  "Effects": [],
+  "Set": null,
+  "AllowDuplicateEquip": true
+ },
+ {
+  "_name": "LegendaryRune_SorcererSpecial1",
+  "_pathid": 5182,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 851
   },
   "Type": 5,
   "Rarity": 3,
@@ -2848,7 +3901,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59890
+     "pathID": 59942
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -2888,11 +3941,11 @@
  },
  {
   "_name": "LegendaryRune_SorcererSpecial2",
-  "_pathid": 5079,
+  "_pathid": 5183,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 940
+   "pathID": 1000
   },
   "Type": 5,
   "Rarity": 3,
@@ -2929,7 +3982,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59891
+     "pathID": 59943
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -2968,12 +4021,336 @@
   "AllowDuplicateEquip": true
  },
  {
-  "_name": "LegendaryRune_SorcererStrongAttack1",
-  "_pathid": 5080,
+  "_name": "LegendaryRune_SorcererSpecial3",
+  "_pathid": 5184,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 802
+   "pathID": 950
+  },
+  "Type": 5,
+  "Rarity": 3,
+  "SellPrice": 5000,
+  "MinDropLevel": 25,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 1,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 2,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [
+   {
+    "AllAbilities": false,
+    "Ability": {
+     "fileID": 2,
+     "pathID": 59944
+    },
+    "Levels": 4,
+    "EveryNRuneLevels": 3
+   }
+  ],
+  "FixedStats": [],
+  "SteamItemDefId": 4123,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "Attributes": [
+   {
+    "Stat": 57,
+    "Modifier": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": -249559729,
+      "hiddenValue": 2143665045,
+      "cryptoKey": 1111415597,
+      "value": 0.06499999761581421,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1374691251,
+      "hiddenValue": 1275347809,
+      "cryptoKey": 2011222891,
+      "value": 0.004999999888241291,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    }
+   }
+  ],
+  "Effects": [],
+  "Set": null,
+  "AllowDuplicateEquip": true
+ },
+ {
+  "_name": "LegendaryRune_SorcererSpecial4",
+  "_pathid": 5185,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 947
+  },
+  "Type": 5,
+  "Rarity": 3,
+  "SellPrice": 5000,
+  "MinDropLevel": 30,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 1,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 2,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [
+   {
+    "AllAbilities": false,
+    "Ability": {
+     "fileID": 2,
+     "pathID": 59945
+    },
+    "Levels": 4,
+    "EveryNRuneLevels": 3
+   }
+  ],
+  "FixedStats": [],
+  "SteamItemDefId": 4124,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "Attributes": [
+   {
+    "Stat": 42,
+    "Modifier": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": -649440399,
+      "hiddenValue": 1641615206,
+      "cryptoKey": 1595293948,
+      "value": 0.15000000596046448,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1479264653,
+      "hiddenValue": 1367337576,
+      "cryptoKey": 1841932386,
+      "value": 0.009999999776482582,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    }
+   }
+  ],
+  "Effects": [],
+  "Set": null,
+  "AllowDuplicateEquip": true
+ },
+ {
+  "_name": "LegendaryRune_SorcererSpecial5",
+  "_pathid": 5186,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 1025
+  },
+  "Type": 5,
+  "Rarity": 3,
+  "SellPrice": 5000,
+  "MinDropLevel": 40,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 1,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 2,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [
+   {
+    "AllAbilities": false,
+    "Ability": {
+     "fileID": 2,
+     "pathID": 59946
+    },
+    "Levels": 4,
+    "EveryNRuneLevels": 3
+   }
+  ],
+  "FixedStats": [],
+  "SteamItemDefId": 4125,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "Attributes": [
+   {
+    "Stat": 44,
+    "Modifier": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 523548233,
+      "hiddenValue": 1633275766,
+      "cryptoKey": 1606065145,
+      "value": 0.23999999463558197,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1556752217,
+      "hiddenValue": 1847514484,
+      "cryptoKey": 1377424057,
+      "value": 0.02500000037252903,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    }
+   }
+  ],
+  "Effects": [],
+  "Set": null,
+  "AllowDuplicateEquip": true
+ },
+ {
+  "_name": "LegendaryRune_SorcererSpecial6",
+  "_pathid": 5187,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 906
+  },
+  "Type": 5,
+  "Rarity": 3,
+  "SellPrice": 5000,
+  "MinDropLevel": 45,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 1,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 2,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [
+   {
+    "AllAbilities": false,
+    "Ability": {
+     "fileID": 2,
+     "pathID": 59947
+    },
+    "Levels": 4,
+    "EveryNRuneLevels": 3
+   }
+  ],
+  "FixedStats": [],
+  "SteamItemDefId": 4126,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "Attributes": [
+   {
+    "Stat": 59,
+    "Modifier": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 523548233,
+      "hiddenValue": 1942601253,
+      "cryptoKey": 1305152426,
+      "value": 0.23999999463558197,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1556752217,
+      "hiddenValue": 1676060415,
+      "cryptoKey": 1600793138,
+      "value": 0.02500000037252903,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    }
+   }
+  ],
+  "Effects": [],
+  "Set": null,
+  "AllowDuplicateEquip": true
+ },
+ {
+  "_name": "LegendaryRune_SorcererStrongAttack1",
+  "_pathid": 5188,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 852
   },
   "Type": 5,
   "Rarity": 3,
@@ -3010,7 +4387,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59896
+     "pathID": 59948
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -3050,11 +4427,11 @@
  },
  {
   "_name": "LegendaryRune_SorcererStrongAttack2",
-  "_pathid": 5081,
+  "_pathid": 5189,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 706
+   "pathID": 741
   },
   "Type": 5,
   "Rarity": 3,
@@ -3091,7 +4468,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59897
+     "pathID": 59949
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -3131,11 +4508,11 @@
  },
  {
   "_name": "LegendaryRune_SorcererStrongAttack3",
-  "_pathid": 5082,
+  "_pathid": 5190,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 833
+   "pathID": 883
   },
   "Type": 5,
   "Rarity": 3,
@@ -3172,7 +4549,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59898
+     "pathID": 59950
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -3211,12 +4588,93 @@
   "AllowDuplicateEquip": true
  },
  {
-  "_name": "LegendaryRune_WarriorBasicAttack",
-  "_pathid": 5083,
+  "_name": "LegendaryRune_SorcererStrongAttack4",
+  "_pathid": 5191,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 736
+   "pathID": 830
+  },
+  "Type": 5,
+  "Rarity": 3,
+  "SellPrice": 5000,
+  "MinDropLevel": 50,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 1,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 2,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [
+   {
+    "AllAbilities": false,
+    "Ability": {
+     "fileID": 2,
+     "pathID": 59951
+    },
+    "Levels": 4,
+    "EveryNRuneLevels": 3
+   }
+  ],
+  "FixedStats": [],
+  "SteamItemDefId": 4127,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "Attributes": [
+   {
+    "Stat": 14,
+    "Modifier": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 753531571,
+      "hiddenValue": 463742154,
+      "cryptoKey": 1515496650,
+      "value": 15.0,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 149504655,
+      "hiddenValue": 1650365840,
+      "cryptoKey": 1561681552,
+      "value": 1.0,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    }
+   }
+  ],
+  "Effects": [],
+  "Set": null,
+  "AllowDuplicateEquip": true
+ },
+ {
+  "_name": "LegendaryRune_WarriorBasicAttack",
+  "_pathid": 5192,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 774
   },
   "Type": 5,
   "Rarity": 3,
@@ -3253,7 +4711,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59900
+     "pathID": 59952
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -3293,11 +4751,11 @@
  },
  {
   "_name": "LegendaryRune_WarriorBasicAttack2",
-  "_pathid": 5084,
+  "_pathid": 5193,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 1003
+   "pathID": 1073
   },
   "Type": 5,
   "Rarity": 3,
@@ -3334,7 +4792,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59901
+     "pathID": 59953
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -3374,11 +4832,11 @@
  },
  {
   "_name": "LegendaryRune_WarriorBasicAttack3",
-  "_pathid": 5085,
+  "_pathid": 5194,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 780
+   "pathID": 825
   },
   "Type": 5,
   "Rarity": 3,
@@ -3415,7 +4873,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59902
+     "pathID": 59954
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -3454,12 +4912,93 @@
   "AllowDuplicateEquip": true
  },
  {
-  "_name": "LegendaryRune_WarriorHeavyAttack1",
-  "_pathid": 5086,
+  "_name": "LegendaryRune_WarriorBasicAttack4",
+  "_pathid": 5195,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 772
+   "pathID": 932
+  },
+  "Type": 5,
+  "Rarity": 3,
+  "SellPrice": 5000,
+  "MinDropLevel": 45,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 1,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 1,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [
+   {
+    "AllAbilities": false,
+    "Ability": {
+     "fileID": 2,
+     "pathID": 59955
+    },
+    "Levels": 4,
+    "EveryNRuneLevels": 3
+   }
+  ],
+  "FixedStats": [],
+  "SteamItemDefId": 4128,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "Attributes": [
+   {
+    "Stat": 0,
+    "Modifier": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 753531571,
+      "hiddenValue": 376245763,
+      "cryptoKey": 1467903235,
+      "value": 15.0,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 149504655,
+      "hiddenValue": 930792626,
+      "cryptoKey": 138705586,
+      "value": 1.0,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    }
+   }
+  ],
+  "Effects": [],
+  "Set": null,
+  "AllowDuplicateEquip": true
+ },
+ {
+  "_name": "LegendaryRune_WarriorHeavyAttack1",
+  "_pathid": 5196,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 816
   },
   "Type": 5,
   "Rarity": 3,
@@ -3496,7 +5035,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59905
+     "pathID": 59957
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -3536,11 +5075,11 @@
  },
  {
   "_name": "LegendaryRune_WarriorHeavyAttack2",
-  "_pathid": 5087,
+  "_pathid": 5197,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 1016
+   "pathID": 1087
   },
   "Type": 5,
   "Rarity": 3,
@@ -3577,7 +5116,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59906
+     "pathID": 59958
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -3617,11 +5156,11 @@
  },
  {
   "_name": "LegendaryRune_WarriorHeavyAttack3",
-  "_pathid": 5088,
+  "_pathid": 5198,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 1024
+   "pathID": 1095
   },
   "Type": 5,
   "Rarity": 3,
@@ -3658,7 +5197,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59907
+     "pathID": 59959
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -3697,12 +5236,93 @@
   "AllowDuplicateEquip": true
  },
  {
-  "_name": "LegendaryRune_WarriorRageShield",
-  "_pathid": 5089,
+  "_name": "LegendaryRune_WarriorHeavyAttack4",
+  "_pathid": 5199,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 737
+   "pathID": 813
+  },
+  "Type": 5,
+  "Rarity": 3,
+  "SellPrice": 5000,
+  "MinDropLevel": 50,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 1,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 1,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [
+   {
+    "AllAbilities": false,
+    "Ability": {
+     "fileID": 2,
+     "pathID": 59960
+    },
+    "Levels": 4,
+    "EveryNRuneLevels": 3
+   }
+  ],
+  "FixedStats": [],
+  "SteamItemDefId": 4129,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "Attributes": [
+   {
+    "Stat": 14,
+    "Modifier": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 753531571,
+      "hiddenValue": 463742154,
+      "cryptoKey": 1515496650,
+      "value": 15.0,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 149504655,
+      "hiddenValue": 1650365840,
+      "cryptoKey": 1561681552,
+      "value": 1.0,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    }
+   }
+  ],
+  "Effects": [],
+  "Set": null,
+  "AllowDuplicateEquip": true
+ },
+ {
+  "_name": "LegendaryRune_WarriorRageShield",
+  "_pathid": 5200,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 775
   },
   "Type": 5,
   "Rarity": 3,
@@ -3739,7 +5359,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59909
+     "pathID": 59961
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -3779,11 +5399,11 @@
  },
  {
   "_name": "LegendaryRune_WarriorRageShout",
-  "_pathid": 5090,
+  "_pathid": 5201,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 939
+   "pathID": 999
   },
   "Type": 5,
   "Rarity": 3,
@@ -3820,7 +5440,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59910
+     "pathID": 59962
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -3859,12 +5479,336 @@
   "AllowDuplicateEquip": true
  },
  {
-  "_name": "MonkSetRune1_1",
-  "_pathid": 5091,
+  "_name": "LegendaryRune_WarriorSpecial3",
+  "_pathid": 5202,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 769
+   "pathID": 820
+  },
+  "Type": 5,
+  "Rarity": 3,
+  "SellPrice": 5000,
+  "MinDropLevel": 25,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 1,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 1,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [
+   {
+    "AllAbilities": false,
+    "Ability": {
+     "fileID": 2,
+     "pathID": 59963
+    },
+    "Levels": 4,
+    "EveryNRuneLevels": 3
+   }
+  ],
+  "FixedStats": [],
+  "SteamItemDefId": 4130,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "Attributes": [
+   {
+    "Stat": 57,
+    "Modifier": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": -249559729,
+      "hiddenValue": 2143665045,
+      "cryptoKey": 1111415597,
+      "value": 0.06499999761581421,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1374691251,
+      "hiddenValue": 1275347809,
+      "cryptoKey": 2011222891,
+      "value": 0.004999999888241291,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    }
+   }
+  ],
+  "Effects": [],
+  "Set": null,
+  "AllowDuplicateEquip": true
+ },
+ {
+  "_name": "LegendaryRune_WarriorSpecial4",
+  "_pathid": 5203,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 968
+  },
+  "Type": 5,
+  "Rarity": 3,
+  "SellPrice": 5000,
+  "MinDropLevel": 30,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 1,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 1,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [
+   {
+    "AllAbilities": false,
+    "Ability": {
+     "fileID": 2,
+     "pathID": 59964
+    },
+    "Levels": 4,
+    "EveryNRuneLevels": 3
+   }
+  ],
+  "FixedStats": [],
+  "SteamItemDefId": 4131,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "Attributes": [
+   {
+    "Stat": 42,
+    "Modifier": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": -649440399,
+      "hiddenValue": 1641615206,
+      "cryptoKey": 1595293948,
+      "value": 0.15000000596046448,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1479264653,
+      "hiddenValue": 1367337576,
+      "cryptoKey": 1841932386,
+      "value": 0.009999999776482582,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    }
+   }
+  ],
+  "Effects": [],
+  "Set": null,
+  "AllowDuplicateEquip": true
+ },
+ {
+  "_name": "LegendaryRune_WarriorSpecial5",
+  "_pathid": 5204,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 826
+  },
+  "Type": 5,
+  "Rarity": 3,
+  "SellPrice": 5000,
+  "MinDropLevel": 40,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 1,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 1,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [
+   {
+    "AllAbilities": false,
+    "Ability": {
+     "fileID": 2,
+     "pathID": 59965
+    },
+    "Levels": 4,
+    "EveryNRuneLevels": 3
+   }
+  ],
+  "FixedStats": [],
+  "SteamItemDefId": 4132,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "Attributes": [
+   {
+    "Stat": 44,
+    "Modifier": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 523548233,
+      "hiddenValue": 1633275766,
+      "cryptoKey": 1606065145,
+      "value": 0.23999999463558197,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1556752217,
+      "hiddenValue": 1847514484,
+      "cryptoKey": 1377424057,
+      "value": 0.02500000037252903,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    }
+   }
+  ],
+  "Effects": [],
+  "Set": null,
+  "AllowDuplicateEquip": true
+ },
+ {
+  "_name": "LegendaryRune_WarriorSpecial6",
+  "_pathid": 5205,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 750
+  },
+  "Type": 5,
+  "Rarity": 3,
+  "SellPrice": 5000,
+  "MinDropLevel": 45,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 1,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 1,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [
+   {
+    "AllAbilities": false,
+    "Ability": {
+     "fileID": 2,
+     "pathID": 59966
+    },
+    "Levels": 4,
+    "EveryNRuneLevels": 3
+   }
+  ],
+  "FixedStats": [],
+  "SteamItemDefId": 4133,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "Attributes": [
+   {
+    "Stat": 59,
+    "Modifier": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 523548233,
+      "hiddenValue": 1942601253,
+      "cryptoKey": 1305152426,
+      "value": 0.23999999463558197,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1556752217,
+      "hiddenValue": 1676060415,
+      "cryptoKey": 1600793138,
+      "value": 0.02500000037252903,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    }
+   }
+  ],
+  "Effects": [],
+  "Set": null,
+  "AllowDuplicateEquip": true
+ },
+ {
+  "_name": "MonkSetRune1_1",
+  "_pathid": 5206,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 811
   },
   "Type": 5,
   "Rarity": 5,
@@ -3901,7 +5845,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59873
+     "pathID": 59925
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -3915,17 +5859,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5153
+   "pathID": 5292
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "MonkSetRune1_2",
-  "_pathid": 5092,
+  "_pathid": 5207,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 1029
+   "pathID": 1101
   },
   "Type": 5,
   "Rarity": 5,
@@ -3962,7 +5906,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59873
+     "pathID": 59925
     },
     "Levels": 2,
     "EveryNRuneLevels": 3
@@ -3999,17 +5943,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5153
+   "pathID": 5292
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "MonkSetRune1_3",
-  "_pathid": 5093,
+  "_pathid": 5208,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 935
+   "pathID": 995
   },
   "Type": 5,
   "Rarity": 5,
@@ -4073,17 +6017,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5153
+   "pathID": 5292
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "MonkSetRune1_4",
-  "_pathid": 5094,
+  "_pathid": 5209,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 884
+   "pathID": 939
   },
   "Type": 5,
   "Rarity": 5,
@@ -4147,17 +6091,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5153
+   "pathID": 5292
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "MonkSetRune1_5",
-  "_pathid": 5095,
+  "_pathid": 5210,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 697
+   "pathID": 730
   },
   "Type": 5,
   "Rarity": 5,
@@ -4221,17 +6165,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5153
+   "pathID": 5292
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "MonkSetRune1_6",
-  "_pathid": 5096,
+  "_pathid": 5211,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 1023
+   "pathID": 1094
   },
   "Type": 5,
   "Rarity": 5,
@@ -4295,17 +6239,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5153
+   "pathID": 5292
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "MonkSetRune2_1",
-  "_pathid": 5097,
+  "_pathid": 5212,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 870
+   "pathID": 924
   },
   "Type": 5,
   "Rarity": 5,
@@ -4342,7 +6286,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59880
+     "pathID": 59932
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -4356,17 +6300,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5156
+   "pathID": 5295
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "MonkSetRune2_2",
-  "_pathid": 5098,
+  "_pathid": 5213,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 758
+   "pathID": 799
   },
   "Type": 5,
   "Rarity": 5,
@@ -4403,7 +6347,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59880
+     "pathID": 59932
     },
     "Levels": 2,
     "EveryNRuneLevels": 3
@@ -4440,17 +6384,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5156
+   "pathID": 5295
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "MonkSetRune2_3",
-  "_pathid": 5099,
+  "_pathid": 5214,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 726
+   "pathID": 763
   },
   "Type": 5,
   "Rarity": 5,
@@ -4514,17 +6458,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5156
+   "pathID": 5295
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "MonkSetRune2_4",
-  "_pathid": 5100,
+  "_pathid": 5215,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 897
+   "pathID": 955
   },
   "Type": 5,
   "Rarity": 5,
@@ -4588,17 +6532,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5156
+   "pathID": 5295
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "MonkSetRune2_5",
-  "_pathid": 5101,
+  "_pathid": 5216,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 718
+   "pathID": 755
   },
   "Type": 5,
   "Rarity": 5,
@@ -4662,17 +6606,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5156
+   "pathID": 5295
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "MonkSetRune2_6",
-  "_pathid": 5102,
+  "_pathid": 5217,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 767
+   "pathID": 809
   },
   "Type": 5,
   "Rarity": 5,
@@ -4736,17 +6680,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5156
+   "pathID": 5295
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "MonkSetRune3_1",
-  "_pathid": 5103,
+  "_pathid": 5218,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 954
+   "pathID": 1017
   },
   "Type": 5,
   "Rarity": 5,
@@ -4783,7 +6727,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59877
+     "pathID": 59929
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -4797,17 +6741,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5159
+   "pathID": 5298
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "MonkSetRune3_2",
-  "_pathid": 5104,
+  "_pathid": 5219,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 708
+   "pathID": 743
   },
   "Type": 5,
   "Rarity": 5,
@@ -4844,7 +6788,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59877
+     "pathID": 59929
     },
     "Levels": 2,
     "EveryNRuneLevels": 3
@@ -4881,17 +6825,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5159
+   "pathID": 5298
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "MonkSetRune3_3",
-  "_pathid": 5105,
+  "_pathid": 5220,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 933
+   "pathID": 993
   },
   "Type": 5,
   "Rarity": 5,
@@ -4955,17 +6899,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5159
+   "pathID": 5298
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "MonkSetRune3_4",
-  "_pathid": 5106,
+  "_pathid": 5221,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 942
+   "pathID": 1002
   },
   "Type": 5,
   "Rarity": 5,
@@ -5029,17 +6973,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5159
+   "pathID": 5298
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "MonkSetRune3_5",
-  "_pathid": 5107,
+  "_pathid": 5222,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 775
+   "pathID": 819
   },
   "Type": 5,
   "Rarity": 5,
@@ -5103,17 +7047,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5159
+   "pathID": 5298
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "MonkSetRune3_6",
-  "_pathid": 5108,
+  "_pathid": 5223,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 849
+   "pathID": 900
   },
   "Type": 5,
   "Rarity": 5,
@@ -5177,17 +7121,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5159
+   "pathID": 5298
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "RareRune_HunterBasicAttack1",
-  "_pathid": 5109,
+  "_pathid": 5224,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 816
+   "pathID": 866
   },
   "Type": 5,
   "Rarity": 2,
@@ -5224,7 +7168,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59858
+     "pathID": 59910
     },
     "Levels": 2,
     "EveryNRuneLevels": 3
@@ -5264,11 +7208,11 @@
  },
  {
   "_name": "RareRune_HunterBasicAttack2",
-  "_pathid": 5110,
+  "_pathid": 5225,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 948
+   "pathID": 1009
   },
   "Type": 5,
   "Rarity": 2,
@@ -5305,7 +7249,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59859
+     "pathID": 59911
     },
     "Levels": 2,
     "EveryNRuneLevels": 3
@@ -5345,11 +7289,11 @@
  },
  {
   "_name": "RareRune_HunterBasicAttack3",
-  "_pathid": 5111,
+  "_pathid": 5226,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 777
+   "pathID": 822
   },
   "Type": 5,
   "Rarity": 2,
@@ -5386,7 +7330,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59860
+     "pathID": 59912
     },
     "Levels": 2,
     "EveryNRuneLevels": 3
@@ -5425,12 +7369,93 @@
   "AllowDuplicateEquip": true
  },
  {
-  "_name": "RareRune_HunterHeavyAttack1",
-  "_pathid": 5112,
+  "_name": "RareRune_HunterBasicAttack4",
+  "_pathid": 5227,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 883
+   "pathID": 1059
+  },
+  "Type": 5,
+  "Rarity": 2,
+  "SellPrice": 5000,
+  "MinDropLevel": 45,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 1,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 4,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [
+   {
+    "AllAbilities": false,
+    "Ability": {
+     "fileID": 2,
+     "pathID": 59913
+    },
+    "Levels": 2,
+    "EveryNRuneLevels": 3
+   }
+  ],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "Attributes": [
+   {
+    "Stat": 1,
+    "Modifier": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1819516403,
+      "hiddenValue": 2100217713,
+      "cryptoKey": 1021783665,
+      "value": 10.0,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 149504655,
+      "hiddenValue": 1134718041,
+      "cryptoKey": 2095882841,
+      "value": 1.0,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    }
+   }
+  ],
+  "Effects": [],
+  "Set": null,
+  "AllowDuplicateEquip": true
+ },
+ {
+  "_name": "RareRune_HunterHeavyAttack1",
+  "_pathid": 5228,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 938
   },
   "Type": 5,
   "Rarity": 2,
@@ -5467,7 +7492,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59862
+     "pathID": 59914
     },
     "Levels": 2,
     "EveryNRuneLevels": 3
@@ -5507,11 +7532,11 @@
  },
  {
   "_name": "RareRune_HunterHeavyAttack2",
-  "_pathid": 5113,
+  "_pathid": 5229,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 739
+   "pathID": 777
   },
   "Type": 5,
   "Rarity": 2,
@@ -5548,7 +7573,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59863
+     "pathID": 59915
     },
     "Levels": 2,
     "EveryNRuneLevels": 3
@@ -5588,11 +7613,11 @@
  },
  {
   "_name": "RareRune_HunterHeavyAttack3",
-  "_pathid": 5114,
+  "_pathid": 5230,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 734
+   "pathID": 771
   },
   "Type": 5,
   "Rarity": 2,
@@ -5629,7 +7654,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59864
+     "pathID": 59916
     },
     "Levels": 2,
     "EveryNRuneLevels": 3
@@ -5668,12 +7693,93 @@
   "AllowDuplicateEquip": true
  },
  {
-  "_name": "RareRune_HunterSpecial1",
-  "_pathid": 5115,
+  "_name": "RareRune_HunterHeavyAttack4",
+  "_pathid": 5231,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 743
+   "pathID": 801
+  },
+  "Type": 5,
+  "Rarity": 2,
+  "SellPrice": 5000,
+  "MinDropLevel": 50,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 1,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 4,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [
+   {
+    "AllAbilities": false,
+    "Ability": {
+     "fileID": 2,
+     "pathID": 59917
+    },
+    "Levels": 2,
+    "EveryNRuneLevels": 3
+   }
+  ],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "Attributes": [
+   {
+    "Stat": 14,
+    "Modifier": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1819516403,
+      "hiddenValue": 463762634,
+      "cryptoKey": 1515496650,
+      "value": 10.0,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 149504655,
+      "hiddenValue": 1650365840,
+      "cryptoKey": 1561681552,
+      "value": 1.0,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    }
+   }
+  ],
+  "Effects": [],
+  "Set": null,
+  "AllowDuplicateEquip": true
+ },
+ {
+  "_name": "RareRune_HunterSpecial1",
+  "_pathid": 5232,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 781
   },
   "Type": 5,
   "Rarity": 2,
@@ -5710,7 +7816,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59866
+     "pathID": 59918
     },
     "Levels": 2,
     "EveryNRuneLevels": 3
@@ -5750,11 +7856,11 @@
  },
  {
   "_name": "RareRune_HunterSpecial2",
-  "_pathid": 5116,
+  "_pathid": 5233,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 725
+   "pathID": 762
   },
   "Type": 5,
   "Rarity": 2,
@@ -5791,7 +7897,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59867
+     "pathID": 59919
     },
     "Levels": 2,
     "EveryNRuneLevels": 3
@@ -5830,12 +7936,336 @@
   "AllowDuplicateEquip": true
  },
  {
-  "_name": "RareRune_MonkBasicAttack1",
-  "_pathid": 5117,
+  "_name": "RareRune_HunterSpecial3",
+  "_pathid": 5234,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 733
+   "pathID": 814
+  },
+  "Type": 5,
+  "Rarity": 2,
+  "SellPrice": 5000,
+  "MinDropLevel": 45,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 1,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 4,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [
+   {
+    "AllAbilities": false,
+    "Ability": {
+     "fileID": 2,
+     "pathID": 59920
+    },
+    "Levels": 2,
+    "EveryNRuneLevels": 3
+   }
+  ],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "Attributes": [
+   {
+    "Stat": 59,
+    "Modifier": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1610992765,
+      "hiddenValue": 1942456167,
+      "cryptoKey": 1305152426,
+      "value": 0.20000000298023224,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1458579341,
+      "hiddenValue": 1677576504,
+      "cryptoKey": 1600793138,
+      "value": 0.019999999552965164,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    }
+   }
+  ],
+  "Effects": [],
+  "Set": null,
+  "AllowDuplicateEquip": true
+ },
+ {
+  "_name": "RareRune_HunterSpecial4",
+  "_pathid": 5235,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 790
+  },
+  "Type": 5,
+  "Rarity": 2,
+  "SellPrice": 5000,
+  "MinDropLevel": 30,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 1,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 4,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [
+   {
+    "AllAbilities": false,
+    "Ability": {
+     "fileID": 2,
+     "pathID": 59921
+    },
+    "Levels": 2,
+    "EveryNRuneLevels": 3
+   }
+  ],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "Attributes": [
+   {
+    "Stat": 42,
+    "Modifier": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1573529835,
+      "hiddenValue": 1653398065,
+      "cryptoKey": 1595293948,
+      "value": 0.10000000149011612,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1479264653,
+      "hiddenValue": 1367337576,
+      "cryptoKey": 1841932386,
+      "value": 0.009999999776482582,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    }
+   }
+  ],
+  "Effects": [],
+  "Set": null,
+  "AllowDuplicateEquip": true
+ },
+ {
+  "_name": "RareRune_HunterSpecial5",
+  "_pathid": 5236,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 1072
+  },
+  "Type": 5,
+  "Rarity": 2,
+  "SellPrice": 5000,
+  "MinDropLevel": 40,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 1,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 4,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [
+   {
+    "AllAbilities": false,
+    "Ability": {
+     "fileID": 2,
+     "pathID": 59922
+    },
+    "Levels": 2,
+    "EveryNRuneLevels": 3
+   }
+  ],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "Attributes": [
+   {
+    "Stat": 44,
+    "Modifier": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1610992765,
+      "hiddenValue": 1633154612,
+      "cryptoKey": 1606065145,
+      "value": 0.20000000298023224,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1458579341,
+      "hiddenValue": 1845869235,
+      "cryptoKey": 1377424057,
+      "value": 0.019999999552965164,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    }
+   }
+  ],
+  "Effects": [],
+  "Set": null,
+  "AllowDuplicateEquip": true
+ },
+ {
+  "_name": "RareRune_HunterSpecial6",
+  "_pathid": 5237,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 1011
+  },
+  "Type": 5,
+  "Rarity": 2,
+  "SellPrice": 5000,
+  "MinDropLevel": 25,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 1,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 4,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [
+   {
+    "AllAbilities": false,
+    "Ability": {
+     "fileID": 2,
+     "pathID": 59923
+    },
+    "Levels": 2,
+    "EveryNRuneLevels": 3
+   }
+  ],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "Attributes": [
+   {
+    "Stat": 57,
+    "Modifier": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1594215147,
+      "hiddenValue": 2132243168,
+      "cryptoKey": 1111415597,
+      "value": 0.05000000074505806,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1374691251,
+      "hiddenValue": 1275347809,
+      "cryptoKey": 2011222891,
+      "value": 0.004999999888241291,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    }
+   }
+  ],
+  "Effects": [],
+  "Set": null,
+  "AllowDuplicateEquip": true
+ },
+ {
+  "_name": "RareRune_MonkBasicAttack1",
+  "_pathid": 5238,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 770
   },
   "Type": 5,
   "Rarity": 2,
@@ -5872,7 +8302,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59872
+     "pathID": 59924
     },
     "Levels": 2,
     "EveryNRuneLevels": 3
@@ -5912,11 +8342,11 @@
  },
  {
   "_name": "RareRune_MonkBasicAttack2",
-  "_pathid": 5118,
+  "_pathid": 5239,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 1010
+   "pathID": 1081
   },
   "Type": 5,
   "Rarity": 2,
@@ -5953,7 +8383,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59873
+     "pathID": 59925
     },
     "Levels": 2,
     "EveryNRuneLevels": 3
@@ -5993,11 +8423,11 @@
  },
  {
   "_name": "RareRune_MonkBasicAttack3",
-  "_pathid": 5119,
+  "_pathid": 5240,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 887
+   "pathID": 942
   },
   "Type": 5,
   "Rarity": 2,
@@ -6034,7 +8464,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59874
+     "pathID": 59926
     },
     "Levels": 2,
     "EveryNRuneLevels": 3
@@ -6073,12 +8503,93 @@
   "AllowDuplicateEquip": true
  },
  {
-  "_name": "RareRune_MonkHeavyAttack1",
-  "_pathid": 5120,
+  "_name": "RareRune_MonkBasicAttack4",
+  "_pathid": 5241,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 963
+   "pathID": 792
+  },
+  "Type": 5,
+  "Rarity": 2,
+  "SellPrice": 5000,
+  "MinDropLevel": 45,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 1,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 8,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [
+   {
+    "AllAbilities": false,
+    "Ability": {
+     "fileID": 2,
+     "pathID": 59927
+    },
+    "Levels": 2,
+    "EveryNRuneLevels": 3
+   }
+  ],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "Attributes": [
+   {
+    "Stat": 1,
+    "Modifier": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1819516403,
+      "hiddenValue": -1959130207,
+      "cryptoKey": -903136607,
+      "value": 10.0,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 149504655,
+      "hiddenValue": -1439854320,
+      "cryptoKey": -1794036464,
+      "value": 1.0,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    }
+   }
+  ],
+  "Effects": [],
+  "Set": null,
+  "AllowDuplicateEquip": true
+ },
+ {
+  "_name": "RareRune_MonkHeavyAttack1",
+  "_pathid": 5242,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 1028
   },
   "Type": 5,
   "Rarity": 2,
@@ -6115,7 +8626,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59876
+     "pathID": 59928
     },
     "Levels": 2,
     "EveryNRuneLevels": 3
@@ -6155,11 +8666,11 @@
  },
  {
   "_name": "RareRune_MonkHeavyAttack2",
-  "_pathid": 5121,
+  "_pathid": 5243,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 909
+   "pathID": 969
   },
   "Type": 5,
   "Rarity": 2,
@@ -6196,7 +8707,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59877
+     "pathID": 59929
     },
     "Levels": 2,
     "EveryNRuneLevels": 3
@@ -6236,11 +8747,11 @@
  },
  {
   "_name": "RareRune_MonkHeavyAttack3",
-  "_pathid": 5122,
+  "_pathid": 5244,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 912
+   "pathID": 972
   },
   "Type": 5,
   "Rarity": 2,
@@ -6277,7 +8788,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59878
+     "pathID": 59930
     },
     "Levels": 2,
     "EveryNRuneLevels": 3
@@ -6316,12 +8827,93 @@
   "AllowDuplicateEquip": true
  },
  {
-  "_name": "RareRune_MonkSpecial1",
-  "_pathid": 5123,
+  "_name": "RareRune_MonkHeavyAttack4",
+  "_pathid": 5245,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 956
+   "pathID": 943
+  },
+  "Type": 5,
+  "Rarity": 2,
+  "SellPrice": 5000,
+  "MinDropLevel": 50,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 1,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 8,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [
+   {
+    "AllAbilities": false,
+    "Ability": {
+     "fileID": 2,
+     "pathID": 59931
+    },
+    "Levels": 2,
+    "EveryNRuneLevels": 3
+   }
+  ],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "Attributes": [
+   {
+    "Stat": 14,
+    "Modifier": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1819516403,
+      "hiddenValue": 1005155571,
+      "cryptoKey": 2052385267,
+      "value": 10.0,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 149504655,
+      "hiddenValue": 452914754,
+      "cryptoKey": 628031042,
+      "value": 1.0,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    }
+   }
+  ],
+  "Effects": [],
+  "Set": null,
+  "AllowDuplicateEquip": true
+ },
+ {
+  "_name": "RareRune_MonkSpecial1",
+  "_pathid": 5246,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 1019
   },
   "Type": 5,
   "Rarity": 2,
@@ -6358,7 +8950,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59880
+     "pathID": 59932
     },
     "Levels": 2,
     "EveryNRuneLevels": 3
@@ -6398,11 +8990,11 @@
  },
  {
   "_name": "RareRune_MonkSpecial2",
-  "_pathid": 5124,
+  "_pathid": 5247,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 1001
+   "pathID": 1069
   },
   "Type": 5,
   "Rarity": 2,
@@ -6439,7 +9031,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59881
+     "pathID": 59933
     },
     "Levels": 2,
     "EveryNRuneLevels": 3
@@ -6478,12 +9070,336 @@
   "AllowDuplicateEquip": true
  },
  {
-  "_name": "RareRune_SorcererBasicAttack1",
-  "_pathid": 5125,
+  "_name": "RareRune_MonkSpecial3",
+  "_pathid": 5248,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 937
+   "pathID": 1015
+  },
+  "Type": 5,
+  "Rarity": 2,
+  "SellPrice": 5000,
+  "MinDropLevel": 25,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 1,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 8,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [
+   {
+    "AllAbilities": false,
+    "Ability": {
+     "fileID": 2,
+     "pathID": 59934
+    },
+    "Levels": 2,
+    "EveryNRuneLevels": 3
+   }
+  ],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "Attributes": [
+   {
+    "Stat": 57,
+    "Modifier": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1594215147,
+      "hiddenValue": 1137384040,
+      "cryptoKey": 2119567269,
+      "value": 0.05000000074505806,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1374691251,
+      "hiddenValue": 449302302,
+      "cryptoKey": 560730132,
+      "value": 0.004999999888241291,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    }
+   }
+  ],
+  "Effects": [],
+  "Set": null,
+  "AllowDuplicateEquip": true
+ },
+ {
+  "_name": "RareRune_MonkSpecial4",
+  "_pathid": 5249,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 786
+  },
+  "Type": 5,
+  "Rarity": 2,
+  "SellPrice": 5000,
+  "MinDropLevel": 30,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 1,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 8,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [
+   {
+    "AllAbilities": false,
+    "Ability": {
+     "fileID": 2,
+     "pathID": 59935
+    },
+    "Levels": 2,
+    "EveryNRuneLevels": 3
+   }
+  ],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "Attributes": [
+   {
+    "Stat": 42,
+    "Modifier": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1573529835,
+      "hiddenValue": 287182034,
+      "cryptoKey": 750834207,
+      "value": 0.10000000149011612,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1479264653,
+      "hiddenValue": 1326635428,
+      "cryptoKey": 1945814446,
+      "value": 0.009999999776482582,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    }
+   }
+  ],
+  "Effects": [],
+  "Set": null,
+  "AllowDuplicateEquip": true
+ },
+ {
+  "_name": "RareRune_MonkSpecial5",
+  "_pathid": 5250,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 737
+  },
+  "Type": 5,
+  "Rarity": 2,
+  "SellPrice": 5000,
+  "MinDropLevel": 40,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 1,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 8,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [
+   {
+    "AllAbilities": false,
+    "Ability": {
+     "fileID": 2,
+     "pathID": 59936
+    },
+    "Levels": 2,
+    "EveryNRuneLevels": 3
+   }
+  ],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "Attributes": [
+   {
+    "Stat": 44,
+    "Modifier": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1610992765,
+      "hiddenValue": 1989783040,
+      "cryptoKey": 1222792653,
+      "value": 0.20000000298023224,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1458579341,
+      "hiddenValue": 731216758,
+      "cryptoKey": 400048764,
+      "value": 0.019999999552965164,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    }
+   }
+  ],
+  "Effects": [],
+  "Set": null,
+  "AllowDuplicateEquip": true
+ },
+ {
+  "_name": "RareRune_MonkSpecial6",
+  "_pathid": 5251,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 840
+  },
+  "Type": 5,
+  "Rarity": 2,
+  "SellPrice": 5000,
+  "MinDropLevel": 45,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 1,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 8,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [
+   {
+    "AllAbilities": false,
+    "Ability": {
+     "fileID": 2,
+     "pathID": 59937
+    },
+    "Levels": 2,
+    "EveryNRuneLevels": 3
+   }
+  ],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "Attributes": [
+   {
+    "Stat": 59,
+    "Modifier": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1610992765,
+      "hiddenValue": 1647558608,
+      "cryptoKey": 1559494429,
+      "value": 0.20000000298023224,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1458579341,
+      "hiddenValue": 1061120678,
+      "cryptoKey": 63563948,
+      "value": 0.019999999552965164,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    }
+   }
+  ],
+  "Effects": [],
+  "Set": null,
+  "AllowDuplicateEquip": true
+ },
+ {
+  "_name": "RareRune_SorcererBasicAttack1",
+  "_pathid": 5252,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 997
   },
   "Type": 5,
   "Rarity": 2,
@@ -6520,7 +9436,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59886
+     "pathID": 59938
     },
     "Levels": 2,
     "EveryNRuneLevels": 3
@@ -6560,11 +9476,11 @@
  },
  {
   "_name": "RareRune_SorcererBasicAttack2",
-  "_pathid": 5126,
+  "_pathid": 5253,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 931
+   "pathID": 991
   },
   "Type": 5,
   "Rarity": 2,
@@ -6601,7 +9517,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59887
+     "pathID": 59939
     },
     "Levels": 2,
     "EveryNRuneLevels": 3
@@ -6641,11 +9557,11 @@
  },
  {
   "_name": "RareRune_SorcererBasicAttack3",
-  "_pathid": 5127,
+  "_pathid": 5254,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 924
+   "pathID": 984
   },
   "Type": 5,
   "Rarity": 2,
@@ -6682,7 +9598,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59888
+     "pathID": 59940
     },
     "Levels": 2,
     "EveryNRuneLevels": 3
@@ -6721,12 +9637,93 @@
   "AllowDuplicateEquip": true
  },
  {
-  "_name": "RareRune_SorcererSpecial1",
-  "_pathid": 5128,
+  "_name": "RareRune_SorcererBasicAttack4",
+  "_pathid": 5255,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 801
+   "pathID": 718
+  },
+  "Type": 5,
+  "Rarity": 2,
+  "SellPrice": 5000,
+  "MinDropLevel": 45,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 1,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 2,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [
+   {
+    "AllAbilities": false,
+    "Ability": {
+     "fileID": 2,
+     "pathID": 59941
+    },
+    "Levels": 2,
+    "EveryNRuneLevels": 3
+   }
+  ],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "Attributes": [
+   {
+    "Stat": 2,
+    "Modifier": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1819516403,
+      "hiddenValue": 391412819,
+      "cryptoKey": 1448891475,
+      "value": 10.0,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 149504655,
+      "hiddenValue": 910419682,
+      "cryptoKey": 157696994,
+      "value": 1.0,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    }
+   }
+  ],
+  "Effects": [],
+  "Set": null,
+  "AllowDuplicateEquip": true
+ },
+ {
+  "_name": "RareRune_SorcererSpecial1",
+  "_pathid": 5256,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 851
   },
   "Type": 5,
   "Rarity": 2,
@@ -6763,7 +9760,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59890
+     "pathID": 59942
     },
     "Levels": 2,
     "EveryNRuneLevels": 3
@@ -6803,11 +9800,11 @@
  },
  {
   "_name": "RareRune_SorcererSpecial2",
-  "_pathid": 5129,
+  "_pathid": 5257,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 940
+   "pathID": 1000
   },
   "Type": 5,
   "Rarity": 2,
@@ -6844,7 +9841,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59891
+     "pathID": 59943
     },
     "Levels": 2,
     "EveryNRuneLevels": 3
@@ -6883,12 +9880,336 @@
   "AllowDuplicateEquip": true
  },
  {
-  "_name": "RareRune_SorcererStrongAttack1",
-  "_pathid": 5130,
+  "_name": "RareRune_SorcererSpecial3",
+  "_pathid": 5258,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 802
+   "pathID": 950
+  },
+  "Type": 5,
+  "Rarity": 2,
+  "SellPrice": 5000,
+  "MinDropLevel": 25,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 1,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 2,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [
+   {
+    "AllAbilities": false,
+    "Ability": {
+     "fileID": 2,
+     "pathID": 59944
+    },
+    "Levels": 2,
+    "EveryNRuneLevels": 3
+   }
+  ],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "Attributes": [
+   {
+    "Stat": 57,
+    "Modifier": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1594215147,
+      "hiddenValue": 1681936078,
+      "cryptoKey": 1493339139,
+      "value": 0.05000000074505806,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1374691251,
+      "hiddenValue": 1028430776,
+      "cryptoKey": 104373170,
+      "value": 0.004999999888241291,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    }
+   }
+  ],
+  "Effects": [],
+  "Set": null,
+  "AllowDuplicateEquip": true
+ },
+ {
+  "_name": "RareRune_SorcererSpecial4",
+  "_pathid": 5259,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 947
+  },
+  "Type": 5,
+  "Rarity": 2,
+  "SellPrice": 5000,
+  "MinDropLevel": 30,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 1,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 2,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [
+   {
+    "AllAbilities": false,
+    "Ability": {
+     "fileID": 2,
+     "pathID": 59945
+    },
+    "Levels": 2,
+    "EveryNRuneLevels": 3
+   }
+  ],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "Attributes": [
+   {
+    "Stat": 42,
+    "Modifier": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1573529835,
+      "hiddenValue": -464836030,
+      "cryptoKey": -639203441,
+      "value": 0.10000000149011612,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1479264653,
+      "hiddenValue": -1169686732,
+      "cryptoKey": -2032365506,
+      "value": 0.009999999776482582,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    }
+   }
+  ],
+  "Effects": [],
+  "Set": null,
+  "AllowDuplicateEquip": true
+ },
+ {
+  "_name": "RareRune_SorcererSpecial5",
+  "_pathid": 5260,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 1025
+  },
+  "Type": 5,
+  "Rarity": 2,
+  "SellPrice": 5000,
+  "MinDropLevel": 40,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 1,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 2,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [
+   {
+    "AllAbilities": false,
+    "Ability": {
+     "fileID": 2,
+     "pathID": 59946
+    },
+    "Levels": 2,
+    "EveryNRuneLevels": 3
+   }
+  ],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "Attributes": [
+   {
+    "Stat": 44,
+    "Modifier": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1610992765,
+      "hiddenValue": 1078914746,
+      "cryptoKey": 2124579447,
+      "value": 0.20000000298023224,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1458579341,
+      "hiddenValue": 490879948,
+      "cryptoKey": 563647942,
+      "value": 0.019999999552965164,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    }
+   }
+  ],
+  "Effects": [],
+  "Set": null,
+  "AllowDuplicateEquip": true
+ },
+ {
+  "_name": "RareRune_SorcererSpecial6",
+  "_pathid": 5261,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 906
+  },
+  "Type": 5,
+  "Rarity": 2,
+  "SellPrice": 5000,
+  "MinDropLevel": 45,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 1,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 2,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [
+   {
+    "AllAbilities": false,
+    "Ability": {
+     "fileID": 2,
+     "pathID": 59947
+    },
+    "Levels": 2,
+    "EveryNRuneLevels": 3
+   }
+  ],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "Attributes": [
+   {
+    "Stat": 59,
+    "Modifier": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1610992765,
+      "hiddenValue": 1538903064,
+      "cryptoKey": 1702917589,
+      "value": 0.20000000298023224,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1458579341,
+      "hiddenValue": 112531822,
+      "cryptoKey": 985293412,
+      "value": 0.019999999552965164,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    }
+   }
+  ],
+  "Effects": [],
+  "Set": null,
+  "AllowDuplicateEquip": true
+ },
+ {
+  "_name": "RareRune_SorcererStrongAttack1",
+  "_pathid": 5262,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 852
   },
   "Type": 5,
   "Rarity": 2,
@@ -6925,7 +10246,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59896
+     "pathID": 59948
     },
     "Levels": 2,
     "EveryNRuneLevels": 3
@@ -6965,11 +10286,11 @@
  },
  {
   "_name": "RareRune_SorcererStrongAttack2",
-  "_pathid": 5131,
+  "_pathid": 5263,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 706
+   "pathID": 741
   },
   "Type": 5,
   "Rarity": 2,
@@ -7006,7 +10327,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59897
+     "pathID": 59949
     },
     "Levels": 2,
     "EveryNRuneLevels": 3
@@ -7046,11 +10367,11 @@
  },
  {
   "_name": "RareRune_SorcererStrongAttack3",
-  "_pathid": 5132,
+  "_pathid": 5264,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 833
+   "pathID": 883
   },
   "Type": 5,
   "Rarity": 2,
@@ -7087,7 +10408,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59898
+     "pathID": 59950
     },
     "Levels": 2,
     "EveryNRuneLevels": 3
@@ -7126,12 +10447,93 @@
   "AllowDuplicateEquip": true
  },
  {
-  "_name": "RareRune_WarriorBasicAttack",
-  "_pathid": 5133,
+  "_name": "RareRune_SorcererStrongAttack4",
+  "_pathid": 5265,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 736
+   "pathID": 830
+  },
+  "Type": 5,
+  "Rarity": 2,
+  "SellPrice": 5000,
+  "MinDropLevel": 50,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 1,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 2,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [
+   {
+    "AllAbilities": false,
+    "Ability": {
+     "fileID": 2,
+     "pathID": 59951
+    },
+    "Levels": 2,
+    "EveryNRuneLevels": 3
+   }
+  ],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "Attributes": [
+   {
+    "Stat": 14,
+    "Modifier": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1819516403,
+      "hiddenValue": -1760226295,
+      "cryptoKey": -701229815,
+      "value": 10.0,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 149504655,
+      "hiddenValue": -1241346376,
+      "cryptoKey": -1995570504,
+      "value": 1.0,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    }
+   }
+  ],
+  "Effects": [],
+  "Set": null,
+  "AllowDuplicateEquip": true
+ },
+ {
+  "_name": "RareRune_WarriorBasicAttack",
+  "_pathid": 5266,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 774
   },
   "Type": 5,
   "Rarity": 2,
@@ -7168,7 +10570,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59900
+     "pathID": 59952
     },
     "Levels": 2,
     "EveryNRuneLevels": 3
@@ -7208,11 +10610,11 @@
  },
  {
   "_name": "RareRune_WarriorBasicAttack2",
-  "_pathid": 5134,
+  "_pathid": 5267,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 1003
+   "pathID": 1073
   },
   "Type": 5,
   "Rarity": 2,
@@ -7249,7 +10651,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59901
+     "pathID": 59953
     },
     "Levels": 2,
     "EveryNRuneLevels": 3
@@ -7289,11 +10691,11 @@
  },
  {
   "_name": "RareRune_WarriorBasicAttack3",
-  "_pathid": 5135,
+  "_pathid": 5268,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 780
+   "pathID": 825
   },
   "Type": 5,
   "Rarity": 2,
@@ -7330,7 +10732,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59902
+     "pathID": 59954
     },
     "Levels": 2,
     "EveryNRuneLevels": 3
@@ -7369,12 +10771,93 @@
   "AllowDuplicateEquip": true
  },
  {
-  "_name": "RareRune_WarriorHeavyAttack1",
-  "_pathid": 5136,
+  "_name": "RareRune_WarriorBasicAttack4",
+  "_pathid": 5269,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 772
+   "pathID": 932
+  },
+  "Type": 5,
+  "Rarity": 2,
+  "SellPrice": 5000,
+  "MinDropLevel": 45,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 1,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 1,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [
+   {
+    "AllAbilities": false,
+    "Ability": {
+     "fileID": 2,
+     "pathID": 59955
+    },
+    "Levels": 2,
+    "EveryNRuneLevels": 3
+   }
+  ],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "Attributes": [
+   {
+    "Stat": 0,
+    "Modifier": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1819516403,
+      "hiddenValue": 376266243,
+      "cryptoKey": 1467903235,
+      "value": 10.0,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 149504655,
+      "hiddenValue": 930792626,
+      "cryptoKey": 138705586,
+      "value": 1.0,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    }
+   }
+  ],
+  "Effects": [],
+  "Set": null,
+  "AllowDuplicateEquip": true
+ },
+ {
+  "_name": "RareRune_WarriorHeavyAttack1",
+  "_pathid": 5270,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 816
   },
   "Type": 5,
   "Rarity": 2,
@@ -7411,7 +10894,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59905
+     "pathID": 59957
     },
     "Levels": 2,
     "EveryNRuneLevels": 3
@@ -7451,11 +10934,11 @@
  },
  {
   "_name": "RareRune_WarriorHeavyAttack2",
-  "_pathid": 5137,
+  "_pathid": 5271,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 1016
+   "pathID": 1087
   },
   "Type": 5,
   "Rarity": 2,
@@ -7492,7 +10975,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59906
+     "pathID": 59958
     },
     "Levels": 2,
     "EveryNRuneLevels": 3
@@ -7532,11 +11015,11 @@
  },
  {
   "_name": "RareRune_WarriorHeavyAttack3",
-  "_pathid": 5138,
+  "_pathid": 5272,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 1024
+   "pathID": 1095
   },
   "Type": 5,
   "Rarity": 2,
@@ -7573,7 +11056,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59907
+     "pathID": 59959
     },
     "Levels": 2,
     "EveryNRuneLevels": 3
@@ -7612,12 +11095,93 @@
   "AllowDuplicateEquip": true
  },
  {
-  "_name": "RareRune_WarriorRageShield",
-  "_pathid": 5139,
+  "_name": "RareRune_WarriorHeavyAttack4",
+  "_pathid": 5273,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 737
+   "pathID": 813
+  },
+  "Type": 5,
+  "Rarity": 2,
+  "SellPrice": 5000,
+  "MinDropLevel": 50,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 1,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 1,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [
+   {
+    "AllAbilities": false,
+    "Ability": {
+     "fileID": 2,
+     "pathID": 59960
+    },
+    "Levels": 2,
+    "EveryNRuneLevels": 3
+   }
+  ],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "Attributes": [
+   {
+    "Stat": 14,
+    "Modifier": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1819516403,
+      "hiddenValue": -1822201669,
+      "cryptoKey": -767007813,
+      "value": 10.0,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 149504655,
+      "hiddenValue": -1300958710,
+      "cryptoKey": -1921879030,
+      "value": 1.0,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    }
+   }
+  ],
+  "Effects": [],
+  "Set": null,
+  "AllowDuplicateEquip": true
+ },
+ {
+  "_name": "RareRune_WarriorRageShield",
+  "_pathid": 5274,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 775
   },
   "Type": 5,
   "Rarity": 2,
@@ -7654,7 +11218,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59909
+     "pathID": 59961
     },
     "Levels": 2,
     "EveryNRuneLevels": 3
@@ -7694,11 +11258,11 @@
  },
  {
   "_name": "RareRune_WarriorRageShout",
-  "_pathid": 5140,
+  "_pathid": 5275,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 939
+   "pathID": 999
   },
   "Type": 5,
   "Rarity": 2,
@@ -7735,7 +11299,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59910
+     "pathID": 59962
     },
     "Levels": 2,
     "EveryNRuneLevels": 3
@@ -7774,12 +11338,336 @@
   "AllowDuplicateEquip": true
  },
  {
-  "_name": "SorcererSetRune1_1",
-  "_pathid": 5186,
+  "_name": "RareRune_WarriorSpecial3",
+  "_pathid": 5276,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 1026
+   "pathID": 820
+  },
+  "Type": 5,
+  "Rarity": 2,
+  "SellPrice": 5000,
+  "MinDropLevel": 25,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 1,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 1,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [
+   {
+    "AllAbilities": false,
+    "Ability": {
+     "fileID": 2,
+     "pathID": 59963
+    },
+    "Levels": 2,
+    "EveryNRuneLevels": 3
+   }
+  ],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "Attributes": [
+   {
+    "Stat": 57,
+    "Modifier": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1594215147,
+      "hiddenValue": 1074253696,
+      "cryptoKey": 2105789261,
+      "value": 0.05000000074505806,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1374691251,
+      "hiddenValue": 420158198,
+      "cryptoKey": 582606076,
+      "value": 0.004999999888241291,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    }
+   }
+  ],
+  "Effects": [],
+  "Set": null,
+  "AllowDuplicateEquip": true
+ },
+ {
+  "_name": "RareRune_WarriorSpecial4",
+  "_pathid": 5277,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 968
+  },
+  "Type": 5,
+  "Rarity": 2,
+  "SellPrice": 5000,
+  "MinDropLevel": 30,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 1,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 1,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [
+   {
+    "AllAbilities": false,
+    "Ability": {
+     "fileID": 2,
+     "pathID": 59964
+    },
+    "Levels": 2,
+    "EveryNRuneLevels": 3
+   }
+  ],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "Attributes": [
+   {
+    "Stat": 42,
+    "Modifier": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1573529835,
+      "hiddenValue": -132985160,
+      "cryptoKey": -989667723,
+      "value": 0.10000000149011612,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1479264653,
+      "hiddenValue": -1507976242,
+      "cryptoKey": -1707554364,
+      "value": 0.009999999776482582,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    }
+   }
+  ],
+  "Effects": [],
+  "Set": null,
+  "AllowDuplicateEquip": true
+ },
+ {
+  "_name": "RareRune_WarriorSpecial5",
+  "_pathid": 5278,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 826
+  },
+  "Type": 5,
+  "Rarity": 2,
+  "SellPrice": 5000,
+  "MinDropLevel": 40,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 1,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 1,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [
+   {
+    "AllAbilities": false,
+    "Ability": {
+     "fileID": 2,
+     "pathID": 59965
+    },
+    "Levels": 2,
+    "EveryNRuneLevels": 3
+   }
+  ],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "Attributes": [
+   {
+    "Stat": 44,
+    "Modifier": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1610992765,
+      "hiddenValue": 1023771988,
+      "cryptoKey": 63555993,
+      "value": 0.20000000298023224,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1458579341,
+      "hiddenValue": 1611223074,
+      "cryptoKey": 1559485992,
+      "value": 0.019999999552965164,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    }
+   }
+  ],
+  "Effects": [],
+  "Set": null,
+  "AllowDuplicateEquip": true
+ },
+ {
+  "_name": "RareRune_WarriorSpecial6",
+  "_pathid": 5279,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 750
+  },
+  "Type": 5,
+  "Rarity": 2,
+  "SellPrice": 5000,
+  "MinDropLevel": 45,
+  "MaxDropLevel": 0,
+  "Effect": 0,
+  "SlaveToUnlock": null,
+  "BuffEffect": null,
+  "BuffCategory": 0,
+  "ChestMinDrops": 3,
+  "ChestMaxDrops": 5,
+  "ChestCommonChance": 50.0,
+  "ChestUncommonChance": 30.0,
+  "ChestRareChance": 20.0,
+  "ChestLegendaryChance": 5.0,
+  "ChestDivineChance": 0.0,
+  "ChestGemChance": 0.0,
+  "ChestGoldMin": 0,
+  "ChestGoldMax": 0,
+  "UseVfxPrefab": null,
+  "HasUseSfx": false,
+  "UseSfx": 0,
+  "MaxStackSize": 1,
+  "MaxCarry": 0,
+  "EquipSlot": 0,
+  "NotUpgradable": false,
+  "UsableClasses": 1,
+  "WeaponModelPrefab": null,
+  "BackModelPrefab": null,
+  "EquipmentEffects": [],
+  "AbilityLevels": [
+   {
+    "AllAbilities": false,
+    "Ability": {
+     "fileID": 2,
+     "pathID": 59966
+    },
+    "Levels": 2,
+    "EveryNRuneLevels": 3
+   }
+  ],
+  "FixedStats": [],
+  "SteamItemDefId": 0,
+  "SteamRetired": false,
+  "BlackMistSteamItemDefId": 0,
+  "Attributes": [
+   {
+    "Stat": 59,
+    "Modifier": 0,
+    "Value": {
+     "Base": {
+      "__type__": "ObscuredFloat",
+      "hash": 1610992765,
+      "hiddenValue": -1296866900,
+      "cryptoKey": -1943175327,
+      "value": 0.20000000298023224,
+      "__tail__": "00000000000000000000000000000000"
+     },
+     "PerLevel": {
+      "__type__": "ObscuredFloat",
+      "hash": 1458579341,
+      "hiddenValue": -272648998,
+      "cryptoKey": -753440560,
+      "value": 0.019999999552965164,
+      "__tail__": "00000000000000000000000000000000"
+     }
+    }
+   }
+  ],
+  "Effects": [],
+  "Set": null,
+  "AllowDuplicateEquip": true
+ },
+ {
+  "_name": "SorcererSetRune1_1",
+  "_pathid": 5326,
+  "_file": "resources.assets",
+  "Icon": {
+   "fileID": 0,
+   "pathID": 1097
   },
   "Type": 5,
   "Rarity": 5,
@@ -7816,7 +11704,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59891
+     "pathID": 59943
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -7830,17 +11718,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5164
+   "pathID": 5303
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "SorcererSetRune1_2",
-  "_pathid": 5187,
+  "_pathid": 5327,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 848
+   "pathID": 899
   },
   "Type": 5,
   "Rarity": 5,
@@ -7877,7 +11765,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59891
+     "pathID": 59943
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -7891,17 +11779,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5164
+   "pathID": 5303
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "SorcererSetRune1_3",
-  "_pathid": 5188,
+  "_pathid": 5328,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 999
+   "pathID": 1067
   },
   "Type": 5,
   "Rarity": 5,
@@ -7965,17 +11853,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5164
+   "pathID": 5303
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "SorcererSetRune1_4",
-  "_pathid": 5189,
+  "_pathid": 5329,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 993
+   "pathID": 1060
   },
   "Type": 5,
   "Rarity": 5,
@@ -8039,17 +11927,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5164
+   "pathID": 5303
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "SorcererSetRune1_5",
-  "_pathid": 5190,
+  "_pathid": 5330,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 756
+   "pathID": 797
   },
   "Type": 5,
   "Rarity": 5,
@@ -8113,17 +12001,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5164
+   "pathID": 5303
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "SorcererSetRune1_6",
-  "_pathid": 5191,
+  "_pathid": 5331,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 800
+   "pathID": 850
   },
   "Type": 5,
   "Rarity": 5,
@@ -8187,17 +12075,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5164
+   "pathID": 5303
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "SorcererSetRune2_1",
-  "_pathid": 5192,
+  "_pathid": 5332,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 919
+   "pathID": 979
   },
   "Type": 5,
   "Rarity": 5,
@@ -8234,7 +12122,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59887
+     "pathID": 59939
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -8248,17 +12136,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5167
+   "pathID": 5306
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "SorcererSetRune2_2",
-  "_pathid": 5193,
+  "_pathid": 5333,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 1017
+   "pathID": 1088
   },
   "Type": 5,
   "Rarity": 5,
@@ -8295,7 +12183,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59887
+     "pathID": 59939
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -8309,17 +12197,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5167
+   "pathID": 5306
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "SorcererSetRune2_3",
-  "_pathid": 5194,
+  "_pathid": 5334,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 982
+   "pathID": 1048
   },
   "Type": 5,
   "Rarity": 5,
@@ -8383,17 +12271,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5167
+   "pathID": 5306
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "SorcererSetRune2_4",
-  "_pathid": 5195,
+  "_pathid": 5335,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 1031
+   "pathID": 1103
   },
   "Type": 5,
   "Rarity": 5,
@@ -8457,17 +12345,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5167
+   "pathID": 5306
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "SorcererSetRune2_5",
-  "_pathid": 5196,
+  "_pathid": 5336,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 691
+   "pathID": 724
   },
   "Type": 5,
   "Rarity": 5,
@@ -8531,17 +12419,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5167
+   "pathID": 5306
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "SorcererSetRune2_6",
-  "_pathid": 5197,
+  "_pathid": 5337,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 765
+   "pathID": 807
   },
   "Type": 5,
   "Rarity": 5,
@@ -8605,17 +12493,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5167
+   "pathID": 5306
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "SorcererSetRune3_1",
-  "_pathid": 5198,
+  "_pathid": 5338,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 760
+   "pathID": 802
   },
   "Type": 5,
   "Rarity": 5,
@@ -8652,7 +12540,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59898
+     "pathID": 59950
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -8666,17 +12554,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5170
+   "pathID": 5310
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "SorcererSetRune3_2",
-  "_pathid": 5199,
+  "_pathid": 5339,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 817
+   "pathID": 867
   },
   "Type": 5,
   "Rarity": 5,
@@ -8713,7 +12601,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59898
+     "pathID": 59950
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -8727,17 +12615,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5170
+   "pathID": 5310
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "SorcererSetRune3_3",
-  "_pathid": 5200,
+  "_pathid": 5340,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 717
+   "pathID": 754
   },
   "Type": 5,
   "Rarity": 5,
@@ -8801,17 +12689,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5170
+   "pathID": 5310
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "SorcererSetRune3_4",
-  "_pathid": 5201,
+  "_pathid": 5341,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 819
+   "pathID": 869
   },
   "Type": 5,
   "Rarity": 5,
@@ -8875,17 +12763,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5170
+   "pathID": 5310
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "SorcererSetRune3_5",
-  "_pathid": 5202,
+  "_pathid": 5342,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 846
+   "pathID": 897
   },
   "Type": 5,
   "Rarity": 5,
@@ -8949,17 +12837,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5170
+   "pathID": 5310
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "SorcererSetRune3_6",
-  "_pathid": 5203,
+  "_pathid": 5343,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 961
+   "pathID": 1024
   },
   "Type": 5,
   "Rarity": 5,
@@ -9023,17 +12911,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5170
+   "pathID": 5310
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "UncommonRune_DamageVsBleeding",
-  "_pathid": 5204,
+  "_pathid": 5344,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 841
+   "pathID": 892
   },
   "Type": 5,
   "Rarity": 1,
@@ -9100,11 +12988,11 @@
  },
  {
   "_name": "UncommonRune_DamageVsDistant",
-  "_pathid": 5205,
+  "_pathid": 5345,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 873
+   "pathID": 927
   },
   "Type": 5,
   "Rarity": 1,
@@ -9171,11 +13059,11 @@
  },
  {
   "_name": "UncommonRune_DamageVsElite",
-  "_pathid": 5206,
+  "_pathid": 5346,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 845
+   "pathID": 896
   },
   "Type": 5,
   "Rarity": 1,
@@ -9242,11 +13130,11 @@
  },
  {
   "_name": "UncommonRune_DamageVsHealthy",
-  "_pathid": 5207,
+  "_pathid": 5347,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 1006
+   "pathID": 1076
   },
   "Type": 5,
   "Rarity": 1,
@@ -9313,11 +13201,11 @@
  },
  {
   "_name": "UncommonRune_DamageVsInjured",
-  "_pathid": 5208,
+  "_pathid": 5348,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 992
+   "pathID": 1058
   },
   "Type": 5,
   "Rarity": 1,
@@ -9384,11 +13272,11 @@
  },
  {
   "_name": "UncommonRune_DamageVsPoisoned",
-  "_pathid": 5209,
+  "_pathid": 5349,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 864
+   "pathID": 918
   },
   "Type": 5,
   "Rarity": 1,
@@ -9455,11 +13343,11 @@
  },
  {
   "_name": "UncommonRune_DamageVsSlowed",
-  "_pathid": 5210,
+  "_pathid": 5350,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 856
+   "pathID": 910
   },
   "Type": 5,
   "Rarity": 1,
@@ -9526,11 +13414,11 @@
  },
  {
   "_name": "UncommonRune_DamageVsStunned",
-  "_pathid": 5211,
+  "_pathid": 5351,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 752
+   "pathID": 793
   },
   "Type": 5,
   "Rarity": 1,
@@ -9597,11 +13485,11 @@
  },
  {
   "_name": "UncommonRune_VulnerableDamage",
-  "_pathid": 5212,
+  "_pathid": 5352,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 889
+   "pathID": 945
   },
   "Type": 5,
   "Rarity": 1,
@@ -9668,11 +13556,11 @@
  },
  {
   "_name": "WarriorSetRune1_1",
-  "_pathid": 5213,
+  "_pathid": 5353,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 977
+   "pathID": 1042
   },
   "Type": 5,
   "Rarity": 5,
@@ -9709,7 +13597,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59909
+     "pathID": 59961
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -9723,17 +13611,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5173
+   "pathID": 5313
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "WarriorSetRune1_2",
-  "_pathid": 5214,
+  "_pathid": 5354,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 908
+   "pathID": 967
   },
   "Type": 5,
   "Rarity": 5,
@@ -9819,17 +13707,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5173
+   "pathID": 5313
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "WarriorSetRune1_3",
-  "_pathid": 5215,
+  "_pathid": 5355,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 766
+   "pathID": 808
   },
   "Type": 5,
   "Rarity": 5,
@@ -9866,7 +13754,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59909
+     "pathID": 59961
     },
     "Levels": 2,
     "EveryNRuneLevels": 3
@@ -9903,17 +13791,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5173
+   "pathID": 5313
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "WarriorSetRune1_4",
-  "_pathid": 5216,
+  "_pathid": 5356,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 975
+   "pathID": 1040
   },
   "Type": 5,
   "Rarity": 5,
@@ -9999,17 +13887,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5173
+   "pathID": 5313
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "WarriorSetRune1_5",
-  "_pathid": 5217,
+  "_pathid": 5357,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 851
+   "pathID": 902
   },
   "Type": 5,
   "Rarity": 5,
@@ -10073,17 +13961,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5173
+   "pathID": 5313
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "WarriorSetRune1_6",
-  "_pathid": 5218,
+  "_pathid": 5358,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 997
+   "pathID": 1065
   },
   "Type": 5,
   "Rarity": 5,
@@ -10147,17 +14035,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5173
+   "pathID": 5313
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "WarriorSetRune2_1",
-  "_pathid": 5219,
+  "_pathid": 5359,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 1014
+   "pathID": 1085
   },
   "Type": 5,
   "Rarity": 5,
@@ -10194,7 +14082,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59907
+     "pathID": 59959
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -10208,17 +14096,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5176
+   "pathID": 5316
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "WarriorSetRune2_2",
-  "_pathid": 5220,
+  "_pathid": 5360,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 1011
+   "pathID": 1082
   },
   "Type": 5,
   "Rarity": 5,
@@ -10255,7 +14143,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59907
+     "pathID": 59959
     },
     "Levels": 2,
     "EveryNRuneLevels": 3
@@ -10292,17 +14180,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5176
+   "pathID": 5316
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "WarriorSetRune2_3",
-  "_pathid": 5221,
+  "_pathid": 5361,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 805
+   "pathID": 855
   },
   "Type": 5,
   "Rarity": 5,
@@ -10366,17 +14254,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5176
+   "pathID": 5316
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "WarriorSetRune2_4",
-  "_pathid": 5222,
+  "_pathid": 5362,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 1025
+   "pathID": 1096
   },
   "Type": 5,
   "Rarity": 5,
@@ -10440,17 +14328,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5176
+   "pathID": 5316
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "WarriorSetRune2_5",
-  "_pathid": 5223,
+  "_pathid": 5363,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 890
+   "pathID": 946
   },
   "Type": 5,
   "Rarity": 5,
@@ -10514,17 +14402,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5176
+   "pathID": 5316
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "WarriorSetRune2_6",
-  "_pathid": 5224,
+  "_pathid": 5364,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 986
+   "pathID": 1052
   },
   "Type": 5,
   "Rarity": 5,
@@ -10588,17 +14476,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5176
+   "pathID": 5316
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "WarriorSetRune3_1",
-  "_pathid": 5225,
+  "_pathid": 5365,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 852
+   "pathID": 903
   },
   "Type": 5,
   "Rarity": 5,
@@ -10635,7 +14523,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59912
+     "pathID": 59964
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -10649,17 +14537,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5179
+   "pathID": 5319
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "WarriorSetRune3_2",
-  "_pathid": 5226,
+  "_pathid": 5366,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 790
+   "pathID": 839
   },
   "Type": 5,
   "Rarity": 5,
@@ -10696,7 +14584,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59912
+     "pathID": 59964
     },
     "Levels": 2,
     "EveryNRuneLevels": 3
@@ -10733,17 +14621,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5179
+   "pathID": 5319
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "WarriorSetRune3_3",
-  "_pathid": 5227,
+  "_pathid": 5367,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 789
+   "pathID": 837
   },
   "Type": 5,
   "Rarity": 5,
@@ -10807,17 +14695,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5179
+   "pathID": 5319
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "WarriorSetRune3_4",
-  "_pathid": 5228,
+  "_pathid": 5368,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 858
+   "pathID": 912
   },
   "Type": 5,
   "Rarity": 5,
@@ -10881,17 +14769,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5179
+   "pathID": 5319
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "WarriorSetRune3_5",
-  "_pathid": 5229,
+  "_pathid": 5369,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 779
+   "pathID": 824
   },
   "Type": 5,
   "Rarity": 5,
@@ -10955,17 +14843,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5179
+   "pathID": 5319
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "WarriorSetRune3_6",
-  "_pathid": 5230,
+  "_pathid": 5370,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 829
+   "pathID": 879
   },
   "Type": 5,
   "Rarity": 5,
@@ -11029,17 +14917,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5179
+   "pathID": 5319
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "WarriorSetRune4_1",
-  "_pathid": 5231,
+  "_pathid": 5371,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 806
+   "pathID": 856
   },
   "Type": 5,
   "Rarity": 5,
@@ -11076,7 +14964,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59906
+     "pathID": 59958
     },
     "Levels": 4,
     "EveryNRuneLevels": 3
@@ -11090,17 +14978,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5183
+   "pathID": 5323
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "WarriorSetRune4_2",
-  "_pathid": 5232,
+  "_pathid": 5372,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 994
+   "pathID": 1061
   },
   "Type": 5,
   "Rarity": 5,
@@ -11137,7 +15025,7 @@
     "AllAbilities": false,
     "Ability": {
      "fileID": 2,
-     "pathID": 59906
+     "pathID": 59958
     },
     "Levels": 2,
     "EveryNRuneLevels": 3
@@ -11174,17 +15062,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5183
+   "pathID": 5323
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "WarriorSetRune4_3",
-  "_pathid": 5233,
+  "_pathid": 5373,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 755
+   "pathID": 796
   },
   "Type": 5,
   "Rarity": 5,
@@ -11248,17 +15136,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5183
+   "pathID": 5323
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "WarriorSetRune4_4",
-  "_pathid": 5234,
+  "_pathid": 5374,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 1027
+   "pathID": 1099
   },
   "Type": 5,
   "Rarity": 5,
@@ -11322,17 +15210,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5183
+   "pathID": 5323
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "WarriorSetRune4_5",
-  "_pathid": 5235,
+  "_pathid": 5375,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 709
+   "pathID": 744
   },
   "Type": 5,
   "Rarity": 5,
@@ -11396,17 +15284,17 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5183
+   "pathID": 5323
   },
   "AllowDuplicateEquip": false
  },
  {
   "_name": "WarriorSetRune4_6",
-  "_pathid": 5236,
+  "_pathid": 5376,
   "_file": "resources.assets",
   "Icon": {
    "fileID": 0,
-   "pathID": 1007
+   "pathID": 1078
   },
   "Type": 5,
   "Rarity": 5,
@@ -11470,7 +15358,7 @@
   "Effects": [],
   "Set": {
    "fileID": 0,
-   "pathID": 5183
+   "pathID": 5323
   },
   "AllowDuplicateEquip": false
  }

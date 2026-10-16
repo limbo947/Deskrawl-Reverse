@@ -1,13 +1,13 @@
 {
-  "$comment": "Deskrawl 运行时内存导入偏移表。RVA 相对 GameAssembly.dll；实例字段偏移为 P1 spike 活体实测（2026-10-07，PID 28336，ExampleHeroB Lv70），并于 2026-10-10 补丁后经新构建 dump.cs 逐字段复核（偏移未变，仅字段改名）。2026-10-10 补丁（GameAssembly d46f0a32…）：方法 RVA 按「同名签名」在新 dump 中重算，指纹同步更新；注释里出现的旧方法名见 docs/08 §12.3 映射表。2026-10-13 补丁 1.0.2b（GameAssembly f8221364…）：方法 RVA 按「签名+Slot」重算（docs/08 §13），实例字段偏移复核未变。游戏更新后应重跑 tools/scripts/mem_probe.py 全量再生本表。",
+  "$comment": "Deskrawl 运行时内存导入偏移表。RVA 相对 GameAssembly.dll；实例字段偏移为 P1 spike 活体实测（2026-10-07，PID 28336，ExampleHeroB Lv70），并于 2026-10-10 补丁后经新构建 dump.cs 逐字段复核（偏移未变，仅字段改名）。2026-10-10 补丁（GameAssembly d46f0a32…）：方法 RVA 按「同名签名」在新 dump 中重算，指纹同步更新；注释里出现的旧方法名见 docs/08 §12.3 映射表。2026-10-13 补丁 1.0.2b（GameAssembly f8221364…）：方法 RVA 按「签名+Slot」重算（docs/08 §13），实例字段偏移复核未变。2026-10-16 补丁 1.0.3（GameAssembly f23ae23f…）：方法 RVA 按「类+签名+Slot」重算（docs/08 §14），实例字段偏移基本不变、惟 StatusEffectController 三字典随新增字段整体 +8（flat/pct/mult = 0x40/0x48/0x50），混淆类 gj→gm（物品生成）、hh→hk（巅峰）。游戏更新后应重跑 tools/scripts/mem_probe.py 全量再生本表。",
   "process_name": "Deskrawl.exe",
   "module": "GameAssembly.dll",
   "fingerprints": {
-    "$comment": "P2 版本指纹（2026-10-13 补丁 1.0.2b 后实测）。导入前校验：任一不符即拒绝导入并提示重新导出 schema/so_dump。游戏目录可用环境变量 DESKRAWL_GAME 覆盖。",
+    "$comment": "P2 版本指纹（2026-10-16 补丁 1.0.3 后实测）。导入前校验：任一不符即拒绝导入并提示重新导出 schema/so_dump。游戏目录可用环境变量 DESKRAWL_GAME 覆盖。",
     "game_dir": "d:\\steam\\steamapps\\common\\Deskrawl",
-    "game_assembly_sha256": "f8221364be8101c60d76be3e031f2cd5be376a7fb6b9b73a7cfb45e2a52a9fab",
-    "global_metadata_sha256": "f5cf7ba1bbd13cb099ea231ac89ed772f10c9f28d329f5dab9bc805a3809b802",
-    "so_dump_itemdata_entries": 338
+    "game_assembly_sha256": "f23ae23f8714fa5a49b9ab4b8ae767c33f7e50afad47284d81121354d1677a46",
+    "global_metadata_sha256": "93f914c1e0119b82c98ca0647542c3afe0fade976d456f2212b03d699e6813de",
+    "so_dump_itemdata_entries": 353
   },
   "il2cpp": {
     "static_fields": "0xB8",
@@ -24,13 +24,13 @@
     "entry_value": "0x10"
   },
   "singleton_getters": {
-    "GameManager": {"rva": "0x770C00", "klass": "GameManager", "method": "dkg()"},
-    "Inventory": {"rva": "0x4F7220", "klass": "Inventory", "method": "fbq()"},
-    "Storage": {"rva": "0x523D30", "klass": "Storage", "method": "fpi()"},
-    "EquipmentManager": {"rva": "0x7686D0", "klass": "EquipmentManager", "method": "ddj()"}
+    "GameManager": {"rva": "0x77D960", "klass": "GameManager", "method": "dlo()"},
+    "Inventory": {"rva": "0x4FD1D0", "klass": "Inventory", "method": "fdi()"},
+    "Storage": {"rva": "0x52B390", "klass": "Storage", "method": "frm()"},
+    "EquipmentManager": {"rva": "0x775430", "klass": "EquipmentManager", "method": "deq()"}
   },
   "save_system": {
-    "anchor_rvas": ["0x7BA6A0", "0x7BA220", "0x7B9E00", "0x7BBFD0"],
+    "anchor_rvas": ["0x7C7350", "0x7C6ED0", "0x7C6AB0", "0x7C8C80"],
     "klass": "SaveSystem",
     "field_slot_index": "0x24",
     "container": "0x28",
@@ -43,10 +43,10 @@
     "rec_summary_level": "0x28"
   },
   "generated_items": {
-    "scan_rvas": ["0x788980", "0x788800", "0x788750"],
-    "klass": "gj",
+    "scan_rvas": ["0x795720", "0x7955A0", "0x7954F0"],
+    "klass": "gm",
     "items": "0x0",
-    "$comment": "补丁后：klass gi→gj，扫描方法 dpv/dps/dpr（10-10 版 0x784AB0/0x7848E0/0x784830）；1.0.2b 版 gj 类仍在，三方法 RVA 重算为 0x788980/0x788800/0x788750（按签名+Slot 匹配）"
+    "$comment": "1.0.3 补丁后：物品生成类 gj→gm（26 方法序列逐一对应，见 docs/08 §14.4），三扫描方法 dpv/dps/dpr → drc/dqz/dqy，RVA 重算 0x795720/0x7955A0/0x7954F0（10-10 版 0x784AB0/0x7848E0/0x784830；1.0.2b 版 gj 仍在、0x788980/0x788800/0x788750）"
   },
   "game_manager": {
     "combat_controller": "0x40", "town_controller": "0x48", "hero_data": "0x38"
@@ -89,8 +89,8 @@
       "nuf": "0x358", "nug": "0x360", "tuple_stride": "0x20"
     },
     "status_controller": {
-      "$comment": "StatusEffectController（SumStatBonus@0x4D8510）：面板最终 = g3(stat)×(v+g1(stat))×(1+g2(stat))，三字典为增益(Buff)口径。值为**明文 double**（dump.cs 两版均为 Dictionary<StatType,double>），步长 0x18，须按 stat_plain_double 读——套面板字典的 ObscuredDouble(0x38) 会在 buff 层非空时解出 nan。",
-      "ptr": "0x130", "flat": "0x38", "pct": "0x40", "mult": "0x48"
+      "$comment": "StatusEffectController（StatusEffectController.SumStatBonus@0x4DB980，2026-10-16 1.0.3 重算，旧 0x4D8510）：面板最终 = g3(stat)×(v+g1(stat))×(1+g2(stat))，三字典为增益(Buff)口径。值为**明文 double**（dump.cs 两版均为 Dictionary<StatType,double>），步长 0x18，须按 stat_plain_double 读——套面板字典的 ObscuredDouble(0x38) 会在 buff 层非空时解出 nan。【2026-10-16 1.0.3】该类在 0x38 处**新增一个 8 字节字段**（List，护盾/层数相关），其后字段整体 +8：三字典由旧 0x38/0x40/0x48 → **0x40/0x48/0x50**（活体实测 0x40 含 `移动速度%=0.15` 的 flat 项）；Character 侧的 ptr 仍 0x130。",
+      "ptr": "0x130", "flat": "0x40", "pct": "0x48", "mult": "0x50"
     }
   },
   "inventory": {"slots": "0x38"},
@@ -107,8 +107,8 @@
   "generated_item_klass": "GeneratedItemData",
   "entry_steps": {"stat_double": "0x38", "stat_plain_double": "0x18", "ptr": "0x18"},
   "paragon": {
-    "$comment": "巅峰点数分配（2026-10-10 活体实测，2026-10-13 1.0.2b 重锚定）。静态管理器（dump.cs hh，混淆名不校验）static_fields +0x40 = Dictionary<StatType,int>（dys(StatType)/0x7A7BA0 反汇编定位，旧 dyt）；条目 stride 0x10：hashCode@0/next@4/key(StatType id)@8/value(点数)@C，数据区 @+0x20。定位走锚点方法用法槽 + 容器形状/值域双校验（类名每版混淆不可用）。读「当前角色」运行时分配；云端槽位 rec_profile 只是 GUID。",
-    "anchor_rvas": ["0x7A7960", "0x7A91A0"],
+    "$comment": "巅峰点数分配（2026-10-10 活体实测，2026-10-16 1.0.3 重锚定）。静态管理器（dump.cs hk，1.0.3 由 hh 改名；26 方法序列逐一对应，混淆名不校验）static_fields +0x40 = Dictionary<StatType,int>（1.0.3 eaa(StatType)@0x7B4850 反汇编定位，旧 dys@0x7A7BA0）。条目 stride 0x10：hashCode@0/next@4/key(StatType id)@8/value(点数)@C，数据区 @+0x20。定位走锚点方法用法槽 + 容器形状/值域双校验（类名每版混淆不可用）。读「当前角色」运行时分配；云端槽位 rec_profile 只是 GUID。",
+    "anchor_rvas": ["0x7B4610", "0x7B5E50"],
     "static_dict": "0x40",
     "entries": "0x18",
     "count": "0x20",
@@ -118,20 +118,20 @@
     "value": "0xC"
   },
   "rune_manager": {
-    "$comment": "符文槽（RuneManager，类名未混淆；单例 getter eap@0x7ACB30，2026-10-13 1.0.2b 重算，旧 eaq@0x7A8B30）：runes = RuneData[]（6 槽，元素为 ItemData 子类，名称走 SaveSystem 名称倒排 name_map）；uids = string[]（6 槽实例 UID，经 uid2gid → rune_level@0x28 取符文等级）。符文同时提供属性（RuneData.Attributes）与「技能等级+N」（AbilityLevels）——旋风斩 10+8=18 级的唯一来源。",
-    "getter_rva": "0x7ACB30",
+    "$comment": "符文槽（RuneManager，类名未混淆；单例 getter ebx@0x7B97E0，2026-10-16 1.0.3 重算，旧 eap@0x7ACB30）：runes = RuneData[]（6 槽，元素为 ItemData 子类，名称走 SaveSystem 名称倒排 name_map）；uids = string[]（6 槽实例 UID，经 uid2gid → rune_level@0x28 取符文等级）。符文同时提供属性（RuneData.Attributes）与「技能等级+N」（AbilityLevels）——旋风斩 10+8=18 级的唯一来源。",
+    "getter_rva": "0x7B97E0",
     "klass": "RuneManager",
     "runes": "0x30",
     "uids": "0x38",
     "set_counts": "0x40",
     "max_slots": 6
   },
-  "stat_key_range": [0, 65],
+  "stat_key_range": [0, 66],
   "dps_meter": {
-    "$comment": "训练假人 DPS 计实测值（TrainingDpsMeterUI，只读）。定位链：TrainingDummy.bmj 用法槽 → 事件总线类（混淆名不校验，走链即可）→ static_fields[+0x20] 处理器对象 → 委托数组字段（实测 +0x78）→ 委托 target(+0x20) 中 klass==TrainingDpsMeterUI 自校验收尾。显示 DPS = total / max(last_tick−start_time, 1.0)（hww() 同式；last_tick 是 UI 0.2s 节流缓存的时钟 now，无需另读时钟）。2026-10-10 活体实测（PID 12620）：total=28,114,694,480（画面 28.1B）、复算 DPS≈22.93M（画面 23M）。",
-    "anchor_rva": "0x52B0B0",
-    "anchor_method": "TrainingDummy.bmj(long, bool) Slot 26",
-    "handler_field": "0x20",
+    "$comment": "训练假人 DPS 计实测值（TrainingDpsMeterUI，只读）。定位链（2026-10-16 1.0.3 实机重锚定）：TrainingDummy.bmv 用法槽 → 事件总线类（.ef，混淆名不校验，走链即可）→ static_fields[+0x28] = System.Action`1<long>（委托本身；1.0.2b 在 +0x20，本轮 +8 位移，与 StatusEffectController 同类现象）→ 委托 invocation list Delegate[] @ +0x78（未变）→ 元素 target@+0x20 中 klass==TrainingDpsMeterUI 自校验收尾。反汇编佐证：TrainingDummy.bmv@0x1805354D0 直接 invoke sf[+0x28]；TrainingDpsMeterUI.Start@0x657380 经 Delegate.Combine 把自身注册进同一字段。显示 DPS = total / max(now−start, 1.0)（getter hzh@0x657150，1.0.2b 旧名 hww；start<=0 时返回 0；now 取实时时钟，[+0x60] 是 UI 0.2s 节流缓存的 now，与实时值接近）。2026-10-16 1.0.3 实机（PID 18564）：total=97,388,708,301、start=19510.45、last=20567.68、复算 DPS≈92.12M（画面待核对）。",
+    "anchor_rva": "0x5354D0",
+    "anchor_method": "TrainingDummy.bmv(long, bool) Slot 26",
+    "handler_field": "0x28",
     "delegate_target": "0x20",
     "total": "0x50",
     "start_time": "0x58",

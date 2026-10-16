@@ -1,7 +1,7 @@
 [
  {
   "_name": "BetaLootConfig",
-  "_pathid": 4790,
+  "_pathid": 4849,
   "_file": "resources.assets",
   "NormalDropSettings": {
    "PotionChargeDropChance": 0.30000001192092896,
@@ -126,20 +126,20 @@
   },
   "BossMaterial": {
    "fileID": 2,
-   "pathID": 60036
+   "pathID": 60088
   },
   "BossMaterialLevelsPerUnit": 5,
   "TreasureNodeMaterial": {
    "fileID": 2,
-   "pathID": 60037
+   "pathID": 60089
   },
   "TreasureNodeMaterialNightmare": {
    "fileID": 2,
-   "pathID": 60039
+   "pathID": 60091
   },
   "TreasureNodeMaterialInferno": {
    "fileID": 2,
-   "pathID": 60038
+   "pathID": 60090
   },
   "TreasureNodeMaterialChance": 0.0010000000474974513,
   "RuneDrops": {
@@ -158,13 +158,18 @@
   "MinLegendaryLevel": 10,
   "AncientChance": 0.10000000149011612,
   "BlackMistChance": 0.029999999329447746,
+  "OfflineTradableDropMultiplier": 2.0,
+  "SoloSelfFoundStatus": {
+   "fileID": 2,
+   "pathID": 60585
+  },
   "MinBlackMistDifficulty": 1,
   "MinDivineDifficulty": 2,
   "MinSetDifficulty": 2
  },
  {
   "_name": "LootConfig",
-  "_pathid": 60238,
+  "_pathid": 60291,
   "_file": "sharedassets0.assets",
   "NormalDropSettings": {
    "PotionChargeDropChance": 0.30000001192092896,
@@ -258,20 +263,20 @@
    "PotionChargeDropChance": 1.0,
    "GoldDropChance": 1.0,
    "GoldMultiplier": 5.0,
-   "RollAttempts": 3,
+   "RollAttempts": 4,
    "MinLootVector": {
     "NoDrop": 0.0,
-    "Common": 51.79999923706055,
+    "Common": 50.79999923706055,
     "Uncommon": 30.0,
     "Rare": 16.200000762939453,
-    "Legendary": 2.0
+    "Legendary": 3.0
    },
    "MaxLootVector": {
     "NoDrop": 0.0,
     "Common": 24.0,
-    "Uncommon": 37.5,
+    "Uncommon": 37.0,
     "Rare": 35.0,
-    "Legendary": 3.5
+    "Legendary": 4.0
    },
    "DivineChance": 1.9999999494757503e-05,
    "GemDropChance": 0.11999999731779099,
@@ -279,21 +284,21 @@
     {
      "Item": {
       "fileID": 0,
-      "pathID": 59937
+      "pathID": 59989
      },
      "Chance": 0.10000000149011612
     },
     {
      "Item": {
       "fileID": 0,
-      "pathID": 59920
+      "pathID": 59972
      },
      "Chance": 0.0020000000949949026
     },
     {
      "Item": {
       "fileID": 0,
-      "pathID": 59921
+      "pathID": 59973
      },
      "Chance": 0.0013000000035390258
     }
@@ -311,20 +316,20 @@
   },
   "BossMaterial": {
    "fileID": 0,
-   "pathID": 60036
+   "pathID": 60088
   },
   "BossMaterialLevelsPerUnit": 10,
   "TreasureNodeMaterial": {
    "fileID": 0,
-   "pathID": 60037
+   "pathID": 60089
   },
   "TreasureNodeMaterialNightmare": {
    "fileID": 0,
-   "pathID": 60039
+   "pathID": 60091
   },
   "TreasureNodeMaterialInferno": {
    "fileID": 0,
-   "pathID": 60038
+   "pathID": 60090
   },
   "TreasureNodeMaterialChance": 0.0005000000237487257,
   "RuneDrops": {
@@ -333,16 +338,21 @@
    "MinDropLevel": 40,
    "RarityWeights": {
     "Common": 0.0,
-    "Uncommon": 54.5,
+    "Uncommon": 54.29999923706055,
     "Rare": 43.29999923706055,
     "Legendary": 1.5,
     "Divine": 0.0,
-    "Set": 0.699999988079071
+    "Set": 0.8999999761581421
    }
   },
   "MinLegendaryLevel": 10,
   "AncientChance": 0.10000000149011612,
-  "BlackMistChance": 0.0020000000949949026,
+  "BlackMistChance": 0.0031999999191612005,
+  "OfflineTradableDropMultiplier": 2.0,
+  "SoloSelfFoundStatus": {
+   "fileID": 0,
+   "pathID": 60585
+  },
   "MinBlackMistDifficulty": 1,
   "MinDivineDifficulty": 2,
   "MinSetDifficulty": 2

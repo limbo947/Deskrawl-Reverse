@@ -1,13 +1,13 @@
 [
  {
   "_name": "HealingPotionUpgradeData",
-  "_pathid": 60016,
+  "_pathid": 60068,
   "_file": "sharedassets0.assets",
   "Tiers": [
    {
     "Config": {
      "fileID": 0,
-     "pathID": 60017
+     "pathID": 60069
     },
     "RequiredLevel": 1,
     "GoldCost": 0,
@@ -16,7 +16,7 @@
    {
     "Config": {
      "fileID": 0,
-     "pathID": 60018
+     "pathID": 60070
     },
     "RequiredLevel": 5,
     "GoldCost": 100,
@@ -24,14 +24,14 @@
      {
       "Item": {
        "fileID": 0,
-       "pathID": 60044
+       "pathID": 60097
       },
       "Amount": 10
      },
      {
       "Item": {
        "fileID": 0,
-       "pathID": 60045
+       "pathID": 60098
       },
       "Amount": 5
      }
@@ -40,7 +40,7 @@
    {
     "Config": {
      "fileID": 0,
-     "pathID": 60019
+     "pathID": 60071
     },
     "RequiredLevel": 15,
     "GoldCost": 500,
@@ -48,14 +48,14 @@
      {
       "Item": {
        "fileID": 0,
-       "pathID": 60044
+       "pathID": 60097
       },
       "Amount": 20
      },
      {
       "Item": {
        "fileID": 0,
-       "pathID": 60045
+       "pathID": 60098
       },
       "Amount": 10
      }
@@ -64,7 +64,7 @@
    {
     "Config": {
      "fileID": 0,
-     "pathID": 60020
+     "pathID": 60072
     },
     "RequiredLevel": 25,
     "GoldCost": 3000,
@@ -72,14 +72,14 @@
      {
       "Item": {
        "fileID": 0,
-       "pathID": 60045
+       "pathID": 60098
       },
       "Amount": 50
      },
      {
       "Item": {
        "fileID": 0,
-       "pathID": 60046
+       "pathID": 60099
       },
       "Amount": 30
      }
@@ -88,7 +88,7 @@
    {
     "Config": {
      "fileID": 0,
-     "pathID": 60021
+     "pathID": 60073
     },
     "RequiredLevel": 35,
     "GoldCost": 25000,
@@ -96,14 +96,14 @@
      {
       "Item": {
        "fileID": 0,
-       "pathID": 60046
+       "pathID": 60099
       },
       "Amount": 65
      },
      {
       "Item": {
        "fileID": 0,
-       "pathID": 60047
+       "pathID": 60100
       },
       "Amount": 40
      }
@@ -112,7 +112,7 @@
    {
     "Config": {
      "fileID": 0,
-     "pathID": 60022
+     "pathID": 60074
     },
     "RequiredLevel": 45,
     "GoldCost": 80000,
@@ -120,14 +120,14 @@
      {
       "Item": {
        "fileID": 0,
-       "pathID": 60047
+       "pathID": 60100
       },
       "Amount": 40
      },
      {
       "Item": {
        "fileID": 0,
-       "pathID": 60048
+       "pathID": 60101
       },
       "Amount": 30
      }
@@ -136,7 +136,7 @@
    {
     "Config": {
      "fileID": 0,
-     "pathID": 60023
+     "pathID": 60075
     },
     "RequiredLevel": 55,
     "GoldCost": 150000,
@@ -144,14 +144,14 @@
      {
       "Item": {
        "fileID": 0,
-       "pathID": 60049
+       "pathID": 60102
       },
       "Amount": 35
      },
      {
       "Item": {
        "fileID": 0,
-       "pathID": 60051
+       "pathID": 60104
       },
       "Amount": 50
      }
@@ -160,7 +160,7 @@
    {
     "Config": {
      "fileID": 0,
-     "pathID": 60024
+     "pathID": 60076
     },
     "RequiredLevel": 65,
     "GoldCost": 300000,
@@ -168,14 +168,14 @@
      {
       "Item": {
        "fileID": 0,
-       "pathID": 60050
+       "pathID": 60103
       },
       "Amount": 60
      },
      {
       "Item": {
        "fileID": 0,
-       "pathID": 60052
+       "pathID": 60105
       },
       "Amount": 45
      }

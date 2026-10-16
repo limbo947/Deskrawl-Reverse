@@ -27,6 +27,7 @@ class StatType(IntEnum):
     Dodge = 22              # 闪避率          [封顶 0.85]
     CritDamageReduction = 60
     DamageReduction = 64    # 全局减伤        [封顶 0.90]
+    FinalDamageReduction = 66  # 最终减伤（1.0.3 新增；GetCap 落 inf 分支→无上限，见 docs/08 §14.3）
     PoisonDamageReduction = 49
     PhysicalDamageReduction = 51
     FireDamageReduction = 52
@@ -103,7 +104,7 @@ class DamageType(IntEnum):
     Arcane = 5
 
 
-# 硬编码分组表（ItemizationConfig.StaticInit @ 0x70A3F0，补丁前 ..cctor @ 0x6F6360）
+# 硬编码分组表（ItemizationConfig.StaticInit @ 0x715FE0，补丁前 ..cctor @ 0x6F6360）
 CORE = [StatType.Strength, StatType.Dexterity, StatType.Intelligence]
 ALL_ELEMENTS = [StatType.DamagePhysical, StatType.DamageFire, StatType.DamageCold,
                 StatType.DamageLightning, StatType.DamagePoison, StatType.DamageArcane]
@@ -112,7 +113,7 @@ CONDITIONAL_DAMAGE = [StatType.DamageVsHealthy, StatType.DamageVsInjured, StatTy
                       StatType.DamageVsBleeding, StatType.DamageVsPoisoned, StatType.DamageVsDistant,
                       StatType.DamageVsBurned]
 
-# DamageType → StatType（跳转表在 Character.ElementDamageMultiplier@0x680E80 内，与 ALL_ELEMENTS 一致）
+# DamageType → StatType（跳转表在 Character.ElementDamageMultiplier@0x6884E0 内，与 ALL_ELEMENTS 一致）
 DAMAGE_TYPE_TO_STAT = {
     DamageType.Physical: StatType.DamagePhysical,
     DamageType.Fire: StatType.DamageFire,
@@ -122,7 +123,7 @@ DAMAGE_TYPE_TO_STAT = {
     DamageType.Arcane: StatType.DamageArcane,
 }
 
-# 属性封顶表（StatCap.GetCap@0x4AC490 反汇编实证，1.0.2b；旧统一 0.85 掩码 0x402010 已拆分）：
+# 属性封顶表（StatCap.GetCap@0x4AECB0 反汇编实证，1.0.2b；旧统一 0.85 掩码 0x402010 已拆分）：
 #   0.85 = 暴击率(4)/闪避(22)/蓝耗缩减(37)；0.80 = 冷却缩减(13)（1.0.2b 由 0.85 下调，见更新说明）；
 #   0.90 = 通用减伤(64)与各元素减伤(49/51-55)（1.0.2b 由无上限收紧为 90%）；其余无上限（inf）。
 CAPPED_085 = {StatType.CritChance, StatType.Dodge, StatType.ManaCostReduction}
@@ -132,7 +133,7 @@ CAPPED_090 = {StatType.DamageReduction, StatType.PoisonDamageReduction, StatType
               StatType.FireDamageReduction, StatType.ColdDamageReduction, StatType.LightningDamageReduction,
               StatType.ArcaneDamageReduction}
 
-# 元素减伤 StatType 按伤害类型（跳转表在 Character.ApplyDamage@0x681D10 内）
+# 元素减伤 StatType 按伤害类型（跳转表在 Character.ApplyDamage@0x6893E0 内）
 ELEM_REDUCTION_BY_DAMAGE = {
     DamageType.Physical: StatType.PhysicalDamageReduction,
     DamageType.Fire: StatType.FireDamageReduction,
@@ -154,6 +155,7 @@ STAT_NAMES = {
     50: '宝石孔位', 51: '物理减伤', 52: '火焰减伤', 53: '冰霜减伤', 54: '闪电减伤', 55: '奥术减伤',
     56: '受治疗效果加成', 57: '移动速度%', 58: '对远处敌人', 59: '魔抗%', 60: '暴击伤害减免',
     61: '特殊技能加成伤害', 62: '持续伤害', 63: '对灼烧的敌人', 64: '全局减伤', 65: '全伤害加成%',
+    66: '最终减伤',
 }
 
 

@@ -49,14 +49,14 @@ class PanelEditor(QWidget):
             sp.valueChanged.connect(lambda v, s=int(st): self._on_base(s, v))
             self._base_spins[int(st)] = sp
             form.addRow(label, sp)
-        # 职业主属性：攻击伤害 ×(1+最终值/100)（Player.CalcDamage@0x511060）；内存导入自动识别，手工构建在此选择
+        # 职业主属性：攻击伤害 ×(1+最终值/100)（Player.CalcDamage@0x518230）；内存导入自动识别，手工构建在此选择
         self.primary_combo = QComboBox()
         self.primary_combo.addItem('（未设置）', None)
         for st, label in ((StatType.Strength, '力量'), (StatType.Dexterity, '敏捷'),
                           (StatType.Intelligence, '智力')):
             self.primary_combo.addItem(label, int(st))
         self.primary_combo.setToolTip('职业主属性：攻击伤害按 ×(1+该属性最终值/100) 加成'
-                                      '（游戏公式 Player.CalcDamage@0x511060）；内存导入自动识别')
+                                      '（游戏公式 Player.CalcDamage@0x518230）；内存导入自动识别')
         self.primary_combo.currentIndexChanged.connect(self._on_primary)
         form.addRow('职业主属性', self.primary_combo)
         return box

@@ -51,27 +51,27 @@ HEAD = f'''# 存档解密与实测数据汇总报表
 存档写入调用链（`GameAssembly.dll`）：
 
 ```
-SaveSystem.SerializeContainer(SaveContainer)  @ RVA 0x7BA6A0
-   ├─ UnityEngine.JsonUtility.ToJson   @ RVA 0x182A04BD0
-   ├─ SaveSystem.CompactJson(string)   @ RVA 0x7CEF20   ; JSON 压缩（去空白）
-   └─ SaveWriter.WriteAsync @ RVA 0x4DF520 (异步写盘)
-          ├─ je.jc.evc()               @ RVA 0x4DFD30
-          └─ SaveCrypto.Encrypt(string) -> byte[]  @ RVA 0x7FA7C0   ; ★ 加密封装
+SaveSystem.SerializeContainer(SaveContainer)  @ RVA 0x7C7350
+   ├─ UnityEngine.JsonUtility.ToJson   @ RVA 0x182A2B7E0
+   ├─ SaveSystem.CompactJson(string)   @ RVA 0x7DBD40   ; JSON 压缩（去空白）
+   └─ SaveWriter.WriteAsync @ RVA 0x4E5130 (异步写盘)
+          ├─ jg.je.ewr()                 @ RVA 0x4E5940
+         └─ SaveCrypto.Encrypt(string) -> byte[]  @ RVA 0x4E3BC0   ; ★ 加密封装
 ```
 
 真正的编解码类在补丁前叫 **`it`**（TypeDefIndex 6173，含静态字段 `nns`/`nnt` = magic 字节数组），
-补丁后按「类形状匹配」重锚定为 **`jb`**；语义名与当期地址见 `data/schema/aliases.json`：
+10-10/1.0.2b 版按「类形状匹配」重锚定为 **`jb`**；1.0.3 补丁后再按类形状重锚定为 **`jd`**。语义名与当期地址见 `data/schema/aliases.json`：
 
 | 方法 | RVA | 作用 |
 |---|---|---|
-| `SaveCrypto.Sha256(string)` | `0x7FA3D0` | `SHA256(UTF8(s))` → 32 字节 |
-| `SaveCrypto.FileKey()` | `0x7FA5D0` | 文件密钥 = `Sha256("desktop-diablo-save-v1-CHANGE-ME")` |
-| `SaveCrypto.MacKey()` | `0x7FA630` | MAC 密钥 = `Sha256("desktop-diablo-save-v1-CHANGE-ME|mac")` |
-| `SaveCrypto.Encrypt(string)` | `0x7FA7C0` | 加密：JSON 字符串 → 文件字节 |
-| `SaveCrypto.Decrypt(byte[], out string, out bool)` | `0x7FB260` | 解密：文件字节 → JSON |
-| `SaveCrypto.IsDds2(byte[])` | `0x7FA690` | 版本判定（前缀是否 `DDS2`） |
-| `SaveCrypto.FixedTimeEquals(byte[], byte[])` | `0x7FA750` | 定长比较 |
-| `SaveCrypto.StaticInit()` | `0x7FBB90` | 初始化 magic：`ASCII("DDS1")` / `ASCII("DDS2")` |
+| `SaveCrypto.Sha256(string)` | `0x4E37D0` | `SHA256(UTF8(s))` → 32 字节 |
+| `SaveCrypto.FileKey()` | `0x4E39D0` | 文件密钥 = `Sha256("desktop-diablo-save-v1-CHANGE-ME")` |
+| `SaveCrypto.MacKey()` | `0x4E3A30` | MAC 密钥 = `Sha256("desktop-diablo-save-v1-CHANGE-ME|mac")` |
+| `SaveCrypto.Encrypt(string)` | `0x4E3BC0` | 加密：JSON 字符串 → 文件字节 |
+| `SaveCrypto.Decrypt(byte[], out string, out bool)` | `0x4E4660` | 解密：文件字节 → JSON |
+| `SaveCrypto.IsDds2(byte[])` | `0x4E3A90` | 版本判定（前缀是否 `DDS2`） |
+| `SaveCrypto.FixedTimeEquals(byte[], byte[])` | `0x4E3B50` | 定长比较 |
+| `SaveCrypto.StaticInit()` | `0x4E4F90` | 初始化 magic：`ASCII("DDS1")` / `ASCII("DDS2")` |
 
 > 线索来源：`global-metadata.dat` 字符串 `SaveFileWriter: `、`DDS1`、`DDS2`、
 > `desktop-diablo-save-v1-CHANGE-ME(|mac)`，经 metadata-usage 交叉定位到 `iw`/`it` 类。✅

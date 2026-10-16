@@ -10,9 +10,9 @@ from mem_probe import find_process, module_base, read_mem, u64, valid_ptr
 k32 = ctypes.WinDLL('kernel32', use_last_error=True)
 
 SLOTS = {
-    'hnk#1': 0x183A2D670, 'hnk#2': 0x183A2FB50, 'hnk#3': 0x183A2FB48,
-    'hnk#4': 0x183A37E40, 'hnk#5': 0x183A1F3E8, 'hnm#clock': 0x183A25F98,
-    'hnm#row_a': 0x183A2D6C8,
+    'hnk#1': 0x183A64B90, 'hnk#2': 0x183A66578, 'hnk#3': 0x183A66570,
+    'hnk#4': 0x183A6E7C8, 'hnk#5': 0x183A58008, 'hnm#clock': 0x183A5D560,
+    'hnm#row_a': 0x183A64BE8,
 }
 
 

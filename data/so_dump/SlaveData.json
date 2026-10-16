@@ -1,7 +1,7 @@
 [
  {
   "_name": "Bull",
-  "_pathid": 5244,
+  "_pathid": 5384,
   "_file": "resources.assets",
   "Species": 1,
   "Rarity": 1,
@@ -10,12 +10,12 @@
   "Capacity": 25,
   "Prefab": {
    "fileID": 0,
-   "pathID": 2085
+   "pathID": 2154
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 666
+    "pathID": 698
    },
    "Volume": 0.699999988079071,
    "Pitch": 1.0
@@ -26,7 +26,7 @@
    {
     "Icon": {
      "fileID": 2,
-     "pathID": 5302
+     "pathID": 5321
     },
     "Title": "Fast Travel I",
     "Modifier": {
@@ -63,7 +63,7 @@
  },
  {
   "_name": "ArmoredHorse",
-  "_pathid": 60408,
+  "_pathid": 60461,
   "_file": "sharedassets0.assets",
   "Species": 1,
   "Rarity": 3,
@@ -72,12 +72,12 @@
   "Capacity": 35,
   "Prefab": {
    "fileID": 0,
-   "pathID": 14645
+   "pathID": 14671
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4878
+    "pathID": 4897
    },
    "Volume": 1.0,
    "Pitch": 0.8999999761581421
@@ -88,7 +88,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5302
+     "pathID": 5321
     },
     "Title": "Fast Travel III",
     "Modifier": {
@@ -123,7 +123,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5431
+     "pathID": 5450
     },
     "Title": "Thick Skin I",
     "Modifier": {
@@ -160,7 +160,7 @@
  },
  {
   "_name": "BeachCrabBoss",
-  "_pathid": 60409,
+  "_pathid": 60462,
   "_file": "sharedassets0.assets",
   "Species": 1,
   "Rarity": 3,
@@ -169,12 +169,12 @@
   "Capacity": 32,
   "Prefab": {
    "fileID": 0,
-   "pathID": 20313
+   "pathID": 20342
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4983
+    "pathID": 5002
    },
    "Volume": 1.0,
    "Pitch": 1.0
@@ -185,7 +185,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5563
+     "pathID": 5584
     },
     "Title": "Massive Crab Claws",
     "Modifier": {
@@ -220,7 +220,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5282
+     "pathID": 5302
     },
     "Title": "Thicker Shell",
     "Modifier": {
@@ -257,7 +257,7 @@
  },
  {
   "_name": "BeachHermitCrab",
-  "_pathid": 60410,
+  "_pathid": 60463,
   "_file": "sharedassets0.assets",
   "Species": 1,
   "Rarity": 1,
@@ -266,12 +266,12 @@
   "Capacity": 20,
   "Prefab": {
    "fileID": 0,
-   "pathID": 20298
+   "pathID": 20327
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4858
+    "pathID": 4876
    },
    "Volume": 0.5,
    "Pitch": 0.699999988079071
@@ -282,7 +282,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5282
+     "pathID": 5302
     },
     "Title": "Thick Shell",
     "Modifier": {
@@ -319,7 +319,7 @@
  },
  {
   "_name": "BeachNaga",
-  "_pathid": 60411,
+  "_pathid": 60464,
   "_file": "sharedassets0.assets",
   "Species": 0,
   "Rarity": 2,
@@ -328,12 +328,12 @@
   "Capacity": 25,
   "Prefab": {
    "fileID": 0,
-   "pathID": 20286
+   "pathID": 20315
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 5000
+    "pathID": 5019
    },
    "Volume": 0.800000011920929,
    "Pitch": 1.2000000476837158
@@ -344,7 +344,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5476
+     "pathID": 5496
     },
     "Title": "Mana Regen",
     "Modifier": {
@@ -381,7 +381,7 @@
  },
  {
   "_name": "BeachSerpent",
-  "_pathid": 60412,
+  "_pathid": 60465,
   "_file": "sharedassets0.assets",
   "Species": 3,
   "Rarity": 2,
@@ -390,12 +390,12 @@
   "Capacity": 25,
   "Prefab": {
    "fileID": 0,
-   "pathID": 20345
+   "pathID": 20374
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4775
+    "pathID": 4793
    },
    "Volume": 0.5,
    "Pitch": 1.2000000476837158
@@ -406,7 +406,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5276
+     "pathID": 5296
     },
     "Title": "Frost Tongue",
     "Modifier": {
@@ -443,7 +443,7 @@
  },
  {
   "_name": "BeachSquid",
-  "_pathid": 60413,
+  "_pathid": 60466,
   "_file": "sharedassets0.assets",
   "Species": 1,
   "Rarity": 1,
@@ -452,12 +452,12 @@
   "Capacity": 22,
   "Prefab": {
    "fileID": 0,
-   "pathID": 20363
+   "pathID": 20392
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4857
+    "pathID": 4875
    },
    "Volume": 0.5,
    "Pitch": 0.800000011920929
@@ -468,7 +468,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5299
+     "pathID": 5318
     },
     "Title": "Ink Siphon",
     "Modifier": {
@@ -505,7 +505,7 @@
  },
  {
   "_name": "BeachTurtleBoss",
-  "_pathid": 60414,
+  "_pathid": 60467,
   "_file": "sharedassets0.assets",
   "Species": 1,
   "Rarity": 3,
@@ -514,12 +514,12 @@
   "Capacity": 35,
   "Prefab": {
    "fileID": 0,
-   "pathID": 20317
+   "pathID": 20346
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4983
+    "pathID": 5002
    },
    "Volume": 1.0,
    "Pitch": 1.0
@@ -530,7 +530,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5431
+     "pathID": 5450
     },
     "Title": "Thick Skin III",
     "Modifier": {
@@ -565,7 +565,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5286
+     "pathID": 5306
     },
     "Title": "Turtle Speed",
     "Modifier": {
@@ -601,13 +601,13 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 60393
+    "pathID": 60446
    }
   ]
  },
  {
   "_name": "BigTreant",
-  "_pathid": 60415,
+  "_pathid": 60468,
   "_file": "sharedassets0.assets",
   "Species": 0,
   "Rarity": 3,
@@ -616,12 +616,12 @@
   "Capacity": 30,
   "Prefab": {
    "fileID": 0,
-   "pathID": 20337
+   "pathID": 20366
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4983
+    "pathID": 5002
    },
    "Volume": 1.0,
    "Pitch": 0.6000000238418579
@@ -632,7 +632,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5601
+     "pathID": 5622
     },
     "Title": "Health Increase",
     "Modifier": {
@@ -668,13 +668,13 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 60395
+    "pathID": 60448
    }
   ]
  },
  {
   "_name": "BlackHorse",
-  "_pathid": 60416,
+  "_pathid": 60469,
   "_file": "sharedassets0.assets",
   "Species": 1,
   "Rarity": 2,
@@ -683,12 +683,12 @@
   "Capacity": 25,
   "Prefab": {
    "fileID": 0,
-   "pathID": 26179
+   "pathID": 26212
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4878
+    "pathID": 4897
    },
    "Volume": 1.0,
    "Pitch": 1.0
@@ -699,7 +699,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5302
+     "pathID": 5321
     },
     "Title": "Fast Travel III",
     "Modifier": {
@@ -736,7 +736,7 @@
  },
  {
   "_name": "BlueMammoth",
-  "_pathid": 60417,
+  "_pathid": 60470,
   "_file": "sharedassets0.assets",
   "Species": 1,
   "Rarity": 3,
@@ -745,12 +745,12 @@
   "Capacity": 35,
   "Prefab": {
    "fileID": 0,
-   "pathID": 26181
+   "pathID": 26214
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 5009
+    "pathID": 5029
    },
    "Volume": 0.15000000596046448,
    "Pitch": 1.0
@@ -761,7 +761,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5431
+     "pathID": 5450
     },
     "Title": "Thick Skin III",
     "Modifier": {
@@ -796,7 +796,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5302
+     "pathID": 5321
     },
     "Title": "Fast Travel I",
     "Modifier": {
@@ -833,7 +833,7 @@
  },
  {
   "_name": "Boar",
-  "_pathid": 60418,
+  "_pathid": 60471,
   "_file": "sharedassets0.assets",
   "Species": 1,
   "Rarity": 1,
@@ -842,12 +842,12 @@
   "Capacity": 25,
   "Prefab": {
    "fileID": 0,
-   "pathID": 13948
+   "pathID": 13973
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 5004
+    "pathID": 5023
    },
    "Volume": 0.800000011920929,
    "Pitch": 0.8999999761581421
@@ -858,7 +858,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5601
+     "pathID": 5622
     },
     "Title": "Vitality I",
     "Modifier": {
@@ -895,7 +895,7 @@
  },
  {
   "_name": "BrownPony",
-  "_pathid": 60419,
+  "_pathid": 60472,
   "_file": "sharedassets0.assets",
   "Species": 1,
   "Rarity": 1,
@@ -904,12 +904,12 @@
   "Capacity": 22,
   "Prefab": {
    "fileID": 0,
-   "pathID": 26180
+   "pathID": 26213
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4878
+    "pathID": 4897
    },
    "Volume": 0.800000011920929,
    "Pitch": 1.2000000476837158
@@ -920,7 +920,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5302
+     "pathID": 5321
     },
     "Title": "Fast Travel II",
     "Modifier": {
@@ -957,7 +957,7 @@
  },
  {
   "_name": "DarkElfMage",
-  "_pathid": 60420,
+  "_pathid": 60473,
   "_file": "sharedassets0.assets",
   "Species": 0,
   "Rarity": 3,
@@ -966,12 +966,12 @@
   "Capacity": 25,
   "Prefab": {
    "fileID": 0,
-   "pathID": 20331
+   "pathID": 20360
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4912
+    "pathID": 4931
    },
    "Volume": 1.0,
    "Pitch": 1.0
@@ -982,7 +982,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5407
+     "pathID": 5426
     },
     "Title": "Mana Increase",
     "Modifier": {
@@ -1017,7 +1017,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5718
+     "pathID": 5739
     },
     "Title": "Fire Damage III",
     "Modifier": {
@@ -1054,7 +1054,7 @@
  },
  {
   "_name": "DefaultHorse",
-  "_pathid": 60421,
+  "_pathid": 60474,
   "_file": "sharedassets0.assets",
   "Species": 1,
   "Rarity": 0,
@@ -1063,12 +1063,12 @@
   "Capacity": 20,
   "Prefab": {
    "fileID": 0,
-   "pathID": 26183
+   "pathID": 26216
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4878
+    "pathID": 4897
    },
    "Volume": 1.0,
    "Pitch": 1.0
@@ -1079,7 +1079,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5302
+     "pathID": 5321
     },
     "Title": "Fast Travel I",
     "Modifier": {
@@ -1116,7 +1116,7 @@
  },
  {
   "_name": "DefiledKeepAxemaster",
-  "_pathid": 60422,
+  "_pathid": 60475,
   "_file": "sharedassets0.assets",
   "Species": 2,
   "Rarity": 2,
@@ -1125,12 +1125,12 @@
   "Capacity": 27,
   "Prefab": {
    "fileID": 0,
-   "pathID": 6282
+   "pathID": 6307
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4924
+    "pathID": 4943
    },
    "Volume": 0.8999999761581421,
    "Pitch": 0.800000011920929
@@ -1141,7 +1141,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5449
+     "pathID": 5468
     },
     "Title": "Grave Cleaver",
     "Modifier": {
@@ -1178,7 +1178,7 @@
  },
  {
   "_name": "DefiledKeepDragon",
-  "_pathid": 60423,
+  "_pathid": 60476,
   "_file": "sharedassets0.assets",
   "Species": 4,
   "Rarity": 3,
@@ -1187,12 +1187,12 @@
   "Capacity": 34,
   "Prefab": {
    "fileID": 0,
-   "pathID": 6787
+   "pathID": 6812
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4847
+    "pathID": 4865
    },
    "Volume": 1.0,
    "Pitch": 0.8500000238418579
@@ -1203,7 +1203,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5289
+     "pathID": 5309
     },
     "Title": "Everliving Blood",
     "Modifier": {
@@ -1238,7 +1238,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5338
+     "pathID": 5357
     },
     "Title": "Sepulchral Scales",
     "Modifier": {
@@ -1275,7 +1275,7 @@
  },
  {
   "_name": "DefiledKeepOoze",
-  "_pathid": 60424,
+  "_pathid": 60477,
   "_file": "sharedassets0.assets",
   "Species": 5,
   "Rarity": 1,
@@ -1284,12 +1284,12 @@
   "Capacity": 22,
   "Prefab": {
    "fileID": 0,
-   "pathID": 6248
+   "pathID": 6273
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4965
+    "pathID": 4984
    },
    "Volume": 0.6000000238418579,
    "Pitch": 1.0
@@ -1300,7 +1300,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5282
+     "pathID": 5302
     },
     "Title": "Viscous Hide",
     "Modifier": {
@@ -1337,7 +1337,7 @@
  },
  {
   "_name": "DefiledKeepReaper",
-  "_pathid": 60425,
+  "_pathid": 60478,
   "_file": "sharedassets0.assets",
   "Species": 2,
   "Rarity": 3,
@@ -1346,12 +1346,12 @@
   "Capacity": 30,
   "Prefab": {
    "fileID": 0,
-   "pathID": 6269
+   "pathID": 6294
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4960
+    "pathID": 4979
    },
    "Volume": 1.0,
    "Pitch": 1.0
@@ -1362,7 +1362,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5218
+     "pathID": 5238
     },
     "Title": "Storm of Souls",
     "Modifier": {
@@ -1398,13 +1398,13 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 60404
+    "pathID": 60457
    }
   ]
  },
  {
   "_name": "DefiledKeepScarab",
-  "_pathid": 60426,
+  "_pathid": 60479,
   "_file": "sharedassets0.assets",
   "Species": 1,
   "Rarity": 1,
@@ -1413,12 +1413,12 @@
   "Capacity": 25,
   "Prefab": {
    "fileID": 0,
-   "pathID": 6399
+   "pathID": 6424
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4858
+    "pathID": 4876
    },
    "Volume": 0.699999988079071,
    "Pitch": 0.699999988079071
@@ -1429,7 +1429,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5666
+     "pathID": 5687
     },
     "Title": "Gravedigger",
     "Modifier": {
@@ -1466,7 +1466,7 @@
  },
  {
   "_name": "DefiledKeepSuccubus",
-  "_pathid": 60427,
+  "_pathid": 60480,
   "_file": "sharedassets0.assets",
   "Species": 3,
   "Rarity": 2,
@@ -1475,12 +1475,12 @@
   "Capacity": 27,
   "Prefab": {
    "fileID": 0,
-   "pathID": 6281
+   "pathID": 6306
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 5000
+    "pathID": 5019
    },
    "Volume": 0.699999988079071,
    "Pitch": 2.0
@@ -1491,7 +1491,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5312
+     "pathID": 5331
     },
     "Title": "Beguiling Whisper",
     "Modifier": {
@@ -1528,7 +1528,7 @@
  },
  {
   "_name": "DesertEagle",
-  "_pathid": 60428,
+  "_pathid": 60481,
   "_file": "sharedassets0.assets",
   "Species": 1,
   "Rarity": 2,
@@ -1537,12 +1537,12 @@
   "Capacity": 25,
   "Prefab": {
    "fileID": 0,
-   "pathID": 20370
+   "pathID": 20399
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4840
+    "pathID": 4858
    },
    "Volume": 0.800000011920929,
    "Pitch": 1.0
@@ -1553,7 +1553,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5550
+     "pathID": 5571
     },
     "Title": "DesertEagle",
     "Modifier": {
@@ -1590,7 +1590,7 @@
  },
  {
   "_name": "DesertHarpy",
-  "_pathid": 60429,
+  "_pathid": 60482,
   "_file": "sharedassets0.assets",
   "Species": 3,
   "Rarity": 3,
@@ -1599,12 +1599,12 @@
   "Capacity": 27,
   "Prefab": {
    "fileID": 0,
-   "pathID": 20272
+   "pathID": 20301
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4973
+    "pathID": 4992
    },
    "Volume": 0.6000000238418579,
    "Pitch": 1.0
@@ -1615,7 +1615,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5252
+     "pathID": 5272
     },
     "Title": "DesertHarpy",
     "Modifier": {
@@ -1651,13 +1651,13 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 60401
+    "pathID": 60454
    }
   ]
  },
  {
   "_name": "DesertKoboldThief",
-  "_pathid": 60430,
+  "_pathid": 60483,
   "_file": "sharedassets0.assets",
   "Species": 0,
   "Rarity": 1,
@@ -1666,12 +1666,12 @@
   "Capacity": 20,
   "Prefab": {
    "fileID": 0,
-   "pathID": 20320
+   "pathID": 20349
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4924
+    "pathID": 4943
    },
    "Volume": 0.800000011920929,
    "Pitch": 1.0
@@ -1682,7 +1682,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5651
+     "pathID": 5672
     },
     "Title": "DesertKoboldThief",
     "Modifier": {
@@ -1719,7 +1719,7 @@
  },
  {
   "_name": "DesertKoboldWarrior",
-  "_pathid": 60431,
+  "_pathid": 60484,
   "_file": "sharedassets0.assets",
   "Species": 0,
   "Rarity": 1,
@@ -1728,12 +1728,12 @@
   "Capacity": 25,
   "Prefab": {
    "fileID": 0,
-   "pathID": 20318
+   "pathID": 20347
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4924
+    "pathID": 4943
    },
    "Volume": 0.800000011920929,
    "Pitch": 1.0
@@ -1744,7 +1744,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5431
+     "pathID": 5450
     },
     "Title": "DesertKoboldWarrior",
     "Modifier": {
@@ -1781,7 +1781,7 @@
  },
  {
   "_name": "DesertManticoraBoss",
-  "_pathid": 60432,
+  "_pathid": 60485,
   "_file": "sharedassets0.assets",
   "Species": 3,
   "Rarity": 3,
@@ -1790,12 +1790,12 @@
   "Capacity": 35,
   "Prefab": {
    "fileID": 0,
-   "pathID": 20340
+   "pathID": 20369
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4793
+    "pathID": 4811
    },
    "Volume": 0.6000000238418579,
    "Pitch": 1.0
@@ -1806,7 +1806,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5682
+     "pathID": 5703
     },
     "Title": "DesertManticora",
     "Modifier": {
@@ -1842,13 +1842,13 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 60403
+    "pathID": 60456
    }
   ]
  },
  {
   "_name": "DesertWasp",
-  "_pathid": 60433,
+  "_pathid": 60486,
   "_file": "sharedassets0.assets",
   "Species": 1,
   "Rarity": 1,
@@ -1857,12 +1857,12 @@
   "Capacity": 20,
   "Prefab": {
    "fileID": 0,
-   "pathID": 20278
+   "pathID": 20307
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4787
+    "pathID": 4805
    },
    "Volume": 0.800000011920929,
    "Pitch": 1.0
@@ -1873,7 +1873,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5532
+     "pathID": 5553
     },
     "Title": "DesertWasp",
     "Modifier": {
@@ -1910,7 +1910,7 @@
  },
  {
   "_name": "FishingWaterDragon",
-  "_pathid": 60434,
+  "_pathid": 60487,
   "_file": "sharedassets0.assets",
   "Species": 4,
   "Rarity": 3,
@@ -1919,12 +1919,12 @@
   "Capacity": 30,
   "Prefab": {
    "fileID": 0,
-   "pathID": 20309
+   "pathID": 20338
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4847
+    "pathID": 4865
    },
    "Volume": 1.0,
    "Pitch": 0.8999999761581421
@@ -1935,7 +1935,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5753
+     "pathID": 5774
     },
     "Title": "Ocean's Providence",
     "Modifier": {
@@ -1971,13 +1971,13 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 60406
+    "pathID": 60459
    }
   ]
  },
  {
   "_name": "ForestSpiderKing",
-  "_pathid": 60435,
+  "_pathid": 60488,
   "_file": "sharedassets0.assets",
   "Species": 1,
   "Rarity": 3,
@@ -1986,12 +1986,12 @@
   "Capacity": 27,
   "Prefab": {
    "fileID": 0,
-   "pathID": 20325
+   "pathID": 20354
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4871
+    "pathID": 4890
    },
    "Volume": 0.6000000238418579,
    "Pitch": 1.2000000476837158
@@ -2002,7 +2002,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5480
+     "pathID": 5501
     },
     "Title": "PoisonArmor",
     "Modifier": {
@@ -2038,13 +2038,13 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 60405
+    "pathID": 60458
    }
   ]
  },
  {
   "_name": "GoblinWarrior",
-  "_pathid": 60436,
+  "_pathid": 60489,
   "_file": "sharedassets0.assets",
   "Species": 0,
   "Rarity": 1,
@@ -2053,12 +2053,12 @@
   "Capacity": 25,
   "Prefab": {
    "fileID": 0,
-   "pathID": 20274
+   "pathID": 20303
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4917
+    "pathID": 4936
    },
    "Volume": 0.699999988079071,
    "Pitch": 1.2000000476837158
@@ -2069,7 +2069,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5306
+     "pathID": 5325
     },
     "Title": "Gold Increase I",
     "Modifier": {
@@ -2106,7 +2106,7 @@
  },
  {
   "_name": "Ogre",
-  "_pathid": 60437,
+  "_pathid": 60490,
   "_file": "sharedassets0.assets",
   "Species": 0,
   "Rarity": 3,
@@ -2115,12 +2115,12 @@
   "Capacity": 30,
   "Prefab": {
    "fileID": 0,
-   "pathID": 20301
+   "pathID": 20330
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4924
+    "pathID": 4943
    },
    "Volume": 1.0,
    "Pitch": 1.0
@@ -2131,7 +2131,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5466
+     "pathID": 5486
     },
     "Title": "Damage to Stunned III",
     "Modifier": {
@@ -2166,7 +2166,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5431
+     "pathID": 5450
     },
     "Title": "Iron Hide",
     "Modifier": {
@@ -2203,7 +2203,7 @@
  },
  {
   "_name": "OrcWarrior",
-  "_pathid": 60438,
+  "_pathid": 60491,
   "_file": "sharedassets0.assets",
   "Species": 0,
   "Rarity": 2,
@@ -2212,12 +2212,12 @@
   "Capacity": 30,
   "Prefab": {
    "fileID": 0,
-   "pathID": 20366
+   "pathID": 20395
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 5010
+    "pathID": 5030
    },
    "Volume": 0.800000011920929,
    "Pitch": 0.8999999761581421
@@ -2228,7 +2228,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5261
+     "pathID": 5281
     },
     "Title": "Strength I",
     "Modifier": {
@@ -2265,7 +2265,7 @@
  },
  {
   "_name": "PoisonSpider",
-  "_pathid": 60439,
+  "_pathid": 60492,
   "_file": "sharedassets0.assets",
   "Species": 1,
   "Rarity": 1,
@@ -2274,12 +2274,12 @@
   "Capacity": 16,
   "Prefab": {
    "fileID": 0,
-   "pathID": 20358
+   "pathID": 20387
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4871
+    "pathID": 4890
    },
    "Volume": 0.6000000238418579,
    "Pitch": 1.2000000476837158
@@ -2290,7 +2290,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5476
+     "pathID": 5496
     },
     "Title": "Mana I",
     "Modifier": {
@@ -2327,7 +2327,7 @@
  },
  {
   "_name": "Raptor",
-  "_pathid": 60440,
+  "_pathid": 60493,
   "_file": "sharedassets0.assets",
   "Species": 1,
   "Rarity": 3,
@@ -2336,12 +2336,12 @@
   "Capacity": 35,
   "Prefab": {
    "fileID": 0,
-   "pathID": 26182
+   "pathID": 26215
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4792
+    "pathID": 4810
    },
    "Volume": 0.800000011920929,
    "Pitch": 1.2999999523162842
@@ -2352,7 +2352,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5335
+     "pathID": 5354
     },
     "Title": "Serrated Talons",
     "Modifier": {
@@ -2387,7 +2387,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5847
+     "pathID": 5869
     },
     "Title": "Keen Instinct",
     "Modifier": {
@@ -2422,7 +2422,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5907
+     "pathID": 5932
     },
     "Title": "Killing Precision",
     "Modifier": {
@@ -2459,7 +2459,7 @@
  },
  {
   "_name": "RedDesertAirWarlord",
-  "_pathid": 60441,
+  "_pathid": 60494,
   "_file": "sharedassets0.assets",
   "Species": 5,
   "Rarity": 3,
@@ -2468,12 +2468,12 @@
   "Capacity": 25,
   "Prefab": {
    "fileID": 0,
-   "pathID": 20355
+   "pathID": 20384
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4938
+    "pathID": 4957
    },
    "Volume": 0.800000011920929,
    "Pitch": 1.0
@@ -2484,7 +2484,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5367
+     "pathID": 5386
     },
     "Title": "RedDesertAirWarlord",
     "Modifier": {
@@ -2520,13 +2520,13 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 60394
+    "pathID": 60447
    }
   ]
  },
  {
   "_name": "RedDesertCrocodile",
-  "_pathid": 60442,
+  "_pathid": 60495,
   "_file": "sharedassets0.assets",
   "Species": 1,
   "Rarity": 1,
@@ -2535,12 +2535,12 @@
   "Capacity": 25,
   "Prefab": {
    "fileID": 0,
-   "pathID": 20319
+   "pathID": 20348
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4805
+    "pathID": 4823
    },
    "Volume": 0.800000011920929,
    "Pitch": 1.0
@@ -2551,7 +2551,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5586
+     "pathID": 5607
     },
     "Title": "RedDesertCrocodile",
     "Modifier": {
@@ -2588,7 +2588,7 @@
  },
  {
   "_name": "RedDesertImp",
-  "_pathid": 60443,
+  "_pathid": 60496,
   "_file": "sharedassets0.assets",
   "Species": 3,
   "Rarity": 1,
@@ -2597,12 +2597,12 @@
   "Capacity": 25,
   "Prefab": {
    "fileID": 0,
-   "pathID": 20277
+   "pathID": 20306
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4979
+    "pathID": 4998
    },
    "Volume": 0.800000011920929,
    "Pitch": 1.0
@@ -2613,7 +2613,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5718
+     "pathID": 5739
     },
     "Title": "RedDesertImp",
     "Modifier": {
@@ -2650,7 +2650,7 @@
  },
  {
   "_name": "RedDesertRockGolem",
-  "_pathid": 60444,
+  "_pathid": 60497,
   "_file": "sharedassets0.assets",
   "Species": 5,
   "Rarity": 1,
@@ -2659,12 +2659,12 @@
   "Capacity": 25,
   "Prefab": {
    "fileID": 0,
-   "pathID": 20326
+   "pathID": 20355
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4853
+    "pathID": 4871
    },
    "Volume": 0.800000011920929,
    "Pitch": 1.0
@@ -2675,7 +2675,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5338
+     "pathID": 5357
     },
     "Title": "RedDesertRockGolem",
     "Modifier": {
@@ -2712,7 +2712,7 @@
  },
  {
   "_name": "RedDesertSatyr",
-  "_pathid": 60445,
+  "_pathid": 60498,
   "_file": "sharedassets0.assets",
   "Species": 3,
   "Rarity": 1,
@@ -2721,12 +2721,12 @@
   "Capacity": 25,
   "Prefab": {
    "fileID": 0,
-   "pathID": 20327
+   "pathID": 20356
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4955
+    "pathID": 4974
    },
    "Volume": 0.800000011920929,
    "Pitch": 1.0
@@ -2737,7 +2737,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5314
+     "pathID": 5333
     },
     "Title": "RedDesertSatyr",
     "Modifier": {
@@ -2774,7 +2774,7 @@
  },
  {
   "_name": "RedDesertSerparmat",
-  "_pathid": 60446,
+  "_pathid": 60499,
   "_file": "sharedassets0.assets",
   "Species": 1,
   "Rarity": 3,
@@ -2783,12 +2783,12 @@
   "Capacity": 30,
   "Prefab": {
    "fileID": 0,
-   "pathID": 20353
+   "pathID": 20382
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4815
+    "pathID": 4833
    },
    "Volume": 0.800000011920929,
    "Pitch": 1.0
@@ -2799,7 +2799,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5638
+     "pathID": 5659
     },
     "Title": "RedDesertSerparmat1",
     "Modifier": {
@@ -2834,7 +2834,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5315
+     "pathID": 5334
     },
     "Title": "RedDesertSerparmat2",
     "Modifier": {
@@ -2871,7 +2871,7 @@
  },
  {
   "_name": "RedForestBear",
-  "_pathid": 60447,
+  "_pathid": 60500,
   "_file": "sharedassets0.assets",
   "Species": 1,
   "Rarity": 1,
@@ -2880,12 +2880,12 @@
   "Capacity": 25,
   "Prefab": {
    "fileID": 0,
-   "pathID": 20344
+   "pathID": 20373
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4793
+    "pathID": 4811
    },
    "Volume": 0.8999999761581421,
    "Pitch": 0.8500000238418579
@@ -2896,7 +2896,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5289
+     "pathID": 5309
     },
     "Title": "Deep Slumber",
     "Modifier": {
@@ -2933,7 +2933,7 @@
  },
  {
   "_name": "RedForestDragon",
-  "_pathid": 60448,
+  "_pathid": 60501,
   "_file": "sharedassets0.assets",
   "Species": 4,
   "Rarity": 3,
@@ -2942,12 +2942,12 @@
   "Capacity": 30,
   "Prefab": {
    "fileID": 0,
-   "pathID": 20304
+   "pathID": 20333
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4847
+    "pathID": 4865
    },
    "Volume": 0.800000011920929,
    "Pitch": 0.75
@@ -2958,7 +2958,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5768
+     "pathID": 5789
     },
     "Title": "Crimson Dominion",
     "Modifier": {
@@ -2994,13 +2994,13 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 60397
+    "pathID": 60450
    }
   ]
  },
  {
   "_name": "RedForestFaeDragon",
-  "_pathid": 60449,
+  "_pathid": 60502,
   "_file": "sharedassets0.assets",
   "Species": 4,
   "Rarity": 2,
@@ -3009,12 +3009,12 @@
   "Capacity": 25,
   "Prefab": {
    "fileID": 0,
-   "pathID": 20276
+   "pathID": 20305
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4888
+    "pathID": 4907
    },
    "Volume": 0.6000000238418579,
    "Pitch": 2.0
@@ -3025,7 +3025,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5312
+     "pathID": 5331
     },
     "Title": "Arcane Wing",
     "Modifier": {
@@ -3062,7 +3062,7 @@
  },
  {
   "_name": "RedForestGiant",
-  "_pathid": 60450,
+  "_pathid": 60503,
   "_file": "sharedassets0.assets",
   "Species": 5,
   "Rarity": 1,
@@ -3071,12 +3071,12 @@
   "Capacity": 25,
   "Prefab": {
    "fileID": 0,
-   "pathID": 20300
+   "pathID": 20329
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4853
+    "pathID": 4871
    },
    "Volume": 0.800000011920929,
    "Pitch": 0.8500000238418579
@@ -3087,7 +3087,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5227
+     "pathID": 5247
     },
     "Title": "Stoneheart",
     "Modifier": {
@@ -3124,7 +3124,7 @@
  },
  {
   "_name": "RedForestHobgoblin",
-  "_pathid": 60451,
+  "_pathid": 60504,
   "_file": "sharedassets0.assets",
   "Species": 0,
   "Rarity": 3,
@@ -3133,12 +3133,12 @@
   "Capacity": 25,
   "Prefab": {
    "fileID": 0,
-   "pathID": 20352
+   "pathID": 20381
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4917
+    "pathID": 4936
    },
    "Volume": 0.8999999761581421,
    "Pitch": 0.75
@@ -3149,7 +3149,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5306
+     "pathID": 5325
     },
     "Title": "Goblin Hoard",
     "Modifier": {
@@ -3185,13 +3185,13 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 60400
+    "pathID": 60453
    }
   ]
  },
  {
   "_name": "RedForestTiger",
-  "_pathid": 60452,
+  "_pathid": 60505,
   "_file": "sharedassets0.assets",
   "Species": 1,
   "Rarity": 1,
@@ -3200,12 +3200,12 @@
   "Capacity": 25,
   "Prefab": {
    "fileID": 0,
-   "pathID": 20297
+   "pathID": 20326
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4805
+    "pathID": 4823
    },
    "Volume": 0.8999999761581421,
    "Pitch": 1.149999976158142
@@ -3216,7 +3216,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5876
+     "pathID": 5898
     },
     "Title": "Ambush",
     "Modifier": {
@@ -3253,7 +3253,7 @@
  },
  {
   "_name": "SkeletonArcher",
-  "_pathid": 60453,
+  "_pathid": 60506,
   "_file": "sharedassets0.assets",
   "Species": 2,
   "Rarity": 1,
@@ -3262,12 +3262,12 @@
   "Capacity": 25,
   "Prefab": {
    "fileID": 0,
-   "pathID": 20328
+   "pathID": 20357
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4909
+    "pathID": 4928
    },
    "Volume": 0.6000000238418579,
    "Pitch": 1.2000000476837158
@@ -3278,7 +3278,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5319
+     "pathID": 5338
     },
     "Title": "Critical Hit Chance I",
     "Modifier": {
@@ -3315,7 +3315,7 @@
  },
  {
   "_name": "SkeletonWarrior",
-  "_pathid": 60454,
+  "_pathid": 60507,
   "_file": "sharedassets0.assets",
   "Species": 2,
   "Rarity": 1,
@@ -3324,12 +3324,12 @@
   "Capacity": 30,
   "Prefab": {
    "fileID": 0,
-   "pathID": 20339
+   "pathID": 20368
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4909
+    "pathID": 4928
    },
    "Volume": 0.6000000238418579,
    "Pitch": 1.2000000476837158
@@ -3340,7 +3340,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5449
+     "pathID": 5468
     },
     "Title": "Physical Damage I",
     "Modifier": {
@@ -3377,7 +3377,7 @@
  },
  {
   "_name": "SnowHillFrostDragon",
-  "_pathid": 60455,
+  "_pathid": 60508,
   "_file": "sharedassets0.assets",
   "Species": 4,
   "Rarity": 3,
@@ -3386,12 +3386,12 @@
   "Capacity": 35,
   "Prefab": {
    "fileID": 0,
-   "pathID": 20307
+   "pathID": 20336
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4793
+    "pathID": 4811
    },
    "Volume": 0.8999999761581421,
    "Pitch": 0.75
@@ -3402,7 +3402,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5807
+     "pathID": 5828
     },
     "Title": "Frozen Reach",
     "Modifier": {
@@ -3438,13 +3438,13 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 60399
+    "pathID": 60452
    }
   ]
  },
  {
   "_name": "SnowHillIceHound",
-  "_pathid": 60456,
+  "_pathid": 60509,
   "_file": "sharedassets0.assets",
   "Species": 1,
   "Rarity": 3,
@@ -3453,12 +3453,12 @@
   "Capacity": 35,
   "Prefab": {
    "fileID": 0,
-   "pathID": 20349
+   "pathID": 20378
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4793
+    "pathID": 4811
    },
    "Volume": 0.800000011920929,
    "Pitch": 0.8500000238418579
@@ -3469,7 +3469,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5218
+     "pathID": 5238
     },
     "Title": "Thunderfang",
     "Modifier": {
@@ -3505,13 +3505,13 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 60402
+    "pathID": 60455
    }
   ]
  },
  {
   "_name": "SnowHillRockElemental",
-  "_pathid": 60457,
+  "_pathid": 60510,
   "_file": "sharedassets0.assets",
   "Species": 5,
   "Rarity": 2,
@@ -3520,12 +3520,12 @@
   "Capacity": 30,
   "Prefab": {
    "fileID": 0,
-   "pathID": 20302
+   "pathID": 20331
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4793
+    "pathID": 4811
    },
    "Volume": 0.8999999761581421,
    "Pitch": 0.699999988079071
@@ -3536,7 +3536,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5308
+     "pathID": 5327
     },
     "Title": "Grounded Core",
     "Modifier": {
@@ -3573,7 +3573,7 @@
  },
  {
   "_name": "SnowHillSlime",
-  "_pathid": 60458,
+  "_pathid": 60511,
   "_file": "sharedassets0.assets",
   "Species": 5,
   "Rarity": 1,
@@ -3582,12 +3582,12 @@
   "Capacity": 20,
   "Prefab": {
    "fileID": 0,
-   "pathID": 20281
+   "pathID": 20310
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4892
+    "pathID": 4911
    },
    "Volume": 0.699999988079071,
    "Pitch": 1.2000000476837158
@@ -3598,7 +3598,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5334
+     "pathID": 5353
     },
     "Title": "Reconstituting Gel",
     "Modifier": {
@@ -3635,7 +3635,7 @@
  },
  {
   "_name": "SnowHillWhelp",
-  "_pathid": 60459,
+  "_pathid": 60512,
   "_file": "sharedassets0.assets",
   "Species": 4,
   "Rarity": 2,
@@ -3644,12 +3644,12 @@
   "Capacity": 25,
   "Prefab": {
    "fileID": 0,
-   "pathID": 20287
+   "pathID": 20316
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4793
+    "pathID": 4811
    },
    "Volume": 0.800000011920929,
    "Pitch": 1.149999976158142
@@ -3660,7 +3660,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5404
+     "pathID": 5423
     },
     "Title": "Budding Sorcery",
     "Modifier": {
@@ -3697,7 +3697,7 @@
  },
  {
   "_name": "SnowHillZombieWarrior",
-  "_pathid": 60460,
+  "_pathid": 60513,
   "_file": "sharedassets0.assets",
   "Species": 2,
   "Rarity": 1,
@@ -3706,12 +3706,12 @@
   "Capacity": 25,
   "Prefab": {
    "fileID": 0,
-   "pathID": 20306
+   "pathID": 20335
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4793
+    "pathID": 4811
    },
    "Volume": 0.800000011920929,
    "Pitch": 0.8999999761581421
@@ -3722,7 +3722,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5299
+     "pathID": 5318
     },
     "Title": "Frozen Might",
     "Modifier": {
@@ -3759,7 +3759,7 @@
  },
  {
   "_name": "Spider",
-  "_pathid": 60461,
+  "_pathid": 60514,
   "_file": "sharedassets0.assets",
   "Species": 1,
   "Rarity": 1,
@@ -3768,12 +3768,12 @@
   "Capacity": 15,
   "Prefab": {
    "fileID": 0,
-   "pathID": 13946
+   "pathID": 13971
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4871
+    "pathID": 4890
    },
    "Volume": 0.6000000238418579,
    "Pitch": 1.399999976158142
@@ -3784,7 +3784,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5699
+     "pathID": 5720
     },
     "Title": "Poison Damage I",
     "Modifier": {
@@ -3821,7 +3821,7 @@
  },
  {
   "_name": "Stumplin",
-  "_pathid": 60462,
+  "_pathid": 60515,
   "_file": "sharedassets0.assets",
   "Species": 1,
   "Rarity": 1,
@@ -3830,12 +3830,12 @@
   "Capacity": 16,
   "Prefab": {
    "fileID": 0,
-   "pathID": 20316
+   "pathID": 20345
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4920
+    "pathID": 4939
    },
    "Volume": 0.800000011920929,
    "Pitch": 1.7999999523162842
@@ -3846,7 +3846,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5653
+     "pathID": 5674
     },
     "Title": "Thorn I",
     "Modifier": {
@@ -3883,7 +3883,7 @@
  },
  {
   "_name": "TazanCamel",
-  "_pathid": 60463,
+  "_pathid": 60516,
   "_file": "sharedassets0.assets",
   "Species": 1,
   "Rarity": 2,
@@ -3892,12 +3892,12 @@
   "Capacity": 32,
   "Prefab": {
    "fileID": 0,
-   "pathID": 16582
+   "pathID": 16608
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4841
+    "pathID": 4859
    },
    "Volume": 0.8999999761581421,
    "Pitch": 0.75
@@ -3908,7 +3908,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5644
+     "pathID": 5665
     },
     "Title": "Caravan Bearer",
     "Modifier": {
@@ -3945,7 +3945,7 @@
  },
  {
   "_name": "VolcanoCinderlash",
-  "_pathid": 60464,
+  "_pathid": 60517,
   "_file": "sharedassets0.assets",
   "Species": 3,
   "Rarity": 2,
@@ -3954,12 +3954,12 @@
   "Capacity": 28,
   "Prefab": {
    "fileID": 0,
-   "pathID": 20341
+   "pathID": 20370
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4955
+    "pathID": 4974
    },
    "Volume": 0.800000011920929,
    "Pitch": 0.8999999761581421
@@ -3970,7 +3970,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5369
+     "pathID": 5388
     },
     "Title": "Lash of Cinders",
     "Modifier": {
@@ -4007,7 +4007,7 @@
  },
  {
   "_name": "VolcanoDemonLord",
-  "_pathid": 60465,
+  "_pathid": 60518,
   "_file": "sharedassets0.assets",
   "Species": 3,
   "Rarity": 3,
@@ -4016,12 +4016,12 @@
   "Capacity": 35,
   "Prefab": {
    "fileID": 0,
-   "pathID": 20354
+   "pathID": 20383
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4938
+    "pathID": 4957
    },
    "Volume": 0.8999999761581421,
    "Pitch": 0.800000011920929
@@ -4032,7 +4032,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5416
+     "pathID": 5435
     },
     "Title": "Cinder Sovereign",
     "Modifier": {
@@ -4068,13 +4068,13 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 60396
+    "pathID": 60449
    }
   ]
  },
  {
   "_name": "VolcanoDragon",
-  "_pathid": 60466,
+  "_pathid": 60519,
   "_file": "sharedassets0.assets",
   "Species": 4,
   "Rarity": 3,
@@ -4083,12 +4083,12 @@
   "Capacity": 30,
   "Prefab": {
    "fileID": 0,
-   "pathID": 20322
+   "pathID": 20351
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4847
+    "pathID": 4865
    },
    "Volume": 1.0,
    "Pitch": 0.8500000238418579
@@ -4099,7 +4099,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5944
+     "pathID": 5969
     },
     "Title": "Tyrant's Bane",
     "Modifier": {
@@ -4135,13 +4135,13 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 60398
+    "pathID": 60451
    }
   ]
  },
  {
   "_name": "VolcanoEmberBat",
-  "_pathid": 60467,
+  "_pathid": 60520,
   "_file": "sharedassets0.assets",
   "Species": 1,
   "Rarity": 1,
@@ -4150,12 +4150,12 @@
   "Capacity": 25,
   "Prefab": {
    "fileID": 0,
-   "pathID": 20285
+   "pathID": 20314
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4973
+    "pathID": 4992
    },
    "Volume": 0.699999988079071,
    "Pitch": 1.5
@@ -4166,7 +4166,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5920
+     "pathID": 5945
     },
     "Title": "Cinder Hide",
     "Modifier": {
@@ -4203,7 +4203,7 @@
  },
  {
   "_name": "VolcanoHellguard",
-  "_pathid": 60468,
+  "_pathid": 60521,
   "_file": "sharedassets0.assets",
   "Species": 3,
   "Rarity": 2,
@@ -4212,12 +4212,12 @@
   "Capacity": 28,
   "Prefab": {
    "fileID": 0,
-   "pathID": 20292
+   "pathID": 20321
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4853
+    "pathID": 4871
    },
    "Volume": 0.800000011920929,
    "Pitch": 0.8500000238418579
@@ -4228,7 +4228,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5398
+     "pathID": 5417
     },
     "Title": "Infernal Bulwark",
     "Modifier": {
@@ -4265,7 +4265,7 @@
  },
  {
   "_name": "VolcanoMagmaGolem",
-  "_pathid": 60469,
+  "_pathid": 60522,
   "_file": "sharedassets0.assets",
   "Species": 5,
   "Rarity": 2,
@@ -4274,12 +4274,12 @@
   "Capacity": 28,
   "Prefab": {
    "fileID": 0,
-   "pathID": 20332
+   "pathID": 20361
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4983
+    "pathID": 5002
    },
    "Volume": 0.8999999761581421,
    "Pitch": 0.699999988079071
@@ -4290,7 +4290,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5661
+     "pathID": 5682
     },
     "Title": "Molten Core",
     "Modifier": {
@@ -4327,7 +4327,7 @@
  },
  {
   "_name": "Werewolf",
-  "_pathid": 60470,
+  "_pathid": 60523,
   "_file": "sharedassets0.assets",
   "Species": 3,
   "Rarity": 3,
@@ -4336,12 +4336,12 @@
   "Capacity": 25,
   "Prefab": {
    "fileID": 0,
-   "pathID": 23946
+   "pathID": 23975
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4983
+    "pathID": 5002
    },
    "Volume": 1.0,
    "Pitch": 1.0
@@ -4352,7 +4352,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5225
+     "pathID": 5245
     },
     "Title": "Bloodthirst I",
     "Modifier": {
@@ -4388,13 +4388,13 @@
   "Abilities": [
    {
     "fileID": 0,
-    "pathID": 60407
+    "pathID": 60460
    }
   ]
  },
  {
   "_name": "WhiteHorse",
-  "_pathid": 60471,
+  "_pathid": 60524,
   "_file": "sharedassets0.assets",
   "Species": 1,
   "Rarity": 2,
@@ -4403,12 +4403,12 @@
   "Capacity": 25,
   "Prefab": {
    "fileID": 0,
-   "pathID": 25409
+   "pathID": 25440
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4878
+    "pathID": 4897
    },
    "Volume": 1.0,
    "Pitch": 1.100000023841858
@@ -4419,7 +4419,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5302
+     "pathID": 5321
     },
     "Title": "Fast Travel III",
     "Modifier": {
@@ -4456,7 +4456,7 @@
  },
  {
   "_name": "Wolf",
-  "_pathid": 60472,
+  "_pathid": 60525,
   "_file": "sharedassets0.assets",
   "Species": 1,
   "Rarity": 1,
@@ -4465,12 +4465,12 @@
   "Capacity": 15,
   "Prefab": {
    "fileID": 0,
-   "pathID": 13947
+   "pathID": 13972
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4790
+    "pathID": 4808
    },
    "Volume": 0.800000011920929,
    "Pitch": 1.0
@@ -4481,7 +4481,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5544
+     "pathID": 5565
     },
     "Title": "Attack Speed I",
     "Modifier": {
@@ -4518,7 +4518,7 @@
  },
  {
   "_name": "ZombieWolf",
-  "_pathid": 60473,
+  "_pathid": 60526,
   "_file": "sharedassets0.assets",
   "Species": 1,
   "Rarity": 2,
@@ -4527,12 +4527,12 @@
   "Capacity": 20,
   "Prefab": {
    "fileID": 0,
-   "pathID": 20368
+   "pathID": 20397
   },
   "SummonSound": {
    "Clip": {
     "fileID": 0,
-    "pathID": 4795
+    "pathID": 4813
    },
    "Volume": 0.800000011920929,
    "Pitch": 1.0
@@ -4543,7 +4543,7 @@
    {
     "Icon": {
      "fileID": 0,
-     "pathID": 5315
+     "pathID": 5334
     },
     "Title": "Life On Hit I",
     "Modifier": {

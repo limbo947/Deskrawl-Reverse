@@ -51,7 +51,7 @@ REPO = os.path.dirname(os.path.dirname(HERE))
 CONFIG = os.path.join(HERE, 'rva_audit_config.json')
 REPORT = os.path.join(REPO, 'docs', 'reports', 'RVA体检报告.md')
 JSON_OUT = os.path.join(REPO, 'data', 'schema', 'rva_audit.json')
-OLD_DUMP_REF = '8660446'  # 补丁前最后一次提交 dump.cs 的 ref；换补丁时用 --base-ref 覆盖
+OLD_DUMP_REF = '3c42617'  # 补丁前最后一次提交 dump.cs 的 ref（1.0.2b 版）；换补丁时用 --base-ref 覆盖
 MIN_SHAPE = 3  # 类形状匹配的最低签名命中数：低于它不足以认定「同一个类」
 
 LABEL = {

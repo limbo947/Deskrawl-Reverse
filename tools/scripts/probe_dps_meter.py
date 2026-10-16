@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 """一次性探针：训练假人 DPS 计的内存定位链（只读）。
 
-背景：TrainingDpsMeterUI 无静态类型引用，但 TrainingDummy.bmj（受击入口）尾调一个
-静态事件/服务对象（用法槽 → Il2CppClass* → static_fields[+0x20] → 处理器对象）。
-本探针沿这条链实测：枚举 bmj 用法槽的类名 → 展开 static+0x20 对象的字段 → 找到
-klass=TrainingDpsMeterUI 的实例 → 读 [+0x50] 总伤害 / [+0x58] 开始时间（hww():
-显示 DPS = 总伤害 / max(now-开始时间, 1.0)）。
+背景：TrainingDpsMeterUI 无静态类型引用，但 TrainingDummy.bmv（受击入口，1.0.3 名；旧 bmj）尾调
+一个静态事件/服务对象（用法槽 → Il2CppClass* → static_fields[+0x28] → System.Action`1<long> 委托本身）。
+本探针沿这条链实测：枚举 bmv 用法槽的类名 → 取 static+0x28 委托 → 其 invocation list（Delegate[]@+0x78）
+→ 找 klass=TrainingDpsMeterUI 的委托 target（+0x20）→ 读 [+0x50] 总伤害 / [+0x58] 开始时间。
+2026-10-16 1.0.3 实机重锚定：该静态字段由 1.0.2b 的 +0x20 位移到 +0x28（+8，与 StatusEffectController 同类）。
 
 验证锚：游戏画面 DPS 计「总伤害」肉眼可见（如 3.9B），读数必须一致。
 
@@ -22,7 +22,7 @@ from mem_probe import (cstr, find_process, f32, klass_name, module_base, read_me
                        scan_usage_slots, u32, u64, valid_ptr)
 
 k32 = ctypes.WinDLL('kernel32', use_last_error=True)
-DUMMY_BMJ_RVA = 0x52DE70      # dump.cs: TrainingDummy.bmj(long, bool) Slot 26
+DUMMY_HIT_RVA = 0x5354D0      # dump.cs: TrainingDummy.bmv(long, bool) Slot 26（旧 bmi/bmj）
 METER_KLASS = 'TrainingDpsMeterUI'
 PROC = 'Deskrawl.exe'
 
@@ -52,9 +52,9 @@ def main():
     base = module_base(h, 'GameAssembly.dll')
     print(f'pid={pid} base={base:#x}')
 
-    # 1) bmj 用法槽 → 各槽的类名（找事件总线）
-    print('\n== TrainingDummy.bmj 用法槽 ===')
-    slots = scan_usage_slots(h, base, DUMMY_BMJ_RVA, span=256)
+    # 1) bmv 用法槽 → 各槽的类名（找事件总线）
+    print('\n== TrainingDummy.bmv 用法槽 ===')
+    slots = scan_usage_slots(h, base, DUMMY_HIT_RVA, span=256)
     cands = []
     for s in sorted(slots):
         v = u64(h, s)
@@ -65,7 +65,7 @@ def main():
             print(f'  slot {s:#x} → klass {ns}.{nm}')
             cands.append((s, v, ns, nm))
 
-    # 2) 逐候选：static_fields → [+0x20] 处理器对象 → 深度 1-2 找 TrainingDpsMeterUI 实例
+    # 2) 逐候选：static_fields → [+0x28] 委托 → 展开 invocation list 找 TrainingDpsMeterUI 实例
     for s, klass, ns, nm in cands:
         try:
             sf = u64(h, klass + 0xB8)
@@ -73,12 +73,12 @@ def main():
             continue
         if not valid_ptr(sf):
             continue
-        handler = u64(h, sf + 0x20)
+        handler = u64(h, sf + 0x28)
         if not valid_ptr(handler):
             continue
         hns, hnm = klass_of(h, handler)
-        print(f'\n== {ns}.{nm} static+0x20 → obj klass={hns}.{hnm} @ {handler:#x}')
-        # 深度 1：处理器的实例字段（已知 +0x78 = System.Delegate[]）
+        print(f'\n== {ns}.{nm} static+0x28 → obj klass={hns}.{hnm} @ {handler:#x}')
+        # 深度 1：委托对象的字段（已知 +0x78 = System.Delegate[] invocation list）
         for off in range(0x0, 0x80, 8):
             p = u64(h, handler + off)
             if not (valid_ptr(p) and p != handler):

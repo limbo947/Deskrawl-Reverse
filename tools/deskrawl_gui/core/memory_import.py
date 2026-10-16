@@ -390,7 +390,7 @@ class SnapshotBuilder:
         return slots
 
     def _read_conditionals(self, player):
-        """nuf/nug 条件属性表（Player.ConditionalModValue@0x4FDCC0 的输入；布局见 memory_offsets.json 注释）。
+        """nuf/nug 条件属性表（Player.ConditionalModValue@0x503C70 的输入；布局见 memory_offsets.json 注释）。
 
         值字段是内联 double（非 Obscured）；ability/status 指针非空表示该条带技能/状态门控，
         导出为 1（面板复算侧不猜门控状态，跳过并告警）。"""
@@ -421,7 +421,7 @@ class SnapshotBuilder:
         return out
 
     def _read_status_mods(self, player):
-        """StatusEffectController 三字典（SumStatBonus@0x4D8510 的 g1/g2/g3 层）。空表=无增益。"""
+        """StatusEffectController 三字典（StatusEffectController.SumStatBonus@0x4DB980 的 g1/g2/g3 层）。空表=无增益。"""
         sc = self.off['player']['status_controller']
         ctrl = self.pr.u64(player + sc['ptr'])
         out = {}

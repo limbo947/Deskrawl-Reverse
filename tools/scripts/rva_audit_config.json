@@ -88,69 +88,95 @@
       "file": "docs/08-常量设计要点与待办.md",
       "tokens": ["0x364DDD0", "0x364DDC8", "0x364DDD8", "0x364E238"],
       "reason": "§13.2 表的**新文件偏移**列（double 查表簇的 VA 减去 .rdata 基址），是偏移不是地址"
+    },
+    {
+      "file": "docs/08-常量设计要点与待办.md",
+      "tokens": ["0x424800", "0x424C00", "0x2A64000", "0x2E88C00", "0xAF5C00", "0x397E800", "0x286800"],
+      "reason": "§14.1 节表的**原始大小 / 文件偏移**列：尺寸与偏移不是可寻址目标"
+    },
+    {
+      "file": "docs/08-常量设计要点与待办.md",
+      "tokens": ["0x180426000", "0x182E8A000", "0x183980000"],
+      "reason": "§14.1 节表的 **VA 列**：节起点，本就不是方法/数据条目"
+    },
+    {
+      "file": "docs/08-常量设计要点与待办.md",
+      "tokens": ["0x180001400", "0x180000C00"],
+      "reason": "§14.1 换算公式里的**加数常量**（VA = 文件偏移 + 该值），是数值不是地址"
+    },
+    {
+      "file": "docs/08-常量设计要点与待办.md",
+      "token": "0x183681",
+      "reason": "§14.2 常量簇的通配写法（`0x18364F***` → `0x183681***`）：簇前缀不是可寻址目标"
+    },
+    {
+      "file": "docs/08-常量设计要点与待办.md",
+      "tokens": ["0x3680054", "0x36800B8", "0x3680108", "0x3680110", "0x3680118",
+                 "0x3680148", "0x3680210", "0x3680228"],
+      "reason": "§14.2 表的**新文件偏移**列（常量 VA 减去 .rdata 节基址），是偏移不是地址"
     }
   ],
   "data_refs": [
     {
       "$comment": "登记「确实是地址、但不是方法起始也不是已知常量」的数据指针；理由必须写明它是什么。带 `expect` 的条目由判定链 ⑥ 按 RVA 回查当期 script.json 并核对名字/字面量：名字不符即判失效（防「补丁后槽表重排、旧 RVA 落到别的条目」静默漂绿）；不带 `expect` 的是当期无锚点可查的导出指针（如 dumper 的 *Registration），只登记、不自动判绿。",
       "file": "tools/scripts/probe_paragon.py",
-      "token": "0x183A2A4D8",
-      "expect": "hh_TypeInfo",
-      "reason": "巅峰点数容器的静态管理类（混淆名 hh）TypeInfo 槽：dyt/dzg 的用法槽指向它，探针据此读 static_fields[+0x40] 的 Dictionary<StatType,int> 得出 {\"力量\": 21}"
+      "token": "0x183A62170",
+      "expect": "hk_TypeInfo",
+      "reason": "巅峰点数容器的静态管理类（1.0.3 混淆名 hk，1.0.2b 为 hh）TypeInfo 槽：dyt/dzg 的用法槽指向它，探针据此读 static_fields[+0x40] 的 Dictionary<StatType,int> 得出 {\"力量\": 21}。1.0.3 重锚定：类随全局混淆改名 hh→hk，槽名同步为 hk_TypeInfo"
     },
     {
       "file": "tools/scripts/probe_stat_labels.py",
-      "token": "0x183A2D670",
+      "token": "0x183A64B90",
       "expect": "ItemRarity_var",
-      "reason": "StatisticsUI.hnk（统计行构建）引用的元数据槽之一：稀有度枚举的静态字段。探针整批 dump 这些槽是为了确认统计页只读哪些元数据"
+      "reason": "StatisticsUI.hnk（统计行构建）引用的元数据槽之一：稀有度枚举的静态字段。探针整批 dump 这些槽是为了确认统计页只读哪些元数据。2026-10-16 1.0.3 重锚定"
     },
     {
       "file": "tools/scripts/probe_stat_labels.py",
-      "token": "0x183A2FB50",
+      "token": "0x183A66578",
       "expect": "Method$UnityEngine.Object.Instantiate<StatRowUI>()",
-      "reason": "同上（hnk 引用）：Instantiate<StatRowUI>() 的方法槽——统计行是逐行 Instantiate 出来的"
+      "reason": "同上（hnk 引用）：Instantiate<StatRowUI>() 的方法槽——统计行是逐行 Instantiate 出来的。2026-10-16 1.0.3 重锚定"
     },
     {
       "file": "tools/scripts/probe_stat_labels.py",
-      "token": "0x183A2FB48",
+      "token": "0x183A66570",
       "expect": "StatRowUI[]_TypeInfo",
-      "reason": "同上（hnk 引用）：统计行控件数组的类型槽"
+      "reason": "同上（hnk 引用）：统计行控件数组的类型槽。2026-10-16 1.0.3 重锚定"
     },
     {
       "file": "tools/scripts/probe_stat_labels.py",
-      "token": "0x183A37E40",
+      "token": "0x183A6E7C8",
       "expect": "ItemRarity[]_TypeInfo",
-      "reason": "同上（hnk 引用）：按稀有度遍历的枚举数组类型槽"
+      "reason": "同上（hnk 引用）：按稀有度遍历的枚举数组类型槽。2026-10-16 1.0.3 重锚定"
     },
     {
       "file": "tools/scripts/probe_stat_labels.py",
-      "token": "0x183A1F3E8",
+      "token": "0x183A58008",
       "expect": "UnityEngine.Object_TypeInfo",
-      "reason": "同上（hnk 引用）：Instantiate 的基类类型槽"
+      "reason": "同上（hnk 引用）：Instantiate 的基类类型槽。2026-10-16 1.0.3 重锚定"
     },
     {
       "file": "tools/scripts/probe_stat_labels.py",
-      "token": "0x183A25F98",
+      "token": "0x183A5D560",
       "expect": "GameManager_TypeInfo",
-      "reason": "hnm 引用的元数据槽：统计页从 GameManager 取时钟，故它只读元统计"
+      "reason": "hnm 引用的元数据槽：统计页从 GameManager 取时钟，故它只读元统计。2026-10-16 1.0.3 重锚定"
     },
     {
       "file": "tools/scripts/probe_stat_labels.py",
-      "token": "0x183A2D6C8",
+      "token": "0x183A64BE8",
       "expect": "PlayerStatistics_TypeInfo",
-      "reason": "hnm 引用的元数据槽：PlayerStatistics 是终身元统计（时长/金币/经验/死亡），不含伤害计数——「实伤只能靠 DPS 计」这条结论的直接证据"
+      "reason": "hnm 引用的元数据槽：PlayerStatistics 是终身元统计（时长/金币/经验/死亡），不含伤害计数——「实伤只能靠 DPS 计」这条结论的直接证据。2026-10-16 1.0.3 重锚定"
     },
     {
       "file": "docs/08-常量设计要点与待办.md",
-      "tokens": ["0x182EE3580", "0x18349CCB0"],
+      "tokens": ["0x182F19730", "0x1834DE720"],
       "anchor": "none",
-      "reason": "§12.5 记录的 dumper 导出指针 CodeRegistration / MetadataRegistration——当期构建的真实数据指针（本版 v39 导出时读到的值），本来就该长期保持当期值。当期 script.json 里查不到它们，只能靠「文档描述的就是这份构建」锚定：见 doc_fingerprints（补丁后文档指纹先变红，人去更新 §12.4/§12.5 与这里）"
+      "reason": "§14.5 记录的 dumper 导出指针 CodeRegistration / MetadataRegistration——当期构建的真实数据指针（1.0.3 v39 导出时读到的值），本来就该长期保持当期值。当期 script.json 里查不到它们，只能靠「文档描述的就是这份构建」锚定：见 doc_fingerprints（补丁后文档指纹先变红，人去更新 §14.5 与这里）"
     },
     {
       "file": "docs/08-常量设计要点与待办.md",
-      "tokens": ["0x18364F9D0", "0x18364F9C8", "0x18364F9D8", "0x18364FE38"],
+      "tokens": ["0x183681510", "0x183681508", "0x183681518", "0x183681978"],
       "anchor": "none",
-      "reason": "§13.2/§13.3 的 double 查表簇封顶常量：`StatCap.GetCap(StatType)` 按属性分档返回 0.85（暴击/闪避/蓝耗缩减）/0.8（CDR）/0.9（通用·元素减伤）/inf（其余无上限）。当期 script.json 无对应槽位可查，锚点由 §13.2 表登记 + PE 逐字节读回（f64 = 0.85/0.8/0.9/inf 全部命中）"
+      "reason": "§14.3 的 double 查表簇封顶常量：`StatCap.GetCap(StatType)` 按属性分档返回 0.85（暴击/闪避/蓝耗缩减）/0.8（CDR）/0.9（通用·元素减伤）/inf（其余无上限）。当期 script.json 无对应槽位可查，锚点由 §14.3 表登记 + PE 逐字节读回（f64 = 0.85/0.8/0.9/inf 全部命中）。1.0.3 与常量簇同位（0.85@0x183681510、0.8@0x183681508、0.9@0x183681518、inf@0x183681978）"
     }
   ],
   "deprecated": [
@@ -192,27 +218,27 @@
     }
   ],
   "doc_sections": {
-    "$comment": "docs/08 §12.1 节表，逐行与 PE 头实测比对（VA/文件偏移/原始大小）。",
+    "$comment": "docs/08 §14.1 节表，逐行与 PE 头实测比对（VA/文件偏移/原始大小）。",
     "doc": "docs/08-常量设计要点与待办.md",
     "rows": [
-      {"name": ".text", "va": "0x180001000", "raw": "0x400", "rawsize": "0x422200"},
-      {"name": "il2cpp", "va": "0x180424000", "raw": "0x422600", "rawsize": "0x2A3EE00"},
-      {"name": ".rdata", "va": "0x182E63000", "raw": "0x2E61400", "rawsize": "0xAE8400"},
-      {"name": ".data", "va": "0x18394C000", "raw": "0x3949800", "rawsize": "0x285800"}
+      {"name": ".text", "va": "0x180001000", "raw": "0x400", "rawsize": "0x424800"},
+      {"name": "il2cpp", "va": "0x180426000", "raw": "0x424C00", "rawsize": "0x2A64000"},
+      {"name": ".rdata", "va": "0x182E8A000", "raw": "0x2E88C00", "rawsize": "0xAF5C00"},
+      {"name": ".data", "va": "0x183980000", "raw": "0x397E800", "rawsize": "0x286800"}
     ]
   },
   "doc_constants": {
-    "$comment": "docs/08 §9.1(旧址+值) 与 §12.2(新址) 的联合复核：新址必须逐字节读回该值；旧址列出是否仍读回同值（供人判断「失效」是否彻底）。float32/double 自动判别，不预设存储宽度。1.0.2b 簇整体后移（旧 0x18363E/F*** → 新 0x18364F***），且 50/100 已并入 double 簇。",
+    "$comment": "docs/08 §9.1(旧址+值) 与 §14.2(新址) 的联合复核：新址必须逐字节读回该值；旧址列出是否仍读回同值（供人判断「失效」是否彻底）。float32/double 自动判别，不预设存储宽度。1.0.3 常量簇由 0x18364F*** 整体移至 0x183681***（.rdata），内部排列不变（1.1/0.3/0.8/0.85/0.9/1.3/50/100）。",
     "doc": "docs/08-常量设计要点与待办.md",
     "rows": [
-      {"name": "命中浮动上界", "value": 1.1, "va_old": "0x18363EF64", "va_new": "0x18364F914"},
-      {"name": "受伤阈值", "value": 0.3, "va_old": "0x18363EFC8", "va_new": "0x18364F728"},
-      {"name": "健康阈值", "value": 0.8, "va_old": "0x18363F018", "va_new": "0x18364F83C"},
-      {"name": "属性数值封顶", "value": 0.85, "va_old": "0x18363F020", "va_new": "0x18364F860"},
-      {"name": "命中浮动下界", "value": 0.9, "va_old": "0x18363F028", "va_new": "0x18364F87C"},
-      {"name": "易伤乘区", "value": 1.3, "va_old": "0x18363F058", "va_new": "0x18364F938"},
-      {"name": "护甲分母", "value": 50.0, "va_old": "0x18363F120", "va_new": "0x18364FAD0"},
-      {"name": "主属性分母", "value": 100.0, "va_old": "0x18363F138", "va_new": "0x18364FAE8"}
+      {"name": "命中浮动上界", "value": 1.1, "va_old": "0x18364F914", "va_new": "0x183681454"},
+      {"name": "受伤阈值", "value": 0.3, "va_old": "0x18364F728", "va_new": "0x1836814B8"},
+      {"name": "健康阈值", "value": 0.8, "va_old": "0x18364F83C", "va_new": "0x183681508"},
+      {"name": "属性数值封顶", "value": 0.85, "va_old": "0x18364F860", "va_new": "0x183681510"},
+      {"name": "命中浮动下界", "value": 0.9, "va_old": "0x18364F87C", "va_new": "0x183681518"},
+      {"name": "易伤乘区", "value": 1.3, "va_old": "0x18364F938", "va_new": "0x183681548"},
+      {"name": "护甲分母", "value": 50.0, "va_old": "0x18364FAD0", "va_new": "0x183681610"},
+      {"name": "主属性分母", "value": 100.0, "va_old": "0x18364FAE8", "va_new": "0x183681628"}
     ]
   },
   "offset_checks": {
@@ -251,17 +277,17 @@
   "doc_fingerprints": {
     "$comment": "文档里写的构建 SHA 必须与磁盘上的游戏文件一致（双向：文档要记录它、它要等于实测值）。为什么需要：§12.5 的 CodeRegistration / MetadataRegistration 这类导出指针当期无锚点可查，唯一能锚的就是「这份文档描述的就是这份构建」——补丁后这里先红，避免那些指针静默过期。",
     "doc": "docs/08-常量设计要点与待办.md",
-    "game_assembly_sha256": "f8221364be8101c60d76be3e031f2cd5be376a7fb6b9b73a7cfb45e2a52a9fab"
+    "game_assembly_sha256": "f23ae23f8714fa5a49b9ab4b8ae767c33f7e50afad47284d81121354d1677a46"
   },
   "falsify": {
     "$comment": "证伪用例：故意把已知有效地址改错一位/改成越界值，体检必须报「已失效」。任何一条没被拦下即视为自检失效（退出码非 0）。",
     "cases": [
-      {"token": "0x18067FCE1", "expect": "stale", "why": "真实有效地址 0x18067FCE0（当期 Character.bkm=CalcDamage）末位 +1，必须判失效"},
-      {"token": "0x180511061", "expect": "stale", "why": "Player.bkm 覆写 0x180511060 末位 +1"},
-      {"token": "0x7BA6A1", "expect": "stale", "why": "SaveSystem 锚点 0x7BA6A0 末位 +1（RVA 形式）"},
-      {"token": "0x18364F861", "expect": "stale", "why": "常量 0.85 新址 0x18364F860 末位 +1（数据地址）"},
-      {"token": "0x183A2A4D9", "expect": "stale", "why": "当期元数据槽 hh_TypeInfo 0x183A2A4D8 末位 +1：当期表查不到该 RVA，必须落回人工确认（证明 ⑥ 不是「.data 一律放行」）"},
-      {"token": "0x18067FCE0", "expect": "valid", "why": "真值对照：同一地址必须判有效（证明不是「一律判红」）"}
+      {"token": "0x180687341", "expect": "stale", "why": "真实有效地址 0x180687340（当期 Character.bkx=CalcDamage）末位 +1，必须判失效"},
+      {"token": "0x180518231", "expect": "stale", "why": "Player.bkx 覆写 0x180518230 末位 +1"},
+      {"token": "0x7C7351", "expect": "stale", "why": "SaveSystem 锚点 0x7C7350 末位 +1（RVA 形式）"},
+      {"token": "0x183681511", "expect": "stale", "why": "常量 0.85 新址 0x183681510 末位 +1（数据地址）"},
+      {"token": "0x183A62171", "expect": "stale", "why": "当期元数据槽 hk_TypeInfo 0x183A62170 末位 +1：当期表查不到该 RVA，必须落回人工确认（证明 ⑥ 不是「.data 一律放行」）"},
+      {"token": "0x180687340", "expect": "valid", "why": "真值对照：同一地址必须判有效（证明不是「一律判红」）"}
     ]
   }
 }

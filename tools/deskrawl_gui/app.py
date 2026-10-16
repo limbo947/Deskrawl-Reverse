@@ -308,7 +308,7 @@ class MainWindow(QMainWindow):
         warns = payload['meta'].get('warnings') or []
         panel = self.profile.panel or {}
         pw = panel.get('warnings') or []
-        # 职业主属性伤害加成（Player.CalcDamage@0x511060）：面板值代入 ×(1+值/100)，与游戏 tooltip 同源
+        # 职业主属性伤害加成（Player.CalcDamage@0x518230）：面板值代入 ×(1+值/100)，与游戏 tooltip 同源
         pri_line = ''
         ps = self.profile.primary_stat
         if ps is not None and panel.get('rows'):

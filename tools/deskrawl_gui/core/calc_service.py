@@ -300,7 +300,7 @@ def rank_candidates(profile: CharacterProfile, gd, kind: str, *,
 
 
 # --------------------------------------------------------------------------- #
-# 游戏面板口径复算（Player.PanelStat@0x4FD3A0 反汇编还原；2026-10-08 与游戏「属性」页逐行对拍）
+# 游戏面板口径复算（Player.PanelStat@0x503350 反汇编还原；2026-10-08 与游戏「属性」页逐行对拍）
 # --------------------------------------------------------------------------- #
 # 面板行序 = 游戏「属性」页顺序（进攻 18 行 + 防御 5 行；21=攻击速度显示式行）
 PANEL_ORDER = [0, 3, 21, 6, 4, 5, 23, 24, 25, 26, 27, 28, 29, 31, 45, 32, 40, 65,
@@ -311,7 +311,7 @@ _PCT_DISPLAY = {4, 5, 6, 13, 15, 16, 17, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31,
                 33, 34, 37, 40, 41, 42, 43, 44, 45, 46, 48, 49, 51, 52, 53, 54, 55,
                 56, 57, 58, 59, 60, 61, 62, 63, 64, 65}
 
-# 基础字段 → 属性（Character.BaseFieldToStat@0x67F900 与 Player.BaseFieldToStat@0x4FDAB0 逐分支反汇编）
+# 基础字段 → 属性（Character.BaseFieldToStat@0x686F60 与 Player.BaseFieldToStat@0x503A60 逐分支反汇编）
 _BASE_FIELD_STAT = {
     'BaseDamage': 3, 'BaseCritChance': 4, 'BaseCritDamage': 5, 'BaseAttackSpeed': 6,
     'BaseMaxHealth': 7, 'BaseMoveSpeed': 10, 'BaseLifeOnHit': 11, 'BaseLifeOnKill': 12,
@@ -340,7 +340,7 @@ def build_panel(payload: dict) -> dict:
     panel(stat) = cap( g3×(core + g1)×(1+g2) )
     core(stat)  = (Σ平坦字典 + 基础字段 + 主属性 + far(护甲←力量/魔抗←智力) + 条件表平坦)
                   × (1 + Σ百分比字典 + 条件表百分比)   [7/8/9/10 再 ×(1+对应%属性的 core)]
-    条件求值：None(-1) 恒真；Healthy=血比例>0.8；Injured<0.3（Player.EvaluateCondition@0x50D2F0 实证）；
+    条件求值：None(-1) 恒真；Healthy=血比例>0.8；Injured<0.3（Player.EvaluateCondition@0x513490 实证）；
     敌情类（2/3/4/5）与带技能/状态门控的条目无法从快照静态判定 → 不计入并记告警。
     返回 {'time','mode','hp_frac','rows','warnings'}；row = [stat, flat, cond, pct, mult, final, text]。
     """

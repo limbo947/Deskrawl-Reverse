@@ -1,7 +1,7 @@
 [
  {
   "_name": "HunterSetRune1",
-  "_pathid": 5141,
+  "_pathid": 5280,
   "_file": "resources.assets",
   "Bonuses": [
    {
@@ -10,7 +10,7 @@
     "Effects": [
      {
       "fileID": 0,
-      "pathID": 5142
+      "pathID": 5281
      }
     ],
     "AbilityLevels": []
@@ -21,7 +21,7 @@
     "Effects": [
      {
       "fileID": 0,
-      "pathID": 5143
+      "pathID": 5282
      }
     ],
     "AbilityLevels": []
@@ -32,7 +32,7 @@
     "Effects": [
      {
       "fileID": 0,
-      "pathID": 5144
+      "pathID": 5283
      }
     ],
     "AbilityLevels": []
@@ -41,7 +41,7 @@
  },
  {
   "_name": "HunterSetRune2",
-  "_pathid": 5145,
+  "_pathid": 5284,
   "_file": "resources.assets",
   "Bonuses": [
    {
@@ -69,7 +69,7 @@
     "Effects": [
      {
       "fileID": 0,
-      "pathID": 5146
+      "pathID": 5285
      }
     ],
     "AbilityLevels": []
@@ -80,11 +80,11 @@
     "Effects": [
      {
       "fileID": 0,
-      "pathID": 5147
+      "pathID": 5286
      },
      {
       "fileID": 0,
-      "pathID": 5148
+      "pathID": 5287
      }
     ],
     "AbilityLevels": []
@@ -93,7 +93,7 @@
  },
  {
   "_name": "HunterSetRune3",
-  "_pathid": 5149,
+  "_pathid": 5288,
   "_file": "resources.assets",
   "Bonuses": [
    {
@@ -121,7 +121,7 @@
     "Effects": [
      {
       "fileID": 0,
-      "pathID": 5150
+      "pathID": 5289
      }
     ],
     "AbilityLevels": []
@@ -132,7 +132,7 @@
     "Effects": [
      {
       "fileID": 0,
-      "pathID": 5151
+      "pathID": 5290
      }
     ],
     "AbilityLevels": []
@@ -141,7 +141,7 @@
  },
  {
   "_name": "MonkSetRune1",
-  "_pathid": 5153,
+  "_pathid": 5292,
   "_file": "resources.assets",
   "Bonuses": [
    {
@@ -169,7 +169,7 @@
     "Effects": [
      {
       "fileID": 0,
-      "pathID": 5154
+      "pathID": 5293
      }
     ],
     "AbilityLevels": []
@@ -180,7 +180,7 @@
     "Effects": [
      {
       "fileID": 0,
-      "pathID": 5155
+      "pathID": 5294
      }
     ],
     "AbilityLevels": []
@@ -189,7 +189,7 @@
  },
  {
   "_name": "MonkSetRune2",
-  "_pathid": 5156,
+  "_pathid": 5295,
   "_file": "resources.assets",
   "Bonuses": [
    {
@@ -217,7 +217,7 @@
     "Effects": [
      {
       "fileID": 0,
-      "pathID": 5157
+      "pathID": 5296
      }
     ],
     "AbilityLevels": []
@@ -228,7 +228,7 @@
     "Effects": [
      {
       "fileID": 0,
-      "pathID": 5158
+      "pathID": 5297
      }
     ],
     "AbilityLevels": []
@@ -237,7 +237,7 @@
  },
  {
   "_name": "MonkSetRune3",
-  "_pathid": 5159,
+  "_pathid": 5298,
   "_file": "resources.assets",
   "Bonuses": [
    {
@@ -265,7 +265,7 @@
     "Effects": [
      {
       "fileID": 0,
-      "pathID": 5160
+      "pathID": 5299
      }
     ],
     "AbilityLevels": []
@@ -276,15 +276,15 @@
     "Effects": [
      {
       "fileID": 0,
-      "pathID": 5161
+      "pathID": 5300
      },
      {
       "fileID": 0,
-      "pathID": 5162
+      "pathID": 5301
      },
      {
       "fileID": 0,
-      "pathID": 5163
+      "pathID": 5302
      }
     ],
     "AbilityLevels": []
@@ -293,7 +293,7 @@
  },
  {
   "_name": "SorcererSetRune1",
-  "_pathid": 5164,
+  "_pathid": 5303,
   "_file": "resources.assets",
   "Bonuses": [
    {
@@ -321,7 +321,7 @@
     "Effects": [
      {
       "fileID": 0,
-      "pathID": 5165
+      "pathID": 5304
      }
     ],
     "AbilityLevels": []
@@ -332,7 +332,7 @@
     "Effects": [
      {
       "fileID": 0,
-      "pathID": 5166
+      "pathID": 5305
      }
     ],
     "AbilityLevels": []
@@ -341,7 +341,7 @@
  },
  {
   "_name": "SorcererSetRune2",
-  "_pathid": 5167,
+  "_pathid": 5306,
   "_file": "resources.assets",
   "Bonuses": [
    {
@@ -365,11 +365,24 @@
    },
    {
     "RequiredCount": 4,
-    "Modifiers": [],
+    "Modifiers": [
+     {
+      "Stat": 6,
+      "Type": 0,
+      "Value": {
+       "__type__": "ObscuredFloat",
+       "hash": -632662781,
+       "hiddenValue": 945046159,
+       "cryptoKey": 123456789,
+       "value": 0.6000000238418579,
+       "__tail__": "00000000000000000000000000000000"
+      }
+     }
+    ],
     "Effects": [
      {
       "fileID": 0,
-      "pathID": 5168
+      "pathID": 5307
      }
     ],
     "AbilityLevels": []
@@ -380,7 +393,11 @@
     "Effects": [
      {
       "fileID": 0,
-      "pathID": 5169
+      "pathID": 5308
+     },
+     {
+      "fileID": 0,
+      "pathID": 5309
      }
     ],
     "AbilityLevels": []
@@ -389,7 +406,7 @@
  },
  {
   "_name": "SorcererSetRune3",
-  "_pathid": 5170,
+  "_pathid": 5310,
   "_file": "resources.assets",
   "Bonuses": [
    {
@@ -417,7 +434,7 @@
     "Effects": [
      {
       "fileID": 0,
-      "pathID": 5171
+      "pathID": 5311
      }
     ],
     "AbilityLevels": []
@@ -428,7 +445,7 @@
     "Effects": [
      {
       "fileID": 0,
-      "pathID": 5172
+      "pathID": 5312
      }
     ],
     "AbilityLevels": []
@@ -437,7 +454,7 @@
  },
  {
   "_name": "WarriorSetRune1",
-  "_pathid": 5173,
+  "_pathid": 5313,
   "_file": "resources.assets",
   "Bonuses": [
    {
@@ -465,7 +482,7 @@
     "Effects": [
      {
       "fileID": 0,
-      "pathID": 5174
+      "pathID": 5314
      }
     ],
     "AbilityLevels": []
@@ -476,7 +493,7 @@
     "Effects": [
      {
       "fileID": 0,
-      "pathID": 5175
+      "pathID": 5315
      }
     ],
     "AbilityLevels": []
@@ -485,7 +502,7 @@
  },
  {
   "_name": "WarriorSetRune2",
-  "_pathid": 5176,
+  "_pathid": 5316,
   "_file": "resources.assets",
   "Bonuses": [
    {
@@ -513,7 +530,7 @@
     "Effects": [
      {
       "fileID": 0,
-      "pathID": 5177
+      "pathID": 5317
      }
     ],
     "AbilityLevels": []
@@ -524,7 +541,7 @@
     "Effects": [
      {
       "fileID": 0,
-      "pathID": 5178
+      "pathID": 5318
      }
     ],
     "AbilityLevels": []
@@ -533,7 +550,7 @@
  },
  {
   "_name": "WarriorSetRune3",
-  "_pathid": 5179,
+  "_pathid": 5319,
   "_file": "resources.assets",
   "Bonuses": [
    {
@@ -561,7 +578,7 @@
     "Effects": [
      {
       "fileID": 0,
-      "pathID": 5180
+      "pathID": 5320
      }
     ],
     "AbilityLevels": []
@@ -572,11 +589,11 @@
     "Effects": [
      {
       "fileID": 0,
-      "pathID": 5181
+      "pathID": 5321
      },
      {
       "fileID": 0,
-      "pathID": 5182
+      "pathID": 5322
      }
     ],
     "AbilityLevels": []
@@ -585,7 +602,7 @@
  },
  {
   "_name": "WarriorSetRune4",
-  "_pathid": 5183,
+  "_pathid": 5323,
   "_file": "resources.assets",
   "Bonuses": [
    {
@@ -613,7 +630,7 @@
     "Effects": [
      {
       "fileID": 0,
-      "pathID": 5184
+      "pathID": 5324
      }
     ],
     "AbilityLevels": []
@@ -624,7 +641,7 @@
     "Effects": [
      {
       "fileID": 0,
-      "pathID": 5185
+      "pathID": 5325
      }
     ],
     "AbilityLevels": []

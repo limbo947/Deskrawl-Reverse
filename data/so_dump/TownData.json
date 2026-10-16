@@ -1,41 +1,41 @@
 [
  {
   "_name": "DesertTown",
-  "_pathid": 60267,
+  "_pathid": 60320,
   "_file": "sharedassets0.assets",
   "Prerequisite": {
    "fileID": 0,
-   "pathID": 60266
+   "pathID": 60319
   },
   "IsLockedInDemo": true,
   "TownPrefab": {
    "fileID": 0,
-   "pathID": 23809
+   "pathID": 23837
   },
   "MusicClip": {
    "fileID": 0,
-   "pathID": 4969
+   "pathID": 4988
   },
   "MusicVolume": 1.0,
   "MusicClip2": {
    "fileID": 0,
-   "pathID": 4945
+   "pathID": 4964
   },
   "MusicVolume2": 0.6000000238418579
  },
  {
   "_name": "MainTown",
-  "_pathid": 60285,
+  "_pathid": 60338,
   "_file": "sharedassets0.assets",
   "Prerequisite": null,
   "IsLockedInDemo": false,
   "TownPrefab": {
    "fileID": 0,
-   "pathID": 23808
+   "pathID": 23836
   },
   "MusicClip": {
    "fileID": 0,
-   "pathID": 4893
+   "pathID": 4912
   },
   "MusicVolume": 0.699999988079071,
   "MusicClip2": null,
@@ -43,25 +43,25 @@
  },
  {
   "_name": "SnowTown",
-  "_pathid": 60308,
+  "_pathid": 60361,
   "_file": "sharedassets0.assets",
   "Prerequisite": {
    "fileID": 0,
-   "pathID": 60300
+   "pathID": 60353
   },
   "IsLockedInDemo": true,
   "TownPrefab": {
    "fileID": 0,
-   "pathID": 23810
+   "pathID": 23838
   },
   "MusicClip": {
    "fileID": 0,
-   "pathID": 4941
+   "pathID": 4960
   },
   "MusicVolume": 0.699999988079071,
   "MusicClip2": {
    "fileID": 0,
-   "pathID": 4902
+   "pathID": 4921
   },
   "MusicVolume2": 0.8999999761581421
  }

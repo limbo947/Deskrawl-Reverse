@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """一次性探针：RuneManager 符文槽布局实测（只读）。
 
-RuneManager（dump.cs）：单例 getter eap() RVA 0x7ACB30；字段 RuneData[] nje@0x30（6 槽）、
+RuneManager（dump.cs）：单例 getter ebx() RVA 0x7B97E0；字段 RuneData[] nje@0x30（6 槽）、
 string[] njf@0x38、Dictionary<RuneSetData,int> njg@0x40。
 本探针打印槽内 RuneData 的类名/名称、njf 字符串（疑似实例 UID）、套装字典条目，
 用于确认「符文名 + 符文等级」的读取链。
@@ -15,7 +15,7 @@ from mem_probe import (cstr, find_process, find_singleton, klass_name, module_ba
                        read_mem, u32, u64, valid_ptr, wstr)
 
 k32 = ctypes.WinDLL('kernel32', use_last_error=True)
-GETTER_RVA = 0x7ACB30          # RuneManager.eap()
+GETTER_RVA = 0x7B97E0          # RuneManager.ebx()
 
 
 def dump_list(h, ptr, label, limit=12):

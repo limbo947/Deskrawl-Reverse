@@ -7,13 +7,14 @@ from paths import *  # noqa: F401,F403
 - 21 个原文件: 追加 `_managedRefs`（技能效果/状态行为的具体数值）
 - 新增 EquipmentEffects.json / TalentEffects.json / LifeSkillEffects.json / StatusBehaviors.json
 """
-import UnityPy, os, json, sys, collections
+import UnityPy, os, json, sys, collections, struct, re
 sys.path.insert(0, TOOLS)
 import decode
 from decode import decode_object, decode_object_ex
 
 BASE = GAME_DATA
 CACHE = json.load(open(ASSETS_CACHE))
+SCRIPT_MAP = CACHE['scripts']          # 'fname|pathid' -> (类名, 命名空间, 程序集)
 OUT = SO_DUMP
 os.makedirs(OUT, exist_ok=True)
 
@@ -59,7 +60,37 @@ def build_class_map(sf):
 clsmap = {fn: build_class_map(sf) for fn, sf in files.items()}
 
 
+def _ext_name(e):
+    s = str(e)
+    m = re.search(r'<FileIdentifier\((.*?)\)>', s)
+    return m.group(1) if m else s.rstrip('>')
+
+
 def obj_class(fn, o):
+    """MonoBehaviour 的类名。优先按 m_Script 的 PPTR 直接解，再回落 script_type_index。
+
+    为什么不能只用 script_type_index：1.0.3 构建里该索引对 Effect 资产解析不出来（实测 0 命中），
+    而 Effect 导出**在该情形下静默不写文件**（没有输出就不覆盖），会把上一版的 Effect 资产
+    留在原地、与已刷新的 ItemData 引用（EquipmentEffects 的 pathID）失配——GUI 的传奇特效接线
+    自检因此报红。PPTR 解与 assets_probe.py 同源，实测能把全部 Effect 类名解出来。
+    """
+    sf = files.get(fn)
+    if sf is not None:
+        try:
+            raw = o.get_raw_data()
+            fid = struct.unpack_from('<i', raw, 0x10)[0]
+            pid = struct.unpack_from('<q', raw, 0x14)[0]
+            if fid == 0:
+                tf = fn
+            elif 0 <= fid - 1 < len(sf.externals):
+                tf = _ext_name(sf.externals[fid - 1])
+            else:
+                tf = '?'
+            v = SCRIPT_MAP.get(f'{tf}|{pid}')
+            if v:
+                return v[0]
+        except Exception:
+            pass
     try:
         sti = o.type.script_type_index
     except Exception:

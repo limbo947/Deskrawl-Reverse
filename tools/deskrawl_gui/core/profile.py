@@ -262,8 +262,8 @@ class CharacterProfile:
     # 由 widget 侧据此展示 α 降级提示（近似标注/对比降级），并存档往返保留语义。
     import_mode: str = ''
     import_time: str = ''
-    # 职业主属性（0=力量/1=敏捷/2=智力；None=不启用）：攻击伤害 ×(1+Final/100)（Player.CalcDamage@0x511060）。
-    # 内存导入自动取 HeroData.PrimaryStat（Player.PrimaryStatValue@0x4FACF0 链）；手工构建由左栏「职业主属性」选择。
+    # 职业主属性（0=力量/1=敏捷/2=智力；None=不启用）：攻击伤害 ×(1+Final/100)（Player.CalcDamage@0x518230）。
+    # 内存导入自动取 HeroData.PrimaryStat（Player.PrimaryStatValue@0x500CA0 链）；手工构建由左栏「职业主属性」选择。
     primary_stat: Optional[int] = None
     # 游戏面板口径复算结果（导入时冻结，见 calc_service.build_panel）：
     # {'time','mode','hp_frac','rows','warnings'}；None=手工构建，属性明细退回计算口径展示。

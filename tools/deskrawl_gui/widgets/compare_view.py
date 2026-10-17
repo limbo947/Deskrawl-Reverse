@@ -16,6 +16,8 @@ _SKILL_COLS = ['技能', '当前', '候选', 'Δ%']
 # Δ 中性阈值：界面按 1 位小数显示，|Δ| < 0.05 时读出来就是"+0.0"——这种情况必须用中性色，
 # 否则「没变化」会被读成「提升」（旧实现 `delta >= 0 → deltaUp` 把 Δ=0 也上绿）。
 _FLAT_DELTA = 0.05
+# 技能表 Δ% 列同一取向：按 2 位小数显示，|Δ%| < 0.005 读出来就是"+0.00%"，同样归中性色
+_FLAT_DELTA_PCT = 0.005
 
 
 def _delta_object_name(delta: float) -> str:
@@ -109,10 +111,22 @@ class CompareView(QGroupBox):
         self.skill_hint.setText(f'技能秒伤对比（{len(rows)} 项，期望值口径；换装看 Δ% 即可）')
         self.skill_table.setRowCount(len(rows))
         for i, r in enumerate(rows):
-            cells = [r.ability_name, f'{r.current_dps:.0f}', f'{r.candidate_dps:.0f}',
-                     f'{r.delta_pct:+.2f}%']
+            cells = [r.ability_name, f'{r.current_dps:.0f}', f'{r.candidate_dps:.0f}']
             for j, text in enumerate(cells):
                 item = QTableWidgetItem(text)
                 if j >= 1:
                     item.setTextAlignment(Qt.AlignRight | Qt.AlignVCenter)
                 self.skill_table.setItem(i, j, item)
+            # Δ% 单独用标签承载：涨/跌/无变化三态与顶部 Δ 同色（颜色在 QSS 里按 trend 属性切），
+            # 否则整列黑字，读 Δ 时得先看符号再去别处找颜色语义
+            self.skill_table.setCellWidget(i, 3, self._delta_cell(r.delta_pct))
+
+    @staticmethod
+    def _delta_cell(pct: float) -> QLabel:
+        """Δ% 单元格标签：三态映射到 QSS 的 trend 属性（与 deltaUp/deltaDown/deltaFlat 同语义）。"""
+        trend = 'flat' if abs(float(pct)) < _FLAT_DELTA_PCT else ('up' if pct > 0 else 'down')
+        label = QLabel(f'{float(pct):+.2f}%')
+        label.setObjectName('deltaCell')
+        label.setProperty('trend', trend)
+        label.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
+        return label

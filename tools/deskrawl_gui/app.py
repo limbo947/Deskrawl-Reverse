@@ -14,7 +14,7 @@ import sys
 import time
 
 from PySide6.QtCore import QByteArray, Qt, Signal
-from PySide6.QtGui import QAction
+from PySide6.QtGui import QAction, QIcon
 from PySide6.QtWidgets import (QApplication, QFileDialog, QHBoxLayout,
                                QMainWindow, QMessageBox, QStackedWidget,
                                QStatusBar, QWidget)
@@ -33,6 +33,7 @@ from .widgets.role_page import RolePage
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
 QSS_PATH = os.path.join(_HERE, 'resources', 'style.qss')
+ICON_PATH = os.path.join(_HERE, 'resources', 'app_icon.svg')
 
 # 页面注册表：key 供快捷键/编程切页用，顺序即堆栈顺序
 PAGES = [('role', '角色'), ('compare', '装备对比'), ('assembly', '装配中心')]
@@ -88,6 +89,16 @@ def load_qss(path: str = QSS_PATH) -> str:
         raise FileNotFoundError(f'主题资源缺失：{path}')
     with open(path, encoding='utf-8') as f:
         return f.read()
+
+
+def load_app_icon(path: str = ICON_PATH):
+    """应用/任务栏图标（resources/app_icon.svg）；不可用时返回 None。
+
+    与 load_qss 的取向相反——图标是纯观感项：文件缺失或平台没有 SVG 图像插件时静默跳过
+    （同 V12 暗标题栏的「尽力而为」），不为此让窗口打不开。返回 None 由调用方决定是否设置。
+    """
+    icon = QIcon(path)
+    return None if icon.isNull() else icon
 
 
 class MainWindow(QMainWindow):
@@ -204,13 +215,16 @@ class MainWindow(QMainWindow):
         super().closeEvent(event)
 
     def _on_page_changed(self, row: int):
-        """切页：DPS 计只在对比页可见时才轮询。
+        """切页：DPS 计只在对比页可见时才轮询；进装配中心时补一次候选重排。
 
-        此前的 QTimer 在构造时启动且永不停止——停在角色页/装配中心、甚至游戏没开时，
-        也每秒扫一次进程与内存。轮询只该服务于「正在看对比结果」这一种情形。
+        候选 ΔDPS 相对「当前构建」排序，而该基线会被角色页（面板/巅峰）的编辑改动——那类
+        编辑走轻量刷新、不重排候选表。故进页时补一次 deep 重排让列表与基线一致；这也正是不再
+        需要「刷新排序」按钮的原因（类别/等级/部位变更本就会自动重排）。
         """
         self.stack.setCurrentIndex(row)
         self.compare_page.dps_meter.set_active(row == PAGE_ROW['compare'])
+        if row == PAGE_ROW['assembly']:
+            self.assembly_center.refresh(deep=True)
 
     def _bind_page_shortcuts(self):
         """Ctrl+1/2/3 直达对应页面；挂 QAction 以便菜单外也能生效。Ctrl+B 收起/展开侧栏。"""
@@ -512,11 +526,15 @@ def build_application(argv=None) -> QApplication:
     为什么显式设 Fusion：QSS 覆盖不到的子控件（复选框指示器/下拉箭头/微调按钮/排序指示/
     分隔手柄）默认由平台样式绘制，在暗底上会漏出白色方块与浅色图形，且各 Windows 版本
     表现不一。Fusion 是 Qt 自带的跨平台实现，配合本主题的调色板可让未覆盖控件也走可控路径。
+    图标在 app 上设一次即可覆盖主窗与所有弹窗（任务栏/Alt-Tab 也用它），须在建窗之前设。
     """
     app = QApplication.instance() or QApplication(argv if argv is not None else sys.argv)
     app.setApplicationName('Deskrawl 数值计算台')
     app.setStyle('Fusion')
     app.setStyleSheet(load_qss())
+    icon = load_app_icon()
+    if icon is not None:
+        app.setWindowIcon(icon)
     return app
 
 

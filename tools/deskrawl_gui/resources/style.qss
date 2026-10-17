@@ -259,6 +259,14 @@ QLabel#dpsBig { font-size: 16px; font-weight: 600; color: #E8EAED; }
 QLabel#deltaUp { font-size: 24px; font-weight: 600; color: #66BB6A; }
 QLabel#deltaDown { font-size: 24px; font-weight: 600; color: #EF5350; }
 QLabel#deltaFlat { font-size: 24px; font-weight: 600; color: #9AA0A6; }
+/* 技能表 Δ% 列：同一套涨跌语义，压到表格字号。用 trend 属性切换颜色（与 DPS 计同款约定），
+   这样颜色只有上面三行一处定义——表格单元格若改用 setForeground 就得把三个色值再抄一遍。 */
+QLabel#deltaCell { background: transparent; padding-right: 4px; }
+QLabel#deltaCell[trend="up"] { color: #66BB6A; }
+QLabel#deltaCell[trend="down"] { color: #EF5350; }
+QLabel#deltaCell[trend="flat"] { color: #9AA0A6; }
+/* 一次性操作提示条（如「已删除 X 词条」+ 撤销）：弱化色，不抢卡片的编辑注意力 */
+QLabel#inlineNotice { color: #9AA0A6; }
 /* 页面标题旁的 ⓘ：唯一强调色，悬停给术语/口径长文（副标题只留一句概括） */
 QLabel#helpHint { color: #4FC3F7; font-size: 13px; }
 

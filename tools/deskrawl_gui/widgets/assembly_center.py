@@ -100,8 +100,6 @@ class AssemblyCenter(QWidget):
         self.search_edit.setPlaceholderText('搜索名称…')
         self.search_edit.setClearButtonEnabled(True)
         self.search_edit.textChanged.connect(self._on_search)
-        refresh_btn = QPushButton('刷新排序')
-        refresh_btn.clicked.connect(lambda: self.refresh(deep=True))
 
         bar = QHBoxLayout()
         bar.addWidget(QLabel('类别'))
@@ -110,7 +108,9 @@ class AssemblyCenter(QWidget):
         bar.addWidget(self.level_spin)
         bar.addWidget(self.slot_combo)
         bar.addWidget(self.search_edit, 1)
-        bar.addWidget(refresh_btn)
+        # 这里刻意不放「刷新排序」按钮：类别/等级/部位变更各自会 deep 重排，而「基线被别处
+        # 改动」（如角色页调巅峰点数）由 app 在切入本页时补一次重排——按钮只会误导用户以为
+        # 改完参数得记得点它。
 
         # ---- 候选排序表 ----
         self.hint = QLabel('—')

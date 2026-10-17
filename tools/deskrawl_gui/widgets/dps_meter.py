@@ -15,6 +15,8 @@ from ..core.dps_meter import read_dps_meter
 from ..core.memory_import import MemoryImportError
 
 _POLL_MS = 1000
+# 离线态（游戏没开/不在假人图）降频：这类情形下每秒枚举一次进程+扫内存纯属浪费
+_POLL_OFFLINE_MS = 5000
 
 
 def fmt_compact(v: float) -> str:
@@ -78,11 +80,14 @@ class GameDpsMeter(QFrame):
         self._expect_cand = None
         self._main_label = ''
         self._last = None          # 最近一次读数；编辑词条时据此即时重绘，不再重复读内存
+        self._has_read = False     # 是否读过一次：未读之前不把「没读到」当结论显示
         self._timer = QTimer(self)
         self._timer.setInterval(_POLL_MS)
         self._timer.timeout.connect(self.poll)
         self._sync_timer()
-        self.poll()                # 先读一次把首帧填上（即使当前未激活）
+        # 构造期只画中性占位、不读内存：停在角色页/装配中心（甚至没开对比页）时不该扫进程。
+        # 首次切到对比页由 set_active 触发真读（因此这里也不能显示「未定位到 DPS 计」那种结论）。
+        self._render()
 
     # ---------------- 轮询启停 ----------------
     def set_active(self, active: bool):
@@ -103,10 +108,18 @@ class GameDpsMeter(QFrame):
             self.poll()
 
     def _sync_timer(self):
-        """唯一的启停口：可见（_active）∧ 用户开关（_live）→ 跑定时器。"""
-        if self._active and self._live:
+        """唯一的启停口：可见（_active）∧ 用户开关（_live）→ 跑定时器；离线态降频到 5s。
+
+        间隔随「上次有没有读到」变：读到值才值得每秒看一次，读不到（游戏没开/不在假人图）
+        就放宽，避免持续做无效的进程枚举与内存扫描。
+        """
+        want = _POLL_MS if self._last is not None else _POLL_OFFLINE_MS
+        if self._timer.interval() != want:
+            self._timer.setInterval(want)
+        running = self._active and self._live
+        if running and not self._timer.isActive():
             self._timer.start()
-        else:
+        elif not running and self._timer.isActive():
             self._timer.stop()
 
     def set_expectation(self, main_row):
@@ -146,11 +159,21 @@ class GameDpsMeter(QFrame):
         except MemoryImportError as exc:
             self._last = None
             self._error = exc
+        self._has_read = True
         self._render()
+        self._sync_timer()          # 读到了才知道要不要恢复 1s（离线态已降频到 5s）
 
     def _render(self):
         """依据「最近读数 + 期望基线」渲染；无读数时显示失败短文案。"""
         if self._last is None:
+            if not self._has_read:
+                # 一次都没读过（构造期）：给中性占位，别凭空断言「未定位到 DPS 计」
+                self.verdict.setText('—')
+                self.verdict.setToolTip('打开本页时读取运行中游戏的 DPS 计（只读内存）。')
+                self._apply_trend(None)
+                self.diag.setVisible(False)
+                self._apply_state('offline')
+                return
             exc = getattr(self, '_error', None)
             code = getattr(exc, 'code', '') if exc else ''
             self.verdict.setText(_SHORT_ERROR.get(code, str(exc) if exc else '—'))

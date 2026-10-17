@@ -304,6 +304,8 @@ class CharacterProfile:
 
     # --- 序列化 ---
     def to_dict(self) -> dict:
+        # 空槽草稿（只被切槽访问过、从没写过）不落盘：切槽看一眼不该在构建/会话文件里
+        # 留下幻影条目（ItemDraft.is_empty 判定；有内容的槽一律保留）
         return {
             'version': self.version, 'name': self.name, 'level': self.level,
             'damage_type': self.damage_type,
@@ -319,8 +321,10 @@ class CharacterProfile:
             'panel': self.panel, 'bag_items': self.bag_items,
             'compare_slot': int(self.compare_slot),
             'like_current_pref': bool(self.like_current_pref),
-            'slot_current': {str(int(k)): v.to_dict() for k, v in self.slot_current.items()},
-            'slot_candidate': {str(int(k)): v.to_dict() for k, v in self.slot_candidate.items()},
+            'slot_current': {str(int(k)): v.to_dict()
+                             for k, v in self.slot_current.items() if not v.is_empty()},
+            'slot_candidate': {str(int(k)): v.to_dict()
+                               for k, v in self.slot_candidate.items() if not v.is_empty()},
             'hero_class': self.hero_class,
             'ability_mods': {k: {str(int(s)): float(v) for s, v in vv.items()}
                              for k, vv in self.ability_mods.items()},

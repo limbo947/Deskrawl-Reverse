@@ -75,6 +75,15 @@ class ItemDraft:
     def to_mods(self) -> List[Modifier]:
         return [Modifier(int(s), int(t), float(v)) for s, t, v in self.affixes]
 
+    def is_empty(self) -> bool:
+        """是否仍是出厂空草稿：序列化时据此剔除「只被切槽看过、从没写过」的槽草稿。
+
+        与默认值整体比较（而非只查名称/词条）：任何字段被写过都算有内容，宁可多留也不
+        误删用户数据。equipment_editor 用 setdefault 建草稿给控件当写回目标，切槽看一眼
+        就会留下一个空壳；不滤掉它们会随会话状态与构建存档落盘成幻影条目。
+        """
+        return self == ItemDraft()
+
     def to_dict(self) -> dict:
         return {'name': self.name,
                 'affixes': [[int(s), int(t), float(v)] for s, t, v in self.affixes],

@@ -9,10 +9,11 @@
 - set_locked：当前件即游戏里的既成事实，只读展示——基线被改脏则整页对比口径失效；
 - current_of：候选侧专用（任意槽），「与当前装备相同（强化/宝石）」开关据此镜像当前件。
 """
-from PySide6.QtCore import Qt, Signal
+from PySide6.QtCore import QTimer, Qt, Signal
 from PySide6.QtWidgets import (QAbstractItemView, QCheckBox, QComboBox, QDoubleSpinBox,
-                               QFormLayout, QGroupBox, QHeaderView, QLabel, QLineEdit,
-                               QPushButton, QTableWidget, QTableWidgetItem, QVBoxLayout)
+                               QFormLayout, QGroupBox, QHBoxLayout, QHeaderView, QLabel,
+                               QLineEdit, QPushButton, QTableWidget, QTableWidgetItem,
+                               QVBoxLayout, QWidget)
 
 from deskrawl_calc import StatType, stat_name
 
@@ -56,6 +57,8 @@ class AffixTable(QTableWidget):
     changed = Signal()
     # 某行的属性/数值变化 → (stat, value)：外围据此刷新区间提示（不参与计算，只做提示）
     rowTouched = Signal(int, float)
+    # 某行被删除 → (行号, [属性, 类型, 数值])：外围据此给一次性的「撤销删除」入口（误点可回退）
+    rowRemoved = Signal(int, list)
     COLUMNS = ['属性', '类型', '数值', '']
 
     def __init__(self, parent=None):
@@ -93,6 +96,17 @@ class AffixTable(QTableWidget):
         self._add_row(int(StatType.DamagePhysical), 0, 0.0)
         self._emit()
 
+    def insert_row(self, row, stat, mtype, value):
+        """把一行按原位置放回（撤销删除用）。
+
+        顺序不影响计算，但按原位置放回才是用户预期的「撤销」——否则词条会跳到表尾，
+        用户还得自己判断放回去的是不是同一条。
+        """
+        if self._locked:
+            return
+        self._add_row(stat, mtype, value, row=row)
+        self._emit()
+
     def set_locked(self, locked):
         """整表只读化（当前件固定态）：属性/数值不可改、删除按钮隐藏，仍是可读的事实展示。"""
         self._locked = bool(locked)
@@ -111,8 +125,8 @@ class AffixTable(QTableWidget):
                 return r
         return -1
 
-    def _add_row(self, stat, mtype, value):
-        row = self.rowCount()
+    def _add_row(self, stat, mtype, value, row=None):
+        row = self.rowCount() if row is None else max(0, min(int(row), self.rowCount()))
         self.insertRow(row)
 
         stat_combo = QComboBox()
@@ -191,9 +205,15 @@ class AffixTable(QTableWidget):
             spin.setToolTip(_TIP_PRIMARY_STAT)
 
     def _remove_row(self, btn):
+        """删行即时生效并播报被删内容：外围据此给「撤销」入口，不用确认框打断连续编辑。"""
         for r in range(self.rowCount()):
             if self.cellWidget(r, 3) is btn:
+                type_item = self.item(r, 1)
+                snapshot = [int(self.cellWidget(r, 0).currentData()),
+                            int(type_item.data(Qt.UserRole) if type_item is not None else 0),
+                            float(self.cellWidget(r, 2).value())]
                 self.removeRow(r)
+                self.rowRemoved.emit(r, snapshot)
                 break
         self._emit()
 
@@ -251,8 +271,29 @@ class ItemEditor(QGroupBox):
         self.affixes = AffixTable()
         self.affixes.changed.connect(self._on_affixes)
         self.affixes.rowTouched.connect(self._on_row_touched)
+        self.affixes.rowRemoved.connect(self._on_row_removed)
         self.add_btn = QPushButton('添加词条')
         self.add_btn.clicked.connect(self.affixes.append_row)
+
+        # 删除撤销条：删行即时生效（不打断连续编辑），误点则有一处可回退——只在最近一次删除后
+        # 出现片刻，不常驻占位。为什么不做确认框：删一条词条很轻，弹框反而让连续删改变慢。
+        self.undo_label = QLabel('')
+        self.undo_label.setObjectName('inlineNotice')
+        self.undo_btn = QPushButton('撤销')
+        self.undo_bar = QWidget()
+        undo_lay = QHBoxLayout(self.undo_bar)
+        undo_lay.setContentsMargins(0, 0, 0, 0)
+        undo_lay.setSpacing(8)
+        undo_lay.addWidget(self.undo_label)
+        undo_lay.addWidget(self.undo_btn)
+        undo_lay.addStretch(1)
+        self.undo_bar.setVisible(False)
+        self._undo_state = None          # (行号, [属性, 类型, 数值])：仅提示条可见期间有效
+        self._undo_timer = QTimer(self)
+        self._undo_timer.setSingleShot(True)
+        self._undo_timer.setInterval(8000)
+        self._undo_timer.timeout.connect(self._hide_undo)
+        self.undo_btn.clicked.connect(self._undo_delete)
 
         # 导入元信息（强化等级/镶嵌宝石），只读展示；手工构建恒为空
         self.meta_label = QLabel()
@@ -270,9 +311,34 @@ class ItemEditor(QGroupBox):
         root.addLayout(form)
         root.addWidget(self.meta_label)
         root.addWidget(self.affixes)
+        root.addWidget(self.undo_bar)
         root.addWidget(self.range_label)
         root.addWidget(self.add_btn)
         self.reload()
+
+    # ---- 删除撤销 ----
+    def _on_row_removed(self, row, snapshot):
+        """记下被删行并亮出撤销条；8 秒后自动收起（只保留最近一次，避免堆积提示）。"""
+        if self._loading or self._locked:
+            return
+        self._undo_state = (int(row), [int(snapshot[0]), int(snapshot[1]), float(snapshot[2])])
+        self.undo_label.setText(
+            f'已删除词条「{stat_name(int(snapshot[0]))}」（{float(snapshot[2]):g}）')
+        self.undo_bar.setVisible(True)
+        self._undo_timer.start()
+
+    def _undo_delete(self):
+        """把最近删掉的一行按原位置放回；数值原样保留，故无需用户重填。"""
+        if self._undo_state is None:
+            return
+        row, (stat, mtype, value) = self._undo_state
+        self.affixes.insert_row(row, stat, mtype, value)   # 内部 emit changed → 回写草稿 + 刷新
+        self._hide_undo()
+
+    def _hide_undo(self):
+        self._undo_state = None
+        self._undo_timer.stop()
+        self.undo_bar.setVisible(False)
 
     def _on_row_touched(self, stat, value):
         """就地给出「本条落在什么区间」——手工录入时最需要它，否则无从判断这条词条算高还是算低。"""
@@ -314,6 +380,7 @@ class ItemEditor(QGroupBox):
 
     def reload(self):
         self._loading = True
+        self._hide_undo()        # 内容被整体换掉（换槽/载入导入件）后，旧的行号与数值都不再对应
         self.name_edit.setText(self.draft.name)
         if self.weapon:
             self.damage_spin.setValue(getattr(self.draft, 'base_damage', 0.0))

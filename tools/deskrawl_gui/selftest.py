@@ -212,6 +212,13 @@ def _structure_checks(win) -> bool:
           f'active={meter._active}（当前页 row={win.nav.currentRow()}）；'
           f'定时器运行={meter._timer.isActive()}')
 
+    # 应用/任务栏图标：SVG 资源被 QIcon 真载入（资源被删或平台缺 SVG 插件时这里先红）
+    from PySide6.QtWidgets import QApplication
+
+    icon = QApplication.instance().windowIcon()
+    check(not icon.isNull(), '应用/任务栏图标已装载（resources/app_icon.svg）',
+          f'可用尺寸={[f"{s.width()}x{s.height()}" for s in icon.availableSizes()][:2]}')
+
     return all(results)
 
 
@@ -333,6 +340,22 @@ def _gui_behavior_checks(win) -> bool:
     num_ok = add_only_text() and '加法' in t_item.toolTip()
     check(pct_ok and num_ok, '词条类型为只读文本「加法」（无下拉；提示随属性刷新）',
           f'物理伤害%：文本加法+小数提示={pct_ok}；力量：仍为加法={num_ok}')
+    editor.draft.affixes = saved
+    editor.reload()
+
+    # 1c) 词条删除：× 即删（不弹确认框打断连续编辑）+ 一次性撤销条把该行按原位置放回
+    saved = copy.deepcopy(editor.draft.affixes)
+    editor.affixes.append_row()
+    r = editor.affixes.rowCount() - 1
+    n0 = editor.affixes.rowCount()
+    editor.affixes.cellWidget(r, 3).click()          # 点该行的「×」
+    n1 = editor.affixes.rowCount()
+    pending = editor._undo_state is not None and '已删除' in editor.undo_label.text()
+    editor.undo_btn.click()
+    n2 = editor.affixes.rowCount()
+    check(n1 == n0 - 1 and pending and n2 == n0 and editor._undo_state is None,
+          '词条删除可撤销（× 即删 + 撤销按原位置放回）',
+          f'{n0} 行 → 删后 {n1} 行 → 撤销后 {n2} 行；撤销条就绪={pending}')
     editor.draft.affixes = saved
     editor.reload()
 
@@ -691,10 +714,18 @@ def _build_roundtrip(rep: Report):
     from deskrawl_calc import GameData, StatType
 
     from .core import calc_service
+    from .core.item_draft import ItemDraft
     from .core.profile import CharacterProfile, load_build, save_build
 
     gd = GameData()
     source = CharacterProfile.demo()
+    # 空槽草稿（「切槽看一眼」留下的空壳）必须被序列化剔除：否则它随会话状态与构建存档落盘，
+    # 下次载入就带着幻影条目回来。有内容的槽则必须原样保留（过滤不能误伤）。
+    source.slot_current[9] = ItemDraft()
+    source.slot_candidate[3] = ItemDraft(name='测试件', affixes=[[23, 0, 0.5]])
+    d0 = source.to_dict()
+    dropped_empty = '9' not in d0['slot_current'] and '3' in d0['slot_candidate']
+
     path = os.path.join(tempfile.gettempdir(), 'deskrawl_selftest_roundtrip.json')
     save_build(source, path)
     restored = load_build(path)
@@ -707,9 +738,10 @@ def _build_roundtrip(rep: Report):
     same_dps = (abs(res_a.current_dps - res_b.current_dps) < 1e-9
                 and abs(res_a.candidate_dps - res_b.candidate_dps) < 1e-9)
 
-    rep.add(same_dict and same_sheet and same_dps, '构建存取往返一致',
+    rep.add(same_dict and same_sheet and same_dps and dropped_empty, '构建存取往返一致',
             f'{os.path.basename(path)}（系统临时目录）；JSON 等值={same_dict}，'
-            f'属性表最大偏差={max(finals):.2e}，DPS 等值={same_dps}')
+            f'属性表最大偏差={max(finals):.2e}，DPS 等值={same_dps}，'
+            f'空槽草稿已剔除={dropped_empty}')
 
 
 

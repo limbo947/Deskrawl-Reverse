@@ -155,10 +155,16 @@ def selftest():
                _eff.ability_mods_for([_am], 'WarriorHeavyAttack1', [1, 8]) == {2: 0.6}
                and _eff.ability_mods_for([_am], 'X', [0]) == {}))
     _m_cm = _eff.ability_mods_for([_cm], 'WarriorHeavyAttack3', [1],
-                                  ability_names={59959: 'WarriorHeavyAttack3'})
-    ok.append(('特效·引导修改：Ability 名命中 → ChannelSpeed(8) +0.25、ChannelDuration(13) +3.0',
-               abs(_m_cm.get(8, 0.0) - 0.25) < 1e-9 and abs(_m_cm.get(13, 0.0) - 3.0) < 1e-9
+                                  ability_names={59959: 'WarriorHeavyAttack3'}, channel_base=4.0)
+    ok.append(('特效·引导修改：ChannelSpeed(8) +0.25；附加时长按 base 归一为比例 3/4=0.75（REA 实证）',
+               abs(_m_cm.get(8, 0.0) - 0.25) < 1e-9 and abs(_m_cm.get(13, 0.0) - 0.75) < 1e-9
                and _eff.ability_mods_for([_cm], 'Other', []) == {}))
+    _am13 = {'_class': 'EquipmentEffect_AbilityModifier', 'Tag': 9999,
+             'Ability': {'fileID': 2, 'pathID': 59959}, 'Stat': 13, 'Modifier': 0.5}
+    ok.append(('特效·技能修正：ModifiedStat.ChannelDuration(13) 是**比例**（原值 0.5 → dur = base×1.5）',
+               abs(_eff.ability_mods_for([_am13], 'WarriorHeavyAttack3', [1],
+                                         ability_names={59959: 'WarriorHeavyAttack3'})
+                   .get(13, 0.0) - 0.5) < 1e-9))
 
     # 15) 属性换算（StatConversion）：TargetStat += Final(SourceStat) × Fraction（显式后步）
     _sc = {'_class': 'EquipmentEffect_StatConversion', 'SourceStat': 0, 'TargetStat': 39,

@@ -45,7 +45,7 @@ __all__ = ['SkillRow', 'skill_rows', 'pick_main_row', 'ability_level_bonuses']
 # TalentEffect_AbilityModifier.ModifiedStat：只处理改变「每秒命中次数 / 引导时长」的项
 CHANNEL_SPEED_STAT = 8
 STRIKE_COUNT_STAT = 9
-CHANNEL_DURATION_STAT = 13      # 引导时长（秒，与 ChannelDuration 同池）🔶 单位待 REA
+CHANNEL_DURATION_STAT = 13      # 引导时长**比例**（与 ChannelSpeed 同池按比例相加，见 effects.ability_mods_for）
 # 落「每次命中」口径的两项（LegendaryRing6 的 CritChance、HunterSetRune1_Effect2 的 Damage）
 CRIT_CHANCE_STAT = 5
 DAMAGE_STAT = 2
@@ -132,11 +132,13 @@ def _rates(skill: dict, sheet, atk_speed: float, mods) -> tuple:
     """
     channel_speed = float((mods or {}).get(CHANNEL_SPEED_STAT, 0.0))
     strike_bonus = float((mods or {}).get(STRIKE_COUNT_STAT, 0.0))
-    extra_dur = float((mods or {}).get(CHANNEL_DURATION_STAT, 0.0))
+    dur_frac = float((mods or {}).get(CHANNEL_DURATION_STAT, 0.0))
     strikes = int(skill.get('strikes', 1)) + strike_bonus
     cdr = min(0.80, max(0.0, sheet.final(StatType.CooldownReduction)))
     if skill['channel_duration'] > 0 and skill['tick_rate'] > 0:
-        dur = float(skill['channel_duration']) + extra_dur      # 引导附加时长（装备/天赋 13 项）
+        # 引导附加时长按**比例**同池相加 → dur = base × (1 + Σ比例)（装备侧的「秒」已在
+        # effects.ability_mods_for 里除以 base 归一；REA 实证见该函数 docstring）
+        dur = float(skill['channel_duration']) * (1.0 + dur_frac)
         tick = float(skill['tick_rate'])
         ticks = dur / tick
         cycle = (float(skill.get('channel_windup') or 0.0) + dur
@@ -281,9 +283,13 @@ def skill_rows(profile, gd, cur_sheet, cand_sheet, target,
                                 + float(r['AttackScalingPerLevel']) * (eff_lv - 1))
         mods = all_mods.get(sk['name'], {})
         tags = sk.get('tags') or []
-        # 装备侧按技能命中的修正（AbilityModifier/AbilityChannelModifier）与天赋同池（同键相加）
-        emods_c = effects.ability_mods_for(eff_c, sk['name'], tags, ability_names=anames)
-        emods_k = effects.ability_mods_for(eff_k, sk['name'], tags, ability_names=anames)
+        # 装备侧按技能命中的修正（AbilityModifier/AbilityChannelModifier）与天赋同池（同键相加）；
+        # 装备的引导附加「秒」需按本技能基础引导时长归一为比例（channel_base）
+        cbase = float(sk.get('channel_duration') or 0.0)
+        emods_c = effects.ability_mods_for(eff_c, sk['name'], tags, ability_names=anames,
+                                           channel_base=cbase)
+        emods_k = effects.ability_mods_for(eff_k, sk['name'], tags, ability_names=anames,
+                                           channel_base=cbase)
         mods_c, mods_k = _sum_mods(mods, emods_c), _sum_mods(mods, emods_k)
         cur_rate, cur_cps = _rates(sk, cur_sheet, atk_speed(cur_sheet, w_cur), mods_c)
         cand_rate, cand_cps = _rates(sk, cand_sheet, atk_speed(cand_sheet, w_cand), mods_k)

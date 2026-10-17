@@ -147,16 +147,23 @@ def conditional_damage(effects: List[dict], damage_type: int, target, *,
 
 
 def ability_mods_for(effects: List[dict], ability_name: Optional[str], tags, *,
-                     ability_names: Optional[Dict[int, str]] = None) -> Dict[int, float]:
+                     ability_names: Optional[Dict[int, str]] = None,
+                     channel_base: float = 0.0) -> Dict[int, float]:
     """该技能命中的 `AbilityModifier` / `AbilityChannelModifier` 修正 → {ModifiedStat: 值}（同键相加）。
 
     · `AbilityModifier`：`Ability` 非空 → 按技能名精确匹配；否则 `Tag` != None(9999) → tag ∈ 技能
       `Tags` 即命中 → `Stat`(ModifiedStat) += `Modifier`；
-    · `AbilityChannelModifier`：`Ability` 名匹配 → ChannelSpeed(8) += `ChannelSpeedBonus`、
-      ChannelDuration(13) += `AdditionalChannelDurationSeconds`（🔶 单位/同池待 REA）。
+    · `AbilityChannelModifier`：`Ability` 名匹配 → ChannelSpeed(8) += `ChannelSpeedBonus`（比例）、
+      ChannelDuration(13) += `AdditionalChannelDurationSeconds / channel_base`（秒 → 比例）。
+
+    指令级依据（REA 反编译 `EquipmentEffect_AbilityChannelModifier.bzw` 0x1806f4220）：
+    装备侧引导时长经 `FUN_18050ed40(player, Ability, AdditionalChannelDurationSeconds / *(float*)(Ability+0xd0), 0)`
+    注册——**先除以技能基础引导时长归一为比例**；`EquipmentEffect_AbilityModifier.bzw`（0x1806f4c70）
+    的 Stat=13 则把 `Modifier` **原值**（已是比例）走同一 `FUN_18050ed40`。故两者**同池按比例相加**，
+    消费口径为 `dur = base × (1 + Σ比例)`（数值上等价于装备「秒数加算」：base×(1+s/base) = base+s）。
 
     返回的 `ModifiedStat`：2 Damage / 5 CritChance → 进 `_per_hit`；8 ChannelSpeed / 9 StrikeCount /
-    13 ChannelDuration → 进 `_rates`；其余（如 1 ManaCost）当前不落伤害口径。
+    13 ChannelDuration(比例) → 进 `_rates`；其余（如 1 ManaCost、6 CritDamage）当前不落伤害口径。
     """
     tagset = {int(t) for t in (tags or [])}
     out: Dict[int, float] = {}
@@ -175,8 +182,9 @@ def ability_mods_for(effects: List[dict], ability_name: Optional[str], tags, *,
             an = _name_of(e.get('Ability'), ability_names)
             if an is not None and an == ability_name:
                 out[8] = out.get(8, 0.0) + float(unwrap(e.get('ChannelSpeedBonus')) or 0.0)
-                out[13] = out.get(13, 0.0) + float(
-                    unwrap(e.get('AdditionalChannelDurationSeconds')) or 0.0)
+                if channel_base > 0:
+                    out[13] = out.get(13, 0.0) + (float(
+                        unwrap(e.get('AdditionalChannelDurationSeconds')) or 0.0) / float(channel_base))
     return out
 
 

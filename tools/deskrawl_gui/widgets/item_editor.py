@@ -110,6 +110,8 @@ class AffixTable(QTableWidget):
     def set_locked(self, locked):
         """整表只读化（当前件固定态）：属性/数值不可改、删除按钮隐藏，仍是可读的事实展示。"""
         self._locked = bool(locked)
+        # 整列隐藏而不是只藏按钮：留一个没有内容的空列会在右侧撕出一条无意义的留白
+        self.setColumnHidden(3, self._locked)
         for row in range(self.rowCount()):
             self._apply_lock(row)
 
@@ -267,6 +269,13 @@ class ItemEditor(QGroupBox):
                 '（即「同强化同宝石谁更强」的对照）；取消：回到该件在背包里的原貌。')
             self.like_current.toggled.connect(self._on_like_current)
             form.addRow('强化/宝石', self.like_current)
+        else:
+            # 候选侧这一行是「与当前装备相同」开关；当前侧留同一行的只读事实——两侧表单行数
+            # 相等，下方词条表才严格同高，逐行比对（V8）不会一边高一边低；这一行同时也是
+            # 「候选勾上会镜像什么」的答案（+N 与宝石数），比翻下面那行元信息更快。
+            self.fact_label = QLabel('—')
+            self.fact_label.setObjectName('weaponMeta')
+            form.addRow('强化/宝石', self.fact_label)
 
         self.affixes = AffixTable()
         self.affixes.changed.connect(self._on_affixes)
@@ -391,6 +400,8 @@ class ItemEditor(QGroupBox):
         if hasattr(self, 'like_current'):
             self.like_current.setChecked(bool(getattr(self.draft, 'like_current', False)))
             self._update_like_text()
+        else:
+            self.fact_label.setText(self._fact_text())
         self._mark_name(self.draft.name)
         self._loading = False
 
@@ -472,6 +483,13 @@ class ItemEditor(QGroupBox):
         now = f'强化 +{lv}' if lv else '无强化'
         gs = f'{gems} 颗宝石' if gems else '无宝石'
         self.like_current.setText(f'与当前装备相同（{now}、{gs}）')
+
+    def _fact_text(self) -> str:
+        """当前件的强化/宝石事实（当前侧的只读行），词序与候选侧开关文案同款，便于左右对照。"""
+        lv = int(getattr(self.draft, 'upgrade_level', 0) or 0)
+        gems = len(list(getattr(self.draft, 'gems', None) or []))
+        parts = ([f'强化 +{lv}'] if lv else []) + ([f'{gems} 颗宝石'] if gems else [])
+        return '、'.join(parts) if parts else '无强化、无宝石'
 
     def _on_name(self, text):
         if self._loading or self._locked:

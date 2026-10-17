@@ -13,7 +13,7 @@ import os
 import sys
 import time
 
-from PySide6.QtCore import QByteArray, Qt, Signal
+from PySide6.QtCore import QByteArray, QTimer, Qt, Signal
 from PySide6.QtGui import QAction, QIcon
 from PySide6.QtWidgets import (QApplication, QFileDialog, QHBoxLayout,
                                QMainWindow, QMessageBox, QStackedWidget,
@@ -24,6 +24,7 @@ from deskrawl_calc import GameData, stat_name
 from .core import calc_service, session_state
 from .core.glossary import CALIBER_TEXT, DATA_SOURCE_TEXT, terms_text
 from .core.memory_import import MemoryImportError, check_fingerprints, import_snapshot
+from .core.memory_snapshot import load_offsets
 from .core.profile import BUILDS_DIR, CharacterProfile, load_build, save_build
 from .widgets.assembly_center import AssemblyCenter
 from .widgets.common import confirm_delete
@@ -34,6 +35,10 @@ from .widgets.role_page import RolePage
 _HERE = os.path.dirname(os.path.abspath(__file__))
 QSS_PATH = os.path.join(_HERE, 'resources', 'style.qss')
 ICON_PATH = os.path.join(_HERE, 'resources', 'app_icon.svg')
+
+# 导入菜单项的基准文案：临时态（读盘中/节流等待）与指纹失配后缀都挂在它后面，
+# 单一常量避免「从运行中的游戏导入（只读）…」这句在三处各写一遍
+_IMPORT_LABEL = '从运行中的游戏导入（只读）…'
 
 # 页面注册表：key 供快捷键/编程切页用，顺序即堆栈顺序
 PAGES = [('role', '角色'), ('compare', '装备对比'), ('assembly', '装配中心')]
@@ -126,6 +131,10 @@ class MainWindow(QMainWindow):
         # 恢复必须早于页面构造：各页在 __init__ 里直接读 profile（对比页会按槽建编辑器）
         self.profile = self._initial_profile(state)
         self._last_import_mono = float('-inf')   # 手动导入节流（≥1s）
+        # 节流命中后的恢复：1s 后把菜单项从「请稍候…」切回指纹结论（一次性定时器）
+        self._import_timer = QTimer(self)
+        self._import_timer.setSingleShot(True)
+        self._import_timer.timeout.connect(lambda: self._set_import_busy(False))
 
         # 页面装配：每页自带标题头部，导航只切页
         self.nav = SidebarNav(PAGES)
@@ -275,7 +284,7 @@ class MainWindow(QMainWindow):
         # 数据导入：菜单项仅在版本指纹自检通过时可用（P2：失配 → 禁用 + 中文原因）
         import_menu = bar.addMenu('数据导入')
         self._import_action = self._add_action(
-            import_menu, '从运行中的游戏导入（只读）…', self._import_from_game)
+            import_menu, _IMPORT_LABEL, self._import_from_game)
         self._apply_fingerprint_state()
 
         # 帮助：术语与口径是上手这道工具最陡的台阶，集中一处可读（这些文案是文档的浓缩版）
@@ -301,53 +310,114 @@ class MainWindow(QMainWindow):
         box.setTextInteractionFlags(Qt.TextSelectableByMouse)
         box.exec()
 
+    def _fingerprint_summary(self) -> str:
+        """构建指纹摘要：GameAssembly.dll 的 SHA-256 前 12 位 + so_dump 条目数记录。
+
+        为什么值得在界面上显示：补丁后所有重锚定结论都对着某一版构建（docs/08 §12 记同一个
+        值），要核对「这份报告/这组数出自哪次构建」时不必再翻文档。
+        """
+        try:
+            fp = load_offsets().get('fingerprints') or {}
+        except (OSError, ValueError, TypeError):
+            return '（偏移表不可读）'
+        sha = str(fp.get('game_assembly_sha256') or '')
+        short = f'GameAssembly.dll SHA-256 {sha[:12]}…' if sha else 'GameAssembly.dll 未记录'
+        n = fp.get('so_dump_itemdata_entries')
+        return f'{short}；so_dump/ItemData {n} 条' if n is not None else short
+
     def _about_text(self) -> str:
-        """关于：数据目录 / 静态数据规模 / 版本指纹结论（即导入可用性的当前状态）。"""
+        """关于：版本 / 数据目录与规模 / 构建指纹 / 当前数据源 / 只读约束。
+
+        这些此前都无处可查（版本没有出处、构建 SHA 只在文档里、导入时间只在侧栏徽标一闪），
+        集中一处后才能整段复制下来与文档、构建档案互相核对。
+        """
+        from . import __version__
+
         try:
             items = len(self.gd.items())
         except (OSError, ValueError, TypeError):
             items = 0
+        mode = str(getattr(self.profile, 'import_mode', '') or '')
+        if mode:
+            src = f'内存导入 {"β 逐件" if mode == "beta" else "α 聚合（降级）"}'
+            if self.profile.import_time:
+                src += f'（快照 {self.profile.import_time}）'
+        else:
+            src = '手工构建 / 构建文件（未读游戏内存）'
         return ('Deskrawl 数值计算台\n\n'
-                '内核：deskrawl_calc（公式与静态数值分层的纯 Python 实现，零第三方依赖）\n'
+                f'版本：deskrawl_gui {__version__}\n'
+                f'内核：deskrawl_calc（公式与静态数值分层的纯 Python 实现，零第三方依赖）\n'
                 f'数据目录：{getattr(self.gd, "dir", "") or "（未定位）"}\n'
                 f'装备条目：{items} 条\n'
-                f'版本指纹：{"通过（可导入）" if self._fingerprint_ok else "不符（导入已禁用）"}\n\n'
+                f'构建指纹：{self._fingerprint_summary()}\n'
+                f'版本指纹：{"通过（可导入）" if self._fingerprint_ok else "不符（导入已禁用）"}\n'
+                f'当前数据源：{src}\n\n'
                 '本工具只读：不写入游戏进程、不修改游戏安装目录内任何文件。\n'
                 '术语与口径见「帮助 → 术语表 / 口径说明」。')
 
-    def _apply_fingerprint_state(self):
-        """启动即校验一次版本指纹；失配则禁用导入入口并写明原因（宁可禁用，不读脏数据）。"""
-        problems = check_fingerprints()
+    def _apply_fingerprint_state(self, problems=None):
+        """启动/导入后刷新导入入口：problems 显式传入时不再重算（导入路径上不重跑哈希）。
+
+        导入项的文案、可用性与 tooltip 只在这里判定（含「版本指纹不符，已禁用」这句话），
+        临时态结束后一律回到本方法的结论，避免同一句话在别处再写一份而慢慢走样。
+        """
+        if problems is None:
+            problems = check_fingerprints()
+        self._fingerprint_problems = list(problems)
         self._fingerprint_ok = not problems
         if problems:
             self._import_action.setEnabled(False)
-            self._import_action.setText('从运行中的游戏导入（只读）…（版本指纹不符，已禁用）')
+            self._import_action.setText(f'{_IMPORT_LABEL}（版本指纹不符，已禁用）')
             self._import_action.setToolTip(
                 '；'.join(problems) + '。请重新导出 schema/so_dump 并更新 memory_offsets.json 指纹。')
             self.statusBar().showMessage('数据导入已禁用：版本指纹不符（请重新导出 schema/so_dump）')
+            return
+        self._import_action.setEnabled(True)
+        self._import_action.setText(_IMPORT_LABEL)
+        self._import_action.setToolTip('')
+
+    def _set_import_busy(self, busy: bool, hint: str = '导入中…'):
+        """导入入口的临时态：读盘中或命中节流时禁用菜单项并写明在等什么。
+
+        为什么需要：命中 1s 节流时界面此前只有一闪而过的状态栏，连点者会以为「没反应」；
+        读内存期间也只有等待光标。恢复走缓存下来的指纹结论（不重跑哈希）。
+        """
+        if not busy:
+            self._apply_fingerprint_state(self._fingerprint_problems)
+            return
+        self._import_action.setEnabled(False)
+        self._import_action.setText(f'{_IMPORT_LABEL}（{hint}）')
 
     def _import_from_game(self):
         """主线程同步导入（实测 0.37s 级；等待光标即可，不引入线程/异步框架）。
 
-        节流 ≥1s：连点/快捷键连发不会重复触发昂贵的内存双读与指纹哈希；
+        节流 ≥1s：连点/快捷键连发不会重复触发昂贵的内存双读与指纹哈希；命中节流时把菜单项
+        切成「请稍候…」（1s 后恢复），读内存期间切成「导入中…」并常驻一条状态栏说明——
+        否则连点者看到的只是「什么也没发生」。
         导入成功即完成 ``profile.from_snapshot`` 并走 _reload_pages 全页回填。
         """
         now = time.monotonic()
         if now - self._last_import_mono < 1.0:
+            self._set_import_busy(True, '请稍候…')
             self.statusBar().showMessage('导入过于频繁：两次导入至少间隔 1 秒', 3000)
+            self._import_timer.start(1000)
             return
         self._last_import_mono = now
+        self._set_import_busy(True)
+        self.statusBar().showMessage('正在读取游戏内存（只读）…')
         QApplication.setOverrideCursor(Qt.WaitCursor)
         try:
             res = import_snapshot()
         except MemoryImportError as exc:
             title, text = describe_import_error(exc)
             if exc.code == 'fingerprint':
-                self._import_action.setEnabled(False)
-                self._import_action.setText('从运行中的游戏导入（只读）…（版本指纹不符，已禁用）')
+                self._apply_fingerprint_state()      # 指纹状态已变：缓存的结论不能再用，必须重算
             QMessageBox.warning(self, title, text)
             return
         finally:
+            # 先停掉上一次节流的恢复定时器：它若在导入收尾之后才触发，会把菜单项改回错误状态
+            self._import_timer.stop()
+            self._set_import_busy(False)
             QApplication.restoreOverrideCursor()
         payload = res.payload
         self.profile.replace_with(preserved_import(self.profile, payload, self.gd))

@@ -1170,7 +1170,7 @@
   },
   {
    "file": "docs/04-伤害计算与属性关联.md",
-   "line": 407,
+   "line": 417,
    "token": "0x76F5F0",
    "value": "0x76f5f0",
    "annotation": null,
@@ -1184,7 +1184,7 @@
   },
   {
    "file": "docs/04-伤害计算与属性关联.md",
-   "line": 407,
+   "line": 417,
    "token": "0x771590",
    "value": "0x771590",
    "annotation": null,
@@ -1198,7 +1198,7 @@
   },
   {
    "file": "docs/04-伤害计算与属性关联.md",
-   "line": 407,
+   "line": 417,
    "token": "0x771DC0",
    "value": "0x771dc0",
    "annotation": null,
@@ -1212,7 +1212,7 @@
   },
   {
    "file": "docs/04-伤害计算与属性关联.md",
-   "line": 420,
+   "line": 430,
    "token": "0x4A9D80",
    "value": "0x4a9d80",
    "annotation": "wo",
@@ -8111,7 +8111,7 @@
   },
   {
    "file": "docs/plan/传奇特效清点清单.md",
-   "line": 118,
+   "line": 121,
    "token": "0x1806fc680",
    "value": "0x1806fc680",
    "annotation": null,
@@ -8126,7 +8126,7 @@
   },
   {
    "file": "docs/plan/传奇特效清点清单.md",
-   "line": 118,
+   "line": 121,
    "token": "0x1806fc8b0",
    "value": "0x1806fc8b0",
    "annotation": null,
@@ -8141,7 +8141,7 @@
   },
   {
    "file": "docs/plan/传奇特效清点清单.md",
-   "line": 119,
+   "line": 122,
    "token": "0x180512be0",
    "value": "0x180512be0",
    "annotation": null,
@@ -8156,7 +8156,7 @@
   },
   {
    "file": "docs/plan/传奇特效清点清单.md",
-   "line": 119,
+   "line": 122,
    "token": "0x1806fc320",
    "value": "0x1806fc320",
    "annotation": null,
@@ -8171,7 +8171,7 @@
   },
   {
    "file": "docs/plan/传奇特效清点清单.md",
-   "line": 119,
+   "line": 122,
    "token": "0x1806fc420",
    "value": "0x1806fc420",
    "annotation": null,
@@ -8186,7 +8186,7 @@
   },
   {
    "file": "docs/plan/传奇特效清点清单.md",
-   "line": 120,
+   "line": 123,
    "token": "0x1806f4220",
    "value": "0x1806f4220",
    "annotation": null,
@@ -8201,7 +8201,7 @@
   },
   {
    "file": "docs/plan/传奇特效清点清单.md",
-   "line": 120,
+   "line": 123,
    "token": "0x1806f4c70",
    "value": "0x1806f4c70",
    "annotation": null,
@@ -8216,7 +8216,7 @@
   },
   {
    "file": "docs/plan/传奇特效清点清单.md",
-   "line": 121,
+   "line": 124,
    "token": "0x180700a60",
    "value": "0x180700a60",
    "annotation": null,
@@ -8231,11 +8231,11 @@
   },
   {
    "file": "docs/plan/传奇特效清点清单.md",
-   "line": 122,
+   "line": 125,
    "token": "0x1806fc680",
    "value": "0x1806fc680",
    "annotation": null,
-   "context": "：1.0.3 数据里二者同值或一方为 0，本工具按 `BonusDamage` 计 | 同上 `",
+   "context": "ata/so_dump/EquipmentEffects.json` 逐条统计）；注册点同上 `",
    "status": "valid",
    "label": "仍有效（方法）",
    "detail": "EquipmentEffect_ConditionalDamage::bzw(Player a) { }) Slot=4",
@@ -8246,11 +8246,11 @@
   },
   {
    "file": "docs/plan/传奇特效清点清单.md",
-   "line": 123,
+   "line": 126,
    "token": "0x1806f4c70",
    "value": "0x1806f4c70",
    "annotation": null,
-   "context": "77d0(Tag)`），1.0.3 物品/套装数据中无该 Stat，工具未消费 6 | 同上 `",
+   "context": "N_180517b80(Ability)` / `FUN_1805177d0(Tag)` @ `",
    "status": "valid",
    "label": "仍有效（方法）",
    "detail": "EquipmentEffect_AbilityModifier::bzw(Player a) { }) Slot=4",

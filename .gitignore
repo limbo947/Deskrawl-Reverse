@@ -29,6 +29,25 @@ dist/
 # ---- GUI 会话状态（本机状态，不入库；含原子写的 .tmp）----
 data/session_state.json*
 
+# ---- 本机账号数据（个人数据，不入库；严禁提交）----
+data/save_decrypted.json
+
+# ---- 构建存档：只保留示例，其余（个人构建）不入库 ----
+data/builds/*.json
+!data/builds/demo-hunter.json
+
+# ---- 大体积生成物（不入库；用 Il2CppDumper 自行生成，见 README）----
+# aliases.json / rva_audit*.json 是仓库资产，保留在上层白名单之外
+data/schema/dump.cs
+data/schema/script.json
+data/schema/stringliteral.json
+
+# ---- 第三方工具二进制（不入库；自行下载，见 README）----
+tools/thirdparty/
+
+# ---- Agent skills 锁文件（本机工具链配置，不入库）----
+skills-lock.json
+
 # ---- 操作系统 ----
 Thumbs.db
 desktop.ini

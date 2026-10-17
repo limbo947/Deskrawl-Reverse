@@ -473,6 +473,18 @@ def _gui_behavior_checks(win) -> bool:
     ac.assembled_list.setCurrentRow(n1 - 1)
     ac._remove_selected()
 
+    # 6) 导入入口的临时态：读盘中/命中节流要显式改文案并禁用，结束后回到指纹结论
+    #    （不真跑导入：那会弹模态框、在非交互环境挂住；这里只验状态机本身）
+    win._set_import_busy(True, '请稍候…')
+    busy_text = win._import_action.text()
+    busy_ok = not win._import_action.isEnabled() and '请稍候' in busy_text
+    win._set_import_busy(False)
+    restored = (win._import_action.isEnabled() == win._fingerprint_ok
+                and win._import_action.text().startswith('从运行中的游戏导入（只读）…'))
+    check(busy_ok and restored, '导入入口临时态（读盘中/节流等待：禁用 + 文案，结束恢复）',
+          f'临时态={busy_ok}（「{busy_text}」）；恢复={restored}'
+          f'（指纹通过={win._fingerprint_ok}）')
+
     _ac_mod.confirm_delete = saved_confirm
     return all(results)
 

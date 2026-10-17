@@ -9,7 +9,7 @@ WeaponDraft（多出基础伤害/攻速/技能倍率），其余槽用 ItemDraft
 import copy
 
 from PySide6.QtCore import Signal
-from PySide6.QtWidgets import (QComboBox, QHBoxLayout, QLabel, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QComboBox, QHBoxLayout, QLabel, QPushButton, QVBoxLayout, QWidget)
 
 from ..core import calc_service, skill_service
 from ..core.item_draft import ItemDraft
@@ -79,6 +79,13 @@ class EquipmentEditor(QWidget):
         # 背包导入上移到工具条：候选列与当前列从此行数对齐（旧布局候选列多一行，双侧错位）
         slot_bar.addWidget(QLabel('从背包/仓库导入:'))
         slot_bar.addWidget(self.bag_combo, 1)
+        # 候选播种要显式点：切槽不再自动深拷贝当前件（那会让「看一眼」也写进构建/会话状态）
+        self.seed_btn = QPushButton('以当前件为起点')
+        self.seed_btn.setToolTip(
+            '把本槽当前装备整件复制成候选（得到 Δ=0 的基线，之后改哪条就看哪条的影响）。\n'
+            '不再自动预填：只是切槽看一眼不该改写你的构建数据。')
+        self.seed_btn.clicked.connect(self._seed_candidate)
+        slot_bar.addWidget(self.seed_btn)
 
         top = QHBoxLayout()
         top.addWidget(self._cur_holder, 1)
@@ -102,36 +109,66 @@ class EquipmentEditor(QWidget):
         return slot, cur, cand
 
     def _build_editors(self):
-        """按当前槽重建两侧编辑器（武器槽多武器三行），并接回刷新信号。"""
+        """按当前槽重建两侧编辑器（武器槽多武器三行），并接回刷新信号。
+
+        候选不再自动预填当前件：只切槽看一眼也会把整件深拷贝写进 profile（随会话状态与构建
+        存档落盘），长出「没碰过却存在」的幻影候选。需要基线时由用户点「以当前件为起点」。
+        """
         slot, cur, cand = self._drafts()
-        # 首次进入某槽且候选为空时，用当前件预填候选：默认 Δ=0，用户改哪条就是哪条的影响
-        if (not cand.name and not cand.affixes) and (cur.name or cur.affixes):
-            cand.__dict__.update(copy.deepcopy(cur.__dict__))
         weapon = (slot == 0)
         label = SLOT_LABELS.get(slot, f'槽{slot}')
-        self.current_editor = ItemEditor(f'当前{label}', cur, weapon=weapon)
+        # 名称能否命中装备表由 core 判定（与 compare 的告警同源）：两侧都要，候选侧据此描警示边
+        resolve = lambda n: calc_service.name_known(self.gd, n)
+        hint = lambda s, v, il, ra: calc_service.affix_hint(self.gd, s, v, il, ra)
+        self.current_editor = ItemEditor(f'当前{label}', cur, weapon=weapon,
+                                        name_resolver=resolve, range_hint=hint)
         # 候选侧的「与当前装备相同」以本槽当前件为镜像源（武器与非武器槽通用）；α 下当前件
         # 被整块禁用，开关实质上也不会被用到
         self.candidate_editor = ItemEditor(f'候选{label}', cand, weapon=weapon,
-                                          current_of=lambda: cur)
+                                          current_of=lambda: cur, name_resolver=resolve,
+                                          range_hint=hint)
         self.candidate_editor.likeCurrentChanged.connect(self._on_like_current_pref)
-        self._auto_like_current(cur)     # 跨槽保持：上一次勾选则本槽自动沿用
+        self._auto_like_current(cur, cand)   # 跨槽保持：上一次勾选且候选有内容则本槽自动沿用
         self.current_editor.changed.connect(self.refresh)
         self.candidate_editor.changed.connect(self.refresh)
         self._replace(self._cur_lay, self.current_editor)
         self._replace(self._cand_lay, self.candidate_editor)
+
+    def _seed_candidate(self):
+        """显式把当前件复制成候选（唯一写入候选内容的入口，除背包载入外）。
+
+        播种后立刻走一次镜像记忆：记忆位为开时「以当前件为起点」就该得到镜像态，
+        否则用户还得手动再勾一次开关（与跨槽保持的语义不一致）。
+        """
+        _slot, cur, cand = self._drafts()
+        cand.__dict__.update(copy.deepcopy(cur.__dict__))
+        cand.like_current = False
+        self.candidate_editor.reload()
+        self._auto_like_current(cur, cand)
+        self.refresh()
+
+    def _update_seed_btn(self, cur, cand):
+        """播种按钮只在「当前件有内容 且 候选还空着」时可用：其余情况点它没有意义。"""
+        has_cur = bool(cur.name or cur.affixes or list(getattr(cur, 'gems', None) or []))
+        empty_cand = not (cand.name or cand.affixes
+                          or list(getattr(cand, 'gems', None) or []))
+        self.seed_btn.setEnabled(has_cur and empty_cand)
 
     # ---------------- 「与当前装备相同」选择记忆 ----------------
     def _on_like_current_pref(self, checked):
         """把开关选择写回 profile：跨槽保持，且随会话状态/构建存档持久化。"""
         self.profile.like_current_pref = bool(checked)
 
-    def _auto_like_current(self, cur):
-        """记忆为开时自动勾选新槽/新载入件的开关；当前件无可镜像内容（手工空卡）则不勾。
+    def _auto_like_current(self, cur, cand):
+        """记忆为开时自动勾选新槽/新载入件的开关；当前件无可镜像内容或候选为空则不勾。
 
-        勾了没有可镜像的强化/宝石只会多出提示噪音，也会把「候选=当前件拷贝」误标成镜像态。
+        勾了没有可镜像的强化/宝石只会多出提示噪音；而候选为空时勾上只会得到「有宝石没词条」的
+        半成品（不再自动预填后尤其明显），也会把「候选=当前件拷贝」误标成镜像态。
         """
         if not bool(getattr(self.profile, 'like_current_pref', False)):
+            return
+        if not (bool(cand.name) or bool(cand.affixes)
+                or list(getattr(cand, 'gems', None) or [])):
             return
         if not (int(getattr(cur, 'upgrade_level', 0) or 0)
                 or list(getattr(cur, 'gems', None) or [])):
@@ -140,9 +177,16 @@ class EquipmentEditor(QWidget):
 
     @staticmethod
     def _replace(lay, widget):
+        """换掉抽屉里的卡片：显式脱离布局再 deleteLater。
+
+        只 deleteLater 不够确定——回收依赖事件循环，离屏/无循环场景（如 --smoke）里旧件会一直
+        挂在父对象下（实测 widget 计数虚高到 1172）。先 setParent(None) 让它在当帧就退出布局
+        与可见树，随后由事件循环回收。
+        """
         while lay.count():
             old = lay.takeAt(0).widget()
             if old is not None:
+                old.setParent(None)
                 old.deleteLater()
         lay.addWidget(widget)
 
@@ -202,7 +246,7 @@ class EquipmentEditor(QWidget):
             cand.rarity = int(rec.get('rarity') or 0)
             cand.source = str(rec.get('source') or '')
         self.candidate_editor.reload()
-        self._auto_like_current(cur)     # 保持选择：上次勾选则新载入的背包件自动沿用镜像
+        self._auto_like_current(cur, cand)   # 保持选择：上次勾选则新载入的背包件自动沿用镜像
         self.refresh()
 
     # ---------------- 刷新 ----------------
@@ -221,6 +265,8 @@ class EquipmentEditor(QWidget):
     def refresh(self):
         """重算并渲染结果区（纯计算，不改动输入控件）。"""
         self._apply_mode()
+        _slot, cur, cand = self._drafts()
+        self._update_seed_btn(cur, cand)
         result = calc_service.compare(self.profile, self.gd)
         rows = skill_service.skill_rows(self.profile, self.gd, result.current_sheet,
                                         result.candidate_sheet, result.target,

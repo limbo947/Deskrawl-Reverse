@@ -8,7 +8,8 @@
 读数失败（游戏未开/不在假人图）降级为弱化短文案，不弹窗打断。
 """
 from PySide6.QtCore import QTimer, Qt
-from PySide6.QtWidgets import QFrame, QLabel, QVBoxLayout
+from PySide6.QtWidgets import (QCheckBox, QFrame, QHBoxLayout, QLabel, QPushButton,
+                               QVBoxLayout)
 
 from ..core.dps_meter import read_dps_meter
 from ..core.memory_import import MemoryImportError
@@ -37,8 +38,8 @@ class GameDpsMeter(QFrame):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setObjectName('dpsMeter')
-        self.setTitle = QLabel('游戏实测（训练假人）')
-        self.setTitle.setObjectName('dpsMeterTitle')
+        self.title_label = QLabel('游戏实测（训练假人）')
+        self.title_label.setObjectName('dpsMeterTitle')
         self.verdict = QLabel('—')
         self.verdict.setObjectName('dpsMeterValue')
         self.verdict.setTextInteractionFlags(Qt.TextSelectableByMouse)
@@ -47,10 +48,28 @@ class GameDpsMeter(QFrame):
         self.diag.setWordWrap(True)
         self.diag.setVisible(False)
 
+        # 轮询开关：由页面可见性驱动（app 切页置位）+ 用户可关实时刷新改手动
+        self._active = False
+        self._live = True
+        self.live_check = QCheckBox('实时')
+        self.live_check.setChecked(True)
+        self.live_check.setToolTip('每秒读一次运行中游戏的 DPS 计（只读内存）。\n'
+                                  '关掉后不再自动读；停在其它页面时本组件也会自动暂停。')
+        self.live_check.toggled.connect(self._on_live_toggled)
+        self.read_btn = QPushButton('读一次')
+        self.read_btn.setToolTip('现在读一次游戏 DPS 计（关掉「实时」后用它手动刷新）。')
+        self.read_btn.clicked.connect(self.poll)
+        ctrl = QHBoxLayout()
+        ctrl.setSpacing(6)
+        ctrl.addWidget(self.title_label)
+        ctrl.addStretch(1)
+        ctrl.addWidget(self.live_check)
+        ctrl.addWidget(self.read_btn)
+
         lay = QVBoxLayout(self)
         lay.setContentsMargins(12, 8, 12, 8)
         lay.setSpacing(2)
-        lay.addWidget(self.setTitle)
+        lay.addLayout(ctrl)
         lay.addWidget(self.verdict)
         lay.addWidget(self.diag)
 
@@ -62,8 +81,33 @@ class GameDpsMeter(QFrame):
         self._timer = QTimer(self)
         self._timer.setInterval(_POLL_MS)
         self._timer.timeout.connect(self.poll)
-        self._timer.start()
-        self.poll()
+        self._sync_timer()
+        self.poll()                # 先读一次把首帧填上（即使当前未激活）
+
+    # ---------------- 轮询启停 ----------------
+    def set_active(self, active: bool):
+        """页面可见性驱动的启停：停在角色页/装配中心时不该在后台每秒扫游戏内存。"""
+        active = bool(active)
+        if active == self._active:
+            return
+        self._active = active
+        self._sync_timer()
+        if active:
+            self.poll()
+
+    def _on_live_toggled(self, checked):
+        """用户关掉「实时」→ 停表（改手动点「读一次」），并顺带说明当前状态。"""
+        self._live = bool(checked)
+        self._sync_timer()
+        if self._live:
+            self.poll()
+
+    def _sync_timer(self):
+        """唯一的启停口：可见（_active）∧ 用户开关（_live）→ 跑定时器。"""
+        if self._active and self._live:
+            self._timer.start()
+        else:
+            self._timer.stop()
 
     def set_expectation(self, main_row):
         """喂入主力技能期望行（skill_service.pick_main_row 的结果；None=不可用）。
@@ -84,6 +128,17 @@ class GameDpsMeter(QFrame):
         self.verdict.style().unpolish(self.verdict)
         self.verdict.style().polish(self.verdict)
 
+    def _apply_state(self, state):
+        """运行态属性同时挂到卡片与结论标签：QSS 分别用来弱化描边与降级字号。
+
+        必须挂两个：旧实现只挂在卡片上，而 `#dpsMeterValue[state=...]` 是给标签写的规则，
+        于是失败态一直按 18px 半粗大字渲染（实测截图里与 DPS 结论抢焦点）。
+        """
+        for widget in (self, self.verdict):
+            widget.setProperty('state', state)
+            widget.style().unpolish(widget)
+            widget.style().polish(widget)
+
     def poll(self):
         """一次轮询：读游戏实测值（失败降级短文案），再渲染。"""
         try:
@@ -102,9 +157,9 @@ class GameDpsMeter(QFrame):
             self.verdict.setToolTip(str(exc) if exc else '')
             self._apply_trend(None)
             self.diag.setVisible(False)
-            self.setProperty('state', 'offline')
+            self._apply_state('offline')
             return
-        self.setProperty('state', 'live')
+        self._apply_state('live')
         live, total = float(self._last['dps']), float(self._last['total'])
         base_tip = (f'精确值：当前每秒 {live:.2f}；总伤害 {total:.0f}\n'
                     f'（读自运行中游戏的 DPS 计，1s 轮询；游戏里点「重置」后重新累计）')

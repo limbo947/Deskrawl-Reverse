@@ -13,6 +13,17 @@ from deskrawl_calc import stat_name
 
 _SKILL_COLS = ['技能', '当前', '候选', 'Δ%']
 
+# Δ 中性阈值：界面按 1 位小数显示，|Δ| < 0.05 时读出来就是"+0.0"——这种情况必须用中性色，
+# 否则「没变化」会被读成「提升」（旧实现 `delta >= 0 → deltaUp` 把 Δ=0 也上绿）。
+_FLAT_DELTA = 0.05
+
+
+def _delta_object_name(delta: float) -> str:
+    """Δ 三态 → QSS 的 objectName（颜色只在 style.qss 定义）。"""
+    if abs(float(delta)) < _FLAT_DELTA:
+        return 'deltaFlat'
+    return 'deltaUp' if delta > 0 else 'deltaDown'
+
 
 class CompareView(QGroupBox):
     def __init__(self, parent=None):
@@ -51,6 +62,8 @@ class CompareView(QGroupBox):
         self.skill_table.verticalHeader().setVisible(False)
         self.skill_table.setEditTriggers(QAbstractItemView.NoEditTriggers)
         self.skill_table.setAlternatingRowColors(True)
+        # 技能表已在「对比结果」分组框内：自身的表格框 + 网格线会叠加成多层矩形线框
+        self.skill_table.setShowGrid(False)
         self.skill_table.horizontalHeader().setSectionResizeMode(0, QHeaderView.Stretch)
         root.addWidget(self.skill_table, 1)
 
@@ -66,9 +79,9 @@ class CompareView(QGroupBox):
         self.cand_title.setText(f'候选{result.slot_label} DPS')
         self.cur_dps.setText(f'{result.current_dps:.1f}')
         self.cand_dps.setText(f'{result.candidate_dps:.1f}')
-        self.delta.setText(f'{result.delta:+.1f} DPS（{result.delta_pct:+.2f}%）')
+        self.delta.setText(f'{result.delta_pct:+.2f}%（{result.delta:+.1f} DPS）')
         # 涨/跌配色写在 style.qss 里，这里只切 objectName，避免颜色散落在代码中
-        self.delta.setObjectName('deltaUp' if result.delta >= 0 else 'deltaDown')
+        self.delta.setObjectName(_delta_object_name(result.delta))
         self.delta.style().unpolish(self.delta)
         self.delta.style().polish(self.delta)
 

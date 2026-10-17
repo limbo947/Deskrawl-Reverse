@@ -93,6 +93,42 @@ def gem_category_for_slot(slot) -> int:
     return _gem_category(SLOT_EQUIP_TYPE.get(int(slot), 0))
 
 
+def name_known(gd, name: str) -> bool:
+    """装备名能否在数据层定位到一条 ItemData 记录（显示名可反查，或本身就是内部名）。
+
+    为什么需要这个判定：`item_internal_name` 查不到时**原样返回**（回落而非报错），于是
+    「名字不对」与「这件装备本来就没有传奇特效」在下游无法区分——特效会静默丢失。
+    GUI 用同一判定给输入框描警示边，compare() 用它产出显式告警。
+    """
+    nm = str(name or '').strip()
+    if not nm:
+        return True
+    internal = item_internal_name(gd, nm)
+    return internal != nm or internal in gd.items()
+
+
+def _unresolved_name_warnings(gd, profile, items) -> list:
+    """导入数据里「名字在装备表查不到」的件 → 显式告警（该件的传奇特效/词条解析已丢）。
+
+    只在导入模式下判定：手工构建的装备名是用户自取的（demo 的「旧武器·双手剑」即是），本就不该
+    期望命中游戏装备表——若一并告警，默认界面一打开就挂满噪声。而导入件是工具自己翻译并冻结的，
+    查不到就是真的丢数据，按「宁可红不出脏」必须说出来（这也是全清单里唯一会产出「看起来合理的
+    错误数字」的路径）。
+    """
+    if not str(getattr(profile, 'import_mode', '') or ''):
+        return []
+    out, seen = [], set()
+    for item in items:
+        name = str(getattr(item, 'name', '') or '').strip()
+        if not name or name in seen:
+            continue
+        seen.add(name)
+        if not name_known(gd, name):
+            out.append(f'「{name}」未在游戏装备表命中：该件的传奇特效未计入'
+                       '（名称需与游戏内一致；可用「从背包/仓库导入」载入）')
+    return out
+
+
 def _effect_mods(gd, name) -> list:
     """装备名（简中显示名）→ 传奇特效词条。
 
@@ -235,6 +271,28 @@ def _slot_sheets(profile, gd, slot, warns):
     return cur_sheet, cand_sheet
 
 
+def _side_terms(gd, profile, slot, target) -> tuple:
+    """两侧的（特效, 条件暴击, 条件伤害）——公共件 + 被对比槽各自的件。
+
+    两条对比路径（武器槽走 compare_weapons、其余槽走「卸下—装回」）此前各写一遍同样的十几行，
+    口径一改就容易只改一侧（历史上宝石分组不对称就是这类问题）。抽出后只有一个来源。
+    """
+    common = _equipped_effects(gd, profile, exclude_slot=slot)
+    if slot == 0:
+        cur_name = getattr(profile.weapon_current, 'name', '')
+        cand_name = getattr(profile.weapon_candidate, 'name', '')
+    else:
+        cur_name = getattr(profile.slot_current.get(slot), 'name', '')
+        cand_name = getattr(profile.slot_candidate.get(slot), 'name', '')
+    cur_eff = common + _effect_dicts(gd, cur_name)
+    cand_eff = common + _effect_dicts(gd, cand_name)
+    cc_c, cd_c = _crit_terms(gd, cur_eff, target)
+    cc_k, cd_k = _crit_terms(gd, cand_eff, target)
+    dmg_c = _cond_damage(gd, cur_eff, profile.damage_type, target)
+    dmg_k = _cond_damage(gd, cand_eff, profile.damage_type, target)
+    return common, cur_eff, cand_eff, (cc_c, cd_c, dmg_c), (cc_k, cd_k, dmg_k)
+
+
 def compare(profile: CharacterProfile, gd, slot=None) -> CompareResult:
     """对比所选槽的当前件/候选件（默认取 profile.compare_slot）。
 
@@ -245,6 +303,10 @@ def compare(profile: CharacterProfile, gd, slot=None) -> CompareResult:
     target = profile.to_target()
     label = SLOT_LABELS.get(slot, f'槽{slot}')
     warns: List[str] = []
+    # 名称查不到 → 特效静默丢失：两侧件都要查（导入模式才判，手工名不告警）
+    side_items = ((profile.weapon_current, profile.weapon_candidate) if slot == 0
+                  else (profile.slot_current.get(slot), profile.slot_candidate.get(slot)))
+    warns.extend(_unresolved_name_warnings(gd, profile, side_items))
     if slot == 0:
         sheet = profile.to_sheet(gd)
         # 当前武器的孔位宝石原本只在装配链里（assembled 的 slot=0 条目）→ 两侧都会看到「当前」的宝石。
@@ -258,16 +320,12 @@ def compare(profile: CharacterProfile, gd, slot=None) -> CompareResult:
                                profile.weapon_current.name))
         cur = _weapon_with_gems(gd, profile.weapon_current)
         cand = _weapon_with_gems(gd, profile.weapon_candidate)
-        # 逐侧条件暴击（武器特效差异：当前武器 ↔ 候选武器；其余件对两侧公共）
-        common = _equipped_effects(gd, profile, exclude_slot=0)
-        cur_eff = common + _effect_dicts(gd, profile.weapon_current.name)
-        cand_eff = common + _effect_dicts(gd, profile.weapon_candidate.name)
+        # 逐侧条件暴击/条件伤害（武器特效差异：当前武器 ↔ 候选武器；其余件对两侧公共）
+        common, cur_eff, cand_eff, cur_kw, cand_kw = _side_terms(gd, profile, 0, target)
+        cc_c, cd_c, dmg_c = cur_kw
+        cc_k, cd_k, dmg_k = cand_kw
         # 属性换算（StatConversion）：其余件对两侧公共（武器无该特效），装配完成后应用
         _apply_conversions(gd, sheet, common)
-        cc_c, cd_c = _crit_terms(gd, cur_eff, target)
-        cc_k, cd_k = _crit_terms(gd, cand_eff, target)
-        dmg_c = _cond_damage(gd, cur_eff, profile.damage_type, target)
-        dmg_k = _cond_damage(gd, cand_eff, profile.damage_type, target)
         r = compare_weapons(sheet, cur, cand, target=target, damage_type=profile.damage_type,
                             primary_stat=profile.primary_stat,
                             current_kw={'conditional_crit': cc_c, 'equip_crit_damage': cd_c,
@@ -282,14 +340,10 @@ def compare(profile: CharacterProfile, gd, slot=None) -> CompareResult:
 
     cur_sheet, cand_sheet = _slot_sheets(profile, gd, slot, warns)
     w = profile.weapon_current.to_weapon()
-    # 逐侧条件暴击（被对比槽两件不同；其余件公共）
-    common = _equipped_effects(gd, profile, exclude_slot=slot)
-    cur_eff = common + _effect_dicts(gd, getattr(profile.slot_current.get(slot), 'name', ''))
-    cand_eff = common + _effect_dicts(gd, getattr(profile.slot_candidate.get(slot), 'name', ''))
-    cc_c, cd_c = _crit_terms(gd, cur_eff, target)
-    cc_k, cd_k = _crit_terms(gd, cand_eff, target)
-    dmg_c = _cond_damage(gd, cur_eff, profile.damage_type, target)
-    dmg_k = _cond_damage(gd, cand_eff, profile.damage_type, target)
+    # 逐侧条件暴击/条件伤害（被对比槽两件不同；其余件公共）
+    _common, cur_eff, cand_eff, cur_kw, cand_kw = _side_terms(gd, profile, slot, target)
+    cc_c, cd_c, dmg_c = cur_kw
+    cc_k, cd_k, dmg_k = cand_kw
     # 属性换算：两侧各自应用（当前件 ↔ 候选件；其余件已含在 common 里）
     _apply_conversions(gd, cur_sheet, cur_eff)
     _apply_conversions(gd, cand_sheet, cand_eff)
@@ -342,6 +396,33 @@ def candidate_modifiers(gd, kind: str, name: str, *, level: int = 1, category: i
 # 词条摘要与词条编辑表共用这一份，避免两处定义漂移
 MOD_TYPE_CN = {0: '加法', 1: '百分比加算', 2: '连乘'}
 
+_RARITY_CN = {0: '普通', 1: '魔法', 2: '稀有', 3: '史诗', 4: '传奇'}
+
+
+def affix_hint(gd, stat: int, value: float, item_level: int, rarity: int) -> str:
+    """词条数值落在「该物品等级/稀有度」的什么位置（手工录入时的判断依据）。
+
+    内核 `affix_range` 给的是 ±15% 窗口（Roll 表实测口径），所以这里只说区间归属与百分位，
+    不宣称是游戏完整 Roll 分布。物品等级/稀有度来自导入件（手工空草稿没有，则明说不可判）。
+    """
+    lv = int(item_level or 0)
+    if lv <= 0:
+        return ('该件未设物品等级/稀有度 → 无法给词条区间（用「从背包/仓库导入」整件载入会带上'
+                '这两个字段）')
+    try:
+        lo, hi = gd.affix_range(int(stat), lv, int(rarity or 0))
+    except (KeyError, TypeError, ValueError, IndexError):
+        return ''
+    if not (hi > lo):
+        return ''
+    rar = _RARITY_CN.get(int(rarity or 0), f'稀有度{int(rarity or 0)}')
+    head = f'区间 Lv{lv}·{rar}：{lo:.4g}–{hi:.4g}（本条 {float(value):.4g}，'
+    if value < lo:
+        return head + '低于区间下限）'
+    if value > hi:
+        return head + '高于区间上限）'
+    return head + f'区间内 {(float(value) - lo) / (hi - lo):.0%}）'
+
 
 def describe_mods(mods) -> str:
     """候选词条摘要。属性名复用内核 stat_name()，类型记号本地化为中文，保证界面全中文。"""
@@ -351,19 +432,29 @@ def describe_mods(mods) -> str:
                      f'（{MOD_TYPE_CN.get(int(m.type), m.type)}）' for m in mods)
 
 
-def _dps_with(profile: CharacterProfile, gd, extra_mods, extra_effects=None) -> float:
-    """当前构建（含当前武器词条与已装备件的传奇特效）+ extra_mods/extra_effects 的期望 DPS。
+def _baseline_context(profile: CharacterProfile, gd) -> tuple:
+    """排序/候选增量共用的底座：(已含武器词条的属性表, 武器, 已装备件特效)。
 
-    排序基线与候选增量共用这一条路径，保证 Δ 可被独立复现（self-test 用引擎直算对拍）。
-    条件暴击类特效（`ConditionalCritChance/Damage`）走 `conditional_crit`/`equip_crit_damage`
-    参数（不进属性表）；符文套装候选的套装特效由 `extra_effects` 传入。
+    为什么单列：每个候选都重建整张属性表并重解一遍已装备件特效是纯浪费（符文 199 条时
+    同一条链要跑 200 遍），而底座在一次排序里恒定——循环内只需 clone 再加候选词条。
     """
     sheet = profile.to_sheet(gd)
     w = profile.weapon_current.to_weapon()
     sheet.add_mods(w.modifiers)
+    return sheet, w, _equipped_effects(gd, profile)
+
+
+def _dps_on(ctx, profile: CharacterProfile, gd, extra_mods, extra_effects=None) -> float:
+    """在预建底座上算期望 DPS（基线 与 候选增量 共用这一条路径，故 Δ 可被独立复现）。
+
+    条件暴击类特效（`ConditionalCritChance/Damage`）走 `conditional_crit`/`equip_crit_damage`
+    参数（不进属性表）；符文套装的套装特效由 `extra_effects` 传入。
+    """
+    base_sheet, w, base_effs = ctx
+    sheet = base_sheet.clone()
     sheet.add_mods(extra_mods)
     target = profile.to_target()
-    effs = _equipped_effects(gd, profile) + list(extra_effects or [])
+    effs = list(base_effs) + list(extra_effects or [])
     _apply_conversions(gd, sheet, effs)
     cc, cd = _crit_terms(gd, effs, target)
     dmg = _cond_damage(gd, effs, profile.damage_type, target)
@@ -382,18 +473,19 @@ def candidate_effects(gd, kind: str, name: str, *, level: int = 1) -> list:
 
 def baseline_dps(profile: CharacterProfile, gd) -> float:
     """排序基线：当前构建（含当前武器词条）的期望 DPS。"""
-    return _dps_with(profile, gd, [])
+    return _dps_on(_baseline_context(profile, gd), profile, gd, [])
 
 
 def rank_candidates(profile: CharacterProfile, gd, kind: str, *,
                     level: int = 1, category: int = 2) -> List[CandidateRow]:
     """对某类别的全部候选按 ΔDPS 降序排序（基线 = 当前构建不加候选）。"""
-    base_dps = baseline_dps(profile, gd)
+    ctx = _baseline_context(profile, gd)          # 底座建一次，循环内只 clone
+    base_dps = _dps_on(ctx, profile, gd, [])
     rows = []
     for name in candidate_names(gd, kind):
         mods = candidate_modifiers(gd, kind, name, level=level, category=category)
         effs = candidate_effects(gd, kind, name, level=level)
-        dps = _dps_with(profile, gd, mods, extra_effects=effs)
+        dps = _dps_on(ctx, profile, gd, mods, extra_effects=effs)
         pct = (dps / base_dps - 1.0) * 100.0 if base_dps else 0.0
         rows.append(CandidateRow(name, describe_mods(mods), dps, dps - base_dps, pct, mods))
     rows.sort(key=lambda r: -r.delta)
@@ -569,4 +661,5 @@ def build_panel(payload: dict) -> dict:
 __all__ = ['StatRow', 'CompareResult', 'CandidateRow', 'stat_rows', 'compare',
            'candidate_names', 'candidate_modifiers', 'describe_mods',
            'baseline_dps', 'rank_candidates', 'KIND_LABELS',
-           'build_panel', 'PANEL_ORDER', 'MOD_TYPE_CN', 'gem_category_for_slot']
+           'build_panel', 'PANEL_ORDER', 'MOD_TYPE_CN', 'gem_category_for_slot',
+           'name_known', 'affix_hint']

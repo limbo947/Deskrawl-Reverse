@@ -15,16 +15,18 @@ import time
 
 from PySide6.QtCore import QByteArray, Qt, Signal
 from PySide6.QtGui import QAction
-from PySide6.QtWidgets import (QApplication, QFileDialog, QHBoxLayout, QLabel,
+from PySide6.QtWidgets import (QApplication, QFileDialog, QHBoxLayout,
                                QMainWindow, QMessageBox, QStackedWidget,
                                QStatusBar, QWidget)
 
 from deskrawl_calc import GameData, stat_name
 
 from .core import calc_service, session_state
+from .core.glossary import CALIBER_TEXT, DATA_SOURCE_TEXT, terms_text
 from .core.memory_import import MemoryImportError, check_fingerprints, import_snapshot
 from .core.profile import BUILDS_DIR, CharacterProfile, load_build, save_build
 from .widgets.assembly_center import AssemblyCenter
+from .widgets.common import confirm_delete
 from .widgets.compare_page import ComparePage
 from .widgets.navigation import SidebarNav
 from .widgets.role_page import RolePage
@@ -34,6 +36,8 @@ QSS_PATH = os.path.join(_HERE, 'resources', 'style.qss')
 
 # 页面注册表：key 供快捷键/编程切页用，顺序即堆栈顺序
 PAGES = [('role', '角色'), ('compare', '装备对比'), ('assembly', '装配中心')]
+# 行号 → 页面 key（切页时用它判断「对比页是否可见」，DPS 计轮询只在该页开）
+PAGE_ROW = {key: i for i, (key, _label) in enumerate(PAGES)}
 
 # 六类错误态 → 中文文案。code 由 MemoryImportError 携带（不靠消息子串猜），
 # 未识别的情况一律回落到「读取校验失败」，保证任何异常都不会裸抛英文堆栈给用户。
@@ -128,15 +132,12 @@ class MainWindow(QMainWindow):
         lay.addWidget(self.nav)
         lay.addWidget(self.stack, 1)
         self.setCentralWidget(central)
-        self.nav.pageChanged.connect(self.stack.setCurrentIndex)
+        self.nav.pageChanged.connect(self._on_page_changed)
         self._bind_page_shortcuts()
 
         self.setStatusBar(QStatusBar(self))
-        # 快照时间戳常驻状态栏（普通提示消息仍走临时消息区，互不覆盖）
-        self._snapshot_label = QLabel('快照：未导入')
-        self._snapshot_label.setObjectName('snapshotLabel')
-        self.statusBar().addPermanentWidget(self._snapshot_label)
         self._build_menus()
+        self._update_source_badge()
 
         # 任何编辑 → profileChanged → 统一轻量刷新（同步；全量重排只在装配中心内部按需触发）
         self.role_page.changed.connect(self.profileChanged)
@@ -144,6 +145,7 @@ class MainWindow(QMainWindow):
         self.assembly_center.changed.connect(self.profileChanged)
         self.profileChanged.connect(self._refresh_all)
         self._refresh_all()
+        self._on_page_changed(self.nav.currentRow())   # 让 DPS 计按当前页决定是否轮询
         if self._persist_state:
             self._restore_session_window(state)
 
@@ -174,12 +176,13 @@ class MainWindow(QMainWindow):
             except (TypeError, ValueError):
                 row = 0
             self.nav.setCurrentRow(max(0, min(row, len(PAGES) - 1)))
-            if self.profile.import_mode:
-                mode_cn = 'β 逐件' if self.profile.import_mode == 'beta' else 'α 聚合'
-                self._snapshot_label.setText(
-                    f'快照：{self.profile.import_time or "未知"}（{mode_cn}·已恢复）')
-        # _refresh_all 的「已刷新」提示在前，这里覆盖成恢复说明（用户先看到关心的结果）
-        if self._restore_note:
+        # _refresh_all 的静默刷新在前，这里给一次性说明（用户先看到自己关心的结果）
+        if not state:
+            # 首启动：给一条三步动线，别让用户对着示例构建发呆（此后由会话恢复接管）
+            self.statusBar().showMessage(
+                '首次使用：① 菜单「数据导入」读运行中的角色，或直接在左栏手工录入 → '
+                '② 选装备槽与目标 → ③ 读 Δ%；术语与口径见「帮助」菜单', 20000)
+        elif self._restore_note:
             self.statusBar().showMessage(self._restore_note, 12000)
         elif state:
             self.statusBar().showMessage('已恢复上次关闭前的会话（窗口与数据）', 10000)
@@ -200,15 +203,29 @@ class MainWindow(QMainWindow):
             self._save_session_state()
         super().closeEvent(event)
 
+    def _on_page_changed(self, row: int):
+        """切页：DPS 计只在对比页可见时才轮询。
+
+        此前的 QTimer 在构造时启动且永不停止——停在角色页/装配中心、甚至游戏没开时，
+        也每秒扫一次进程与内存。轮询只该服务于「正在看对比结果」这一种情形。
+        """
+        self.stack.setCurrentIndex(row)
+        self.compare_page.dps_meter.set_active(row == PAGE_ROW['compare'])
+
     def _bind_page_shortcuts(self):
-        """Ctrl+1/2/3 直达对应页面；挂 QAction 以便菜单外也能生效。"""
+        """Ctrl+1/2/3 直达对应页面；挂 QAction 以便菜单外也能生效。Ctrl+B 收起/展开侧栏。"""
         for i, (_key, _label) in enumerate(PAGES):
             act = QAction(self)
             act.setShortcut(f'Ctrl+{i + 1}')
             act.triggered.connect(lambda _=False, row=i: self.nav.setCurrentRow(row))
             self.addAction(act)
+        toggle = QAction(self)
+        toggle.setShortcut('Ctrl+B')
+        toggle.triggered.connect(self.nav.toggle_collapsed)
+        self.addAction(toggle)
 
-    # ---- 旧布局时代的控件别名（保持对外属性稳定，selftest 与脚本可继续用）----
+    # ---- 旧布局时代的控件别名（保持对外属性稳定，供 selftest 与脚本使用；新代码请走页面 ----
+    #      如 self.compare_page.equipment_editor，别名只为一处修改面服务，不承担新接口职责）
     @property
     def panel_editor(self):
         return self.role_page.panel_editor
@@ -229,6 +246,10 @@ class MainWindow(QMainWindow):
     def _build_menus(self):
         bar = self.menuBar()
         file_menu = bar.addMenu('文件')
+        self._add_action(file_menu, '新建空白构建', self._new_blank_build)
+        # 导入后当前件会锁成只读，必须给退出口（菜单项常驻，便于用户随时回到手工程序）
+        self._add_action(file_menu, '清除导入数据（回到手工程序）…', self._clear_import)
+        file_menu.addSeparator()
         self._add_action(file_menu, '保存构建…', self._save_build, 'Ctrl+S')
         self._add_action(file_menu, '加载构建…', self._load_build, 'Ctrl+O')
         file_menu.addSeparator()
@@ -242,6 +263,43 @@ class MainWindow(QMainWindow):
         self._import_action = self._add_action(
             import_menu, '从运行中的游戏导入（只读）…', self._import_from_game)
         self._apply_fingerprint_state()
+
+        # 帮助：术语与口径是上手这道工具最陡的台阶，集中一处可读（这些文案是文档的浓缩版）
+        help_menu = bar.addMenu('帮助')
+        self._add_action(help_menu, '术语表…', lambda: self._show_help('术语表', terms_text()))
+        self._add_action(help_menu, '口径说明…',
+                         lambda: self._show_help('口径说明', CALIBER_TEXT))
+        self._add_action(help_menu, '数据来源与只读约束…',
+                         lambda: self._show_help('数据来源与只读约束', DATA_SOURCE_TEXT))
+        help_menu.addSeparator()
+        self._add_action(help_menu, '关于…', lambda: self._show_help('关于', self._about_text()))
+
+    def _show_help(self, title: str, body: str):
+        """帮助类弹窗：正文可整段选中复制（用户常要拿去和文档/群友对照）。
+
+        不用 setDetailedText：长文会被折在「显示详细信息」后面，术语表这种要通读的内容
+        藏起来等于没给。
+        """
+        box = QMessageBox(self)
+        box.setIcon(QMessageBox.Information)
+        box.setWindowTitle(title)
+        box.setText(body)
+        box.setTextInteractionFlags(Qt.TextSelectableByMouse)
+        box.exec()
+
+    def _about_text(self) -> str:
+        """关于：数据目录 / 静态数据规模 / 版本指纹结论（即导入可用性的当前状态）。"""
+        try:
+            items = len(self.gd.items())
+        except (OSError, ValueError, TypeError):
+            items = 0
+        return ('Deskrawl 数值计算台\n\n'
+                '内核：deskrawl_calc（公式与静态数值分层的纯 Python 实现，零第三方依赖）\n'
+                f'数据目录：{getattr(self.gd, "dir", "") or "（未定位）"}\n'
+                f'装备条目：{items} 条\n'
+                f'版本指纹：{"通过（可导入）" if self._fingerprint_ok else "不符（导入已禁用）"}\n\n'
+                '本工具只读：不写入游戏进程、不修改游戏安装目录内任何文件。\n'
+                '术语与口径见「帮助 → 术语表 / 口径说明」。')
 
     def _apply_fingerprint_state(self):
         """启动即校验一次版本指纹；失配则禁用导入入口并写明原因（宁可禁用，不读脏数据）。"""
@@ -286,9 +344,8 @@ class MainWindow(QMainWindow):
         except Exception as exc:                                # noqa: BLE001 边界兜底
             self.profile.panel = None
             self.statusBar().showMessage(f'游戏面板口径复算失败（属性明细退回计算口径）：{exc}', 8000)
-        self._reload_pages()
+        self._reload_pages()      # 内含数据源徽标刷新
         mode_cn = 'β 逐件' if res.mode == 'beta' else 'α 聚合'
-        self._snapshot_label.setText(f'快照：{res.time}（{mode_cn}）')
         msg = self._import_summary(res, payload, mode_cn)
         # 详情放 DetailedText：内容长且可整段复制（旧版只有正文，长告警列表不便留存）
         box = QMessageBox(self)
@@ -297,7 +354,7 @@ class MainWindow(QMainWindow):
         box.setText(f'已从运行中的游戏导入（{mode_cn}）')
         box.setDetailedText(msg)
         box.exec()
-        self.statusBar().showMessage(f'已从运行中的游戏导入（{mode_cn}）')
+        self.statusBar().showMessage(f'已从运行中的游戏导入（{mode_cn}）', 8000)
 
     def _import_summary(self, res, payload, mode_cn) -> str:
         """导入结果摘要（放 DetailedText，可复制）。"""
@@ -346,7 +403,7 @@ class MainWindow(QMainWindow):
         except OSError as exc:
             QMessageBox.warning(self, '保存失败', str(exc))
             return
-        self.statusBar().showMessage(f'已保存：{path}')
+        self.statusBar().showMessage(f'已保存：{path}', 8000)
 
     def _load_build(self):
         os.makedirs(BUILDS_DIR, exist_ok=True)
@@ -360,7 +417,7 @@ class MainWindow(QMainWindow):
             return
         self.profile.replace_with(loaded)      # 就地替换，widget 引用不失效
         self._reload_pages()
-        self.statusBar().showMessage(f'已加载：{path}')
+        self.statusBar().showMessage(f'已加载：{path}', 8000)
 
     def _kernel_selftest_message(self) -> tuple:
         """返回自检弹窗要显示的内容（与 --selftest 同源，便于无显示环境校验）。"""
@@ -380,29 +437,115 @@ class MainWindow(QMainWindow):
 
     # ---------------- 刷新协议 ----------------
     def _refresh_all(self):
-        """轻量刷新：属性表 / 对比结果 / 已装配清单一次到位；排序表不全量重排。"""
+        """轻量刷新：属性表 / 对比结果 / 已装配清单一次到位；排序表不全量重排。
+
+        刻意**不发状态栏消息**：刷新是持续状态而非事件（一次编辑即触发），而状态栏承载的是
+        导入摘要/会话恢复/指纹告警这类一次性事件——每次编辑都改写状态栏会把它们不可逆冲掉。
+        """
         self.role_page.refresh()
         self.compare_page.refresh()
         self.assembly_center.refresh()
-        self.statusBar().showMessage(f'构建「{self.profile.name}」已刷新')
 
     def _reload_pages(self):
         """换数据源后的全页回填（导入/加载构建），各页 reload 内含深度重算。"""
+        self._update_source_badge()
         self.role_page.reload()
         self.compare_page.reload()
         self.assembly_center.reload()
 
+    def _update_source_badge(self):
+        """侧栏底部的数据源徽标：手工 / 内存导入 α·β + 快照时间。
+
+        此前这三条信息散在状态栏右侧、当前件标题后缀与 α 横幅里，切页就丢；徽标是常驻的
+        单一出处，也让「我现在看的是哪套数」在三个页面上都成立。
+        """
+        mode = str(getattr(self.profile, 'import_mode', '') or '')
+        if not mode:
+            self.nav.set_source_badge('数据源：手工构建',
+                                      '当前数值来自手工录入或构建文件，未读取游戏内存。')
+            return
+        mode_cn = 'β 逐件' if mode == 'beta' else 'α 聚合（降级）'
+        time_cn = self.profile.import_time or '未知时间'
+        self.nav.set_source_badge(f'数据源：内存导入 {mode_cn}\n快照 {time_cn}',
+                                  '角色数据来自运行中游戏的只读内存快照（不写入游戏进程）。\n'
+                                  'α 聚合无逐件装备数据，百分比类词条增量为近似值。')
+
+    def _new_blank_build(self):
+        """新建空白构建：只换角色数据，保留用户选的目标/参考技能/伤害类型口径。"""
+        blank = CharacterProfile(name='新构建')
+        blank.target = self.profile.target
+        blank.damage_type = int(self.profile.damage_type)
+        blank.skill_name = self.profile.skill_name
+        blank.skill_level = int(self.profile.skill_level)
+        self.profile.replace_with(blank)
+        self._reload_pages()
+        self.statusBar().showMessage('已新建空白构建（从手工录入开始）', 8000)
+
+    def _clear_import(self):
+        """清除导入数据 → 回到手工程序（进入容易退出也要容易）。
+
+        导入会把当前件锁成只读，此前没有任何退出口。这里清掉导入态（只读/背包候选/面板口径），
+        保留面板数值与目标/技能口径——用户可在此基础上继续手工试算。
+        """
+        if not self.profile.import_mode:
+            self.statusBar().showMessage('当前不是内存导入的数据，无需清除', 5000)
+            return
+        if not confirm_delete(self, '清除导入数据',
+                              '将移除内存导入的角色数据：当前件解锁为可编辑、背包候选清空、'
+                              '属性明细退回计算口径。面板数值与目标/技能口径保留。\n继续？',
+                              yes_label='清除'):
+            return
+        self.profile.import_mode = ''
+        self.profile.import_time = ''
+        self.profile.panel = None
+        self.profile.bag_items = []
+        self.profile.slot_current = {}
+        self.profile.slot_candidate = {}
+        self.profile.like_current_pref = False
+        self._reload_pages()
+        self.statusBar().showMessage('已清除导入数据：当前件可编辑，可继续手工试算', 10000)
+
 
 def build_application(argv=None) -> QApplication:
-    """建 QApplication 并挂主题。主题缺失会自 load_qss 抛出，启动即失败（不静默）。"""
+    """建 QApplication、定样式、挂主题。主题缺失会自 load_qss 抛出，启动即失败（不静默）。
+
+    为什么显式设 Fusion：QSS 覆盖不到的子控件（复选框指示器/下拉箭头/微调按钮/排序指示/
+    分隔手柄）默认由平台样式绘制，在暗底上会漏出白色方块与浅色图形，且各 Windows 版本
+    表现不一。Fusion 是 Qt 自带的跨平台实现，配合本主题的调色板可让未覆盖控件也走可控路径。
+    """
     app = QApplication.instance() or QApplication(argv if argv is not None else sys.argv)
     app.setApplicationName('Deskrawl 数值计算台')
+    app.setStyle('Fusion')
     app.setStyleSheet(load_qss())
     return app
+
+
+def _apply_dark_titlebar(win):
+    """Windows 上把系统标题栏切成暗色（DWMWA_USE_IMMERSIVE_DARK_MODE）。
+
+    只为消掉窗口顶端那条亮色横带：实测系统标题栏是纯白 #FFFFFF，与暗色应用形成割裂。
+    必须在窗口**首次显示前**调用（winId() 会先建出原生窗口）——实测在 show() 之后再设，
+    API 虽返回 S_OK 却不再生效，标题栏保持原样；Win10 1809 与 Win11 的属性号不同（19/20），
+    两个都试，任一成功即返回；非 Windows 或旧版本不生效属预期，静默跳过（纯观感优化）。
+    """
+    if sys.platform != 'win32':
+        return
+    import ctypes
+    try:
+        hwnd = int(win.winId())
+        enabled = ctypes.c_int(1)
+        for attr in (20, 19):
+            if ctypes.windll.dwmapi.DwmSetWindowAttribute(
+                    ctypes.c_void_p(hwnd), attr, ctypes.byref(enabled),
+                    ctypes.sizeof(enabled)) == 0:
+                return
+    except (AttributeError, OSError, ValueError):
+        pass
 
 
 def run_gui(argv=None) -> int:
     app = build_application(argv)
     win = MainWindow(persist_state=True)      # 生产入口：关闭落盘 / 启动恢复会话状态
+    _apply_dark_titlebar(win)                 # 须在 show() 之前：之后设 API 返回 S_OK 但不生效
     win.show()
     return app.exec()

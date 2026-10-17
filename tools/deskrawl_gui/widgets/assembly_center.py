@@ -14,8 +14,9 @@ from PySide6.QtWidgets import (QAbstractItemView, QComboBox, QHBoxLayout, QHeade
 from ..core import calc_service
 from ..core.assembly_meta import (GEM_CATEGORIES, assembly_params,
                                   assembled_extra_text, kind_param_label)
-from ..core.profile import KIND_LABELS, KIND_ORDER, AssemblyItem
-from .common import ModeBanner, confirm_delete, page_header
+from ..core.glossary import ASSEMBLY_TEXT
+from ..core.profile import (KIND_LABELS, KIND_ORDER, SLOT_LABELS, AssemblyItem)
+from .common import ModeBanner, apply_narrow_stacking, confirm_delete, page_header
 
 
 class _RankModel(QAbstractTableModel):
@@ -77,15 +78,18 @@ class AssemblyCenter(QWidget):
 
         # ---- 参数条：类别 / 部位或等级 / 搜索 ----
         self.kind_combo = QComboBox()
+        self.kind_combo.setToolTip('候选来源类别：宝石 / 符文 / 天赋 / 套装。切换会重建候选表。')
         for kind, label in KIND_ORDER:
             self.kind_combo.addItem(label, kind)
         self.kind_combo.currentIndexChanged.connect(self._on_kind)
 
         self.level_spin = QSpinBox()
         self.level_spin.setRange(1, 999)
+        self.level_spin.setToolTip('符文等级 / 天赋点数 / 套装件数（随类别变化）；改动会自动重排 ΔDPS。')
         self.level_spin.valueChanged.connect(lambda _: self.refresh(deep=True))
 
         self.slot_combo = QComboBox()
+        self.slot_combo.setToolTip('宝石镶嵌部位：同一颗宝石在护甲 / 饰品 / 武器三类部位的加成不同。')
         for value, label in GEM_CATEGORIES:
             self.slot_combo.addItem(label, value)
         self.slot_combo.setCurrentIndex(2)      # 默认武器孔（历史默认值，勿改）
@@ -141,10 +145,13 @@ class AssemblyCenter(QWidget):
 
         # ---- 已装配清单（就地改参数 + 删除确认）----
         self.assembled_list = QListWidget()
+        self.assembled_list.setToolTip('已装配条目会进属性表与排序基线（即 ΔDPS 的比较基准）；'
+                                       '选中条目可在下方就地改等级 / 镶嵌部位。')
         self.assembled_list.currentRowChanged.connect(self._on_assembled_selected)
         self.edit_level_spin = QSpinBox()
         self.edit_level_spin.setRange(1, 999)
         self.edit_slot_combo = QComboBox()
+        self.edit_slot_combo.setToolTip('宝石镶嵌部位：同一颗宝石在护甲 / 饰品 / 武器三类部位加成不同。')
         for value, label in GEM_CATEGORIES:
             self.edit_slot_combo.addItem(label, value)
         self.edit_label = QLabel('等级')
@@ -165,25 +172,31 @@ class AssemblyCenter(QWidget):
         right_lay.addLayout(edit_bar)
         right_lay.addWidget(remove_btn)
 
-        splitter = QSplitter()
-        splitter.addWidget(table_box)
-        splitter.addWidget(right_box)
-        splitter.setStretchFactor(0, 1)
-        splitter.setStretchFactor(1, 0)
-        splitter.setSizes([860, 360])
+        self._splitter = QSplitter()
+        self._splitter.addWidget(table_box)
+        self._splitter.addWidget(right_box)
+        self._splitter.setStretchFactor(0, 1)
+        self._splitter.setStretchFactor(1, 0)
+        self._splitter.setSizes([860, 360])
 
         self.banner = ModeBanner()
         tip = QLabel('提示：双击候选行或点「加入构建」把该候选按当前等级/部位加入构建；'
                      '选中已装配条目可就地改等级/部位。')
         root = QVBoxLayout(self)
         root.setContentsMargins(16, 12, 16, 12)
-        root.addWidget(page_header('装配中心', '宝石 / 符文 / 天赋 / 套装：搜索、按 ΔDPS 排序、加入构建并管理已装配条目'))
+        root.addWidget(page_header('装配中心', '宝石 / 符文 / 天赋 / 套装：搜索、按 ΔDPS 排序、加入构建',
+                                   ASSEMBLY_TEXT))
         root.addLayout(bar)
         root.addWidget(self.banner)
-        root.addWidget(splitter, 1)
+        root.addWidget(self._splitter, 1)
         root.addWidget(tip)
 
         self._on_kind()
+
+    def resizeEvent(self, event):
+        """窄窗口把「候选表 | 已装配栏」改为上下堆叠（见 common.apply_narrow_stacking）。"""
+        super().resizeEvent(event)
+        apply_narrow_stacking(self._splitter, event.size().width())
 
     # ---------------- 参数 ----------------
     def current_kind(self) -> str:
@@ -236,12 +249,26 @@ class AssemblyCenter(QWidget):
         self.assembled_list.blockSignals(True)
         self.assembled_list.clear()
         for it in self.profile.assembled:
-            extra = assembled_extra_text(it.kind, it.level, it.category)
+            extra = assembled_extra_text(it.kind, it.level, it.category,
+                                         self._slot_label(it))
             self.assembled_list.addItem(f'{KIND_LABELS.get(it.kind, it.kind)}｜{it.name}｜{extra}')
         row = min(current, len(self.profile.assembled) - 1)
         self.assembled_list.setCurrentRow(row)
         self.assembled_list.blockSignals(False)
         self._sync_edit_widgets()
+
+    @staticmethod
+    def _slot_label(item) -> str:
+        """宝石的归属槽展示名：手工加入的宝石未标注（计入全部槽基线），导入件带实测槽 id。
+
+        计算链按 `slot` 把宝石从对应槽的基线里减去，所以归属槽必须写出来可供核对。
+        """
+        if item.kind != 'gem':
+            return ''
+        slot = int(getattr(item, 'slot', -1))
+        if slot < 0:
+            return '未标注'
+        return SLOT_LABELS.get(slot, f'槽{slot}')
 
     # ---------------- 加入构建 ----------------
     def _add_name(self, name: str):

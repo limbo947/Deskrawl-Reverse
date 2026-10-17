@@ -518,10 +518,11 @@ def _nonweapon_mirror_checks(rep: Report, prof, gd):
 
 
 def _like_current_pref_checks(rep: Report, prof, gd):
-    """「与当前装备相同」选择跨槽保持：勾选后换槽仍自动勾选，取消后不再自动勾。
+    """「与当前装备相同」选择跨槽保持：记忆位为开时，新槽的**有内容候选**自动沿用镜像。
 
-    记忆位是 profile.like_current_pref（随会话状态/构建持久化）；自动勾选只在本槽当前件
-    有可镜像的强化/宝石时发生——手工空卡不误勾，也不会给「候选=当前件拷贝」贴上镜像标签。
+    记忆位是 profile.like_current_pref（随会话状态/构建持久化）。I3 后切槽不再自动拷贝当前件，
+    所以「沿用镜像」必须先在目标槽显式播种（点「以当前件为起点」）——本检查据此两步走，
+    顺带证明「空候选不会被误勾」（勾了只会得到有宝石没词条的半成品）。
     """
     import copy
 
@@ -532,16 +533,20 @@ def _like_current_pref_checks(rep: Report, prof, gd):
     eq.candidate_editor.like_current.setChecked(True)  # 勾选 → 记忆位开
     pref_on = bool(prof2.like_current_pref)
     eq.slot_combo.setCurrentIndex(eq.slot_combo.findData(2))   # 换到胸甲（当前件带 1 颗宝石）
+    empty_not_checked = not eq.candidate_editor.like_current.isChecked()   # 空候选不误勾
+    eq._seed_candidate()                                       # 显式播种 → 候选有内容
+    seeded_ok = bool(prof2.slot_candidate[2].affixes or prof2.slot_candidate[2].name)
     draft_flag = bool(prof2.slot_candidate[2].like_current)    # 快照：之后的取消会清零
     kept = eq.candidate_editor.like_current.isChecked() and draft_flag
     eq.candidate_editor.like_current.setChecked(False)         # 取消 → 记忆位关
     eq.slot_combo.setCurrentIndex(eq.slot_combo.findData(3))   # 换到裤子
     off_ok = (not eq.candidate_editor.like_current.isChecked()
               and not bool(prof2.like_current_pref))
-    rep.add(pref_on and kept and off_ok,
-            '「与当前装备相同」选择跨槽保持（勾选记忆 / 取消记忆）',
-            f'勾选后换槽仍勾选={kept}（槽2 候选草稿 like_current={draft_flag}）；'
-            f'取消后换槽不勾={off_ok}；最终记忆位={prof2.like_current_pref}')
+    rep.add(pref_on and empty_not_checked and seeded_ok and kept and off_ok,
+            '「与当前装备相同」跨槽保持（播种后沿用 / 取消后不再勾 / 空候选不误勾）',
+            f'空候选不误勾={empty_not_checked}；播种成功={seeded_ok}；'
+            f'换槽沿用={kept}（槽2 候选草稿 like_current={draft_flag}）；'
+            f'取消后不勾={off_ok}；最终记忆位={prof2.like_current_pref}')
 
 
 def _import_keep_checks(rep: Report, prof, gd):

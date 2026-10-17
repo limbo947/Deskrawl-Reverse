@@ -5,7 +5,7 @@
 删除确认与空态是合并后新增的交互，集中于此避免各页面各写一套文案与样式。
 """
 from PySide6.QtCore import Qt
-from PySide6.QtWidgets import QLabel, QMessageBox, QVBoxLayout, QWidget
+from PySide6.QtWidgets import (QHBoxLayout, QLabel, QMessageBox, QVBoxLayout, QWidget)
 
 # α 聚合导入的统一降级说明（含「降级」关键词：selftest 文案锚点依赖它）
 ALPHA_BANNER_TEXT = ('α 聚合模式（快照无逐件装备）：相关计算降级为「基线 vs 基线+候选词条」，'
@@ -35,17 +35,17 @@ class ModeBanner(QLabel):
         return alpha
 
 
-def confirm_delete(parent, title: str, text: str) -> bool:
-    """删除类操作的二次确认；返回用户是否确认。
+def confirm_delete(parent, title: str, text: str, yes_label: str = '删除') -> bool:
+    """破坏性操作的二次确认；返回用户是否确认。
 
     用自定义中文按钮而非标准 Yes/No：Qt 未装中文翻译包时标准按钮会显示英文，
-    与「界面全中文」约定冲突。
+    与「界面全中文」约定冲突。yes_label 供非删除类操作（如「清除导入数据」）改写确认按钮。
     """
     box = QMessageBox(parent)
     box.setIcon(QMessageBox.Question)
     box.setWindowTitle(title)
     box.setText(text)
-    yes = box.addButton('删除', QMessageBox.YesRole)
+    yes = box.addButton(yes_label, QMessageBox.YesRole)
     box.addButton('取消', QMessageBox.NoRole)
     box.exec()
     return box.clickedButton() is yes
@@ -60,15 +60,38 @@ def empty_state(text: str) -> QLabel:
     return label
 
 
-def page_header(title: str, subtitle: str = '') -> QWidget:
-    """页面标题-副标题两级头部（统一样式锚点 #pageTitle / #pageSubtitle）。"""
+def apply_narrow_stacking(splitter, width: int, *, threshold: int = 1100):
+    """窄窗口下把「左右分栏」改为「上下堆叠」。
+
+    动机：两栏并排 + 绝对最小宽度在小屏或高缩放下会挤压（1920×1080 在 150% 缩放下只剩
+    1280 逻辑点）。用 QSplitter 的 orientation 切换即可，不重建布局；宽回来再并排。
+    """
+    splitter.setOrientation(Qt.Vertical if width < threshold else Qt.Horizontal)
+
+
+def page_header(title: str, subtitle: str = '', help_text: str = '') -> QWidget:
+    """页面标题-副标题两级头部（统一样式锚点 #pageTitle / #pageSubtitle）。
+
+    help_text 非空时在标题右侧挂一枚 ⓘ（悬停看说明）：副标题只留一句「这页干什么」，
+    口径边界、上手说明这类长文收进 ⓘ 与帮助菜单，避免顶部被大段文字占满（V11）。
+    """
     box = QWidget()
     lay = QVBoxLayout(box)
     lay.setContentsMargins(0, 0, 0, 0)
     lay.setSpacing(2)
+    head = QHBoxLayout()
+    head.setSpacing(6)
     t = QLabel(title)
     t.setObjectName('pageTitle')
-    lay.addWidget(t)
+    head.addWidget(t)
+    if help_text:
+        info = QLabel('ⓘ')
+        info.setObjectName('helpHint')
+        info.setToolTip(help_text)
+        info.setCursor(Qt.PointingHandCursor)
+        head.addWidget(info)
+    head.addStretch(1)
+    lay.addLayout(head)
     if subtitle:
         s = QLabel(subtitle)
         s.setObjectName('pageSubtitle')

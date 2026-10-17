@@ -1,22 +1,28 @@
 /* ============================================================================
    Deskrawl 暗色主题（令牌化）
    ----------------------------------------------------------------------------
-   色板令牌（改主题只改这一段 + 各规则里的引用值）：
+   色板令牌（改主题只改这一段 + 各规则里的引用值；本表已覆盖全部在用色值——
+   原先 5 个散落色值已收编为正式令牌：--bg-subtle / --text-faint / --text-disabled）：
      底色    --bg-root   #1E2226   窗口/表格底
-             --bg-sunk   #1A1D20   侧边导航（比底更深一档，形成层级）
+             --bg-sunk   #1A1D20   侧边导航/菜单栏/状态栏（比底更深一档，形成层级）
              --bg-panel  #262B30   控件面（输入框/按钮/菜单）
-             --bg-hover  #2E343A   悬停/选中底
+             --bg-subtle #23272C   条目悬停/选中底、斑马纹
+             --bg-hover  #2E343A   悬停/按压底
      边线    --line      #30353B   全部描边（唯一边色，不再混用多档灰）
      文字    --text      #E8EAED   主文字
              --text-dim  #9AA0A6   次要文字/标题弱化
-     强调    --accent    #4FC3F7   可交互元素唯一强调色（选中/焦点/进度条）
+             --text-faint #7F868D  诊断行（比 dim 更弱一档）
+             --text-disabled #6B7076 禁用态文字
+     强调    --accent    #4FC3F7   可交互元素唯一强调色（选中/焦点/进度条/复选框勾选）
              --accent-deep #2B5F7A 强调色的按压/选中底
      功能    --up        #66BB6A   Δ 上涨（仅 Δ 值使用）
              --down      #EF5350   Δ 下跌（仅 Δ 值使用）
+             --flat      #9AA0A6   Δ 无变化（与 --text-dim 同值：零变化不该读成"涨"）
              --warn      #FFB74D   降级/告警横幅
    间距令牌：4 / 8 / 12 / 16 / 24（页面外距 16，组内 8，条目 4）
    字号令牌：页面标题 16px(600) / 分组标题 13px(600) / 正文 12px
-   圆角令牌：控件 4px（唯一的圆角尺寸）
+             语义大字为刻意例外：22 / 20 / 18 / 11px（结论数字与诊断行）
+   圆角令牌：控件 4px（唯一的圆角尺寸；滚动条 5px、滑块手柄 6px 为刻意例外）
    ============================================================================ */
 
 /* ---- 全局基座 ---- */
@@ -42,11 +48,14 @@ QGroupBox::title {
     font-weight: 600;
 }
 
-/* ---- 侧边导航 ---- */
+/* ---- 侧边导航（容器 = 条目列表 + 底部数据源徽标） ---- */
+QWidget#sidebarPane {
+    background: #1A1D20;
+    border-right: 1px solid #30353B;
+}
 QListWidget#sidebar {
     background: #1A1D20;
     border: none;
-    border-right: 1px solid #30353B;
     outline: none;
     padding: 8px 0;
     font-size: 13px;
@@ -60,6 +69,24 @@ QListWidget#sidebar::item:selected {
     background: #23272C;
     border-left: 3px solid #4FC3F7;
     color: #E8EAED;
+}
+/* 收起/展开按钮：平铺样式，别与内容区的按钮抢视觉 */
+QPushButton#navToggle {
+    background: #1A1D20;
+    border: none;
+    border-bottom: 1px solid #30353B;
+    border-radius: 0;
+    padding: 6px 12px;
+    color: #9AA0A6;
+    text-align: left;
+}
+QPushButton#navToggle:hover { background: #23272C; color: #E8EAED; }
+/* 数据源徽标（手工 / 内存导入 α·β + 快照时间）：常驻底部，弱化色不抢导航注意力 */
+QLabel#sourceBadge {
+    color: #9AA0A6;
+    font-size: 11px;
+    padding: 8px 12px 12px 12px;
+    border-top: 1px solid #30353B;
 }
 
 /* ---- 页面头部（标题-副标题两级） ---- */
@@ -76,7 +103,7 @@ QPushButton {
 }
 QPushButton:hover { background: #2E343A; }
 QPushButton:pressed { background: #2B5F7A; }
-QPushButton:disabled { color: #6B7076; }
+QPushButton:disabled { color: #6B7076; background: #212529; }
 QLineEdit, QSpinBox, QDoubleSpinBox, QComboBox {
     background: #262B30;
     border: 1px solid #30353B;
@@ -85,12 +112,83 @@ QLineEdit, QSpinBox, QDoubleSpinBox, QComboBox {
     selection-background-color: #2B5F7A;
 }
 QLineEdit:focus, QSpinBox:focus, QDoubleSpinBox:focus, QComboBox:focus { border-color: #4FC3F7; }
+/* 禁用态必须与启用态可区分：旧版两者底色相同（实测均 #262B30），用户会去点被锁死的控件 */
+QLineEdit:disabled, QSpinBox:disabled, QDoubleSpinBox:disabled, QComboBox:disabled {
+    color: #6B7076;
+    background: #212529;
+    border-color: #282D32;
+}
+QLineEdit[invalid="true"] { border-color: #FFB74D; }
 QComboBox QAbstractItemView {
     background: #262B30;
     border: 1px solid #30353B;
     selection-background-color: #2B5F7A;
 }
+
+/* ---- 下拉箭头 / 微调按钮：原由平台样式绘制（暗底上呈浅色块），在此显式接管 ---- */
+QComboBox::drop-down {
+    subcontrol-origin: border;
+    subcontrol-position: top right;
+    width: 18px;
+    border-left: 1px solid #30353B;
+    background: #262B30;
+}
+QComboBox::down-arrow {
+    width: 0;
+    height: 0;
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+    border-top: 4px solid #9AA0A6;
+}
+QComboBox::down-arrow:disabled { border-top-color: #6B7076; }
+QSpinBox::up-button, QDoubleSpinBox::up-button,
+QSpinBox::down-button, QDoubleSpinBox::down-button {
+    subcontrol-origin: border;
+    width: 16px;
+    border-left: 1px solid #30353B;
+    background: #262B30;
+}
+QSpinBox::up-button, QDoubleSpinBox::up-button { subcontrol-position: top right; }
+QSpinBox::down-button, QDoubleSpinBox::down-button { subcontrol-position: bottom right; }
+QSpinBox::up-button:hover, QDoubleSpinBox::up-button:hover,
+QSpinBox::down-button:hover, QDoubleSpinBox::down-button:hover { background: #2E343A; }
+QSpinBox::up-arrow, QDoubleSpinBox::up-arrow {
+    width: 0;
+    height: 0;
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+    border-bottom: 4px solid #9AA0A6;
+}
+QSpinBox::down-arrow, QDoubleSpinBox::down-arrow {
+    width: 0;
+    height: 0;
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+    border-top: 4px solid #9AA0A6;
+}
+QSpinBox::up-arrow:disabled, QDoubleSpinBox::up-arrow:disabled { border-bottom-color: #6B7076; }
+QSpinBox::down-arrow:disabled, QDoubleSpinBox::down-arrow:disabled { border-top-color: #6B7076; }
+
+/* ---- 勾选框：原由平台样式绘制，未勾选态实测是纯白方块（#FFFFFF），暗底上极刺眼 ---- */
 QCheckBox, QRadioButton { spacing: 8px; }
+QCheckBox::indicator {
+    width: 13px;
+    height: 13px;
+    border: 1px solid #30353B;
+    border-radius: 3px;
+    background: #262B30;
+}
+QCheckBox::indicator:hover { border-color: #4FC3F7; }
+QCheckBox::indicator:checked { background: #2B5F7A; border-color: #4FC3F7; }
+QCheckBox::indicator:disabled { border-color: #282D32; background: #1E2226; }
+QRadioButton::indicator {
+    width: 13px;
+    height: 13px;
+    border: 1px solid #30353B;
+    border-radius: 7px;
+    background: #262B30;
+}
+QRadioButton::indicator:checked { background: #2B5F7A; border-color: #4FC3F7; }
 
 /* ---- 表格：行选中用强调色深档，避免与焦点框抢视觉 ---- */
 QHeaderView::section {
@@ -101,6 +199,16 @@ QHeaderView::section {
     padding: 4px 8px;
     color: #9AA0A6;
 }
+QHeaderView::section:hover { background: #2E343A; }
+QHeaderView::up-arrow, QHeaderView::down-arrow {
+    width: 0;
+    height: 0;
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+}
+QHeaderView::up-arrow { border-bottom: 4px solid #9AA0A6; }
+QHeaderView::down-arrow { border-top: 4px solid #9AA0A6; }
+QTableCornerButton::section { background: #262B30; border: none; }
 QTableView, QTreeView, QListView {
     background: #1E2226;
     alternate-background-color: #23272C;
@@ -117,10 +225,10 @@ QMenuBar::item:selected { background: #2E343A; }
 QMenu { background: #262B30; border: 1px solid #30353B; }
 QMenu::item:selected { background: #2E343A; }
 QMenu::item:disabled { color: #6B7076; }
+QMenu::separator { height: 1px; background: #30353B; margin: 4px 8px; }
 QStatusBar { background: #1A1D20; color: #9AA0A6; }
-QLabel#snapshotLabel { color: #9AA0A6; }
 
-/* ---- 对比条 / 滚动条 / 提示 ---- */
+/* ---- 对比条 / 滚动条 / 提示 / 分隔手柄 ---- */
 QProgressBar {
     background: #262B30;
     border: 1px solid #30353B;
@@ -129,6 +237,7 @@ QProgressBar {
 }
 QProgressBar::chunk { background: #4FC3F7; }
 QSlider::groove:horizontal { background: #262B30; height: 4px; border-radius: 2px; }
+QSlider::sub-page:horizontal { background: #2B5F7A; border-radius: 2px; }
 QSlider::handle:horizontal { background: #4FC3F7; width: 12px; margin: -5px 0; border-radius: 6px; }
 QScrollBar:vertical { background: #1E2226; width: 10px; margin: 0; }
 QScrollBar::handle:vertical { background: #30353B; border-radius: 5px; min-height: 24px; }
@@ -137,11 +246,21 @@ QScrollBar::handle:horizontal { background: #30353B; border-radius: 5px; min-wid
 QScrollBar::add-line, QScrollBar::sub-line { height: 0; width: 0; }
 QScrollBar::add-page, QScrollBar::sub-page { background: none; }
 QToolTip { background: #262B30; color: #E8EAED; border: 1px solid #30353B; }
+/* 分隔手柄细到抓不住（实测不足 3px）→ 给足 6px 并把悬停态点亮 */
+QSplitter::handle { background: #30353B; }
+QSplitter::handle:horizontal { width: 6px; }
+QSplitter::handle:vertical { height: 6px; }
+QSplitter::handle:hover { background: #2B5F7A; }
 
 /* ---- 语义强调字：颜色只在这里定义，代码只切 objectName ---- */
-QLabel#dpsBig { font-size: 22px; font-weight: 600; color: #4FC3F7; }
-QLabel#deltaUp { font-size: 20px; font-weight: 600; color: #66BB6A; }
-QLabel#deltaDown { font-size: 20px; font-weight: 600; color: #EF5350; }
+/* 一屏一个结论：Δ 是唯一主视觉（最大号、按涨跌变色），当前/候选 DPS 降一档只做输入参照，
+   失败态与诊断行依次更弱——避免同屏多个大字互相抢注意力。 */
+QLabel#dpsBig { font-size: 16px; font-weight: 600; color: #E8EAED; }
+QLabel#deltaUp { font-size: 24px; font-weight: 600; color: #66BB6A; }
+QLabel#deltaDown { font-size: 24px; font-weight: 600; color: #EF5350; }
+QLabel#deltaFlat { font-size: 24px; font-weight: 600; color: #9AA0A6; }
+/* 页面标题旁的 ⓘ：唯一强调色，悬停给术语/口径长文（副标题只留一句概括） */
+QLabel#helpHint { color: #4FC3F7; font-size: 13px; }
 
 /* ---- 模式横幅（α 降级提示）：告警色只作描边与文字，不做大面积底色 ---- */
 QLabel#modeBanner {
@@ -160,9 +279,12 @@ QFrame#dpsMeter {
 }
 QLabel#dpsMeterTitle { color: #9AA0A6; font-size: 12px; }
 /* 主行 = 结论（换装预测 + 涨跌），涨跌配色经 trend 属性切换，颜色不散落代码 */
-QLabel#dpsMeterValue { color: #E0E0E0; font-size: 18px; font-weight: 600; }
-QLabel#dpsMeterValue[trend="up"] { color: #4CAF50; }
+QLabel#dpsMeterValue { color: #E8EAED; font-size: 18px; font-weight: 600; }
+QLabel#dpsMeterValue[trend="up"] { color: #66BB6A; }
 QLabel#dpsMeterValue[trend="down"] { color: #EF5350; }
+/* 失败态（游戏未开/不在假人图）降级为一行弱化小字：它只是"没读到"，不该与结论抢注意力 */
+QFrame#dpsMeter[state="offline"] { background: #1E2226; border-color: #282D32; }
+QLabel#dpsMeterValue[state="offline"] { color: #9AA0A6; font-size: 12px; font-weight: 400; }
 /* 次行 = 诊断（实测/期望/系数），弱化到不与结论抢注意力 */
 QLabel#dpsMeterDiag { color: #7F868D; font-size: 11px; }
 

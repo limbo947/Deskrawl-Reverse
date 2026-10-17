@@ -8,7 +8,8 @@
 from PySide6.QtCore import Signal
 from PySide6.QtWidgets import QScrollArea, QSplitter, QVBoxLayout, QWidget
 
-from .common import page_header
+from ..core.glossary import ROLE_PANEL_TEXT
+from .common import apply_narrow_stacking, page_header
 from .panel_editor import PanelEditor
 from .stat_table import StatTable
 
@@ -24,26 +25,32 @@ class RolePage(QWidget):
         self.panel_editor = PanelEditor(profile, gd)
         self.stat_table = StatTable()
 
-        splitter = QSplitter()
+        self._splitter = QSplitter()
         # 面板是固定宽度的表单，放进滚动区兜底小窗口；明细表吃剩余宽度
         panel_scroll = QScrollArea()
         panel_scroll.setWidgetResizable(True)
         panel_scroll.setWidget(self.panel_editor)
         panel_scroll.setFrameShape(QScrollArea.NoFrame)
         panel_scroll.setMinimumWidth(330)
-        splitter.addWidget(panel_scroll)
-        splitter.addWidget(self.stat_table)
-        splitter.setStretchFactor(0, 0)
-        splitter.setStretchFactor(1, 1)
-        splitter.setSizes([420, 760])
+        self._splitter.addWidget(panel_scroll)
+        self._splitter.addWidget(self.stat_table)
+        self._splitter.setStretchFactor(0, 0)
+        self._splitter.setStretchFactor(1, 1)
+        self._splitter.setSizes([420, 760])
 
         root = QVBoxLayout(self)
         root.setContentsMargins(16, 12, 16, 12)
-        root.addWidget(page_header('角色', '编辑等级 / 主属性 / 巅峰点数；右侧为属性明细（内存导入后自动切换游戏面板口径）'))
-        root.addWidget(splitter, 1)
+        root.addWidget(page_header('角色', '编辑等级 / 职业主属性 / 巅峰点数',
+                                   ROLE_PANEL_TEXT))
+        root.addWidget(self._splitter, 1)
 
         self.panel_editor.changed.connect(self.changed)
         self.refresh()
+
+    def resizeEvent(self, event):
+        """窄窗口把「面板 | 明细表」改为上下堆叠（见 common.apply_narrow_stacking）。"""
+        super().resizeEvent(event)
+        apply_narrow_stacking(self._splitter, event.size().width())
 
     def refresh(self):
         """重算属性明细（口径随 profile.panel 有无自动切换）。"""

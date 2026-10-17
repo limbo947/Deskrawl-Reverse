@@ -9,18 +9,17 @@
 - set_locked：当前件即游戏里的既成事实，只读展示——基线被改脏则整页对比口径失效；
 - current_of：候选侧专用（任意槽），「与当前装备相同（强化/宝石）」开关据此镜像当前件。
 """
-from PySide6.QtCore import Signal
+from PySide6.QtCore import Qt, Signal
 from PySide6.QtWidgets import (QAbstractItemView, QCheckBox, QComboBox, QDoubleSpinBox,
                                QFormLayout, QGroupBox, QHeaderView, QLabel, QLineEdit,
-                               QPushButton, QTableWidget, QVBoxLayout)
+                               QPushButton, QTableWidget, QTableWidgetItem, QVBoxLayout)
 
 from deskrawl_calc import StatType, stat_name
 
 from ..core.calc_service import MOD_TYPE_CN
 from ..core.item_draft import apply_upgrade
 
-# 类型中文名单一来源在 core（与候选摘要 describe_mods 共用），此处只做视图所需的列表化
-_MOD_TYPES = list(MOD_TYPE_CN.items())
+# 类型中文名单一来源在 core（与候选摘要 describe_mods 共用），此处只做视图所需的查表
 _MOD_LABELS = dict(MOD_TYPE_CN)
 
 # 装备词条的入池方式在游戏里固定为「加法」：ItemData 固定属性 43 条、宝石/符文/套装加成
@@ -46,9 +45,17 @@ _TIP_PRIMARY_STAT = ('主属性：仅「职业主属性」（左栏设定/内存
 
 
 class AffixTable(QTableWidget):
-    """词条行表：属性（内核 StatType 全量中文名）/ 类型 / 数值 / 删除。"""
+    """词条行表：属性（内核 StatType 全量中文名）/ 类型（只读文本「加法」）/ 数值 / 删除。
+
+    类型为什么不做成下拉：装备词条的入池方式由游戏固定（ItemData 与宝石/符文/套装实测
+    100% 为加法），单值用下拉承载会误导——实测被禁用下拉与启用中的输入框外观一致（底色
+    同为 #262B30），用户会反复尝试点它。故类型列只用文本陈述事实；旧构建里的非常规组合
+    原样展示并标「非常规」，不静默改写。
+    """
 
     changed = Signal()
+    # 某行的属性/数值变化 → (stat, value)：外围据此刷新区间提示（不参与计算，只做提示）
+    rowTouched = Signal(int, float)
     COLUMNS = ['属性', '类型', '数值', '']
 
     def __init__(self, parent=None):
@@ -59,6 +66,9 @@ class AffixTable(QTableWidget):
         self.verticalHeader().setVisible(False)
         self.setEditTriggers(QAbstractItemView.NoEditTriggers)
         self.horizontalHeader().setSectionResizeMode(0, QHeaderView.Stretch)
+        # 单元格里已是带描边的控件，再叠网格线会形成"表格框+网格+控件框"三层线（视觉噪音）
+        self.setShowGrid(False)
+        self.setAlternatingRowColors(True)
         self.setMinimumHeight(150)
 
     def set_affixes(self, affixes):
@@ -71,8 +81,9 @@ class AffixTable(QTableWidget):
     def affixes(self) -> list:
         out = []
         for r in range(self.rowCount()):
+            type_item = self.item(r, 1)
             out.append([int(self.cellWidget(r, 0).currentData()),
-                        int(self.cellWidget(r, 1).currentData()),
+                        int(type_item.data(Qt.UserRole) if type_item is not None else 0),
                         float(self.cellWidget(r, 2).value())])
         return out
 
@@ -93,6 +104,13 @@ class AffixTable(QTableWidget):
         self.cellWidget(row, 2).setReadOnly(self._locked)
         self.cellWidget(row, 3).setVisible(not self._locked)
 
+    def _row_of(self, widget, col=0) -> int:
+        """按控件身份反查所在行：行号会随删行前移，建行时捕获的索引不可靠。"""
+        for r in range(self.rowCount()):
+            if self.cellWidget(r, col) is widget:
+                return r
+        return -1
+
     def _add_row(self, stat, mtype, value):
         row = self.rowCount()
         self.insertRow(row)
@@ -101,7 +119,6 @@ class AffixTable(QTableWidget):
         for st in StatType:
             stat_combo.addItem(stat_name(st), int(st))
 
-        type_combo = QComboBox()
         spin = QDoubleSpinBox()
         spin.setRange(-1e6, 1e6)
         spin.setDecimals(4)
@@ -110,50 +127,65 @@ class AffixTable(QTableWidget):
         btn.setFixedWidth(28)
 
         self.setCellWidget(row, 0, stat_combo)
-        self.setCellWidget(row, 1, type_combo)
+        self.setItem(row, 1, QTableWidgetItem(''))
         self.setCellWidget(row, 2, spin)
         self.setCellWidget(row, 3, btn)
 
         # 先填初值再接信号：构造期的索引/数值变化既不该触发刷新，也不能被误当作用户改属性
         idx = stat_combo.findData(int(stat))
         stat_combo.setCurrentIndex(idx if idx >= 0 else 0)
-        self._fill_types(type_combo, int(mtype))
-        self._apply_hints(int(stat_combo.currentData()), type_combo, spin)
+        self._set_type_cell(row, int(mtype))
+        self._apply_hints(row, int(stat_combo.currentData()), spin)
         spin.setValue(float(value))
 
         stat_combo.currentIndexChanged.connect(
-            lambda *_, sc=stat_combo, tc=type_combo, sp=spin: self._on_stat_changed(sc, tc, sp))
-        type_combo.currentIndexChanged.connect(self._emit)
+            lambda *_, sc=stat_combo, sp=spin: self._on_stat_changed(sc, sp))
+        spin.valueChanged.connect(lambda v, sp=spin: self._touch(sp, v))
         spin.valueChanged.connect(self._emit)
         btn.clicked.connect(lambda: self._remove_row(btn))
         self._apply_lock(row)
 
-    def _on_stat_changed(self, stat_combo, type_combo, spin):
+    def _touch(self, spin, value):
+        """行内数值变化 → 播报 (stat, value) 给外围做区间提示；回填期间不播报。"""
+        if self._loading:
+            return
+        row = self._row_of(spin, 2)
+        if row >= 0:
+            self.rowTouched.emit(int(self.cellWidget(row, 0).currentData()), float(value))
+
+    def _on_stat_changed(self, stat_combo, spin):
         """属性切换 → 类型自动回到该属性的规范值（物品词条在游戏里恒为加法），并刷新填写提示。"""
         if self._loading:
             return
+        row = self._row_of(stat_combo)
+        if row < 0:
+            return
         stat = int(stat_combo.currentData())
-        self._fill_types(type_combo, 0)
-        self._apply_hints(stat, type_combo, spin)
+        self._set_type_cell(row, 0)
+        self._apply_hints(row, stat, spin)
+        self._touch(spin, spin.value())
         self._emit()
 
-    def _fill_types(self, combo, keep):
-        """类型栏固定展示游戏唯一入池方式「加法」并禁用；旧构建里的非常规组合原样只读展示，
-        避免静默改写数据（保存时仍原样写回）。"""
-        types = list(_ALLOWED_TYPES)
-        if int(keep) not in types:
-            types = [int(keep)]
-        combo.blockSignals(True)
-        combo.clear()
-        for t in types:
-            combo.addItem(_MOD_LABELS[t], t)
-        combo.setCurrentIndex(0)
-        combo.blockSignals(False)
-        combo.setEnabled(False)
+    def _set_type_cell(self, row, mtype):
+        """类型列写文本（游戏唯一入池方式「加法」）；词条值原样存 UserRole 供 affixes() 读回。
 
-    def _apply_hints(self, stat, type_combo, spin):
+        旧构建里的非常规组合（非加法）原样展示并标「非常规」：保存时仍原样写回，不静默改写。
+        """
+        label = _MOD_LABELS.get(int(mtype), str(mtype))
+        if int(mtype) not in _ALLOWED_TYPES:
+            label += '（非常规）'
+        item = self.item(row, 1)
+        if item is None:
+            return
+        item.setText(label)
+        item.setData(Qt.UserRole, int(mtype))
+        item.setTextAlignment(Qt.AlignCenter)
+
+    def _apply_hints(self, row, stat, spin):
         frac = int(stat) in _PERCENT_STATS
-        type_combo.setToolTip(_TIP_PERCENT if frac else _TIP_FLAT)
+        item = self.item(row, 1)
+        if item is not None:
+            item.setToolTip(_TIP_PERCENT if frac else _TIP_FLAT)
         spin.setToolTip(_TIP_VALUE_PERCENT if frac else '')
         if int(stat) in (0, 1, 2):
             spin.setToolTip(_TIP_PRIMARY_STAT)
@@ -182,7 +214,14 @@ class ItemEditor(QGroupBox):
     # 开关选择本身也播报（EquipmentEditor 据此写 profile.like_current_pref，实现跨槽保持）
     likeCurrentChanged = Signal(bool)
 
-    def __init__(self, title, draft, *, weapon=False, current_of=None, parent=None):
+    def __init__(self, title, draft, *, weapon=False, current_of=None, name_resolver=None,
+                 range_hint=None, parent=None):
+        """name_resolver: (装备名) -> 是否能在游戏装备表命中。
+        range_hint: (stat, value, item_level, rarity) -> 区间提示文案（内核 affix_range 口径）。
+
+        前者是「名字不对会让传奇特效消失」的判定来源（calc_service.name_known），后者把
+        词条数值折算成「在该物品等级/稀有度下的位置」；都不传则关闭对应提示（测试/离线路径）。
+        """
         super().__init__(title, parent)
         self._base_title = title
         self._loading = False
@@ -191,6 +230,8 @@ class ItemEditor(QGroupBox):
         self.draft = draft
         self.weapon = bool(weapon)
         self._current_of = current_of
+        self._name_resolver = name_resolver
+        self._range_hint = range_hint
         form = QFormLayout()
         self.name_edit = QLineEdit()
         self.name_edit.textChanged.connect(self._on_name)
@@ -209,6 +250,7 @@ class ItemEditor(QGroupBox):
 
         self.affixes = AffixTable()
         self.affixes.changed.connect(self._on_affixes)
+        self.affixes.rowTouched.connect(self._on_row_touched)
         self.add_btn = QPushButton('添加词条')
         self.add_btn.clicked.connect(self.affixes.append_row)
 
@@ -218,12 +260,28 @@ class ItemEditor(QGroupBox):
         self.meta_label.setObjectName('weaponMeta')
         self.meta_label.setVisible(False)
 
+        # 词条区间提示（改某条数值时刷新）：同一数值在不同物品等级/稀有度下评价完全不同
+        self.range_label = QLabel('')
+        self.range_label.setObjectName('weaponMeta')
+        self.range_label.setWordWrap(True)
+        self.range_label.setVisible(False)
+
         root = QVBoxLayout(self)
         root.addLayout(form)
         root.addWidget(self.meta_label)
         root.addWidget(self.affixes)
+        root.addWidget(self.range_label)
         root.addWidget(self.add_btn)
         self.reload()
+
+    def _on_row_touched(self, stat, value):
+        """就地给出「本条落在什么区间」——手工录入时最需要它，否则无从判断这条词条算高还是算低。"""
+        if self._range_hint is None:
+            return
+        text = self._range_hint(stat, value, int(getattr(self.draft, 'item_level', 0) or 0),
+                                int(getattr(self.draft, 'rarity', 0) or 0))
+        self.range_label.setText(text)
+        self.range_label.setVisible(bool(text))
 
     def _spin(self, form, label, lo, hi, decimals, attr) -> QDoubleSpinBox:
         sp = QDoubleSpinBox()
@@ -266,7 +324,23 @@ class ItemEditor(QGroupBox):
         if hasattr(self, 'like_current'):
             self.like_current.setChecked(bool(getattr(self.draft, 'like_current', False)))
             self._update_like_text()
+        self._mark_name(self.draft.name)
         self._loading = False
+
+    def _mark_name(self, text):
+        """名称不在装备表命中时给输入框描警示边并写明后果（特效会被静默丢掉）。
+
+        回填（reload）也要走一遍：导入件的名字可能是本地化表缺项，那时候用户根本没编辑过。
+        """
+        bad = bool(str(text).strip()) and self._name_resolver is not None \
+            and not bool(self._name_resolver(str(text).strip()))
+        self.name_edit.setProperty('invalid', 'true' if bad else '')
+        self.name_edit.style().unpolish(self.name_edit)
+        self.name_edit.style().polish(self.name_edit)
+        self.name_edit.setToolTip(
+            '该名称未在游戏装备表中命中：这件装备的传奇特效将不计入计算。\n'
+            '名称需与游戏内一致（可在装备槽工具条的「从背包/仓库导入」里整件载入）。'
+            if bad else '')
 
     def _reload_meta(self):
         """强化/宝石元信息（内存导入的装备才有）；同时说明词条口径为「强化后」。"""
@@ -336,6 +410,7 @@ class ItemEditor(QGroupBox):
         if self._loading or self._locked:
             return
         self.draft.name = text
+        self._mark_name(text)
         self.changed.emit()
 
     def _on_num(self, attr, value):

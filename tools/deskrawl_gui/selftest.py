@@ -11,11 +11,16 @@ import contextlib
 import io
 import json
 import os
+import re
 import sys
 
 # demo 场景锚点（2026-10-07 实测，随内核一起冻结）
 ANCHORS = {'current_dps': 197.9, 'candidate_dps': 226.3, 'delta_pct': 14.32}
 TOL_PCT = 0.5
+
+# QSS 锚点对账的显式豁免表（选择性跳过，理由必须随条写清）。
+# 目前为空：全部 #objectName、[属性] 选择器都能与代码双向对上，不靠豁免消红。
+QSS_ANCHOR_EXEMPT = set()
 
 
 def _rel_pct(a: float, b: float) -> float:
@@ -67,12 +72,16 @@ def run_smoke() -> int:
     import_menu = next((a.menu() for a in win.menuBar().actions() if a.text() == '数据导入'), None)
     import_action = next((a for a in import_menu.actions() if '从运行中的游戏导入' in a.text()),
                          None) if import_menu else None
+    # 帮助入口是术语门槛的对策落点，缺了就等于把用户推回文档——与导入项同样做结构断言
+    help_menu = next((a.menu() for a in win.menuBar().actions() if a.text() == '帮助'), None)
+    help_ok = help_menu is not None and any('术语表' in a.text() for a in help_menu.actions()) \
+        and any('口径说明' in a.text() for a in help_menu.actions())
     # 导入项可用性必须与指纹自检结果一致（一致性断言，任何环境都可判定）
     import_state_ok = (import_action is not None and import_action.isEnabled() == win._fingerprint_ok)
     print(f'[smoke] 菜单：{menu_titles}')
     print(f'[smoke] 工具→内核自检：{"已就绪" if kernel_action and kernel_action.isEnabled() else "缺失"}；'
           f'数据导入{"已就绪（指纹通过）" if win._fingerprint_ok else "已禁用（指纹不符，中文提示已就位）"}，'
-          f'可用性一致={import_state_ok}')
+          f'可用性一致={import_state_ok}；帮助菜单（术语表/口径说明）={"已就绪" if help_ok else "缺失"}')
     ok, summary, _ = win._kernel_selftest_message()
     print(f'[smoke] 内核自检弹窗文案：{summary}（通过={ok}）')
 
@@ -82,17 +91,32 @@ def run_smoke() -> int:
     print('[smoke] 会话持久化检查：')
     state_ok = _session_state_smoke_checks()
 
+    print('[smoke] QSS 锚点对账：')
+    qss_ok = _qss_anchor_checks()
+
+    print('[smoke] 结构锚点：')
+    struct_ok = _structure_checks(win)
+
     if count <= 0:
         print('[smoke] 失败：widget 计数为 0', file=sys.stderr)
         return 1
     if kernel_action is None or not kernel_action.isEnabled() or not import_state_ok or not ok:
         print('[smoke] 失败：菜单/自检弹窗校验未通过', file=sys.stderr)
         return 1
+    if not help_ok:
+        print('[smoke] 失败：帮助菜单（术语表/口径说明）缺失', file=sys.stderr)
+        return 1
     if not behavior_ok:
         print('[smoke] 失败：交互检查未通过', file=sys.stderr)
         return 1
     if not state_ok:
         print('[smoke] 失败：会话持久化检查未通过', file=sys.stderr)
+        return 1
+    if not qss_ok:
+        print('[smoke] 失败：QSS 锚点对账未通过', file=sys.stderr)
+        return 1
+    if not struct_ok:
+        print('[smoke] 失败：结构锚点缺失', file=sys.stderr)
         return 1
     return 0
 
@@ -130,6 +154,122 @@ def _session_state_smoke_checks() -> bool:
         session_state.STATE_PATH = old_path
 
 
+def _structure_checks(win) -> bool:
+    """关键结构与入口的锚点断言（不追像素，只固化「哪些东西必须在」）。
+
+    为什么补：--selftest 全是数值断言、--smoke 原本只有 widget 计数与少量行为断言——布局/入口
+    被重构掉（比如撤掉帮助菜单、数据源徽标、候选播种按钮）不会有人发现。这里把本轮新增的
+    可见契约钉住，后续改动若拆掉它们会直接变红。
+    """
+    from PySide6.QtWidgets import QCheckBox, QLabel
+
+    results = []
+
+    def check(cond, label, detail=''):
+        results.append(bool(cond))
+        print(f'  [{"PASS" if cond else "FAIL"}] {label}' + (f'：{detail}' if detail else ''))
+
+    cv = win.compare_page
+    ee = cv.equipment_editor
+    ac = win.assembly_center
+    view = ee.compare_view
+
+    # 一屏一个结论：Δ 是最大号的那个；两个 DPS 数字同号（样式锚点同源）
+    delta_ids = {'deltaUp', 'deltaDown', 'deltaFlat'}
+    two_dps = [w for w in view.findChildren(QLabel) if w.objectName() == 'dpsBig']
+    check(len(two_dps) == 2 and view.delta.objectName() in delta_ids,
+          '对比结果三格（2×dpsBig + Δ 三态之一）',
+          f'dpsBig={len(two_dps)}；Δ={view.delta.objectName()}')
+
+    # 侧栏：3 个页面 + 收起按钮 + 数据源徽标（U4/V9 的可见契约）
+    nav_ok = (win.nav.currentRow() >= 0 and len(win.nav._keys) == 3
+              and win.nav.toggle.isVisible() and bool(win.nav.badge.text()))
+    check(nav_ok, '侧栏 3 页 + 收起按钮 + 数据源徽标',
+          f'页数={len(win.nav._keys)}；徽标=「{win.nav.badge.text().splitlines()[0]}」')
+
+    # 装备对比页：候选播种入口 + 词条区间提示位 + α 横幅（可隐）
+    check(hasattr(ee, 'seed_btn') and hasattr(ee.candidate_editor, 'range_label')
+          and hasattr(ee, 'alpha_banner'),
+          '对比页入口（播种按钮 / 区间提示位 / α 横幅）',
+          f'播种可用={ee.seed_btn.isEnabled()}（当前候选非空时应为 False）')
+
+    # 目标栏：血线条件提示行 + 伤害类型 + 9 个勾选（I5 的可见契约）
+    te = cv.target_editor
+    conds = [w for w in te.findChildren(QCheckBox) if w.objectName() != 'live_check']
+    check('血线判定' in te.hp_cond_label.text() and len(conds) == 9,
+          '目标栏（血线条件提示 + 9 项条件勾选）',
+          f'提示=「{te.hp_cond_label.text()}」；勾选={len(conds)}')
+
+    # 装配中心：5 列候选表 + 已装配清单 + 参数条
+    check(ac.model.columnCount() == 5 and ac.assembled_list is not None,
+          '装配中心（5 列候选表 + 已装配清单）',
+          f'列数={ac.model.columnCount()}')
+
+    # DPS 计：轮询归页面可见性管（T2 的可见契约）
+    meter = cv.dps_meter
+    check(hasattr(meter, '_active') and hasattr(meter, 'live_check'),
+          'DPS 计带可见性启停与「实时」开关',
+          f'active={meter._active}（当前页 row={win.nav.currentRow()}）；'
+          f'定时器运行={meter._timer.isActive()}')
+
+    return all(results)
+
+
+def _qss_anchors(qss_text: str, code_text: str) -> tuple:
+    """(QSS 文本, 代码文本) → (死选择器, 无规则的属性, 无规则的 objectName)。
+
+    抽成纯函数是为能自证：用一对合成的错锚点要求它必须报红——否则断言本身就是摆设
+    （同 rva_audit 的 --falsify 口径）。判定向：QSS 的 #id 要在代码里出现过（objectName
+    允许由辅助函数产出，故按"出现过字面量"判）；setProperty/setObjectName 字面量要有规则。
+    """
+    stripped = re.sub(r'/\*.*?\*/', '', qss_text, flags=re.S)   # 去注释：色值形似 id，会误报
+    ids, props = set(), set()
+    for block in stripped.split('{'):
+        head = block.rsplit('}', 1)[-1]          # '{' 之前、上一个 '}' 之后 = 该块的选择器
+        ids.update(re.findall(r'#([A-Za-z_]\w*)', head))
+        props.update(re.findall(r'\[([A-Za-z_]\w*)', head))
+    set_names = set(re.findall(r"setObjectName\(\s*['\"]([A-Za-z_]\w*)['\"]", code_text))
+    set_props = set(re.findall(r"setProperty\(\s*['\"]([A-Za-z_]\w*)['\"]", code_text))
+    literals = set(re.findall(r"['\"]([A-Za-z_]\w*)['\"]", code_text))
+    ids -= QSS_ANCHOR_EXEMPT
+    props -= QSS_ANCHOR_EXEMPT
+    return (sorted(ids - literals), sorted(set_props - props), sorted(set_names - ids))
+
+
+def _qss_anchor_checks() -> bool:
+    """style.qss 选择器 ↔ 代码锚点 双向对账（零依赖，挂 --smoke）。
+
+    为什么需要：style.qss 是唯一视觉事实源，但选择器与 setObjectName/setProperty 之间原本
+    没有任何约束——已出现过 setProperty('state') 写了而 QSS 无对应规则的死钩子，失败态因此
+    被按 18px 大字渲染。豁免表 QSS_ANCHOR_EXEMPT 里的每一条都必须写清理由，不许用来消红。
+    """
+    here = os.path.dirname(os.path.abspath(__file__))
+    qss_path = os.path.join(here, 'resources', 'style.qss')
+    if not os.path.exists(qss_path):
+        print('  [FAIL] QSS 锚点对账：主题文件缺失', file=sys.stderr)
+        return False
+    with open(qss_path, encoding='utf-8') as f:
+        qss_text = f.read()
+    code_text = ''
+    for root, _dirs, files in os.walk(here):
+        for name in files:
+            # 跳过自检自身：它里面的合成锚点字面量（ghostId/ghostProp/ghostName）会污染实扫
+            if name.endswith('.py') and not name.startswith('selftest'):
+                with open(os.path.join(root, name), encoding='utf-8') as f:
+                    code_text += f.read() + '\n'
+    dead, unruled, orphan = _qss_anchors(qss_text, code_text)
+    # 自证：合成的错锚点必须被判红（三向各一），否则判定逻辑本身失效
+    f_dead, f_unruled, f_orphan = _qss_anchors(
+        '#ghostId { color: #FFFFFF; }',
+        "setProperty('ghostProp', 1)\nsetObjectName('ghostName')")
+    falsified = (f_dead == ['ghostId'] and f_unruled == ['ghostProp'] and f_orphan == ['ghostName'])
+    ok = falsified and not dead and not unruled and not orphan
+    print(f'  [{"PASS" if ok else "FAIL"}] QSS 锚点双向对账：'
+          f'死选择器={dead or "无"}；无规则的属性={unruled or "无"}；'
+          f'无规则的 objectName={orphan or "无"}；自证={falsified}')
+    return ok
+
+
 def _gui_behavior_checks(win) -> bool:
     """在已建好的主窗口上跑一遍关键交互（真实控件 + 真实信号链），headless 可验证。
 
@@ -146,6 +286,11 @@ def _gui_behavior_checks(win) -> bool:
     from .widgets import assembly_center as _ac_mod
 
     results = []
+
+    # 删除类操作会弹模态确认框：全程短路为「确认」。原先只在步骤 3 局部打补丁，步骤 5 的
+    # 双添加→删除收尾调用的是真对话框，非交互环境会挂死在等待点击上（实测每次跑都卡）。
+    saved_confirm = _ac_mod.confirm_delete
+    _ac_mod.confirm_delete = lambda *a, **k: True
 
     def check(cond, label, detail=''):
         results.append(bool(cond))
@@ -169,23 +314,25 @@ def _gui_behavior_checks(win) -> bool:
     editor.draft.affixes = saved
     editor.reload()
 
-    # 1b) 类型由属性自动决定且不可改：全部属性锁「加法」，百分比类属性附小数填写提示
+    # 1b) 类型列 = 只读文本（游戏固定「加法」），随属性刷新填写提示；百分比类附小数提示
     saved = copy.deepcopy(editor.draft.affixes)
     editor.affixes.append_row()
     r = editor.affixes.rowCount() - 1
     s_combo = editor.affixes.cellWidget(r, 0)
-    t_combo = editor.affixes.cellWidget(r, 1)
+    t_item = editor.affixes.item(r, 1)
     v_spin = editor.affixes.cellWidget(r, 2)
 
-    def locked():
-        return (not t_combo.isEnabled() and t_combo.count() == 1
-                and int(t_combo.currentData()) == 0)
+    def add_only_text():
+        """类型列必须是文本、不是控件：用下拉（哪怕禁用）承载单值会让人以为能改。"""
+        return (editor.affixes.cellWidget(r, 1) is None
+                and t_item is not None and t_item.text() == '加法'
+                and int(t_item.data(Qt.UserRole)) == 0)
 
-    pct_ok = locked() and '小数' in t_combo.toolTip() and '小数' in v_spin.toolTip()
+    pct_ok = add_only_text() and '小数' in t_item.toolTip() and '小数' in v_spin.toolTip()
     s_combo.setCurrentIndex(s_combo.findData(int(StatType.Strength)))
-    num_ok = locked() and '加法' in t_combo.toolTip()
-    check(pct_ok and num_ok, '词条类型自动决定且不可改（全部锁加法）',
-          f'物理伤害%：锁加法+小数提示={pct_ok}；力量：锁加法={num_ok}')
+    num_ok = add_only_text() and '加法' in t_item.toolTip()
+    check(pct_ok and num_ok, '词条类型为只读文本「加法」（无下拉；提示随属性刷新）',
+          f'物理伤害%：文本加法+小数提示={pct_ok}；力量：仍为加法={num_ok}')
     editor.draft.affixes = saved
     editor.reload()
 
@@ -303,6 +450,7 @@ def _gui_behavior_checks(win) -> bool:
     ac.assembled_list.setCurrentRow(n1 - 1)
     ac._remove_selected()
 
+    _ac_mod.confirm_delete = saved_confirm
     return all(results)
 
 
@@ -404,6 +552,40 @@ def _set_cand_affix(profile, stat, value):
             row[2] = float(value)
             return
     profile.weapon_candidate.affixes.append([int(stat), 0, float(value)])
+
+
+def _name_resolution_checks(rep: Report):
+    """T9：导入态下装备名查不到必须显式告警（手工态不告警）——防传奇特效静默丢失。
+
+    缺陷背景：`item_internal_name` 查不到时原样返回（回落而非报错），于是「名字不对」与
+    「这件本就没有传奇特效」在下游无法区分，特效会静默消失且 Δ 照常变化。本检查把
+    「导入模式下必须告警」与「手工名字不打扰」两侧都固化下来（含 GUI 输入框的同源判定）。
+    """
+    from deskrawl_calc import GameData
+
+    from .core import calc_service
+    from .core.profile import CharacterProfile
+
+    gd = GameData()
+    bad_name = '不存在的武器XYZ'
+    imported = CharacterProfile.demo()
+    imported.import_mode = 'beta'
+    imported.weapon_candidate.name = bad_name
+    imp_warns = calc_service.compare(imported, gd).warnings
+    hit = any('未在游戏装备表命中' in w for w in imp_warns)
+
+    manual = CharacterProfile.demo()
+    manual.weapon_candidate.name = bad_name
+    quiet = not any('未在游戏装备表命中' in w for w in calc_service.compare(manual, gd).warnings)
+
+    # 正常可解析的名字不得告警（本地化表 → 内部名反查成功）
+    ok_name = calc_service.name_known(gd, '苦痛锯齿巨剑')
+    bad_resolves = not calc_service.name_known(gd, bad_name)
+    rep.add(hit and quiet and ok_name and bad_resolves,
+            '导入态装备名查不到 → 显式告警；手工名不打扰',
+            f'导入告警={hit}；手工静默={quiet}；可解析名={ok_name}；不可解析名判定={bad_resolves}')
+    if hit:
+        print(f'    告警样例：{imp_warns[0]}')
 
 
 def _equipment_checks(rep: Report):
@@ -593,6 +775,7 @@ def run_selftest() -> int:
         return 1
     _engine_ok(rep)
     _equipment_checks(rep)
+    _name_resolution_checks(rep)
     _rank_checks(rep)
     _build_roundtrip(rep)
     # 夹具/面板口径检查已拆到 selftest_fixture（延迟导入：该模块反向引用本模块的 Report）

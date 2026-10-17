@@ -37,10 +37,15 @@ def assembly_params(kind: str, *, level: int, category: int) -> Tuple[int, int]:
     return int(level), DEFAULT_GEM_CATEGORY
 
 
-def assembled_extra_text(kind: str, level: int, category: int) -> str:
-    """已装配清单行尾参数文案（与加入时的参数语义一一对应）。"""
+def assembled_extra_text(kind: str, level: int, category: int, slot_label: str = '') -> str:
+    """已装配清单行尾参数文案（与加入时的参数语义一一对应）。
+
+    slot_label 非空时追加宝石的归属槽（形如「部位武器｜@武器」）：对比计算正是按
+    `AssemblyItem.slot` 把该宝石从基线里减去，不写出来用户无法核对「这颗宝石属于哪件装备」。
+    """
     if kind == 'gem':
-        return f'部位{gem_label(category)}'
+        base = f'部位{gem_label(category)}'
+        return f'{base}｜@{slot_label}' if slot_label else base
     return f'{LEVEL_LABELS.get(kind, "等级")}{level}'
 
 

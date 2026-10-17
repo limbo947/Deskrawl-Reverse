@@ -8,8 +8,9 @@ EquipmentEditor 内部已含 CompareView，这里只做横向组合与刷新中�
 from PySide6.QtCore import Signal
 from PySide6.QtWidgets import QHBoxLayout, QScrollArea, QSplitter, QVBoxLayout, QWidget
 
+from ..core.glossary import CALIBER_TEXT
 from ..core.skill_service import pick_main_row
-from .common import page_header
+from .common import apply_narrow_stacking, page_header
 from .dps_meter import GameDpsMeter
 from .equipment_editor import EquipmentEditor
 from .skill_card import SkillCard
@@ -30,28 +31,31 @@ class ComparePage(QWidget):
         # 就位在「目标基础」正下方（TargetEditor 统一管布局，右栏滚动区仍只有一段）
         self.target_editor.insert_below_basic(self.skill_card)
 
-        splitter = QSplitter()
-        splitter.addWidget(self.equipment_editor)
+        self._splitter = QSplitter()
+        self._splitter.addWidget(self.equipment_editor)
         # 目标设置是窄表单，滚动区兜底；固定较窄宽度把空间留给对比结果
         target_scroll = QScrollArea()
         target_scroll.setWidgetResizable(True)
         target_scroll.setWidget(self.target_editor)
         target_scroll.setFrameShape(QScrollArea.NoFrame)
         target_scroll.setMinimumWidth(300)
-        splitter.addWidget(target_scroll)
-        splitter.setStretchFactor(0, 1)
-        splitter.setStretchFactor(1, 0)
-        splitter.setSizes([980, 340])
+        self._splitter.addWidget(target_scroll)
+        self._splitter.setStretchFactor(0, 1)
+        self._splitter.setStretchFactor(1, 0)
+        self._splitter.setSizes([980, 340])
 
         root = QVBoxLayout(self)
         root.setContentsMargins(16, 12, 16, 12)
         head = QHBoxLayout()
-        head.addWidget(page_header('装备对比', '编辑当前/候选装备（当前件来自导入时固定只读）或从背包载入候选；右栏设目标与参考技能（含「训练假人」预设，与游戏 DPS 计同口径）。一次只对比一个槽位，多件同换的组合 Δ 不能由各槽 Δ 简单相乘得到（请逐槽评估）'), 1)
+        head.addWidget(page_header(
+            '装备对比',
+            '选槽 → 改候选 → 读 Δ%（当前件来自导入时固定只读；多件同换请逐槽评估）',
+            CALIBER_TEXT), 1)
         # 游戏实测值：期望口径旁边随时可对照的真实计伤（只读轮询）
         self.dps_meter = GameDpsMeter()
         head.addWidget(self.dps_meter)
         root.addLayout(head)
-        root.addWidget(splitter, 1)
+        root.addWidget(self._splitter, 1)
 
         self.target_editor.changed.connect(self.changed)
         self.skill_card.changed.connect(self.changed)         # 参考技能 → 技能表与预测基线
@@ -77,3 +81,8 @@ class ComparePage(QWidget):
         self.target_editor.reload()
         self.skill_card.reload()
         self.refresh()
+
+    def resizeEvent(self, event):
+        """窄窗口把「装备编辑器 | 目标栏」改为上下堆叠（见 common.apply_narrow_stacking）。"""
+        super().resizeEvent(event)
+        apply_narrow_stacking(self._splitter, event.size().width())

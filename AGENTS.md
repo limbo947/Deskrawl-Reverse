@@ -138,7 +138,7 @@ tools/scripts   逆向脚本（UnityPy/capstone，面向游戏文件）
   - DOT tick 完整形态：`round(实例倍率 × 条件池 × max(1,叠层) × 1.0 × 暴击)`；62 号属性与元素乘区同池，标签乘区 33/34/61 不参与 DOT。
   - 1.0.3 新增 `FinalDamageReduction(66)`：受击方绝对减伤 `max(0, 伤害×减伤层 − Final(66))`，不进攻击方 DPS 倍率。
   - `unwrap()` 兼容 dump 里的 `Obscured*`（`{'value': x}`）与 `LeveledFloat`（`{Base, PerLevel}`，公式 `Base + (level-1)×PerLevel`）嵌套结构——处理 so_dump 数据时必须经过它，不能直接当 float 用。
-- `gamedata.py`：`GameData` 加载 `data/so_dump/*.json`（懒加载+缓存，按 `_name` 索引），产出可直接入 `StatSheet` 的 `Modifier`：宝石（按镶嵌部位 0/1/2 区分加成组）、符文、天赋、传奇特效（by pathID）、巅峰、技能倍率、词条 Roll 区间。数据目录自动定位 `../../data/so_dump`，回落到旧绝对路径。
+- `gamedata.py`：`GameData` 加载 `data/so_dump/*.json`（懒加载+缓存，按 `_name` 索引），产出可直接入 `StatSheet` 的 `Modifier`：宝石（按镶嵌部位 0/1/2 区分加成组）、符文、天赋、传奇特效（by pathID）、巅峰、技能倍率、词条 Roll 区间。数据目录自动定位 `../../data/so_dump`（仓库自定位，无绝对路径回落）。
 - `effects.py`：传奇特效消费逻辑（条件暴击/暴伤、标签暴伤、条件伤害、技能修正、引导修改、属性换算等，A 类 32 条已建模）。
 - `cli.py`：26 项 selftest 断言的数值都取自 docs/04 的可对照证据，是「公式实现 == 逆向证据」的回归网。
 

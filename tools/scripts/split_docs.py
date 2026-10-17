@@ -130,7 +130,7 @@ ibuf.write("""
 | 指令级证据 | `GameAssembly.dll` 反汇编（capstone，逐条读取指令与浮点常量） |
 | 符号与结构 | Il2CppDumper（v39 分支）还原的 `dump.cs`：类、字段、偏移、TypeDefIndex |
 | 元数据 | `Deskrawl_Data/il2cpp_data/Metadata/global-metadata.dat`（metadata v39） |
-| 实测数值 | 自建反序列化器导出的 **1333 条 SO 实例**（字节级精确，0 错误）→ `C:\\Users\\cc\\tools\\so_dump\\*.json` |
+| 实测数值 | 自建反序列化器导出的 **1333 条 SO 实例**（字节级精确，0 错误）→ `data/so_dump/*.json` |
 
 **置信度标注**
 

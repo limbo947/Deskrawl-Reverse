@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """公式/数据层自检 + 换武器对比示例。
 
-运行：python -m deskrawl_calc.cli     （在 C:\\Users\\cc\\tools 下执行）
+运行：python -m deskrawl_calc.cli     （在 tools 目录下执行）
 """
 import sys
 from .stattype import StatType, ModifierType, DamageType, stat_name

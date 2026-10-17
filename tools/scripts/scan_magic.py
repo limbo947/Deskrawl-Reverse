@@ -3,12 +3,13 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from paths import *  # noqa: F401,F403
 import os, sys
 
+_HOME = os.path.expanduser('~')
 ROOTS = [
     GAME_DIR,
-    r'd:\steam\userdata\<steamid>',
-    r'C:\Users\<user>\AppData\LocalLow\First Day Games\Deskrawl',
-    r'C:\Users\<user>\Documents',
-    r'C:\Users\<user>\Saved Games',
+    os.environ.get('DESKRAWL_STEAM_USERDATA', ''),   # Steam userdata 目录因人而异，需自行设
+    os.path.join(_HOME, 'AppData', 'LocalLow', 'First Day Games', 'Deskrawl'),
+    os.path.join(_HOME, 'Documents'),
+    os.path.join(_HOME, 'Saved Games'),
 ]
 SKIP_DIR = {'Unity', 'node_modules', '.git', 'Temp', 'Cache', 'cache'}
 MAX = 40 * 1024 * 1024

@@ -16,10 +16,8 @@ from .engine import Modifier, leveled_value, unwrap
 from .stattype import ModifierType, StatType
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
-DEFAULT_DIR = next((p for p in (
-    os.path.normpath(os.path.join(_HERE, '..', '..', 'data', 'so_dump')),   # 本仓库结构
-    r'C:\Users\<user>\tools\so_dump',                                          # 原始工作目录
-) if os.path.isdir(p)), r'C:\Users\<user>\tools\so_dump')
+# 仓库自定位（内核对仓库结构有唯一约定），不再回落写死的绝对路径
+DEFAULT_DIR = os.path.normpath(os.path.join(_HERE, '..', '..', 'data', 'so_dump'))
 
 
 def _as_mod(stat, mtype, value) -> Optional[Modifier]:

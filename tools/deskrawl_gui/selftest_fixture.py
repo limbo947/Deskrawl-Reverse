@@ -134,6 +134,15 @@ def _snapshot_checks(rep: Report):
             '装备名简中本地化（Equipments 表 → 与游戏内显示一致）',
             f'{len(equip_names)} 件装备名含中文={han}；LegendarySword1 → {sample}')
 
+    # 装配件简中化：宝石/符文/套装在 Equipments 表，天赋**单独**一张 Talents 表（2026-10-17 导出，
+    # 186/186 覆盖）。天赋若误挂 Equipments 会整体回落内部名，必须锚一个具体译文才会红。
+    from .core.localization import assembly_display_name
+    rune_zh = assembly_display_name(gd, 'rune', 'HunterSetRune1_1')
+    talent_zh = assembly_display_name(gd, 'talent', 'HunterTalent19')
+    rep.add(rune_zh == '设阱者的传承 I' and talent_zh != 'HunterTalent19',
+            '装配件简中本地化（符文/套装走 Equipments 表，天赋走 Talents 表）',
+            f'HunterSetRune1_1 → {rune_zh}；HunterTalent19 → {talent_zh}')
+
     # 候选下拉行为：武器槽下拉只列武器 → 选中第一件武器即整件载入候选草稿（引用不变）
     weapon_bag = [r for r in bag if int(r.get('equip_slot_type') or 0) == 1]
     if weapon_bag:
@@ -366,6 +375,15 @@ def _chain_audit_checks(rep: Report, prof, gd):
     rep.add(len(kept) == 1 and len(warns) == 1 and '连乘' in warns[0],
             'F8 防御：_negate 跳过 type 2 词条并写告警（不静默丢项）',
             f'保留 {len(kept)} 条（期望 1）、告警 {warns}')
+
+    # 9) Δ 归因（边际影响）：逐条抽掉候选词条重算 → 有益词条为正、按幅值降序、只取前 3。
+    #    断言「符号与排序」而非具体 DPS：口径稳定比某个数字重要（词条间有乘区交互，不做加总）
+    p.weapon_candidate = copy.deepcopy(p.weapon_current)
+    p.weapon_candidate.affixes = [[20, 0, 100.0], [4, 0, 5.0]]
+    marg = calc_service.affix_marginals(p, gd)
+    rep.add(len(marg) == 2 and marg[0][0] == 20 and marg[0][1] > marg[1][1] > 0,
+            'Δ 归因：逐条移除的边际影响（正值=该条有益，按幅值降序、最多 3 条）',
+            f'{[(s, round(d, 1)) for s, d, _v in marg]}')
 
 
 def _slot_checks(rep: Report, prof, gd):

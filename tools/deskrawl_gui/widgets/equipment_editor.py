@@ -8,7 +8,7 @@ WeaponDraft（多出基础伤害/攻速/技能倍率），其余槽用 ItemDraft
 """
 import copy
 
-from PySide6.QtCore import Signal
+from PySide6.QtCore import QTimer, Signal
 from PySide6.QtWidgets import (QComboBox, QHBoxLayout, QLabel, QPushButton, QVBoxLayout, QWidget)
 
 from ..core import calc_service, skill_service
@@ -63,6 +63,11 @@ class EquipmentEditor(QWidget):
         self.current_editor = None
         self.candidate_editor = None
         self.last_skill_rows = []          # 最近一次 refresh 的技能秒伤行（页面层复用）
+        self._last_result = None           # 最近一次对比结果（归因延时计算用）
+        self._marginal_timer = QTimer(self)
+        self._marginal_timer.setSingleShot(True)
+        self._marginal_timer.setInterval(250)
+        self._marginal_timer.timeout.connect(self._refresh_marginals)
 
         cand_side = QWidget()
         cand_lay = QVBoxLayout(cand_side)
@@ -276,9 +281,20 @@ class EquipmentEditor(QWidget):
         # 留存技能行供页面层（循环系数/候选预测）复用，避免同帧重复计算
         self.last_skill_rows = rows
         self.compare_view.set_result(result)
+        # 归因要再跑 N 次 compare（N=候选词条数，实测 3 条约 28ms）：放到停止编辑 250ms 后再算，
+        # 否则逐字符输入时每次按键都多一截卡顿，而用户只在停下来看结论时才需要这行
+        self._last_result = result
+        self._marginal_timer.start()
         self.compare_view.set_skills(rows)
         # 词条/候选改动只走本页刷新，页面层靠这条信号重喂实测框期望（否则预测停留在旧基线）
         self.resultsChanged.emit()
+
+    def _refresh_marginals(self):
+        """停止编辑后补算归因（为什么延时见 refresh 里的注释）；只更新对比视图那一行。"""
+        if self._last_result is None:
+            return
+        self.compare_view.set_marginals(
+            self._last_result, calc_service.affix_marginals(self.profile, self.gd))
 
     def reload(self):
         """从 profile 回填输入（换构建/导入时用），随后重算。"""

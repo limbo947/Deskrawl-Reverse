@@ -7,25 +7,31 @@
 """
 from PySide6.QtCore import (QAbstractTableModel, QModelIndex, QSortFilterProxyModel,
                             Qt, Signal)
+from PySide6.QtGui import QKeySequence, QShortcut
 from PySide6.QtWidgets import (QAbstractItemView, QComboBox, QHBoxLayout, QHeaderView,
-                               QLabel, QLineEdit, QListWidget, QPushButton, QSpinBox,
-                               QSplitter, QTableView, QVBoxLayout, QWidget)
+                               QLabel, QLineEdit, QListWidget, QListWidgetItem, QMenu,
+                               QPushButton, QSpinBox, QSplitter, QTableView, QVBoxLayout,
+                               QWidget)
 
 from ..core import calc_service
-from ..core.assembly_meta import (GEM_CATEGORIES, assembly_params,
-                                  assembled_extra_text, kind_param_label)
+from ..core.assembly_meta import (GEM_CATEGORIES, LEVEL_LABELS, assembled_extra_text,
+                                  assembly_params, gem_label, kind_param_label)
 from ..core.glossary import ASSEMBLY_TEXT
+from ..core.localization import assembly_display_name
 from ..core.profile import (KIND_LABELS, KIND_ORDER, SLOT_LABELS, AssemblyItem)
-from .common import ModeBanner, apply_narrow_stacking, confirm_delete, page_header
+from .common import (ModeBanner, SplitterSizesMixin, apply_narrow_stacking,
+                     confirm_delete, page_header)
 
 
 class _RankModel(QAbstractTableModel):
     COLUMNS = ['名称', '效果', '期望 DPS', 'ΔDPS', 'Δ%']
 
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, name_fn=None):
         super().__init__(parent)
         self._rows = []
         self._alpha = False
+        # 只影响「名称」列的显示：加入构建仍按内部名（计算链与去重都以 _name 为键）
+        self._name_fn = name_fn or (lambda n: n)
 
     def set_alpha(self, alpha: bool):
         """α 聚合导入下，百分比类词条增量为近似（面板抹掉了池结构），行上加显式标注。"""
@@ -61,14 +67,33 @@ class _RankModel(QAbstractTableModel):
             detail = r.detail
             if col == 1 and self._alpha and any(int(m.type) != 0 for m in r.modifiers):
                 detail += '（近似）'
-            return [r.name, detail, f'{r.dps:.1f}', f'{r.delta:+.1f}',
+            return [self._name_fn(r.name), detail, f'{r.dps:.1f}', f'{r.delta:+.1f}',
                     f'{r.delta_pct:+.2f}%'][col]
         if role == Qt.TextAlignmentRole and col >= 2:
             return int(Qt.AlignRight | Qt.AlignVCenter)
         return None
 
 
-class AssemblyCenter(QWidget):
+class _SearchProxy(QSortFilterProxyModel):
+    """名称搜索同时匹配「中文显示名」与「内部名」。
+
+    为什么不用 filterRole 二选一：界面显示中文，而攻略/存档里流传的是 GemDiamond5 这类内部名，
+    用户两种都会敲；只按显示名过滤会让另一种输入直接 0 结果（实测冒烟因此变红）。
+    """
+
+    def filterAcceptsRow(self, source_row, source_parent):     # noqa: N802 —— Qt 覆写
+        regex = self.filterRegularExpression()
+        if not regex.pattern():
+            return True
+        index = self.sourceModel().index(source_row, 0, source_parent)
+        for role in (Qt.DisplayRole, Qt.UserRole):
+            text = str(self.sourceModel().data(index, role) or '')
+            if regex.match(text).hasMatch():
+                return True
+        return False
+
+
+class AssemblyCenter(SplitterSizesMixin, QWidget):
     changed = Signal()
 
     def __init__(self, profile, gd, parent=None):
@@ -114,8 +139,9 @@ class AssemblyCenter(QWidget):
 
         # ---- 候选排序表 ----
         self.hint = QLabel('—')
-        self.model = _RankModel(self)
-        self.proxy = QSortFilterProxyModel(self)
+        self.model = _RankModel(
+            self, name_fn=lambda n: assembly_display_name(self.gd, self.current_kind(), n))
+        self.proxy = _SearchProxy(self)
         self.proxy.setSourceModel(self.model)
         self.proxy.setSortRole(Qt.UserRole)
         self.proxy.setFilterCaseSensitivity(Qt.CaseInsensitive)
@@ -130,6 +156,12 @@ class AssemblyCenter(QWidget):
         self.table.horizontalHeader().setSectionResizeMode(0, QHeaderView.ResizeToContents)
         self.table.horizontalHeader().setSectionResizeMode(1, QHeaderView.Stretch)
         self.table.doubleClicked.connect(self._on_double_clicked)
+        # 键盘/右键两条快捷路径：列表行多时不必每回都把鼠标拖到左下角的「加入构建」
+        self.table.setContextMenuPolicy(Qt.CustomContextMenu)
+        self.table.customContextMenuRequested.connect(self._on_table_menu)
+        enter_sc = QShortcut(QKeySequence(Qt.Key_Return), self.table)
+        enter_sc.setContext(Qt.WidgetWithChildrenShortcut)
+        enter_sc.activated.connect(self._add_selected)
         add_btn = QPushButton('加入构建')
         add_btn.clicked.connect(self._add_selected)
 
@@ -147,7 +179,15 @@ class AssemblyCenter(QWidget):
         self.assembled_list = QListWidget()
         self.assembled_list.setToolTip('已装配条目会进属性表与排序基线（即 ΔDPS 的比较基准）；'
                                        '选中条目可在下方就地改等级 / 镶嵌部位。')
+        # 长名称在窄栏里会被省略号截断：两行显示（名称 / 种类·参数）+ 全量 tooltip，
+        # 右键或 Delete 直接移除——不必先选中再跑到底部按「删除选中…」
+        self.assembled_list.setWordWrap(True)
         self.assembled_list.currentRowChanged.connect(self._on_assembled_selected)
+        self.assembled_list.setContextMenuPolicy(Qt.CustomContextMenu)
+        self.assembled_list.customContextMenuRequested.connect(self._on_assembled_menu)
+        remove_sc = QShortcut(QKeySequence.Delete, self.assembled_list)
+        remove_sc.setContext(Qt.WidgetWithChildrenShortcut)
+        remove_sc.activated.connect(self._remove_selected)
         self.edit_level_spin = QSpinBox()
         self.edit_level_spin.setRange(1, 999)
         self.edit_slot_combo = QComboBox()
@@ -173,6 +213,7 @@ class AssemblyCenter(QWidget):
         right_lay.addWidget(remove_btn)
 
         self._splitter = QSplitter()
+        self._init_splitter_sizes(self._splitter)
         self._splitter.addWidget(table_box)
         self._splitter.addWidget(right_box)
         self._splitter.setStretchFactor(0, 1)
@@ -197,6 +238,7 @@ class AssemblyCenter(QWidget):
         """窄窗口把「候选表 | 已装配栏」改为上下堆叠（见 common.apply_narrow_stacking）。"""
         super().resizeEvent(event)
         apply_narrow_stacking(self._splitter, event.size().width())
+        self._remember_splitter()
 
     # ---------------- 参数 ----------------
     def current_kind(self) -> str:
@@ -251,11 +293,30 @@ class AssemblyCenter(QWidget):
         for it in self.profile.assembled:
             extra = assembled_extra_text(it.kind, it.level, it.category,
                                          self._slot_label(it))
-            self.assembled_list.addItem(f'{KIND_LABELS.get(it.kind, it.kind)}｜{it.name}｜{extra}')
+            kind_cn = KIND_LABELS.get(it.kind, it.kind)
+            # 两行：第一行名称（窄栏里至少能读全名字），第二行种类与参数；全量信息进 tooltip。
+            # 参数行不直接复用 extra：其中「｜@未标注」在单行里像半句话，悬停看全量更清楚。
+            param = (f'{gem_label(it.category)}孔' if it.kind == 'gem'
+                     else f'{LEVEL_LABELS.get(it.kind, "等级")} {it.level}')
+            shown = assembly_display_name(self.gd, it.kind, it.name)
+            item = QListWidgetItem(f'{shown}\n{kind_cn} · {param}')
+            item.setToolTip(f'{kind_cn}｜{shown}（{it.name}）｜{extra}')
+            self.assembled_list.addItem(item)
         row = min(current, len(self.profile.assembled) - 1)
         self.assembled_list.setCurrentRow(row)
         self.assembled_list.blockSignals(False)
         self._sync_edit_widgets()
+
+    def _on_assembled_menu(self, pos):
+        """右键菜单：只给「移除」——改等级/部位是选中后下方的控件，重复一份只会两处并存。"""
+        row = self.assembled_list.indexAt(pos).row()
+        if row < 0:
+            return
+        self.assembled_list.setCurrentRow(row)
+        menu = QMenu(self)
+        act = menu.addAction('移除该条目…')
+        if menu.exec(self.assembled_list.mapToGlobal(pos)) is act:
+            self._remove_selected()
 
     @staticmethod
     def _slot_label(item) -> str:
@@ -279,6 +340,17 @@ class AssemblyCenter(QWidget):
         self.profile.assembled.append(AssemblyItem(kind, name, level, category))
         self.refresh(deep=True)     # 装配项变更影响排序基线 → 本页立即全量重排
         self.changed.emit()
+
+    def _on_table_menu(self, pos):
+        """候选表右键：加入构建（与双击、回车同一入口，保证「同一动作只有一处实现」）。"""
+        index = self.table.indexAt(pos)
+        if not index.isValid():
+            return
+        self.table.setCurrentIndex(index)
+        menu = QMenu(self)
+        act = menu.addAction('加入构建')
+        if menu.exec(self.table.viewport().mapToGlobal(pos)) is act:
+            self._add_selected()
 
     def _on_double_clicked(self, proxy_index):
         src = self.proxy.mapToSource(proxy_index)

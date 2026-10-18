@@ -49,6 +49,13 @@ class CompareView(QGroupBox):
         head.addWidget(self.delta, 1, 2)
         root.addLayout(head)
 
+        # 归因：只回答「这次 Δ 主要由哪几条词条撑着」，不承担加总（见 set_result 的 tooltip 口径）
+        self.marginal = QLabel('')
+        self.marginal.setObjectName('pageSubtitle')
+        self.marginal.setWordWrap(True)
+        self.marginal.setVisible(False)
+        root.addWidget(self.marginal)
+
         # 对比口径告警（F8）：_negate 卸下不可逆词条（连乘 type 2）时会丢项使 Δ 失真，
         # 内容非空才显示；用 modeBanner 的告警样式，与 α 横幅同一视觉语言。
         self.warn_label = QLabel('')
@@ -60,6 +67,7 @@ class CompareView(QGroupBox):
         self.skill_hint = QLabel('技能秒伤对比：—')
         root.addWidget(self.skill_hint)
         self.skill_table = QTableWidget(0, len(_SKILL_COLS))
+        self._delta_cells = []            # 复用单元格标签：每次刷新新建会留下 pending 旧控件（见 set_skills）
         self.skill_table.setHorizontalHeaderLabels(_SKILL_COLS)
         self.skill_table.verticalHeader().setVisible(False)
         self.skill_table.setEditTriggers(QAbstractItemView.NoEditTriggers)
@@ -67,6 +75,10 @@ class CompareView(QGroupBox):
         # 技能表已在「对比结果」分组框内：自身的表格框 + 网格线会叠加成多层矩形线框
         self.skill_table.setShowGrid(False)
         self.skill_table.horizontalHeader().setSectionResizeMode(0, QHeaderView.Stretch)
+        # Δ% 是单元格控件（QLabel），列宽由表头文字算出来会偏窄 → 数字被挤到与上一列重叠；
+        # 这里给三列数值定宽，窗口变窄时只压技能名列
+        for col, width in ((1, 96), (2, 96), (3, 84)):
+            self.skill_table.setColumnWidth(col, width)
         root.addWidget(self.skill_table, 1)
 
     @staticmethod
@@ -76,7 +88,7 @@ class CompareView(QGroupBox):
             return '主属性未设置'
         return f'{stat_name(int(model.primary_stat))} ×{model.primary_stat_multiplier():.3f}'
 
-    def set_result(self, result):
+    def set_result(self, result, marginals=None):
         self.cur_title.setText(f'当前{result.slot_label} DPS')
         self.cand_title.setText(f'候选{result.slot_label} DPS')
         self.cur_dps.setText(f'{result.current_dps:.1f}')
@@ -86,6 +98,8 @@ class CompareView(QGroupBox):
         self.delta.setObjectName(_delta_object_name(result.delta))
         self.delta.style().unpolish(self.delta)
         self.delta.style().polish(self.delta)
+
+        self._show_marginals(result, marginals)
 
         warns = list(getattr(result, 'warnings', None) or [])
         self.warn_label.setVisible(bool(warns))
@@ -102,14 +116,51 @@ class CompareView(QGroupBox):
             f'有效攻速已含武器基础攻速与面板攻速加成\n'
             f'顶部 Δ 为无标签普攻口径：普攻/强攻伤害(33/34)与冷却缩减(13)只作用于下方技能表')
 
+    def set_marginals(self, result, marginals):
+        """单独更新归因行（编辑后延时计算，避免每次按键都多跑 N 次 compare）。"""
+        self._show_marginals(result, marginals)
+
+    def _show_marginals(self, result, marginals):
+        """边际影响一行：候选没有词条时整行隐藏（没有可归因的东西）。"""
+        if not marginals:
+            self.marginal.setVisible(False)
+            return
+        base = float(result.candidate_dps or 0.0)
+        parts = []
+        for stat, delta, _value in marginals:
+            pct = (float(delta) / base * 100.0) if base else 0.0
+            # 与技能表 Δ% 同阈值：显示成 +0.00% 的条目不占位（如条件词条在目标无该状态时）
+            if abs(pct) < _FLAT_DELTA_PCT:
+                continue
+            parts.append(f'{stat_name(int(stat))} {pct:+.2f}%')
+        if not parts:
+            self.marginal.setVisible(False)
+            return
+        self.marginal.setText('边际影响（逐条移除）：' + '｜'.join(parts))
+        self.marginal.setToolTip(
+            '把该词条单独从候选件移除后重算，得到的是它的**边际**影响：正值 = 去掉它 DPS 会下降，'
+            '说明这条在起作用。\n词条之间存在乘区交互（百分比同池、封顶、条件层），'
+            '所以各条之和不必等于顶部总 Δ——按「边际影响」读，不要当占比相加。')
+        self.marginal.setVisible(True)
+
     def set_skills(self, rows):
         """渲染逐技能秒伤对比（技能 · 当前 · 候选 · Δ%）。空表给出原因提示。"""
         if not rows:
             self.skill_hint.setText('技能秒伤对比：未设置职业或无伤害技能（导入自动识别「职业」）')
             self.skill_table.setRowCount(0)
+            self._delta_cells = []
             return
         self.skill_hint.setText(f'技能秒伤对比（{len(rows)} 项，期望值口径；换装看 Δ% 即可）')
-        self.skill_table.setRowCount(len(rows))
+        # Δ% 用单元格控件承载（颜色在 QSS 里按 trend 属性切），但**必须复用**：每次 setCellWidget
+        # 新建会先把旧控件 deleteLater，而删除要等事件循环——期间旧标签仍按旧列宽绘制，
+        # 表现为数字与上一列重叠（实测窄窗下稳定复现）。
+        if self.skill_table.rowCount() != len(rows):
+            self.skill_table.setRowCount(len(rows))
+            self._delta_cells = []
+            for i in range(len(rows)):
+                label = self._make_delta_label()
+                self.skill_table.setCellWidget(i, 3, label)
+                self._delta_cells.append(label)
         for i, r in enumerate(rows):
             cells = [r.ability_name, f'{r.current_dps:.0f}', f'{r.candidate_dps:.0f}']
             for j, text in enumerate(cells):
@@ -117,16 +168,20 @@ class CompareView(QGroupBox):
                 if j >= 1:
                     item.setTextAlignment(Qt.AlignRight | Qt.AlignVCenter)
                 self.skill_table.setItem(i, j, item)
-            # Δ% 单独用标签承载：涨/跌/无变化三态与顶部 Δ 同色（颜色在 QSS 里按 trend 属性切），
-            # 否则整列黑字，读 Δ 时得先看符号再去别处找颜色语义
-            self.skill_table.setCellWidget(i, 3, self._delta_cell(r.delta_pct))
+            self._update_delta_label(self._delta_cells[i], r.delta_pct)
 
     @staticmethod
-    def _delta_cell(pct: float) -> QLabel:
-        """Δ% 单元格标签：三态映射到 QSS 的 trend 属性（与 deltaUp/deltaDown/deltaFlat 同语义）。"""
-        trend = 'flat' if abs(float(pct)) < _FLAT_DELTA_PCT else ('up' if pct > 0 else 'down')
-        label = QLabel(f'{float(pct):+.2f}%')
+    def _make_delta_label() -> QLabel:
+        label = QLabel('')
         label.setObjectName('deltaCell')
-        label.setProperty('trend', trend)
         label.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
         return label
+
+    @staticmethod
+    def _update_delta_label(label, pct: float) -> None:
+        """Δ% 三态走 trend 属性（颜色只在 QSS 定义），与顶部 Δ 同语义。"""
+        trend = 'flat' if abs(float(pct)) < _FLAT_DELTA_PCT else ('up' if pct > 0 else 'down')
+        label.setText(f'{float(pct):+.2f}%')
+        label.setProperty('trend', trend)
+        label.style().unpolish(label)
+        label.style().polish(label)

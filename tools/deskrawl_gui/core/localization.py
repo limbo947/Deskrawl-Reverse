@@ -51,6 +51,24 @@ def equipment_display_name(gd, name: str) -> str:
     return zh or str(name)
 
 
+# 四类装配件的显示名表：宝石/符文/套装都在 Equipments 表，天赋单独在 Talents 表
+# （2026-10-17 实测：Equipments 命中 gem 36/36、rune 199/199、runeset 13/13，talent 0/186；
+# Talents 表导出 356 条后天赋覆盖 186/186）
+_ASSEMBLY_TABLES = {'gem': 'equipments_zh.json', 'rune': 'equipments_zh.json',
+                    'runeset': 'equipments_zh.json', 'talent': 'talents_zh.json'}
+
+
+def assembly_display_name(gd, kind: str, name: str) -> str:
+    """装配件内部名（GemDiamond5 / HunterSetRune1_1 / HunterTalent19）→ 游戏简中名。
+
+    缺表/缺键回落内部名：与装备本地化同取向，只降级显示，不阻断排序与计算。
+    """
+    table = _ASSEMBLY_TABLES.get(str(kind))
+    if not table:
+        return str(name)
+    return _table(gd, table).get(str(name)) or str(name)
+
+
 @lru_cache(maxsize=4)
 def _reverse_names(dir_key: str, items_sig: int) -> dict:
     """{简中显示名: 内部 _name}，由 ItemData 逐条正推显示名后倒排。
@@ -93,4 +111,5 @@ def item_internal_name(gd, display_name: str) -> str:
     return _reverse_names(d, sig).get(name, name)
 
 
-__all__ = ['ability_display_name', 'equipment_display_name', 'item_internal_name']
+__all__ = ['ability_display_name', 'assembly_display_name', 'equipment_display_name',
+           'item_internal_name']

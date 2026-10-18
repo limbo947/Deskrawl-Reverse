@@ -6,6 +6,7 @@
 """
 from __future__ import annotations
 
+import copy
 import json
 import os
 from dataclasses import dataclass, field
@@ -362,6 +363,37 @@ def compare(profile: CharacterProfile, gd, slot=None) -> CompareResult:
                          ((cand_dps / cur_dps - 1.0) * 100.0) if cur_dps else 0.0,
                          cur_model, cand_model, cur_sheet, cand_sheet, target, warns,
                          current_effects=cur_eff, candidate_effects=cand_eff)
+
+
+def affix_marginals(profile: CharacterProfile, gd, slot=None, limit: int = 3):
+    """候选件逐条移除后的 DPS 边际影响（取绝对值最大的 limit 条）。
+
+    为什么叫「边际」而不是「贡献」：词条之间有乘区交互（百分比同池、封顶、条件层），
+    单条抽掉重算得到的是「这条不存在会差多少」，各条之和不必等于总 Δ，所以界面只报
+    前几条的边际值，不给出占比——那会是一个看起来精确、实际对不上的数。
+    """
+    slot = int(profile.compare_slot if slot is None else slot)
+    draft = (profile.weapon_candidate if slot == 0
+             else profile.slot_candidate.get(slot))
+    affixes = list(getattr(draft, 'affixes', []) or [])
+    if not affixes:
+        return []
+    full = compare(profile, gd, slot=slot).candidate_dps
+    out = []
+    for i, row in enumerate(affixes):
+        p2 = copy.copy(profile)                      # 浅拷贝：只替换被对比槽的候选草稿
+        if slot == 0:
+            p2.weapon_candidate = copy.deepcopy(profile.weapon_candidate)
+            target_draft = p2.weapon_candidate
+        else:
+            p2.slot_candidate = dict(profile.slot_candidate)
+            p2.slot_candidate[slot] = copy.deepcopy(profile.slot_candidate[slot])
+            target_draft = p2.slot_candidate[slot]
+        target_draft.affixes = [list(a) for j, a in enumerate(target_draft.affixes) if j != i]
+        dps = compare(p2, gd, slot=slot).candidate_dps
+        out.append((int(row[0]), float(full - dps), float(row[2])))
+    out.sort(key=lambda t: abs(t[1]), reverse=True)
+    return out[:limit]
 
 
 def candidate_names(gd, kind: str) -> List[str]:

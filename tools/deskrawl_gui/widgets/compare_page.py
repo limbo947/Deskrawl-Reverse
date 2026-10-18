@@ -5,19 +5,19 @@
 视线动线一致；参考技能同理（它是换装预测/循环系数的基线口径），挂到目标基础卡片下方。
 EquipmentEditor 内部已含 CompareView，这里只做横向组合与刷新中转。
 """
-from PySide6.QtCore import Signal
+from PySide6.QtCore import Qt, Signal
 from PySide6.QtWidgets import QHBoxLayout, QScrollArea, QSplitter, QVBoxLayout, QWidget
 
 from ..core.glossary import CALIBER_TEXT
 from ..core.skill_service import pick_main_row
-from .common import apply_narrow_stacking, page_header
+from .common import SplitterSizesMixin, apply_narrow_stacking, page_header
 from .dps_meter import GameDpsMeter
 from .equipment_editor import EquipmentEditor
 from .skill_card import SkillCard
 from .target_editor import TargetEditor
 
 
-class ComparePage(QWidget):
+class ComparePage(SplitterSizesMixin, QWidget):
     changed = Signal()
 
     def __init__(self, profile, gd, parent=None):
@@ -32,6 +32,7 @@ class ComparePage(QWidget):
         self.target_editor.insert_below_basic(self.skill_card)
 
         self._splitter = QSplitter()
+        self._init_splitter_sizes(self._splitter)
         self._splitter.addWidget(self.equipment_editor)
         # 目标设置是窄表单，滚动区兜底；固定较窄宽度把空间留给对比结果
         target_scroll = QScrollArea()
@@ -39,7 +40,15 @@ class ComparePage(QWidget):
         target_scroll.setWidget(self.target_editor)
         target_scroll.setFrameShape(QScrollArea.NoFrame)
         target_scroll.setMinimumWidth(300)
-        self._splitter.addWidget(target_scroll)
+        # 实测卡片钉在右栏底部（滚动区之外）：它是轮询读数，目标设置再长也不该把它滚走
+        self.dps_meter = GameDpsMeter()
+        right = QWidget()
+        right_lay = QVBoxLayout(right)
+        right_lay.setContentsMargins(0, 0, 0, 0)
+        right_lay.setSpacing(8)
+        right_lay.addWidget(target_scroll, 1)
+        right_lay.addWidget(self.dps_meter, 0)
+        self._splitter.addWidget(right)
         self._splitter.setStretchFactor(0, 1)
         self._splitter.setStretchFactor(1, 0)
         self._splitter.setSizes([980, 340])
@@ -51,9 +60,6 @@ class ComparePage(QWidget):
             '装备对比',
             '选槽 → 改候选 → 读 Δ%（当前件来自导入时固定只读；多件同换请逐槽评估）',
             CALIBER_TEXT), 1)
-        # 游戏实测值：期望口径旁边随时可对照的真实计伤（只读轮询）
-        self.dps_meter = GameDpsMeter()
-        head.addWidget(self.dps_meter)
         root.addLayout(head)
         root.addWidget(self._splitter, 1)
 
@@ -86,3 +92,4 @@ class ComparePage(QWidget):
         """窄窗口把「装备编辑器 | 目标栏」改为上下堆叠（见 common.apply_narrow_stacking）。"""
         super().resizeEvent(event)
         apply_narrow_stacking(self._splitter, event.size().width())
+        self._remember_splitter()

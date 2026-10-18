@@ -139,14 +139,9 @@ QComboBox::drop-down {
     border-left: 1px solid #30353B;
     background: #262B30;
 }
-QComboBox::down-arrow {
-    width: 0;
-    height: 0;
-    border-left: 3px solid transparent;
-    border-right: 3px solid transparent;
-    border-top: 4px solid #9AA0A6;
-}
-QComboBox::down-arrow:disabled { border-top-color: #6B7076; }
+/* 箭头一律用 8x8 SVG（@ARROW_* 由 load_qss 换成绝对路径）：Qt 不支持 CSS 三角 hack
+   （width/height:0 + 透明边框会被实心画成小方块，且星号按钮一经 QSS 接管就不再画原生指示器）。 */
+QComboBox::down-arrow { image: url("@ARROW_DOWN"); width: 8px; height: 8px; }
 QSpinBox::up-button, QDoubleSpinBox::up-button,
 QSpinBox::down-button, QDoubleSpinBox::down-button {
     subcontrol-origin: border;
@@ -159,21 +154,22 @@ QSpinBox::down-button, QDoubleSpinBox::down-button { subcontrol-position: bottom
 QSpinBox::up-button:hover, QDoubleSpinBox::up-button:hover,
 QSpinBox::down-button:hover, QDoubleSpinBox::down-button:hover { background: #2E343A; }
 QSpinBox::up-arrow, QDoubleSpinBox::up-arrow {
-    width: 0;
-    height: 0;
-    border-left: 3px solid transparent;
-    border-right: 3px solid transparent;
-    border-bottom: 4px solid #9AA0A6;
+    image: url("@ARROW_UP");
+    width: 8px;
+    height: 8px;
 }
 QSpinBox::down-arrow, QDoubleSpinBox::down-arrow {
-    width: 0;
-    height: 0;
-    border-left: 3px solid transparent;
-    border-right: 3px solid transparent;
-    border-top: 4px solid #9AA0A6;
+    image: url("@ARROW_DOWN");
+    width: 8px;
+    height: 8px;
 }
-QSpinBox::up-arrow:disabled, QDoubleSpinBox::up-arrow:disabled { border-bottom-color: #6B7076; }
-QSpinBox::down-arrow:disabled, QDoubleSpinBox::down-arrow:disabled { border-top-color: #6B7076; }
+/* 禁用态要跟着变暗：图片不会自动染色调，只换一张灰阶更低的（对比项里被锁死的当前件） */
+QSpinBox::up-arrow:disabled, QDoubleSpinBox::up-arrow:disabled {
+    image: url("@ARROW_UP_DISABLED");
+}
+QSpinBox::down-arrow:disabled, QDoubleSpinBox::down-arrow:disabled {
+    image: url("@ARROW_DOWN_DISABLED");
+}
 
 /* ---- 勾选框：原由平台样式绘制，未勾选态实测是纯白方块（#FFFFFF），暗底上极刺眼 ---- */
 QCheckBox, QRadioButton { spacing: 8px; }
@@ -206,14 +202,8 @@ QHeaderView::section {
     color: #9AA0A6;
 }
 QHeaderView::section:hover { background: #2E343A; }
-QHeaderView::up-arrow, QHeaderView::down-arrow {
-    width: 0;
-    height: 0;
-    border-left: 3px solid transparent;
-    border-right: 3px solid transparent;
-}
-QHeaderView::up-arrow { border-bottom: 4px solid #9AA0A6; }
-QHeaderView::down-arrow { border-top: 4px solid #9AA0A6; }
+QHeaderView::up-arrow { image: url("@ARROW_UP"); width: 8px; height: 8px; }
+QHeaderView::down-arrow { image: url("@ARROW_DOWN"); width: 8px; height: 8px; }
 QTableCornerButton::section { background: #262B30; border: none; }
 QTableView, QTreeView, QListView {
     background: #1E2226;

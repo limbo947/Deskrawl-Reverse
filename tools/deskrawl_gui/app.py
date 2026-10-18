@@ -88,12 +88,30 @@ def preserved_import(profile: CharacterProfile, payload: dict, gd) -> CharacterP
     return imported
 
 
+_QSS_ARROWS = {
+    '@ARROW_UP': 'arrow_up.svg',
+    '@ARROW_DOWN': 'arrow_down.svg',
+    '@ARROW_UP_DISABLED': 'arrow_up_disabled.svg',
+    '@ARROW_DOWN_DISABLED': 'arrow_down_disabled.svg',
+}
+
+
 def load_qss(path: str = QSS_PATH) -> str:
-    """读取主题样式。文件缺失必须显式抛错：静默降级会让暗色主题失效却无人察觉。"""
+    """读取主题样式。文件缺失必须显式抛错：静默降级会让暗色主题失效却无人察觉。
+
+    @ARROW_* 在这里换成与 qss 同目录的绝对路径：QSS 的 url() 按**进程工作目录**解析（不是 qss
+    文件位置），冻结态/从别处启动时会指错，箭头就静默消失。Windows 路径须用正斜杠。
+    """
     if not os.path.exists(path):
         raise FileNotFoundError(f'主题资源缺失：{path}')
     with open(path, encoding='utf-8') as f:
-        return f.read()
+        text = f.read()
+    base = os.path.dirname(os.path.abspath(path)).replace('\\', '/')
+    # 长键先替换：@ARROW_UP 是 @ARROW_UP_DISABLED 的前缀，按短键先换会把后者截断成
+    # "arrow_up.svg_DISABLED"（图片路径指错，禁用态箭头静默消失）。
+    for token in sorted(_QSS_ARROWS, key=len, reverse=True):
+        text = text.replace(token, f'{base}/{_QSS_ARROWS[token]}')
+    return text
 
 
 def load_app_icon(path: str = ICON_PATH):
@@ -123,6 +141,7 @@ class MainWindow(QMainWindow):
 
         self._persist_state = bool(persist_state)
         self._restore_note = ''                  # 恢复失败时的状态栏说明（不阻断启动）
+        self._pending_splits = {}                # 待首次显示后套用的分栏宽度（见 showEvent）
         state = session_state.load_state() if self._persist_state else {}
         if self._persist_state and not state and os.path.exists(session_state.STATE_PATH):
             # 文件在但读不出（损坏/版本不符）：明确说明，避免「为什么没恢复」的静默
@@ -196,6 +215,12 @@ class MainWindow(QMainWindow):
             except (TypeError, ValueError):
                 row = 0
             self.nav.setCurrentRow(max(0, min(row, len(PAGES) - 1)))
+            # 分栏宽度按页恢复（用户拖过一次的比例应跨会话保留，否则每次启动都要重拖）。
+            # 只登记、不立即 setSizes：构造期分栏还没有最终几何，此时设的像素值会被按当前窄宽度
+            # 等比压缩（实测保存 330/844，恢复成 330/272），必须等窗口真正显示后再套用。
+            saved = win.get('splitters') or {}
+            self._pending_splits = {k: v for k, v in saved.items()
+                                    if isinstance(v, list) and len(v) == 2}
         # _refresh_all 的静默刷新在前，这里给一次性说明（用户先看到自己关心的结果）
         if not state:
             # 首启动：给一条三步动线，别让用户对着示例构建发呆（此后由会话恢复接管）
@@ -207,12 +232,44 @@ class MainWindow(QMainWindow):
         elif state:
             self.statusBar().showMessage('已恢复上次关闭前的会话（窗口与数据）', 10000)
 
+    def showEvent(self, event):
+        """窗口首次显示后套用会话里的分栏宽度。
+
+        延到下一轮事件循环（singleShot(0)）：showEvent 时子控件尚未完成布局，此刻 setSizes 依旧
+        会被按当时的窄宽度等比压缩——实测连 showEvent 里设也得到 330/272（应为 330/844）。
+        """
+        super().showEvent(event)
+        if self._pending_splits:
+            QTimer.singleShot(0, self._apply_pending_splits)
+
+    def _apply_pending_splits(self):
+        pending, self._pending_splits = self._pending_splits, {}
+        for key, page in self._pages():
+            sizes = pending.get(key)
+            if sizes:
+                page.set_splitter_sizes(sizes)
+
+    def _pages(self):
+        """(会话键, 页面) 三元组：分栏尺寸的存取都按这份映射走，避免两处各写一遍键名。"""
+        return (('role', self.role_page), ('compare', self.compare_page),
+                ('assembly', self.assembly_center))
+
+    def _splitter_state(self) -> dict:
+        """三页分栏宽度。窄窗竖排时各页返回 None——竖排的尺寸换回横向只会错位，故跳过。"""
+        out = {}
+        for key, page in self._pages():
+            sizes = page.splitter_sizes()
+            if sizes:
+                out[key] = list(sizes)
+        return out
+
     def _save_session_state(self):
-        """关闭时落盘：窗口几何/当前页 + 完整 profile。失败弹窗说明但不阻断关闭。"""
+        """关闭时落盘：窗口几何/当前页/分栏宽度 + 完整 profile。失败弹窗说明但不阻断关闭。"""
         try:
             payload = {'version': session_state.STATE_VERSION,
                        'window': {'geometry': bytes(self.saveGeometry().toBase64()).decode('ascii'),
-                                  'page': int(self.nav.currentRow())},
+                                  'page': int(self.nav.currentRow()),
+                                  'splitters': self._splitter_state()},
                        'profile': self.profile.to_dict()}
             session_state.save_state(payload)
         except OSError as exc:

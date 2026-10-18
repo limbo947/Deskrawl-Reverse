@@ -193,9 +193,11 @@ def _structure_checks(win) -> bool:
           '对比页入口（播种按钮 / 区间提示位 / α 横幅）',
           f'播种可用={ee.seed_btn.isEnabled()}（当前候选非空时应为 False）')
 
-    # 目标栏：血线条件提示行 + 伤害类型 + 9 个勾选（I5 的可见契约）
+    # 目标栏：血线条件提示行 + 伤害类型 + 9 个勾选（I5 的可见契约）。
+    # 按 _cond_checks 清点而不是 findChildren(QCheckBox)：实测 DPS 计卡片也挂在目标栏内，
+    # 它自带「实时」勾选框，子树扫描会把外部卡片的控件算进来（曾因此误报 10 项）。
     te = cv.target_editor
-    conds = [w for w in te.findChildren(QCheckBox) if w.objectName() != 'live_check']
+    conds = list(te._cond_checks.values())
     check('血线判定' in te.hp_cond_label.text() and len(conds) == 9,
           '目标栏（血线条件提示 + 9 项条件勾选）',
           f'提示=「{te.hp_cond_label.text()}」；勾选={len(conds)}')
@@ -812,6 +814,18 @@ def _session_state_checks(rep: Report):
             f'版本不符回落={stale}；文件={tmp}')
 
 
+def _format_checks(rep: Report):
+    """数值显示口径：≤3 位小数、去尾零、无贡献层给 —。改格式函数必须同步改这里。"""
+    from .core.format import NO_INFO, fmt_layer, fmt_qty
+
+    cases = [(355.35, '355.35'), (1.299, '1.299'), (100.0, '100'), (0.0, '0'), (-0.0001, '0')]
+    bad = [(v, fmt_qty(v), want) for v, want in cases if fmt_qty(v) != want]
+    layers = (fmt_layer(1.0, identity=1) == NO_INFO, fmt_layer(0.0, identity=0) == NO_INFO,
+              fmt_layer(0.75, identity=0) == '0.75')
+    rep.add(not bad and all(layers), '数值显示口径（≤3 位小数 · 去尾零 · 无贡献层显示 —）',
+            f'样本 {len(cases)} 个，失配 {len(bad)}；分层占位 {sum(layers)}/3')
+
+
 def run_selftest() -> int:
     rep = Report()
     if not _print_kernel_selftest():
@@ -829,6 +843,7 @@ def run_selftest() -> int:
     _legendary_effect_checks(rep)
     _error_map_check(rep)
     _session_state_checks(rep)
+    _format_checks(rep)
     print(f'\n自检结果：{"全部通过" if rep.ok() else "存在失败"}'
           f'（{rep.passed}/{len(rep.checks)}）')
     return 0 if rep.ok() else 1

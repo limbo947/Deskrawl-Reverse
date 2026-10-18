@@ -5,7 +5,10 @@
 删除确认与空态是合并后新增的交互，集中于此避免各页面各写一套文案与样式。
 """
 from PySide6.QtCore import Qt
-from PySide6.QtWidgets import (QHBoxLayout, QLabel, QMessageBox, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QDoubleSpinBox, QHBoxLayout, QLabel, QMessageBox, QVBoxLayout,
+                               QWidget)
+
+from ..core.format import fmt_qty
 
 # α 聚合导入的统一降级说明（含「降级」关键词：selftest 文案锚点依赖它）
 ALPHA_BANNER_TEXT = ('α 聚合模式（快照无逐件装备）：相关计算降级为「基线 vs 基线+候选词条」，'
@@ -33,6 +36,28 @@ class ModeBanner(QLabel):
         alpha = getattr(profile, 'import_mode', '') == 'alpha'
         self.setVisible(alpha)
         return alpha
+
+
+class QtySpinBox(QDoubleSpinBox):
+    """数值输入框：内部按 decimals 存取（4 位），**显示**走 fmt_qty 去尾零。
+
+    为什么不用 setDecimals(2) 一步到位：词条数值本身是 4 位精度（攻速 1.1845），砍到 2 位会
+    把差异抹平；而直接留 4 位满屏「355.3500」。显示层与存储层分开，两头都不将就。
+    """
+
+    def __init__(self, parent=None, decimals: int = 4):
+        super().__init__(parent)
+        self.setDecimals(decimals)
+
+    def textFromValue(self, value):        # noqa: N802 —— Qt 覆写
+        return fmt_qty(value)
+
+    def valueFromText(self, text):         # noqa: N802 —— Qt 覆写
+        """去掉千分位后再解析；解析失败沿用当前值（默认实现会抛 ValueError → 焦点切换即崩）。"""
+        try:
+            return float(str(text).replace(',', '').strip())
+        except ValueError:
+            return self.value()
 
 
 def confirm_delete(parent, title: str, text: str, yes_label: str = '删除') -> bool:
@@ -67,6 +92,35 @@ def apply_narrow_stacking(splitter, width: int, *, threshold: int = 1100):
     1280 逻辑点）。用 QSplitter 的 orientation 切换即可，不重建布局；宽回来再并排。
     """
     splitter.setOrientation(Qt.Vertical if width < threshold else Qt.Horizontal)
+
+
+class SplitterSizesMixin:
+    """把「横向分栏宽度」记成可持久化的值（三页各有一处 QSplitter，逻辑相同）。
+
+    只在横向且宽度像样时记录：窄窗会切成竖排、构造期尚未布局时宽度是几百像素的假值，
+    这两种情况的尺寸存进会话再套回去只会错位。拖动与窗口缩放都要刷新缓存，否则关窗时
+    拿到的是上一次布局的值。
+    """
+
+    def _init_splitter_sizes(self, splitter) -> None:
+        self._splitter_ref = splitter
+        self._h_sizes = None
+        splitter.splitterMoved.connect(lambda *_: self._remember_splitter())
+
+    def _remember_splitter(self) -> None:
+        # 阈值 800 而不是「比 0 大」：构造期分栏只有 600 多像素宽，尺寸是布局前的假值，
+        # 存下来会在下次启动被当成用户意图（实测把默认 340/840 记成 340/296）。
+        sp = self._splitter_ref
+        if sp.orientation() == Qt.Horizontal and sp.width() >= 800:
+            self._h_sizes = list(sp.sizes())
+
+    def splitter_sizes(self):
+        self._remember_splitter()      # 关窗时点布局已完成，取到的才是真值
+        return self._h_sizes
+
+    def set_splitter_sizes(self, sizes) -> None:
+        if sizes and len(sizes) == self._splitter_ref.count():
+            self._splitter_ref.setSizes([int(s) for s in sizes])
 
 
 def page_header(title: str, subtitle: str = '', help_text: str = '') -> QWidget:

@@ -7,11 +7,13 @@
 参考技能卡片已迁往装备对比页（widgets/skill_card.py）：它是换装预测的基线口径，与目标设置同屏。
 """
 from PySide6.QtCore import Signal
-from PySide6.QtWidgets import (QComboBox, QDoubleSpinBox, QFormLayout, QGroupBox,
+from PySide6.QtWidgets import (QComboBox, QFormLayout, QGroupBox, QLabel,
                                QSpinBox, QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget)
 from PySide6.QtWidgets import QHeaderView
 
 from deskrawl_calc import StatType, stat_name
+
+from .common import QtySpinBox
 
 # 基础面板里直接映射到 StatType 的输入项
 _BASE_FIELDS = [(StatType.Strength, '力量'), (StatType.Dexterity, '敏捷'),
@@ -43,9 +45,8 @@ class PanelEditor(QWidget):
         self.level_spin.valueChanged.connect(self._on_level)
         form.addRow('等级', self.level_spin)
         for st, label in _BASE_FIELDS:
-            sp = QDoubleSpinBox()
+            sp = QtySpinBox(decimals=2)
             sp.setRange(-1e6, 1e6)
-            sp.setDecimals(2)
             sp.valueChanged.connect(lambda v, s=int(st): self._on_base(s, v))
             self._base_spins[int(st)] = sp
             form.addRow(label, sp)
@@ -64,6 +65,11 @@ class PanelEditor(QWidget):
     def _build_paragon_group(self) -> QGroupBox:
         box = QGroupBox('巅峰点数')
         lay = QVBoxLayout(box)
+        # 15 行里通常只有 2–3 行非零，光看一屏 0 分不清「没分配」与「这行没用」——用一句计数说清，
+        # 而不隐藏 0 行：行一旦消失就没法从 0 加点（过滤式「只显示非零」在这里是反向的）。
+        self.paragon_hint = QLabel('—')
+        self.paragon_hint.setObjectName('pageSubtitle')
+        lay.addWidget(self.paragon_hint)
         stats = self.gd.paragon_stats()
         table = QTableWidget(len(stats), 2)
         table.setHorizontalHeaderLabels(['属性', '点数'])
@@ -95,6 +101,12 @@ class PanelEditor(QWidget):
         for st, sp in self._paragon_spins.items():
             sp.setValue(int(self.profile.paragon.get(st, 0)))
         self._loading = False
+        self._update_paragon_hint()
+
+    def _update_paragon_hint(self):
+        used = sum(1 for v in self.profile.paragon.values() if v)
+        self.paragon_hint.setText(f'已分配 {used} 项 / 共 {len(self._paragon_spins)} 项；'
+                                  f'未分配的行保留在此，可直接从 0 加点')
 
     def _on_level(self, v):
         if self._loading:
@@ -122,4 +134,5 @@ class PanelEditor(QWidget):
             self.profile.paragon[stat] = int(pts)
         else:
             self.profile.paragon.pop(stat, None)
+        self._update_paragon_hint()
         self.changed.emit()

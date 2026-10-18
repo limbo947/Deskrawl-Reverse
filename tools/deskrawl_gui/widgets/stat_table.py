@@ -11,6 +11,7 @@ from PySide6.QtWidgets import (QAbstractItemView, QHeaderView, QLabel, QTableWid
 from deskrawl_calc import StatType, stat_name
 
 from ..core.calc_service import stat_rows
+from ..core.format import fmt_layer, fmt_qty
 
 
 class StatTable(QWidget):
@@ -46,17 +47,20 @@ class StatTable(QWidget):
     def set_sheet(self, sheet):
         rows = stat_rows(sheet)
         self._set_headers(self.COLUMNS)
-        self._fill([[r.name, f'{r.base:.4g}', f'{r.flat:.4g}',
-                     f'{r.add:.4g}', f'{r.mult:.4g}', f'{r.final:.4g}'] for r in rows])
+        self._fill([[r.name, fmt_qty(r.base), fmt_layer(r.flat, identity=0),
+                     fmt_layer(r.add, identity=0), fmt_layer(r.mult, identity=1),
+                     fmt_qty(r.final)] for r in rows])
         self.hint.setText(f'非零属性 {len(rows)} 项 / 全表 {len(list(StatType))} 项')
 
     def set_panel_view(self, panel: dict):
         """游戏面板口径（导入时冻结）：列 = 平坦层 / 条件层 / 百分比加算 / 乘区 / 面板显示值。"""
         rows = panel.get('rows') or []
         self._set_headers(self.PANEL_COLUMNS)
+        # 条件层 0 / 百分比 0 / 乘区 1 都是「本层无贡献」：显示成 —，否则一屏十几个 0 与 1 会把
+        # 真正有值的那几行淹掉（面板显示值仍是原始文本，不动）
         self._fill([
-            [stat_name(stat), f'{flat:.6g}', f'{cond:+.4g}' if cond else '0',
-             f'{pct:.4g}', f'{mult:.4g}', text]
+            [stat_name(stat), fmt_qty(flat), fmt_layer(cond, identity=0),
+             fmt_layer(pct, identity=0), fmt_layer(mult, identity=1), text]
             for stat, flat, cond, pct, mult, _final, text in rows])
         mode_cn = {'beta': 'β 逐件', 'alpha': 'α 聚合'}.get(panel.get('mode'), '')
         suffix = f'，{mode_cn}' if mode_cn else ''

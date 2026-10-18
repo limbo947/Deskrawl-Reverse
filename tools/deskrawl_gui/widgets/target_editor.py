@@ -6,9 +6,11 @@
 控件直接写回 profile，改动发 changed 由主窗口统一刷新。
 """
 from PySide6.QtCore import Qt, Signal
-from PySide6.QtWidgets import (QCheckBox, QComboBox, QDoubleSpinBox, QFormLayout,
+from PySide6.QtWidgets import (QCheckBox, QComboBox, QFormLayout,
                                QGridLayout, QGroupBox, QHBoxLayout, QLabel, QPushButton,
                                QSlider, QSpinBox, QVBoxLayout, QWidget)
+
+from .common import QtySpinBox
 
 from deskrawl_calc import DamageType
 
@@ -121,10 +123,9 @@ class TargetEditor(QWidget):
         form.addRow('伤害类型', self.dtype_combo)
         return box
 
-    def _double(self, form, label, attr, hi=1e6, step=0.1) -> QDoubleSpinBox:
-        sp = QDoubleSpinBox()
+    def _double(self, form, label, attr, hi=1e6, step=0.1) -> QtySpinBox:
+        sp = QtySpinBox(decimals=3)
         sp.setRange(0.0, hi)
-        sp.setDecimals(3)
         sp.setSingleStep(step)
         sp.valueChanged.connect(lambda v, a=attr: self._set_target(a, float(v)))
         form.addRow(label, sp)

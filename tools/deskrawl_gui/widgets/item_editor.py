@@ -10,7 +10,7 @@
 - current_of：候选侧专用（任意槽），「与当前装备相同（强化/宝石）」开关据此镜像当前件。
 """
 from PySide6.QtCore import QTimer, Qt, Signal
-from PySide6.QtWidgets import (QAbstractItemView, QCheckBox, QComboBox, QDoubleSpinBox,
+from PySide6.QtWidgets import (QAbstractItemView, QCheckBox, QComboBox,
                                QFormLayout, QGroupBox, QHBoxLayout, QHeaderView, QLabel,
                                QLineEdit, QPushButton, QTableWidget, QTableWidgetItem,
                                QVBoxLayout, QWidget)
@@ -19,6 +19,7 @@ from deskrawl_calc import StatType, stat_name
 
 from ..core.calc_service import MOD_TYPE_CN
 from ..core.item_draft import apply_upgrade
+from .common import QtySpinBox
 
 # 类型中文名单一来源在 core（与候选摘要 describe_mods 共用），此处只做视图所需的查表
 _MOD_LABELS = dict(MOD_TYPE_CN)
@@ -135,9 +136,8 @@ class AffixTable(QTableWidget):
         for st in StatType:
             stat_combo.addItem(stat_name(st), int(st))
 
-        spin = QDoubleSpinBox()
+        spin = QtySpinBox()
         spin.setRange(-1e6, 1e6)
-        spin.setDecimals(4)
 
         btn = QPushButton('×')
         btn.setFixedWidth(28)
@@ -358,10 +358,9 @@ class ItemEditor(QGroupBox):
         self.range_label.setText(text)
         self.range_label.setVisible(bool(text))
 
-    def _spin(self, form, label, lo, hi, decimals, attr) -> QDoubleSpinBox:
-        sp = QDoubleSpinBox()
+    def _spin(self, form, label, lo, hi, decimals, attr) -> QtySpinBox:
+        sp = QtySpinBox(decimals=decimals)
         sp.setRange(lo, hi)
-        sp.setDecimals(decimals)
         sp.valueChanged.connect(lambda v, a=attr: self._on_num(a, v))
         form.addRow(label, sp)
         self._spins.append(sp)

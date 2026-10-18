@@ -16,8 +16,7 @@ import time
 from PySide6.QtCore import QByteArray, QTimer, Qt, Signal
 from PySide6.QtGui import QAction, QIcon
 from PySide6.QtWidgets import (QApplication, QFileDialog, QHBoxLayout,
-                               QMainWindow, QMessageBox, QStackedWidget,
-                               QStatusBar, QWidget)
+                               QMainWindow, QMessageBox, QStackedWidget, QWidget)
 
 from deskrawl_calc import GameData, stat_name
 
@@ -31,6 +30,7 @@ from .widgets.common import confirm_delete
 from .widgets.compare_page import ComparePage
 from .widgets.navigation import SidebarNav
 from .widgets.role_page import RolePage
+from .widgets.toast import Toast
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
 QSS_PATH = os.path.join(_HERE, 'resources', 'style.qss')
@@ -140,7 +140,7 @@ class MainWindow(QMainWindow):
         self.setMinimumSize(960, 640)
 
         self._persist_state = bool(persist_state)
-        self._restore_note = ''                  # 恢复失败时的状态栏说明（不阻断启动）
+        self._restore_note = ''                  # 恢复失败时的浮层说明（不阻断启动）
         self._pending_splits = {}                # 待首次显示后套用的分栏宽度（见 showEvent）
         state = session_state.load_state() if self._persist_state else {}
         if self._persist_state and not state and os.path.exists(session_state.STATE_PATH):
@@ -174,7 +174,8 @@ class MainWindow(QMainWindow):
         self.nav.pageChanged.connect(self._on_page_changed)
         self._bind_page_shortcuts()
 
-        self.setStatusBar(QStatusBar(self))
+        # 提示统一走浮层（取代状态栏）：一处管级别/时长，也避免同一条消息出现在两个位置
+        self.toast = Toast(self)
         self._build_menus()
         self._update_source_badge()
 
@@ -192,7 +193,7 @@ class MainWindow(QMainWindow):
     def _initial_profile(self, state: dict) -> CharacterProfile:
         """启动初始 profile：会话里有就恢复，否则示例构建。
 
-        损坏/旧版状态一律回落（记 _restore_note 供状态栏说明），不阻断启动——
+        损坏/旧版状态一律回落（记 _restore_note 供浮层说明），不阻断启动——
         会话恢复是便利性功能，任何失败都不该让窗口打不开。
         """
         prof = state.get('profile')
@@ -204,7 +205,7 @@ class MainWindow(QMainWindow):
         return CharacterProfile.demo()
 
     def _restore_session_window(self, state: dict):
-        """恢复窗口几何（含最大化）与上次所在页；随后在状态栏说明恢复结果。"""
+        """恢复窗口几何（含最大化）与上次所在页；随后在浮层说明恢复结果。"""
         if state:
             win = state.get('window') or {}
             geo = win.get('geometry')
@@ -224,13 +225,13 @@ class MainWindow(QMainWindow):
         # _refresh_all 的静默刷新在前，这里给一次性说明（用户先看到自己关心的结果）
         if not state:
             # 首启动：给一条三步动线，别让用户对着示例构建发呆（此后由会话恢复接管）
-            self.statusBar().showMessage(
+            self.toast.notify(
                 '首次使用：① 菜单「数据导入」读运行中的角色，或直接在左栏手工录入 → '
-                '② 选装备槽与目标 → ③ 读 Δ%；术语与口径见「帮助」菜单', 20000)
+                '② 选装备槽与目标 → ③ 读 Δ%；术语与口径见「帮助」菜单', timeout=20000)
         elif self._restore_note:
-            self.statusBar().showMessage(self._restore_note, 12000)
+            self.toast.notify(self._restore_note, 'warn', 12000)
         elif state:
-            self.statusBar().showMessage('已恢复上次关闭前的会话（窗口与数据）', 10000)
+            self.toast.notify('已恢复上次关闭前的会话（窗口与数据）', timeout=10000)
 
     def showEvent(self, event):
         """窗口首次显示后套用会话里的分栏宽度。
@@ -427,7 +428,8 @@ class MainWindow(QMainWindow):
             self._import_action.setText(f'{_IMPORT_LABEL}（版本指纹不符，已禁用）')
             self._import_action.setToolTip(
                 '；'.join(problems) + '。请重新导出 schema/so_dump 并更新 memory_offsets.json 指纹。')
-            self.statusBar().showMessage('数据导入已禁用：版本指纹不符（请重新导出 schema/so_dump）')
+            self.toast.notify('数据导入已禁用：版本指纹不符（请重新导出 schema/so_dump）',
+                              'error', 12000)
             return
         self._import_action.setEnabled(True)
         self._import_action.setText(_IMPORT_LABEL)
@@ -436,7 +438,7 @@ class MainWindow(QMainWindow):
     def _set_import_busy(self, busy: bool, hint: str = '导入中…'):
         """导入入口的临时态：读盘中或命中节流时禁用菜单项并写明在等什么。
 
-        为什么需要：命中 1s 节流时界面此前只有一闪而过的状态栏，连点者会以为「没反应」；
+        为什么需要：命中 1s 节流时界面此前只有一闪而过的提示，连点者会以为「没反应」；
         读内存期间也只有等待光标。恢复走缓存下来的指纹结论（不重跑哈希）。
         """
         if not busy:
@@ -449,19 +451,19 @@ class MainWindow(QMainWindow):
         """主线程同步导入（实测 0.37s 级；等待光标即可，不引入线程/异步框架）。
 
         节流 ≥1s：连点/快捷键连发不会重复触发昂贵的内存双读与指纹哈希；命中节流时把菜单项
-        切成「请稍候…」（1s 后恢复），读内存期间切成「导入中…」并常驻一条状态栏说明——
+        切成「请稍候…」（1s 后恢复），读内存期间切成「导入中…」并常驻一条浮层说明——
         否则连点者看到的只是「什么也没发生」。
         导入成功即完成 ``profile.from_snapshot`` 并走 _reload_pages 全页回填。
         """
         now = time.monotonic()
         if now - self._last_import_mono < 1.0:
             self._set_import_busy(True, '请稍候…')
-            self.statusBar().showMessage('导入过于频繁：两次导入至少间隔 1 秒', 3000)
+            self.toast.notify('导入过于频繁：两次导入至少间隔 1 秒', 'warn', 3000)
             self._import_timer.start(1000)
             return
         self._last_import_mono = now
         self._set_import_busy(True)
-        self.statusBar().showMessage('正在读取游戏内存（只读）…')
+        self.toast.notify('正在读取游戏内存（只读）…', timeout=30000)
         QApplication.setOverrideCursor(Qt.WaitCursor)
         try:
             res = import_snapshot()
@@ -480,11 +482,11 @@ class MainWindow(QMainWindow):
         self.profile.replace_with(preserved_import(self.profile, payload, self.gd))
         try:
             # 游戏面板口径复算（bjd 反汇编还原）：属性明细与游戏「属性」页同口径。
-            # 复算异常不阻断导入：回退计算口径（属性明细的既有行为）并在状态栏说明。
+            # 复算异常不阻断导入：回退计算口径（属性明细的既有行为）并在浮层说明。
             self.profile.panel = calc_service.build_panel(payload)
         except Exception as exc:                                # noqa: BLE001 边界兜底
             self.profile.panel = None
-            self.statusBar().showMessage(f'游戏面板口径复算失败（属性明细退回计算口径）：{exc}', 8000)
+            self.toast.notify(f'游戏面板口径复算失败（属性明细退回计算口径）：{exc}', 'warn', 8000)
         self._reload_pages()      # 内含数据源徽标刷新
         mode_cn = 'β 逐件' if res.mode == 'beta' else 'α 聚合'
         msg = self._import_summary(res, payload, mode_cn)
@@ -495,7 +497,6 @@ class MainWindow(QMainWindow):
         box.setText(f'已从运行中的游戏导入（{mode_cn}）')
         box.setDetailedText(msg)
         box.exec()
-        self.statusBar().showMessage(f'已从运行中的游戏导入（{mode_cn}）', 8000)
 
     def _import_summary(self, res, payload, mode_cn) -> str:
         """导入结果摘要（放 DetailedText，可复制）。"""
@@ -544,7 +545,7 @@ class MainWindow(QMainWindow):
         except OSError as exc:
             QMessageBox.warning(self, '保存失败', str(exc))
             return
-        self.statusBar().showMessage(f'已保存：{path}', 8000)
+        self.toast.notify(f'已保存：{path}', timeout=8000)
 
     def _load_build(self):
         os.makedirs(BUILDS_DIR, exist_ok=True)
@@ -558,7 +559,7 @@ class MainWindow(QMainWindow):
             return
         self.profile.replace_with(loaded)      # 就地替换，widget 引用不失效
         self._reload_pages()
-        self.statusBar().showMessage(f'已加载：{path}', 8000)
+        self.toast.notify(f'已加载：{path}', timeout=8000)
 
     def _kernel_selftest_message(self) -> tuple:
         """返回自检弹窗要显示的内容（与 --selftest 同源，便于无显示环境校验）。"""
@@ -580,8 +581,8 @@ class MainWindow(QMainWindow):
     def _refresh_all(self):
         """轻量刷新：属性表 / 对比结果 / 已装配清单一次到位；排序表不全量重排。
 
-        刻意**不发状态栏消息**：刷新是持续状态而非事件（一次编辑即触发），而状态栏承载的是
-        导入摘要/会话恢复/指纹告警这类一次性事件——每次编辑都改写状态栏会把它们不可逆冲掉。
+        刻意**不发浮层提示**：刷新是持续状态而非事件（一次编辑即触发），而浮层承载的是
+        导入摘要/会话恢复/指纹告警这类一次性事件——每次编辑都弹一遍会把它们不可逆冲掉。
         """
         self.role_page.refresh()
         self.compare_page.refresh()
@@ -620,7 +621,7 @@ class MainWindow(QMainWindow):
         blank.skill_level = int(self.profile.skill_level)
         self.profile.replace_with(blank)
         self._reload_pages()
-        self.statusBar().showMessage('已新建空白构建（从手工录入开始）', 8000)
+        self.toast.notify('已新建空白构建（从手工录入开始）', timeout=8000)
 
     def _clear_import(self):
         """清除导入数据 → 回到手工程序（进入容易退出也要容易）。
@@ -629,7 +630,7 @@ class MainWindow(QMainWindow):
         保留面板数值与目标/技能口径——用户可在此基础上继续手工试算。
         """
         if not self.profile.import_mode:
-            self.statusBar().showMessage('当前不是内存导入的数据，无需清除', 5000)
+            self.toast.notify('当前不是内存导入的数据，无需清除', timeout=5000)
             return
         if not confirm_delete(self, '清除导入数据',
                               '将移除内存导入的角色数据：当前件解锁为可编辑、背包候选清空、'
@@ -644,7 +645,7 @@ class MainWindow(QMainWindow):
         self.profile.slot_candidate = {}
         self.profile.like_current_pref = False
         self._reload_pages()
-        self.statusBar().showMessage('已清除导入数据：当前件可编辑，可继续手工试算', 10000)
+        self.toast.notify('已清除导入数据：当前件可编辑，可继续手工试算', timeout=10000)
 
 
 def build_application(argv=None) -> QApplication:

@@ -215,14 +215,13 @@ QTableView, QTreeView, QListView {
 }
 QTableView::item:selected, QListView::item:selected { background: #2B5F7A; }
 
-/* ---- 菜单 / 状态栏 ---- */
+/* ---- 菜单 ---- */
 QMenuBar { background: #1A1D20; }
 QMenuBar::item:selected { background: #2E343A; }
 QMenu { background: #262B30; border: 1px solid #30353B; }
 QMenu::item:selected { background: #2E343A; }
 QMenu::item:disabled { color: #6B7076; }
 QMenu::separator { height: 1px; background: #30353B; margin: 4px 8px; }
-QStatusBar { background: #1A1D20; color: #9AA0A6; }
 
 /* ---- 对比条 / 滚动条 / 提示 / 分隔手柄 ---- */
 QProgressBar {
@@ -263,6 +262,16 @@ QLabel#deltaCell[trend="down"] { color: #EF5350; }
 QLabel#deltaCell[trend="flat"] { color: #9AA0A6; }
 /* 一次性操作提示条（如「已删除 X 词条」+ 撤销）：弱化色，不抢卡片的编辑注意力 */
 QLabel#inlineNotice { color: #9AA0A6; }
+/* 浮层提示（Toast）：状态栏的替代物。级别只切 level 属性，配色（含告警/错误）只在这里定义 */
+QLabel#toast {
+    background: #262B30;
+    color: #E8EAED;
+    border: 1px solid #30353B;
+    border-radius: 6px;
+    padding: 8px 14px;
+}
+QLabel#toast[level="warn"] { border-color: #FFB74D; color: #FFB74D; }
+QLabel#toast[level="error"] { border-color: #EF5350; color: #EF5350; }
 /* 页面标题旁的 ⓘ：唯一强调色，悬停给术语/口径长文（副标题只留一句概括） */
 QLabel#helpHint { color: #4FC3F7; font-size: 13px; }
 

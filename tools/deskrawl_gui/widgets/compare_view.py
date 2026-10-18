@@ -5,9 +5,11 @@
 过程量不占行，收进 Δ 标签的 tooltip（要查再悬停）。技能表只留 技能/当前/候选/Δ% 四列。
 技能秒伤由 skill_service 计算（🔶 估算口径，见其模块说明），本视图只负责渲染。
 """
-from PySide6.QtCore import Qt
-from PySide6.QtWidgets import (QAbstractItemView, QGridLayout, QGroupBox, QHeaderView,
-                               QLabel, QTableWidget, QTableWidgetItem, QVBoxLayout)
+from PySide6.QtCore import QAbstractTableModel, QModelIndex, Qt
+from PySide6.QtGui import QPalette
+from PySide6.QtWidgets import (QAbstractItemView, QApplication, QGridLayout, QGroupBox,
+                               QHeaderView, QLabel, QStyle, QStyledItemDelegate,
+                               QStyleOptionViewItem, QTableView, QVBoxLayout)
 
 from deskrawl_calc import stat_name
 
@@ -25,6 +27,85 @@ def _delta_object_name(delta: float) -> str:
     if abs(float(delta)) < _FLAT_DELTA:
         return 'deltaFlat'
     return 'deltaUp' if delta > 0 else 'deltaDown'
+
+
+_trend_colors = {}
+
+
+def _trend_color(trend: str):
+    """Δ% 三态颜色：从 QSS 解析后的调色板读回，代码里不抄第二份色值。
+
+    借一枚探针 QLabel（#deltaCell[trend=…]）polish 后取前景色——颜色仍只在 style.qss 定义，
+    换主题时这里自动跟随；若改用 setForeground 就得把三个色值在代码里再写一遍。
+    """
+    color = _trend_colors.get(trend)
+    if color is None:
+        probe = QLabel('')
+        probe.setObjectName('deltaCell')
+        probe.setProperty('trend', trend)
+        probe.ensurePolished()
+        color = probe.palette().color(QPalette.WindowText)
+        _trend_colors[trend] = color
+    return color
+
+
+class _SkillModel(QAbstractTableModel):
+    """逐技能秒伤行：文本进 DisplayRole，Δ% 的三态进 UserRole（颜色由委托解析）。"""
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self._rows = []
+
+    def set_rows(self, rows):
+        self.beginResetModel()
+        self._rows = list(rows)
+        self.endResetModel()
+
+    def rowCount(self, parent=QModelIndex()):        # noqa: N802 —— Qt 覆写
+        return 0 if parent.isValid() else len(self._rows)
+
+    def columnCount(self, parent=QModelIndex()):     # noqa: N802 —— Qt 覆写
+        return 0 if parent.isValid() else len(_SKILL_COLS)
+
+    def data(self, index, role=Qt.DisplayRole):
+        if not index.isValid():
+            return None
+        r = self._rows[index.row()]
+        col = index.column()
+        if role == Qt.DisplayRole:
+            return (r.ability_name, f'{r.current_dps:.0f}', f'{r.candidate_dps:.0f}',
+                    f'{r.delta_pct:+.2f}%')[col]
+        if role == Qt.UserRole and col == 3:
+            return 'flat' if abs(float(r.delta_pct)) < _FLAT_DELTA_PCT else (
+                'up' if r.delta_pct > 0 else 'down')
+        if role == Qt.TextAlignmentRole and col >= 1:
+            return int(Qt.AlignRight | Qt.AlignVCenter)
+        return None
+
+    def headerData(self, section, orientation, role=Qt.DisplayRole):   # noqa: N802 —— Qt 覆写
+        if orientation == Qt.Horizontal and role == Qt.DisplayRole:
+            return _SKILL_COLS[section]
+        return None
+
+    def trend(self, row: int) -> str:
+        """自检/调试直读三态（等价于 data(UserRole)，但不必构造 QModelIndex）。"""
+        pct = float(self._rows[row].delta_pct)
+        return 'flat' if abs(pct) < _FLAT_DELTA_PCT else ('up' if pct > 0 else 'down')
+
+
+class _DeltaDelegate(QStyledItemDelegate):
+    """Δ% 列只改文字颜色；背景与选中态仍交给基类（隔行底色在这里重画会丢）。"""
+
+    def paint(self, painter, option, index):          # noqa: N802 —— Qt 覆写
+        opt = QStyleOptionViewItem(option)
+        self.initStyleOption(opt, index)
+        text, opt.text = opt.text, ''
+        style = opt.widget.style() if opt.widget else QApplication.style()
+        style.drawControl(QStyle.CE_ItemViewItem, opt, painter, opt.widget)
+        painter.save()
+        painter.setPen(_trend_color(index.data(Qt.UserRole) or 'flat'))
+        painter.drawText(opt.rect.adjusted(0, 0, -4, 0), Qt.AlignRight | Qt.AlignVCenter, text)
+        painter.restore()
 
 
 class CompareView(QGroupBox):
@@ -66,16 +147,18 @@ class CompareView(QGroupBox):
 
         self.skill_hint = QLabel('技能秒伤对比：—')
         root.addWidget(self.skill_hint)
-        self.skill_table = QTableWidget(0, len(_SKILL_COLS))
-        self._delta_cells = []            # 复用单元格标签：每次刷新新建会留下 pending 旧控件（见 set_skills）
-        self.skill_table.setHorizontalHeaderLabels(_SKILL_COLS)
+        # 逐技能行交给 model（刷新 = 一次 reset），Δ% 的三态由委托按 QSS 颜色绘制
+        self.skill_model = _SkillModel(self)
+        self.skill_table = QTableView()
+        self.skill_table.setModel(self.skill_model)
         self.skill_table.verticalHeader().setVisible(False)
         self.skill_table.setEditTriggers(QAbstractItemView.NoEditTriggers)
         self.skill_table.setAlternatingRowColors(True)
         # 技能表已在「对比结果」分组框内：自身的表格框 + 网格线会叠加成多层矩形线框
         self.skill_table.setShowGrid(False)
+        self.skill_table.setItemDelegateForColumn(3, _DeltaDelegate(self.skill_table))
         self.skill_table.horizontalHeader().setSectionResizeMode(0, QHeaderView.Stretch)
-        # Δ% 是单元格控件（QLabel），列宽由表头文字算出来会偏窄 → 数字被挤到与上一列重叠；
+        # Δ% 是三态文本，列宽由表头文字算出来会偏窄 → 数字被挤到与上一列重叠；
         # 这里给三列数值定宽，窗口变窄时只压技能名列
         for col, width in ((1, 96), (2, 96), (3, 84)):
             self.skill_table.setColumnWidth(col, width)
@@ -144,44 +227,14 @@ class CompareView(QGroupBox):
         self.marginal.setVisible(True)
 
     def set_skills(self, rows):
-        """渲染逐技能秒伤对比（技能 · 当前 · 候选 · Δ%）。空表给出原因提示。"""
+        """渲染逐技能秒伤对比（技能 · 当前 · 候选 · Δ%）。空表给出原因提示。
+
+        旧实现每行给 Δ% 塞一个 QLabel 单元格控件，刷新时新建→旧控件 deleteLater 要等事件循环，
+        期间按旧列宽绘制导致数字压列（窄窗稳定复现）。现在整表走 model reset，不存在半旧控件。
+        """
         if not rows:
             self.skill_hint.setText('技能秒伤对比：未设置职业或无伤害技能（导入自动识别「职业」）')
-            self.skill_table.setRowCount(0)
-            self._delta_cells = []
+            self.skill_model.set_rows([])
             return
         self.skill_hint.setText(f'技能秒伤对比（{len(rows)} 项，期望值口径；换装看 Δ% 即可）')
-        # Δ% 用单元格控件承载（颜色在 QSS 里按 trend 属性切），但**必须复用**：每次 setCellWidget
-        # 新建会先把旧控件 deleteLater，而删除要等事件循环——期间旧标签仍按旧列宽绘制，
-        # 表现为数字与上一列重叠（实测窄窗下稳定复现）。
-        if self.skill_table.rowCount() != len(rows):
-            self.skill_table.setRowCount(len(rows))
-            self._delta_cells = []
-            for i in range(len(rows)):
-                label = self._make_delta_label()
-                self.skill_table.setCellWidget(i, 3, label)
-                self._delta_cells.append(label)
-        for i, r in enumerate(rows):
-            cells = [r.ability_name, f'{r.current_dps:.0f}', f'{r.candidate_dps:.0f}']
-            for j, text in enumerate(cells):
-                item = QTableWidgetItem(text)
-                if j >= 1:
-                    item.setTextAlignment(Qt.AlignRight | Qt.AlignVCenter)
-                self.skill_table.setItem(i, j, item)
-            self._update_delta_label(self._delta_cells[i], r.delta_pct)
-
-    @staticmethod
-    def _make_delta_label() -> QLabel:
-        label = QLabel('')
-        label.setObjectName('deltaCell')
-        label.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-        return label
-
-    @staticmethod
-    def _update_delta_label(label, pct: float) -> None:
-        """Δ% 三态走 trend 属性（颜色只在 QSS 定义），与顶部 Δ 同语义。"""
-        trend = 'flat' if abs(float(pct)) < _FLAT_DELTA_PCT else ('up' if pct > 0 else 'down')
-        label.setText(f'{float(pct):+.2f}%')
-        label.setProperty('trend', trend)
-        label.style().unpolish(label)
-        label.style().polish(label)
+        self.skill_model.set_rows(rows)

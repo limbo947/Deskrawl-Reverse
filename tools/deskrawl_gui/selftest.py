@@ -221,6 +221,28 @@ def _structure_checks(win) -> bool:
     check(not icon.isNull(), '应用/任务栏图标已装载（resources/app_icon.svg）',
           f'可用尺寸={[f"{s.width()}x{s.height()}" for s in icon.availableSizes()][:2]}')
 
+    # 两张显示表走 model/view：行列数由模型给出（QTableWidget 的 item 通道已移除，
+    # 后续若有人改回逐格 setItem，这里的 isinstance/列数断言会先红）
+    from PySide6.QtCore import QAbstractTableModel
+
+    st = win.stat_table
+    check(isinstance(st.model, QAbstractTableModel)
+          and isinstance(view.skill_model, QAbstractTableModel)
+          and st.model.columnCount() == 6 and view.skill_model.columnCount() == 4,
+          '属性表 / 技能表改 model-view（6 列 / 4 列）',
+          f'属性 {st.model.rowCount()} 行；技能 {view.skill_model.rowCount()} 行；'
+          f'视图={type(st.table).__name__}')
+
+    # 提示只剩浮层一条通道：状态栏整个移除（两处并存会让同一条消息出现在两个位置）
+    from PySide6.QtWidgets import QStatusBar
+
+    toast = win.toast
+    check(toast.objectName() == 'toast' and not toast.isVisible()
+          and win.findChild(QStatusBar) is None,
+          '浮层提示已装配（#toast，初始隐藏；状态栏已移除）',
+          f'objectName={toast.objectName()}；可见={toast.isVisible()}；'
+          f'状态栏={win.findChild(QStatusBar)}')
+
     return all(results)
 
 
@@ -306,10 +328,10 @@ def _gui_behavior_checks(win) -> bool:
         print(f'  [{"PASS" if cond else "FAIL"}] {label}' + (f'：{detail}' if detail else ''))
 
     def stat_final(name):
-        table = win.stat_table.table
-        for r in range(table.rowCount()):
-            if table.item(r, 0).text() == name:
-                return float(table.item(r, 5).text())
+        model = win.stat_table.model
+        for r in range(model.rowCount()):
+            if model.cell_text(r, 0) == name:
+                return float(model.cell_text(r, 5))
         return None
 
     # 1) 武器词条下拉 = 内核 StatType 全量中文名
@@ -486,6 +508,18 @@ def _gui_behavior_checks(win) -> bool:
     check(busy_ok and restored, '导入入口临时态（读盘中/节流等待：禁用 + 文案，结束恢复）',
           f'临时态={busy_ok}（「{busy_text}」）；恢复={restored}'
           f'（指纹通过={win._fingerprint_ok}）')
+
+    # 7) 浮层提示：级别进属性（QSS 据此着色）、文本即时生效、贴底且不占满宽度、可立即收起
+    toast = win.toast
+    toast.notify('测试提示', 'warn', 500)
+    anchored = (toast.y() + toast.height() <= win.height()
+                and toast.width() < win.width())
+    shown = (toast.isVisible() and toast.text() == '测试提示'
+             and toast.property('level') == 'warn' and anchored)
+    geo = toast.geometry().getRect()
+    toast.clear()
+    check(shown and not toast.isVisible(), '浮层提示（级别属性 + 贴底定位 + 即时收起）',
+          f'可见={shown}；level={toast.level()}；rect={geo}；收起={not toast.isVisible()}')
 
     _ac_mod.confirm_delete = saved_confirm
     return all(results)
@@ -826,6 +860,31 @@ def _format_checks(rep: Report):
             f'样本 {len(cases)} 个，失配 {len(bad)}；分层占位 {sum(layers)}/3')
 
 
+def _table_model_checks(rep: Report):
+    """表格模型层的纯逻辑断言（不需要 QApplication）：Δ% 三态阈值与显示格式。
+
+    为什么单独测：渲染是否正确要看图，但「多大算中性、显示几位」是纯规则——把它钉在
+    --selftest 里，改阈值时不必等到有人肉眼发现颜色不对。
+    """
+    from PySide6.QtCore import Qt
+
+    from .core.skill_service import SkillRow
+    from .widgets.compare_view import _FLAT_DELTA_PCT, _SkillModel
+
+    def row(pct):
+        return SkillRow(name='x', ability_name='旋风斩', level_req=10, current_dps=100.0,
+                        candidate_dps=100.0 * (1 + pct / 100.0), delta=1.0, delta_pct=pct,
+                        hits_per_sec=1.0, interval=1.0)
+
+    model = _SkillModel()
+    model.set_rows([row(0.0), row(_FLAT_DELTA_PCT * 0.5), row(-1.5), row(3.25)])
+    trends = [model.trend(i) for i in range(model.rowCount())]
+    texts = [model.data(model.index(i, 3), Qt.DisplayRole) for i in range(model.rowCount())]
+    rep.add(trends == ['flat', 'flat', 'down', 'up'] and texts[3] == '+3.25%',
+            '技能表模型：Δ% 三态阈值与格式（|Δ%|<0.005 归中性）',
+            f'trend={trends}；Δ%={texts}')
+
+
 def run_selftest() -> int:
     rep = Report()
     if not _print_kernel_selftest():
@@ -844,6 +903,7 @@ def run_selftest() -> int:
     _error_map_check(rep)
     _session_state_checks(rep)
     _format_checks(rep)
+    _table_model_checks(rep)
     print(f'\n自检结果：{"全部通过" if rep.ok() else "存在失败"}'
           f'（{rep.passed}/{len(rep.checks)}）')
     return 0 if rep.ok() else 1

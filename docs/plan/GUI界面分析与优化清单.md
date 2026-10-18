@@ -370,3 +370,43 @@ T1（`memory_import.py` 749 → **615 有效行**；拆出 `memory_errors` 14 / 
 1. **`--smoke` 会弹模态确认框并在非交互环境挂死**：`_gui_behavior_checks` 步骤 5 的收尾删除调用的是**真** `confirm_delete`（局部补丁在步骤 3 的 `finally` 里已还原）→ 每次跑 smoke 都会在桌面上弹出对话框、进程挂住等点击（这正是本轮 smoke 一度「跑几分钟不结束」的原因）。已把补丁提到函数级（全程短路为「确认」），smoke 从「挂死」变成 **3.6 s**。
 2. **`state` 属性挂错控件**：`setProperty('state', ...)` 设在 `QFrame#dpsMeter` 上，而 QSS 规则是写给 `#dpsMeterValue` 的 → 失败态一直按 18px 半粗大字渲染。改为同时挂「卡片 + 结论标签」后，失败态才真正降级为 12px 弱化小字。
 
+## 9. 第二批：统一提示与表模型化（2026-10-18）
+
+上一批收尾时给出的顺序是「Toast 统一提示 → 面板/技能表改 QAbstractTableModel」，本轮两项落地。
+
+### 9.1 Toast 统一提示（取代状态栏）
+
+- 新增 `widgets/toast.py`：宿主窗口内的浮层（不进布局、不抢焦点、鼠标事件穿透），
+  `notify(text, level, timeout)`；级别 `info/warn/error` 只切 `level` 属性，配色仍在 QSS
+  （`QLabel#toast[level="…"]`），代码不抄色值。
+- `app.py` 的 9 处 `statusBar().showMessage` 全部改走浮层，**QStatusBar 整个移除**——两处并存
+  会让同一条消息出现在两个位置。导入成功那次只保留带详情的对话框（摘要可复制），不再重复提示。
+- 两个实测坑：① 带 `wordWrap` 的 QLabel `sizeHint()` 给的是偏窄建议宽度，「已保存：…」被折成
+  三行（242px 框内）→ 宽度改按 `fontMetrics().horizontalAdvance()` 取，只有超过窗口可用宽度才换行；
+  ② 高度取 `max(heightForWidth, sizeHint)` 会保留上一次的三行高度（72px 的框里只有一行字）→
+  以 `heightForWidth` 为准。
+
+### 9.2 属性表 / 技能表改 model-view
+
+- `widgets/stat_table.py`：`_StatModel(QAbstractTableModel)` + `QTableView`，刷新 = 一次
+  `beginResetModel/endResetModel`；原先每次刷新要创建/销毁 67 行 × 6 列的 QTableWidgetItem。
+- `widgets/compare_view.py`：`_SkillModel` + `_DeltaDelegate`。Δ% 三态颜色**仍只在 QSS 定义**：
+  委托本身不写色值，而是借探针 `QLabel#deltaCell[trend=…]` polish 后从调色板取前景色
+  （实测读回 `#66BB6A / #EF5350 / #9AA0A6`）。既去掉了「每行一个 QLabel 单元格控件」（旧实现
+  为避免压列还得复用 `_delta_cells`），又没破坏「颜色单一事实源」。
+- 未改：`panel_editor` 的巅峰点数表仍是 QTableWidget——它是编辑控件容器（每行一个 QSpinBox +
+  信号回写 profile），模型化只是把「摆放控件」换成「编辑器委托」，收益与风险不成比例（同 T6 取向）。
+
+### 9.3 验证
+
+| 检查 | 结果 |
+|---|---|
+| `--selftest` | **62/62**（新增 1 条：技能表模型 Δ% 三态阈值与格式） |
+| `--smoke` | 退出码 0；新增 3 条断言（浮层级别/贴底/收起、两张表 model-view、状态栏确已移除）；QSS 锚点仍双向零死锚 |
+| 像素取样 | 技能表 Δ% 列 green 168 / red 168 / gray 224 像素（三态都真画出来）；浮层 240×33 贴底居中（窗口 1360×860 时 y=811） |
+| 回归 | `stat_final` 改读模型（`table.item()` 通道已不存在）后「面板改动 → 属性表实时刷新」仍 PASS |
+
+### 9.4 下一批
+
+双主题，或明确「仅暗色」并把 `QPalette` 设成 dark（上一批列出的第三项，本轮未动）。
+

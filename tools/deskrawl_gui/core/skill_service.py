@@ -184,9 +184,12 @@ def ability_level_bonuses(profile, gd) -> dict:
     """已装配符文的「技能等级+N」汇总：{ability_name: bonus}（AllAbilities → '*')。
 
     数据源：RuneData.AbilityLevels[{Ability(pathID), Levels, EveryNRuneLevels}]。
-    加成公式（实测锚定）：bonus = Levels × (rune_level // EveryNRuneLevels)——语义即「每
-    EveryNRuneLevels 级符文等级授予一次 Levels」；RareRune_WarriorHeavyAttack3（Levels=2、
-    EveryNRuneLevels=3）在 6/6 时 +4，两个符文 +8 → 旋风斩 10+8=18 级，与游戏 tooltip 185% 逐位一致。
+    加成公式（指令级证据，2026-10-18）：bonus = Levels + rune_level // EveryNRuneLevels——
+    `WarriorSetRune2` 符文授予链 `Player.cjb(int runeLevel, List<AbilityLevelGrant>)` @0x18071B670
+    里是 `idiv` 后 `add`（`mov ecx,[EveryNRuneLevels]; mov r9d,[Levels]; mov eax,runeLevel;
+    cdq; idiv ecx; add r9d,eax`），**不是乘法**：Levels 是基础授予，每满 EveryN 级符文再 +1。
+    旧实现写成 Levels × 商，在 Levels=2 时与真值巧合相等（2×2=2+2=4，两条旧锚点都是这一档，
+    所以一直没被发现）；Levels=4 的 WarriorSetRune2_1 在 6/6 才暴露：应为 4+2=6，旧式给 8。
     解析失败返回空表（降级为无加成）。
     """
     out = {}
@@ -204,8 +207,9 @@ def ability_level_bonuses(profile, gd) -> dict:
             continue
         for al in rec.get('AbilityLevels') or []:
             levels = int(al.get('Levels') or 0)
-            every = max(1, int(al.get('EveryNRuneLevels') or 1))
-            bonus = levels * (int(it.level) // every)
+            every = int(al.get('EveryNRuneLevels') or 0)
+            # 商只在 EveryN>0 时加（游戏侧同样带 `jle` 跳过），EveryN=1 即「每级符文 +1」
+            bonus = levels + (int(it.level) // every if every > 0 else 0)
             if not bonus:
                 continue
             if al.get('AllAbilities'):

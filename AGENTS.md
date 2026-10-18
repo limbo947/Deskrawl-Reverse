@@ -35,7 +35,7 @@ tools/deskrawl_gui/      PySide6 桌面 UI（只 import deskrawl_calc）
   app.py                 主窗口装配（SidebarNav + 三页：角色/装备对比/装配中心）
   __main__.py            三模式：默认 GUI / --selftest / --smoke
   memdump.py             内存快照 CLI
-  selftest.py            GUI 自检 60 项（内核 26 项为通过门槛）
+  selftest.py            GUI 自检 61 项（内核 26 项为通过门槛）
   core/                  服务层纯函数 + 内存导入链：
     profile.py           CharacterProfile（唯一事实源，可 JSON 序列化）
     calc_service.py      全部纯函数（widget 不做计算）
@@ -78,7 +78,7 @@ python -m venv .venv-gui
 .\.venv-gui\Scripts\python.exe -m pip install -r requirements-gui.txt
 cd tools
 ..\.venv-gui\Scripts\python.exe -m deskrawl_gui              # 启动主窗口
-..\.venv-gui\Scripts\python.exe -m deskrawl_gui --selftest   # 内核 26 项（门槛）+ GUI 60 项对拍
+..\.venv-gui\Scripts\python.exe -m deskrawl_gui --selftest   # 内核 26 项（门槛）+ GUI 61 项对拍
 ..\.venv-gui\Scripts\python.exe -m deskrawl_gui --smoke      # 无显示环境骨架冒烟（建窗即退）
 ```
 
@@ -97,7 +97,7 @@ cd D:\workspace\Deskrawl-Reverse
 - 单个 exe 分派四入口：无参=GUI（windowed，无黑框）、`--selftest`/`--smoke`（启动器按需接回控制台，三级阶梯：继承句柄 → AttachConsole → AllocConsole）、`memdump …`。
 - spec 的体积过滤**必须按 `PySide6/` 前缀**（translations/qml/resources 合计约 186 MB）；若用 `\resources\` 之类子串匹配，会连自己的 `deskrawl_gui/resources/style.qss` 一起删掉，GUI 启动即抛 FileNotFoundError。
 - 只读安装兜底：启动器探测 exe 同级不可写时，把 `DESKRAWL_DATA_DIR` 指向 `%LOCALAPPDATA%\Deskrawl\data`。`core/data_dir.py` 是「可写数据根」的单一事实源（`session_state.STATE_PATH` / `profile.BUILDS_DIR` 都经它），改数据根只改这一处。
-- 改完必验：`exe --selftest`（期望 60/60）与 `--smoke` 退出码 0；`.github/workflows/build-portable.yml` 已把这两步作为 Release 门禁，本地构建后也应手动跑一遍。
+- 改完必验：`exe --selftest`（期望 61/61）与 `--smoke` 退出码 0；`.github/workflows/build-portable.yml` 已把这两步作为 Release 门禁，本地构建后也应手动跑一遍。
 - **排障开关**：`DESKRAWL_DEBUG_STREAMS=1` 让启动器打印实际走的分支与句柄判定（排查冻结态「没有输出」用）；`DESKRAWL_NO_PAUSE=1` 关掉自建控制台的退出暂停（自动化用）。注意 `pwsh` **不会等待** GUI 子系统 exe，本地验收必须用 `Start-Process -Wait -PassThru` 才拿得到退出码与输出。
 
 ### 内存快照 CLI（需游戏运行中，64 位 Python，可能需管理员权限）

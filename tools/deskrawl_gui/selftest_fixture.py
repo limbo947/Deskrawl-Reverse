@@ -143,6 +143,22 @@ def _snapshot_checks(rep: Report):
             '装配件简中本地化（符文/套装走 Equipments 表，天赋走 Talents 表）',
             f'HunterSetRune1_1 → {rune_zh}；HunterTalent19 → {talent_zh}')
 
+    # 符文「技能等级+N」：游戏侧 bonus = Levels + runeLevel // EveryN（cjb@0x18071B670 是 idiv 后 add）。
+    # 必须锚 Levels=4 的 WarriorSetRune2_1：Levels=2 那档乘/加同值（2×2=2+2=4），抓不出乘法误实现。
+    from types import SimpleNamespace
+
+    from .core.skill_service import ability_level_bonuses
+    one = SimpleNamespace(assembled=[
+        SimpleNamespace(kind='rune', name='WarriorSetRune2_1', level=6)])
+    two = SimpleNamespace(assembled=[
+        SimpleNamespace(kind='rune', name='WarriorSetRune2_1', level=6),
+        SimpleNamespace(kind='rune', name='WarriorSetRune2_2', level=6)])
+    b1 = ability_level_bonuses(one, gd).get('WarriorHeavyAttack3', 0)
+    b2 = ability_level_bonuses(two, gd).get('WarriorHeavyAttack3', 0)
+    rep.add(b1 == 6 and b2 == 10,
+            '符文技能等级：Levels + 等级/EveryN（6/6 时 _1→+6、_1+_2→+10）',
+            f'WarriorSetRune2_1 → +{b1}；再加 _2 → +{b2}')
+
     # 候选下拉行为：武器槽下拉只列武器 → 选中第一件武器即整件载入候选草稿（引用不变）
     weapon_bag = [r for r in bag if int(r.get('equip_slot_type') or 0) == 1]
     if weapon_bag:

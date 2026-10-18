@@ -1,0 +1,65 @@
+name: build-portable
+
+# 推 v* tag → 构建便携包 + 冻结态门禁 + 挂 Release 附件；也可手动触发只出 artifact。
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: write          # 挂 Release 附件需要
+
+jobs:
+  build:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          architecture: x64          # 内存读取要求 64 位，与本地 .venv-gui 一致
+          cache: pip
+          cache-dependency-path: requirements-gui.txt
+
+      - name: 安装依赖
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-gui.txt -r requirements-build.txt
+
+      - name: 构建便携包
+        run: >
+          ./packaging/build_portable.ps1 -NoInstall
+          -Python (Get-Command python).Source
+          -Version "${{ github.ref_name }}"
+
+      # 门禁：把「包能构建」升级成「包能用」——不过就不进 Release
+      - name: 冻结态门禁（--selftest / --smoke）
+        run: |
+          $env:DESKRAWL_NO_PAUSE = '1'
+          $exe = ".\dist\Deskrawl计算台\Deskrawl计算台.exe"
+          if (-not (Test-Path $exe)) { throw "未找到构建产物：$exe" }
+          & $exe --selftest
+          if ($LASTEXITCODE -ne 0) { throw "冻结包 --selftest 失败（退出码 $LASTEXITCODE）" }
+          & $exe --smoke
+          if ($LASTEXITCODE -ne 0) { throw "冻结包 --smoke 失败（退出码 $LASTEXITCODE）" }
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: portable-zip
+          path: dist/*.zip
+          retention-days: 14
+
+      - name: 上传 Release 附件
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release view "${{ github.ref_name }}" *> $null
+          if ($LASTEXITCODE -ne 0) {
+            gh release create "${{ github.ref_name }}" --title "${{ github.ref_name }}" --generate-notes
+          }
+          gh release upload "${{ github.ref_name }}" dist/*.zip --clobber

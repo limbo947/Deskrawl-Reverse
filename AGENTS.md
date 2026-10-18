@@ -35,7 +35,7 @@ tools/deskrawl_gui/      PySide6 桌面 UI（只 import deskrawl_calc）
   app.py                 主窗口装配（SidebarNav + 三页：角色/装备对比/装配中心）
   __main__.py            三模式：默认 GUI / --selftest / --smoke
   memdump.py             内存快照 CLI
-  selftest.py            GUI 自检 57 项（内核 26 项为通过门槛）
+  selftest.py            GUI 自检 60 项（内核 26 项为通过门槛）
   core/                  服务层纯函数 + 内存导入链：
     profile.py           CharacterProfile（唯一事实源，可 JSON 序列化）
     calc_service.py      全部纯函数（widget 不做计算）
@@ -51,6 +51,7 @@ tools/deskrawl_gui/      PySide6 桌面 UI（只 import deskrawl_calc）
   resources/             暗色主题 QSS 等
 tools/scripts/           逆向脚本（86 个 .py；UnityPy/capstone，面向游戏文件）
 tools/thirdparty/        第三方工具（Il2CppDumper；自行下载，不入库）
+packaging/               便携版打包（launcher / deskrawl.spec / build_portable.ps1 / make_zip.py）
 data/                    事实源数据（so_dump 25 JSON / loc 3 表 / builds / schema）
                          注：schema 的 dump.cs·script.json·stringliteral.json 与 builds 个人
                          构建不入库，须本地生成；仓库只带 schema/aliases.json 与 rva_audit*.json
@@ -77,11 +78,27 @@ python -m venv .venv-gui
 .\.venv-gui\Scripts\python.exe -m pip install -r requirements-gui.txt
 cd tools
 ..\.venv-gui\Scripts\python.exe -m deskrawl_gui              # 启动主窗口
-..\.venv-gui\Scripts\python.exe -m deskrawl_gui --selftest   # 内核 26 项（门槛）+ GUI 57 项对拍
+..\.venv-gui\Scripts\python.exe -m deskrawl_gui --selftest   # 内核 26 项（门槛）+ GUI 60 项对拍
 ..\.venv-gui\Scripts\python.exe -m deskrawl_gui --smoke      # 无显示环境骨架冒烟（建窗即退）
 ```
 
 根目录 `启动GUI.bat` 双击可用：首跑自动建 venv 装依赖，参数透传（如 `启动GUI.bat --selftest`）。`--selftest` 不建 QApplication，headless 可跑；其 DPS 锚点（`selftest.py` 的 `ANCHORS`）与内核一起冻结，改动公式需同步更新锚点。
+
+### 便携版打包（PyInstaller one-folder；仅构建期需要）
+
+```powershell
+cd D:\workspace\Deskrawl-Reverse
+.\packaging\build_portable.ps1        # 装依赖 → 构建 → 白名单拷 data/ → 打 zip + SHA256
+.\packaging\build_portable.ps1 -NoInstall -ExeName DeskrawlTool -Version v0.1.0   # CI 形态
+```
+
+- 产物 `dist\<ExeName>\`（exe + `_internal\` + `data\`）与 `dist\<ExeName>-<ver>-win64.zip`；`dist/`、`build/` 已 gitignore，不入库。
+- **路径同构是硬约束**：仓库六处数据定位都是 `__file__` 相对跳转（`gamedata`/`session_state`/`profile`/`memory_snapshot`/`app`/`localization`）。frozen 下「与代码同级的小资源」必须镜像到 `_internal/<pkg>/…` 原位（spec 的 `datas`），`data/` 必须拷到 **exe 同级**（不走 datas）。**不得**设 `--contents-directory "."`，否则六处跳转一起错开一层。
+- 单个 exe 分派四入口：无参=GUI（windowed，无黑框）、`--selftest`/`--smoke`（启动器按需接回控制台，三级阶梯：继承句柄 → AttachConsole → AllocConsole）、`memdump …`。
+- spec 的体积过滤**必须按 `PySide6/` 前缀**（translations/qml/resources 合计约 186 MB）；若用 `\resources\` 之类子串匹配，会连自己的 `deskrawl_gui/resources/style.qss` 一起删掉，GUI 启动即抛 FileNotFoundError。
+- 只读安装兜底：启动器探测 exe 同级不可写时，把 `DESKRAWL_DATA_DIR` 指向 `%LOCALAPPDATA%\Deskrawl\data`。`core/data_dir.py` 是「可写数据根」的单一事实源（`session_state.STATE_PATH` / `profile.BUILDS_DIR` 都经它），改数据根只改这一处。
+- 改完必验：`exe --selftest`（期望 60/60）与 `--smoke` 退出码 0；`.github/workflows/build-portable.yml` 已把这两步作为 Release 门禁，本地构建后也应手动跑一遍。
+- **排障开关**：`DESKRAWL_DEBUG_STREAMS=1` 让启动器打印实际走的分支与句柄判定（排查冻结态「没有输出」用）；`DESKRAWL_NO_PAUSE=1` 关掉自建控制台的退出暂停（自动化用）。注意 `pwsh` **不会等待** GUI 子系统 exe，本地验收必须用 `Start-Process -Wait -PassThru` 才拿得到退出码与输出。
 
 ### 内存快照 CLI（需游戏运行中，64 位 Python，可能需管理员权限）
 
@@ -175,7 +192,7 @@ tools/scripts   逆向脚本（UnityPy/capstone，面向游戏文件）
 ### data/ 与 docs/
 
 - `data/so_dump/`：25 个 JSON、1333 条 SO 实例（字节级精确，0 残留），是全部静态数值的事实源。JSON 里 `_name`/`_pathID`/`_managedRefs` 是导出器附加的元字段。
-- `data/loc/`：Unity Localization 表导出的简中映射（`abilities_zh.json` 技能名、`equipments_zh.json` 装备名、`ui_zh.json` 界面词；`extract_localization.py <表名>` 导出，GUI 显示名用，缺表/未覆盖回落内部名）。补丁更新游戏后本地化表若变，需重跑导出。
+- `data/loc/`：Unity Localization 表导出的简中映射（`abilities_zh.json` 技能名、`equipments_zh.json` 装备/宝石/符文/套装名、`talents_zh.json` 天赋名、`ui_zh.json` 界面词；`extract_localization.py <表名>` 导出，GUI 显示名用，缺表/未覆盖回落内部名）。注意**天赋不在 Equipments 表**（实测 186/186 全缺），须单独导 Talents 表。补丁更新游戏后本地化表若变，需重跑导出。
 - `data/schema/`：Il2CppDumper(v39) 产物 `dump.cs`/`script.json`/`stringliteral.json` —— **这三者不入库**（约 121 MB，含游戏逆向产物），首次使用由各人本地生成（见 README「准备 schema 与第三方工具」，工具在 `tools/thirdparty/` 亦不入库）。仓库随附的只有 `aliases.json`（**语义别名表**，43 条：伤害链/面板口径/ACTk 解码器/存档加解密链/Roll 表）与 `rva_audit*.json`（体检机读结果）；涉及地址工具链的任务若无 `dump.cs`，先自行生成再动手。
 - 注意存在**两套同名 GameConfig**：`MaxPlayerLevel` 35（Beta，resources.assets）与 70（正式，sharedassets0.assets），查配置时先确认哪套（`dump.cs` 里只有一个 `GameConfig` 类）。
 - `docs/00-索引.md` 是文档入口（含分类地图与按需阅读路径）；docs/01–05 是**机制与结构篇**（架构/属性/数据结构/公式/配置字段）、06–09 是**实测与工具篇**（成长曲线/内容数值/常量与地址/存档），编号即阅读顺序；docs/08 §11 存硬结论、§12 存补丁后重锚定结果；docs/plan/ 存**现行**计划/清单/进度档，已完结的历史证词移入 `docs/plan/archive/`（**地址不随补丁回改**）；docs/reports/ 存**脚本产出的报告**（勿手改，重跑命令见 `docs/plan/补丁回归清单.md`）。文档置信度标注：✅ 指令/字节级证据、🔶 高置信推断（**当前正文已无在用条目**）、⚠️ 待确认（「暂缓」条目必须写明复核条件）——引用数值时沿用此标注，不要把 🔶 或暂缓写成定论。

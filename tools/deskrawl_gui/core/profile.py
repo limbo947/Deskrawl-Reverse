@@ -14,6 +14,7 @@ from typing import Dict, List, Optional
 
 from deskrawl_calc import DamageType, Modifier, StatSheet, StatType, Target, Weapon
 
+from . import data_dir
 from .item_draft import ItemDraft, apply_upgrade
 from .localization import equipment_display_name
 
@@ -21,9 +22,8 @@ from .localization import equipment_display_name
 KIND_ORDER = [('gem', '宝石'), ('rune', '符文'), ('talent', '天赋'), ('runeset', '套装')]
 KIND_LABELS = dict(KIND_ORDER)
 
-# 构建存档目录（仓库内 data/builds/，与 so_dump 同级）
-_HERE = os.path.dirname(os.path.abspath(__file__))
-BUILDS_DIR = os.path.normpath(os.path.join(_HERE, '..', '..', '..', 'data', 'builds'))
+# 构建存档目录（仓库内 data/builds/，与 so_dump 同级；便携包只读安装时由 data_dir 改向）
+BUILDS_DIR = os.path.normpath(os.path.join(data_dir.data_root(), 'builds'))
 
 # EquipSlotType → 宝石加成组（GemData 的 Weapon/Accessory/Armor Bonuses）。
 # 实测锚定：武器槽 2、戒指(7)/项链(8) 1、其余（含腰带）0 —— 三键宝石加成逐位对上内存面板。

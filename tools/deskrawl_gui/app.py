@@ -688,9 +688,31 @@ def _apply_dark_titlebar(win):
         pass
 
 
+def shutdown_application() -> None:
+    """有序拆除 Qt 对象图再交还控制权（无参：取当前 QApplication，没有则什么都不做）。
+
+    为什么不能交给解释器：控件与 QApplication 会留到进程退出才析构，而 Qt 的 C++ 静态析构
+    顺序不定，实测约 50% 概率在 ucrtbase 里 abort（0xC0000409）——输出已完整打印、退出码却非 0，
+    会让 CI 的 `exe --selftest` 门禁随机判红。先 deleteLater + 跑一轮事件消化删除请求，再
+    shutdown()，把析构提前到解释器仍健康时。`os._exit` 解决不了：它仍会走 DLL 卸载的静态析构。
+    """
+    app = QApplication.instance()
+    if app is None:
+        return
+    for w in list(app.topLevelWidgets()):
+        w.deleteLater()
+    app.processEvents()
+    try:
+        app.shutdown()                        # Qt 6.6+；旧版无此 API 时保持原行为
+    except AttributeError:
+        pass
+
+
 def run_gui(argv=None) -> int:
     app = build_application(argv)
     win = MainWindow(persist_state=True)      # 生产入口：关闭落盘 / 启动恢复会话状态
     _apply_dark_titlebar(win)                 # 须在 show() 之前：之后设 API 返回 S_OK 但不生效
     win.show()
-    return app.exec()
+    code = app.exec()
+    shutdown_application()
+    return code

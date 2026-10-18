@@ -11,8 +11,9 @@ from __future__ import annotations
 import json
 import os
 
-_HERE = os.path.dirname(os.path.abspath(__file__))
-STATE_PATH = os.path.normpath(os.path.join(_HERE, '..', '..', '..', 'data', 'session_state.json'))
+from . import data_dir
+
+STATE_PATH = os.path.normpath(os.path.join(data_dir.data_root(), 'session_state.json'))
 STATE_VERSION = 1
 
 

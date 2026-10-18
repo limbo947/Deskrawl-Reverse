@@ -60,6 +60,8 @@ Deskrawl-Reverse/
 ├─ LICENSE                    ← MIT 许可
 ├─ 启动GUI.bat                ← GUI 一键启动（首跑自动建 venv 装依赖，参数透传）
 ├─ requirements-gui.txt       ← GUI 依赖清单（PySide6>=6.6）
+├─ requirements-build.txt     ← 打包依赖（PyInstaller>=6.14，仅构建期需要）
+├─ packaging/                 ← 便携版打包（入口 launcher / spec / 构建脚本 / 打包脚本）
 │
 ├─ docs/                      ← 数值设计文档集
 │   ├─ 00-索引.md             ← 文档入口（分类地图与按需阅读路径）
@@ -80,7 +82,7 @@ Deskrawl-Reverse/
 │   │   ├─ app.py             主窗口装配（侧边导航 + 三页堆栈）
 │   │   ├─ __main__.py        三模式：默认 GUI / --selftest / --smoke
 │   │   ├─ memdump.py         内存快照 CLI
-│   │   ├─ selftest.py        GUI 自检（57 项，内核 26 项为通过门槛）
+│   │   ├─ selftest.py        GUI 自检（60 项，内核 26 项为通过门槛）
 │   │   ├─ core/              服务层纯函数 + 内存导入链（profile/calc_service/memory_*）
 │   │   ├─ widgets/           UI 组件（14 个模块）
 │   │   └─ resources/         暗色主题 QSS 等资源
@@ -114,6 +116,7 @@ Deskrawl-Reverse/
 |---|---|
 | 计算内核 / 地址体检 | Python 3.10+，**零第三方依赖**（系统 Python 即可） |
 | 桌面 GUI / 内存快照 | 同上 + `PySide6>=6.6`（`requirements-gui.txt`，独立 venv 安装） |
+| 便携版打包 | 同上 + `PyInstaller>=6.14`（`requirements-build.txt`，仅构建期需要） |
 | 逆向脚本（tools/scripts/） | 同上 + `UnityPy`、`capstone`；存档解密另需 `cryptography` 或 `pycryptodome`（任一） |
 | 内存快照 CLI | Windows，64 位 Python，游戏运行中，可能需管理员权限 |
 
@@ -161,7 +164,7 @@ python -m venv .venv-gui
 .\.venv-gui\Scripts\python.exe -m pip install -r requirements-gui.txt
 cd tools
 ..\.venv-gui\Scripts\python.exe -m deskrawl_gui              # 启动主窗口（暗色主题）
-..\.venv-gui\Scripts\python.exe -m deskrawl_gui --selftest   # 自检：内核 26 项 + GUI 57 项
+..\.venv-gui\Scripts\python.exe -m deskrawl_gui --selftest   # 自检：内核 26 项 + GUI 60 项
 ..\.venv-gui\Scripts\python.exe -m deskrawl_gui --smoke      # 无显示环境骨架冒烟（建窗即退）
 ```
 
@@ -177,6 +180,26 @@ cd D:\workspace\Deskrawl-Reverse\tools
 
 > 退出码：0 成功 / 2 环境错误 / 3 数据校验失败。整条内存导入链只允许
 > `OpenProcess(READ)` + `ReadProcessMemory`，无任何写操作（见 [AGENTS.md](AGENTS.md) 验收条款）。
+
+### 4. 便携版（免装 Python，解压即用）
+
+给不想装 Python 的机器用。一条命令构建出便携文件夹（exe + `_internal/` + `data/`）与 zip：
+
+```powershell
+cd D:\workspace\Deskrawl-Reverse
+.\packaging\build_portable.ps1     # 产物：dist\Deskrawl计算台\ 与同目录 zip（附 SHA256）
+```
+
+解压后双击 `Deskrawl计算台.exe` 即开 GUI；同一个 exe 还内置命令行入口：
+
+```powershell
+.\Deskrawl计算台.exe --selftest       # 内核 26 项 + GUI 60 项自检（自动接回控制台输出）
+.\Deskrawl计算台.exe --smoke          # 无显示环境骨架冒烟
+.\Deskrawl计算台.exe memdump --json   # 内存快照 CLI（需游戏运行中）
+```
+
+推 `v*` tag 会在 GitHub Actions 自动构建并挂到 Release（`.github/workflows/build-portable.yml`），
+且以「冻结态自检」为发布门禁。随包数据是白名单（`so_dump` / `loc` / 示例构建），不含个人数据与逆向产物。
 
 ## 使用说明
 

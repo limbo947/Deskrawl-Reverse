@@ -177,6 +177,25 @@ def _snapshot_checks(rep: Report):
                 f'候选={d.name}（{len(d.affixes)} 条词条，强化 +{d.upgrade_level}，'
                 f'宝石 {len(d.gems)}）；元信息行显示={want_meta}')
 
+    # 武器区：真实武器用传奇词条替代「基础伤害/攻速/技能倍率」三行；手工自拟的名字回落三行
+    # （这三项对游戏武器是既成事实，白字伤害走 WeaponDamage 词条，手填只会诱导错误录入）
+    if weapon_bag:
+        ce = eqb.current_editor
+        spins = (ce.damage_spin, ce.speed_spin, ce.skill_spin)
+        legend_txt = ce.legend_label.text()
+        real_ok = (bool(legend_txt) and not ce.legend_label.isHidden()
+                   and all(sp.isHidden() for sp in spins))
+        saved_name = ce.draft.name
+        ce.draft.name = '旧武器·双手剑'
+        ce.reload()
+        manual_ok = (not ce.legend_label.text() and ce.legend_label.isHidden()
+                     and all(not sp.isHidden() for sp in spins))
+        ce.draft.name = saved_name
+        ce.reload()
+        rep.add(real_ok and manual_ok,
+                '武器区：传奇词条替代三行数值（手工名回落手工录入）',
+                f'{saved_name} → 「{legend_txt}」，三行隐藏={real_ok}；手工名回落={manual_ok}')
+
     # 非武器槽对比：候选=当前件 → Δ=0；给候选加词条 → DPS 上升（方向 + 基线一致性）
     _slot_checks(rep, prof, gd)
 

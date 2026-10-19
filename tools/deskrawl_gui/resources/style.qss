@@ -303,3 +303,5 @@ QLabel#dpsMeterDiag { color: #7F868D; font-size: 11px; }
 
 /* ---- 导入元信息（强化/宝石），弱化色避免与可编辑控件抢注意力 ---- */
 QLabel#weaponMeta { color: #9AA0A6; }
+/* 武器传奇词条：游戏内用传奇橙色标注，这里同色但不再加粗——它是说明文字，不是结论 */
+QLabel#legendaryText { color: #FFB74D; }

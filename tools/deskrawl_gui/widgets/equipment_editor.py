@@ -13,6 +13,7 @@ from PySide6.QtWidgets import (QComboBox, QHBoxLayout, QLabel, QPushButton, QVBo
 
 from ..core import calc_service, skill_service
 from ..core.item_draft import ItemDraft
+from ..core.legendary import legendary_lines
 from ..core.profile import COMPARE_SLOTS, SLOT_EQUIP_TYPE, SLOT_LABELS
 from .common import ALPHA_WEAPON_NOTE, ModeBanner
 from .compare_view import CompareView
@@ -125,13 +126,15 @@ class EquipmentEditor(QWidget):
         # 名称能否命中装备表由 core 判定（与 compare 的告警同源）：两侧都要，候选侧据此描警示边
         resolve = lambda n: calc_service.name_known(self.gd, n)
         hint = lambda s, v, il, ra: calc_service.affix_hint(self.gd, s, v, il, ra)
+        legend = lambda n: legendary_lines(self.gd, n)
         self.current_editor = ItemEditor(f'当前{label}', cur, weapon=weapon,
-                                        name_resolver=resolve, range_hint=hint)
+                                        name_resolver=resolve, range_hint=hint,
+                                        legendary_fn=legend)
         # 候选侧的「与当前装备相同」以本槽当前件为镜像源（武器与非武器槽通用）；α 下当前件
         # 被整块禁用，开关实质上也不会被用到
         self.candidate_editor = ItemEditor(f'候选{label}', cand, weapon=weapon,
                                           current_of=lambda: cur, name_resolver=resolve,
-                                          range_hint=hint)
+                                          range_hint=hint, legendary_fn=legend)
         self.candidate_editor.likeCurrentChanged.connect(self._on_like_current_pref)
         self._auto_like_current(cur, cand)   # 跨槽保持：上一次勾选且候选有内容则本槽自动沿用
         self.current_editor.changed.connect(self.refresh)

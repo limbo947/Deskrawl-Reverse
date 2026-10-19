@@ -410,3 +410,54 @@ T1（`memory_import.py` 749 → **615 有效行**；拆出 `memory_errors` 14 / 
 
 双主题，或明确「仅暗色」并把 `QPalette` 设成 dark（上一批列出的第三项，本轮未动）。
 
+## 10. 武器区：传奇词条替代三行数值（2026-10-19）
+
+诉求：武器编辑区里「基础伤害 / 攻速 / 技能倍率」三个输入框看得人以为要自己录；把这块位置
+改成显示该武器的传奇词条原文。
+
+### 10.1 文案从哪来（数据侧结论）
+
+`data/loc/equipments_zh.json`（Equipments 表）里除名字外还有 `*.Desc` 描述行，共 **104 条**，
+且 `EquipmentEffect.*` 另有 6 条模板。实测 67 件带 `EquipmentEffects` 的装备：
+
+| 来源 | 件数 |
+|---|---|
+| 整件 `<ItemData._name>.Desc` | 57 |
+| 特效级 `<effect._name>.Desc` | 4 |
+| `EquipmentEffect.<类>` 模板（需填令牌） | 4 |
+| 特效名前缀匹配（`LegendaryNeck4_Retaliation.Desc`） | 2 |
+
+**令牌填值**是难点：文案里 `{chance}` / `{damage}` / `{duration}` 的值不在模板旁，得从特效
+字段（含嵌套在 `_managedRefs` 里的 `AttackScalingToken{Name,Format}`）与它引用的
+`StatusEffectData` 记录里取。取值顺序：令牌声明（带 C# 格式，如 `0.#%` → 2.75 读作 275%）
+→ 同名字段 → 按类登记的别名（`DivineHelmet3` 的 `{damage}` 实为 `NormalEnemyMultiplier`）
+→ 后缀/前缀匹配（`{chance}` ← `ProcChance`、`{hits}` ← `HitsRequired`）。
+
+两条格式化经验：① 无格式的 0<v<1 按比例显示成百分数，但**时长/层数类令牌除外**
+（`每{cooldown}秒` 的 0.2 必须读作 0.2 秒）；② `*Multiplier` 字段是倍率，文案说的是
+「提高多少」→ 1.2 读作 20%。
+
+### 10.2 界面
+
+- `widgets/item_editor.py`：武器卡片新增只读「传奇词条」行（`#legendaryText`，游戏内传奇橙）；
+  **有文案时收起三行数值，无文案时回落到手工录入**——手工自拟的武器（不在装备表里）仍要能
+  填白字/攻速/倍率，那是它们唯一的数据入口。`FormLayout.setRowVisible` 负责切换。
+- 注入式接口：`ItemEditor(..., legendary_fn=(名称 → 文案行))`，由 `equipment_editor` 传
+  `core.legendary.legendary_lines`；控件本身不知道数据从哪来（与 `name_resolver`/`range_hint` 同款）。
+- `core/legendary.py` 新增；`localization.equipments_text(gd)` 开一个查描述表的公开入口。
+
+### 10.3 验证
+
+| 检查 | 结果 |
+|---|---|
+| `--selftest` | **64/64**（新增 2 条：文案三层来源与令牌填值；武器区显隐双向） |
+| 覆盖 | 67/67 件有特效的装备都能出文案；仅 `LegendaryShoulder5` 的 `{ability}` 未填（数据源在 AbilityData 之外，原样保留花括号并在 tooltip 说明） |
+| 实机取样 | `苦痛锯齿巨剑` → 「对易伤目标额外获得30%暴击几率。」，三行数值隐藏；`旧武器·双手剑` → 三行回到可见 |
+| QSS | 新增 `#legendaryText` 已纳入 `_qss_anchors` 双向对账（零死锚） |
+
+### 10.4 已知取舍
+
+- 游戏武器上不再能手工改攻速/倍率（要试算请改候选侧或复制成手工名）；手工名保持原行为。
+- 两侧都解析出文案时表单行数一致（V8 的对齐前提）；一侧手工一侧真实时行数会差 3 行——
+  这是「让位给词条」的必然代价，已在实现里接受。
+

@@ -237,12 +237,14 @@ class ItemEditor(QGroupBox):
     likeCurrentChanged = Signal(bool)
 
     def __init__(self, title, draft, *, weapon=False, current_of=None, name_resolver=None,
-                 range_hint=None, parent=None):
+                 range_hint=None, legendary_fn=None, parent=None):
         """name_resolver: (装备名) -> 是否能在游戏装备表命中。
         range_hint: (stat, value, item_level, rarity) -> 区间提示文案（内核 affix_range 口径）。
+        legendary_fn: (装备名) -> 传奇词条原文行（core.legendary.legendary_lines）。
 
-        前者是「名字不对会让传奇特效消失」的判定来源（calc_service.name_known），后者把
-        词条数值折算成「在该物品等级/稀有度下的位置」；都不传则关闭对应提示（测试/离线路径）。
+        三者都是注入式的：前者是「名字不对会让传奇特效消失」的判定来源（name_known），
+        中间那个把词条数值折算成「在该物品等级/稀有度下的位置」，最后一个给出传奇词条原文。
+        不传即关闭对应提示（测试/离线路径），控件本身不知道数据从哪来。
         """
         super().__init__(title, parent)
         self._base_title = title
@@ -254,7 +256,9 @@ class ItemEditor(QGroupBox):
         self._current_of = current_of
         self._name_resolver = name_resolver
         self._range_hint = range_hint
+        self._legendary_fn = legendary_fn
         form = QFormLayout()
+        self._form = form
         self.name_edit = QLineEdit()
         self.name_edit.textChanged.connect(self._on_name)
         form.addRow('名称', self.name_edit)
@@ -262,6 +266,14 @@ class ItemEditor(QGroupBox):
             self.damage_spin = self._spin(form, '基础伤害', 0.0, 1e6, 2, 'base_damage')
             self.speed_spin = self._spin(form, '攻速(次/秒)', 0.0, 20.0, 3, 'base_speed')
             self.skill_spin = self._spin(form, '技能倍率', 0.0, 100.0, 3, 'skill_multiplier')
+            # 传奇词条：真实游戏武器这三项是既成事实（白字伤害走 WeaponDamage 词条，不在这里
+            # 手填），留着输入框只会让人以为要自己录；能解析出文案时用它替换这三行，
+            # 解析不出（手工自拟的武器）就照旧给手工录入。
+            self.legend_label = QLabel('')
+            self.legend_label.setObjectName('legendaryText')
+            self.legend_label.setWordWrap(True)
+            self.legend_label.setTextInteractionFlags(Qt.TextSelectableByMouse)
+            form.addRow('传奇词条', self.legend_label)
         if current_of is not None:
             self.like_current = QCheckBox()
             self.like_current.setToolTip(
@@ -396,6 +408,7 @@ class ItemEditor(QGroupBox):
             self.skill_spin.setValue(getattr(self.draft, 'skill_multiplier', 1.0))
         self.affixes.set_affixes(self.draft.affixes)
         self._reload_meta()
+        self._refresh_legendary()
         if hasattr(self, 'like_current'):
             self.like_current.setChecked(bool(getattr(self.draft, 'like_current', False)))
             self._update_like_text()
@@ -495,7 +508,27 @@ class ItemEditor(QGroupBox):
             return
         self.draft.name = text
         self._mark_name(text)
+        self._refresh_legendary()
         self.changed.emit()
+
+    def _refresh_legendary(self):
+        """武器行：能解析出传奇词条就显示原文并收起三行数值，否则回落到手工录入。
+
+        收起而不是删除输入框：手工自拟的武器（不在装备表里）仍要能填白字/攻速/倍率，
+        那是它们唯一的数据入口。
+        """
+        if not self.weapon:
+            return
+        lines = list(self._legendary_fn(self.draft.name) or []) if self._legendary_fn else []
+        has = bool(lines)
+        self.legend_label.setText('\n'.join(lines))
+        self._form.setRowVisible(self.legend_label, has)
+        for sp in (self.damage_spin, self.speed_spin, self.skill_spin):
+            self._form.setRowVisible(sp, not has)
+        if has and any('{' in ln for ln in lines):
+            self.legend_label.setToolTip('文案里有未能解析的占位符：该数值的数据源不在静态导出里')
+        else:
+            self.legend_label.setToolTip('')
 
     def _on_num(self, attr, value):
         if self._loading or self._locked:

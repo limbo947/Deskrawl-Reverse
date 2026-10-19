@@ -55,11 +55,12 @@
   "ability_klass": "AbilityData",
   "talent_data": {"effects": "0x48"},
   "talent_effect_ability_modifier": {
-    "$comment": "TalentEffect_AbilityModifier（TalentData.Effects 里的元素对象）：Ability@0x18 / Tag@0x20 / Stat@0x24 / Modifier(LeveledFloat, Base@0x28+PerLevel@0x38, ObscuredFloat 0x10)@0x28。Stat 枚举：8=ChannelSpeed 9=StrikeCount。活体实测 2026-10-09：死神之刃(WarriorTalent61, 10/10) 给旋风斩 ChannelSpeed=0.1000/级，按「每级累加」= +100%（与 tooltip 一致）。",
+    "$comment": "TalentEffect_AbilityModifier（TalentData.Effects 里的元素对象）：Ability@0x18 / Tag@0x20 / Stat@0x24 / Modifier(LeveledFloat, Base@0x28+PerLevel@0x38, ObscuredFloat 0x10)@0x28。Stat 枚举（AbilityModifiedStat）：0=Cooldown 2=Damage 5=CritChance 6=CritDamage 8=ChannelSpeed 9=StrikeCount 13=ChannelDuration。作用对象二选一：Ability 指针（按技能）或 Tag（按 AbilityTag，9999=None）。活体实测 2026-10-09：死神之刃(WarriorTalent61, 10/10) 给旋风斩 ChannelSpeed=0.1000/级，按「每级累加」= +100%（与 tooltip 一致）。",
     "klass": "TalentEffect_AbilityModifier",
     "ability": "0x18", "tag": "0x20", "stat": "0x24", "modifier": "0x28", "per_level_stride": "0x10"
   },
-  "ability_mod_stat": {"channel_speed": 8, "strike_count": 9},
+  "ability_mod_stat": {"cooldown": 0, "damage": 2, "crit_chance": 5, "crit_damage": 6,
+                       "channel_speed": 8, "strike_count": 9},
   "controller": {"player": "0x20"},
   "player": {
     "klass": "Player",

@@ -108,23 +108,35 @@ def _align_primary_stat(prof, payload, gd):
 
 
 def _talent_ability_mods(ptrs, raw, hero_class, gd) -> Dict[str, Dict[int, float]]:
-    """运行时 AbilityData* → 技能名并汇总天赋「按技能修正」为 {技能名: {stat: 值}}。
+    """运行时 AbilityData* / AbilityTag → 技能名并汇总天赋「按技能修正」为 {技能名: {stat: 值}}。
 
     指针→名字靠顺序对齐：HeroData.Abilities 的运行时 List 顺序与 so_dump HeroData.Abilities
     一致（2026-10-09 活体实证 14 项逐位对应），故第 i 个指针即第 i 个技能名。
+    Tag 型（`[stat, 0, val, tag]`）按技能 `Tags` 展开到命中它的每个技能——天赋数据 54 条里
+    26 条只标 tag，不展开等于整块伤害/暴击/冷却天赋没接上。tags 表按需构建（老夹具全是
+    指针型，不多付一次 `damage_skills` 解析）。
     数据/职业缺失时返回 {}（技能表降级），不影响数值导入。
     """
     if gd is None or hero_class is None or not ptrs:
         return {}
     names = gd.abilities_for_class(hero_class)
     by_ptr = {int(p): names[i] for i, p in enumerate(ptrs) if i < len(names)}
+    tags_by_name = None
     out: Dict[str, Dict[int, float]] = {}
-    for stat, ap, val in raw:
-        nm = by_ptr.get(int(ap))
-        if not nm:
-            continue
-        d = out.setdefault(nm, {})
-        d[int(stat)] = d.get(int(stat), 0.0) + float(val)
+    for row in raw:
+        stat, val = int(row[0]), float(row[2])
+        if len(row) == 3:
+            nm = by_ptr.get(int(row[1]))
+            targets = [nm] if nm else []
+        else:
+            if tags_by_name is None:
+                tags_by_name = {sk['name']: [int(t) for t in (sk.get('tags') or [])]
+                                for sk in gd.damage_skills(hero_class)}
+            tag = int(row[3])
+            targets = [nm for nm, tags in tags_by_name.items() if tag in tags]
+        for nm in targets:
+            d = out.setdefault(nm, {})
+            d[stat] = d.get(stat, 0.0) + val
     return out
 
 

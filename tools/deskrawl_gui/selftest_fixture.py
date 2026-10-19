@@ -748,6 +748,33 @@ def _skill_freq_checks(rep: Report, prof, gd):
             f'裂血连击 基础 {ro_strikes} 击 {ro_base.hits_per_sec:.3f} → +1 次 {ro_up.hits_per_sec:.3f}'
             f'（×{ro_up.hits_per_sec / ro_base.hits_per_sec:.4f}，期望 ×1.3333）')
 
+    # 天赋「按技能修正」的 2/5/6/0（2026-10-19 接入；旧白名单只收 8/9，导入角色等于丢整块天赋）。
+    # 伤害项是纯乘数、冷却项只改频次 → 精确对拍；暴击两项受 0.85 封顶与目标影响，只断方向。
+    from deskrawl_calc import StatType
+
+    plain = 'WarriorSpecial3'                     # cd=10 / 非引导 / 无 DOT，乘区关系最干净
+    pb = row_for(prof, plain)
+    cd0 = min(0.80, max(0.0, calc_service.compare(prof, gd)
+                        .current_sheet.final(StatType.CooldownReduction)))
+    cd1 = min(0.80, max(0.0, cd0 + 0.3))
+
+    def mod_row(mods):
+        p = copy.deepcopy(prof)
+        p.ability_mods = {plain: mods}
+        return row_for(p, plain)
+
+    r_dmg, r_cc, r_cd, r_cool = (mod_row({2: 0.5}), mod_row({5: 0.1}),
+                                 mod_row({6: 0.2}), mod_row({0: 0.3}))
+    mods_ok = (_rel_pct(r_dmg.current_dps, pb.current_dps * 1.5) < 1e-6
+               and r_cc.current_dps > pb.current_dps and r_cd.current_dps > pb.current_dps
+               and _rel_pct(r_cool.hits_per_sec,
+                            pb.hits_per_sec * (1.0 - cd0) / (1.0 - cd1)) < 1e-9)
+    rep.add(mods_ok, '天赋按技能修正 2/5/6/0 落入乘区（伤害×1.5 · 暴击上升 · 逐技能冷却改频次）',
+            f'{plain}：伤害 {pb.current_dps:.1f}→{r_dmg.current_dps:.1f}（期望 ×1.5）；'
+            f'暴击率/暴伤 {r_cc.current_dps:.1f}/{r_cd.current_dps:.1f}（应均 >{pb.current_dps:.1f}）；'
+            f'冷却+30% 命中 {pb.hits_per_sec:.4f}→{r_cool.hits_per_sec:.4f}'
+            f'（期望 ×{(1 - cd0) / (1 - cd1):.4f}）')
+
 
 # 游戏面板口径锚点：2026-10-08 用户实机「属性」页截图逐行转写（文本须逐字一致）
 _PANEL_ANCHORS = {

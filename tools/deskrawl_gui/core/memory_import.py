@@ -411,13 +411,17 @@ class SnapshotBuilder:
         return out
 
     def _read_talent_ability_mods(self, player):
-        """按角色已点天赋读「按技能修正」（TalentEffect_AbilityModifier），只取频次相关项。
+        """按角色已点天赋读「按技能修正」（TalentEffect_AbilityModifier）。
 
         链路：Player+0x248 Dictionary<TalentData*,int>（点数）→ TalentData+0x48 Effects[]
-        → 元素对象 TalentEffect_AbilityModifier（Stat/Ability/Modifier）。只收 ChannelSpeed(8) /
-        StrikeCount(9) 这两类会改变「每秒命中次数」的修正；Damage/Crit 等进已有属性链更合适，暂不在此叠加。
+        → 元素对象 TalentEffect_AbilityModifier（Stat/Ability/Tag/Modifier）。
+
+        白名单 `ability_mod_stat` 收 0/2/5/6/8/9：这些修正**只存在于**天赋特效里，不会以属性
+        词条形式进面板（`Player` 的字典是聚合终态），漏收等于整块天赋凭空消失。
+        作用对象两种：Ability 指针（按技能）→ `[stat, ptr, val]`；Tag（按 AbilityTag，
+        实测 54 条中 26 条是这种）→ `[stat, 0, val, tag]`，由 profile 侧展开到命中该 tag 的技能。
         值 = 点数×Base + PerLevel×点数×(点数-1)/2（每级累加；死神之刃 10/10→+100% 与 tooltip 实证）。
-        失败只告警：技能频次降级为「无天赋加成」。返回 [stat, ability_ptr, value] 列表。
+        失败只告警：技能修正降级为「无天赋加成」。
         """
         te = self.off['talent_effect_ability_modifier']
         wanted = set(int(v) for v in self.off['ability_mod_stat'].values())
@@ -447,15 +451,19 @@ class SnapshotBuilder:
                 stat = self.pr.i32(obj + te['stat'])
                 if stat not in wanted:
                     continue
-                ability = self.pr.u64(obj + te['ability'])
-                if not valid_ptr(ability):
-                    continue
                 base = self.codec.obsc_float(obj + te['modifier'])
                 per = self.codec.obsc_float(obj + te['modifier'] + te['per_level_stride'])
                 if base is None or per is None:
                     continue
                 val = pts * float(base) + float(per) * pts * (pts - 1) / 2.0
-                out.append([int(stat), ability, val])
+                ability = self.pr.u64(obj + te['ability'])
+                if valid_ptr(ability):
+                    out.append([int(stat), ability, val])
+                    continue
+                # Tag=9999 是 AbilityTag.None（真的不限定目标），0 是 BasicAttack，都是有效值
+                tag = self.pr.i32(obj + te['tag'])
+                if tag is not None and 0 <= tag < 9999:
+                    out.append([int(stat), 0, val, int(tag)])
         return out
 
     def _read_paragon(self) -> dict:

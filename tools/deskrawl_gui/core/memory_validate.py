@@ -16,6 +16,25 @@ from .memory_reader import valid_ptr
 _HERO_CLASSES = (1, 2, 4, 8)
 
 
+def _talent_mod_row_ok(row) -> bool:
+    """天赋「按技能修正」行：3 元 = `[stat, ability_ptr, val]`，4 元 = `[stat, 0, val, tag]`。
+
+    Tag 型是 2026-10-19 补的：天赋数据 54 条里 26 条按 AbilityTag 命中（Ability 为空），
+    只认指针型会把一半的伤害/暴击/冷却类天赋判成脏数据而拒绝导入。
+    """
+    try:
+        if not isinstance(row, (list, tuple)) or len(row) not in (3, 4):
+            return False
+        val = float(row[2])
+        if not math.isfinite(val) or abs(val) > 1e6:
+            return False
+        if len(row) == 3:
+            return bool(valid_ptr(row[1]))
+        return int(row[1]) == 0 and 0 <= int(row[3]) < 9999
+    except (TypeError, ValueError):
+        return False
+
+
 def validate_snapshot(payload: dict, off: dict):
     """硬校验（宁红不脏）：等级/字段/字典键域值域/UID 唯一性；任一失败抛 MemoryImportError。
 
@@ -71,8 +90,7 @@ def validate_snapshot(payload: dict, off: dict):
                 or not 0 <= int(r.get('level') or 0) <= 6:
             raise MemoryImportError(f'符文槽条目异常：{r}')
     for row in payload.get('talent_ability_mods') or []:
-        if (len(row) != 3 or not valid_ptr(row[1])
-                or not math.isfinite(row[2]) or abs(row[2]) > 1e6):
+        if not _talent_mod_row_ok(row):
             raise MemoryImportError(f'技能天赋修正条目异常：{row}')
     for label, rows in payload.get('conditionals', {}).items():
         for r in rows:

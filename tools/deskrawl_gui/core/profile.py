@@ -140,6 +140,52 @@ def _talent_ability_mods(ptrs, raw, hero_class, gd) -> Dict[str, Dict[int, float
     return out
 
 
+def _lf_value(lf) -> tuple:
+    """dump 里的 `LeveledFloat{Base,PerLevel}` → (base, per)；结构异常按 0 处理。"""
+    d = lf or {}
+    b, p = d.get('Base') or {}, d.get('PerLevel') or {}
+    try:
+        return float(b.get('value') or 0.0), float(p.get('value') or 0.0)
+    except (TypeError, ValueError):
+        return 0.0, 0.0
+
+
+def _talent_crit_effects(raw, gd) -> List[dict]:
+    """内存读到的条件暴击/暴伤 → 保真 effect dict（补上状态名与技能名）。
+
+    为什么用指纹反查：内存里的状态/技能只是指针，而运行时「SO 指针→名称」索引只覆盖
+    ItemData（`memory_import.name_map`）。这 4 条天赋的 (Condition, Tag, 有无 Ability,
+    Base, Per) 组合唯一，匹配不上就跳过——宁可这条不算，也不把「对流血」算成「对易伤」。
+    """
+    if gd is None or not raw:
+        return []
+    idx = {}
+    for r in gd.talent_effects():
+        cls = str(r.get('_class') or '')
+        if cls not in ('TalentEffect_ConditionalCritChance', 'TalentEffect_ConditionalCritDamage'):
+            continue
+        crit_chance = cls.endswith('CritChance')
+        base, per = _lf_value(r.get('BonusCritChance' if crit_chance else 'BonusCritDamage'))
+        idx[(int(r.get('Condition', -1)), int(r.get('Tag', 9999)), bool(r.get('Ability')),
+             round(base, 6), round(per, 6))] = r
+    out = []
+    for rec in raw:
+        key = (int(rec.get('condition', -1)), int(rec.get('tag', 9999)),
+               bool(rec.get('ability')), round(float(rec.get('base') or 0.0), 6),
+               round(float(rec.get('per') or 0.0), 6))
+        r = idx.get(key)
+        if not r:
+            continue
+        cls = str(r['_class'])
+        eff = {'_class': cls, 'Condition': int(r.get('Condition', -1)),
+               'Ability': r.get('Ability'), 'Tag': int(r.get('Tag', 9999)),
+               'SpecifiedStatus': r.get('SpecifiedStatus')}
+        eff['BonusCritChance' if cls.endswith('CritChance') else 'BonusCritDamage'] = \
+            float(rec.get('value') or 0.0)
+        out.append(eff)
+    return out
+
+
 @dataclass
 class WeaponDraft:
     """一把武器的可编辑草稿。affixes 用 [stat, type, value] 三元组存，便于 JSON 往返。
@@ -298,9 +344,12 @@ class CharacterProfile:
     # HeroData.Class（1=Barbarian/2=Sorcerer/4=Hunter/8=Monk）；None=未知（手工构建/未导入）。
     # 用于结果区列出「当前职业的伤害技能」。
     hero_class: Optional[int] = None
-    # 天赋带来的「按技能修正」：{技能名: {ModifiedStat: 值}}。目前只收会改变每秒命中次数的
-    # ChannelSpeed(8) / StrikeCount(9)（读到自 Player+0x248 天赋表 → TalentEffect_AbilityModifier）。
+    # 天赋带来的「按技能修正」：{技能名: {ModifiedStat: 值}}（Player+0x248 → TalentEffect_AbilityModifier；
+    # 按技能指针或 AbilityTag 命中，0/2/5/6 进每次命中口径、8/9/13 进频次口径）。
     ability_mods: Dict[str, Dict[int, float]] = field(default_factory=dict)
+    # 天赋里「按目标状态门控」的特效（`TalentEffect_ConditionalCrit*` 保真 dict，已补状态/技能名）。
+    # 它们只存在于天赋特效力里、不进面板聚合值，故与装备特效同池参与条件暴击乘区。
+    talent_effects: List[dict] = field(default_factory=list)
 
     # --- 计算装配 ---
     def to_sheet(self, gd) -> StatSheet:
@@ -340,6 +389,7 @@ class CharacterProfile:
             'hero_class': self.hero_class,
             'ability_mods': {k: {str(int(s)): float(v) for s, v in vv.items()}
                              for k, vv in self.ability_mods.items()},
+            'talent_effects': list(self.talent_effects),
         }
 
     @classmethod
@@ -369,6 +419,7 @@ class CharacterProfile:
             hero_class=(None if d.get('hero_class') is None else int(d['hero_class'])),
             ability_mods={str(k): {int(s): float(v) for s, v in (vv or {}).items()}
                           for k, vv in (d.get('ability_mods') or {}).items()},
+            talent_effects=list(d.get('talent_effects') or []),
         )
 
     # --- 出厂示例（照抄 cli.demo 场景，用作锚点对拍与首启动演示）---
@@ -434,6 +485,9 @@ class CharacterProfile:
         prof.ability_mods = _talent_ability_mods(player.get('hero_abilities') or [],
                                                  player.get('talent_ability_mods') or [],
                                                  prof.hero_class, gd)
+        # 天赋「按目标状态门控」的特效（条件暴击/暴伤）：同属于技能/面板口径之外的项，
+        # 与 ability_mods 一样先于 α/β 早退分支落位（技能表两侧都要用）
+        prof.talent_effects = _talent_crit_effects(player.get('talent_crit_effects') or [], gd)
         # 巅峰点数分配：面板 base 已含其贡献，这里落 allocation 供展示/编辑，
         # 并把贡献从 base 反向扣除（paragon_modifiers 恒为 Flat，可精确逆运算）——
         # 否则 to_sheet 再叠加一次会重复计伤；用户随后改点数时按新 allocation 全量重算，语义仍正确。

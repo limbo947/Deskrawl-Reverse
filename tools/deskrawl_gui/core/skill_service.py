@@ -269,12 +269,11 @@ def skill_rows(profile, gd, cur_sheet, cand_sheet, target,
               if int(getattr(profile, 'compare_slot', 0)) == 0 else w_cur)
     ps = profile.primary_stat
     all_mods = getattr(profile, 'ability_mods', None) or {}
-    # 传奇特效的条件暴击（按目标状态门控，与技能无关，逐技能复用；按标签暴伤逐技能另算）
+    # 传奇/天赋特效的条件暴击（按目标状态门控）：逐技能算——带 Ability/Tag 限定的条目
+    # 只应落到命中它的技能行（全局口径会把「某技能 +100% 暴击」摊给整张表）
     eff_c, eff_k = list(cur_effects or []), list(cand_effects or [])
     snames = gd.status_name_by_pathid()
     anames = gd.ability_name_by_pathid()
-    cc_c, cd_c = effects.crit_terms(eff_c, target, status_names=snames)
-    cc_k, cd_k = effects.crit_terms(eff_k, target, status_names=snames)
 
     def cond_fn(effs, name):
         """该技能各段的条件额外伤害闭包（DamageType 过滤 + 技能名匹配）。"""
@@ -303,6 +302,12 @@ def skill_rows(profile, gd, cur_sheet, cand_sheet, target,
         emods_k = effects.ability_mods_for(eff_k, sk['name'], tags, ability_names=anames,
                                            channel_base=cbase)
         mods_c, mods_k = _sum_mods(mods, emods_c), _sum_mods(mods, emods_k)
+        cc_c, cd_c = effects.crit_terms(eff_c, target, status_names=snames,
+                                        ability_names=anames, ability_name=sk['name'],
+                                        tags=tags)
+        cc_k, cd_k = effects.crit_terms(eff_k, target, status_names=snames,
+                                        ability_names=anames, ability_name=sk['name'],
+                                        tags=tags)
         cur_rate, cur_cps = _rates(sk, cur_sheet, atk_speed(cur_sheet, w_cur), mods_c)
         cand_rate, cand_cps = _rates(sk, cand_sheet, atk_speed(cand_sheet, w_cand), mods_k)
         # 天赋与装备同池：mods_c/mods_k = 天赋 ability_mods + 装备 AbilityModifier，

@@ -52,7 +52,8 @@ def _section_diff(a: dict, b: dict) -> List[str]:
     """双读各段逐值比较；返回不一致的段名列表（用于重试记录/报错文案）。"""
     return [k for k in ('level', 'fields', 'dicts', 'inventory', 'storage',
                         'equipment', 'hero', 'town', 'hero_abilities',
-                        'talent_ability_mods', 'paragon', 'runes') if a[k] != b[k]]
+                        'talent_ability_mods', 'talent_crit_effects', 'paragon', 'runes')
+               if a[k] != b[k]]
 
 
 def _fingerprints(payload: dict) -> dict:

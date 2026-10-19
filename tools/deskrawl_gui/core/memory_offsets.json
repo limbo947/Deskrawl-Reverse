@@ -61,6 +61,13 @@
   },
   "ability_mod_stat": {"cooldown": 0, "damage": 2, "crit_chance": 5, "crit_damage": 6,
                        "channel_speed": 8, "strike_count": 9},
+  "talent_effect_conditional_crit": {
+    "$comment": "天赋条件暴击/暴伤（TalentData.Effects 元素）。CritChance：Condition(TargetStateCondition)@0x18 / Ability@0x20 / Tag@0x28 / SpecifiedStatus@0x30 / BonusCritChance(LeveledFloat，PerLevel=Base+0x10)@0x38。CritDamage：Condition@0x18 / SpecifiedStatus@0x20 / BonusCritDamage@0x28（无 Ability/Tag 字段）。两者都不进面板聚合字典（按目标状态门控），漏读等于天赋白点；状态名只能由 profile 侧按 (Condition,Tag,有无Ability,Base,Per) 指纹反查静态表（运行时 SO 指针→名称的索引只覆盖 ItemData）。",
+    "crit_chance": {"klass": "TalentEffect_ConditionalCritChance", "condition": "0x18",
+                    "ability": "0x20", "tag": "0x28", "status": "0x30", "value": "0x38"},
+    "crit_damage": {"klass": "TalentEffect_ConditionalCritDamage", "condition": "0x18",
+                    "status": "0x20", "value": "0x28"}
+  },
   "controller": {"player": "0x20"},
   "player": {
     "klass": "Player",

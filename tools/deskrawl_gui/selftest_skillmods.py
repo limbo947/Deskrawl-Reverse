@@ -35,3 +35,47 @@ def _talent_mod_checks(rep) -> None:
             '天赋技能修正：指针型按技能落位 / Tag 型展开到同类技能（校验收 3·4 元组）',
             f'指针型 {names[1]}=0.5；Tag=1 展开 {len(strong)} 个技能={tag_ok}；'
             f'未命中技能不受影响={neg_ok}；行格式校验={row_ok}')
+
+
+def _talent_crit_checks(rep) -> None:
+    """天赋条件暴击/暴伤：内存行 → 静态表指纹反查 → 目标门控 → 技能限定。
+
+    这三段串起来才证明链路真实：只测 crit_terms 会漏「名字补不上」，只测指纹会漏「门控没生效」。
+    """
+    from deskrawl_calc import GameData, Target, effects
+
+    from .core.profile import _talent_crit_effects
+
+    gd = GameData()
+    snames = gd.status_name_by_pathid()
+    anames = gd.ability_name_by_pathid()
+
+    # 1) 指纹反查：Higher Crit to Distant（Condition=6、0.03/级，无 Ability/Tag 限定）
+    raw = [{'klass': 'TalentEffect_ConditionalCritChance', 'condition': 6, 'status': 111,
+            'base': 0.029999999329447746, 'per': 0.029999999329447746,
+            'value': 0.09, 'ability': 0, 'tag': 9999}]
+    effs = _talent_crit_effects(raw, gd)
+    look_ok = (len(effs) == 1 and effs[0]['Condition'] == 6
+               and abs(effs[0]['BonusCritChance'] - 0.09) < 1e-9
+               and effs[0].get('SpecifiedStatus') is not None)
+    # 2) 门控：远处目标才计入（Condition=6）
+    cc_far, _ = effects.crit_terms(effs, Target(level=70, distant=True), status_names=snames)
+    cc_near, _ = effects.crit_terms(effs, Target(level=70), status_names=snames)
+    gate_ok = abs(cc_far - 0.09) < 1e-9 and cc_near == 0.0
+    # 3) 技能限定：带 Ability 的条目只在命中该技能时计入，面板口径（无技能上下文）跳过
+    bleeding = {'_class': 'TalentEffect_ConditionalCritChance', 'Condition': 5,
+                'Ability': {'pathID': 59963}, 'Tag': 9999,
+                'SpecifiedStatus': {'pathID': 60528}, 'BonusCritChance': 1.0}
+    sk, sn = anames.get(59963, ''), snames.get(60528, '')
+    t_on = Target(level=70, statuses={sn: 1} if sn else {})
+    cc_hit, _ = effects.crit_terms([bleeding], t_on, status_names=snames, ability_names=anames,
+                                   ability_name=sk, tags=[])
+    cc_miss, _ = effects.crit_terms([bleeding], t_on, status_names=snames, ability_names=anames,
+                                    ability_name='NotThisSkill', tags=[])
+    cc_panel, _ = effects.crit_terms([bleeding], t_on, status_names=snames, ability_names=anames)
+    scope_ok = abs(cc_hit - 1.0) < 1e-9 and cc_miss == 0.0 and cc_panel == 0.0
+    rep.add(look_ok and gate_ok and scope_ok,
+            '天赋条件暴击（指纹反查状态名 / 目标门控 / 技能限定不入面板口径）',
+            f'指纹命中={look_ok}（{effs[0].get("BonusCritChance") if effs else "无"}）；'
+            f'远处 {cc_far:.2f} / 近处 {cc_near:.2f}；'
+            f'限定技能 {sk} 命中={cc_hit:.2f}、他技能={cc_miss:.2f}、面板口径={cc_panel:.2f}')

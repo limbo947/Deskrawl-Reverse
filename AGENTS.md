@@ -35,8 +35,8 @@ tools/deskrawl_gui/      PySide6 桌面 UI（只 import deskrawl_calc）
   app.py                 主窗口装配（SidebarNav + 三页：角色/装备对比/装配中心）
   __main__.py            三模式：默认 GUI / --selftest / --smoke
   memdump.py             内存快照 CLI
-  selftest.py            GUI 自检 70 项（内核 26 项为通过门槛；拆出 selftest_legendary.py 文案组、
-                         selftest_skillmods.py 天赋按技能修正组）
+  selftest.py            GUI 自检 71 项（内核 26 项为通过门槛；拆出 selftest_legendary.py 文案组、
+                         selftest_skillmods.py 天赋修正/条件暴击组）
   core/                  服务层纯函数 + 内存导入链：
     profile.py           CharacterProfile（唯一事实源，可 JSON 序列化）
     calc_service.py      全部纯函数（widget 不做计算）
@@ -79,7 +79,7 @@ python -m venv .venv-gui
 .\.venv-gui\Scripts\python.exe -m pip install -r requirements-gui.txt
 cd tools
 ..\.venv-gui\Scripts\python.exe -m deskrawl_gui              # 启动主窗口
-..\.venv-gui\Scripts\python.exe -m deskrawl_gui --selftest   # 内核 26 项（门槛）+ GUI 70 项对拍
+..\.venv-gui\Scripts\python.exe -m deskrawl_gui --selftest   # 内核 26 项（门槛）+ GUI 71 项对拍
 ..\.venv-gui\Scripts\python.exe -m deskrawl_gui --smoke      # 无显示环境骨架冒烟（建窗即退）
 ```
 
@@ -98,7 +98,7 @@ cd D:\workspace\Deskrawl-Reverse
 - 单个 exe 分派四入口：无参=GUI（windowed，无黑框）、`--selftest`/`--smoke`（启动器按需接回控制台，三级阶梯：继承句柄 → AttachConsole → AllocConsole）、`memdump …`。
 - spec 的体积过滤**必须按 `PySide6/` 前缀**（translations/qml/resources 合计约 186 MB）；若用 `\resources\` 之类子串匹配，会连自己的 `deskrawl_gui/resources/style.qss` 一起删掉，GUI 启动即抛 FileNotFoundError。
 - 只读安装兜底：启动器探测 exe 同级不可写时，把 `DESKRAWL_DATA_DIR` 指向 `%LOCALAPPDATA%\Deskrawl\data`。`core/data_dir.py` 是「可写数据根」的单一事实源（`session_state.STATE_PATH` / `profile.BUILDS_DIR` 都经它），改数据根只改这一处。
-- 改完必验：`exe --selftest`（期望 70/70）与 `--smoke` 退出码 0；`.github/workflows/build-portable.yml` 已把这两步作为 Release 门禁，本地构建后也应手动跑一遍。
+- 改完必验：`exe --selftest`（期望 71/71）与 `--smoke` 退出码 0；`.github/workflows/build-portable.yml` 已把这两步作为 Release 门禁，本地构建后也应手动跑一遍。
 - **排障开关**：`DESKRAWL_DEBUG_STREAMS=1` 让启动器打印实际走的分支与句柄判定（排查冻结态「没有输出」用）；`DESKRAWL_NO_PAUSE=1` 关掉自建控制台的退出暂停（自动化用）。注意 `pwsh` **不会等待** GUI 子系统 exe，本地验收必须用 `Start-Process -Wait -PassThru` 才拿得到退出码与输出。
 
 ### 内存快照 CLI（需游戏运行中，64 位 Python，可能需管理员权限）
@@ -211,7 +211,7 @@ tools/scripts   逆向脚本（UnityPy/capstone，面向游戏文件）
 
 ## 开发流程与交工检查
 
-1. **改代码先跑相关自检**：动 `engine.py`/`gamedata.py`/`effects.py` → `deskrawl_calc.cli selftest`；动 GUI → `deskrawl_gui --selftest`（70 项）。selftest 是整体，不可只跑子集；断言数值来自 docs/04 证据，改公式必须同步更新 GUI 的 `ANCHORS`。
+1. **改代码先跑相关自检**：动 `engine.py`/`gamedata.py`/`effects.py` → `deskrawl_calc.cli selftest`；动 GUI → `deskrawl_gui --selftest`（71 项）。selftest 是整体，不可只跑子集；断言数值来自 docs/04 证据，改公式必须同步更新 GUI 的 `ANCHORS`。
 2. **涉及地址的改动**（补丁后重锚定、新增反汇编结论）交工前跑三件事：`rva_audit.py --check --falsify`、`build_aliases.py --check`、`deskrawl_gui --selftest`；`--check` 的严格性靠「改错一位必须报红」的 `--falsify` 自证，不许靠白名单消红。
 3. **新错误态/新 UI 样式**：导入错误加 `MemoryImportError` code 而非拼消息子串；QSS 规则必须与控件 objectName 绑定（selftest 有双向对账断言，死钩子会红）。
 4. **提交**：只提交相关文件；`data/session_state.json`、`*.tmp`、`.venv-gui/`、`__pycache__/` 不入库（gitignore 已配）。Windows 下多行提交信息用 `git commit -F` 读文件，避免 PowerShell 转义问题。

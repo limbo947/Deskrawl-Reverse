@@ -98,6 +98,14 @@ class GameData:
     def talents(self) -> Dict[str, dict]:
         return self._index(self._load('TalentData.json'))
 
+    def talent_effects(self) -> List[dict]:
+        """`TalentEffect_*` 资产（天赋特效本体；`TalentData.Effects` 的引用目标）。
+
+        与 `talent_modifiers` 的区别：后者只把属性类折成词条，这里给保真 dict，
+        供按条件/按技能的项（条件暴击、换算等）由 `effects.py` 解释。
+        """
+        return self._load('TalentEffects.json')
+
     def talent_modifiers(self, talent_name: str, points: int = 1) -> List[Modifier]:
         t = self.talents().get(talent_name)
         if not t:

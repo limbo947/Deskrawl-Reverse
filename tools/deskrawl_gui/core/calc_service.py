@@ -165,6 +165,8 @@ def _equipped_effects(gd, profile, *, exclude_slot=None) -> list:
     for it in (getattr(profile, 'assembled', None) or []):
         if getattr(it, 'kind', '') == 'runeset':
             out.extend(gd.runeset_effects(str(it.name), int(it.level)))
+    # 天赋里按目标状态门控的特效（条件暴击/暴伤）：不进面板聚合值，与装备特效同池
+    out.extend(getattr(profile, 'talent_effects', None) or [])
     return out
 
 

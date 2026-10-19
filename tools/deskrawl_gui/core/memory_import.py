@@ -24,7 +24,7 @@ from typing import List
 from .memory_errors import MemoryImportError
 from .memory_locate import Locator
 from .memory_reader import (ActkCodec, Il2CppReader, MemoryReadError, ProcessReader,
-                            valid_ptr)
+                            offset, valid_ptr)
 from .memory_snapshot import (SnapshotResult, _fingerprints, _section_diff,
                               check_fingerprints, load_offsets)
 from .memory_validate import validate_snapshot
@@ -426,12 +426,40 @@ class SnapshotBuilder:
         te = self.off['talent_effect_ability_modifier']
         wanted = set(int(v) for v in self.off['ability_mod_stat'].values())
         out = []
+        for obj, pts in self._talent_effect_objs(player):
+            nm, _ = self.il.klass_name(obj)
+            if nm != te['klass']:
+                continue
+            stat = self.pr.i32(obj + te['stat'])
+            if stat not in wanted:
+                continue
+            base = self.codec.obsc_float(obj + te['modifier'])
+            per = self.codec.obsc_float(obj + te['modifier'] + te['per_level_stride'])
+            if base is None or per is None:
+                continue
+            val = pts * float(base) + float(per) * pts * (pts - 1) / 2.0
+            ability = self.pr.u64(obj + te['ability'])
+            if valid_ptr(ability):
+                out.append([int(stat), ability, val])
+                continue
+            # Tag=9999 是 AbilityTag.None（真的不限定目标），0 是 BasicAttack，都是有效值
+            tag = self.pr.i32(obj + te['tag'])
+            if tag is not None and 0 <= tag < 9999:
+                out.append([int(stat), 0, val, int(tag)])
+        return out
+
+    def _talent_effect_objs(self, player):
+        """遍历已点天赋的 (特效对象, 点数)；天赋表不可用只告警（产空序列）。
+
+        抽出来是因为 AbilityModifier 与条件暴击/暴伤两条读取链要同一套遍历——
+        点数>0 才算「已点」，否则天赋树里的所有节点都会被读进来。
+        """
         d = self.pr.u64(player + self.off['player']['talents'])
         try:
             entries, _ = self.il.dict_entries(d, self.off['entry_steps']['ptr'])
         except MemoryReadError as e:
             self._warn(f'天赋表不可用：{e}')
-            return out
+            return
         for e in entries:
             tptr = self.pr.u64(e + self.il.o['entry_key'])
             pts = self.pr.i32(e + self.il.o['entry_value'])
@@ -443,27 +471,45 @@ class SnapshotBuilder:
                 continue
             for i in range(n):
                 obj = self.pr.u64(first + 8 * i)
-                if not valid_ptr(obj):
-                    continue
-                nm, _ = self.il.klass_name(obj)
-                if nm != te['klass']:
-                    continue
-                stat = self.pr.i32(obj + te['stat'])
-                if stat not in wanted:
-                    continue
-                base = self.codec.obsc_float(obj + te['modifier'])
-                per = self.codec.obsc_float(obj + te['modifier'] + te['per_level_stride'])
-                if base is None or per is None:
-                    continue
-                val = pts * float(base) + float(per) * pts * (pts - 1) / 2.0
-                ability = self.pr.u64(obj + te['ability'])
-                if valid_ptr(ability):
-                    out.append([int(stat), ability, val])
-                    continue
-                # Tag=9999 是 AbilityTag.None（真的不限定目标），0 是 BasicAttack，都是有效值
-                tag = self.pr.i32(obj + te['tag'])
-                if tag is not None and 0 <= tag < 9999:
-                    out.append([int(stat), 0, val, int(tag)])
+                if valid_ptr(obj):
+                    yield obj, int(pts)
+
+    def _read_talent_crit_effects(self, player):
+        """读已点天赋的条件暴击率/暴伤（`TalentEffect_ConditionalCrit*`）。
+
+        为什么单独一条链：这两类按**目标状态**门控，不会进面板聚合字典（面板没有目标），
+        漏读等于天赋白点。内存里状态/技能只有指针，故只输出指针 + 原始 Base/PerLevel；
+        profile 侧按 (Condition, Tag, 有无 Ability, Base, Per) 指纹反查静态表拿名字
+        （运行时 SO 指针→名称索引只覆盖 ItemData，见 `name_map`）。
+        """
+        cfg = self.off.get('talent_effect_conditional_crit') or {}
+        if not cfg:
+            return []
+        stride = offset(self.off['talent_effect_ability_modifier']['per_level_stride'])
+        specs = {cfg['crit_chance']['klass']: cfg['crit_chance'],
+                 cfg['crit_damage']['klass']: cfg['crit_damage']}
+        out = []
+        for obj, pts in self._talent_effect_objs(player):
+            nm, _ = self.il.klass_name(obj)
+            spec = specs.get(str(nm))
+            if not spec:
+                continue
+            voff = int(spec['value'], 16)
+            base = self.codec.obsc_float(obj + voff)
+            per = self.codec.obsc_float(obj + voff + stride)
+            if base is None or per is None:
+                continue
+            status = self.pr.u64(obj + int(spec['status'], 16))
+            rec = {'klass': str(nm),
+                   'condition': self.pr.i32(obj + int(spec['condition'], 16)),
+                   'status': int(status) if valid_ptr(status) else 0,
+                   'base': float(base), 'per': float(per),
+                   'value': pts * float(base) + float(per) * pts * (pts - 1) / 2.0}
+            if 'ability' in spec:
+                ab = self.pr.u64(obj + int(spec['ability'], 16))
+                rec['ability'] = int(ab) if valid_ptr(ab) else 0
+                rec['tag'] = self.pr.i32(obj + int(spec['tag'], 16))
+            out.append(rec)
         return out
 
     def _read_paragon(self) -> dict:
@@ -574,6 +620,7 @@ class SnapshotBuilder:
             'hero_class': self._read_hero_class(),
             'hero_abilities': self._read_hero_abilities(),
             'talent_ability_mods': self._read_talent_ability_mods(player),
+            'talent_crit_effects': self._read_talent_crit_effects(player),
             'paragon': self._read_paragon(),
             'runes': self._read_runes(),
             'inventory': self._read_slots(self.pr.u64(self.inv + self.off['inventory']['slots'])),
@@ -664,6 +711,7 @@ def import_snapshot(double_read=True) -> SnapshotResult:
             'primary_stat': payload['primary_stat'], 'hero_class': payload['hero_class'],
             'hero_abilities': payload['hero_abilities'],
             'talent_ability_mods': payload['talent_ability_mods'],
+            'talent_crit_effects': payload['talent_crit_effects'],
             'paragon': payload['paragon'],
             'runes': payload['runes'],
         },

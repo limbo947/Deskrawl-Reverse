@@ -50,9 +50,13 @@ def _cls(e: dict) -> str:
 
 
 def _is(e: dict, short_name: str) -> bool:
-    """类名精确匹配（去 `EquipmentEffect_` 前缀，避免 `AlwaysHealthConditionalDamage` 误命中 `ConditionalDamage`）。"""
+    """类名精确匹配（剥资产前缀；仍精确，避免 `AlwaysHealthConditionalDamage` 误命中 `ConditionalDamage`）。
+
+    装备与天赋两套前缀都剥：同名特效字段几乎同构（`Condition`/`BonusCritChance`），
+    共用一套解释函数才不会出现「装备能算、天赋不能算」的分裂。
+    """
     name = _cls(e).split('.')[-1]
-    return name.removeprefix('EquipmentEffect_') == short_name
+    return name.removeprefix('EquipmentEffect_').removeprefix('TalentEffect_') == short_name
 
 
 # 目标负面状态（🔶 集合口径，供 `DamagePerNegativeStatus` 计数；不含易伤/精英/远处）
@@ -90,27 +94,52 @@ def condition_holds(cond, target, status_name: Optional[str] = None) -> bool:
     return bool(getattr(target, attr, False)) if attr else False
 
 
-def crit_terms(effects: List[dict], target, *, status_names: Optional[Dict[int, str]] = None
-               ) -> Tuple[float, float]:
-    """条件暴击贡献 → (额外暴击率, 额外暴伤)，已按目标状态门控。
+def _scope_hit(e: dict, ability_name: Optional[str], tags,
+               ability_names: Optional[Dict[int, str]]) -> bool:
+    """技能/标签限定是否命中：无限定恒真；有限定但调用方没给技能上下文 → 假。
+
+    面板口径（不传技能）跳过限定项，是刻意的保守：把「某技能的 +100% 暴击」摊给
+    所有技能会高估整张技能表。
+    """
+    tag = e.get('Tag')
+    has_tag = tag is not None and int(tag) != _ABILITY_TAG_NONE
+    has_ab = bool(e.get('Ability'))
+    if not has_ab and not has_tag:
+        return True
+    if ability_name is None:
+        return False
+    if has_ab and _name_of(e.get('Ability'), ability_names) == ability_name:
+        return True
+    return bool(has_tag and int(tag) in {int(t) for t in (tags or [])})
+
+
+def crit_terms(effects: List[dict], target, *, status_names: Optional[Dict[int, str]] = None,
+               ability_names: Optional[Dict[int, str]] = None,
+               ability_name: Optional[str] = None, tags=None) -> Tuple[float, float]:
+    """条件暴击贡献 → (额外暴击率, 额外暴伤)，按目标状态门控 + 可选技能/标签限定。
 
     · `ConditionalCritChance`：`Condition` 命中 → +`BonusCritChance`；
     · `ConditionalCritDamage`：`Condition`（+`Status`）命中 → +`BonusCritDamage`，
-      `ScaleByStatusStacks` 为真时再 ×层数（🔶 层数语义待 REA）。
+      `ScaleByStatusStacks` 为真时再 ×层数（🔶 层数语义待 REA）；
+    · `Status`（装备侧）与 `SpecifiedStatus`（天赋侧）是同义字段，统一按状态名匹配。
     """
     cc = 0.0
     cd = 0.0
     for e in effects or []:
+        if not (_is(e, 'ConditionalCritChance') or _is(e, 'ConditionalCritDamage')):
+            continue
+        if not _scope_hit(e, ability_name, tags, ability_names):
+            continue
+        sn = _name_of(e.get('Status') or e.get('SpecifiedStatus'), status_names)
+        if not condition_holds(e.get('Condition', -1), target, sn):
+            continue
         if _is(e, 'ConditionalCritChance'):
-            if condition_holds(e.get('Condition', -1), target):
-                cc += float(unwrap(e.get('BonusCritChance')) or 0.0)
-        elif _is(e, 'ConditionalCritDamage'):
-            sn = _name_of(e.get('Status'), status_names)
-            if condition_holds(e.get('Condition', -1), target, sn):
-                v = float(unwrap(e.get('BonusCritDamage')) or 0.0)
-                if e.get('ScaleByStatusStacks') and sn:
-                    v *= status_stacks(target, sn)
-                cd += v
+            cc += float(unwrap(e.get('BonusCritChance')) or 0.0)
+        else:
+            v = float(unwrap(e.get('BonusCritDamage')) or 0.0)
+            if e.get('ScaleByStatusStacks') and sn:
+                v *= status_stacks(target, sn)
+            cd += v
     return cc, cd
 
 

@@ -35,6 +35,32 @@ def _talent_mod_row_ok(row) -> bool:
         return False
 
 
+def _talent_crit_row_ok(rec) -> bool:
+    """天赋条件暴击行：类名白名单 + 条件枚举 + 有限 Base/Per + 指针域。
+
+    状态/技能在内存里只有指针（0 = 无），名字由 profile 按指纹反查静态表——
+    这里只保证读到的东西不是垃圾（撕裂读/结构漂移）。
+    """
+    try:
+        if not isinstance(rec, dict) or rec.get('klass') not in (
+                'TalentEffect_ConditionalCritChance', 'TalentEffect_ConditionalCritDamage'):
+            return False
+        if int(rec.get('condition', -99)) not in (-1, 0, 1, 2, 3, 4, 5, 6):
+            return False
+        for k in ('base', 'per', 'value'):
+            v = float(rec[k])
+            if not math.isfinite(v) or abs(v) > 1e3:
+                return False
+        for k in ('status', 'ability'):
+            if k in rec and int(rec[k]) < 0:
+                return False
+        if 'tag' in rec and not -1 <= int(rec['tag']) <= 9999:
+            return False
+        return True
+    except (KeyError, TypeError, ValueError):
+        return False
+
+
 def validate_snapshot(payload: dict, off: dict):
     """硬校验（宁红不脏）：等级/字段/字典键域值域/UID 唯一性；任一失败抛 MemoryImportError。
 
@@ -92,6 +118,9 @@ def validate_snapshot(payload: dict, off: dict):
     for row in payload.get('talent_ability_mods') or []:
         if not _talent_mod_row_ok(row):
             raise MemoryImportError(f'技能天赋修正条目异常：{row}')
+    for rec in payload.get('talent_crit_effects') or []:
+        if not _talent_crit_row_ok(rec):
+            raise MemoryImportError(f'天赋条件暴击条目异常：{rec}')
     for label, rows in payload.get('conditionals', {}).items():
         for r in rows:
             if (r[0] not in (-1, 0, 1, 2, 3, 4, 5) or not klo <= r[2] <= khi

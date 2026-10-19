@@ -196,6 +196,22 @@ def _snapshot_checks(rep: Report):
                 '武器区：传奇词条替代三行数值（手工名回落手工录入）',
                 f'{saved_name} → 「{legend_txt}」，三行隐藏={real_ok}；手工名回落={manual_ok}')
 
+    # 非武器槽同样带传奇词条行（护甲/饰品的传奇特效是它们的主要战力，不能只在武器上显示）
+    from .core.legendary import legendary_lines as _legend_lines
+
+    armor = next(((s, it) for s, it in (prof.slot_current or {}).items()
+                  if _legend_lines(gd, it.name)), None)
+    if armor:
+        slot_id, armor_item = armor
+        from .widgets.item_editor import ItemEditor
+
+        armor_ed = ItemEditor('当前', armor_item,
+                              legendary_fn=lambda n: _legend_lines(gd, n))
+        armor_text = armor_ed.legend_label.text()
+        rep.add(bool(armor_text) and not armor_ed.legend_label.isHidden(),
+                '非武器槽也显示传奇词条（与武器同一行）',
+                f'槽{slot_id} {armor_item.name} → 「{armor_text}」')
+
     # 非武器槽对比：候选=当前件 → Δ=0；给候选加词条 → DPS 上升（方向 + 基线一致性）
     _slot_checks(rep, prof, gd)
 

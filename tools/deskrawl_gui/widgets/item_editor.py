@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""单件装备的编辑面板（任意槽通用；武器多出基础伤害/攻速/技能倍率三行）。
+"""单件装备的编辑面板（任意槽通用；所有槽位都有只读「传奇词条」行，武器多出三行数值）。
 
 从 equipment_editor 拆出：装备对比页要按 11 个槽位复用同一套「名称 + 词条行 + 元信息」控件，
 把它独立成 ItemEditor 后，equipment_editor 只负责槽位切换与装配，避免单文件膨胀。
@@ -227,6 +227,9 @@ class AffixTable(QTableWidget):
 class ItemEditor(QGroupBox):
     """一件装备的编辑面板。weapon=True 时多出 基础伤害/攻速/技能倍率 三行。
 
+    所有槽位都有一行只读「传奇词条」：护甲/饰品的传奇特效就是它们的主要战力，只在武器上
+    显示等于让用户去别处查。武器侧这行在解析出文案时顶替上面三行（见 _refresh_legendary）。
+
     current_of 只在候选侧传入（返回「当前件」草稿，任意槽通用）：勾选「与当前装备相同」时
     镜像当前件的强化等级与镶嵌宝石，并按原始词条重算数值——「同强化同宝石谁更强」是换装
     对比的常见问题，对所有槽位同样成立。
@@ -266,14 +269,14 @@ class ItemEditor(QGroupBox):
             self.damage_spin = self._spin(form, '基础伤害', 0.0, 1e6, 2, 'base_damage')
             self.speed_spin = self._spin(form, '攻速(次/秒)', 0.0, 20.0, 3, 'base_speed')
             self.skill_spin = self._spin(form, '技能倍率', 0.0, 100.0, 3, 'skill_multiplier')
-            # 传奇词条：真实游戏武器这三项是既成事实（白字伤害走 WeaponDamage 词条，不在这里
-            # 手填），留着输入框只会让人以为要自己录；能解析出文案时用它替换这三行，
-            # 解析不出（手工自拟的武器）就照旧给手工录入。
-            self.legend_label = QLabel('')
-            self.legend_label.setObjectName('legendaryText')
-            self.legend_label.setWordWrap(True)
-            self.legend_label.setTextInteractionFlags(Qt.TextSelectableByMouse)
-            form.addRow('传奇词条', self.legend_label)
+        # 传奇词条：所有槽位都有（护甲/饰品同样带传奇特效），是「这件装备到底干什么」的答案。
+        # 武器侧它还顶替上面三行数值——那三项对游戏武器是既成事实（白字伤害走 WeaponDamage
+        # 词条，不在这里手填），留着输入框只会让人以为要自己录。
+        self.legend_label = QLabel('')
+        self.legend_label.setObjectName('legendaryText')
+        self.legend_label.setWordWrap(True)
+        self.legend_label.setTextInteractionFlags(Qt.TextSelectableByMouse)
+        form.addRow('传奇词条', self.legend_label)
         if current_of is not None:
             self.like_current = QCheckBox()
             self.like_current.setToolTip(
@@ -512,19 +515,18 @@ class ItemEditor(QGroupBox):
         self.changed.emit()
 
     def _refresh_legendary(self):
-        """武器行：能解析出传奇词条就显示原文并收起三行数值，否则回落到手工录入。
+        """显示该件的传奇词条；武器侧有文案时收起三行数值（否则回落到手工录入）。
 
         收起而不是删除输入框：手工自拟的武器（不在装备表里）仍要能填白字/攻速/倍率，
-        那是它们唯一的数据入口。
+        那是它们唯一的数据入口。非武器槽没有这三行，只做「有就显示、没有就隐藏」。
         """
-        if not self.weapon:
-            return
         lines = list(self._legendary_fn(self.draft.name) or []) if self._legendary_fn else []
         has = bool(lines)
         self.legend_label.setText('\n'.join(lines))
         self._form.setRowVisible(self.legend_label, has)
-        for sp in (self.damage_spin, self.speed_spin, self.skill_spin):
-            self._form.setRowVisible(sp, not has)
+        if self.weapon:
+            for sp in (self.damage_spin, self.speed_spin, self.skill_spin):
+                self._form.setRowVisible(sp, not has)
         if has and any('{' in ln for ln in lines):
             self.legend_label.setToolTip('文案里有未能解析的占位符：该数值的数据源不在静态导出里')
         else:

@@ -334,11 +334,14 @@ def compare(profile: CharacterProfile, gd, slot=None) -> CompareResult:
                             current_kw={'conditional_crit': cc_c, 'equip_crit_damage': cd_c,
                                         'conditional_damage': dmg_c,
                                         'damage_dealt_mult': effects.enemy_class_multiplier(
-                                            cur_eff, target)},
+                                            cur_eff, target),
+                                        'ignore_health': effects.always_health_conditions(cur_eff)},
                             candidate_kw={'conditional_crit': cc_k, 'equip_crit_damage': cd_k,
                                           'conditional_damage': dmg_k,
                                           'damage_dealt_mult': effects.enemy_class_multiplier(
-                                              cand_eff, target)})
+                                              cand_eff, target),
+                                          'ignore_health': effects.always_health_conditions(
+                                              cand_eff)})
         return CompareResult(0, label, r['current']['dps'], r['candidate']['dps'],
                              r['delta'], r['delta_pct'], r['current']['model'],
                              r['candidate']['model'], r['current']['sheet'],
@@ -360,7 +363,8 @@ def compare(profile: CharacterProfile, gd, slot=None) -> CompareResult:
                            primary_stat=profile.primary_stat,
                            conditional_crit=cc, equip_crit_damage=cd,
                            conditional_damage=cdmg,
-                           damage_dealt_mult=effects.enemy_class_multiplier(eff, target))
+                           damage_dealt_mult=effects.enemy_class_multiplier(eff, target),
+                           ignore_health=effects.always_health_conditions(eff))
 
     cur_model, cand_model = (model(cur_sheet, cur_eff, cc_c, cd_c, dmg_c),
                              model(cand_sheet, cand_eff, cc_k, cd_k, dmg_k))

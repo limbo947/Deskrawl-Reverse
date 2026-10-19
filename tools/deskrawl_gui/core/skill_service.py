@@ -94,7 +94,8 @@ def _tag_multiplier(skill: dict, sheet) -> float:
 
 def _per_hit(skill: dict, sheet, target, *, weapon, primary_stat,
              extra_crit_chance: float = 0.0, extra_crit_damage: float = 0.0,
-             damage_mult: float = 1.0, cond_damage_fn=None) -> float:
+             damage_mult: float = 1.0, cond_damage_fn=None,
+             ignore_health: bool = False) -> float:
     """每次命中的期望伤害（多段求和 × 技能类型标签增伤 33/34/61）。
 
     `extra_crit_chance`/`extra_crit_damage` 为传奇特效与天赋的按技能贡献（条件暴击率/暴伤、
@@ -112,7 +113,8 @@ def _per_hit(skill: dict, sheet, target, *, weapon, primary_stat,
                             conditional_crit=extra_crit_chance,
                             equip_crit_damage=extra_crit_damage,
                             conditional_damage=cdmg,
-                            damage_dealt_mult=damage_mult)
+                            damage_dealt_mult=damage_mult,
+                            ignore_health=ignore_health)
         bd = model.compute(target)
         total += bd.base_damage * bd.expected_mult
     return total * _tag_multiplier(skill, sheet)
@@ -162,7 +164,8 @@ def _rates(skill: dict, sheet, atk_speed: float, mods) -> tuple:
     return strikes / interval, 1.0 / interval
 
 
-def _dot_dps(dots: List[dict], sheet, target, *, weapon, primary_stat, casts_per_sec: float) -> float:
+def _dot_dps(dots: List[dict], sheet, target, *, weapon, primary_stat, casts_per_sec: float,
+             ignore_health: bool = False) -> float:
     """技能施加的 DOT 每秒输出（折进该技能秒伤，见 docs/04 §6.2.7）。
 
     per-tick 伤害走引擎 `DamageModel.dot_tick_damage`（tick = (元素池 + Final(62)) × 条件池 × base…）。
@@ -179,7 +182,7 @@ def _dot_dps(dots: List[dict], sheet, target, *, weapon, primary_stat, casts_per
         if rate <= 0 or float(d.get('damage_per_tick') or 0.0) <= 0:
             continue
         model = DamageModel(sheet, int(d['damage_type']), weapon_damage=weapon.base_damage,
-                            primary_stat=primary_stat)
+                            primary_stat=primary_stat, ignore_health=ignore_health)
         tick = model.dot_tick_damage(target, float(d['damage_per_tick']), can_crit=bool(d['can_crit']))
         cap = float(d.get('max_stacks') or 1) if d.get('stackable') else 1.0
         stacks = min(cap, float(d.get('duration') or 0.0) * casts_per_sec)
@@ -319,7 +322,8 @@ def skill_rows(profile, gd, cur_sheet, cand_sheet, target,
                            + float(mods_c.get(CRIT_DAMAGE_STAT, 0.0)),
                        damage_mult=(1.0 + float(mods_c.get(DAMAGE_STAT, 0.0)))
                                    * effects.enemy_class_multiplier(eff_c, target),
-                       cond_damage_fn=cond_fn(eff_c, sk['name'])) * cur_rate
+                       cond_damage_fn=cond_fn(eff_c, sk['name']),
+                      ignore_health=effects.always_health_conditions(eff_c)) * cur_rate
         cand = _per_hit(sk, cand_sheet, target, weapon=w_cand, primary_stat=ps,
                         extra_crit_chance=cc_k + float(mods_k.get(CRIT_CHANCE_STAT, 0.0)),
                         extra_crit_damage=cd_k + effects.ability_crit_damage(
@@ -327,14 +331,17 @@ def skill_rows(profile, gd, cur_sheet, cand_sheet, target,
                             + float(mods_k.get(CRIT_DAMAGE_STAT, 0.0)),
                         damage_mult=(1.0 + float(mods_k.get(DAMAGE_STAT, 0.0)))
                                     * effects.enemy_class_multiplier(eff_k, target),
-                        cond_damage_fn=cond_fn(eff_k, sk['name'])) * cand_rate
+                        cond_damage_fn=cond_fn(eff_k, sk['name']),
+                        ignore_health=effects.always_health_conditions(eff_k)) * cand_rate
         # DOT：技能施加的持续伤害折进本行（Bleeding/Burn/HunterPoison 等，见 _dot_dps）
         dots = gd.ability_dot(sk['name'], eff_lv)
         if dots:
-            cur += _dot_dps(dots, cur_sheet, target, weapon=w_cur,
-                            primary_stat=ps, casts_per_sec=cur_cps)
-            cand += _dot_dps(dots, cand_sheet, target, weapon=w_cand,
-                             primary_stat=ps, casts_per_sec=cand_cps)
+            cur += _dot_dps(dots, cur_sheet, target, weapon=w_cur, primary_stat=ps,
+                            casts_per_sec=cur_cps,
+                            ignore_health=effects.always_health_conditions(eff_c))
+            cand += _dot_dps(dots, cand_sheet, target, weapon=w_cand, primary_stat=ps,
+                             casts_per_sec=cand_cps,
+                             ignore_health=effects.always_health_conditions(eff_k))
         # 展示名用游戏本地化的简中名（表缺失回落英文），name 保留 _name 供天赋修正查表
         rows.append(SkillRow(name=sk['name'],
                              ability_name=ability_display_name(gd, sk['name']),

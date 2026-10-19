@@ -38,7 +38,8 @@ a = Analysis(
     # 防 modulegraph 漏收懒加载入口（都写在函数内 import）；成本近乎 0
     hiddenimports=['deskrawl_calc.cli', 'deskrawl_gui.selftest',
                    'deskrawl_gui.selftest_fixture', 'deskrawl_gui.selftest_legendary',
-                   'deskrawl_gui.selftest_skillmods', 'deskrawl_gui.memdump'],
+                   'deskrawl_gui.selftest_skillmods', 'deskrawl_gui.selftest_effects',
+                   'deskrawl_gui.memdump'],
     # excludes 只排「Python 模块」：Qt 的 DLL 仍按真实 import 传递依赖收集，故本名单是
     # 「防 PySide6 hook 过度收集」的安全网。本项目只用 QtCore/QtGui/QtWidgets + QtSvg(图标是 svg)。
     excludes=[

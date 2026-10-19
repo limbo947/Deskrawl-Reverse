@@ -179,11 +179,16 @@ class Target:
         r = self.resist(damage_type)
         return r / (r + 50.0 * max(1, self.level)) if (r + 50.0) > 0 else 0.0
 
-    def conditional_stats(self) -> List[StatType]:
-        """按目标状态挑出生效的条件伤害属性（bko 10 项）。"""
+    def conditional_stats(self, ignore_health: bool = False) -> List[StatType]:
+        """按目标状态挑出生效的条件伤害属性（bko 10 项）。
+
+        `ignore_health` 对应 `AlwaysHealthConditionalDamage`：`blw` 里两处血线判断都是
+        `if (this+0x15c || hp 阈值)` → 该开关一置，**健康(29) 与 受伤(30) 同时成立**
+        （不是「只视为健康」，见 docs/plan/传奇特效清点清单 §5.2）。
+        """
         out = []
-        if self.hp_fraction > 0.8: out.append(StatType.DamageVsHealthy)
-        if self.hp_fraction < 0.3: out.append(StatType.DamageVsInjured)
+        if ignore_health or self.hp_fraction > 0.8: out.append(StatType.DamageVsHealthy)
+        if ignore_health or self.hp_fraction < 0.3: out.append(StatType.DamageVsInjured)
         if self.slowed: out.append(StatType.DamageVsSlowed)
         if self.immobilized: out.append(StatType.DamageVsImmobilized)
         if self.bleeding: out.append(StatType.DamageVsBleeding)
@@ -227,7 +232,8 @@ class DamageModel:
                  weapon_damage: float = 0.0,  # 武器基础伤害（面板）
                  primary_stat: Optional[int] = None,  # 职业主属性 StatType 0/1/2；None=不启用
                  skill_scaling: float = 1.0,  # 技能倍率 AttackScaling.wo(level)；1.0=普攻
-                 armor_pen: float = 0.0):     # 破甲（占位，引擎未证实存在）
+                 armor_pen: float = 0.0,      # 破甲（占位，引擎未证实存在）
+                 ignore_health: bool = False):  # AlwaysHealthConditionalDamage：健康/受伤两条件同时成立
         self.sheet = sheet
         self.damage_type = int(damage_type)
         self.level = level
@@ -240,6 +246,7 @@ class DamageModel:
         self.primary_stat = primary_stat
         self.skill_scaling = float(skill_scaling)
         self.armor_pen = armor_pen
+        self.ignore_health = bool(ignore_health)
 
     # --- 乘区 A ---
     def type_multiplier(self) -> float:
@@ -254,7 +261,9 @@ class DamageModel:
         后者来自 `EquipmentEffect_ConditionalDamage`（`effects.conditional_damage`，🔶 归属待 REA：
         条件池加项 vs 元素池加算）。
         """
-        return 1.0 + sum(self.sheet.final(s) for s in target.conditional_stats()) + self.conditional_damage
+        return (1.0 + sum(self.sheet.final(s)
+                          for s in target.conditional_stats(ignore_health=self.ignore_health))
+                + self.conditional_damage)
 
     # --- 暴击 ---
     def crit_chance(self) -> float:

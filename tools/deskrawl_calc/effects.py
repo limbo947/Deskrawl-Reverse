@@ -30,6 +30,7 @@ CONSUMED_CLASSES = frozenset({
     'StatModifier', 'AllStats', 'ConditionalCritChance', 'ConditionalCritDamage',
     'AbilityTagCritDamage', 'ConditionalDamage', 'AbilityModifier',
     'AbilityChannelModifier', 'StatConversion', 'DivineHelmet3',
+    'AlwaysHealthConditionalDamage',
 })
 
 # 触发/行为类（清点清单 D 面 35 条）：面板口径本就不含触发链，属刻意排除而非缺口，
@@ -210,6 +211,15 @@ def enemy_class_multiplier(effects: List[dict], target) -> float:
         if isinstance(v, (int, float)) and 0.0 < float(v) < 100.0:
             mult *= float(v)
     return mult
+
+
+def always_health_conditions(effects: List[dict]) -> bool:
+    """`AlwaysHealthConditionalDamage`：`bzw` 只把 `Player+0x15c` 置 1。
+
+    指令级依据（`Character.ConditionalDamagePool` @`0x1806885C0`）：两处血线判断都是
+    `if (this+0x15c || hp 阈值)` → 该标志让**健康(29)与受伤(30)同时成立**，不是「只视为健康」。
+    """
+    return any(_is(e, 'AlwaysHealthConditionalDamage') for e in (effects or []))
 
 
 def unmodeled_classes(effects: List[dict]) -> List[str]:

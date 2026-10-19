@@ -885,6 +885,24 @@ def _table_model_checks(rep: Report):
             f'trend={trends}；Δ%={texts}')
 
 
+def _legendary_checks(rep: Report):
+    """传奇词条文案：三层来源（整件 Desc / 特效前缀 / 类模板）与令牌填值，纯数据不需 QApplication。"""
+    from deskrawl_calc import GameData
+
+    from .core.legendary import legendary_lines
+
+    gd = GameData()
+    sword = legendary_lines(gd, 'LegendarySword1')              # 整件 Desc（无令牌）
+    neck = ' '.join(legendary_lines(gd, 'LegendaryNeck4'))      # 特效前缀 + {chance} ← ProcChance
+    helm = ' '.join(legendary_lines(gd, 'DivineHelm3'))         # 类模板 + 倍率字段（1.2 → 20%）
+    unknown = legendary_lines(gd, '旧武器·双手剑')
+    rep.add(sword == ['对易伤目标额外获得30%暴击几率。']
+            and '30%' in neck and '20%' in helm and '40%' in helm and unknown == [],
+            '传奇词条文案（整件 Desc / 前缀匹配 / 类模板 + 令牌填值；未知装备返回空）',
+            f'剑={sword}；项链含30%={"30%" in neck}；'
+            f'头盔含20%/40%={"20%" in helm and "40%" in helm}；未知={unknown}')
+
+
 def run_selftest() -> int:
     rep = Report()
     if not _print_kernel_selftest():
@@ -904,6 +922,7 @@ def run_selftest() -> int:
     _session_state_checks(rep)
     _format_checks(rep)
     _table_model_checks(rep)
+    _legendary_checks(rep)
     print(f'\n自检结果：{"全部通过" if rep.ok() else "存在失败"}'
           f'（{rep.passed}/{len(rep.checks)}）')
     return 0 if rep.ok() else 1

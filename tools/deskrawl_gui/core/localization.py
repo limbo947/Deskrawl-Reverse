@@ -51,6 +51,15 @@ def equipment_display_name(gd, name: str) -> str:
     return zh or str(name)
 
 
+def equipments_text(gd) -> dict:
+    """Equipments 表全文（名字之外还含 `*.Desc` 传奇词条描述），供 legendary.py 查询。
+
+    单独开口而不是让调用方用 `_table`：描述文案与显示名同表，但用途完全不同，留一个
+    公开入口便于将来换表（如换成独立的效果文案表）时只改这里。
+    """
+    return _table(gd, 'equipments_zh.json')
+
+
 # 四类装配件的显示名表：宝石/符文/套装都在 Equipments 表，天赋单独在 Talents 表
 # （2026-10-17 实测：Equipments 命中 gem 36/36、rune 199/199、runeset 13/13，talent 0/186；
 # Talents 表导出 356 条后天赋覆盖 186/186）

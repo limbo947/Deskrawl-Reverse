@@ -23,7 +23,12 @@ import re
 from functools import lru_cache
 from typing import List
 
+from deskrawl_calc.effects import unmodeled_classes
+
 from .localization import ability_display_name, equipments_text, item_internal_name
+
+# 未计入提示的固定文案：与「传奇词条」行同处显示，措辞必须一眼看懂是 DPS 口径缺口
+_UNMODELED_NOTE = '（未计入 DPS）'
 
 _TOKEN = re.compile(r'\{([0-9A-Za-z_]+)\}')
 
@@ -42,7 +47,10 @@ _FIELD_ALIAS = {
 
 
 def legendary_lines(gd, display_name: str) -> List[str]:
-    """装备名（简中显示名或内部名）→ 传奇词条原文行；无文案/名字不识别返回 []。"""
+    """装备名（简中显示名或内部名）→ 传奇词条原文行；无文案/名字不识别返回 []。
+
+    含 B/C 面未接线特效的装备，末行缀「（未计入 DPS）」——静默缺失比不建模更误导。
+    """
     internal = item_internal_name(gd, str(display_name or ''))
     if not internal or internal not in gd.items():
         return []
@@ -51,16 +59,24 @@ def legendary_lines(gd, display_name: str) -> List[str]:
     pool = _pool(gd, effects)
     whole = table.get(f'{internal}.Desc')
     if whole:
-        return [_fill(str(whole), pool, '')]
-    out = []
-    for eff in effects:
-        line = _effect_text(table, eff, pool)
-        if line:
-            out.append(line)
-    if out:
-        return out
-    pref = _prefix_desc(table, internal)
-    return [_fill(pref, pool, '')] if pref else []
+        lines = [_fill(str(whole), pool, '')]
+    else:
+        lines = []
+        for eff in effects:
+            line = _effect_text(table, eff, pool)
+            if line:
+                lines.append(line)
+        if not lines:
+            pref = _prefix_desc(table, internal)
+            lines = [_fill(pref, pool, '')] if pref else []
+    return _mark_unmodeled(lines, effects)
+
+
+def _mark_unmodeled(lines: List[str], effs: list) -> List[str]:
+    """末行缀「（未计入 DPS）」：只针对 B/C 面（数值型但口径没算），D 类触发不标。"""
+    if lines and unmodeled_classes(effs):
+        lines[-1] = lines[-1] + _UNMODELED_NOTE
+    return lines
 
 
 def _pool(gd, effects: list) -> list:

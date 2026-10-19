@@ -967,3 +967,30 @@ def _legendary_effect_checks(rep: Report):
     rep.add(abs(d51 - 0.5 * dodge) < 1e-6,
             '传奇特效·属性换算（胸甲 ChestArmor6 → 闪避×0.5 加到物理减伤 51）',
             f'Δ物理减伤(51)={d51:.6f}（期望 0.5×闪避 {dodge:.6f}={0.5 * dodge:.6f}）')
+
+    # 8) 对普通/精英伤害倍率（DivineHelmet3，B 面唯一「只差开关」的一条）：进独立乘数。
+    #    纯函数管取值分支（普通/精英/无特效），技能行管接线：两侧同目标、无 DOT 的普攻应精确 ×1.4。
+    from deskrawl_calc import Target as _Target
+    from deskrawl_calc import effects as _fx
+
+    helm = {'_class': 'EquipmentEffect_DivineHelmet3',
+            'NormalEnemyMultiplier': 1.2, 'EliteEnemyMultiplier': 1.4}
+    t_elite = _Target(level=70, elite=True)
+    p.target.elite = True                     # 端到端走精英档（1.4），普通档由上面的纯函数验证
+    r8 = calc_service.compare(p, gd)          # p 的 compare_slot=0，最省的一次装配
+    plain = {r.name: r.current_dps for r in skill_service.skill_rows(
+        p, gd, r8.current_sheet, r8.candidate_sheet, r8.target,
+        cur_effects=r8.current_effects)}
+    boosted = {r.name: r.current_dps for r in skill_service.skill_rows(
+        p, gd, r8.current_sheet, r8.candidate_sheet, r8.target,
+        cur_effects=r8.current_effects + [helm])}
+    fn_ok = (abs(_fx.enemy_class_multiplier([helm], _Target(level=70)) - 1.2) < 1e-9
+             and abs(_fx.enemy_class_multiplier([helm], t_elite) - 1.4) < 1e-9
+             and _fx.enemy_class_multiplier([], t_elite) == 1.0)
+    nm = 'WarriorBasicAttack'
+    ratio8 = boosted[nm] / plain[nm] if plain[nm] else 0.0
+    rep.add(fn_ok and abs(ratio8 - 1.4) < 1e-9,
+            '传奇特效·普通/精英伤害倍率（DivineHelmet3：普通 ×1.2 / 精英 ×1.4 进独立乘数）',
+            f'纯函数 普通={_fx.enemy_class_multiplier([helm], _Target(level=70)):.2f} / '
+            f'精英={_fx.enemy_class_multiplier([helm], t_elite):.2f}；'
+            f'技能行 {nm} ×{ratio8:.4f}（期望 ×1.4000）')

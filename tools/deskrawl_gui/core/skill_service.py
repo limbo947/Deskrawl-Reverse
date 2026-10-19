@@ -312,14 +312,16 @@ def skill_rows(profile, gd, cur_sheet, cand_sheet, target,
                        extra_crit_damage=cd_c + effects.ability_crit_damage(
                            eff_c, tags, sk['name'], ability_names=anames)
                            + float(mods_c.get(CRIT_DAMAGE_STAT, 0.0)),
-                       damage_mult=1.0 + float(mods_c.get(DAMAGE_STAT, 0.0)),
+                       damage_mult=(1.0 + float(mods_c.get(DAMAGE_STAT, 0.0)))
+                                   * effects.enemy_class_multiplier(eff_c, target),
                        cond_damage_fn=cond_fn(eff_c, sk['name'])) * cur_rate
         cand = _per_hit(sk, cand_sheet, target, weapon=w_cand, primary_stat=ps,
                         extra_crit_chance=cc_k + float(mods_k.get(CRIT_CHANCE_STAT, 0.0)),
                         extra_crit_damage=cd_k + effects.ability_crit_damage(
                             eff_k, tags, sk['name'], ability_names=anames)
                             + float(mods_k.get(CRIT_DAMAGE_STAT, 0.0)),
-                        damage_mult=1.0 + float(mods_k.get(DAMAGE_STAT, 0.0)),
+                        damage_mult=(1.0 + float(mods_k.get(DAMAGE_STAT, 0.0)))
+                                    * effects.enemy_class_multiplier(eff_k, target),
                         cond_damage_fn=cond_fn(eff_k, sk['name'])) * cand_rate
         # DOT：技能施加的持续伤害折进本行（Bleeding/Burn/HunterPoison 等，见 _dot_dps）
         dots = gd.ability_dot(sk['name'], eff_lv)

@@ -29,14 +29,26 @@ def _legendary_checks(rep) -> None:
             f'肩甲={summon}；未知={unknown}')
 
     # 全量回归网：某件装备的模板冒出数据源之外的令牌时只有这里会红——单样例断言覆盖不到
-    gaps, total = [], 0
+    gaps, total, marked = [], 0, 0
     for name, rec in gd.items().items():
         if not rec.get('EquipmentEffects'):
             continue
         total += 1
         text = ' '.join(legendary_lines(gd, name))
+        if '（未计入 DPS）' in text:
+            marked += 1
         if not text or '{' in text:
             gaps.append(f'{name}（{text or "空"}）')
     rep.add(total >= 67 and not gaps,
             '传奇词条全量填值（带特效装备全部有文案且无残留令牌）',
             f'{total} 件，缺口 {len(gaps)} 件：{"；".join(gaps[:3]) or "无"}')
+
+    # 「未计入 DPS」标记的边界：B/C 面标、D 类触发与已消费类都不标——标错会把提示变成噪音
+    mark = lambda inner: any('（未计入 DPS）' in ln for ln in legendary_lines(gd, inner))
+    mark_ok = (mark('LegendaryShoulder5')             # DamagePerActiveSummon（C）
+               and not mark('LegendarySword1')        # ConditionalCritChance（已消费）
+               and not mark('LegendaryChestArmor5'))  # 只有 StatusOnLowHealth（D 类）
+    rep.add(mark_ok,
+            '未计入提示（B/C 面标「（未计入 DPS）」；已消费类与 D 类触发不标）',
+            f'肩甲(C)={mark("LegendaryShoulder5")}；剑(已消费)={mark("LegendarySword1")}；'
+            f'胸甲(D 类)={mark("LegendaryChestArmor5")}；全量标 {marked}/{total} 件')

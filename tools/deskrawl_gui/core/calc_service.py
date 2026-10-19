@@ -330,9 +330,13 @@ def compare(profile: CharacterProfile, gd, slot=None) -> CompareResult:
         r = compare_weapons(sheet, cur, cand, target=target, damage_type=profile.damage_type,
                             primary_stat=profile.primary_stat,
                             current_kw={'conditional_crit': cc_c, 'equip_crit_damage': cd_c,
-                                        'conditional_damage': dmg_c},
+                                        'conditional_damage': dmg_c,
+                                        'damage_dealt_mult': effects.enemy_class_multiplier(
+                                            cur_eff, target)},
                             candidate_kw={'conditional_crit': cc_k, 'equip_crit_damage': cd_k,
-                                          'conditional_damage': dmg_k})
+                                          'conditional_damage': dmg_k,
+                                          'damage_dealt_mult': effects.enemy_class_multiplier(
+                                              cand_eff, target)})
         return CompareResult(0, label, r['current']['dps'], r['candidate']['dps'],
                              r['delta'], r['delta_pct'], r['current']['model'],
                              r['candidate']['model'], r['current']['sheet'],
@@ -349,14 +353,15 @@ def compare(profile: CharacterProfile, gd, slot=None) -> CompareResult:
     _apply_conversions(gd, cur_sheet, cur_eff)
     _apply_conversions(gd, cand_sheet, cand_eff)
 
-    def model(sheet, cc, cd, cdmg):
+    def model(sheet, eff, cc, cd, cdmg):
         return DamageModel(sheet, profile.damage_type, weapon_damage=w.base_damage,
                            primary_stat=profile.primary_stat,
                            conditional_crit=cc, equip_crit_damage=cd,
-                           conditional_damage=cdmg)
+                           conditional_damage=cdmg,
+                           damage_dealt_mult=effects.enemy_class_multiplier(eff, target))
 
-    cur_model, cand_model = (model(cur_sheet, cc_c, cd_c, dmg_c),
-                             model(cand_sheet, cc_k, cd_k, dmg_k))
+    cur_model, cand_model = (model(cur_sheet, cur_eff, cc_c, cd_c, dmg_c),
+                             model(cand_sheet, cand_eff, cc_k, cd_k, dmg_k))
     cur_dps = cur_model.dps(target, w.base_speed) * w.skill_multiplier
     cand_dps = cand_model.dps(target, w.base_speed) * w.skill_multiplier
     return CompareResult(slot, label, cur_dps, cand_dps, cand_dps - cur_dps,

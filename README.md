@@ -82,7 +82,7 @@ Deskrawl-Reverse/
 │   │   ├─ app.py             主窗口装配（侧边导航 + 三页堆栈）
 │   │   ├─ __main__.py        三模式：默认 GUI / --selftest / --smoke
 │   │   ├─ memdump.py         内存快照 CLI
-│   │   ├─ selftest.py        GUI 自检（68 项，内核 26 项为通过门槛）
+│   │   ├─ selftest.py        GUI 自检（70 项，内核 26 项为通过门槛）
 │   │   ├─ selftest_legendary.py / selftest_skillmods.py  文案组 / 天赋按技能修正组（纯数据，从主自检拆出）
 │   │   ├─ core/              服务层纯函数 + 内存导入链（profile/calc_service/memory_*）
 │   │   ├─ widgets/           UI 组件（15 个模块）
@@ -165,7 +165,7 @@ python -m venv .venv-gui
 .\.venv-gui\Scripts\python.exe -m pip install -r requirements-gui.txt
 cd tools
 ..\.venv-gui\Scripts\python.exe -m deskrawl_gui              # 启动主窗口（暗色主题）
-..\.venv-gui\Scripts\python.exe -m deskrawl_gui --selftest   # 自检：内核 26 项 + GUI 68 项
+..\.venv-gui\Scripts\python.exe -m deskrawl_gui --selftest   # 自检：内核 26 项 + GUI 70 项
 ..\.venv-gui\Scripts\python.exe -m deskrawl_gui --smoke      # 无显示环境骨架冒烟（建窗即退）
 ```
 
@@ -194,7 +194,7 @@ cd D:\workspace\Deskrawl-Reverse
 解压后双击 `Deskrawl计算台.exe` 即开 GUI；同一个 exe 还内置命令行入口：
 
 ```powershell
-.\Deskrawl计算台.exe --selftest       # 内核 26 项 + GUI 68 项自检（自动接回控制台输出）
+.\Deskrawl计算台.exe --selftest       # 内核 26 项 + GUI 70 项自检（自动接回控制台输出）
 .\Deskrawl计算台.exe --smoke          # 无显示环境骨架冒烟
 .\Deskrawl计算台.exe memdump --json   # 内存快照 CLI（需游戏运行中）
 ```

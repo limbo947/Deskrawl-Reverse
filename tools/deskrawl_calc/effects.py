@@ -24,6 +24,26 @@ _TARGET_STATE_ATTR = {0: 'vulnerable', 1: 'stunned', 2: 'slowed', 3: 'elite',
 
 _ABILITY_TAG_NONE = 9999
 
+# 已接线（进 DPS / 属性表）的特效类（去 `EquipmentEffect_` 前缀）。新增消费点必须同步这里，
+# 否则「未计入 DPS」提示会对已算的装备误报。
+CONSUMED_CLASSES = frozenset({
+    'StatModifier', 'AllStats', 'ConditionalCritChance', 'ConditionalCritDamage',
+    'AbilityTagCritDamage', 'ConditionalDamage', 'AbilityModifier',
+    'AbilityChannelModifier', 'StatConversion', 'DivineHelmet3',
+})
+
+# 触发/行为类（清点清单 D 面 35 条）：面板口径本就不含触发链，属刻意排除而非缺口，
+# 不参与「未计入」提示——否则 67 件里 23 件都会被标，提示就失去意义。
+TRIGGER_CLASSES = frozenset({
+    'StatusOnHit', 'TriggerEffectsOnPotionUse', 'StatusOnKill', 'AbilityTriggerAbility',
+    'TriggerEffectsOnHit', 'StatusApplyStatus', 'TriggerAbilityCooldownReduction',
+    'AbilitySummonAbility', 'SelfStatusStackTriggerAbility', 'IronThornFrenzy',
+    'PotionDrops', 'StatusOnCritTaken', 'FreeCast', 'AbilityOnCastCount',
+    'BeingHitTriggerAbility', 'TriggerAbilityTwice', 'TrapRearm', 'TriggerEffectsOnCrit',
+    'ChannelAllowedCastTag', 'StatusOnLowHealth', 'StatusOnResourceConsumed',
+    'TriggerKillEffectsOnHit',
+})
+
 
 def _cls(e: dict) -> str:
     return str((e or {}).get('_class') or '')
@@ -146,6 +166,37 @@ def conditional_damage(effects: List[dict], damage_type: int, target, *,
     return out
 
 
+def enemy_class_multiplier(effects: List[dict], target) -> float:
+    """`DivineHelmet3` 的对普通/精英敌人伤害倍率：按目标是否精英取 `Normal`/`Elite`，多条相乘。
+
+    进 `damage_dealt_mult`（独立乘数）而不是条件池：字段名即 Multiplier、取值 >1（1.2/1.4），
+    与「+X% 条件词条」的加项不同句式；⚠️ 计入方式属设计判断，待 REA 定案。
+    """
+    mult = 1.0
+    elite = bool(getattr(target, 'elite', False))
+    for e in effects or []:
+        if not _is(e, 'DivineHelmet3'):
+            continue
+        v = unwrap(e.get('EliteEnemyMultiplier' if elite else 'NormalEnemyMultiplier'))
+        if isinstance(v, (int, float)) and 0.0 < float(v) < 100.0:
+            mult *= float(v)
+    return mult
+
+
+def unmodeled_classes(effects: List[dict]) -> List[str]:
+    """本组特效里「数值型但当前口径没算」的类（清点清单 B/C 面），供 UI 标「未计入 DPS」。
+
+    只报 B/C：触发类（D 面）属口径刻意排除，一并标出会让触发性装备全带提示，等于没提示。
+    """
+    out: List[str] = []
+    for e in effects or []:
+        name = _cls(e).split('.')[-1].removeprefix('EquipmentEffect_')
+        if name and name not in CONSUMED_CLASSES and name not in TRIGGER_CLASSES \
+                and name not in out:
+            out.append(name)
+    return out
+
+
 def ability_mods_for(effects: List[dict], ability_name: Optional[str], tags, *,
                      ability_names: Optional[Dict[int, str]] = None,
                      channel_base: float = 0.0) -> Dict[int, float]:
@@ -162,8 +213,9 @@ def ability_mods_for(effects: List[dict], ability_name: Optional[str], tags, *,
     的 Stat=13 则把 `Modifier` **原值**（已是比例）走同一 `FUN_18050ed40`。故两者**同池按比例相加**，
     消费口径为 `dur = base × (1 + Σ比例)`（数值上等价于装备「秒数加算」：base×(1+s/base) = base+s）。
 
-    返回的 `ModifiedStat`：2 Damage / 5 CritChance → 进 `_per_hit`；8 ChannelSpeed / 9 StrikeCount /
-    13 ChannelDuration(比例) → 进 `_rates`；其余（如 1 ManaCost、6 CritDamage）当前不落伤害口径。
+    返回的 `ModifiedStat`：2 Damage / 5 CritChance / 6 CritDamage / 0 Cooldown → 进 `_per_hit` 与
+    `_rates`；8 ChannelSpeed / 9 StrikeCount / 13 ChannelDuration(比例) → 进 `_rates`；
+    其余（如 1 ManaCost）当前不落伤害口径。
     """
     tagset = {int(t) for t in (tags or [])}
     out: Dict[int, float] = {}

@@ -13,8 +13,7 @@
 合成出来的池子，而不是单个特效。
 
 解析不到文案时返回空表而不是造一句话：调用方据此回落到手工录入，不拿占位文字冒充事实。
-个别令牌（如 `{ability}`）的数据源在 AbilityData 之外，填不上就原样保留花括号——看得见缺口
-比编一个数好。
+填不上的令牌原样保留花括号——看得见缺口比编一个数好。
 """
 from __future__ import annotations
 
@@ -24,7 +23,7 @@ import re
 from functools import lru_cache
 from typing import List
 
-from .localization import equipments_text, item_internal_name
+from .localization import ability_display_name, equipments_text, item_internal_name
 
 _TOKEN = re.compile(r'\{([0-9A-Za-z_]+)\}')
 
@@ -65,16 +64,37 @@ def legendary_lines(gd, display_name: str) -> List[str]:
 
 
 def _pool(gd, effects: list) -> list:
-    """取值池 = 全部特效 + 它们引用的状态记录（`{duration}` 只存在于 StatusEffectData）。"""
+    """取值池 = 全部特效 + 它们引用的外部记录（`{duration}` 在 StatusEffectData、
+    `{ability}` 在 AbilityData）。
+
+    引用在这里就地展开成「同形字段」而不是另开文字通道：技能名以 `{SummoningAbility: 名}`
+    的形状入池，`_text_field` 就能像数值字段一样按名字找到它（`{ability}` 由后缀命中）。
+    """
     pool = list(effects)
     index = _status_index(getattr(gd, 'dir', ''))
     for eff in effects:
         for key, val in (eff or {}).items():
-            if isinstance(val, dict) and 'Status' in key and val.get('pathID'):
-                rec = index.get(int(val['pathID']))
+            if not isinstance(val, dict) or not val.get('pathID'):
+                continue
+            pid = int(val['pathID'])
+            if 'ability' in key.lower():
+                name = _ability_name(gd, pid)
+                if name:
+                    pool.append({key: name})
+            elif 'Status' in key:
+                rec = index.get(pid)
                 if rec:
                     pool.append(rec)
     return pool
+
+
+def _ability_name(gd, path_id: int) -> str:
+    """技能引用 pathID → 简中名。`_name` 是混淆名（`MonkSpecial4`），必须过本地化表。"""
+    try:
+        name = gd.ability_name_by_pathid().get(int(path_id))
+    except (AttributeError, OSError, ValueError, TypeError):
+        return ''
+    return ability_display_name(gd, name) if name else ''
 
 
 @lru_cache(maxsize=4)
@@ -123,6 +143,7 @@ def _fill(text: str, pool: list, cls_key: str) -> str:
 
     取值优先级：令牌声明（`XxxToken{Name,Format}`，含嵌套在托管引用里的，如 AttackScaling
     → `{damage}` 的 `0.#%`）> 同名字段 > 该类登记的别名 > 后缀匹配 > 前缀匹配。
+    数值全都不中时才试文字字段（技能名等），避免「伤害」被填成一个名字。
     都对不上就原样保留：宁可露出 `{x}` 也不编一个数。
     """
     if '{' not in text:
@@ -151,7 +172,8 @@ def _fill(text: str, pool: list, cls_key: str) -> str:
             if fname.lower().endswith('multiplier'):
                 return f'{(val - 1.0) * 100:g}%'
             return _fmt(val, '', key)
-        return m.group(0)
+        word = _text_field(pool, key)
+        return word or m.group(0)
 
     return _TOKEN.sub(repl, text)
 
@@ -201,6 +223,25 @@ def _field(pool: list, name: str, cls_key: str = ''):
         hits = [(k, v) for k, v in pairs if match(k)]
         if hits:
             return min(hits, key=lambda kv: len(kv[0]))       # 最短的那个最贴近令牌名
+    return None
+
+
+def _text_field(pool: list, name: str):
+    """按字段名取文字值（技能名等）；匹配顺序与 `_field` 同构，但不参与数值格式化。
+
+    `{ability}` 与字段 `SummoningAbility` 词形不同，靠后缀档命中——这是 `_pool` 把技能引用
+    以 `{原名: 简中名}` 入池换来的；不额外登记别名，加了新引用字段便自动可用。
+    """
+    want = str(name).replace('_', '').lower()
+    pairs = [(key, val) for eff in pool for key, val in (eff or {}).items()
+             if not key.startswith('_') and isinstance(val, str) and val]
+    for k, v in pairs:
+        if k.replace('_', '').lower() == want:
+            return v
+    for match in (lambda k: k.lower().endswith(want), lambda k: k.lower().startswith(want)):
+        hits = [(k, v) for k, v in pairs if match(k)]
+        if hits:
+            return min(hits, key=lambda kv: len(kv[0]))[1]
     return None
 
 

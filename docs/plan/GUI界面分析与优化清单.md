@@ -447,13 +447,16 @@ T1（`memory_import.py` 749 → **615 有效行**；拆出 `memory_errors` 14 / 
 - 注入式接口：`ItemEditor(..., legendary_fn=(名称 → 文案行))`，由 `equipment_editor` 传
   `core.legendary.legendary_lines`；控件本身不知道数据从哪来（与 `name_resolver`/`range_hint` 同款）。
 - `core/legendary.py` 新增；`localization.equipments_text(gd)` 开一个查描述表的公开入口。
+- 取值池（`_pool`）把外部引用就地展开成同形字段：状态引用 → `StatusEffectData` 记录（`{duration}`），
+  技能引用 → `AbilityData` 简中名（`{ability}` ← `SummoningAbility`）。文字值只在一个数值全不中的
+  兜底档参与匹配，避免「伤害」被填成一个技能名。
 
 ### 10.3 验证
 
 | 检查 | 结果 |
 |---|---|
-| `--selftest` | **65/65**（新增 3 条：文案三层来源与令牌填值；武器区显隐双向；非武器槽也有词条行） |
-| 覆盖 | 67/67 件有特效的装备都能出文案；仅 `LegendaryShoulder5` 的 `{ability}` 未填（数据源在 AbilityData 之外，原样保留花括号并在 tooltip 说明） |
+| `--selftest` | **66/66**（上次新增 3 条：文案三层来源与令牌填值；武器区显隐双向；非武器槽也有词条行。本轮 +2：跨表技能名填值；全量 67 件无残留令牌） |
+| 覆盖 | 67/67 件有特效的装备都能出文案，**零残留花括号**；`{ability}` 走特效的 `SummoningAbility` 引用 → `AbilityData._name` → 本地化名（`LegendaryShoulder5` → 灵体分身） |
 | 实机取样 | 武器 `苦痛锯齿巨剑` → 「对易伤目标额外获得30%暴击几率。」且三行隐藏；`旧武器·双手剑` → 三行回到可见；胸甲 `不屈胸甲` → 「生命值低于30%时受到伤害，进入无敌状态，持续4秒。（冷却25秒）」 |
 | 逐槽 | 夹具 β 的 10 个非武器槽（头/胸/腿/靴/腰/戒指×2/项链/护肩/手套）全部解析出词条 |
 | QSS | 新增 `#legendaryText` 已纳入 `_qss_anchors` 双向对账（零死锚） |

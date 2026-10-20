@@ -48,6 +48,11 @@
       "reason": "自检用的**合成指针**：0x100000 只验证「第 i 个技能指针 ↔ 第 i 个名字」的展开位置，0x1234 是非空状态指针的占位（验证「带 RequiredStatus 的换算条目要丢弃」），都不指向游戏里的任何目标"
     },
     {
+      "file": "tools/deskrawl_gui/selftest_effects.py",
+      "token": "0x1234",
+      "reason": "同上：面板复算自检里「需带状态才生效的换算」用非空状态指针占位，验证跳过 + 告警，不指向任何目标"
+    },
+    {
       "file": "tools/scripts/rva_audit.py",
       "token": "0x1000",
       "reason": "本脚本的「微常量上限」判定阈值（低于它的字面量直接归入非地址），是规则参数不是地址"
@@ -272,6 +277,8 @@
       {"path": "talent_effect_conditional_stat", "mode": "const", "expect": {"mod_stride": "0x38", "mod_per_stride": "0x14"}},
       {"path": "talent_effect_stat_conversion", "klass": "TalentEffect_StatConversion", "mode": "field",
        "keep": ["source", "target", "fraction", "status"]},
+      {"path": "player_conversions", "klass": "Player", "mode": "field", "keep": ["odd", "odl"]},
+      {"path": "player_conversions", "mode": "const", "expect": {"stride": "0x18"}},
       {"path": "talent_effect_ability_modifier", "mode": "const", "expect": {"per_level_stride": "0x14"}},
       {"path": "singleton_getters", "mode": "rva", "keys": "rva"},
       {"path": "save_system.anchor_rvas", "mode": "rva"},

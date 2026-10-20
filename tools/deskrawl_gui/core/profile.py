@@ -56,7 +56,9 @@ def _panel_finals(payload: dict) -> dict:
     """
     from . import calc_service          # 延迟导入：calc_service 顶层引 profile，避免循环导入
     try:
-        rows = calc_service.build_panel(payload)['rows']
+        # 必须取**不含换算**的面板值：base 是「换算之前」的残差基座，消费侧 `_apply_conversions`
+        # 会按当前装备/天赋把换算补上；这里若带入换算，等于同一份换算算两次。
+        rows = calc_service.build_panel(payload, with_conversions=False)['rows']
     except Exception:
         return {}
     return {int(r[0]): float(r[5]) for r in rows if r[5] is not None}
@@ -93,7 +95,9 @@ def _align_primary_stat(prof, payload, gd):
     if ps is None or gd is None:
         return
     from . import calc_service     # 延迟导入：calc_service 顶层引 profile，避免循环导入
-    row = {int(r[0]): r for r in calc_service.build_panel(payload)['rows']}.get(int(ps))
+    # 同样取不含换算的口径：主属性残差要与 base 同层，否则换算会被反解进 base 再算一次
+    rows = calc_service.build_panel(payload, with_conversions=False)['rows']
+    row = {int(r[0]): r for r in rows}.get(int(ps))
     if not row:
         return
     sheet = prof.to_sheet(gd)

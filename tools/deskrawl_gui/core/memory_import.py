@@ -21,6 +21,7 @@ import struct
 import time
 from typing import List
 
+from .memory_conversions import read_registered, read_talent
 from .memory_errors import MemoryImportError
 from .memory_locate import Locator
 from .memory_reader import (ActkCodec, Il2CppReader, MemoryReadError, ProcessReader,
@@ -514,34 +515,16 @@ class SnapshotBuilder:
                             'mods': mods})
         return out
 
-    def _read_talent_stat_conversions(self, player):
-        """读已点天赋的属性换算（`TalentEffect_StatConversion`）。
+    def _read_conversions(self, player):
+        """两条换算注册表（装备侧 0x318 / 天赋侧 0x350）——实现见 memory_conversions。"""
+        return read_registered(self.pr, self.il, self.off.get('player_conversions') or {},
+                               player, self._warn)
 
-        为什么必须单读：换算是 `Player.PanelStat`(0x503350) **读取时**按 `Final(源)×Fraction`
-        现算的（→ `Player.ffq` 0x5054B0），既不进聚合字典也不写回，静态表之外无处可取。
-        `RequiredStatus` 非空（SorcererTalent33 需冰封）静态不可判，原样输出、由 profile 决定去留。
-        """
-        te = self.off.get('talent_effect_stat_conversion') or {}
-        if not te:
-            return []
-        stride = offset(te['per_level_stride'])
-        voff = offset(te['fraction'])
-        out = []
-        for obj, pts in self._talent_effect_objs(player):
-            nm, _ = self.il.klass_name(obj)
-            if nm != te['klass']:
-                continue
-            base = self.codec.obsc_float(obj + voff)
-            per = self.codec.obsc_float(obj + voff + stride)
-            if base is None or per is None:
-                continue
-            status = self.pr.u64(obj + offset(te['status']))
-            out.append({'source': self.pr.i32(obj + offset(te['source'])),
-                        'target': self.pr.i32(obj + offset(te['target'])),
-                        'status': int(status) if valid_ptr(status) else 0,
-                        'base': float(base), 'per': float(per),
-                        'value': float(base) + (pts - 1) * float(per)})
-        return out
+    def _read_talent_stat_conversions(self, player):
+        """天赋侧换算模板（`TalentEffect_StatConversion`）——实现见 memory_conversions。"""
+        return read_talent(self._talent_effect_objs(player), self.pr, self.codec,
+                           self.off.get('talent_effect_stat_conversion') or {},
+                           lambda o: self.il.klass_name(o)[0])
 
     def _read_talent_bonus_damage(self, player):
         """读天赋的条件加伤（`TalentEffect_ConditionalBonusDamage`）。
@@ -725,6 +708,7 @@ class SnapshotBuilder:
             'talent_bonus_effects': self._read_talent_bonus_damage(player),
             'talent_stat_mods': self._read_talent_conditional_stat(player),
             'talent_stat_conversions': self._read_talent_stat_conversions(player),
+            'conversions': self._read_conversions(player),
             'paragon': self._read_paragon(),
             'runes': self._read_runes(),
             'inventory': self._read_slots(self.pr.u64(self.inv + self.off['inventory']['slots'])),
@@ -819,6 +803,7 @@ def import_snapshot(double_read=True) -> SnapshotResult:
             'talent_bonus_effects': payload['talent_bonus_effects'],
             'talent_stat_mods': payload['talent_stat_mods'],
             'talent_stat_conversions': payload['talent_stat_conversions'],
+            'conversions': payload['conversions'],
             'paragon': payload['paragon'],
             'runes': payload['runes'],
         },

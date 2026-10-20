@@ -6,7 +6,7 @@
  },
  "old_dump_ref": "3c42617",
  "summary": {
-  "literal": 112,
+  "literal": 113,
   "valid": 213,
   "valid_renamed": 3,
   "data_valid": 23,
@@ -18,8 +18,8 @@
   "unknown": 0,
   "historical": 388,
   "deprecated": 29,
-  "total": 768,
-  "files": 55
+  "total": 769,
+  "files": 56
  },
  "findings": [
   {
@@ -1220,7 +1220,7 @@
   },
   {
    "file": "docs/04-伤害计算与属性关联.md",
-   "line": 418,
+   "line": 422,
    "token": "0x76F5F0",
    "value": "0x76f5f0",
    "annotation": null,
@@ -1234,7 +1234,7 @@
   },
   {
    "file": "docs/04-伤害计算与属性关联.md",
-   "line": 418,
+   "line": 422,
    "token": "0x771590",
    "value": "0x771590",
    "annotation": null,
@@ -1248,7 +1248,7 @@
   },
   {
    "file": "docs/04-伤害计算与属性关联.md",
-   "line": 418,
+   "line": 422,
    "token": "0x771DC0",
    "value": "0x771dc0",
    "annotation": null,
@@ -1262,7 +1262,7 @@
   },
   {
    "file": "docs/04-伤害计算与属性关联.md",
-   "line": 431,
+   "line": 435,
    "token": "0x4A9D80",
    "value": "0x4a9d80",
    "annotation": "wo",
@@ -8067,17 +8067,17 @@
   {
    "file": "docs/plan/传奇特效清点清单.md",
    "line": 155,
-   "token": "0x180518230",
-   "value": "0x180518230",
+   "token": "0x512010",
+   "value": "0x512010",
    "annotation": null,
-   "context": "0` 命中超过扫描上限 80 条被截断，且暴伤链在 `Player.CalcDamage` @`",
+   "context": "d` 特化，`dump.cs` 无对应方法起始故不写地址；入口封装 `Player.fks`@`",
    "status": "valid",
    "label": "仍有效（方法）",
-   "detail": "Player::bkx(long a, float b) { }) Slot=12",
+   "detail": "Player::fks(TargetStateCondition a, StatusEffectData b, float c, bool d) { }) Slot=None",
    "new_addr": null,
    "evidence": "",
-   "method": "Player::bkx",
-   "slot": 12
+   "method": "Player::fks",
+   "slot": null
   },
   {
    "file": "docs/plan/传奇特效清点清单.md",
@@ -8799,7 +8799,7 @@
   },
   {
    "file": "tools/deskrawl_gui/core/calc_service.py",
-   "line": 586,
+   "line": 587,
    "token": "0x513490",
    "value": "0x513490",
    "annotation": "Player.EvaluateCondition",
@@ -8826,8 +8826,38 @@
    "evidence": ""
   },
   {
+   "file": "tools/deskrawl_gui/core/memory_conversions.py",
+   "line": 8,
+   "token": "0x503350",
+   "value": "0x503350",
+   "annotation": "Player.PanelStat",
+   "context": "换算为什么只能从内存/天赋点取：`Player.PanelStat`(",
+   "status": "valid",
+   "label": "仍有效（方法）",
+   "detail": "语义别名 Player.PanelStat → 当期 Player::bkj",
+   "new_addr": null,
+   "evidence": "",
+   "method": "Player::bkj",
+   "alias": "Player.PanelStat"
+  },
+  {
+   "file": "tools/deskrawl_gui/core/memory_conversions.py",
+   "line": 8,
+   "token": "0x5054B0",
+   "value": "0x5054b0",
+   "annotation": "Player.ffq",
+   "context": "yer.PanelStat`(0x503350) 在**读取时**调 `Player.ffq`(",
+   "status": "valid",
+   "label": "仍有效（方法）",
+   "detail": "Player::ffq(StatType a, List<ValueTuple<StatType, StatType, double, StatusEffectData>> conversions) { }) Slot=None",
+   "new_addr": null,
+   "evidence": "",
+   "method": "Player::ffq",
+   "slot": null
+  },
+  {
    "file": "tools/deskrawl_gui/core/memory_import.py",
-   "line": 315,
+   "line": 316,
    "token": "0x503C70",
    "value": "0x503c70",
    "annotation": "Player.ConditionalModValue",
@@ -8842,7 +8872,7 @@
   },
   {
    "file": "tools/deskrawl_gui/core/memory_import.py",
-   "line": 346,
+   "line": 347,
    "token": "0x4DB980",
    "value": "0x4db980",
    "annotation": "StatusEffectController.SumStatBonus",
@@ -8854,36 +8884,6 @@
    "evidence": "",
    "method": "StatusEffectController::bhk",
    "alias": "StatusEffectController.SumStatBonus"
-  },
-  {
-   "file": "tools/deskrawl_gui/core/memory_import.py",
-   "line": 520,
-   "token": "0x503350",
-   "value": "0x503350",
-   "annotation": "Player.PanelStat",
-   "context": "        为什么必须单读：换算是 `Player.PanelStat`(",
-   "status": "valid",
-   "label": "仍有效（方法）",
-   "detail": "语义别名 Player.PanelStat → 当期 Player::bkj",
-   "new_addr": null,
-   "evidence": "",
-   "method": "Player::bkj",
-   "alias": "Player.PanelStat"
-  },
-  {
-   "file": "tools/deskrawl_gui/core/memory_import.py",
-   "line": 521,
-   "token": "0x5054B0",
-   "value": "0x5054b0",
-   "annotation": "Player.ffq",
-   "context": "        现算的（→ `Player.ffq`",
-   "status": "valid",
-   "label": "仍有效（方法）",
-   "detail": "Player::ffq(StatType a, List<ValueTuple<StatType, StatType, double, StatusEffectData>> conversions) { }) Slot=None",
-   "new_addr": null,
-   "evidence": "",
-   "method": "Player::ffq",
-   "slot": null
   },
   {
    "file": "tools/deskrawl_gui/core/memory_reader.py",
@@ -9051,7 +9051,7 @@
   },
   {
    "file": "tools/deskrawl_gui/core/profile.py",
-   "line": 409,
+   "line": 413,
    "token": "0x518230",
    "value": "0x518230",
    "annotation": "Player.CalcDamage",
@@ -9066,7 +9066,7 @@
   },
   {
    "file": "tools/deskrawl_gui/core/profile.py",
-   "line": 410,
+   "line": 414,
    "token": "0x500CA0",
    "value": "0x500ca0",
    "annotation": "Player.PrimaryStatValue",
@@ -9081,7 +9081,7 @@
   },
   {
    "file": "tools/deskrawl_gui/core/profile.py",
-   "line": 443,
+   "line": 447,
    "token": "0x503350",
    "value": "0x503350",
    "annotation": "PanelStat",
@@ -9096,7 +9096,7 @@
   },
   {
    "file": "tools/deskrawl_gui/core/profile.py",
-   "line": 443,
+   "line": 447,
    "token": "0x5054B0",
    "value": "0x5054b0",
    "annotation": "ffq",
@@ -9126,7 +9126,20 @@
   },
   {
    "file": "tools/deskrawl_gui/selftest_effects.py",
-   "line": 15,
+   "line": 29,
+   "token": "0x1234",
+   "value": "0x1234",
+   "annotation": null,
+   "context": "ce': 7, 'target': 2, 'fraction': 0.10, 'status':",
+   "status": "literal",
+   "label": "非地址（白名单/自动规则）",
+   "detail": "同上：面板复算自检里「需带状态才生效的换算」用非空状态指针占位，验证跳过 + 告警，不指向任何目标",
+   "new_addr": null,
+   "evidence": ""
+  },
+  {
+   "file": "tools/deskrawl_gui/selftest_effects.py",
+   "line": 48,
    "token": "0x1806885C0",
    "value": "0x1806885c0",
    "annotation": null,
@@ -9141,7 +9154,7 @@
   },
   {
    "file": "tools/deskrawl_gui/selftest_fixture.py",
-   "line": 86,
+   "line": 88,
    "token": "0x518230",
    "value": "0x518230",
    "annotation": "Player.CalcDamage",
@@ -9156,7 +9169,7 @@
   },
   {
    "file": "tools/deskrawl_gui/selftest_fixture.py",
-   "line": 146,
+   "line": 148,
    "token": "0x18071B670",
    "value": "0x18071b670",
    "annotation": "cjb",
@@ -11214,6 +11227,20 @@
    "ok": true,
    "count": 4,
    "note": "全部命中"
+  },
+  {
+   "path": "player_conversions",
+   "mode": "field",
+   "ok": true,
+   "count": 2,
+   "note": "全部命中"
+  },
+  {
+   "path": "player_conversions",
+   "mode": "const",
+   "ok": true,
+   "count": 1,
+   "note": "结构尺寸与声明一致"
   },
   {
    "path": "talent_effect_ability_modifier",

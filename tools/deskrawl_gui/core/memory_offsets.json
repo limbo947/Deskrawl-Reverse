@@ -85,6 +85,11 @@
     "source": "0x18", "target": "0x1c", "fraction": "0x20",
     "status": "0x50", "per_level_stride": "0x14"
   },
+  "player_conversions": {
+    "$comment": "属性换算注册表：`Player.odd`@0x318（装备侧，EquipmentEffect_StatConversion.bzw 注册）与 `Player.odl`@0x350（天赋侧，TalentEffect_StatConversion.cjq 注册），两者类型相同、消费时被 `Player.ffq` 分别求和后一起加进平坦层。元素 = ValueTuple<StatType, StatType, double, StatusEffectData>：SourceStat@+0 / TargetStat@+4 / Fraction(double)@+8 / RequiredStatus@+0x10，**stride 0x18**（4+4+8+8 对齐）。为什么必须读内存：注册内容取决于角色当前装备与天赋点，静态表只有模板；且换算不写回聚合字典，面板复算得自己加这一层。",
+    "odd": "0x318", "odl": "0x350",
+    "stride": "0x18", "source": "0x0", "target": "0x4", "fraction": "0x8", "status": "0x10"
+  },
   "controller": {"player": "0x20"},
   "player": {
     "klass": "Player",

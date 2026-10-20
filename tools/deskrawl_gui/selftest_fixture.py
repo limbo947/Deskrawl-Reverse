@@ -73,8 +73,10 @@ def _snapshot_checks(rep: Report):
     sheet = prof.to_sheet(gd)
     sheet.add_mods(prof.weapon_current.to_weapon().modifiers)
     # 期望 = 面板行 final（基座已改用 build_panel 面板口径：nsq 只是平坦层，用它比对会让
-    # 暴伤/暴击率/物理% 等少读，见 profile._panel_finals 的实测记录）
-    prow = {int(r[0]): float(r[5]) for r in calc_service.build_panel(beta)['rows']
+    # 暴伤/暴击率/物理% 等少读，见 profile._panel_finals 的实测记录）。取 with_conversions=False：
+    # 基座与 sheet 同层（换算由 `_apply_conversions` 显式后置），否则比的是两种口径
+    prow = {int(r[0]): float(r[5])
+            for r in calc_service.build_panel(beta, with_conversions=False)['rows']
             if r[5] is not None}
     expect = {st: prow.get(st, v) for st, v in nsq.items()}
     bad = [st for st, v in sorted(expect.items()) if sheet.final(st) != v]

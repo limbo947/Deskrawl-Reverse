@@ -120,6 +120,24 @@ def _talent_conversion_row_ok(rec, klo: int, khi: int) -> bool:
         return False
 
 
+def _conversion_row_ok(rec, klo: int, khi: int) -> bool:
+    """已注册换算行：源/目标落在 StatType 稀疏域、系数有限（允许 >1，Dodge→暴伤是 ×2.0）。
+
+    注册侧本就要求 `src != tgt` 且 `frac != 0`，这里不重复判——只挡撕裂读/结构漂移。
+    """
+    try:
+        if not isinstance(rec, dict):
+            return False
+        if not klo <= int(rec['source']) <= khi or not klo <= int(rec['target']) <= khi:
+            return False
+        if int(rec['status']) < 0:
+            return False
+        frac = float(rec['fraction'])
+        return math.isfinite(frac) and abs(frac) <= 1e3
+    except (KeyError, TypeError, ValueError):
+        return False
+
+
 def validate_snapshot(payload: dict, off: dict):
     """硬校验（宁红不脏）：等级/字段/字典键域值域/UID 唯一性；任一失败抛 MemoryImportError。
 
@@ -189,6 +207,9 @@ def validate_snapshot(payload: dict, off: dict):
     for rec in payload.get('talent_stat_conversions') or []:
         if not _talent_conversion_row_ok(rec, klo, khi):
             raise MemoryImportError(f'天赋属性换算条目异常：{rec}')
+    for rec in payload.get('conversions') or []:
+        if not _conversion_row_ok(rec, klo, khi):
+            raise MemoryImportError(f'属性换算表条目异常：{rec}')
     for label, rows in payload.get('conditionals', {}).items():
         for r in rows:
             if (r[0] not in (-1, 0, 1, 2, 3, 4, 5) or not klo <= r[2] <= khi

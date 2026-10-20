@@ -10,7 +10,7 @@ import copy
 import json
 import os
 from dataclasses import dataclass, field
-from typing import List
+from typing import Dict, List
 
 from deskrawl_calc import (DamageModel, Modifier, StatSheet, StatType, Target, Weapon,
                            compare_weapons, effects, stat_name)
@@ -577,14 +577,19 @@ def _lookup(d, stat):
     return float(d.get(str(stat), 0.0))
 
 
-def build_panel(payload: dict) -> dict:
+def build_panel(payload: dict, with_conversions: bool = True) -> dict:
     """把内存快照复算成「游戏面板口径」属性表（bjd 反汇编还原，与游戏「属性」页逐行一致）。
 
     panel(stat) = cap( g3×(core + g1)×(1+g2) )
-    core(stat)  = (Σ平坦字典 + 基础字段 + 主属性 + far(护甲←力量/魔抗←智力) + 条件表平坦)
+    core(stat)  = (Σ平坦字典 + 基础字段 + 主属性 + far(护甲←力量/魔抗←智力) + 条件表平坦
+                   + Σ换算(源面板值×系数))
                   × (1 + Σ百分比字典 + 条件表百分比)   [7/8/9/10 再 ×(1+对应%属性的 core)]
     条件求值：None(-1) 恒真；Healthy=血比例>0.8；Injured<0.3（Player.EvaluateCondition@0x513490 实证）；
     敌情类（2/3/4/5）与带技能/状态门控的条目无法从快照静态判定 → 不计入并记告警。
+
+    `with_conversions` 为什么可关：换算（`Player.odd`/`odl` → `ffq`）加在平坦层、不写回聚合字典，
+    所以**基座**（`profile._panel_finals`）必须取不含换算的面板值，否则消费侧的
+    `_apply_conversions` 会把它再加一遍（重复计）。展示用（`profile.panel`）才要含换算的真面板值。
     返回 {'time','mode','hp_frac','rows','warnings'}；row = [stat, flat, cond, pct, mult, final, text]。
     """
     from deskrawl_calc.stattype import CAPPED_085, CAPPED_080, CAPPED_090
@@ -624,6 +629,18 @@ def build_panel(payload: dict) -> dict:
         warn(f'条件「{_COND_CN.get(c, c)}」属敌情类，快照无法静态判定，未计入')
         return False
 
+    # 换算按目标属性归档（源→目标×系数）；带状态门控的条目静态不可判 → 跳过并告警一次
+    conv_map: Dict[int, list] = {}
+    gated = 0
+    for rec in (player.get('conversions') or []) if with_conversions else ():
+        if int(rec.get('status') or 0):
+            gated += 1
+            continue
+        conv_map.setdefault(int(rec['target']), []).append(
+            (int(rec['source']), float(rec['fraction'])))
+    if gated:
+        warn(f'属性换算有 {gated} 条依赖状态，面板复算未计入')
+
     def fat(stat, mtype, hp_frac):
         total = 0.0
         for cond, _radius, s, t, v, gated in (conds.get('nuf') or []):
@@ -642,10 +659,15 @@ def build_panel(payload: dict) -> dict:
                 total += float(v)
         return total
 
-    def parts(stat, depth=0, hp_frac=1.0):
+    def parts(stat, depth=0, hp_frac=1.0, use_conv=True):
         flat = sum(x.get(stat, 0.0) for x in flat_d) + base_field.get(stat, 0.0)
         if pstat is not None and stat == int(pstat):
             flat += float(f.get('BasePrimaryStat') or 0.0)
+        if use_conv and stat in conv_map:
+            # 源取「不含换算的面板值」（与游戏 ffq 一致：换算加在平坦层，源同样在平坦层之前取），
+            # 深度固定 0 让源带上自己的特殊%（生命/护甲等）；链式换算按单层取源（数据域无链）
+            flat += sum(parts(src, 0, hp_frac, use_conv=False)[4] * frac
+                        for src, frac in conv_map[stat] if src != stat)
         if depth == 0 and stat == 8:
             flat += core(0, depth + 1, hp_frac)      # far：护甲 ← 力量（bjd 会递归）
         elif depth == 0 and stat == 9:

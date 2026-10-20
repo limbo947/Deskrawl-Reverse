@@ -3,13 +3,13 @@
 - 命令：`python rva_audit.py --check --falsify`
 - 当期 GameAssembly.dll SHA-256：`f23ae23f8714fa5a49b9ab4b8ae767c33f7e50afad47284d81121354d1677a46`
 - 旧构建 dump.cs 来源：`git show 3c42617:data/schema/dump.cs`
-- 扫描：55 个文件 / 768 条地址字面量
+- 扫描：56 个文件 / 769 条地址字面量
 
 ## 0. 结论摘要
 
 | 判定 | 条数 |
 |---|---|
-| 非地址（白名单/自动规则） | 112 |
+| 非地址（白名单/自动规则） | 113 |
 | 仍有效（方法） | 213 |
 | 仍有效（注释里的方法名已过期） | 3 |
 | 仍有效（数据地址） | 23 |
@@ -21,7 +21,7 @@
 | 无法判定（人工确认） | 0 |
 | 历史对照（有意保留的旧地址） | 388 |
 | 弃用探针（理由已写入文档） | 29 |
-| **合计** | **768** |
+| **合计** | **769** |
 
 ## 1. 已失效与重算值（写回源码前需人工复核）
 
@@ -34,7 +34,7 @@
 |---|---|---|
 | `docs/08-常量设计要点与待办.md:403` | EquipmentManager.ddj | 注释名 EquipmentManager.ddj → 当期名 czj；AudioManager::czj(int a) { }) Slot=None |
 | `docs/09-存档解密与数据汇总报表.md:21` | je.jc.evd | 注释名 je.jc.evd → 当期名 ewr；jg.je::ewr() { }) Slot=None |
-| `tools/deskrawl_gui/core/profile.py:443` | PanelStat | 注释名 PanelStat → 当期名 bkj；Player::bkj(StatType a) { }) Slot=10 |
+| `tools/deskrawl_gui/core/profile.py:447` | PanelStat | 注释名 PanelStat → 当期名 bkj；Player::bkj(StatType a) { }) Slot=10 |
 
 ## 3. 白名单：判为非地址（每条必须写明理由）
 
@@ -115,6 +115,7 @@
 | `tools/deskrawl_gui/core/memory_reader.py:264` | `0x80000000` | 值 0x80000000 超出映像范围（max_rva=0x41d6000），是掩码/哨兵而非地址 |
 | `tools/deskrawl_gui/core/memory_reader.py:287` | `0xFFFFFFFF` | 值 0xFFFFFFFF 超出映像范围（max_rva=0x41d6000），是掩码/哨兵而非地址 |
 | `tools/deskrawl_gui/core/memory_reader.py:302` | `0xFF0000FF` | 值 0xFF0000FF 超出映像范围（max_rva=0x41d6000），是掩码/哨兵而非地址 |
+| `tools/deskrawl_gui/selftest_effects.py:29` | `0x1234` | 同上：面板复算自检里「需带状态才生效的换算」用非空状态指针占位，验证跳过 + 告警，不指向任何目标 |
 | `tools/deskrawl_gui/selftest_skillmods.py:22` | `0x100000` | 自检用的**合成指针**：0x100000 只验证「第 i 个技能指针 ↔ 第 i 个名字」的展开位置，0x1234 是非空状态指针的占位（验证「带 RequiredStatus 的换算条目要丢弃」），都不指向游戏里的任何目标 |
 | `tools/deskrawl_gui/selftest_skillmods.py:30` | `0x100000` | 自检用的**合成指针**：0x100000 只验证「第 i 个技能指针 ↔ 第 i 个名字」的展开位置，0x1234 是非空状态指针的占位（验证「带 RequiredStatus 的换算条目要丢弃」），都不指向游戏里的任何目标 |
 | `tools/deskrawl_gui/selftest_skillmods.py:111` | `0x1234` | 自检用的**合成指针**：0x100000 只验证「第 i 个技能指针 ↔ 第 i 个名字」的展开位置，0x1234 是非空状态指针的占位（验证「带 RequiredStatus 的换算条目要丢弃」），都不指向游戏里的任何目标 |
@@ -249,10 +250,10 @@
 | `docs/04-伤害计算与属性关联.md:237` | `0x180567670` | 无法判定（人工确认） | — | `面板评分还有 `EquipmentUI.gdw()`（`` |
 | `docs/04-伤害计算与属性关联.md:306` | `0x1806894A0` | 无法判定（人工确认） | — | `3 `bme` @ `0x1806893E0`）尾部（`` |
 | `docs/04-伤害计算与属性关联.md:306` | `0x1806895E4` | 无法判定（人工确认） | — | `806893E0`）尾部（`0x1806894A0`–`` |
-| `docs/04-伤害计算与属性关联.md:418` | `0x76F5F0` | 无法判定（人工确认） | — | `值 Roll 公式** ✅（`gg.dna` RVA `` |
-| `docs/04-伤害计算与属性关联.md:418` | `0x771590` | 无法判定（人工确认） | — | ` `0x76F5F0` / `gg.dnt` RVA `` |
-| `docs/04-伤害计算与属性关联.md:418` | `0x771DC0` | 无法判定（人工确认） | — | `x771590` / `gg..cctor` RVA `` |
-| `docs/04-伤害计算与属性关联.md:431` | `0x4A9D80` | 无法判定（人工确认） | — | `ackScaling.PerLevel   ← wo()` |
+| `docs/04-伤害计算与属性关联.md:422` | `0x76F5F0` | 无法判定（人工确认） | — | `值 Roll 公式** ✅（`gg.dna` RVA `` |
+| `docs/04-伤害计算与属性关联.md:422` | `0x771590` | 无法判定（人工确认） | — | ` `0x76F5F0` / `gg.dnt` RVA `` |
+| `docs/04-伤害计算与属性关联.md:422` | `0x771DC0` | 无法判定（人工确认） | — | `x771590` / `gg..cctor` RVA `` |
+| `docs/04-伤害计算与属性关联.md:435` | `0x4A9D80` | 无法判定（人工确认） | — | `ackScaling.PerLevel   ← wo()` |
 | `docs/07-实测数值-内容数据.md:74` | `0x706A50` | 无法判定（人工确认） | — | `or`（补丁后 RVA `0x715FE0`，补丁前 `` |
 | `docs/08-常量设计要点与待办.md:19` | `0x4A9C30` | 无法判定（人工确认） | — | `| 属性数值封顶 | `0.85` | `` |
 | `docs/08-常量设计要点与待办.md:19` | `0x18362A250` | 无法判定（人工确认） | — | `封顶 | `0.85` | `0x4A9C30` / `` |
@@ -658,6 +659,8 @@
 | `player.conditional_mods` | const | ✅ | 结构尺寸与声明一致 |
 | `talent_effect_conditional_stat` | const | ✅ | 结构尺寸与声明一致 |
 | `talent_effect_stat_conversion` | field | ✅ | 全部命中 |
+| `player_conversions` | field | ✅ | 全部命中 |
+| `player_conversions` | const | ✅ | 结构尺寸与声明一致 |
 | `talent_effect_ability_modifier` | const | ✅ | 结构尺寸与声明一致 |
 | `singleton_getters` | rva | ✅ | 全部命中 |
 | `save_system.anchor_rvas` | rva | ✅ | 全部命中 |

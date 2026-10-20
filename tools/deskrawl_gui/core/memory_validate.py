@@ -80,6 +80,25 @@ def _talent_bonus_row_ok(rec) -> bool:
         return False
 
 
+def _talent_stat_row_ok(rec) -> bool:
+    """天赋条件属性行：条件枚举 + 修正对（Stat 落在 StatType 稀疏域、Type 0–3、Value 有限）。"""
+    try:
+        if not isinstance(rec, dict) or int(rec.get('condition', -99)) not in (-1, 0, 1, 2, 3, 4, 5):
+            return False
+        mods = rec.get('mods') or []
+        if not mods:
+            return False
+        for m in mods:
+            if len(m) != 3 or not 0 <= int(m[0]) <= 70 or not 0 <= int(m[1]) <= 3:
+                return False
+            v = float(m[2])
+            if not math.isfinite(v) or abs(v) > 1e6:
+                return False
+        return True
+    except (KeyError, TypeError, ValueError, IndexError):
+        return False
+
+
 def validate_snapshot(payload: dict, off: dict):
     """硬校验（宁红不脏）：等级/字段/字典键域值域/UID 唯一性；任一失败抛 MemoryImportError。
 
@@ -143,6 +162,9 @@ def validate_snapshot(payload: dict, off: dict):
     for rec in payload.get('talent_bonus_effects') or []:
         if not _talent_bonus_row_ok(rec):
             raise MemoryImportError(f'天赋条件加伤条目异常：{rec}')
+    for rec in payload.get('talent_stat_mods') or []:
+        if not _talent_stat_row_ok(rec):
+            raise MemoryImportError(f'天赋条件属性条目异常：{rec}')
     for label, rows in payload.get('conditionals', {}).items():
         for r in rows:
             if (r[0] not in (-1, 0, 1, 2, 3, 4, 5) or not klo <= r[2] <= khi

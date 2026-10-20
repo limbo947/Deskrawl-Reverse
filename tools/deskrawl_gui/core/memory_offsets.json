@@ -61,6 +61,12 @@
   },
   "ability_mod_stat": {"cooldown": 0, "damage": 2, "crit_chance": 5, "crit_damage": 6,
                        "channel_speed": 8, "strike_count": 9},
+  "talent_effect_conditional_stat": {
+    "$comment": "天赋条件属性（TalentEffect_ConditionalStat）：Condition(PlayerCondition)@0x18 / ChannelingAbility@0x20 / Radius@0x28 / Modifiers(LeveledStatModifier[]，内联 struct，stride 0x38：Stat@+0、Type@+4、Value Base@+8、PerLevel@+0x1C)@0x30。PlayerCondition：Injured=0 Healthy=1 NoNearbyEnemies=2 OutOfCombat=3 SingleEnemy=4 Surrounded=5 None=-1；实测『Injured Gain Dodge』的 Condition 其实是 5(Surrounded)，别按名字猜。",
+    "klass": "TalentEffect_ConditionalStat",
+    "condition": "0x18", "channeling": "0x20", "radius": "0x28", "modifiers": "0x30",
+    "mod_stride": "0x38", "mod_value": "0x8", "mod_per_stride": "0x14"
+  },
   "talent_effect_conditional_bonus": {
     "$comment": "天赋条件加伤（TalentEffect_ConditionalBonusDamage 的 TalentData.Effects 元素）：RequiredStatus@0x18 / Ability@0x20 / Tag@0x28 / RequireOnSelf(bool)@0x2C / BonusDamage(LeveledFloat，PerLevel=Base+0x10)@0x30。与条件暴击同源：按目标状态门控、不进面板聚合值；RequireOnSelf=True 指自身状态，静态工具无自身状态数据故跳过。",
     "klass": "TalentEffect_ConditionalBonusDamage",

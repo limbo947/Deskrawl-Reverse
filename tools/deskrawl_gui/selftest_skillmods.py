@@ -37,6 +37,31 @@ def _talent_mod_checks(rep) -> None:
             f'未命中技能不受影响={neg_ok}；行格式校验={row_ok}')
 
 
+def _talent_stat_checks(rep) -> None:
+    """天赋条件属性：Healthy/None 生效、场景条件不生效、装配只折进成立的那条。"""
+    from deskrawl_calc import GameData
+
+    from .core.profile import CharacterProfile, _condition_ok
+
+    gd = GameData()
+    t = CharacterProfile.demo().to_target()          # 默认目标满血（hp_fraction=1.0）
+    cond_ok = (_condition_ok(1, t) and not _condition_ok(0, t) and _condition_ok(-1, t)
+               and not any(_condition_ok(c, t) for c in (2, 3, 4, 5)))
+    # 装配：Healthy(+3% 闪避) 与 Surrounded(+9%) 各一条，只有前者该进表
+    p = CharacterProfile.demo()
+    p.talent_stat_mods = [
+        {'Condition': 1, 'Modifiers': [{'Stat': 22, 'Type': 0, 'Value': 0.03}]},
+        {'Condition': 5, 'Modifiers': [{'Stat': 22, 'Type': 0, 'Value': 0.09}]},
+    ]
+    p0 = CharacterProfile.demo()
+    p0.talent_stat_mods = []
+    got = p.to_sheet(gd).final(22) - p0.to_sheet(gd).final(22)
+    sheet_ok = abs(got - 0.03) < 1e-9
+    rep.add(cond_ok and sheet_ok,
+            '天赋条件属性（Healthy/None 生效、场景条件不生效、装配只加成立项）',
+            f'条件判定={cond_ok}；装配 Δ闪避={got:.4f}（期望 0.03，Surrounded 的 0.09 不计）')
+
+
 def _talent_bonus_checks(rep) -> None:
     """天赋条件加伤：指纹反查（含「同指纹必须丢弃」） + 状态门控 + RequireOnSelf 跳过。"""
     from deskrawl_calc import GameData, Target, effects

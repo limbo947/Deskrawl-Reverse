@@ -186,6 +186,33 @@ def _talent_crit_effects(raw, gd) -> List[dict]:
     return out
 
 
+def _condition_ok(cond: int, target) -> bool:
+    """`PlayerCondition` 能否在静态口径下判定：只有 None/Healthy/Injured 可以。
+
+    其余（无近敌/脱战/被围/单敌）取决于战斗场景，工具只算单目标稳态，一律视为不成立。
+    """
+    if cond == -1:
+        return True
+    if cond == 1:
+        return float(getattr(target, 'hp_fraction', 1.0)) > 0.8
+    if cond == 0:
+        return float(getattr(target, 'hp_fraction', 1.0)) < 0.3
+    return False
+
+
+def _talent_stat_mods(raw) -> List[dict]:
+    """内存读到的条件属性 → 与静态 JSON 同形的 dict（键名沿用 `Condition`/`Modifiers`）。"""
+    out = []
+    for rec in raw or []:
+        mods = rec.get('mods') or []
+        if not mods:
+            continue
+        out.append({'Condition': int(rec.get('condition', -1)),
+                    'Modifiers': [{'Stat': int(m[0]), 'Type': int(m[1]), 'Value': float(m[2])}
+                                  for m in mods]})
+    return out
+
+
 def _talent_bonus_effects(raw, gd) -> List[dict]:
     """内存读到的条件加伤 → 保真 effect dict（补状态名/技能名）；指纹不唯一就丢弃。
 
@@ -386,6 +413,9 @@ class CharacterProfile:
     # 天赋的「条件加伤」（`TalentEffect_ConditionalBonusDamage` 保真 dict，已补状态/技能名）；
     # 与条件暴击同源——只存在于天赋特效力里、按目标状态门控，故同池消费
     talent_bonus_effects: List[dict] = field(default_factory=list)
+    # 天赋的「条件属性」（`TalentEffect_ConditionalStat`）：`[{Condition, Modifiers:[{Stat,Type,Value}]}]`
+    # 只有 Healthy/None 能静态判；其余是场景条件（无近敌/脱战/被围/单敌），装配时按条件过滤
+    talent_stat_mods: List[dict] = field(default_factory=list)
 
     # --- 计算装配 ---
     def to_sheet(self, gd) -> StatSheet:
@@ -394,6 +424,13 @@ class CharacterProfile:
         for item in self.assembled:
             sheet.add_mods(item.modifiers(gd))
         sheet.add_mods(gd.paragon_modifiers({int(k): int(v) for k, v in self.paragon.items()}))
+        # 天赋条件属性：只加当前口径能判的条件（Healthy/None/Injured），场景条件静态不可得
+        target = self.to_target()
+        for rec in self.talent_stat_mods:
+            if _condition_ok(int(rec.get('Condition', -1)), target):
+                sheet.add_mods([Modifier(int(m['Stat']), int(m.get('Type', 0)),
+                                         float(m['Value']))
+                                for m in rec.get('Modifiers') or []])
         return sheet
 
     def to_target(self) -> Target:
@@ -427,6 +464,7 @@ class CharacterProfile:
                              for k, vv in self.ability_mods.items()},
             'talent_effects': list(self.talent_effects),
             'talent_bonus_effects': list(self.talent_bonus_effects),
+            'talent_stat_mods': list(self.talent_stat_mods),
         }
 
     @classmethod
@@ -458,6 +496,7 @@ class CharacterProfile:
                           for k, vv in (d.get('ability_mods') or {}).items()},
             talent_effects=list(d.get('talent_effects') or []),
             talent_bonus_effects=list(d.get('talent_bonus_effects') or []),
+            talent_stat_mods=list(d.get('talent_stat_mods') or []),
         )
 
     # --- 出厂示例（照抄 cli.demo 场景，用作锚点对拍与首启动演示）---
@@ -528,6 +567,7 @@ class CharacterProfile:
         prof.talent_effects = _talent_crit_effects(player.get('talent_crit_effects') or [], gd)
         prof.talent_bonus_effects = _talent_bonus_effects(
             player.get('talent_bonus_effects') or [], gd)
+        prof.talent_stat_mods = _talent_stat_mods(player.get('talent_stat_mods') or [])
         # 巅峰点数分配：面板 base 已含其贡献，这里落 allocation 供展示/编辑，
         # 并把贡献从 base 反向扣除（paragon_modifiers 恒为 Flat，可精确逆运算）——
         # 否则 to_sheet 再叠加一次会重复计伤；用户随后改点数时按新 allocation 全量重算，语义仍正确。

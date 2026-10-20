@@ -900,7 +900,7 @@ def run_selftest() -> int:
     from .selftest_fixture import _legendary_effect_checks, _panel_checks, _snapshot_checks
     from .selftest_legendary import _legendary_checks
     from .selftest_skillmods import (_talent_bonus_checks, _talent_crit_checks,
-                                     _talent_mod_checks)
+                                     _talent_mod_checks, _talent_stat_checks)
     _snapshot_checks(rep)
     _panel_checks(rep)
     _legendary_effect_checks(rep)
@@ -912,6 +912,7 @@ def run_selftest() -> int:
     _talent_mod_checks(rep)
     _talent_crit_checks(rep)
     _talent_bonus_checks(rep)
+    _talent_stat_checks(rep)
     _health_condition_checks(rep)
     print(f'\n自检结果：{"全部通过" if rep.ok() else "存在失败"}'
           f'（{rep.passed}/{len(rep.checks)}）')

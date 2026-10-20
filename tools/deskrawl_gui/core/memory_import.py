@@ -476,6 +476,44 @@ class SnapshotBuilder:
                 if valid_ptr(obj):
                     yield obj, int(pts)
 
+    def _read_talent_conditional_stat(self, player):
+        """读天赋的条件属性修正（`TalentEffect_ConditionalStat`）。
+
+        只有 `Healthy`(1)/`None`(-1) 能静态判，其余是场景条件（无近敌/脱战/被围/单敌），
+        消费侧按条件过滤后再折进属性表。`Modifiers` 是**内联 struct 数组**（stride 0x38），
+        不是对象指针数组——按 `array_items` 的首地址 + i*stride 直接读。
+        """
+        te = self.off.get('talent_effect_conditional_stat') or {}
+        if not te:
+            return []
+        stride = offset(te['mod_stride'])
+        voff = offset(te['mod_value'])
+        per_off = offset(te['mod_per_stride'])
+        out = []
+        for obj, pts in self._talent_effect_objs(player):
+            nm, _ = self.il.klass_name(obj)
+            if nm != te['klass']:
+                continue
+            try:
+                first, n = self.il.array_items(self.pr.u64(obj + offset(te['modifiers'])))
+            except MemoryReadError:
+                continue
+            mods = []
+            for i in range(n):
+                p = first + i * stride
+                stat = self.pr.i32(p)
+                mtype = self.pr.i32(p + 4)
+                base = self.codec.obsc_float(p + voff)
+                per = self.codec.obsc_float(p + voff + per_off)
+                if stat is None or base is None or per is None:
+                    continue
+                mods.append([int(stat), int(mtype or 0),
+                             float(base) + (pts - 1) * float(per)])
+            if mods:
+                out.append({'condition': self.pr.i32(obj + offset(te['condition'])),
+                            'mods': mods})
+        return out
+
     def _read_talent_bonus_damage(self, player):
         """读天赋的条件加伤（`TalentEffect_ConditionalBonusDamage`）。
 
@@ -656,6 +694,7 @@ class SnapshotBuilder:
             'talent_ability_mods': self._read_talent_ability_mods(player),
             'talent_crit_effects': self._read_talent_crit_effects(player),
             'talent_bonus_effects': self._read_talent_bonus_damage(player),
+            'talent_stat_mods': self._read_talent_conditional_stat(player),
             'paragon': self._read_paragon(),
             'runes': self._read_runes(),
             'inventory': self._read_slots(self.pr.u64(self.inv + self.off['inventory']['slots'])),
@@ -748,6 +787,7 @@ def import_snapshot(double_read=True) -> SnapshotResult:
             'talent_ability_mods': payload['talent_ability_mods'],
             'talent_crit_effects': payload['talent_crit_effects'],
             'talent_bonus_effects': payload['talent_bonus_effects'],
+            'talent_stat_mods': payload['talent_stat_mods'],
             'paragon': payload['paragon'],
             'runes': payload['runes'],
         },

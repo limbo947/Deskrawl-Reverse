@@ -8,6 +8,7 @@
 `data/` 不走 datas —— 由 build_portable.ps1 拷到 exe 同级，同样是为了维持这套同构。
 """
 import os
+import re
 
 ROOT = os.path.abspath(os.path.join(SPECPATH, '..'))          # SPECPATH 由 PyInstaller 注入
 TOOLS = os.path.join(ROOT, 'tools')
@@ -18,6 +19,7 @@ NAME = os.environ.get('DESKRAWL_EXE_NAME') or 'Deskrawl计算台'   # 单一开�
 # PYZ、磁盘没有源码，扫描结果为空会把全部 QSS 选择器误判成「死选择器」。故把包内 .py 以
 # **非导入路径** `_src/` 镜像进来：os.walk 照样能扫到全文，又不会与 PYZ 的模块加载抢解析权。
 _SRC_MIRROR = []
+_USED_QT = set()
 for _dp, _dns, _fns in os.walk(GUI):
     _dns[:] = [d for d in _dns if d != '__pycache__']
     for _fn in _fns:
@@ -25,6 +27,8 @@ for _dp, _dns, _fns in os.walk(GUI):
             _full = os.path.join(_dp, _fn)
             _rel = os.path.relpath(_full, GUI)
             _SRC_MIRROR.append((_full, os.path.join('deskrawl_gui', '_src', os.path.dirname(_rel))))
+            with open(_full, encoding='utf-8') as _f:
+                _USED_QT.update(re.findall(r'PySide6\.(Qt\w+)', _f.read()))
 
 a = Analysis(
     [os.path.join(ROOT, 'packaging', 'launcher.py')],
@@ -41,9 +45,12 @@ a = Analysis(
                    'deskrawl_gui.selftest_skillmods', 'deskrawl_gui.selftest_effects',
                    'deskrawl_gui.memdump'],
     # excludes 只排「Python 模块」：Qt 的 DLL 仍按真实 import 传递依赖收集，故本名单是
-    # 「防 PySide6 hook 过度收集」的安全网。本项目只用 QtCore/QtGui/QtWidgets + QtSvg(图标是 svg)。
-    excludes=[
-        'PySide6.QtNetwork', 'PySide6.QtQml', 'PySide6.QtQuick', 'PySide6.QtQuickWidgets',
+    # 「防 PySide6 hook 过度收集」的安全网。本项目只用 QtCore/QtGui/QtWidgets + QtNetwork
+    # （单实例锁）+ QtSvg（图标插件）。名单下面还会被源码扫描结果自愈——见 _USED_QT：
+    # 排除一个真实用到的模块，冻结包会在运行期 ModuleNotFoundError（v1.0.0 首次发布就栽在
+    # single_instance 的 QtNetwork 上，构建期毫无提示）。
+    excludes=[m for m in [
+        'PySide6.QtQml', 'PySide6.QtQuick', 'PySide6.QtQuickWidgets',
         'PySide6.QtQuickControls2', 'PySide6.QtWebEngineCore', 'PySide6.QtWebEngineWidgets',
         'PySide6.QtWebChannel', 'PySide6.QtWebSockets', 'PySide6.QtMultimedia',
         'PySide6.QtMultimediaWidgets', 'PySide6.Qt3DCore', 'PySide6.Qt3DRender',
@@ -59,7 +66,7 @@ a = Analysis(
         'PySide6.QtTextToSpeech', 'PySide6.QtXml', 'PySide6.QtConcurrent', 'PySide6.QtAsyncio',
         'tkinter', 'pydoc', 'pydoc_data', 'lib2to3', 'test', 'setuptools', 'pkg_resources',
         'pip', 'wheel', 'pytest', 'numpy', 'PIL', 'matplotlib', 'IPython', 'sqlite3',
-    ],
+    ] if m.split('.')[-1] not in _USED_QT],   # 源码真用到的一律不排除（构建期自愈）
     noarchive=False,
 )
 

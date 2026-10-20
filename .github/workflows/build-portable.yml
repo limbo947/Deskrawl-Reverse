@@ -40,12 +40,20 @@ jobs:
       - name: 冻结态门禁（--selftest / --smoke）
         run: |
           $env:DESKRAWL_NO_PAUSE = '1'
+          # runner 无交互桌面：--smoke 要建窗，用 offscreen 平台插件跑（真窗口留给人工验收）
+          $env:QT_QPA_PLATFORM = 'offscreen'
           $exe = ".\dist\Deskrawl计算台\Deskrawl计算台.exe"
           if (-not (Test-Path $exe)) { throw "未找到构建产物：$exe" }
-          & $exe --selftest
-          if ($LASTEXITCODE -ne 0) { throw "冻结包 --selftest 失败（退出码 $LASTEXITCODE）" }
-          & $exe --smoke
-          if ($LASTEXITCODE -ne 0) { throw "冻结包 --smoke 失败（退出码 $LASTEXITCODE）" }
+          foreach ($mode in '--selftest', '--smoke') {
+            Write-Host "=== 运行 $mode ==="
+            & $exe $mode 2>&1 | Tee-Object -FilePath "$mode.log" | Out-Host
+            $code = $LASTEXITCODE
+            Write-Host "=== $mode 退出码 $code ==="
+            if ($code -ne 0) {
+              Get-Content "$mode.log" -Tail 40 | Out-Host
+              throw "冻结包 $mode 失败（退出码 $code）"
+            }
+          }
 
       - uses: actions/upload-artifact@v4
         with:

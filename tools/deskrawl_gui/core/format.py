@@ -34,3 +34,25 @@ def fmt_layer(value, *, identity=None) -> str:
         except (TypeError, ValueError):
             return NO_INFO
     return fmt_qty(value)
+
+
+def fmt_dps(value) -> str:
+    """DPS 结论专用缩写（19.9 万 / 1.23 亿）。
+
+    为什么只在结论区用：六位数铺满一行会把「涨了还是跌了」压进噪声里；而属性表/装配表仍用
+    fmt_qty——那里是对拍与导出的原始读数，缩写会毁掉精度（自检也按 float() 读那些列）。
+    缩写只在 4 位以上（≥1 万）才发生，四位数以内的读数保持原样。
+    """
+    try:
+        num = float(value)
+    except (TypeError, ValueError):
+        return NO_INFO
+    if math.isnan(num) or math.isinf(num):
+        return NO_INFO
+    sign = '-' if num < 0 else ''
+    mag = abs(num)
+    if mag >= 1e8:
+        return f'{sign}{mag / 1e8:.2f} 亿'
+    if mag >= 1e4:
+        return f'{sign}{mag / 1e4:.1f} 万'
+    return fmt_qty(value)

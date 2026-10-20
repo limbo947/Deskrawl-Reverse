@@ -133,6 +133,36 @@ CAPPED_090 = {StatType.DamageReduction, StatType.PoisonDamageReduction, StatType
               StatType.FireDamageReduction, StatType.ColdDamageReduction, StatType.LightningDamageReduction,
               StatType.ArcaneDamageReduction}
 
+# 以「小数」表示百分比的属性（存档/词条里 0.30 = 30%）。GUI 输入框据此切换单位：显示 30、
+# 内部存 0.3——否则 30% 填成 30 就是 3000% 且不报错。
+# 注意与「面板显示格式」（下面的 PERCENT_DISPLAY_STATS）是两件事，语义不同不可合并。
+FRACTIONAL_STATS = frozenset(
+    {4, 5, 6, 13, 15, 16, 17, 19, 22, 37, 41, 56, 57, 65}
+    | set(range(23, 35))                       # 元素乘区 23–28 + 条件 29–32 + 普攻·强攻 33–34
+    | {40, 42, 43, 44, 45, 46, 48, 49, 51, 52, 53, 54, 55, 58,
+       59, 60, 61, 62, 63, 64})
+
+
+def is_fractional(stat) -> bool:
+    """该属性是否以小数形式表示百分比（决定输入框显示 % 还是数值）。"""
+    return int(stat) in FRACTIONAL_STATS
+
+
+# 「面板按百分比显示」的属性（46 项，与游戏「属性」页逐行对拍所得）。只决定显示格式，
+# 与上面的输入单位是两套元数据：例如 21 武器速度按一位小数、7 生命按千分位，
+# 而 0/1/2 主属性显示数值——这些属性在 FRACTIONAL_STATS 里都不存在。
+# 为什么下沉到内核：原先它是 core/calc_service 里的一份字面量，新增属性要在两处各判一次，
+# 漏改的表现是「面板显示成 3000%」这种静默错误；放进 stattype 与 CAPPED_* 同一层。
+PERCENT_DISPLAY_STATS = frozenset({
+    4, 5, 6, 13, 15, 16, 17, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32,
+    33, 34, 37, 40, 41, 42, 43, 44, 45, 46, 48, 49, 51, 52, 53, 54, 55,
+    56, 57, 58, 59, 60, 61, 62, 63, 64, 65})
+
+
+def is_percent_display(stat) -> bool:
+    """该属性在面板口径里是否按百分比显示（决定格式化，不涉及输入单位）。"""
+    return int(stat) in PERCENT_DISPLAY_STATS
+
 # 元素减伤 StatType 按伤害类型（跳转表在 Character.ApplyDamage@0x6893E0 内）
 ELEM_REDUCTION_BY_DAMAGE = {
     DamageType.Physical: StatType.PhysicalDamageReduction,

@@ -8,9 +8,9 @@
 from PySide6.QtCore import Qt, Signal
 from PySide6.QtWidgets import (QCheckBox, QComboBox, QFormLayout,
                                QGridLayout, QGroupBox, QHBoxLayout, QLabel, QPushButton,
-                               QSlider, QSpinBox, QVBoxLayout, QWidget)
+                               QSizePolicy, QSlider, QSpinBox, QVBoxLayout, QWidget)
 
-from .common import QtySpinBox
+from .common import QtySpinBox, ReloadGuard
 
 from deskrawl_calc import DamageType
 
@@ -45,25 +45,21 @@ _CONDITION_TIPS = {
 }
 
 
-class TargetEditor(QWidget):
+class TargetEditor(ReloadGuard, QWidget):
     changed = Signal()
 
     def __init__(self, profile, parent=None):
         super().__init__(parent)
         self.profile = profile
-        self._loading = False
         self._cond_checks = {}
         root = QVBoxLayout(self)
-        root.setContentsMargins(6, 6, 6, 6)
+        root.setContentsMargins(0, 0, 0, 0)
+        root.setSpacing(12)
         root.addWidget(self._build_basic_group())
-        root.addWidget(self._build_condition_group())
-        # F10：内核还支持元素减伤/护甲穿透/攻击方增伤与暴击类系数，本页未暴露入口。换装对比的
-        # Δ 两侧同口径故不受影响，但要拿本工具对拍游戏绝对 DPS 时需知悉这一缺口。
-        hint = QLabel('元素减伤、护甲穿透、攻击方增伤/暴击类系数属内核参数、本页未暴露：'
-                      '换装对比的 Δ 两侧同口径不受影响，绝对值对拍时请知悉。')
-        hint.setObjectName('emptyState')
-        hint.setWordWrap(True)
-        root.addWidget(hint)
+        # 条件勾选虽是低频项，但折叠会把「目标现在处于什么状态」藏起来——而它直接决定
+        # Δ 的口径；改为常驻分组框，标题仍带生效项数
+        self.conditions = self._build_condition_group()
+        root.addWidget(self.conditions)
         root.addStretch(1)
         self.reload()
 
@@ -78,6 +74,11 @@ class TargetEditor(QWidget):
     def _build_basic_group(self) -> QGroupBox:
         box = QGroupBox('目标基础')
         form = QFormLayout(box)
+        # 目标栏钉在对比页右栏，高度要和「技能 + 实测框」共享一屏：表单收紧，
+        # 并把护甲/魔抗、减伤/伤害类型并成两行（每行两个字段），少四行 ≈ 省 60px
+        form.setContentsMargins(0, 0, 0, 0)
+        form.setVerticalSpacing(4)
+        form.setHorizontalSpacing(10)
 
         # 预设行：训练假人是装备对比的主场景（与游戏 DPS 计同口径），一键到位
         preset_row = QHBoxLayout()
@@ -100,6 +101,8 @@ class TargetEditor(QWidget):
         self.hp_slider.setToolTip(_TIP_HP)
         self.hp_slider.valueChanged.connect(self._on_hp)
         self.hp_label = QLabel('100%')
+        self.hp_label.setFixedWidth(44)          # 预留「100%」宽度：窄栏里不会被滑块挤出卡片
+        self.hp_label.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
         hp_row = QHBoxLayout()
         hp_row.addWidget(self.hp_slider, 1)
         hp_row.addWidget(self.hp_label)
@@ -110,37 +113,73 @@ class TargetEditor(QWidget):
         self.hp_cond_label.setWordWrap(True)
         form.addRow(self.hp_cond_label)
 
-        self.armor_spin = self._double(form, '护甲', 'armor')
-        self.mr_spin = self._double(form, '魔抗', 'magic_resist')
-        self.dr_spin = self._double(form, '全局减伤', 'damage_reduction', hi=1.0, step=0.01)
+        self.armor_spin = self._field('armor')
+        self.armor_spin.setToolTip('护甲：按 resist/(resist+50×max(1,等级)) 曲线进入减伤层')
+        self.mr_spin = self._field('magic_resist')
+        self.mr_spin.setToolTip('魔抗：与护甲同曲线，作用于对应元素伤害')
+        armor_row = QHBoxLayout()
+        armor_row.setSpacing(8)
+        armor_row.addWidget(self.armor_spin, 1)
+        armor_row.addWidget(self.mr_spin, 1)
+        form.addRow('护甲 / 魔抗', armor_row)
 
+        self.dr_spin = self._field('damage_reduction', hi=1.0, step=0.01)
+        self.dr_spin.setToolTip('全局减伤：0–1 的小数（0.2 = 20%），在减伤层最后相乘')
         self.dtype_combo = QComboBox()
         self.dtype_combo.setToolTip(_TIP_DTYPE)
         for dt, label in _DAMAGE_TYPES:
             self.dtype_combo.addItem(label, int(dt))
         self.dtype_combo.currentIndexChanged.connect(
             lambda: self._set_damage_type(int(self.dtype_combo.currentData())))
-        form.addRow('伤害类型', self.dtype_combo)
+        dr_row = QHBoxLayout()
+        dr_row.setSpacing(8)
+        dr_row.addWidget(self.dr_spin, 1)
+        dr_row.addWidget(self.dtype_combo, 1)
+        form.addRow('减伤 / 类型', dr_row)
         return box
 
-    def _double(self, form, label, attr, hi=1e6, step=0.1) -> QtySpinBox:
+    def _field(self, attr: str, hi: float = 1e6, step: float = 0.1) -> QtySpinBox:
+        """数值字段（不自己加行）：布局由调用方决定，才能把两个字段并到同一行。
+
+        最小宽度压到 84 并给 Expanding：默认最小宽按「999999.000」算到 169px，两枚并排就
+        把右栏最小宽度顶到 457——380 的侧栏因此长出横向滚动条，数字右侧被裁掉。
+        """
         sp = QtySpinBox(decimals=3)
         sp.setRange(0.0, hi)
         sp.setSingleStep(step)
+        sp.setMinimumWidth(84)
+        sp.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
         sp.valueChanged.connect(lambda v, a=attr: self._set_target(a, float(v)))
-        form.addRow(label, sp)
         return sp
 
     def _build_condition_group(self) -> QGroupBox:
         box = QGroupBox('目标状态（条件伤害）')
-        grid = QGridLayout(box)
+        lay = QVBoxLayout(box)
+        lay.setContentsMargins(0, 0, 0, 0)   # 与「目标基础」同款：内距交给 QSS 的分组框 padding
+        grid = QGridLayout()
         for i, (attr, label) in enumerate(_CONDITIONS):
             cb = QCheckBox(label)
             cb.setToolTip(_CONDITION_TIPS.get(attr, ''))
             cb.toggled.connect(lambda v, a=attr: self._set_target(a, bool(v)))
             self._cond_checks[attr] = cb
             grid.addWidget(cb, i // 2, i % 2)
+        lay.addLayout(grid)
+        # F10：内核还支持元素减伤/护甲穿透/攻击方增伤与暴击类系数，本页未暴露入口。换装对比的
+        # Δ 两侧同口径故不受影响，但要拿本工具对拍游戏绝对 DPS 时需知悉这一缺口。
+        hint = QLabel('元素减伤、护甲穿透、攻击方增伤/暴击类系数属内核参数、本页未暴露：'
+                      '换装对比的 Δ 两侧同口径不受影响，绝对值对拍时请知悉。')
+        hint.setObjectName('emptyState')
+        hint.setWordWrap(True)
+        lay.addWidget(hint)
         return box
+
+    def _update_cond_summary(self):
+        """卡片标题带上生效项数：不必逐个勾选框扫一遍就知道「当前有几条条件在计伤」。"""
+        used = sum(1 for cb in self._cond_checks.values() if cb.isChecked())
+        if used:
+            self.conditions.setTitle(f'目标状态（条件伤害）· {used} 项生效')
+        else:
+            self.conditions.setTitle('目标状态（条件伤害）')
 
     def _update_hp_cond(self, frac: float):
         """把血线映射到的两条隐式条件写出来（与内核 Target.conditional_stats 的分档一致）。"""
@@ -153,16 +192,15 @@ class TargetEditor(QWidget):
     # ---------------- 写回 ----------------
     def _apply_dummy_preset(self):
         """一键设为训练假人口径：改 profile.target 后统一走 changed 刷新。"""
-        self._loading = True
-        t = self.profile.target
-        t.level = _DUMMY_PRESET['level']
-        t.hp_fraction = _DUMMY_PRESET['hp_fraction']
-        t.armor = _DUMMY_PRESET['armor']
-        t.magic_resist = _DUMMY_PRESET['magic_resist']
-        t.damage_reduction = _DUMMY_PRESET['damage_reduction']
-        for attr, _label in _CONDITIONS:
-            setattr(t, attr, False)
-        self._loading = False
+        with self.reloading():
+            t = self.profile.target
+            t.level = _DUMMY_PRESET['level']
+            t.hp_fraction = _DUMMY_PRESET['hp_fraction']
+            t.armor = _DUMMY_PRESET['armor']
+            t.magic_resist = _DUMMY_PRESET['magic_resist']
+            t.damage_reduction = _DUMMY_PRESET['damage_reduction']
+            for attr, _label in _CONDITIONS:
+                setattr(t, attr, False)
         self.reload()
         self.changed.emit()
 
@@ -172,30 +210,32 @@ class TargetEditor(QWidget):
         self._set_target('hp_fraction', v / 100.0)
 
     def _set_target(self, attr, value):
-        if self._loading:
+        if self.loading:
             return
         setattr(self.profile.target, attr, value)
+        self._update_cond_summary()
         self.changed.emit()
 
     def _set_damage_type(self, value):
-        if self._loading:
+        if self.loading:
             return
         self.profile.damage_type = int(value)
         self.changed.emit()
 
     def reload(self):
-        self._loading = True
-        t = self.profile.target
-        self.level_spin.setValue(int(t.level))
-        pct = int(round(t.hp_fraction * 100))
-        self.hp_slider.setValue(pct)
-        self.hp_label.setText(f'{pct}%')
-        self._update_hp_cond(float(t.hp_fraction))
-        self.armor_spin.setValue(float(t.armor))
-        self.mr_spin.setValue(float(t.magic_resist))
-        self.dr_spin.setValue(float(t.damage_reduction))
-        idx = self.dtype_combo.findData(int(self.profile.damage_type))
-        self.dtype_combo.setCurrentIndex(idx if idx >= 0 else 0)
-        for attr, cb in self._cond_checks.items():
-            cb.setChecked(bool(getattr(t, attr)))
-        self._loading = False
+        """把 profile.target 灌进控件；回填期间的事件不算用户编辑（见 ReloadGuard）。"""
+        with self.reloading():
+            t = self.profile.target
+            self.level_spin.setValue(int(t.level))
+            pct = int(round(t.hp_fraction * 100))
+            self.hp_slider.setValue(pct)
+            self.hp_label.setText(f'{pct}%')
+            self._update_hp_cond(float(t.hp_fraction))
+            self.armor_spin.setValue(float(t.armor))
+            self.mr_spin.setValue(float(t.magic_resist))
+            self.dr_spin.setValue(float(t.damage_reduction))
+            idx = self.dtype_combo.findData(int(self.profile.damage_type))
+            self.dtype_combo.setCurrentIndex(idx if idx >= 0 else 0)
+            for attr, cb in self._cond_checks.items():
+                cb.setChecked(bool(getattr(t, attr)))
+            self._update_cond_summary()

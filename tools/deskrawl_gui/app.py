@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""主窗口：左侧导航栏 + 页面堆栈（角色 / 装备对比 / 装配中心）；暗色主题。
+"""主窗口：顶部导航 + 上下文条 + 页面堆栈（角色 / 装备对比 / 装配中心）；深色为主。
 
 主窗口只做四件事：装配页面、持有唯一事实源 profile、中转刷新信号、会话状态落盘/恢复
 （persist_state 开启时；默认关闭，测试/冒烟构造路径不碰用户状态文件）。
@@ -14,26 +14,35 @@ import sys
 import time
 
 from PySide6.QtCore import QByteArray, QTimer, Qt, Signal
-from PySide6.QtGui import QAction, QIcon
-from PySide6.QtWidgets import (QApplication, QFileDialog, QHBoxLayout,
-                               QMainWindow, QMessageBox, QStackedWidget, QWidget)
+from PySide6.QtGui import QAction, QActionGroup, QIcon
+from PySide6.QtWidgets import (QApplication, QFileDialog, QHBoxLayout, QMainWindow,
+                               QMessageBox, QStackedWidget, QVBoxLayout, QWidget)
 
 from deskrawl_calc import GameData, stat_name
 
-from .core import calc_service, session_state
-from .core.glossary import CALIBER_TEXT, DATA_SOURCE_TEXT, terms_text
-from .core.memory_import import MemoryImportError, check_fingerprints, import_snapshot
+from . import single_instance
+from .core import calc_service, logging_setup, session_state
+from .core.format import fmt_dps
+from .core.glossary import help_topics
+from .core.heroes import hero_class_label
+from .core.import_worker import ImportWorker
+from .core.memory_errors import describe_import_error
+from .core.memory_import import MemoryImportError, check_fingerprints
 from .core.memory_snapshot import load_offsets
+from .core.theme import THEME_LABELS, THEME_NAMES, load_qss
 from .core.profile import BUILDS_DIR, CharacterProfile, load_build, save_build
 from .widgets.assembly_center import AssemblyCenter
-from .widgets.common import confirm_delete
+from .widgets.build_library import open_build_library
+from .widgets.common import confirm_delete, preferred_window_size
+from .widgets.help_panel import open_help
+from .widgets.icons import icon
 from .widgets.compare_page import ComparePage
-from .widgets.navigation import SidebarNav
+from .widgets.navigation import TopNav
 from .widgets.role_page import RolePage
 from .widgets.toast import Toast
+from .undo import ProfileUndoStack
 
 _HERE = os.path.dirname(os.path.abspath(__file__))
-QSS_PATH = os.path.join(_HERE, 'resources', 'style.qss')
 ICON_PATH = os.path.join(_HERE, 'resources', 'app_icon.svg')
 
 # 导入菜单项的基准文案：临时态（读盘中/节流等待）与指纹失配后缀都挂在它后面，
@@ -44,33 +53,6 @@ _IMPORT_LABEL = '从运行中的游戏导入（只读）…'
 PAGES = [('role', '角色'), ('compare', '装备对比'), ('assembly', '装配中心')]
 # 行号 → 页面 key（切页时用它判断「对比页是否可见」，DPS 计轮询只在该页开）
 PAGE_ROW = {key: i for i, (key, _label) in enumerate(PAGES)}
-
-# 六类错误态 → 中文文案。code 由 MemoryImportError 携带（不靠消息子串猜），
-# 未识别的情况一律回落到「读取校验失败」，保证任何异常都不会裸抛英文堆栈给用户。
-_IMPORT_ERROR_TEXTS = {
-    'no_process': ('游戏未运行',
-                   '未找到游戏进程。请先启动游戏并进入角色，再使用「数据导入」。'),
-    'no_hero': ('角色未加载',
-                '游戏在运行，但未检测到已加载的角色（可能停留在主菜单/加载中）。\n请进入角色后重试。'),
-    'denied': ('权限不足',
-               '打开游戏进程被拒绝：游戏可能以管理员身份运行。\n请以管理员身份重启本工具后重试。'),
-    'py32': ('Python 位数不符',
-             '当前 Python 为 32 位，无法读取 64 位游戏进程。\n请使用 64 位解释器运行本工具。'),
-    'fingerprint': ('版本指纹不符',
-                    '游戏版本或静态数据已变化，导入被拒绝（防止读出错位数据）。\n'
-                    '请重新导出 schema/so_dump，并更新 memory_offsets.json 指纹后重试。'),
-    'data': ('读取校验失败',
-             '读取结果未通过结构/值域/双读一致性校验（游戏状态可能在变化）。\n'
-             '请稍后重试（城镇/菜单中更稳定）。'),
-}
-
-
-def describe_import_error(exc) -> tuple:
-    """导入异常 → (弹窗标题, 中文正文)。"""
-    code = getattr(exc, 'code', '') or ''
-    title, text = _IMPORT_ERROR_TEXTS.get(code, _IMPORT_ERROR_TEXTS['data'])
-    return title, f'{text}\n\n（详情：{exc}）'
-
 
 def preserved_import(profile: CharacterProfile, payload: dict, gd) -> CharacterProfile:
     """从内存快照构建新档案，但保留用户的「口径设置」，导入只换角色数据。
@@ -86,32 +68,6 @@ def preserved_import(profile: CharacterProfile, payload: dict, gd) -> CharacterP
     imported.skill_level = int(profile.skill_level)
     imported.like_current_pref = bool(getattr(profile, 'like_current_pref', False))
     return imported
-
-
-_QSS_ARROWS = {
-    '@ARROW_UP': 'arrow_up.svg',
-    '@ARROW_DOWN': 'arrow_down.svg',
-    '@ARROW_UP_DISABLED': 'arrow_up_disabled.svg',
-    '@ARROW_DOWN_DISABLED': 'arrow_down_disabled.svg',
-}
-
-
-def load_qss(path: str = QSS_PATH) -> str:
-    """读取主题样式。文件缺失必须显式抛错：静默降级会让暗色主题失效却无人察觉。
-
-    @ARROW_* 在这里换成与 qss 同目录的绝对路径：QSS 的 url() 按**进程工作目录**解析（不是 qss
-    文件位置），冻结态/从别处启动时会指错，箭头就静默消失。Windows 路径须用正斜杠。
-    """
-    if not os.path.exists(path):
-        raise FileNotFoundError(f'主题资源缺失：{path}')
-    with open(path, encoding='utf-8') as f:
-        text = f.read()
-    base = os.path.dirname(os.path.abspath(path)).replace('\\', '/')
-    # 长键先替换：@ARROW_UP 是 @ARROW_UP_DISABLED 的前缀，按短键先换会把后者截断成
-    # "arrow_up.svg_DISABLED"（图片路径指错，禁用态箭头静默消失）。
-    for token in sorted(_QSS_ARROWS, key=len, reverse=True):
-        text = text.replace(token, f'{base}/{_QSS_ARROWS[token]}')
-    return text
 
 
 def load_app_icon(path: str = ICON_PATH):
@@ -136,10 +92,12 @@ class MainWindow(QMainWindow):
     def __init__(self, parent=None, *, persist_state=False):
         super().__init__(parent)
         self.setWindowTitle('Deskrawl 数值计算台')
-        self.resize(1360, 860)
-        self.setMinimumSize(960, 640)
+        # 1440×900 对应设计文档「产品界面 1440 宽」；小屏按可用区域收缩（见 common）
+        self.resize(preferred_window_size())
+        self.setMinimumSize(1024, 680)
 
         self._persist_state = bool(persist_state)
+        self._theme = 'dark'                     # 会话恢复可能改写（见 _restore_session_window）
         self._restore_note = ''                  # 恢复失败时的浮层说明（不阻断启动）
         self._pending_splits = {}                # 待首次显示后套用的分栏宽度（见 showEvent）
         state = session_state.load_state() if self._persist_state else {}
@@ -149,14 +107,16 @@ class MainWindow(QMainWindow):
         self.gd = GameData()
         # 恢复必须早于页面构造：各页在 __init__ 里直接读 profile（对比页会按槽建编辑器）
         self.profile = self._initial_profile(state)
+        self._baseline_dps = None                # 上下文条的基线 DPS 缓存（见 _update_side_summary）
         self._last_import_mono = float('-inf')   # 手动导入节流（≥1s）
+        self._import_worker = None               # 后台导入线程（D3；同一时刻只允许一个）
         # 节流命中后的恢复：1s 后把菜单项从「请稍候…」切回指纹结论（一次性定时器）
         self._import_timer = QTimer(self)
         self._import_timer.setSingleShot(True)
         self._import_timer.timeout.connect(lambda: self._set_import_busy(False))
 
-        # 页面装配：每页自带标题头部，导航只切页
-        self.nav = SidebarNav(PAGES)
+        # 页面装配：导航是顶部横条（品牌 + 页面链接 + 导入 CTA），页面堆栈在其下方整宽铺开
+        self.nav = TopNav(PAGES)
         self.stack = QStackedWidget()
         self.role_page = RolePage(self.profile, self.gd)
         self.compare_page = ComparePage(self.profile, self.gd)
@@ -165,17 +125,29 @@ class MainWindow(QMainWindow):
             self.stack.addWidget(page)
 
         central = QWidget()
-        lay = QHBoxLayout(central)
+        lay = QVBoxLayout(central)
         lay.setContentsMargins(0, 0, 0, 0)
         lay.setSpacing(0)
-        lay.addWidget(self.nav)
-        lay.addWidget(self.stack, 1)
+        lay.addWidget(self.nav.ticker)           # 上下文条：横向顶栏（构建/数据源/只读承诺）
+        body = QHBoxLayout()
+        body.setContentsMargins(0, 0, 0, 0)
+        body.setSpacing(0)
+        body.addWidget(self.nav)                 # 左侧边栏：页面链接 + 底部操作簇
+        body.addWidget(self.stack, 1)
+        lay.addLayout(body, 1)
         self.setCentralWidget(central)
         self.nav.pageChanged.connect(self._on_page_changed)
+        # 侧栏的导入 CTA 与菜单项是同一个动作的两个入口：都走 _import_from_game（含节流/指纹判定）
+        self.nav.importRequested.connect(self._import_from_game)
+        self.nav.themeToggled.connect(self._toggle_theme)
+        self.role_page.slotActivated.connect(self._open_compare_slot)
         self._bind_page_shortcuts()
 
         # 提示统一走浮层（取代状态栏）：一处管级别/时长，也避免同一条消息出现在两个位置
         self.toast = Toast(self)
+        # 撤销栈必须在建菜单之前就位（编辑菜单的撤销/重做动作由它创建）
+        self._undo_busy = False
+        self.undo_stack = ProfileUndoStack(self.profile, self._apply_undo, self)
         self._build_menus()
         self._update_source_badge()
 
@@ -183,7 +155,13 @@ class MainWindow(QMainWindow):
         self.role_page.changed.connect(self.profileChanged)
         self.compare_page.changed.connect(self.profileChanged)
         self.assembly_center.changed.connect(self.profileChanged)
+        self.assembly_center.targetRequested.connect(
+            lambda: self.nav.setCurrentRow(PAGE_ROW['compare']))
         self.profileChanged.connect(self._refresh_all)
+        # 词条/候选编辑只走本页刷新（不发 profileChanged），但同样属于「可撤销的编辑」：
+        # 撤销栈的触发点必须覆盖这两条入口，否则删一条词条后按 Ctrl+Z 会撤销更早的别处改动
+        self.profileChanged.connect(self._capture_undo)
+        self.compare_page.equipment_editor.resultsChanged.connect(self._capture_undo)
         self._refresh_all()
         self._on_page_changed(self.nav.currentRow())   # 让 DPS 计按当前页决定是否轮询
         if self._persist_state:
@@ -219,6 +197,9 @@ class MainWindow(QMainWindow):
             # 分栏宽度按页恢复（用户拖过一次的比例应跨会话保留，否则每次启动都要重拖）。
             # 只登记、不立即 setSizes：构造期分栏还没有最终几何，此时设的像素值会被按当前窄宽度
             # 等比压缩（实测保存 330/844，恢复成 330/272），必须等窗口真正显示后再套用。
+            theme = str(win.get('theme') or '')
+            if theme in THEME_NAMES:
+                self._set_theme(theme, notify=False)      # 静默：恢复不是事件
             saved = win.get('splitters') or {}
             self._pending_splits = {k: v for k, v in saved.items()
                                     if isinstance(v, list) and len(v) == 2}
@@ -226,7 +207,7 @@ class MainWindow(QMainWindow):
         if not state:
             # 首启动：给一条三步动线，别让用户对着示例构建发呆（此后由会话恢复接管）
             self.toast.notify(
-                '首次使用：① 菜单「数据导入」读运行中的角色，或直接在左栏手工录入 → '
+                '首次使用：① 点右上角「从游戏导入」读运行中的角色，或直接在角色页手工录入 → '
                 '② 选装备槽与目标 → ③ 读 Δ%；术语与口径见「帮助」菜单', timeout=20000)
         elif self._restore_note:
             self.toast.notify(self._restore_note, 'warn', 12000)
@@ -270,16 +251,33 @@ class MainWindow(QMainWindow):
             payload = {'version': session_state.STATE_VERSION,
                        'window': {'geometry': bytes(self.saveGeometry().toBase64()).decode('ascii'),
                                   'page': int(self.nav.currentRow()),
+                                  'theme': self._theme,
                                   'splitters': self._splitter_state()},
                        'profile': self.profile.to_dict()}
             session_state.save_state(payload)
         except OSError as exc:
             QMessageBox.warning(self, '会话保存失败', f'{exc}\n（下次启动将回到默认状态）')
 
+    def resizeEvent(self, event):
+        """窄窗自动收起侧栏（见 TopNav.set_collapsed_auto）：1024 最小宽下对比页才不出横向滚动。"""
+        super().resizeEvent(event)
+        if getattr(self, 'nav', None) is not None:
+            self.nav.set_collapsed_auto(event.size().width())
+
     def closeEvent(self, event):
+        if self._import_worker is not None:
+            # 读内存不可中断：先让它作废结果并等它跑完，别把活着的 QThread 随窗口析构掉
+            self._import_worker.cancel()
+            self._import_worker.wait(3000)
+            self._import_worker = None
         if self._persist_state:
             self._save_session_state()
         super().closeEvent(event)
+
+    def _open_compare_slot(self, slot: int):
+        """角色页装备总览双击 → 对比页该槽（选槽走既有下拉信号，不另开一份槽位状态）。"""
+        self.compare_page.equipment_editor.select_slot(int(slot))
+        self.nav.setCurrentRow(PAGE_ROW['compare'])
 
     def _on_page_changed(self, row: int):
         """切页：DPS 计只在对比页可见时才轮询；进装配中心时补一次候选重排。
@@ -294,7 +292,7 @@ class MainWindow(QMainWindow):
             self.assembly_center.refresh(deep=True)
 
     def _bind_page_shortcuts(self):
-        """Ctrl+1/2/3 直达对应页面；挂 QAction 以便菜单外也能生效。Ctrl+B 收起/展开侧栏。"""
+        """Ctrl+1/2/3 直达对应页面；挂 QAction 以便菜单外也能生效。Ctrl+B 收起/展开顶部导航。"""
         for i, (_key, _label) in enumerate(PAGES):
             act = QAction(self)
             act.setShortcut(f'Ctrl+{i + 1}')
@@ -304,24 +302,6 @@ class MainWindow(QMainWindow):
         toggle.setShortcut('Ctrl+B')
         toggle.triggered.connect(self.nav.toggle_collapsed)
         self.addAction(toggle)
-
-    # ---- 旧布局时代的控件别名（保持对外属性稳定，供 selftest 与脚本使用；新代码请走页面 ----
-    #      如 self.compare_page.equipment_editor，别名只为一处修改面服务，不承担新接口职责）
-    @property
-    def panel_editor(self):
-        return self.role_page.panel_editor
-
-    @property
-    def stat_table(self):
-        return self.role_page.stat_table
-
-    @property
-    def target_editor(self):
-        return self.compare_page.target_editor
-
-    @property
-    def equipment_editor(self):
-        return self.compare_page.equipment_editor
 
     # ---------------- 菜单 ----------------
     def _build_menus(self):
@@ -333,11 +313,36 @@ class MainWindow(QMainWindow):
         file_menu.addSeparator()
         self._add_action(file_menu, '保存构建…', self._save_build, 'Ctrl+S')
         self._add_action(file_menu, '加载构建…', self._load_build, 'Ctrl+O')
+        # 构建库：文件对话框之外的第二条路——多套方案靠文件名辨认时根本选不出来
+        lib_action = self._add_action(file_menu, '构建库…', self._open_build_library,
+                                      'Ctrl+Shift+O')
+        lib_action.setIcon(icon('act_library'))
         file_menu.addSeparator()
         self._add_action(file_menu, '退出', self.close, 'Ctrl+Q')
 
-        tools_menu = bar.addMenu('工具')
-        self._add_action(tools_menu, '运行内核自检', self._show_kernel_selftest)
+        # 编辑：撤销/重做走档案快照（见 undo.py），菜单文案会带动作名（「撤销 面板数值」）
+        edit_menu = bar.addMenu('编辑')
+        self.undo_action = self.undo_stack.createUndoAction(self, '撤销')
+        self.redo_action = self.undo_stack.createRedoAction(self, '重做')
+        self.undo_action.setShortcut('Ctrl+Z')
+        self.redo_action.setShortcut('Ctrl+Shift+Z')
+        edit_menu.addAction(self.undo_action)
+        edit_menu.addAction(self.redo_action)
+
+        # 视图 → 主题：浅色用于强光环境（A12）。切换即时生效，选择随会话持久化
+        view_menu = bar.addMenu('视图')
+        theme_menu = view_menu.addMenu('主题')
+        self._theme_actions = {}
+        theme_group = QActionGroup(self)
+        theme_group.setExclusive(True)
+        for key in THEME_NAMES:
+            act = QAction(THEME_LABELS[key], self)
+            act.setCheckable(True)
+            act.setChecked(key == self._theme)
+            act.triggered.connect(lambda _checked=False, k=key: self._set_theme(k))
+            theme_group.addAction(act)
+            theme_menu.addAction(act)
+            self._theme_actions[key] = act
 
         # 数据导入：菜单项仅在版本指纹自检通过时可用（P2：失配 → 禁用 + 中文原因）
         import_menu = bar.addMenu('数据导入')
@@ -347,26 +352,23 @@ class MainWindow(QMainWindow):
 
         # 帮助：术语与口径是上手这道工具最陡的台阶，集中一处可读（这些文案是文档的浓缩版）
         help_menu = bar.addMenu('帮助')
-        self._add_action(help_menu, '术语表…', lambda: self._show_help('术语表', terms_text()))
-        self._add_action(help_menu, '口径说明…',
-                         lambda: self._show_help('口径说明', CALIBER_TEXT))
-        self._add_action(help_menu, '数据来源与只读约束…',
-                         lambda: self._show_help('数据来源与只读约束', DATA_SOURCE_TEXT))
+        self._add_action(help_menu, '帮助与术语（可检索）…', lambda: self._open_help('workflow'), 'F1')
         help_menu.addSeparator()
-        self._add_action(help_menu, '关于…', lambda: self._show_help('关于', self._about_text()))
+        self._add_action(help_menu, '术语表…', lambda: self._open_help('terms'))
+        self._add_action(help_menu, '口径说明…', lambda: self._open_help('caliber'))
+        self._add_action(help_menu, '数据来源与只读约束…', lambda: self._open_help('source'))
+        help_menu.addSeparator()
+        # 内核自检是诊断入口，不是日常功能：放帮助里，避免独占一级菜单（原「工具」菜单只有它一项）
+        self._add_action(help_menu, '运行内核自检…', self._show_kernel_selftest)
+        help_menu.addSeparator()
+        self._add_action(help_menu, '关于…', lambda: self._open_help('about'))
 
-    def _show_help(self, title: str, body: str):
-        """帮助类弹窗：正文可整段选中复制（用户常要拿去和文档/群友对照）。
+    def _open_help(self, topic: str = 'workflow'):
+        """帮助面板（可检索、可分节）：菜单各项只是「打开并定位到某一节」。
 
-        不用 setDetailedText：长文会被折在「显示详细信息」后面，术语表这种要通读的内容
-        藏起来等于没给。
+        为什么不再用 QMessageBox：术语表要通读，弹窗里既不能搜也不能分节；正文仍可整段复制。
         """
-        box = QMessageBox(self)
-        box.setIcon(QMessageBox.Information)
-        box.setWindowTitle(title)
-        box.setText(body)
-        box.setTextInteractionFlags(Qt.TextSelectableByMouse)
-        box.exec()
+        open_help(help_topics(self._about_text()), topic, self)
 
     def _fingerprint_summary(self) -> str:
         """构建指纹摘要：GameAssembly.dll 的 SHA-256 前 12 位 + so_dump 条目数记录。
@@ -428,12 +430,17 @@ class MainWindow(QMainWindow):
             self._import_action.setText(f'{_IMPORT_LABEL}（版本指纹不符，已禁用）')
             self._import_action.setToolTip(
                 '；'.join(problems) + '。请重新导出 schema/so_dump 并更新 memory_offsets.json 指纹。')
+            # 顶栏 CTA 与菜单项同一结论：禁用时给出原因，而不是留一个点了没反应的黄按钮
+            self.nav.set_import_state(False, '导入不可用',
+                                      '版本指纹不符，已禁用。' + self._import_action.toolTip())
             self.toast.notify('数据导入已禁用：版本指纹不符（请重新导出 schema/so_dump）',
                               'error', 12000)
             return
         self._import_action.setEnabled(True)
         self._import_action.setText(_IMPORT_LABEL)
         self._import_action.setToolTip('')
+        self.nav.set_import_state(True, '从游戏导入',
+                                  '读取运行中游戏的角色数据（只读内存，需游戏内已进入角色）')
 
     def _set_import_busy(self, busy: bool, hint: str = '导入中…'):
         """导入入口的临时态：读盘中或命中节流时禁用菜单项并写明在等什么。
@@ -446,14 +453,14 @@ class MainWindow(QMainWindow):
             return
         self._import_action.setEnabled(False)
         self._import_action.setText(f'{_IMPORT_LABEL}（{hint}）')
+        self.nav.set_import_state(False, hint, '正在读取游戏内存（只读），完成前不会重复触发')
 
     def _import_from_game(self):
-        """主线程同步导入（实测 0.37s 级；等待光标即可，不引入线程/异步框架）。
+        """后台线程导入（D3）：读内存期间窗口保持响应，结果回主线程再换档案。
 
         节流 ≥1s：连点/快捷键连发不会重复触发昂贵的内存双读与指纹哈希；命中节流时把菜单项
         切成「请稍候…」（1s 后恢复），读内存期间切成「导入中…」并常驻一条浮层说明——
-        否则连点者看到的只是「什么也没发生」。
-        导入成功即完成 ``profile.from_snapshot`` 并走 _reload_pages 全页回填。
+        否则连点者看到的只是「什么也没发生」。widget 只在主线程动，线程里只读快照。
         """
         now = time.monotonic()
         if now - self._last_import_mono < 1.0:
@@ -461,23 +468,42 @@ class MainWindow(QMainWindow):
             self.toast.notify('导入过于频繁：两次导入至少间隔 1 秒', 'warn', 3000)
             self._import_timer.start(1000)
             return
+        if self._import_worker is not None:
+            self._set_import_busy(True, '上一轮仍在读取…')
+            self.toast.notify('上一次导入还在读取，请稍候', 'warn', 3000)
+            return
         self._last_import_mono = now
         self._set_import_busy(True)
         self.toast.notify('正在读取游戏内存（只读）…', timeout=30000)
         QApplication.setOverrideCursor(Qt.WaitCursor)
-        try:
-            res = import_snapshot()
-        except MemoryImportError as exc:
+        worker = ImportWorker(self)
+        worker.done.connect(self._on_import_done)
+        self._import_worker = worker
+        worker.start()
+
+    def _on_import_done(self, res, code, message):
+        """导入线程收尾：先恢复界面状态（含等待光标），再处理结果或错误。
+
+        错误与成功走同一出口：任何路径都不会留下「导入中…」卡住的菜单项。
+        """
+        self._import_timer.stop()
+        self._set_import_busy(False)
+        QApplication.restoreOverrideCursor()
+        worker, self._import_worker = self._import_worker, None
+        if worker is not None:
+            worker.wait(2000)          # 已经发完信号，这里只是确保线程对象可安全回收
+            worker.deleteLater()
+        if res is None:
+            if code == 'fingerprint':
+                self._apply_fingerprint_state()   # 指纹状态已变：缓存结论不能再用，必须重算
+            exc = MemoryImportError(message, 'env', code=code)
             title, text = describe_import_error(exc)
-            if exc.code == 'fingerprint':
-                self._apply_fingerprint_state()      # 指纹状态已变：缓存的结论不能再用，必须重算
             QMessageBox.warning(self, title, text)
             return
-        finally:
-            # 先停掉上一次节流的恢复定时器：它若在导入收尾之后才触发，会把菜单项改回错误状态
-            self._import_timer.stop()
-            self._set_import_busy(False)
-            QApplication.restoreOverrideCursor()
+        self._apply_snapshot(res)
+
+    def _apply_snapshot(self, res):
+        """快照 → 档案：只换角色数据（保留用户口径），复算面板口径，再全页回填并给摘要。"""
         payload = res.payload
         self.profile.replace_with(preserved_import(self.profile, payload, self.gd))
         try:
@@ -487,6 +513,7 @@ class MainWindow(QMainWindow):
         except Exception as exc:                                # noqa: BLE001 边界兜底
             self.profile.panel = None
             self.toast.notify(f'游戏面板口径复算失败（属性明细退回计算口径）：{exc}', 'warn', 8000)
+        self.undo_stack.reset()   # 换数据源不入撤销栈：导入是一条新起点，不是一次编辑
         self._reload_pages()      # 内含数据源徽标刷新
         mode_cn = 'β 逐件' if res.mode == 'beta' else 'α 聚合'
         msg = self._import_summary(res, payload, mode_cn)
@@ -533,33 +560,66 @@ class MainWindow(QMainWindow):
         menu.addAction(action)
         return action
 
-    def _save_build(self):
+    def _save_build(self) -> bool:
+        """保存构建（对话框路径）；返回是否真的写了盘——构建库的「另存当前」复用这个返回值。"""
         os.makedirs(BUILDS_DIR, exist_ok=True)
         path, _ = QFileDialog.getSaveFileName(
             self, '保存构建', os.path.join(BUILDS_DIR, f'{self.profile.name}.json'),
             'JSON (*.json)')
         if not path:
-            return
+            return False
         try:
             save_build(self.profile, path)
         except OSError as exc:
             QMessageBox.warning(self, '保存失败', str(exc))
-            return
+            return False
         self.toast.notify(f'已保存：{path}', timeout=8000)
+        return True
 
-    def _load_build(self):
-        os.makedirs(BUILDS_DIR, exist_ok=True)
-        path, _ = QFileDialog.getOpenFileName(self, '加载构建', BUILDS_DIR, 'JSON (*.json)')
-        if not path:
-            return
+    def _open_build_library(self):
+        """构建库窗口：载入与另存都回到本窗口的统一路径（不另写一份加载逻辑）。"""
+        open_build_library(self.gd, self._apply_build, self._save_build, self)
+
+    def _apply_build(self, path: str):
+        """按路径载入构建（文件对话框与构建库共用；失败弹窗但不关调用方窗口）。"""
         try:
             loaded = load_build(path)
         except (OSError, ValueError, TypeError) as exc:
             QMessageBox.warning(self, '加载失败', str(exc))
             return
         self.profile.replace_with(loaded)      # 就地替换，widget 引用不失效
+        self.undo_stack.reset()
         self._reload_pages()
         self.toast.notify(f'已加载：{path}', timeout=8000)
+
+    def _load_build(self):
+        os.makedirs(BUILDS_DIR, exist_ok=True)
+        path, _ = QFileDialog.getOpenFileName(self, '加载构建', BUILDS_DIR, 'JSON (*.json)')
+        if path:
+            self._apply_build(path)
+
+    def _set_theme(self, name: str, notify: bool = True):
+        """切换主题：整套 QSS 重设 + 清掉按 QSS 颜色缓存的三态色（否则 Δ% 仍是旧主题色）。"""
+        from .widgets.compare_view import reset_trend_colors
+
+        name = name if name in THEME_NAMES else 'dark'
+        self._theme = name
+        app = QApplication.instance()
+        if app is not None:
+            app.setStyleSheet(load_qss(theme=name))
+        reset_trend_colors()
+        act = getattr(self, '_theme_actions', {}).get(name)
+        if act is not None:
+            act.setChecked(True)
+        # 顶栏开关写「点它会切到哪」：切完立刻换文案，避免按钮读起来像当前状态
+        self.nav.set_theme_state(name)
+        _apply_dark_titlebar(self, name == 'dark')      # 标题栏跟随主题（best-effort）
+        if notify:
+            self.toast.notify(f'已切换到{THEME_LABELS[name]}主题', timeout=4000)
+
+    def _toggle_theme(self):
+        """顶栏主题开关：深↔浅一步切换（菜单里仍可显式选，两处共享同一状态）。"""
+        self._set_theme('light' if self._theme == 'dark' else 'dark')
 
     def _kernel_selftest_message(self) -> tuple:
         """返回自检弹窗要显示的内容（与 --selftest 同源，便于无显示环境校验）。"""
@@ -577,6 +637,29 @@ class MainWindow(QMainWindow):
         box.setDetailedText(detail.strip())
         box.exec()
 
+    # ---------------- 撤销 / 重做 ----------------
+    def _capture_undo(self):
+        """一次编辑结束：比对档案快照，变了就压一步（细节见 undo 模块）。
+
+        为什么挂在这里而不是各编辑器里：编辑入口十几个，逐个埋点必然漏；而 profile 是
+        唯一事实源，刷新链（含对比页的 resultsChanged 分支）已经覆盖了全部写入路径。
+        """
+        if self._undo_busy:
+            return
+        self.undo_stack.capture()
+
+    def _apply_undo(self):
+        """撤销/重做已把档案灌回 profile：整页回填重建编辑器。
+
+        必须整页重建：撤销替换了 profile 里的草稿对象，旧控件仍握着一份已经被丢弃的引用，
+        只刷数值会让后续编辑写进「幽灵对象」（界面看着改了，算出来的没变）。
+        """
+        self._undo_busy = True
+        try:
+            self._reload_pages()
+        finally:
+            self._undo_busy = False
+
     # ---------------- 刷新协议 ----------------
     def _refresh_all(self):
         """轻量刷新：属性表 / 对比结果 / 已装配清单一次到位；排序表不全量重排。
@@ -587,6 +670,26 @@ class MainWindow(QMainWindow):
         self.role_page.refresh()
         self.compare_page.refresh()
         self.assembly_center.refresh()
+        self._update_side_summary()
+
+    def _update_side_summary(self, with_dps: bool = False):
+        """上下文条摘要：名称/等级/职业常驻，基线 DPS 缓存后同样常驻。
+
+        为什么缓存而不是每次重算：整表基线约 1ms，编辑时每次按键都算不值得；但只在换数据源时
+        算又会让「基线」在第一次编辑后消失（规范要求它常驻）。故首次/换源算一次并记住，其余
+        编辑复用——它是「现在算的是哪套数」的锚，实时变化在对比页已经给到。
+        """
+        prof = self.profile
+        cls = hero_class_label(self.gd, getattr(prof, 'hero_class', None))
+        if with_dps or self._baseline_dps is None:
+            try:
+                self._baseline_dps = fmt_dps(calc_service.baseline_dps(prof, self.gd))
+            except (OSError, ValueError, TypeError):
+                self._baseline_dps = ''
+        dps = f' · 基线 {self._baseline_dps}' if self._baseline_dps else ''
+        self.nav.set_profile_summary(
+            f'{prof.name} · Lv{int(prof.level)} · {cls}{dps}',
+            '当前构建：名称 / 等级 / 职业 / 基线期望 DPS。存取构建见「文件」菜单。')
 
     def _reload_pages(self):
         """换数据源后的全页回填（导入/加载构建），各页 reload 内含深度重算。"""
@@ -594,6 +697,7 @@ class MainWindow(QMainWindow):
         self.role_page.reload()
         self.compare_page.reload()
         self.assembly_center.reload()
+        self._update_side_summary(with_dps=True)
 
     def _update_source_badge(self):
         """侧栏底部的数据源徽标：手工 / 内存导入 α·β + 快照时间。
@@ -603,12 +707,12 @@ class MainWindow(QMainWindow):
         """
         mode = str(getattr(self.profile, 'import_mode', '') or '')
         if not mode:
-            self.nav.set_source_badge('数据源：手工构建',
+            self.nav.set_source_badge('手工构建',
                                       '当前数值来自手工录入或构建文件，未读取游戏内存。')
             return
         mode_cn = 'β 逐件' if mode == 'beta' else 'α 聚合（降级）'
         time_cn = self.profile.import_time or '未知时间'
-        self.nav.set_source_badge(f'数据源：内存导入 {mode_cn}\n快照 {time_cn}',
+        self.nav.set_source_badge(f'内存导入 {mode_cn} · 快照 {time_cn}',
                                   '角色数据来自运行中游戏的只读内存快照（不写入游戏进程）。\n'
                                   'α 聚合无逐件装备数据，百分比类词条增量为近似值。')
 
@@ -620,6 +724,7 @@ class MainWindow(QMainWindow):
         blank.skill_name = self.profile.skill_name
         blank.skill_level = int(self.profile.skill_level)
         self.profile.replace_with(blank)
+        self.undo_stack.reset()
         self._reload_pages()
         self.toast.notify('已新建空白构建（从手工录入开始）', timeout=8000)
 
@@ -644,11 +749,12 @@ class MainWindow(QMainWindow):
         self.profile.slot_current = {}
         self.profile.slot_candidate = {}
         self.profile.like_current_pref = False
+        self.undo_stack.reset()
         self._reload_pages()
         self.toast.notify('已清除导入数据：当前件可编辑，可继续手工试算', timeout=10000)
 
 
-def build_application(argv=None) -> QApplication:
+def build_application(argv=None, theme: str = 'dark') -> QApplication:
     """建 QApplication、定样式、挂主题。主题缺失会自 load_qss 抛出，启动即失败（不静默）。
 
     为什么显式设 Fusion：QSS 覆盖不到的子控件（复选框指示器/下拉箭头/微调按钮/排序指示/
@@ -659,27 +765,29 @@ def build_application(argv=None) -> QApplication:
     app = QApplication.instance() or QApplication(argv if argv is not None else sys.argv)
     app.setApplicationName('Deskrawl 数值计算台')
     app.setStyle('Fusion')
-    app.setStyleSheet(load_qss())
+    app.setStyleSheet(load_qss(theme=theme))
     icon = load_app_icon()
     if icon is not None:
         app.setWindowIcon(icon)
     return app
 
 
-def _apply_dark_titlebar(win):
-    """Windows 上把系统标题栏切成暗色（DWMWA_USE_IMMERSIVE_DARK_MODE）。
+def _apply_dark_titlebar(win, enabled: bool = True):
+    """Windows 上按主题切换系统标题栏明暗（DWMWA_USE_IMMERSIVE_DARK_MODE）。
 
-    只为消掉窗口顶端那条亮色横带：实测系统标题栏是纯白 #FFFFFF，与暗色应用形成割裂。
-    必须在窗口**首次显示前**调用（winId() 会先建出原生窗口）——实测在 show() 之后再设，
-    API 虽返回 S_OK 却不再生效，标题栏保持原样；Win10 1809 与 Win11 的属性号不同（19/20），
-    两个都试，任一成功即返回；非 Windows 或旧版本不生效属预期，静默跳过（纯观感优化）。
+    只为消掉窗口顶端那条与画布割裂的横带：暗色应用配纯白标题栏、浅色应用配深色标题栏
+    都像另一套程序。必须在窗口**首次显示前**调用（winId() 会先建出原生窗口）——实测在
+    show() 之后再设，API 虽返回 S_OK 却不再生效，标题栏保持原样；运行期切主题时这里是
+    best-effort（较新 Win10/11 生效，旧版本要下次启动才变），不为此弹提示。
+    Win10 1809 与 Win11 的属性号不同（19/20），两个都试，任一成功即返回；
+    非 Windows 或不支持时静默跳过（纯观感优化）。
     """
     if sys.platform != 'win32':
         return
     import ctypes
     try:
         hwnd = int(win.winId())
-        enabled = ctypes.c_int(1)
+        enabled = ctypes.c_int(1 if enabled else 0)
         for attr in (20, 19):
             if ctypes.windll.dwmapi.DwmSetWindowAttribute(
                     ctypes.c_void_p(hwnd), attr, ctypes.byref(enabled),
@@ -709,10 +817,35 @@ def shutdown_application() -> None:
         pass
 
 
+def _notify_unhandled(path: str, exc) -> None:
+    """崩溃提示：只在已有 QApplication 时弹窗（无显示环境的自检/CLI 不弹，避免挂住）。"""
+    if QApplication.instance() is None:
+        return
+    QMessageBox.critical(None, '程序遇到未处理的错误',
+                         f'{exc}\n\n详细信息已写入日志：\n{path}\n请把该文件附在反馈里。')
+
+
 def run_gui(argv=None) -> int:
+    # 先装兜底再建窗口：QSS/图标缺失这类启动期异常同样需要留下可复盘的记录
+    logging_setup.install(notify=_notify_unhandled)
     app = build_application(argv)
+    server, why = single_instance.acquire()    # 引用活到 exec 结束：server 被回收锁就没了
+    if server is None:
+        if why == 'exists':
+            QMessageBox.information(None, '已在运行',
+                                    'Deskrawl 数值计算台已有一个实例在运行，已把它切到前台。\n'
+                                    '本实例将退出，避免两份会话状态互相覆盖。')
+            shutdown_application()            # 这条早退同样要拆 Qt，否则偶发析构 abort
+            return 0
+        # 监听失败：提示但继续（宁可少一层保护，也不让工具打不开）
+        QMessageBox.warning(None, '单实例保护不可用',
+                            f'{why}\n本次仍会启动，但双开可能互相覆盖会话状态。')
     win = MainWindow(persist_state=True)      # 生产入口：关闭落盘 / 启动恢复会话状态
-    _apply_dark_titlebar(win)                 # 须在 show() 之前：之后设 API 返回 S_OK 但不生效
+    if server is not None:
+        server.newConnection.connect(lambda: single_instance.activate(win, server))
+        single_instance.activate(win, server)  # 补收「抢锁→建窗」之间到达的连接
+    # 须在 show() 之前：之后设 API 返回 S_OK 但不生效；会话恢复的主题也要在这里生效
+    _apply_dark_titlebar(win, win._theme == 'dark')
     win.show()
     code = app.exec()
     shutdown_application()

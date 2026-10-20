@@ -3,7 +3,7 @@
 
 数据来自 tools/scripts/extract_localization.py 导出的 data/loc/*.json
 （Unity Localization 表 Abilities / Equipments 的 Chinese (Simplified) 列）。
-GUI 层不引入内核依赖：与 calc_service.ability_names 同样从 gd.dir 相对定位，只读。
+GUI 层不引入内核依赖：与 skill_service.ability_names_by_pathid 同样从 gd.dir 相对定位，只读。
 """
 from __future__ import annotations
 

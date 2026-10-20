@@ -16,10 +16,11 @@ from PySide6.QtWidgets import (QAbstractItemView, QCheckBox, QComboBox,
                                QVBoxLayout, QWidget)
 
 from deskrawl_calc import StatType, stat_name
+from deskrawl_calc.stattype import is_fractional
 
 from ..core.calc_service import MOD_TYPE_CN
 from ..core.item_draft import apply_upgrade
-from .common import QtySpinBox
+from .common import AffixValueSpin, QtySpinBox, ReloadGuard
 
 # 类型中文名单一来源在 core（与候选摘要 describe_mods 共用），此处只做视图所需的查表
 _MOD_LABELS = dict(MOD_TYPE_CN)
@@ -29,24 +30,16 @@ _MOD_LABELS = dict(MOD_TYPE_CN)
 # 故类型完全由属性自动决定、下拉一律禁用，用户没有填错的余地。
 _ALLOWED_TYPES = [0]
 
-# 百分比类属性：数值本身是小数形式的百分比（0.30 = 30%）。这类属性必须提示「按小数填写」，
-# 否则很容易把 30% 填成 30 —— 差 100 倍且不报错。
-_PERCENT_STATS = frozenset(
-    {4, 5, 6, 13, 15, 16, 17, 19, 22, 37, 41, 56, 57, 65}     # 暴击/攻速/冷却/掉落/闪避等
-    | set(range(23, 35))                                       # 元素乘区23–28 + 条件29–32 + 普攻·强攻33–34
-    | {40, 42, 43, 44, 45, 46, 48, 49, 51, 52, 53, 54, 55, 58,
-       59, 60, 61, 62, 63, 64}                                 # 其余条件/技能/生存百分比项
-)
-
-_TIP_PERCENT = '百分比类属性：数值按小数填写（0.3000 = 30%）；入池方式由游戏固定为「加法」'
+_TIP_PERCENT = ('百分比类属性：输入框按 % 显示（30 = 30%），内部仍按小数参与计算；'
+                '入池方式由游戏固定为「加法」')
 _TIP_FLAT = '数值属性：直接填数值；入池方式由游戏固定为「加法」'
-_TIP_VALUE_PERCENT = '按小数填写，例：0.3000 = 30%'
+_TIP_VALUE_PERCENT = '按 % 填写，例：30 = 30%'
 # 主属性提示（Player.CalcDamage@0x518230：攻击伤害 ×(1+Final(职业主属性)/100)，每点即 +1% 伤害加成）
-_TIP_PRIMARY_STAT = ('主属性：仅「职业主属性」（左栏设定/内存导入自动识别）参与攻击伤害——'
+_TIP_PRIMARY_STAT = ('主属性：仅「职业主属性」（角色面板设定 / 内存导入自动识别）参与攻击伤害——'
                      '按游戏公式 ×(1+最终值/100)，每点 +1% 伤害加成；其余主属性只提供护甲/魔抗')
 
 
-class AffixTable(QTableWidget):
+class AffixTable(ReloadGuard, QTableWidget):
     """词条行表：属性（内核 StatType 全量中文名）/ 类型（只读文本「加法」）/ 数值 / 删除。
 
     类型为什么不做成下拉：装备词条的入池方式由游戏固定（ItemData 与宝石/符文/套装实测
@@ -64,23 +57,32 @@ class AffixTable(QTableWidget):
 
     def __init__(self, parent=None):
         super().__init__(0, len(self.COLUMNS), parent)
-        self._loading = False
         self._locked = False
+        self.setAccessibleName('装备词条表')
         self.setHorizontalHeaderLabels(self.COLUMNS)
         self.verticalHeader().setVisible(False)
         self.setEditTriggers(QAbstractItemView.NoEditTriggers)
-        self.horizontalHeader().setSectionResizeMode(0, QHeaderView.Stretch)
+        head = self.horizontalHeader()
+        head.setSectionResizeMode(0, QHeaderView.Stretch)
+        # 其余三列定宽：让第 0 列吃剩余宽度。不定宽时列宽按首次布局（卡片还很窄）算出来，
+        # 候选侧实测「类型」列被压到只剩一个字（「加法」显示成「i」）。
+        for col, width in ((1, 72), (2, 104), (3, 32)):
+            head.setSectionResizeMode(col, QHeaderView.Fixed)
+            self.setColumnWidth(col, width)
         # 单元格里已是带描边的控件，再叠网格线会形成"表格框+网格+控件框"三层线（视觉噪音）
         self.setShowGrid(False)
+        self.setProperty('flat', 'true')          # 卡片内不再画表格外框（QSS）
         self.setAlternatingRowColors(True)
-        self.setMinimumHeight(150)
+        self.verticalHeader().setDefaultSectionSize(30)   # 单元格内有控件，30px 才不挤
+        # 100px ≈ 3 行：够看到「这件装备有哪些词条」，再多由表格自身滚动——
+        # 对比页的结论区需要固定高度，词条表不能按「越多越高」把结果挤出首屏
+        self.setMinimumHeight(100)
 
     def set_affixes(self, affixes):
-        self._loading = True
-        self.setRowCount(0)
-        for stat, mtype, value in affixes:
-            self._add_row(stat, mtype, value)
-        self._loading = False
+        with self.reloading():
+            self.setRowCount(0)
+            for stat, mtype, value in affixes:
+                self._add_row(stat, mtype, value)
 
     def affixes(self) -> list:
         out = []
@@ -136,11 +138,13 @@ class AffixTable(QTableWidget):
         for st in StatType:
             stat_combo.addItem(stat_name(st), int(st))
 
-        spin = QtySpinBox()
+        spin = AffixValueSpin()
         spin.setRange(-1e6, 1e6)
 
         btn = QPushButton('×')
         btn.setFixedWidth(28)
+        btn.setToolTip('删除该词条（8 秒内可在下方「恢复此行」找回）')
+        btn.setAccessibleName('删除该词条')
 
         self.setCellWidget(row, 0, stat_combo)
         self.setItem(row, 1, QTableWidgetItem(''))
@@ -163,7 +167,7 @@ class AffixTable(QTableWidget):
 
     def _touch(self, spin, value):
         """行内数值变化 → 播报 (stat, value) 给外围做区间提示；回填期间不播报。"""
-        if self._loading:
+        if self.loading:
             return
         row = self._row_of(spin, 2)
         if row >= 0:
@@ -171,7 +175,7 @@ class AffixTable(QTableWidget):
 
     def _on_stat_changed(self, stat_combo, spin):
         """属性切换 → 类型自动回到该属性的规范值（物品词条在游戏里恒为加法），并刷新填写提示。"""
-        if self._loading:
+        if self.loading:
             return
         row = self._row_of(stat_combo)
         if row < 0:
@@ -198,7 +202,8 @@ class AffixTable(QTableWidget):
         item.setTextAlignment(Qt.AlignCenter)
 
     def _apply_hints(self, row, stat, spin):
-        frac = int(stat) in _PERCENT_STATS
+        frac = is_fractional(stat)
+        spin.set_percent(frac)
         item = self.item(row, 1)
         if item is not None:
             item.setToolTip(_TIP_PERCENT if frac else _TIP_FLAT)
@@ -220,11 +225,11 @@ class AffixTable(QTableWidget):
         self._emit()
 
     def _emit(self, *_):
-        if not self._loading:
+        if not self.loading:
             self.changed.emit()
 
 
-class ItemEditor(QGroupBox):
+class ItemEditor(ReloadGuard, QGroupBox):
     """一件装备的编辑面板。weapon=True 时多出 基础伤害/攻速/技能倍率 三行。
 
     所有槽位都有一行只读「传奇词条」：护甲/饰品的传奇特效就是它们的主要战力，只在武器上
@@ -251,7 +256,6 @@ class ItemEditor(QGroupBox):
         """
         super().__init__(title, parent)
         self._base_title = title
-        self._loading = False
         self._locked = False
         self._spins = []
         self.draft = draft
@@ -260,7 +264,11 @@ class ItemEditor(QGroupBox):
         self._name_resolver = name_resolver
         self._range_hint = range_hint
         self._legendary_fn = legendary_fn
+        # 表单与卡片内距收紧：卡片要在 8/4 布局里与结果区共享一屏高度
         form = QFormLayout()
+        form.setContentsMargins(0, 0, 0, 0)
+        form.setVerticalSpacing(4)
+        form.setHorizontalSpacing(10)
         self._form = form
         self.name_edit = QLineEdit()
         self.name_edit.textChanged.connect(self._on_name)
@@ -277,20 +285,28 @@ class ItemEditor(QGroupBox):
         self.legend_label.setWordWrap(True)
         self.legend_label.setTextInteractionFlags(Qt.TextSelectableByMouse)
         form.addRow('传奇词条', self.legend_label)
+        # 强化/宝石元信息（导入件才有内容）：并入「强化/宝石」这一行。
+        # 原先开关/事实一行、元信息又一行——两行说的是同一件事（+N 与宝石数），合并后
+        # 候选侧 = 开关 + 元信息并排，当前侧 = 元信息本身；两侧仍各占一行，表单行数相等，
+        # 下方词条表才严格同高，逐行比对（V8）不会一边高一边低。
+        self.meta_label = QLabel()
+        self.meta_label.setObjectName('weaponMeta')
+        self.meta_label.setWordWrap(True)
         if current_of is not None:
-            self.like_current = QCheckBox()
+            self.like_current = QCheckBox('与当前装备相同')
             self.like_current.setToolTip(
                 '勾选：候选沿用当前装备的强化等级与镶嵌宝石，并按背包原始词条重算「强化后」数值\n'
-                '（即「同强化同宝石谁更强」的对照）；取消：回到该件在背包里的原貌。')
+                '（即「同强化同宝石谁更强」的对照）；取消：回到该件在背包里的原貌。\n'
+                '右侧元信息显示当前生效的强化与宝石（勾选时即当前件的）。')
             self.like_current.toggled.connect(self._on_like_current)
-            form.addRow('强化/宝石', self.like_current)
+            meta_row = QHBoxLayout()
+            meta_row.setContentsMargins(0, 0, 0, 0)
+            meta_row.setSpacing(8)
+            meta_row.addWidget(self.like_current)
+            meta_row.addWidget(self.meta_label, 1)
+            form.addRow('强化/宝石', meta_row)
         else:
-            # 候选侧这一行是「与当前装备相同」开关；当前侧留同一行的只读事实——两侧表单行数
-            # 相等，下方词条表才严格同高，逐行比对（V8）不会一边高一边低；这一行同时也是
-            # 「候选勾上会镜像什么」的答案（+N 与宝石数），比翻下面那行元信息更快。
-            self.fact_label = QLabel('—')
-            self.fact_label.setObjectName('weaponMeta')
-            form.addRow('强化/宝石', self.fact_label)
+            form.addRow('强化/宝石', self.meta_label)
 
         self.affixes = AffixTable()
         self.affixes.changed.connect(self._on_affixes)
@@ -303,8 +319,13 @@ class ItemEditor(QGroupBox):
         # 出现片刻，不常驻占位。为什么不做确认框：删一条词条很轻，弹框反而让连续删改变慢。
         self.undo_label = QLabel('')
         self.undo_label.setObjectName('inlineNotice')
-        self.undo_btn = QPushButton('撤销')
+        # 文案避开「撤销」二字：编辑菜单里的撤销走全局档案快照，这里是 8 秒内的一次性恢复，
+        # 两个按钮同名会让用户以为「撤销」只回退一行（或反过来以为 Ctrl+Z 只回退一行）
+        self.undo_btn = QPushButton('恢复此行')
+        self.undo_btn.setToolTip('把刚删除的词条按原位置放回（8 秒内有效）。\n'
+                                 '撤销更多步用 Ctrl+Z（编辑 → 撤销）。')
         self.undo_bar = QWidget()
+        self.undo_bar.setObjectName('inlineRow')    # 同上：卡片内的容器不参与底色
         undo_lay = QHBoxLayout(self.undo_bar)
         undo_lay.setContentsMargins(0, 0, 0, 0)
         undo_lay.setSpacing(8)
@@ -319,12 +340,6 @@ class ItemEditor(QGroupBox):
         self._undo_timer.timeout.connect(self._hide_undo)
         self.undo_btn.clicked.connect(self._undo_delete)
 
-        # 导入元信息（强化等级/镶嵌宝石），只读展示；手工构建恒为空
-        self.meta_label = QLabel()
-        self.meta_label.setWordWrap(True)
-        self.meta_label.setObjectName('weaponMeta')
-        self.meta_label.setVisible(False)
-
         # 词条区间提示（改某条数值时刷新）：同一数值在不同物品等级/稀有度下评价完全不同
         self.range_label = QLabel('')
         self.range_label.setObjectName('weaponMeta')
@@ -332,9 +347,11 @@ class ItemEditor(QGroupBox):
         self.range_label.setVisible(False)
 
         root = QVBoxLayout(self)
+        # 8 + QSS 的 QGroupBox padding 4 = 12：嵌入卡统一 12px 内距（原 8 偏挤，14 又放不下）
+        root.setContentsMargins(8, 8, 8, 8)
+        root.setSpacing(6)
         root.addLayout(form)
-        root.addWidget(self.meta_label)
-        root.addWidget(self.affixes)
+        root.addWidget(self.affixes, 1)
         root.addWidget(self.undo_bar)
         root.addWidget(self.range_label)
         root.addWidget(self.add_btn)
@@ -343,7 +360,7 @@ class ItemEditor(QGroupBox):
     # ---- 删除撤销 ----
     def _on_row_removed(self, row, snapshot):
         """记下被删行并亮出撤销条；8 秒后自动收起（只保留最近一次，避免堆积提示）。"""
-        if self._loading or self._locked:
+        if self.loading or self._locked:
             return
         self._undo_state = (int(row), [int(snapshot[0]), int(snapshot[1]), float(snapshot[2])])
         self.undo_label.setText(
@@ -402,23 +419,20 @@ class ItemEditor(QGroupBox):
                         if locked else '')
 
     def reload(self):
-        self._loading = True
-        self._hide_undo()        # 内容被整体换掉（换槽/载入导入件）后，旧的行号与数值都不再对应
-        self.name_edit.setText(self.draft.name)
-        if self.weapon:
-            self.damage_spin.setValue(getattr(self.draft, 'base_damage', 0.0))
-            self.speed_spin.setValue(getattr(self.draft, 'base_speed', 1.0))
-            self.skill_spin.setValue(getattr(self.draft, 'skill_multiplier', 1.0))
-        self.affixes.set_affixes(self.draft.affixes)
-        self._reload_meta()
-        self._refresh_legendary()
-        if hasattr(self, 'like_current'):
-            self.like_current.setChecked(bool(getattr(self.draft, 'like_current', False)))
-            self._update_like_text()
-        else:
-            self.fact_label.setText(self._fact_text())
-        self._mark_name(self.draft.name)
-        self._loading = False
+        with self.reloading():
+            self._hide_undo()    # 内容被整体换掉（换槽/载入导入件）后，旧的行号与数值都不再对应
+            self.name_edit.setText(self.draft.name)
+            if self.weapon:
+                self.damage_spin.setValue(getattr(self.draft, 'base_damage', 0.0))
+                self.speed_spin.setValue(getattr(self.draft, 'base_speed', 1.0))
+                self.skill_spin.setValue(getattr(self.draft, 'skill_multiplier', 1.0))
+            self.affixes.set_affixes(self.draft.affixes)
+            self._reload_meta()
+            self._refresh_legendary()
+            if hasattr(self, 'like_current'):
+                self.like_current.setChecked(bool(getattr(self.draft, 'like_current', False)))
+                self._update_like_text()
+            self._mark_name(self.draft.name)
 
     def _mark_name(self, text):
         """名称不在装备表命中时给输入框描警示边并写明后果（特效会被静默丢掉）。
@@ -436,23 +450,39 @@ class ItemEditor(QGroupBox):
             if bad else '')
 
     def _reload_meta(self):
-        """强化/宝石元信息（内存导入的装备才有）；同时说明词条口径为「强化后」。"""
-        parts = []
-        if int(getattr(self.draft, 'upgrade_level', 0) or 0) > 0:
-            parts.append(f'强化 +{int(self.draft.upgrade_level)}（词条数值已按游戏强化规则'
-                         f'折算为强化后口径）')
-        gems = list(getattr(self.draft, 'gems', None) or [])
+        """强化/宝石元信息（内存导入的装备才有）：正文只留事实，换算口径进 tooltip。
+
+        为什么改：原先把「词条数值已按游戏强化规则折算为强化后口径」写进正文，每件装备都
+        重复一遍口径说明，反而把「+4 / 3 颗宝石」这个真正的事实淹掉。
+        """
+        parts, tips = [], []
+        level = int(getattr(self.draft, 'upgrade_level', 0) or 0)
+        if level > 0:
+            parts.append(f'强化 +{level}')
+            tips.append('词条数值已按游戏强化规则折算为强化后口径（与游戏内 tooltip 一致）')
+        gems = [str(g) for g in (getattr(self.draft, 'gems', None) or [])]
         if gems:
-            parts.append('镶嵌宝石：' + '、'.join(gems))
+            # 宝石名要留在正文：同一件装备镶的是哪颗宝石决定加成组，只写「3 颗」等于没说。
+            # 同名按颗数合并（导入件常见两颗同名），正文才不至于一行铺开
+            counts = {}
+            for name in gems:
+                counts[name] = counts.get(name, 0) + 1
+            brief = '、'.join(f'{n}×{c}' if c > 1 else n for n, c in counts.items())
+            parts.append(f'宝石 {len(gems)}（{brief}）')
+            tips.append('镶嵌宝石：' + '、'.join(gems))
         if (getattr(self.draft, 'like_current', False)
                 and not (getattr(self.draft, 'raw_modifiers', None) or [])):
-            parts.append('已镜像当前装备的强化/宝石；该件无强化前原貌，词条数值未重算')
-        self.meta_label.setText('；'.join(parts))
-        self.meta_label.setVisible(bool(parts))
+            parts.append('镜像当前件')
+            tips.append('已镜像当前装备的强化/宝石；该件无强化前原貌，词条数值未重算')
+        # 候选侧空内容时整块隐藏（自检钉住「显隐与内容一致」）；当前侧恒显——
+        # 「无强化、无宝石」本身也是要交代的事实（原来由独立的事实行承担）
+        self.meta_label.setText(' · '.join(parts) if parts else '无强化、无宝石')
+        self.meta_label.setToolTip('\n'.join(tips))
+        self.meta_label.setVisible(bool(parts) or self._current_of is None)
 
     # ---- 「与当前装备相同（强化/宝石）」 ----
     def _on_like_current(self, checked):
-        if self._loading or self._locked or self._current_of is None:
+        if self.loading or self._locked or self._current_of is None:
             return
         cur = self._current_of()
         checked = bool(checked)
@@ -491,23 +521,11 @@ class ItemEditor(QGroupBox):
         return True
 
     def _update_like_text(self):
-        """开关文案写出当前件的强化与宝石数——用户不必切页核对当前装备。"""
-        cur = self._current_of() if self._current_of is not None else None
-        lv = int(getattr(cur, 'upgrade_level', 0) or 0)
-        gems = len(list(getattr(cur, 'gems', None) or []))
-        now = f'强化 +{lv}' if lv else '无强化'
-        gs = f'{gems} 颗宝石' if gems else '无宝石'
-        self.like_current.setText(f'与当前装备相同（{now}、{gs}）')
-
-    def _fact_text(self) -> str:
-        """当前件的强化/宝石事实（当前侧的只读行），词序与候选侧开关文案同款，便于左右对照。"""
-        lv = int(getattr(self.draft, 'upgrade_level', 0) or 0)
-        gems = len(list(getattr(self.draft, 'gems', None) or []))
-        parts = ([f'强化 +{lv}'] if lv else []) + ([f'{gems} 颗宝石'] if gems else [])
-        return '、'.join(parts) if parts else '无强化、无宝石'
+        """开关文案固定为「与当前装备相同」：强化/宝石数由同行元信息展示（合并后不再重复）。"""
+        self.like_current.setText('与当前装备相同')
 
     def _on_name(self, text):
-        if self._loading or self._locked:
+        if self.loading or self._locked:
             return
         self.draft.name = text
         self._mark_name(text)
@@ -533,13 +551,13 @@ class ItemEditor(QGroupBox):
             self.legend_label.setToolTip('')
 
     def _on_num(self, attr, value):
-        if self._loading or self._locked:
+        if self.loading or self._locked:
             return
         setattr(self.draft, attr, float(value))
         self.changed.emit()
 
     def _on_affixes(self):
-        if self._loading or self._locked:
+        if self.loading or self._locked:
             return
         self.draft.affixes = self.affixes.affixes()
         self.changed.emit()

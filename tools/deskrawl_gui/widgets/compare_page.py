@@ -6,11 +6,12 @@
 EquipmentEditor 内部已含 CompareView，这里只做横向组合与刷新中转。
 """
 from PySide6.QtCore import Qt, Signal
-from PySide6.QtWidgets import QHBoxLayout, QScrollArea, QSplitter, QVBoxLayout, QWidget
+from PySide6.QtWidgets import QScrollArea, QSplitter, QVBoxLayout, QWidget
 
 from ..core.glossary import CALIBER_TEXT
 from ..core.skill_service import pick_main_row
-from .common import SplitterSizesMixin, apply_narrow_stacking, page_header
+from .common import (SplitterSizesMixin, apply_narrow_stacking, cap_page_width,
+                     page_header)
 from .dps_meter import GameDpsMeter
 from .equipment_editor import EquipmentEditor
 from .skill_card import SkillCard
@@ -33,35 +34,43 @@ class ComparePage(SplitterSizesMixin, QWidget):
 
         self._splitter = QSplitter()
         self._init_splitter_sizes(self._splitter)
-        self._splitter.addWidget(self.equipment_editor)
+        # 编辑区包滚动区：竖排时（1280×720）分到的高度可能低于其最小高度 568，无滚动就会裁切
+        editor_scroll = QScrollArea()
+        editor_scroll.setWidgetResizable(True)
+        editor_scroll.setWidget(self.equipment_editor)
+        editor_scroll.setFrameShape(QScrollArea.NoFrame)
+        self._splitter.addWidget(editor_scroll)
         # 目标设置是窄表单，滚动区兜底；固定较窄宽度把空间留给对比结果
         target_scroll = QScrollArea()
         target_scroll.setWidgetResizable(True)
         target_scroll.setWidget(self.target_editor)
         target_scroll.setFrameShape(QScrollArea.NoFrame)
-        target_scroll.setMinimumWidth(300)
+        target_scroll.setMinimumWidth(340)
         # 实测卡片钉在右栏底部（滚动区之外）：它是轮询读数，目标设置再长也不该把它滚走
         self.dps_meter = GameDpsMeter()
         right = QWidget()
         right_lay = QVBoxLayout(right)
         right_lay.setContentsMargins(0, 0, 0, 0)
-        right_lay.setSpacing(8)
+        right_lay.setSpacing(12)
         right_lay.addWidget(target_scroll, 1)
         right_lay.addWidget(self.dps_meter, 0)
         self._splitter.addWidget(right)
         self._splitter.setStretchFactor(0, 1)
         self._splitter.setStretchFactor(1, 0)
-        self._splitter.setSizes([980, 340])
+        # 7/3 三页统一。不能取文档的 8/4：编辑器（双编辑卡 + 结论区）最小宽 ~890，
+        # 8/4 需要 ≥1373 的窗宽才不出横向滚动；70/30 在 1321 就够（见 resizeEvent 阈值）
+        self._splitter.setSizes([960, 412])
 
-        root = QVBoxLayout(self)
-        root.setContentsMargins(16, 12, 16, 12)
-        head = QHBoxLayout()
-        head.addWidget(page_header(
-            '装备对比',
-            '选槽 → 改候选 → 读 Δ%（当前件来自导入时固定只读；多件同换请逐槽评估）',
-            CALIBER_TEXT), 1)
-        root.addLayout(head)
+        root = QVBoxLayout()
+        root.setContentsMargins(24, 12, 24, 12)
+        root.setSpacing(8)    # 卡片垂直间距 12→8（三页统一，见 assembly_center）
+        # 副标题只留一句话动线；「当前件只读」「多件同换」这类口径收进 ⓘ（V11）。
+        # 职业只读展示上提到 hero 右侧：它说明技能表按谁列，属于页级口径而非编辑参数。
+        root.addWidget(page_header(
+            '装备对比', '选一个槽 → 填候选 → 看 Δ%', CALIBER_TEXT,
+            right=self.equipment_editor.class_label))
         root.addWidget(self._splitter, 1)
+        cap_page_width(self, root)    # 内容宽封顶 1440 居中
 
         self.target_editor.changed.connect(self.changed)
         self.skill_card.changed.connect(self.changed)         # 参考技能 → 技能表与预测基线
@@ -71,9 +80,14 @@ class ComparePage(SplitterSizesMixin, QWidget):
         self.refresh()
 
     def _sync_meter(self):
-        """把最新主力技能期望喂给实测框（换装预测 = 候选期望 × 系数）。"""
+        """把最新主力技能期望喂给实测框（换装预测 = 候选期望 × 系数）。
+
+        空候选时技能行为空，若不说原因，诊断行会把「没填候选」误报成「没设参考技能」。
+        """
+        empty = bool(getattr(self.equipment_editor, 'last_candidate_empty', False))
         self.dps_meter.set_expectation(
-            pick_main_row(self.equipment_editor.last_skill_rows, self.profile))
+            pick_main_row(self.equipment_editor.last_skill_rows, self.profile),
+            note='候选未填写：填好候选后再给换装预测' if empty else '')
 
     def refresh(self):
         """重算参考技能卡与对比结果（职业/等级/符文的变化都在这里反映），并同步实测框期望。"""
@@ -89,7 +103,13 @@ class ComparePage(SplitterSizesMixin, QWidget):
         self.refresh()
 
     def resizeEvent(self, event):
-        """窄窗口把「装备编辑器 | 目标栏」改为上下堆叠（见 common.apply_narrow_stacking）。"""
+        """窄窗口把「装备编辑器 | 目标栏」改为上下堆叠（见 common.apply_narrow_stacking）。
+
+        阈值比其他页高（1360）：编辑器最小宽 ~890，7/3 分栏下需要 ≥1340 的窗宽才能并排
+        不出横向滚动（8/4 则要 ≥1373）；竖排后主区拿到整宽，结论读得清。
+        """
         super().resizeEvent(event)
-        apply_narrow_stacking(self._splitter, event.size().width())
+        apply_narrow_stacking(self._splitter, event.size().width(), threshold=1360,
+                              h_sizes=self._h_sizes)
+        self.equipment_editor.set_result_first(self._splitter.orientation() == Qt.Vertical)
         self._remember_splitter()

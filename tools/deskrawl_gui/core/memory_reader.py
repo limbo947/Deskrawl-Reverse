@@ -14,6 +14,7 @@ DLL 注入 —— 本模块与整个导入链任何时候不得出现写操作�
 from __future__ import annotations
 
 import ctypes
+import os
 import struct
 from ctypes import wintypes
 
@@ -28,6 +29,9 @@ _k32.ReadProcessMemory.argtypes = [wintypes.HANDLE, ctypes.c_void_p, ctypes.c_vo
                                    ctypes.c_size_t, ctypes.POINTER(ctypes.c_size_t)]
 _k32.ReadProcessMemory.restype = wintypes.BOOL
 _k32.CloseHandle.argtypes = [wintypes.HANDLE]
+_k32.QueryFullProcessImageNameW.argtypes = [wintypes.HANDLE, wintypes.DWORD,
+                                            wintypes.LPWSTR, ctypes.POINTER(wintypes.DWORD)]
+_k32.QueryFullProcessImageNameW.restype = wintypes.BOOL
 _psapi.EnumProcessModulesEx.argtypes = [wintypes.HANDLE, ctypes.POINTER(wintypes.HMODULE),
                                         wintypes.DWORD, ctypes.POINTER(wintypes.DWORD), wintypes.DWORD]
 _psapi.GetModuleBaseNameW.argtypes = [wintypes.HANDLE, wintypes.HMODULE,
@@ -112,6 +116,19 @@ class ProcessReader:
             if nm.value == mod_name:
                 return ctypes.cast(arr[i], ctypes.c_void_p).value or arr[i]
         return None
+
+    def image_name(self):
+        """进程可执行文件名（不含路径，如 'Deskrawl.exe'）；取不到返回 ''。
+
+        为什么需要：按上次的 pid 复用定位结果时，pid 可能已被系统回收给另一个进程；
+        只判「句柄能打开」会把别人的内存当游戏读。名称核对是这条捷径的自证条件
+        （与「定位链一律以类名自校验收尾」同一取向：捷径必须自证）。
+        """
+        buf = ctypes.create_unicode_buffer(1024)
+        size = wintypes.DWORD(len(buf))
+        if not _k32.QueryFullProcessImageNameW(self.handle, 0, buf, ctypes.byref(size)):
+            return ''
+        return os.path.basename(buf.value)
 
     @staticmethod
     def find_process(name):

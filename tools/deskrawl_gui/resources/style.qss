@@ -1,158 +1,256 @@
 /* ============================================================================
-   Deskrawl 暗色主题（令牌化）
+   Deskrawl 数值计算台 — 视觉主题（按 DESIGN.md 的 Binance 设计语言重绘）
    ----------------------------------------------------------------------------
-   色板令牌（改主题只改这一段 + 各规则里的引用值；本表已覆盖全部在用色值——
-   原先 5 个散落色值已收编为正式令牌：--bg-subtle / --text-faint / --text-disabled）：
-     底色    --bg-root   #1E2226   窗口/表格底
-             --bg-sunk   #1A1D20   侧边导航/菜单栏/状态栏（比底更深一档，形成层级）
-             --bg-panel  #262B30   控件面（输入框/按钮/菜单）
-             --bg-subtle #23272C   条目悬停/选中底、斑马纹
-             --bg-hover  #2E343A   悬停/按压底
-     边线    --line      #30353B   全部描边（唯一边色，不再混用多档灰）
-     文字    --text      #E8EAED   主文字
-             --text-dim  #9AA0A6   次要文字/标题弱化
-             --text-faint #7F868D  诊断行（比 dim 更弱一档）
-             --text-disabled #6B7076 禁用态文字
-     强调    --accent    #4FC3F7   可交互元素唯一强调色（选中/焦点/进度条/复选框勾选）
-             --accent-deep #2B5F7A 强调色的按压/选中底
-     功能    --up        #66BB6A   Δ 上涨（仅 Δ 值使用）
-             --down      #EF5350   Δ 下跌（仅 Δ 值使用）
-             --flat      #9AA0A6   Δ 无变化（与 --text-dim 同值：零变化不该读成"涨"）
-             --warn      #FFB74D   降级/告警横幅
-   间距令牌：4 / 8 / 12 / 16 / 24（页面外距 16，组内 8，条目 4）
-             刻意例外（成对/紧凑布局专用，别照令牌机械替换）：2px（标题-副标题行距）、
-             6px（并排控件间隙）、10px 16px（侧栏条目内边距）、8px 12px（提示条与竖排控件）、
-             4px 8px / 4px 12px（输入控件 / 按钮内边距）、0 4px（分组标题内边距）、8px 0（侧栏列表）
-   字号令牌：页面标题 16px(600) / 分组标题 13px(600) / 正文 12px
-             刻意例外：24px（Δ 主结论）、18px（DPS 计结论）、11px（诊断行与数据源徽标）；
-             13px 另用于侧栏条目与 ⓘ 入口（可读性优先，非标题语义）
-   圆角令牌：控件 4px
-             刻意例外：0（平铺的侧栏收起按钮）、2px（滑块槽）、3px（复选框）、
-             5px（滚动条手柄）、6px（滑块手柄）、7px（单选圆点）
+   设计意图（与 DESIGN.md 的对应关系）：
+     · 深近黑画布 #0B0E11 承载一切内容，卡片用 #1E2329 抬升一档，细边线 #2B3139。
+       层级只靠「画布 / 卡片 / 抬升面」三级色块与细边线表达，不用阴影与渐变。
+     · 唯一强调色是 Binance 黄 #FCD535：只出现在主 CTA、品牌字与关键数值（数值卡）。
+       黄色稀缺才有力量——普通正文、表格、次要按钮一律不碰它。
+     · 涨绿 #0ECB81 / 跌红 #F6465D 只表达「涨跌」语义（Δ、价格方向），不做卡片底色，
+       也不拿来当通用「成功/失败」色。
+     · 数字统一走等宽字体栈（Consolas → 中文回落雅黑），对应文档里的 BinancePlex：
+       价格/伤害/百分比在任何上下文都用同一套「可信数字」字形。
+     · 圆角收敛在 6px（按钮）/ 8px（输入框与表格）/ 12px（卡片），胶囊只给状态徽标。
+    · 可读的次级文字一律 #929AA5（muted-strong）；#707A8A 只留给禁用态——它在卡片面
+      #1E2329 上只有 3.65:1，做 12px 说明/表头时低于 WCAG AA 的 4.5:1。
+   色板令牌（改主题只改这一段；本表已覆盖全部在用色值，新增色值须在 core/theme.py 登记）：
+     底    --canvas    #0B0E11   窗口/页面/顶栏画布（深近黑，非纯黑）
+           --surface   #1E2329   卡片面 / 输入框 / 菜单
+           --raised    #2B3139   抬升面：悬停、选中、全部细边线
+           --sunken    #1A1F25   卡片内的次级面：斑马纹、清单、实测框
+           --disabled  #14181D   禁用控件底
+     文字  --body      #EAECEF   正文
+           --title     #FFFFFF   高对比标题 / 选中项
+           --muted     #707A8A   仅禁用态文字（可读性不足，不做正文/表头）
+           --faint     #929AA5   次级文字：表头、说明、导航未选中（满足 4.5:1）
+     强调  --primary   #FCD535   主 CTA / 品牌字 / 关键数值
+           --press     #F0B90B   主黄按压
+           --off       #3A3A1F   主黄禁用
+           --on-primary#181A20   黄底上的黑字（唯一允许的组合）
+     语义  --up        #0ECB81   Δ 上涨
+           --down      #F6465D   Δ 下跌 / 错误
+           --focus     #3B82F6   键盘聚焦环
+     图标  --icon      #7E8896   图标/箭头描边（SVG 不参与换色，须两种画布上都 ≥3:1）
+   间距：4 / 8 / 12 / 16 / 24 / 32（页面外距 24，卡片内距 14–16，卡片间距 12，组内 8）
+   字号：页面标题 28(600) / 卡片标题 16(600) / 正文 13 / 说明 12 / 结论 32(700)
    ============================================================================ */
 
 /* ---- 全局基座 ---- */
 QWidget {
-    background-color: #1E2226;
-    color: #E8EAED;
+    background-color: #0B0E11;
+    color: #EAECEF;
     font-family: "Microsoft YaHei UI", "Segoe UI", sans-serif;
-    font-size: 12px;
+    font-size: 13px;
 }
-QGroupBox {
-    border: 1px solid #30353B;
-    border-radius: 4px;
-    margin-top: 12px;
-    padding: 8px;
-    background-color: #1E2226;
+/* 文字与勾选类控件必须透明：否则会在卡片面上刷出一块画布色的方块（旧版全局底的副作用） */
+QLabel, QCheckBox, QRadioButton, QToolButton {
+    background: transparent;
 }
+
+/* ---- 卡片容器：QGroupBox 与 QFrame#card 同一套观感（12px 圆角 + 细边线 + 无阴影） ---- */
+QGroupBox, QFrame#card {
+    background-color: #1E2329;
+    border: 1px solid #2B3139;
+    border-radius: 12px;
+    margin-top: 14px;
+}
+/* 分组框的内边距交给 QSS（标题要压在上边线上）；裸卡片的内边距由 Card 的布局给，
+   两处都设会叠成 28px，卡片里第一行文字离边框过远 */
+QGroupBox { padding: 4px; }
+QFrame#card { padding: 0px; }
+/* 卡片内的展开区/容器：不参与底色（否则会在卡片面上刷出一块画布色的暗带或第二层框） */
+QWidget#inlineRow { background: transparent; }
 QGroupBox::title {
     subcontrol-origin: margin;
-    left: 8px;
-    padding: 0 4px;
-    color: #9AA0A6;
-    font-size: 13px;
+    left: 16px;               /* 与 Card 标题同列对齐（16 是令牌值，14 不是） */
+    padding: 0 6px;
+    color: #FFFFFF;
+    font-size: 16px;          /* 与卡片标题同档（title-sm）：分组框就是表单卡 */
+    font-weight: 600;
+}
+QLabel#cardTitle { color: #FFFFFF; font-size: 16px; font-weight: 600; }
+QLabel#cardHint { color: #929AA5; font-size: 12px; }
+
+/* ---- 左侧边栏（176px / 收起 64px）：页面链接在上，操作簇钉在底部 ---- */
+QWidget#navBar {
+    background: #0B0E11;
+    border-right: 1px solid #2B3139;
+}
+QPushButton#navLink {
+    background: transparent;
+    border: none;
+    border-left: 3px solid transparent;
+    border-radius: 0;
+    color: #929AA5;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 12px;
+    text-align: left;
+}
+QPushButton#navLink:hover { color: #FFFFFF; background: #1E2329; }
+QPushButton#navLink:checked {
+    color: #FFFFFF;
+    background: #1E2329;
+    border-left: 3px solid #FCD535;
+}
+/* 主题开关：文字型次级动作，写「点它会切到哪」，不与黄色导入 CTA 抢注意力 */
+QPushButton#navGhost {
+    background: transparent;
+    border: 1px solid #2B3139;
+    border-radius: 6px;
+    color: #929AA5;
+    font-size: 12px;
+    padding: 6px 12px;
+}
+QPushButton#navGhost:hover { color: #FFFFFF; border-color: #929AA5; }
+/* 只读徽标：这把工具的核心承诺（不改游戏）。黄底黑字在深浅两种画布上都够对比度——
+   若只画黄字，浅色主题下会几乎看不见（与 CTA 同色 ≠ 同可读性） */
+QLabel#safeBadge {
+    background: #FCD535;
+    color: #181A20;
+    border: 1px solid #FCD535;
+    border-radius: 11px;
+    padding: 0px 12px;
+    font-size: 12px;      /* caption 档（12）：11 是表外值 */
     font-weight: 600;
 }
 
-/* ---- 侧边导航（容器 = 条目列表 + 底部数据源徽标） ---- */
-QWidget#sidebarPane {
-    background: #1A1D20;
-    border-right: 1px solid #30353B;
+/* ---- 上下文条（34px）：当前构建 / 数据源，像行情跑马灯一样常驻 ---- */
+QWidget#tickerBar {
+    background: #0B0E11;
+    border-bottom: 1px solid #2B3139;
 }
-QListWidget#sidebar {
-    background: #1A1D20;
-    border: none;
-    outline: none;
-    padding: 8px 0;
+QLabel#tickerLabel { color: #929AA5; font-size: 12px; }
+QLabel#buildSummary {
+    color: #EAECEF;
     font-size: 13px;
+    font-weight: 500;
 }
-QListWidget#sidebar::item {
-    padding: 10px 16px;
-    border-left: 3px solid transparent;
+QLabel#sourceBadge { color: #929AA5; font-size: 12px; }
+QLabel#tickerHint { color: #929AA5; font-size: 12px; }
+
+/* ---- 页面头部（hero band）：标题-副标题两级，底部细边线收束 ---- */
+QWidget#pageHero {
+    background: transparent;
+    border-bottom: 1px solid #2B3139;
+    padding-bottom: 14px;
 }
-QListWidget#sidebar::item:hover { background: #23272C; }
-QListWidget#sidebar::item:selected {
-    background: #23272C;
-    border-left: 3px solid #4FC3F7;
-    color: #E8EAED;
+QLabel#pageTitle {
+    color: #FFFFFF;
+    font-size: 32px;      /* display-sm（文档 32/600）：页面 hero 的最高档，28 是表外值 */
+    font-weight: 600;
 }
-/* 收起/展开按钮：平铺样式，别与内容区的按钮抢视觉 */
-QPushButton#navToggle {
-    background: #1A1D20;
+QLabel#pageSubtitle { color: #929AA5; font-size: 13px; }
+QLabel#emptyState { color: #929AA5; }
+/* 黄系「文字链接」用独立令牌：主黄 #FCD535 在白底上对比度不足（ⓘ/可点文字会看不见），
+   浅色主题把它换成深金 #8A6200；黄色底块（CTA/徽标）仍走主黄，不受此令牌影响 */
+QLabel#helpHint, QPushButton#helpHint {
+    color: #FFD84D;
+    font-size: 13px;
+    background: transparent;
     border: none;
-    border-bottom: 1px solid #30353B;
-    border-radius: 0;
-    padding: 6px 12px;
-    color: #9AA0A6;
-    text-align: left;
+    padding: 0px 2px;
 }
-QPushButton#navToggle:hover { background: #23272C; color: #E8EAED; }
-/* 数据源徽标（手工 / 内存导入 α·β + 快照时间）：常驻底部，弱化色不抢导航注意力 */
-QLabel#sourceBadge {
-    color: #9AA0A6;
-    font-size: 11px;
-    padding: 8px 12px 12px 12px;
-    border-top: 1px solid #30353B;
-}
+QPushButton#helpHint:hover { color: #FFFFFF; }   /* 深色下变白、浅色下随映射变墨色 */
 
-/* ---- 页面头部（标题-副标题两级） ---- */
-QLabel#pageTitle { font-size: 16px; font-weight: 600; color: #E8EAED; }
-QLabel#pageSubtitle { font-size: 12px; color: #9AA0A6; }
-QLabel#emptyState { color: #9AA0A6; }
-
-/* ---- 输入控件：唯一强调色标焦点，4px 圆角，4/8 间距 ---- */
+/* ---- 按钮：默认 = 深色次级按钮（surface 面 + 细边线） ---- */
 QPushButton {
-    background: #262B30;
-    border: 1px solid #30353B;
-    border-radius: 4px;
-    padding: 4px 12px;
+    background: #1E2329;
+    border: 1px solid #2B3139;
+    border-radius: 6px;
+    padding: 7px 16px;
+    color: #EAECEF;
+    font-size: 13px;
+    font-weight: 500;
 }
-QPushButton:hover { background: #2E343A; }
-QPushButton:pressed { background: #2B5F7A; }
-QPushButton:disabled { color: #6B7076; background: #212529; }
-QLineEdit, QSpinBox, QDoubleSpinBox, QComboBox {
-    background: #262B30;
-    border: 1px solid #30353B;
-    border-radius: 4px;
-    padding: 4px 8px;
-    selection-background-color: #2B5F7A;
+QPushButton:hover { background: #2B3139; }
+/* 按压只压暗一档，不再描黄边：黄色是「焦点动作」的专属色，任何按钮按下都闪黄会稀释它 */
+QPushButton:pressed { background: #2B3139; }
+QPushButton:disabled { color: #707A8A; background: #14181D; border-color: #2B3139; }
+/* 主操作：唯一黄底黑字。全屏只有动线的落点用它（对应 button-primary） */
+QPushButton#primary {
+    background: #FCD535;
+    border: 1px solid #FCD535;
+    color: #181A20;
+    font-size: 14px;
+    font-weight: 600;
+    /* 目标高度 40px（文档的 button-primary / 触摸目标）：内容行 22 + 上下 padding 8×2 + 边框 2 */
+    padding: 8px 24px;
+    min-height: 22px;
 }
-QLineEdit:focus, QSpinBox:focus, QDoubleSpinBox:focus, QComboBox:focus { border-color: #4FC3F7; }
-/* 禁用态必须与启用态可区分：旧版两者底色相同（实测均 #262B30），用户会去点被锁死的控件 */
-QLineEdit:disabled, QSpinBox:disabled, QDoubleSpinBox:disabled, QComboBox:disabled {
-    color: #6B7076;
-    background: #212529;
-    border-color: #282D32;
-}
-QLineEdit[invalid="true"] { border-color: #FFB74D; }
-QComboBox QAbstractItemView {
-    background: #262B30;
-    border: 1px solid #30353B;
-    selection-background-color: #2B5F7A;
+QPushButton#primary:hover { background: #F0B90B; border-color: #F0B90B; }
+QPushButton#primary:pressed { background: #F0B90B; border-color: #F0B90B; }
+QPushButton#primary:disabled {
+    background: #3A3A1F;
+    border-color: #3A3A1F;
+    color: #707A8A;
 }
 
-/* ---- 下拉箭头 / 微调按钮：原由平台样式绘制（暗底上呈浅色块），在此显式接管 ---- */
+/* ---- 键盘焦点：文档的「2px 50% 蓝环」在 QSS 里没有 box-shadow，用 1px 实心环等效表达 ----
+   为什么必须显式补：按钮/标签条/表格此前完全没有焦点态，Tab 走查时看不出焦点在哪 */
+QPushButton:focus { border-color: #3B82F6; }
+QPushButton#primary:focus { border-color: #3B82F6; }
+QPushButton#navGhost:focus { border-color: #3B82F6; color: #FFFFFF; }
+/* 无边框的平铺按钮（导航链接 / 标签条 / 文字按钮）改用底色表达焦点 */
+QPushButton#navLink:focus, QPushButton#segTab:focus,
+QPushButton#statScope:focus, QPushButton#helpHint:focus { background: #2B3139; color: #FFFFFF; }
+QCheckBox:focus, QRadioButton:focus { color: #FFFFFF; }
+QCheckBox:focus::indicator, QRadioButton:focus::indicator { border-color: #3B82F6; }
+QAbstractItemView:focus { border: 1px solid #3B82F6; }
+
+/* ---- 输入控件：surface 面 + 8px 圆角（search-input-on-dark），聚焦用信息蓝细环 ----
+   高度约 35px（文档 40px）：侧栏要放下等级/三维/主属性等 7 行表单，40px 会把峰值 15 行表
+   挤出首屏；密度取舍已登记于 GUI设计规范 §6 有意偏差 */
+QLineEdit, QSpinBox, QDoubleSpinBox, QComboBox {
+    background: #1E2329;
+    border: 1px solid #2B3139;
+    border-radius: 8px;
+    padding: 6px 12px;
+    color: #EAECEF;
+    /* 选中文字用抬升面而不是主黄：黄色是「焦点动作」的专属色，每个输入框都在选词时闪一片
+       黄，等于把品牌电压摊成背景 */
+    selection-background-color: #2B3139;
+    selection-color: #FFFFFF;
+}
+QLineEdit:focus, QSpinBox:focus, QDoubleSpinBox:focus, QComboBox:focus {
+    border-color: #3B82F6;
+}
+QLineEdit:disabled, QSpinBox:disabled, QDoubleSpinBox:disabled, QComboBox:disabled {
+    color: #707A8A;
+    background: #14181D;
+    border-color: #2B3139;
+}
+/* 未在装备表命中的名称：黄色描边（提示而非报错，装备仍可参与计算） */
+QLineEdit[invalid="true"] { border-color: #FCD535; }
+QComboBox QAbstractItemView {
+    background: #1E2329;
+    border: 1px solid #2B3139;
+    border-radius: 8px;
+    selection-background-color: #2B3139;
+    selection-color: #FFFFFF;
+    outline: none;
+}
+
+/* ---- 下拉箭头 / 微调按钮：图标由 @ARROW_* 换成绝对路径（load_qss） ---- */
 QComboBox::drop-down {
     subcontrol-origin: border;
     subcontrol-position: top right;
-    width: 18px;
-    border-left: 1px solid #30353B;
-    background: #262B30;
+    width: 22px;
+    border-left: 1px solid #2B3139;
+    background: transparent;
 }
-/* 箭头一律用 8x8 SVG（@ARROW_* 由 load_qss 换成绝对路径）：Qt 不支持 CSS 三角 hack
-   （width/height:0 + 透明边框会被实心画成小方块，且星号按钮一经 QSS 接管就不再画原生指示器）。 */
 QComboBox::down-arrow { image: url("@ARROW_DOWN"); width: 8px; height: 8px; }
 QSpinBox::up-button, QDoubleSpinBox::up-button,
 QSpinBox::down-button, QDoubleSpinBox::down-button {
     subcontrol-origin: border;
-    width: 16px;
-    border-left: 1px solid #30353B;
-    background: #262B30;
+    width: 18px;
+    border-left: 1px solid #2B3139;
+    background: transparent;
 }
 QSpinBox::up-button, QDoubleSpinBox::up-button { subcontrol-position: top right; }
 QSpinBox::down-button, QDoubleSpinBox::down-button { subcontrol-position: bottom right; }
 QSpinBox::up-button:hover, QDoubleSpinBox::up-button:hover,
-QSpinBox::down-button:hover, QDoubleSpinBox::down-button:hover { background: #2E343A; }
+QSpinBox::down-button:hover, QDoubleSpinBox::down-button:hover { background: #2B3139; }
 QSpinBox::up-arrow, QDoubleSpinBox::up-arrow {
     image: url("@ARROW_UP");
     width: 8px;
@@ -163,7 +261,6 @@ QSpinBox::down-arrow, QDoubleSpinBox::down-arrow {
     width: 8px;
     height: 8px;
 }
-/* 禁用态要跟着变暗：图片不会自动染色调，只换一张灰阶更低的（对比项里被锁死的当前件） */
 QSpinBox::up-arrow:disabled, QDoubleSpinBox::up-arrow:disabled {
     image: url("@ARROW_UP_DISABLED");
 }
@@ -171,137 +268,291 @@ QSpinBox::down-arrow:disabled, QDoubleSpinBox::down-arrow:disabled {
     image: url("@ARROW_DOWN_DISABLED");
 }
 
-/* ---- 勾选框：原由平台样式绘制，未勾选态实测是纯白方块（#FFFFFF），暗底上极刺眼 ---- */
-QCheckBox, QRadioButton { spacing: 8px; }
+/* ---- 勾选框：黄底黑勾（勾标记走 @CHECK，与主 CTA 同一套语义） ---- */
+QCheckBox, QRadioButton { spacing: 8px; color: #EAECEF; }
 QCheckBox::indicator {
-    width: 13px;
-    height: 13px;
-    border: 1px solid #30353B;
-    border-radius: 3px;
-    background: #262B30;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #2B3139;
+    border-radius: 4px;      /* 圆角只取令牌档（xs=2/sm=4）：3 是表外值 */
+    background: #1E2329;
 }
-QCheckBox::indicator:hover { border-color: #4FC3F7; }
-QCheckBox::indicator:checked { background: #2B5F7A; border-color: #4FC3F7; }
-QCheckBox::indicator:disabled { border-color: #282D32; background: #1E2226; }
+QCheckBox::indicator:hover { border-color: #929AA5; }
+QCheckBox::indicator:checked {
+    background: #FCD535;
+    border-color: #FCD535;
+    image: url("@CHECK");
+}
+QCheckBox::indicator:disabled { border-color: #2B3139; background: #14181D; }
 QRadioButton::indicator {
-    width: 13px;
-    height: 13px;
-    border: 1px solid #30353B;
-    border-radius: 7px;
-    background: #262B30;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #2B3139;
+    border-radius: 8px;      /* 50% 圆：文档 rounded.full 允许 9999px/50% */
+    background: #1E2329;
 }
-QRadioButton::indicator:checked { background: #2B5F7A; border-color: #4FC3F7; }
+QRadioButton::indicator:checked { background: #FCD535; border-color: #FCD535; }
 
-/* ---- 表格：行选中用强调色深档，避免与焦点框抢视觉 ---- */
-QHeaderView::section {
-    background: #262B30;
+/* ---- 分段标签（装备槽 / 候选类别）：对应 markets-table-card 的 tab 行 ---- */
+QFrame#segTabs {
+    background: transparent;
     border: none;
-    border-right: 1px solid #30353B;
-    border-bottom: 1px solid #30353B;
-    padding: 4px 8px;
-    color: #9AA0A6;
+    border-bottom: 1px solid #2B3139;
 }
-QHeaderView::section:hover { background: #2E343A; }
+QPushButton#segTab {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    border-radius: 0;
+    color: #929AA5;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 8px 12px;
+}
+QPushButton#segTab:hover { color: #FFFFFF; }
+QPushButton#segTab:checked {
+    color: #FFFFFF;
+    border-bottom: 2px solid #FCD535;
+}
+QPushButton#segTab:disabled { color: #707A8A; }
+
+/* ---- 表格：无外框、表头弱化、行悬停抬升一档（对应 markets-row） ---- */
+/* 表头控件本身也要 surface 色：只剩 section 上色时，隐藏列（「只看常用」收起三层分解后）
+   右侧会留出一条画布色的黑带，看起来像表格被切掉一块 */
+QHeaderView { background: #1E2329; }
+QHeaderView::section {
+    background: #1E2329;      /* 与表格面同色：透明会在对话框里露出更深的画布，形成一条暗带 */
+    border: none;
+    border-bottom: 1px solid #2B3139;
+    padding: 8px 12px;
+    color: #929AA5;
+    font-size: 12px;
+    font-weight: 600;
+}
+QHeaderView::section:hover { color: #EAECEF; }
 QHeaderView::up-arrow { image: url("@ARROW_UP"); width: 8px; height: 8px; }
 QHeaderView::down-arrow { image: url("@ARROW_DOWN"); width: 8px; height: 8px; }
-QTableCornerButton::section { background: #262B30; border: none; }
+QTableCornerButton::section { background: #1E2329; border: none; }
 QTableView, QTreeView, QListView {
-    background: #1E2226;
-    alternate-background-color: #23272C;
-    gridline-color: #30353B;
-    border: 1px solid #30353B;
-    border-radius: 4px;
-    selection-background-color: #2B5F7A;
+    background: #1E2329;
+    alternate-background-color: #1A1F25;
+    gridline-color: #2B3139;
+    border: none;
+    border-radius: 8px;
+    selection-background-color: #2B3139;
+    selection-color: #FFFFFF;
+    outline: none;
 }
-QTableView::item:selected, QListView::item:selected { background: #2B5F7A; }
-
-/* ---- 菜单 ---- */
-QMenuBar { background: #1A1D20; }
-QMenuBar::item:selected { background: #2E343A; }
-QMenu { background: #262B30; border: 1px solid #30353B; }
-QMenu::item:selected { background: #2E343A; }
-QMenu::item:disabled { color: #6B7076; }
-QMenu::separator { height: 1px; background: #30353B; margin: 4px 8px; }
-
-/* ---- 对比条 / 滚动条 / 提示 / 分隔手柄 ---- */
-QProgressBar {
-    background: #262B30;
-    border: 1px solid #30353B;
-    border-radius: 4px;
-    text-align: center;
+/* 卡片内的表不再画外框：卡片已有边线，再套一层就成「框套框」 */
+QTableView[flat="true"] { border: none; background: transparent; }
+/* flat 表必须单独补焦点：这条与上面的去框规则特异性相同（0,1,1），而 base 的 outline:none
+   已关掉系统焦点框——不在此处重申，技能表与词条表在 Tab 走查时完全看不出焦点在哪 */
+QTableView[flat="true"]:focus { border: 1px solid #3B82F6; }
+QTableView::item, QListView::item { padding: 2px 4px; }
+QTableView::item:hover, QListView::item:hover { background: #2B3139; }
+QTableView::item:selected, QListView::item:selected {
+    background: #2B3139;
+    color: #FFFFFF;
 }
-QProgressBar::chunk { background: #4FC3F7; }
-QSlider::groove:horizontal { background: #262B30; height: 4px; border-radius: 2px; }
-QSlider::sub-page:horizontal { background: #2B5F7A; border-radius: 2px; }
-QSlider::handle:horizontal { background: #4FC3F7; width: 12px; margin: -5px 0; border-radius: 6px; }
-QScrollBar:vertical { background: #1E2226; width: 10px; margin: 0; }
-QScrollBar::handle:vertical { background: #30353B; border-radius: 5px; min-height: 24px; }
-QScrollBar:horizontal { background: #1E2226; height: 10px; margin: 0; }
-QScrollBar::handle:horizontal { background: #30353B; border-radius: 5px; min-width: 24px; }
+QListWidget {
+    background: #1A1F25;
+    border: 1px solid #2B3139;
+    border-radius: 8px;
+    outline: none;
+    padding: 4px;
+}
+QListWidget::item { padding: 8px; border-radius: 6px; }
+QListWidget::item:hover { background: #2B3139; }
+QListWidget::item:selected { background: #2B3139; color: #FFFFFF; }
+
+/* ---- 菜单：命令条贴画布，弹出菜单是一张卡片 ---- */
+QMenuBar {
+    background: #0B0E11;
+    color: #929AA5;
+    border-bottom: 1px solid #2B3139;
+    padding: 0px 6px;
+}
+QMenuBar::item { background: transparent; padding: 3px 12px; border-radius: 4px; }
+QMenuBar::item:selected { background: #1E2329; color: #EAECEF; }
+QMenu { background: #1E2329; border: 1px solid #2B3139; border-radius: 8px; padding: 6px; }
+QMenu::item { padding: 6px 12px; border-radius: 6px; }
+QMenu::item:selected { background: #2B3139; color: #FFFFFF; }
+QMenu::item:disabled { color: #707A8A; }
+QMenu::separator { height: 1px; background: #2B3139; margin: 6px 8px; }
+
+/* ---- 滚动条 / 提示 / 分隔手柄 ---- */
+QScrollArea { background: transparent; border: none; }
+QScrollBar:vertical { background: transparent; width: 10px; margin: 0; }
+QScrollBar::handle:vertical { background: #2B3139; border-radius: 5px; min-height: 28px; }
+QScrollBar::handle:vertical:hover { background: #929AA5; }
+QScrollBar:horizontal { background: transparent; height: 10px; margin: 0; }
+QScrollBar::handle:horizontal { background: #2B3139; border-radius: 5px; min-width: 28px; }
+QScrollBar::handle:horizontal:hover { background: #929AA5; }
 QScrollBar::add-line, QScrollBar::sub-line { height: 0; width: 0; }
 QScrollBar::add-page, QScrollBar::sub-page { background: none; }
-QToolTip { background: #262B30; color: #E8EAED; border: 1px solid #30353B; }
-/* 分隔手柄细到抓不住（实测不足 3px）→ 给足 6px 并把悬停态点亮 */
-QSplitter::handle { background: #30353B; }
-QSplitter::handle:horizontal { width: 6px; }
-QSplitter::handle:vertical { height: 6px; }
-QSplitter::handle:hover { background: #2B5F7A; }
-
-/* ---- 语义强调字：颜色只在这里定义，代码只切 objectName ---- */
-/* 一屏一个结论：Δ 是唯一主视觉（最大号、按涨跌变色），当前/候选 DPS 降一档只做输入参照，
-   失败态与诊断行依次更弱——避免同屏多个大字互相抢注意力。 */
-QLabel#dpsBig { font-size: 16px; font-weight: 600; color: #E8EAED; }
-QLabel#deltaUp { font-size: 24px; font-weight: 600; color: #66BB6A; }
-QLabel#deltaDown { font-size: 24px; font-weight: 600; color: #EF5350; }
-QLabel#deltaFlat { font-size: 24px; font-weight: 600; color: #9AA0A6; }
-/* 技能表 Δ% 列：同一套涨跌语义，压到表格字号。用 trend 属性切换颜色（与 DPS 计同款约定），
-   这样颜色只有上面三行一处定义——表格单元格若改用 setForeground 就得把三个色值再抄一遍。 */
-QLabel#deltaCell { background: transparent; padding-right: 4px; }
-QLabel#deltaCell[trend="up"] { color: #66BB6A; }
-QLabel#deltaCell[trend="down"] { color: #EF5350; }
-QLabel#deltaCell[trend="flat"] { color: #9AA0A6; }
-/* 一次性操作提示条（如「已删除 X 词条」+ 撤销）：弱化色，不抢卡片的编辑注意力 */
-QLabel#inlineNotice { color: #9AA0A6; }
-/* 浮层提示（Toast）：状态栏的替代物。级别只切 level 属性，配色（含告警/错误）只在这里定义 */
-QLabel#toast {
-    background: #262B30;
-    color: #E8EAED;
-    border: 1px solid #30353B;
+QToolTip {
+    background: #1E2329;
+    color: #EAECEF;
+    border: 1px solid #2B3139;
     border-radius: 6px;
-    padding: 8px 14px;
+    padding: 6px 8px;
 }
-QLabel#toast[level="warn"] { border-color: #FFB74D; color: #FFB74D; }
-QLabel#toast[level="error"] { border-color: #EF5350; color: #EF5350; }
-/* 页面标题旁的 ⓘ：唯一强调色，悬停给术语/口径长文（副标题只留一句概括） */
-QLabel#helpHint { color: #4FC3F7; font-size: 13px; }
+QSplitter { background: transparent; }
+QSplitter::handle { background: transparent; }
+QSplitter::handle:horizontal { width: 20px; }
+QSplitter::handle:vertical { height: 20px; }
+QSplitter::handle:hover { background: #1E2329; }
 
-/* ---- 模式横幅（α 降级提示）：告警色只作描边与文字，不做大面积底色 ---- */
+/* ---- 进度条 / 滑条 ---- */
+/* 强调色不落在这两处：滑条只表达「当前值在哪」，不是焦点动作；黄色留给 CTA 与关键数值。
+   对比条的填充色在文件末尾按 #deltaBar* 单独定义（那里才是有涨跌语义的地方）。 */
+QProgressBar {
+    background: #2B3139;
+    border: none;
+    border-radius: 4px;      /* 令牌档 sm=4；3 是表外值 */
+    text-align: center;
+    color: #EAECEF;
+}
+QSlider::groove:horizontal { background: #2B3139; height: 4px; border-radius: 2px; }
+QSlider::sub-page:horizontal { background: #929AA5; border-radius: 2px; }
+QSlider::handle:horizontal {
+    background: #EAECEF;
+    width: 14px;
+    margin: -5px 0;
+    border-radius: 7px;
+}
+
+/* ---- 文本浏览（帮助正文 / 说明长文） ---- */
+QTextBrowser, QPlainTextEdit, QTextEdit {
+    background: #1E2329;
+    border: 1px solid #2B3139;
+    border-radius: 8px;
+    color: #EAECEF;
+    selection-background-color: #2B3139;   /* 同输入框：选中不给黄色 */
+    selection-color: #FFFFFF;
+    padding: 8px;
+}
+
+/* ---- 语义数值：一屏一个主结论（Δ），数值走等宽字体栈 ---- */
+/* 数字为什么单独指定字体：对应文档的 BinancePlex——价格/伤害/百分比要「表格化可信」，
+   汉字由 Qt 逐字回落到雅黑，混排仍然整齐。 */
+QLabel#statLabel { color: #929AA5; font-size: 12px; }
+QFrame#statDivider { background: #2B3139; border: none; max-width: 1px; }
+QLabel#dpsBig {
+    color: #FFD84D;      /* 黄系数值令牌：浅色下换深金，主黄在白底上读不出（见 theme.py） */
+    font-family: "Consolas", "Microsoft YaHei UI", monospace;
+    font-size: 24px;
+    font-weight: 600;
+}
+QLabel#deltaUp, QLabel#deltaDown, QLabel#deltaFlat {
+    font-family: "Consolas", "Microsoft YaHei UI", monospace;
+    font-size: 32px;
+    font-weight: 700;
+}
+QLabel#deltaUp { color: #0ECB81; }
+QLabel#deltaDown { color: #F6465D; }
+QLabel#deltaFlat { color: #929AA5; }
+/* 技能表 Δ% 列：同一套涨跌语义压到表格字号；颜色只在上方三行定义，这里按属性切换 */
+QLabel#deltaCell {
+    background: transparent;
+    padding-right: 4px;
+    font-family: "Consolas", "Microsoft YaHei UI", monospace;
+}
+QLabel#deltaCell[trend="up"] { color: #0ECB81; }
+QLabel#deltaCell[trend="down"] { color: #F6465D; }
+QLabel#deltaCell[trend="flat"] { color: #929AA5; }
+QLabel#inlineNotice { color: #929AA5; }
+/* 参考技能卡的「攻击倍率 ≈ 1.8540…」：整句走等宽字族，汉字逐字回落雅黑（同 #dpsBig 的取向） */
+QLabel#skillInfo {
+    color: #EAECEF;
+    font-family: "Consolas", "Microsoft YaHei UI", monospace;
+}
+
+/* ---- 浮层提示（Toast） ---- */
+QLabel#toast {
+    background: #1E2329;
+    color: #EAECEF;
+    border: 1px solid #2B3139;
+    border-radius: 8px;
+    padding: 10px 16px;
+}
+QLabel#toast[level="warn"] { border-color: #FCD535; color: #FFD84D; }
+QLabel#toast[level="error"] { border-color: #F6465D; color: #F6465D; }
+
+/* ---- 模式横幅（α 聚合降级）：告警色只作描边与文字，不做大面积底色 ---- */
 QLabel#modeBanner {
-    color: #FFB74D;
-    border: 1px solid #FFB74D;
-    border-radius: 4px;
-    padding: 8px 12px;
-    background: #262B30;
+    color: #FFD84D;
+    border: 1px solid #3A3A1F;
+    border-radius: 8px;
+    padding: 12px 16px;
+    background: #1E2329;
+    font-size: 12px;
 }
 
-/* ---- 游戏实测框（DPS 计轮询）：分组卡片样式，数值可选中复制 ---- */
+/* ---- 游戏实测框（DPS 计）：卡片内的次级面，结论走黄色数值 ---- */
 QFrame#dpsMeter {
-    background: #262B30;
-    border: 1px solid #30353B;
-    border-radius: 4px;
+    background: #1A1F25;
+    border: 1px solid #2B3139;
+    border-radius: 8px;
 }
-QLabel#dpsMeterTitle { color: #9AA0A6; font-size: 12px; }
-/* 主行 = 结论（换装预测 + 涨跌），涨跌配色经 trend 属性切换，颜色不散落代码 */
-QLabel#dpsMeterValue { color: #E8EAED; font-size: 18px; font-weight: 600; }
-QLabel#dpsMeterValue[trend="up"] { color: #66BB6A; }
-QLabel#dpsMeterValue[trend="down"] { color: #EF5350; }
-/* 失败态（游戏未开/不在假人图）降级为一行弱化小字：它只是"没读到"，不该与结论抢注意力 */
-QFrame#dpsMeter[state="offline"] { background: #1E2226; border-color: #282D32; }
-QLabel#dpsMeterValue[state="offline"] { color: #9AA0A6; font-size: 12px; font-weight: 400; }
-/* 次行 = 诊断（实测/期望/系数），弱化到不与结论抢注意力 */
-QLabel#dpsMeterDiag { color: #7F868D; font-size: 11px; }
+QLabel#dpsMeterTitle { color: #929AA5; font-size: 12px; }
+QLabel#dpsMeterValue {
+    color: #FFD84D;
+    font-family: "Consolas", "Microsoft YaHei UI", monospace;
+    font-size: 20px;
+    font-weight: 700;
+}
+QLabel#dpsMeterValue[trend="up"] { color: #0ECB81; }
+QLabel#dpsMeterValue[trend="down"] { color: #F6465D; }
+QFrame#dpsMeter[state="offline"] { background: transparent; border-color: #2B3139; }
+QLabel#dpsMeterValue[state="offline"] {
+    color: #929AA5;
+    font-family: "Microsoft YaHei UI", "Segoe UI", sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+}
+QLabel#dpsMeterDiag { color: #929AA5; font-size: 12px; }
 
-/* ---- 导入元信息（强化/宝石），弱化色避免与可编辑控件抢注意力 ---- */
-QLabel#weaponMeta { color: #9AA0A6; }
-/* 武器传奇词条：游戏内用传奇橙色标注，这里同色但不再加粗——它是说明文字，不是结论 */
-QLabel#legendaryText { color: #FFB74D; }
+/* ---- 导入元信息 / 传奇词条 ---- */
+QLabel#weaponMeta { color: #929AA5; font-size: 12px; }
+/* 传奇词条是「这件装备的价值主张」，用黄系文字令牌承担（属于数值/事实陈述，不是正文） */
+QLabel#legendaryText { color: #FFD84D; font-size: 13px; }
+
+/* ---- 帮助面板目录 ---- */
+QListWidget#helpTopics {
+    background: #1A1F25;
+    border: 1px solid #2B3139;
+    border-radius: 8px;
+    padding: 4px;
+}
+QListWidget#helpTopics::item { padding: 8px 12px; border-left: 2px solid transparent; }
+QListWidget#helpTopics::item:hover { background: #2B3139; }
+QListWidget#helpTopics::item:selected {
+    background: #2B3139;
+    color: #FFFFFF;
+    border-left: 2px solid #FCD535;
+}
+
+/* ---- 结论对比条：当前 vs 候选的横向比例（Δ% 之外的第二通道） ---- */
+QProgressBar#deltaBarCur, QProgressBar#deltaBarCand {
+    background: #2B3139;
+    border: none;
+    border-radius: 4px;      /* 8px 高配 4px 圆角 = 全圆头（等效 pill） */
+    min-height: 8px;
+    max-height: 8px;
+}
+QProgressBar#deltaBarCur::chunk { background: #929AA5; border-radius: 4px; }
+QProgressBar#deltaBarCand::chunk { background: #FCD535; border-radius: 4px; }
+QProgressBar#deltaBarCand[trend="up"]::chunk { background: #0ECB81; }
+QProgressBar#deltaBarCand[trend="down"]::chunk { background: #F6465D; }
+
+/* ---- 属性表范围切换（只看常用 / 显示全部）：文字按钮 ---- */
+QPushButton#statScope {
+    background: transparent;
+    border: none;
+    color: #FFD84D;
+    font-size: 12px;
+    padding: 4px 6px;
+}
+QPushButton#statScope:hover { color: #FFFFFF; }
+QPushButton#statScope:disabled { color: #707A8A; }

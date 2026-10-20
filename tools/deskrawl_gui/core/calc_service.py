@@ -7,13 +7,13 @@
 from __future__ import annotations
 
 import copy
-import json
-import os
 from dataclasses import dataclass, field
 from typing import Dict, List
 
 from deskrawl_calc import (DamageModel, Modifier, StatSheet, StatType, Target, Weapon,
                            compare_weapons, effects, stat_name)
+# 面板显示格式的元数据在内核（与输入单位 is_fractional 分属两套，见 stattype 的注释）
+from deskrawl_calc.stattype import is_percent_display
 
 from .localization import item_internal_name
 from .profile import (KIND_LABELS, SLOT_EQUIP_TYPE, SLOT_LABELS, CharacterProfile,
@@ -55,6 +55,9 @@ class CompareResult:
     # （AbilityTagCritDamage/AbilityModifier 等按技能/标签命中的特效），见 skill_service.skill_rows。
     current_effects: list = field(default_factory=list)
     candidate_effects: list = field(default_factory=list)
+    # 候选栏是否完全空白。空候选在武器槽会被算成「换上一把 0 伤害武器」（−100%），在非武器槽
+    # 等于「卸下当前件」（负 Δ）——两者都是把用户的「还没填」当成一次换装，视图据此改判空态。
+    candidate_empty: bool = False
 
 
 @dataclass
@@ -148,18 +151,23 @@ def _effect_dicts(gd, name) -> list:
     return gd.item_effects(item_internal_name(gd, str(name or '')))
 
 
-def _equipped_effects(gd, profile, *, exclude_slot=None) -> list:
+def _equipped_effects(gd, profile, *, exclude_slot=None, exclude_slots=None) -> list:
     """当前构建所有已装备件的传奇特效（保真 dict）：武器 + slot_current + 已装配符文套装。
 
     「当前件 ↔ 候选件」对比时，被对比槽位的件由调用方单独处理 → `exclude_slot` 排除该槽；
     其余件（含武器、其它槽、套装）对两侧**公共**，故同口径加入，仅被对比槽产生 Δ。
+    `exclude_slots` 是多槽整套对比（compare_multi）的入口：一次要排除多件，逐个槽调用会把
+    公共件加成算重，故这里直接收集合。
     """
-    ex = -1 if exclude_slot is None else int(exclude_slot)
+    ex = set()
+    if exclude_slot is not None:
+        ex.add(int(exclude_slot))
+    ex.update(int(s) for s in (exclude_slots or ()))
     out: list = []
-    if ex != 0:
+    if 0 not in ex:
         out.extend(_effect_dicts(gd, getattr(profile.weapon_current, 'name', '')))
     for s, it in (getattr(profile, 'slot_current', None) or {}).items():
-        if int(s) == ex:
+        if int(s) in ex:
             continue
         out.extend(_effect_dicts(gd, getattr(it, 'name', '')))
     for it in (getattr(profile, 'assembled', None) or []):
@@ -303,6 +311,24 @@ def _side_terms(gd, profile, slot, target) -> tuple:
     return common, cur_eff, cand_eff, (cc_c, cd_c, dmg_c), (cc_k, cd_k, dmg_k)
 
 
+def _draft_empty(draft) -> bool:
+    """候选草稿是否「还没填」：名称 / 词条 / 宝石全空（武器再看白字伤害）。
+
+    为什么必须在草稿层判：空武器算出来的 DPS 恰是 0，与「一把极弱的武器」在结果上无法区分；
+    空防具则与「卸下当前件」同值。模型层没有「用户还没填」这个信息。
+    base_speed / skill_multiplier 有默认值 1.0，不能当作「填过」的证据。
+    """
+    if draft is None:
+        return True
+    is_empty = getattr(draft, 'is_empty', None)
+    if callable(is_empty):
+        return bool(is_empty())
+    return not (str(getattr(draft, 'name', '') or '').strip()
+                or list(getattr(draft, 'affixes', None) or [])
+                or list(getattr(draft, 'gems', None) or [])
+                or float(getattr(draft, 'base_damage', 0.0) or 0.0))
+
+
 def compare(profile: CharacterProfile, gd, slot=None) -> CompareResult:
     """对比所选槽的当前件/候选件（默认取 profile.compare_slot）。
 
@@ -312,6 +338,8 @@ def compare(profile: CharacterProfile, gd, slot=None) -> CompareResult:
     slot = int(profile.compare_slot if slot is None else slot)
     target = profile.to_target()
     label = SLOT_LABELS.get(slot, f'槽{slot}')
+    cand_empty = _draft_empty(profile.weapon_candidate if slot == 0
+                              else profile.slot_candidate.get(slot))
     warns: List[str] = []
     # 名称查不到 → 特效静默丢失：两侧件都要查（导入模式才判，手工名不告警）
     side_items = ((profile.weapon_current, profile.weapon_candidate) if slot == 0
@@ -353,7 +381,8 @@ def compare(profile: CharacterProfile, gd, slot=None) -> CompareResult:
                              r['delta'], r['delta_pct'], r['current']['model'],
                              r['candidate']['model'], r['current']['sheet'],
                              r['candidate']['sheet'], target, warns,
-                             current_effects=cur_eff, candidate_effects=cand_eff)
+                             current_effects=cur_eff, candidate_effects=cand_eff,
+                             candidate_empty=cand_empty)
 
     cur_sheet, cand_sheet = _slot_sheets(profile, gd, slot, warns)
     w = profile.weapon_current.to_weapon()
@@ -380,7 +409,8 @@ def compare(profile: CharacterProfile, gd, slot=None) -> CompareResult:
     return CompareResult(slot, label, cur_dps, cand_dps, cand_dps - cur_dps,
                          ((cand_dps / cur_dps - 1.0) * 100.0) if cur_dps else 0.0,
                          cur_model, cand_model, cur_sheet, cand_sheet, target, warns,
-                         current_effects=cur_eff, candidate_effects=cand_eff)
+                         current_effects=cur_eff, candidate_effects=cand_eff,
+                         candidate_empty=cand_empty)
 
 
 def affix_marginals(profile: CharacterProfile, gd, slot=None, limit: int = 3):
@@ -417,16 +447,6 @@ def affix_marginals(profile: CharacterProfile, gd, slot=None, limit: int = 3):
 def candidate_names(gd, kind: str) -> List[str]:
     src = {'gem': gd.gems, 'rune': gd.runes, 'talent': gd.talents, 'runeset': gd.runesets}[kind]
     return sorted(src().keys())
-
-
-def ability_names(gd) -> List[str]:
-    """技能名称清单。内核未暴露名称列表，这里按同一数据目录直读（只读，不碰内核私有方法）。"""
-    path = os.path.join(getattr(gd, 'dir', ''), 'AbilityData.json')
-    if not os.path.exists(path):
-        return []
-    with open(path, encoding='utf-8') as f:
-        rows = json.load(f)
-    return sorted(r['_name'] for r in rows if r.get('_name'))
 
 
 def candidate_modifiers(gd, kind: str, name: str, *, level: int = 1, category: int = 2) -> list:
@@ -549,10 +569,8 @@ def rank_candidates(profile: CharacterProfile, gd, kind: str, *,
 PANEL_ORDER = [0, 3, 21, 6, 4, 5, 23, 24, 25, 26, 27, 28, 29, 31, 45, 32, 40, 65,
                7, 42, 8, 44, 9]
 
-# 面板按「百分比」显示的行（其余按整数千分位 / 攻速一位小数）
-_PCT_DISPLAY = {4, 5, 6, 13, 15, 16, 17, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32,
-                33, 34, 37, 40, 41, 42, 43, 44, 45, 46, 48, 49, 51, 52, 53, 54, 55,
-                56, 57, 58, 59, 60, 61, 62, 63, 64, 65}
+# 面板按「百分比」显示的行（其余按整数千分位 / 攻速一位小数）。表已下沉内核
+# stattype.PERCENT_DISPLAY_STATS（E6）：新增属性只登记一处，避免「填了小数却没提示」这类漂移。
 
 # 基础字段 → 属性（Character.BaseFieldToStat@0x686F60 与 Player.BaseFieldToStat@0x503A60 逐分支反汇编）
 _BASE_FIELD_STAT = {
@@ -707,7 +725,7 @@ def build_panel(payload: dict, with_conversions: bool = True) -> dict:
     def fmt(stat, v):
         if stat == 21:
             return f'{v:.1f}'                     # 攻速按每秒一位小数（面板口径）
-        if stat in _PCT_DISPLAY:
+        if is_percent_display(stat):
             s = f'{v * 100.0:.1f}'
             return (s[:-2] if s.endswith('.0') else s) + '%'
         return f'{v:,.0f}'

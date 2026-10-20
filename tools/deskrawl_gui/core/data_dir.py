@@ -17,3 +17,14 @@ _DEFAULT = os.path.normpath(os.path.join(_HERE, '..', '..', '..', 'data'))
 def data_root() -> str:
     """环境变量优先，否则回落仓库 data/（与拆分前逐字同值）。"""
     return os.environ.get(ENV_VAR) or _DEFAULT
+
+
+def appdata_dir() -> str:
+    """用户级应用目录（日志/哈希缓存等非业务数据）：`%LOCALAPPDATA%\\Deskrawl`。
+
+    为什么不放 data_root：源码运行时它是仓库 data/，日志与缓存进版本库没有意义；
+    也不放 exe 同级：便携包重建会清空那层目录。用户目录是跨重建唯一稳定的落点。
+    """
+    base = (os.environ.get('LOCALAPPDATA') or os.environ.get('TEMP')
+            or os.path.expanduser('~'))
+    return os.path.normpath(os.path.join(base, 'Deskrawl'))

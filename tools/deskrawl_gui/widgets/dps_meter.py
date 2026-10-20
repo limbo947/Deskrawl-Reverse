@@ -33,6 +33,18 @@ _SHORT_ERROR = {
     '': '未定位到 DPS 计（需在训练假人地图）',
 }
 
+# 中性带：读数按 1 位小数百分比显示，|Δ| < 0.05% 读出来就是「+0.0%」——这时必须走中性色，
+# 否则「换上与当前完全相同的候选」会显示成一次绿色上涨（与对比页/技能表的 flat 三态同义）
+_FLAT_PREDICT = 0.0005
+
+
+def trend_of(pct: float) -> str:
+    """换装预测的涨跌三态：'up' / 'down' / ''（空 = 中性，沿用数值的黄系基色）。"""
+    pct = float(pct)
+    if abs(pct) < _FLAT_PREDICT:
+        return ''
+    return 'up' if pct > 0 else 'down'
+
 
 class GameDpsMeter(QFrame):
     """只读实测框：主行 = 结论（候选预测实战 + 涨跌%），次行 = 诊断（实测/期望/系数）。"""
@@ -69,7 +81,7 @@ class GameDpsMeter(QFrame):
         ctrl.addWidget(self.read_btn)
 
         lay = QVBoxLayout(self)
-        lay.setContentsMargins(12, 8, 12, 8)
+        lay.setContentsMargins(12, 12, 12, 12)   # 紧凑卡统一 12px 内距（原上下 8 偏挤）
         lay.setSpacing(2)
         lay.addLayout(ctrl)
         lay.addWidget(self.verdict)
@@ -79,6 +91,7 @@ class GameDpsMeter(QFrame):
         self._expect_cur = None
         self._expect_cand = None
         self._main_label = ''
+        self._expect_note = ''      # 期望缺失时的原因（候选未填写 ≠ 参考技能未设置）
         self._last = None          # 最近一次读数；编辑词条时据此即时重绘，不再重复读内存
         self._has_read = False     # 是否读过一次：未读之前不把「没读到」当结论显示
         self._timer = QTimer(self)
@@ -122,11 +135,13 @@ class GameDpsMeter(QFrame):
         elif not running and self._timer.isActive():
             self._timer.stop()
 
-    def set_expectation(self, main_row):
+    def set_expectation(self, main_row, note: str = ''):
         """喂入主力技能期望行（skill_service.pick_main_row 的结果；None=不可用）。
 
         只重绘不读内存：词条编辑会频繁触发，1s 定时器会负责刷新实测值。
+        note 说明「为什么没有期望」：空候选与未设参考技能是两种情形，诊断行不该都说成后者。
         """
+        self._expect_note = str(note or '')
         if main_row is None or main_row.current_dps <= 0:
             self._expect_cur = self._expect_cand = None
         else:
@@ -192,7 +207,8 @@ class GameDpsMeter(QFrame):
             self.verdict.setText(f'当前每秒 {fmt_compact(live)}')
             self._apply_trend(None)
             self.verdict.setToolTip(base_tip)
-            self.diag.setText('参考技能未设置：设好「参考技能」后这里会直接给候选预测')
+            self.diag.setText(self._expect_note
+                              or '参考技能未设置：设好「参考技能」后这里会直接给候选预测')
             self.diag.setVisible(True)
 
     def _show_prediction(self, live: float, base_tip: str):
@@ -201,7 +217,7 @@ class GameDpsMeter(QFrame):
         predicted = self._expect_cand * factor
         pct = (predicted / live - 1.0) if live else 0.0
         self.verdict.setText(f'换装预测 {fmt_compact(predicted)}　{pct:+.1%}')
-        self._apply_trend('up' if pct >= 0 else 'down')
+        self._apply_trend(trend_of(pct))
         self.verdict.setToolTip(
             base_tip
             + f'\n\n推算：系数 = 实测 {live:.0f} ÷ 主力技能期望（当前侧，含天赋）'

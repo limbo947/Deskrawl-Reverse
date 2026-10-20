@@ -40,14 +40,16 @@ Final(stat) = (Base + ΣFlat) × (1 + ΣPercentAdd) × Π(1 + PercentMult)   ←
 
 ## 界面预览
 
-- **面板录入 + 属性明细（三层聚合分解，右侧为面板口径）**
+- **角色页：主区属性明细（三层聚合分解 / 游戏面板口径）+ 11 槽当前装备，右侧角色面板与巅峰点数**
 ![角色页](docs/screenshots/ScreenShot_2026-10-19_182706_936.png) 
 
-- **面板录入 + 属性明细 三层聚合分解，右侧为面板口径**
+- **装备对比：结论三格（当前 / 候选 / 变化）+ 结论条 + 技能表；下方当前/候选双编辑器，右栏目标、参考技能与实测**
 ![装备对比](docs/screenshots/ScreenShot_2026-10-19_182618_876.png) 
 
-- **装配中心：宝石/符文/天赋候选按 DPS 收益排序，右侧是已装配清单（标注宝石归属槽）**
+- **装配中心：类别标签条 + 候选 ΔDPS 排序（涨跌着色）+ 右侧已装配清单**
 ![装配中心](docs/screenshots/ScreenShot_2026-10-19_182736_963.png)
+
+> 视觉规范（色板/字体/布局/交互/响应式）见 [GUI 设计规范](docs/plan/GUI设计规范.md)。
 
 
 
@@ -79,15 +81,23 @@ Deskrawl-Reverse/
 │   │   └─ cli.py             selftest（26 项断言）+ 换武器对比示例
 │   │
 │   ├─ deskrawl_gui/          ← ★ 桌面 GUI（只依赖 PySide6 + deskrawl_calc）
-│   │   ├─ app.py             主窗口装配（侧边导航 + 三页堆栈）
-│   │   ├─ __main__.py        三模式：默认 GUI / --selftest / --smoke
+│   │   ├─ app.py             主窗口装配（顶部导航 + 上下文条 + 三页堆栈）
+│   │   ├─ __main__.py        三模式：默认 GUI / --selftest [组] / --smoke [组]
 │   │   ├─ memdump.py         内存快照 CLI
-│   │   ├─ selftest.py        GUI 自检（76 项，内核 26 项为通过门槛）
+│   │   ├─ undo.py            撤销/重做（整档快照比对，一个栈管全应用）
+│   │   ├─ selftest.py        GUI 自检（87 项，内核 26 项为通过门槛；按组运行见下）
 │   │   ├─ selftest_legendary.py / selftest_skillmods.py / selftest_effects.py
 │   │   │                     文案组 / 天赋修正组 / 特效口径组（纯数据，从主自检拆出）
+│   │   ├─ selftest_fixture.py + selftest_equipment.py
+│   │   │                     导入夹具（α/β 闭环、面板锚点）/ 装备链路+镜像+技能表
+│   │   ├─ selftest_robustness.py   鲁棒性组（空候选/缓存/日志/整套对比/构建库/主题）
+│   │   ├─ selftest_gui_behavior.py + selftest_gui_pages.py
+│   │   │                     --smoke 的按页交互检查与结构/布局契约
 │   │   ├─ core/              服务层纯函数 + 内存导入链（profile/calc_service/memory_*）
-│   │   ├─ widgets/           UI 组件（15 个模块）
-│   │   └─ resources/         暗色主题 QSS 等资源
+│   │   │                     + compare_multi（整套对比）/ build_library / theme / import_worker
+│   │   ├─ widgets/           UI 组件（22 个模块；含 navigation 顶栏 / segmented 标签条 / card 容器、
+│   │   │                     help_panel / build_library / multi_compare、collapsible、delta_bar）
+│   │   └─ resources/         主题 QSS（暗/浅一套源）+ 线性图标（icons/）
 │   │
 │   ├─ scripts/               ← 逆向脚本（86 个 .py；重依赖，仅重建数据时需要）
 │   │   ├─ paths.py           统一路径解析（仓库可任意移动）
@@ -166,13 +176,33 @@ python -m venv .venv-gui
 .\.venv-gui\Scripts\python.exe -m pip install -r requirements-gui.txt
 cd tools
 ..\.venv-gui\Scripts\python.exe -m deskrawl_gui              # 启动主窗口（暗色主题）
-..\.venv-gui\Scripts\python.exe -m deskrawl_gui --selftest   # 自检：内核 26 项 + GUI 76 项
+..\.venv-gui\Scripts\python.exe -m deskrawl_gui --selftest   # 自检：内核 26 项 + GUI 87 项
+..\.venv-gui\Scripts\python.exe -m deskrawl_gui --selftest import panel   # 只跑指定组（组名见下表）
 ..\.venv-gui\Scripts\python.exe -m deskrawl_gui --smoke      # 无显示环境骨架冒烟（建窗即退）
+..\.venv-gui\Scripts\python.exe -m deskrawl_gui --smoke behavior   # 只跑交互检查
 ```
+
+`--selftest` 不带组名即全量（CI/打包门禁走这条）：先过内核 26 项门槛，再按组跑 GUI 断言。
+按组运行会跳过内核门槛，只跑所列组——改一个控件时不必等全量输出：
+
+| 组名 | 覆盖 |
+|---|---|
+| `engine` | 引擎对拍 / 输入敏感性 / 装备名解析 |
+| `rank` | 候选排序与基线对拍 |
+| `build` | 构建存取往返 / 会话状态 / 数值格式 / 构建库扫描 |
+| `import` | 内存导入夹具（α/β 闭环、面板锚点、装备链路、镜像、技能表） |
+| `panel` | 游戏面板口径复算（23 行锚点） |
+| `legendary` | 传奇特效建模与接线 |
+| `talents` | 天赋修正（按技能 / 条件 / 换算） |
+| `robust` | 空候选 / 缓存 / 导出 / 日志 / 整套对比 |
+| `ui` | 表格模型纯逻辑 + 属性元数据（输入单位/显示格式）+ 主题令牌 |
+
+`--smoke` 同款支持 `structure`（菜单与结构锚点）/ `behavior`（交互）/ `session`（会话持久化）/
+`qss`（样式选择器对账）。
 
 ### 3. 从游戏内存导入角色（可选，游戏需运行中）
 
-GUI 主窗口「数据导入」按钮：只读快照联机角色（装备逐件词条、面板、背包武器），
+GUI 右上「从游戏导入」按钮（或菜单「数据导入」）：只读快照联机角色（装备逐件词条、面板、背包武器），
 导入后自动翻译装备简中名并保留你的口径设置。命令行快照：
 
 ```powershell
@@ -198,7 +228,7 @@ cd D:\workspace\Deskrawl-Reverse
 > 换解压目录都不会丢。首次运行会把旧版留在 exe 同级 `data\` 的会话/构建一次性搬过来。
 
 ```powershell
-.\Deskrawl计算台.exe --selftest       # 内核 26 项 + GUI 76 项自检（自动接回控制台输出）
+.\Deskrawl计算台.exe --selftest       # 内核 26 项 + GUI 87 项自检（自动接回控制台输出）
 .\Deskrawl计算台.exe --smoke          # 无显示环境骨架冒烟
 .\Deskrawl计算台.exe memdump --json   # 内存快照 CLI（需游戏运行中）
 ```
@@ -236,7 +266,7 @@ print(f'{r["delta_pct"]:+.2f}%')
 
 ### 桌面 GUI
 
-主窗口三页（左侧导航切换）：
+主窗口三页（顶部导航切换，样式按 Binance 设计语言重绘；见 [GUI 设计规范](docs/plan/GUI设计规范.md)）：
 
 | 页面 | 功能 |
 |---|---|
@@ -244,8 +274,19 @@ print(f'{r["delta_pct"]:+.2f}%')
 | **装备对比** | 当前件（游戏事实）只读 vs 候选任意槽；候选可勾「与当前装备相同（强化/宝石）」；武器孔位宝石按侧计入 |
 | **装配中心** | 宝石/符文/天赋/技能候选按收益排序（已优化至约 12 ms），支持搜索过滤 |
 
-其他入口：帮助菜单含内核自检与术语表；数据导入保留用户口径（目标/参考技能/伤害类型/开关记忆）；
-窗口几何与完整 profile 自动持久化（`data/session_state.json`，原子写，损坏自动回落）。
+其他入口与能力：
+
+- **整套对比**（对比页工具条）：把已填候选的多个槽一起换掉，给总 Δ 与逐槽边际——逐槽 Δ 之间
+  不能相加（乘区交互），所以合计数单独成窗，不与单槽结论混在一屏；
+- **构建库**（`文件 → 构建库…`，Ctrl+Shift+O）：一屏列出 `data/builds/*.json` 的名称/等级/职业/
+  DPS/备注，双击载入，备注写回构建文件本身；损坏的文件单独标记，不影响整库打开；
+- **撤销/重做**（Ctrl+Z / Ctrl+Shift+Z）：面板数值、词条增删、装配增删、目标设置都进栈，
+  切槽这类视图动作不占步；换数据源（导入/加载构建）不入栈；
+- **帮助面板**（F1）：操作速查 / 术语表 / 口径说明 / 数据来源分节，可检索、正文可整段复制；
+- **主题**（`视图 → 主题` 或顶栏开关）：深色/浅色一套 QSS 源 + 色值表，选择随会话持久化；
+- 数据导入走后台线程（读内存期间窗口不假死），保留用户口径（目标/参考技能/伤害类型/开关记忆）；
+- 窗口几何、当前页、分栏宽度、主题与完整 profile 自动持久化（`data/session_state.json`，
+  原子写，损坏自动回落）。
 
 ### 游戏更新后（补丁回归）
 
@@ -277,7 +318,7 @@ python patch_regression.py --live
 
 ## 贡献指南
 
-1. **改公式/数据层后必须跑自检**：`deskrawl_calc.cli selftest`（26 项）与 `deskrawl_gui --selftest`（83 项）；
+1. **改公式/数据层后必须跑自检**：`deskrawl_calc.cli selftest`（26 项）与 `deskrawl_gui --selftest`（87 项）；
    GUI 的 DPS 锚点（`selftest.py` 的 `ANCHORS`）与内核一起冻结，改动公式需同步更新。
 2. **涉及地址的改动**（补丁后重锚定、新增反汇编结论）交工前跑三件事：
    `rva_audit.py --check --falsify`、`build_aliases.py --check`、`deskrawl_gui --selftest`。

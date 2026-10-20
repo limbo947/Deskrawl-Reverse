@@ -15,6 +15,8 @@ import os
 from dataclasses import dataclass, field
 from typing import List
 
+from . import data_dir
+
 _HERE = os.path.dirname(os.path.abspath(__file__))
 _OFFSETS_PATH = os.path.join(_HERE, 'memory_offsets.json')
 _REPO_ROOT = os.path.normpath(os.path.join(_HERE, '..', '..', '..'))
@@ -82,6 +84,74 @@ def sha256_file(path: str) -> str:
     return h.hexdigest()
 
 
+# ---------------- 摘要/条目数缓存（启动期只算一次） ----------------
+# 动机：check_fingerprints 在窗口显示前同步跑，实测 83.5ms（DLL 哈希 + metadata + ItemData 解析），
+# 占 MainWindow 构造的 58%；而游戏文件不更新时这两份摘要完全不变。
+# 失效判定用 (size, mtime_ns)：补丁替换文件必然改变其一；同尺寸同时间戳的替换不在支持范围内
+# （要防这一点只能每次整文件重算，缓存就失去意义）——风险与收益在启动体验上明显偏向缓存。
+
+def _cache_path() -> str:
+    return os.path.join(data_dir.appdata_dir(), 'cache', 'sha256.json')
+
+
+def _load_cache() -> dict:
+    try:
+        with open(_cache_path(), encoding='utf-8') as f:
+            data = json.load(f)
+    except (OSError, ValueError, TypeError):
+        return {}
+    return data if isinstance(data, dict) else {}
+
+
+def _save_cache(cache: dict) -> None:
+    """原子写；失败静默——缓存只影响启动速度，不影响校验结论。"""
+    path = _cache_path()
+    try:
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        tmp = path + '.tmp'
+        with open(tmp, 'w', encoding='utf-8') as f:
+            json.dump(cache, f, ensure_ascii=False)
+        os.replace(tmp, path)
+    except OSError:
+        pass
+
+
+def _entry(path: str, cache: dict) -> dict:
+    rec = cache.get(os.path.abspath(path))
+    return dict(rec) if isinstance(rec, dict) else {}
+
+
+def _fresh(rec: dict, st) -> bool:
+    return rec.get('size') == st.st_size and rec.get('mtime') == st.st_mtime_ns
+
+
+def cached_sha256(path: str, cache: dict) -> str:
+    """带 (size, mtime) 缓存的 SHA-256；命中时不再读文件。"""
+    st = os.stat(path)
+    rec = _entry(path, cache)
+    digest = rec.get('sha256')
+    if _fresh(rec, st) and isinstance(digest, str) and len(digest) == 64:
+        return digest
+    digest = sha256_file(path)
+    cache[os.path.abspath(path)] = dict(rec, size=st.st_size, mtime=st.st_mtime_ns,
+                                        sha256=digest)
+    return digest
+
+
+def cached_json_count(path: str, cache: dict) -> int:
+    """JSON 数组条目数的缓存版（ItemData.json 的 json.load 也占启动时间）。"""
+    st = os.stat(path)
+    rec = _entry(path, cache)
+    count = rec.get('count')
+    if _fresh(rec, st) and isinstance(count, int):
+        return count
+    with open(path, encoding='utf-8') as f:
+        count = len(json.load(f))
+    cache[os.path.abspath(path)] = dict(rec, size=st.st_size, mtime=st.st_mtime_ns,
+                                        count=int(count))
+    return int(count)
+
+
 def check_fingerprints(off=None) -> List[str]:
     """校验 GameAssembly.dll / global-metadata.dat / so_dump 条目数与表内记录是否一致。
 
@@ -92,6 +162,7 @@ def check_fingerprints(off=None) -> List[str]:
     fp = off.get('fingerprints') or {}
     game_dir = os.environ.get('DESKRAWL_GAME') or fp.get('game_dir') or ''
     problems = []
+    cache = _load_cache()          # 命中即跳过哈希/解析；失效由 (size, mtime_ns) 判定
     for label, path, want in (
             ('GameAssembly.dll', os.path.join(game_dir, 'GameAssembly.dll'),
              fp.get('game_assembly_sha256')),
@@ -103,8 +174,14 @@ def check_fingerprints(off=None) -> List[str]:
             problems.append(f'{label} 校验记录缺失（memory_offsets.json 未写入指纹）')
         elif not os.path.exists(path):
             problems.append(f'{label} 不存在：{path}')
-        elif sha256_file(path) != want:
-            problems.append(f'{label} 指纹不符（游戏已更新？）')
+        else:
+            try:
+                got = cached_sha256(path, cache)
+            except OSError as exc:
+                problems.append(f'{label} 无法读取：{exc}')
+                continue
+            if got != want:
+                problems.append(f'{label} 指纹不符（游戏已更新？）')
     want_n = fp.get('so_dump_itemdata_entries')
     itemdata = os.path.join(_REPO_ROOT, 'data', 'so_dump', 'ItemData.json')
     if want_n is None:
@@ -113,11 +190,11 @@ def check_fingerprints(off=None) -> List[str]:
         problems.append(f'so_dump/ItemData.json 不存在：{itemdata}')
     else:
         try:
-            with open(itemdata, encoding='utf-8') as f:
-                got_n = len(json.load(f))
+            got_n = cached_json_count(itemdata, cache)
         except (OSError, ValueError) as e:
             problems.append(f'so_dump/ItemData.json 解析失败：{e}')
         else:
             if got_n != int(want_n):
                 problems.append(f'so_dump/ItemData.json 条目数不符（记录 {want_n}，实测 {got_n}）')
+    _save_cache(cache)
     return problems

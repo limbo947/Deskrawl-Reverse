@@ -397,6 +397,8 @@ class CharacterProfile:
     version: int = 1
     name: str = '示例构建'
     level: int = 70
+    # 构建备注（构建库里用来区分「同一套的几版」）：纯文本，不参与任何计算
+    note: str = ''
     damage_type: int = int(DamageType.Physical)
     base: Dict[int, float] = field(default_factory=dict)
     paragon: Dict[int, int] = field(default_factory=dict)
@@ -411,7 +413,7 @@ class CharacterProfile:
     import_mode: str = ''
     import_time: str = ''
     # 职业主属性（0=力量/1=敏捷/2=智力；None=不启用）：攻击伤害 ×(1+Final/100)（Player.CalcDamage@0x518230）。
-    # 内存导入自动取 HeroData.PrimaryStat（Player.PrimaryStatValue@0x500CA0 链）；手工构建由左栏「职业主属性」选择。
+    # 内存导入自动取 HeroData.PrimaryStat（Player.PrimaryStatValue@0x500CA0 链）；手工构建由角色面板「职业主属性」选择。
     primary_stat: Optional[int] = None
     # 游戏面板口径复算结果（导入时冻结，见 calc_service.build_panel）：
     # {'time','mode','hp_frac','rows','warnings'}；None=手工构建，属性明细退回计算口径展示。
@@ -472,6 +474,7 @@ class CharacterProfile:
         # 留下幻影条目（ItemDraft.is_empty 判定；有内容的槽一律保留）
         return {
             'version': self.version, 'name': self.name, 'level': self.level,
+            'note': self.note,
             'damage_type': self.damage_type,
             'base': {str(int(k)): float(v) for k, v in self.base.items()},
             'paragon': {str(int(k)): int(v) for k, v in self.paragon.items()},
@@ -504,6 +507,7 @@ class CharacterProfile:
                if k in TargetDraft.__dataclass_fields__}
         return cls(
             version=int(d.get('version', 1)), name=d.get('name', ''), level=int(d.get('level', 70)),
+            note=str(d.get('note') or ''),
             damage_type=int(d.get('damage_type', int(DamageType.Physical))),
             base={int(k): float(v) for k, v in (d.get('base') or {}).items()},
             paragon={int(k): int(v) for k, v in (d.get('paragon') or {}).items()},

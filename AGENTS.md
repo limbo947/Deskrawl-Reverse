@@ -32,14 +32,20 @@ tools/deskrawl_calc/     纯 Python 计算内核（零依赖，可独立作库�
   effects.py             传奇特效消费逻辑
   cli.py                 selftest（26 项断言）+ demo
 tools/deskrawl_gui/      PySide6 桌面 UI（只 import deskrawl_calc）
-  app.py                 主窗口装配（SidebarNav + 三页：角色/装备对比/装配中心）
-  __main__.py            三模式：默认 GUI / --selftest / --smoke
+  app.py                 主窗口装配（TopNav 顶栏 + 上下文条 + 三页：角色/装备对比/装配中心）
+  __main__.py            三模式：默认 GUI / --selftest [组…] / --smoke [组…]
   memdump.py             内存快照 CLI
-  selftest.py            GUI 自检 76 项（内核 26 项为通过门槛；拆出 selftest_legendary.py 文案组、
-                         selftest_skillmods.py 天赋修正组、selftest_effects.py 特效口径组）
+  undo.py                撤销/重做（整档快照比对 + QUndoStack；撤销后整页 reload）
+  selftest.py            GUI 自检 87 项（内核 26 项为门槛）+ 分组注册表 `_check_groups()`；
+                        其余检查按主题拆在同级 selftest_*.py（legendary/skillmods/effects/
+                        fixture/equipment/robustness/gui_behavior/gui_pages）
   core/                  服务层纯函数 + 内存导入链：
-    profile.py           CharacterProfile（唯一事实源，可 JSON 序列化）
+    profile.py           CharacterProfile（唯一事实源，可 JSON 序列化；含 note 备注字段）
     calc_service.py      全部纯函数（widget 不做计算）
+    compare_multi.py     多槽整套替换的总 Δ + 逐槽边际（A4；逐槽 Δ 不可相加）
+    build_library.py     构建库扫描（元信息/DPS/备注；损坏文件单独标记）
+    theme.py             设计令牌：QSS 加载 + 明暗映射（新增色值必须登记；恒等映射=品牌色）
+    import_worker.py     内存导入 QThread（结果回主线程；读内存不可中断）
     skill_service.py / glossary.py / localization.py / legendary.py / session_state.py
     dps_meter.py / assembly_meta.py / item_draft.py
     memory_reader.py     WinAPI 只读基元
@@ -49,8 +55,9 @@ tools/deskrawl_gui/      PySide6 桌面 UI（只 import deskrawl_calc）
     memory_snapshot.py   偏移表/指纹/版本校验（读 core/memory_offsets.json）
     memory_conversions.py 属性换算两条读取链（注册表 odd/odl + 天赋特效）
     memory_errors.py     MemoryImportError → 中文文案映射
-  widgets/               UI 组件（15 个模块）
-  resources/             暗色主题 QSS 等
+  widgets/               UI 组件（22 个模块；含 navigation（顶栏）/ segmented（标签条）/ card 容器 /
+                         help_panel / build_library / multi_compare / icons / collapsible / delta_bar）
+  resources/             主题 QSS（一份源 + theme.py 换色）与线性图标（icons/*.svg）
 tools/scripts/           逆向脚本（86 个 .py；UnityPy/capstone，面向游戏文件）
 tools/thirdparty/        第三方工具（Il2CppDumper；自行下载，不入库）
 packaging/               便携版打包（launcher / deskrawl.spec / build_portable.ps1 / make_zip.py）
@@ -80,8 +87,10 @@ python -m venv .venv-gui
 .\.venv-gui\Scripts\python.exe -m pip install -r requirements-gui.txt
 cd tools
 ..\.venv-gui\Scripts\python.exe -m deskrawl_gui              # 启动主窗口
-..\.venv-gui\Scripts\python.exe -m deskrawl_gui --selftest   # 内核 26 项（门槛）+ GUI 76 项对拍
+..\.venv-gui\Scripts\python.exe -m deskrawl_gui --selftest   # 内核 26 项（门槛）+ GUI 87 项对拍
+..\.venv-gui\Scripts\python.exe -m deskrawl_gui --selftest import panel   # 只跑指定组（跳门槛）
 ..\.venv-gui\Scripts\python.exe -m deskrawl_gui --smoke      # 无显示环境骨架冒烟（建窗即退）
+..\.venv-gui\Scripts\python.exe -m deskrawl_gui --smoke behavior    # 只跑交互组（structure/behavior/session/qss）
 ```
 
 根目录 `启动GUI.bat` 双击可用：首跑自动建 venv 装依赖，参数透传（如 `启动GUI.bat --selftest`）。`--selftest` 不建 QApplication，headless 可跑；其 DPS 锚点（`selftest.py` 的 `ANCHORS`）与内核一起冻结，改动公式需同步更新锚点。
@@ -99,7 +108,7 @@ cd D:\workspace\Deskrawl-Reverse
 - 单个 exe 分派四入口：无参=GUI（windowed，无黑框）、`--selftest`/`--smoke`（启动器按需接回控制台，三级阶梯：继承句柄 → AttachConsole → AllocConsole）、`memdump …`。
 - spec 的体积过滤**必须按 `PySide6/` 前缀**（translations/qml/resources 合计约 186 MB）；若用 `\resources\` 之类子串匹配，会连自己的 `deskrawl_gui/resources/style.qss` 一起删掉，GUI 启动即抛 FileNotFoundError。
 - **可写数据根固定走用户目录**：便携版启动器一律把 `DESKRAWL_DATA_DIR` 指向 `%LOCALAPPDATA%\Deskrawl\data`（源码运行不变），首次切换把旧版留在 exe 同级 `data\` 的 `session_state.json` 与个人构建一次性搬过去（哨兵 `.migrated_from_side`）。为什么不再「exe 同级可写就写同级」：PyInstaller `--noconfirm` 重建 `dist\<ExeName>\` 会整目录清空，写在同级的会话与个人构建每次构建都丢（2026-10-20 实测：构建日志 `Removing dir` 后 `data\session_state.json` 消失 → 用户看到「全新窗口」）。`core/data_dir.py` 是「可写数据根」的单一事实源（`session_state.STATE_PATH` / `profile.BUILDS_DIR` 都经它），改数据根只改这一处。
-- 改完必验：`exe --selftest`（期望 76/76）与 `--smoke` 退出码 0；`.github/workflows/build-portable.yml` 已把这两步作为 Release 门禁，本地构建后也应手动跑一遍。
+- 改完必验：`exe --selftest`（期望 87/87）与 `--smoke` 退出码 0；`.github/workflows/build-portable.yml` 已把这两步作为 Release 门禁，本地构建后也应手动跑一遍。
 - **排障开关**：`DESKRAWL_DEBUG_STREAMS=1` 让启动器打印实际走的分支与句柄判定（排查冻结态「没有输出」用）；`DESKRAWL_NO_PAUSE=1` 关掉自建控制台的退出暂停（自动化用）。注意 `pwsh` **不会等待** GUI 子系统 exe，本地验收必须用 `Start-Process -Wait -PassThru` 才拿得到退出码与输出。
 
 ### 内存快照 CLI（需游戏运行中，64 位 Python，可能需管理员权限）
@@ -165,9 +174,15 @@ tools/scripts   逆向脚本（UnityPy/capstone，面向游戏文件）
 
 - `core/profile.py`：`CharacterProfile`（可 JSON 序列化，存 `data/builds/*.json`）是面板编辑、构建存取、计算的唯一事实源。装配顺序与 `cli.demo()` 刻意保持一致，使 GUI 复算能与内核直算对拍。装备槽→宝石部位的映射（`_GEM_CATEGORY_BY_EQUIP_TYPE`）是内存面板实测锚定的，勿按直觉改。
 - `core/calc_service.py`：全部纯函数（输入 profile/GameData，输出视图 dataclass），widget 不做计算。将来要把排序挪线程只改这一个文件。
-- `app.py`：只做主窗口装配（侧边导航 `SidebarNav` + 三页堆栈：角色 / 装备对比 / 装配中心）与信号中转；编辑逻辑下沉 `widgets/`。导入错误统一走 `MemoryImportError.code` → 中文文案映射（`_IMPORT_ERROR_TEXTS`），新错误态应加 code 而非拼消息子串。会话持久化：关闭时把窗口几何/当前页 + 完整 profile 落盘 `data/session_state.json`（gitignore 排除，原子写），启动自动恢复；`MainWindow(persist_state=False)` 为默认（测试/冒烟不碰用户状态），仅生产入口 `run_gui` 显式开启。内存导入走 `preserved_import`：只换角色数据，保留用户口径（图二目标/参考技能/伤害类型/开关记忆）——不能退回裸 `from_snapshot`（selftest 会红）。
+- `app.py`：只做主窗口装配（顶部导航 `TopNav` + 上下文条 + 三页堆栈：角色 / 装备对比 / 装配中心）与信号中转；编辑逻辑下沉 `widgets/`。导入错误统一走 `MemoryImportError.code` → 中文文案映射（`core/memory_errors.IMPORT_ERROR_TEXTS`，app 只做 re-export），新错误态应加 code 而非拼消息子串。会话持久化：关闭时把窗口几何/当前页 + 完整 profile 落盘 `data/session_state.json`（gitignore 排除，原子写），启动自动恢复；`MainWindow(persist_state=False)` 为默认（测试/冒烟不碰用户状态），仅生产入口 `run_gui` 显式开启。内存导入走 `preserved_import`：只换角色数据，保留用户口径（图二目标/参考技能/伤害类型/开关记忆）——不能退回裸 `from_snapshot`（selftest 会红）。
+- 界面设计语言：按根目录 `DESIGN.md`（Binance 风格）实现，结构与要点见 `docs/plan/GUI设计规范.md`。硬约束：① 唯一强调色是主黄 #FCD535，只用于主 CTA / 品牌字 / 关键数值；② 涨绿 / 跌红只表达 Δ 语义，不做通用成功/失败色；③ 数字统一走等宽字体栈（Consolas → 雅黑回落），对应文档的 BinancePlex——**表格按列**用 `common.MonoDelegate`（名称列必须留在正文栈）；④ 固定高度的表/卡片所在主区一律包 `common.scroll_host`：QSplitter 分不到高度时不会自己出滚动条，1024×680 曾出现候选表表体 0 高、11 槽总览少 5 行这种「不报错只是读不到」的缺陷；⑤ 可读次级文字用 `#929AA5`，`#707A8A` 只给禁用态（卡片面 3.65:1 低于 AA）；⑥ 图标与箭头描边是 `#7E8896`（跨主题不变）：SVG 不参与 `LIGHT_MAP` 换色，用主题专属令牌会在浅色下淡到看不见（原 `#929AA5` 白底仅 2.75:1）；⑦ 给 `QTableView[flat="true"]` 免掉外框后**必须**再写一条 `QTableView[flat="true"]:focus`——两者特异性相同（0,1,1），而 `outline:none` 已关掉系统焦点框，漏了就是「Tab 走查看不出焦点在哪」。
 - 对比页的取向：**当前件（游戏事实）只读**（`ItemEditor.set_locked`，导入态自动生效）——基线可改就等于对比失效；参考技能卡（`widgets/skill_card.py`）挂在目标基础卡片下方（换装预测/循环系数的基线口径）；候选**任意槽**可勾「与当前装备相同（强化/宝石）」，按背包原始词条 `raw_modifiers` 重算，**选择跨槽保持**（`profile.like_current_pref` 记忆位，换槽/载入背包件自动沿用，随会话持久化）——武器孔位宝石**按侧计入** `compare(slot=0)`（先按槽卸下装配链里的当前武器宝石，再并入各自武器词条），非武器槽走「先卸下当前件再按侧装回」（`_slot_sheets`）。装备名经 `core/localization.py` 按游戏 Equipments 本地化表（`data/loc/equipments_zh.json`）在导入时翻成简中。
-- `__main__.py` 三模式互斥：`--selftest`（纯数值，不建 QApplication）、`--smoke`（建窗即退）、默认 GUI。
+- `__main__.py` 三模式互斥：`--selftest [组…]`（GUI 断言，绝大多数不建 QApplication）、`--smoke [组…]`（建窗即退）、默认 GUI。分组注册表在 `selftest._check_groups()`，**新增检查函数必须同时登记进某个组**，否则全量运行也不会执行它。
+- 撤销/重做（`undo.py`）：**不写命令类**，编辑后比对 `profile.to_dict()` 快照（剔除视图态 `compare_slot`/`like_current_pref` 与候选的 `like_current`），差异入栈；撤销即把快照灌回 profile 再 `_reload_pages()`——因为 `replace_with` 会换掉草稿对象，旧控件握着的是幽灵引用。换数据源（导入/加载构建/新建/清除导入）一律 `undo_stack.reset()`，那些不是「一次编辑」。
+- 整套对比（`core/compare_multi.py`）：`compare()` 一次只处理一槽，多件同换要看合计数；`_dps_with(profile, gd, [])` 必须与 `baseline_dps` 逐位相等（selftest 断言守着），逐槽边际是「撤下该件后的落差」而非该槽单算的 Δ。
+- 主题（`core/theme.py`）：`resources/style.qss` 只写暗色令牌值，浅色由 `LIGHT_MAP` 整体替换；QSS 加载（`load_qss`，含 @ARROW_*/@CHECK 资源路径替换）也在这里。**新增色值必须登记进映射表**（`unknown_colors` 会在 `--selftest ui` 里报红），否则浅色下残留暗块；品牌色（黄/涨绿/跌红/聚焦蓝）允许恒等映射，浅色残留检查只扫需要翻转的令牌。主题切换后要清 `compare_view` 的三态色缓存（它缓存的是 QSS 解析结果）。
+- 构建库（`core/build_library.py` + `widgets/build_library.py`）：仍是 `data/builds/*.json`，元信息靠现场解析（不建索引文件——索引会和文件不同步）；备注写回构建 JSON 的 `note` 字段。
+- 帮助（`core/glossary.help_topics()` + `widgets/help_panel.py`）：分节 + 目录过滤 + 正文内查找；旧的四段 `QMessageBox` 已移除。
 
 ### 内存导入链（GUI 内，联机角色只读导入）
 
@@ -177,6 +192,7 @@ tools/scripts   逆向脚本（UnityPy/capstone，面向游戏文件）
 - **校验哲学「宁可红不出脏」**：结构/键域/值域/双读一致性任一失败即抛错，绝不返回可疑数据；定位链全部以类名自校验收尾。
 - 游戏更新后只需改 `memory_offsets.json`；版本指纹（`check_fingerprints`）同时校验偏移与 so_dump 静态数据，失配即拒绝导入。
 - α/β 是能力降级而非开关：装备容器不可用时自动降级 α（聚合字典）并给 warnings，β 提供逐件词条。
+- 导入在 `core/import_worker.py` 的 QThread 里跑（D3）：widget 只在主线程动，结果经 `done` 信号回主线程再换档案；**读内存不可中断**，`cancel()` 只作废结果，关窗时必须 `cancel()` + `wait()` 再析构。
 - 背景：联机角色数据在服务器不在本地，所以走运行时读内存；本地模式存档才有完整角色数据（`read_save.py` 可解析）。
 
 ### tools/scripts：逆向脚本与地址工具链（86 个 .py）
@@ -213,7 +229,7 @@ tools/scripts   逆向脚本（UnityPy/capstone，面向游戏文件）
 
 ## 开发流程与交工检查
 
-1. **改代码先跑相关自检**：动 `engine.py`/`gamedata.py`/`effects.py` → `deskrawl_calc.cli selftest`；动 GUI → `deskrawl_gui --selftest`（76 项）。selftest 是整体，不可只跑子集；断言数值来自 docs/04 证据，改公式必须同步更新 GUI 的 `ANCHORS`。
+1. **改代码先跑相关自检**：动 `engine.py`/`gamedata.py`/`effects.py` → `deskrawl_calc.cli selftest`；动 GUI → `deskrawl_gui --selftest`（87 项）。迭代时可按组跑（`--selftest import` 等，组名见 README 表），但**交工前必须全量**：分组只影响范围，不改变断言内容。断言数值来自 docs/04 证据，改公式必须同步更新 GUI 的 `ANCHORS`。
 2. **涉及地址的改动**（补丁后重锚定、新增反汇编结论）交工前跑三件事：`rva_audit.py --check --falsify`、`build_aliases.py --check`、`deskrawl_gui --selftest`；`--check` 的严格性靠「改错一位必须报红」的 `--falsify` 自证，不许靠白名单消红。
 3. **新错误态/新 UI 样式**：导入错误加 `MemoryImportError` code 而非拼消息子串；QSS 规则必须与控件 objectName 绑定（selftest 有双向对账断言，死钩子会红）。
 4. **提交**：只提交相关文件；`data/session_state.json`、`*.tmp`、`.venv-gui/`、`__pycache__/` 不入库（gitignore 已配）。Windows 下多行提交信息用 `git commit -F` 读文件，避免 PowerShell 转义问题。
@@ -234,7 +250,7 @@ python patch_regression.py --live      # 指纹 → 体检 → 别名 → 自检
 
 ### 内存导入失败（GUI 数据导入报错）
 
-按 `MemoryImportError.code` 对照 `_IMPORT_ERROR_TEXTS`（六类错误态，app.py）排查：
+按 `MemoryImportError.code` 对照 `IMPORT_ERROR_TEXTS`（六类错误态，`core/memory_errors.py`）排查：
 `no_process` → 先启动游戏并进入角色；`no_hero` → 停留在主菜单/加载中，进入角色后重试；
 `denied` → 以管理员身份运行；`py32` → 换 64 位 Python；`fingerprint` → 游戏更新后偏移未重锚定，
 走补丁回归流程；`data`（默认回落）→ 读取/校验失败（宁可红不出脏），先跑

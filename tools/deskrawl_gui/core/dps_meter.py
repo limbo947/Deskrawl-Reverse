@@ -11,6 +11,7 @@
 """
 from __future__ import annotations
 
+import contextlib
 import math
 import struct
 
@@ -21,6 +22,24 @@ from .memory_snapshot import load_offsets
 _METER_KLASS = 'TrainingDpsMeterUI'      # 非混淆类名：定位链的自校验终点
 _HANDLER_SPAN = 0x100                    # 处理器对象字段扫描范围（实测 +0x78 处命中）
 _MAX_DELEGATES = 32
+
+# 已定位实例的缓存：每秒轮询时进程与地图都不变，没必要每次都重走
+# 「全进程枚举 + 256 槽扫描 + 逐层解引用」这条链（离线态 5s 一次，同样浪费）。
+_meter_cache = {'pid': 0, 'addr': 0}
+
+
+def _cached_meter(pid: int) -> int:
+    return _meter_cache['addr'] if _meter_cache['pid'] == int(pid) else 0
+
+
+def _store_meter(pid: int, addr: int) -> None:
+    _meter_cache['pid'] = int(pid)
+    _meter_cache['addr'] = int(addr)
+
+
+def _forget_meter() -> None:
+    _meter_cache['pid'] = 0
+    _meter_cache['addr'] = 0
 
 
 def meter_dps(total: float, start_time: float, last_tick: float) -> float:
@@ -108,6 +127,45 @@ def _locate_meter(pr, loc: Locator, moff) -> int | None:
     return None
 
 
+def _same_image(cached: str, want: str) -> bool:
+    """能否复用上次的 pid：可执行文件名必须一致。
+
+    pid 会被系统回收：只判「句柄能打开」就可能读到一个毫不相干的进程，而这正是
+    「宁可红不出脏」要挡的那类错。取不到名称（''）一律不复用。
+    """
+    return bool(cached) and str(cached).lower() == str(want).lower()
+
+
+@contextlib.contextmanager
+def _process(off):
+    """只读进程通道：优先复用上次的 pid，省掉每秒一次的 Toolhelp 全进程枚举。
+
+    复用失败（游戏已退/pid 被回收/权限变化）→ 退回一次全枚举并给出标准错误码；
+    稳态开销因此只剩 OpenProcess + 名称核对 + 24 字节读取。
+    """
+    name = str(off['process_name'])
+    cached = int(_meter_cache['pid'] or 0)
+    if cached:
+        try:
+            pr = ProcessReader(cached)
+        except MemoryReadError:
+            pr = None
+        if pr is not None and _same_image(pr.image_name(), name):
+            try:
+                yield pr
+            finally:
+                pr.close()
+            return
+        if pr is not None:
+            pr.close()
+        _forget_meter()
+    pid = ProcessReader.find_process(name)
+    if not pid:
+        raise MemoryImportError('未找到 Deskrawl.exe 进程（游戏未运行）', 'env', code='no_process')
+    with ProcessReader(pid) as pr:
+        yield pr
+
+
 def read_dps_meter(off=None) -> dict:
     """读一次 DPS 计：{'total','dps','start_time','last_tick'}（单位与游戏一致）。
 
@@ -119,22 +177,28 @@ def read_dps_meter(off=None) -> dict:
     moff = off.get('dps_meter') or {}
     if not moff.get('anchor_rva'):
         raise MemoryImportError('偏移表缺少 dps_meter 节（需更新 memory_offsets.json）', 'data')
-    pid = ProcessReader.find_process(off['process_name'])
-    if not pid:
-        raise MemoryImportError('未找到 Deskrawl.exe 进程（游戏未运行）', 'env', code='no_process')
-    with ProcessReader(pid) as pr:
-        loc = Locator(pr, _StaticFieldsOnly(pr, off['il2cpp']['static_fields']), off)
-        meter = _locate_meter(pr, loc, moff)
-        if not meter:
-            raise MemoryImportError(
-                '未定位到 DPS 计（需在训练假人地图且累计过伤害；游戏更新后需重算 anchor_rva）', 'data')
-        try:
-            raw = pr.read(meter + moff['total'], 24)   # total/start/last 三个 double 连续
-        except MemoryReadError as exc:
-            raise MemoryImportError(f'DPS 计字段不可读：{exc}', 'data') from exc
+    with _process(off) as pr:
+        pid = pr.pid
+        meter = _cached_meter(pid)
+        # 缓存的实例指针还要能读到 klass 才算有效：切图/重启后它可能已失效（读不到或变 0）
+        if not meter or not valid_ptr(pr.u64(meter)):
+            _forget_meter()
+            meter = _locate_meter(pr, Locator(pr, _StaticFieldsOnly(
+                pr, off['il2cpp']['static_fields']), off), moff)
+            if not meter:
+                raise MemoryImportError(
+                    '未定位到 DPS 计（需在训练假人地图且累计过伤害；游戏更新后需重算 anchor_rva）', 'data')
+            _store_meter(pid, meter)
+        raw = pr.read(meter + moff['total'], 24)   # total/start/last 三个 double 连续
+        if not raw or len(raw) != 24:
+            # pr.read 失败返回 None（不抛异常）：不显式判就会在校验之外变成 TypeError，
+            # 线程兜底只能报「data + 异常类名」，排障时看不出是「指针失效」还是「校验不过」
+            _forget_meter()                        # 指针失效：下次重新定位
+            raise MemoryImportError('DPS 计字段不可读（指针可能已失效，下次轮询重定位）', 'data')
         total, start_time, last_tick = struct.unpack('<3d', raw)
     if (not all(map(math.isfinite, (total, start_time, last_tick)))
             or total < 0 or start_time < 0 or last_tick < start_time):
+        _forget_meter()
         raise MemoryImportError('DPS 计读数未通过值域/时序校验（游戏状态变化？稍后重试）', 'data')
     return {'total': total, 'start_time': start_time, 'last_tick': last_tick,
             'dps': meter_dps(total, start_time, last_tick)}

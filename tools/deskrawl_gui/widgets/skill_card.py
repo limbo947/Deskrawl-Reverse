@@ -10,9 +10,10 @@ from PySide6.QtWidgets import QComboBox, QFormLayout, QGroupBox, QLabel, QSpinBo
 
 from ..core.localization import ability_display_name
 from ..core.skill_service import ability_level_bonuses
+from .common import ReloadGuard
 
 
-class SkillCard(QGroupBox):
+class SkillCard(ReloadGuard, QGroupBox):
     """参考技能（唯一入口）：职业决定可选清单，倍率文案含符文带来的有效等级。"""
 
     changed = Signal()
@@ -21,7 +22,6 @@ class SkillCard(QGroupBox):
         super().__init__('技能（仅作参考倍率）', parent)
         self.profile = profile
         self.gd = gd
-        self._loading = False
         form = QFormLayout(self)
         self.skill_combo = QComboBox()
         self.skill_combo.currentIndexChanged.connect(self._on_skill)
@@ -30,6 +30,8 @@ class SkillCard(QGroupBox):
         self.skill_level_spin.setRange(1, max(1, int(cfg.get('MaxAbilityLevel') or 20)))
         self.skill_level_spin.valueChanged.connect(self._on_skill)
         self.skill_info = QLabel('—')
+        # 文案里带倍率数字：走等宽栈（#skillInfo 在 QSS 里定义字族），汉字仍由雅黑逐字回落
+        self.skill_info.setObjectName('skillInfo')
         self.skill_info.setWordWrap(True)
         form.addRow('技能', self.skill_combo)
         form.addRow('等级', self.skill_level_spin)
@@ -71,16 +73,15 @@ class SkillCard(QGroupBox):
 
     # ---------------- 回填 / 事件 ----------------
     def reload(self):
-        """把 profile 的值灌进控件。期间置 _loading，避免触发 changed 递归。"""
-        self._loading = True
-        idx = self.skill_combo.findData(self.profile.skill_name)
-        self.skill_combo.setCurrentIndex(idx if idx >= 0 else 0)
-        self.skill_level_spin.setValue(int(self.profile.skill_level))
-        self._loading = False
+        """把 profile 的值灌进控件；回填期间的事件不算用户编辑（见 ReloadGuard）。"""
+        with self.reloading():
+            idx = self.skill_combo.findData(self.profile.skill_name)
+            self.skill_combo.setCurrentIndex(idx if idx >= 0 else 0)
+            self.skill_level_spin.setValue(int(self.profile.skill_level))
         self._update_skill_info()
 
     def _on_skill(self, *_):
-        if self._loading:
+        if self.loading:
             return
         self.profile.skill_name = self.skill_combo.currentData() or ''
         self.profile.skill_level = int(self.skill_level_spin.value())

@@ -51,11 +51,27 @@ class Report:
         return sum(1 for c in self.checks if c[0])
 
 
-def run_smoke() -> int:
-    """建窗口后立即计数退出（不进事件循环），用于自动化验证骨架。"""
+# 冒烟分组（E3）：把原来的单趟跑拆成可单独执行的段——改布局只跑 structure，
+# 改交互只跑 behavior。无参数时全跑，顺序与拆分前一致（CI 行为不变）。
+_SMOKE_GROUPS = [('structure', '菜单 / 结构锚点'), ('behavior', '交互'),
+                 ('session', '会话持久化'), ('qss', 'QSS 锚点对账')]
+
+
+def run_smoke(only=None) -> int:
+    """建窗口后立即计数退出（不进事件循环），用于自动化验证骨架。
+
+    only 非空时只跑所列分组（`--smoke behavior`）；未知分组返回 2 并列出可用组。
+    """
     from PySide6.QtWidgets import QWidget
 
     from .app import MainWindow, build_application
+
+    keys = [key for key, _desc in _SMOKE_GROUPS]
+    bad = [g for g in (only or []) if g not in keys]
+    if bad:
+        print(f'[smoke] 未知分组 {bad}；可用：{keys}', file=sys.stderr)
+        return 2
+    want = set(only or keys)
 
     app = build_application(['deskrawl_gui', '--smoke'])
     win = MainWindow()
@@ -64,61 +80,64 @@ def run_smoke() -> int:
     count = len(win.findChildren(QWidget)) + 1
     print(f'[smoke] 主窗口就绪：widget 计数 = {count}')
 
-    # 顺带校验菜单结构与自检弹窗文案（走生产代码路径，不 mock）
-    menu_titles = [a.text() for a in win.menuBar().actions()]
-    tools_menu = next((a.menu() for a in win.menuBar().actions() if a.text() == '工具'), None)
-    kernel_action = next((a for a in tools_menu.actions() if '内核自检' in a.text()), None) \
-        if tools_menu else None
-    import_menu = next((a.menu() for a in win.menuBar().actions() if a.text() == '数据导入'), None)
-    import_action = next((a for a in import_menu.actions() if '从运行中的游戏导入' in a.text()),
-                         None) if import_menu else None
-    # 帮助入口是术语门槛的对策落点，缺了就等于把用户推回文档——与导入项同样做结构断言
-    help_menu = next((a.menu() for a in win.menuBar().actions() if a.text() == '帮助'), None)
-    help_ok = help_menu is not None and any('术语表' in a.text() for a in help_menu.actions()) \
-        and any('口径说明' in a.text() for a in help_menu.actions())
-    # 导入项可用性必须与指纹自检结果一致（一致性断言，任何环境都可判定）
-    import_state_ok = (import_action is not None and import_action.isEnabled() == win._fingerprint_ok)
-    print(f'[smoke] 菜单：{menu_titles}')
-    print(f'[smoke] 工具→内核自检：{"已就绪" if kernel_action and kernel_action.isEnabled() else "缺失"}；'
-          f'数据导入{"已就绪（指纹通过）" if win._fingerprint_ok else "已禁用（指纹不符，中文提示已就位）"}，'
-          f'可用性一致={import_state_ok}；帮助菜单（术语表/口径说明）={"已就绪" if help_ok else "缺失"}')
-    ok, summary, _ = win._kernel_selftest_message()
-    print(f'[smoke] 内核自检弹窗文案：{summary}（通过={ok}）')
-
-    print('[smoke] 交互检查：')
-    behavior_ok = _gui_behavior_checks(win)
-
-    print('[smoke] 会话持久化检查：')
-    state_ok = _session_state_smoke_checks()
-
-    print('[smoke] QSS 锚点对账：')
-    qss_ok = _qss_anchor_checks()
-
-    print('[smoke] 结构锚点：')
-    struct_ok = _structure_checks(win)
+    ok = True
+    if 'structure' in want:
+        print('[smoke] 菜单与结构锚点：')
+        ok = _smoke_menu_checks(win) and ok
+        ok = _structure_checks(win) and ok
+    if 'behavior' in want:
+        print('[smoke] 交互检查：')
+        ok = _gui_behavior_checks(win) and ok
+    if 'session' in want:
+        print('[smoke] 会话持久化检查：')
+        ok = _session_state_smoke_checks() and ok
+    if 'qss' in want:
+        print('[smoke] QSS 锚点对账：')
+        ok = _qss_anchor_checks() and ok
 
     if count <= 0:
         print('[smoke] 失败：widget 计数为 0', file=sys.stderr)
         return 1
-    if kernel_action is None or not kernel_action.isEnabled() or not import_state_ok or not ok:
-        print('[smoke] 失败：菜单/自检弹窗校验未通过', file=sys.stderr)
-        return 1
-    if not help_ok:
-        print('[smoke] 失败：帮助菜单（术语表/口径说明）缺失', file=sys.stderr)
-        return 1
-    if not behavior_ok:
-        print('[smoke] 失败：交互检查未通过', file=sys.stderr)
-        return 1
-    if not state_ok:
-        print('[smoke] 失败：会话持久化检查未通过', file=sys.stderr)
-        return 1
-    if not qss_ok:
-        print('[smoke] 失败：QSS 锚点对账未通过', file=sys.stderr)
-        return 1
-    if not struct_ok:
-        print('[smoke] 失败：结构锚点缺失', file=sys.stderr)
+    if not ok:
+        print('[smoke] 失败：检查未通过', file=sys.stderr)
         return 1
     return 0
+
+
+def _smoke_menu_checks(win) -> bool:
+    """菜单结构 + 自检弹窗文案（走生产代码路径，不 mock）。"""
+    menu_titles = [a.text() for a in win.menuBar().actions()]
+    # 内核自检从「工具」菜单移到「帮助」：开发者诊断入口不占一级菜单（A11）
+    help_menu = next((a.menu() for a in win.menuBar().actions() if a.text() == '帮助'), None)
+    kernel_action = next((a for a in help_menu.actions() if '内核自检' in a.text()), None) \
+        if help_menu else None
+    import_menu = next((a.menu() for a in win.menuBar().actions() if a.text() == '数据导入'), None)
+    import_action = next((a for a in import_menu.actions() if '从运行中的游戏导入' in a.text()),
+                         None) if import_menu else None
+    # 帮助入口是术语门槛的对策落点，缺了就等于把用户推回文档——与导入项同样做结构断言
+    help_ok = help_menu is not None and any('术语表' in a.text() for a in help_menu.actions()) \
+        and any('口径说明' in a.text() for a in help_menu.actions())
+    # 导入项可用性必须与指纹自检结果一致（一致性断言，任何环境都可判定）
+    import_state_ok = (import_action is not None and import_action.isEnabled() == win._fingerprint_ok)
+    # 编辑菜单是撤销/重做的唯一可见入口（A5）：拆掉菜单等于把功能藏起来
+    edit_menu = next((a.menu() for a in win.menuBar().actions() if a.text() == '编辑'), None)
+    edit_ok = (edit_menu is not None
+               and any('撤销' in a.text() for a in edit_menu.actions())
+               and any('重做' in a.text() for a in edit_menu.actions()))
+    print(f'[smoke] 菜单：{menu_titles}')
+    print(f'[smoke] 帮助→内核自检：{"已就绪" if kernel_action and kernel_action.isEnabled() else "缺失"}；'
+          f'数据导入{"已就绪（指纹通过）" if win._fingerprint_ok else "已禁用（指纹不符，中文提示已就位）"}，'
+          f'可用性一致={import_state_ok}；帮助菜单（术语表/口径说明）={"已就绪" if help_ok else "缺失"}')
+    ok, summary, _ = win._kernel_selftest_message()
+    print(f'[smoke] 内核自检弹窗文案：{summary}（通过={ok}）')
+    if not help_ok:
+        print('[smoke] 失败：帮助菜单（术语表/口径说明）缺失', file=sys.stderr)
+    if not edit_ok:
+        print('[smoke] 失败：编辑菜单（撤销/重做）缺失', file=sys.stderr)
+    if kernel_action is None or not kernel_action.isEnabled() or not import_state_ok or not ok:
+        print('[smoke] 失败：菜单/自检弹窗校验未通过', file=sys.stderr)
+        return False
+    return help_ok and edit_ok
 
 
 def _session_state_smoke_checks() -> bool:
@@ -181,11 +200,14 @@ def _structure_checks(win) -> bool:
           '对比结果三格（2×dpsBig + Δ 三态之一）',
           f'dpsBig={len(two_dps)}；Δ={view.delta.objectName()}')
 
-    # 侧栏：3 个页面 + 收起按钮 + 数据源徽标（U4/V9 的可见契约）
+    # 顶部导航：3 个页面链接 + 上下文条的数据源徽标 + 只读承诺（U4/V9 的可见契约；
+    # 品牌区与收起按钮已按界面精简要求移除，收起仅走 Ctrl+B）
     nav_ok = (win.nav.currentRow() >= 0 and len(win.nav._keys) == 3
-              and win.nav.toggle.isVisible() and bool(win.nav.badge.text()))
-    check(nav_ok, '侧栏 3 页 + 收起按钮 + 数据源徽标',
-          f'页数={len(win.nav._keys)}；徽标=「{win.nav.badge.text().splitlines()[0]}」')
+              and bool(win.nav.badge.text())
+              and win.nav.safe_badge.isVisible())
+    check(nav_ok, '侧栏导航 3 页 + 数据源徽标 + 只读徽标',
+          f'页数={len(win.nav._keys)}；徽标=「{win.nav.badge.text().splitlines()[0]}」；'
+          f'只读徽标=「{win.nav.safe_badge.text()}」')
 
     # 装备对比页：候选播种入口 + 词条区间提示位 + α 横幅（可隐）
     check(hasattr(ee, 'seed_btn') and hasattr(ee.candidate_editor, 'range_label')
@@ -225,13 +247,23 @@ def _structure_checks(win) -> bool:
     # 后续若有人改回逐格 setItem，这里的 isinstance/列数断言会先红）
     from PySide6.QtCore import QAbstractTableModel
 
-    st = win.stat_table
+    st = win.role_page.stat_table
     check(isinstance(st.model, QAbstractTableModel)
           and isinstance(view.skill_model, QAbstractTableModel)
           and st.model.columnCount() == 6 and view.skill_model.columnCount() == 4,
           '属性表 / 技能表改 model-view（6 列 / 4 列）',
           f'属性 {st.model.rowCount()} 行；技能 {view.skill_model.rowCount()} 行；'
           f'视图={type(st.table).__name__}')
+
+    # A2/A3 的可见契约 + B1/C1 的布局契约 + B3 的顶栏摘要（都需要真实窗口）
+    from .selftest_gui_pages import (layout_checks, min_size_checks, reload_guard_checks,
+                                     sidebar_summary_checks, structure_export_checks)
+
+    structure_export_checks(win, check)
+    sidebar_summary_checks(win, check)
+    layout_checks(win, check)
+    min_size_checks(win, check)
+    reload_guard_checks(win, check)
 
     # 提示只剩浮层一条通道：状态栏整个移除（两处并存会让同一条消息出现在两个位置）
     from PySide6.QtWidgets import QStatusBar
@@ -304,198 +336,21 @@ def _qss_anchor_checks() -> bool:
 def _gui_behavior_checks(win) -> bool:
     """在已建好的主窗口上跑一遍关键交互（真实控件 + 真实信号链），headless 可验证。
 
-    覆盖任务书里的交互要求：词条下拉用内核全量中文名、面板改动→属性表实时刷新、
-    装配中心搜索/加入/就地改参数/删除确认、排序表按数值排序、双击加入构建。
-    检查完逐个还原，避免污染 demo 构建。
+    三段按页拆在 selftest_gui_behavior.py（角色 / 对比 / 装配）；本函数只保留「壳层」检查
+    （导入入口的临时态、浮层提示）与调度——E3 的目标是失败时能按页定位，而不是读一屏输出。
     """
-    import copy
-
-    from PySide6.QtCore import Qt
-
-    from deskrawl_calc import StatType
-
-    from .widgets import assembly_center as _ac_mod
-
     results = []
-
-    # 删除类操作会弹模态确认框：全程短路为「确认」。原先只在步骤 3 局部打补丁，步骤 5 的
-    # 双添加→删除收尾调用的是真对话框，非交互环境会挂死在等待点击上（实测每次跑都卡）。
-    saved_confirm = _ac_mod.confirm_delete
-    _ac_mod.confirm_delete = lambda *a, **k: True
 
     def check(cond, label, detail=''):
         results.append(bool(cond))
         print(f'  [{"PASS" if cond else "FAIL"}] {label}' + (f'：{detail}' if detail else ''))
 
-    def stat_final(name):
-        model = win.stat_table.model
-        for r in range(model.rowCount()):
-            if model.cell_text(r, 0) == name:
-                return float(model.cell_text(r, 5))
-        return None
+    from .selftest_gui_behavior import (assembly_table_checks, compare_editor_checks,
+                                        role_panel_checks)
 
-    # 1) 武器词条下拉 = 内核 StatType 全量中文名
-    editor = win.equipment_editor.candidate_editor
-    saved = copy.deepcopy(editor.draft.affixes)
-    editor.affixes.append_row()
-    combo = editor.affixes.cellWidget(0, 0)
-    labels = [combo.itemText(i) for i in range(combo.count())]
-    check(combo.count() == len(list(StatType)) and not any(s.startswith('Stat') for s in labels),
-          '词条下拉含内核全部属性中文名', f'{combo.count()} 项，示例 {labels[:3]}')
-    editor.draft.affixes = saved
-    editor.reload()
-
-    # 1b) 类型列 = 只读文本（游戏固定「加法」），随属性刷新填写提示；百分比类附小数提示
-    saved = copy.deepcopy(editor.draft.affixes)
-    editor.affixes.append_row()
-    r = editor.affixes.rowCount() - 1
-    s_combo = editor.affixes.cellWidget(r, 0)
-    t_item = editor.affixes.item(r, 1)
-    v_spin = editor.affixes.cellWidget(r, 2)
-
-    def add_only_text():
-        """类型列必须是文本、不是控件：用下拉（哪怕禁用）承载单值会让人以为能改。"""
-        return (editor.affixes.cellWidget(r, 1) is None
-                and t_item is not None and t_item.text() == '加法'
-                and int(t_item.data(Qt.UserRole)) == 0)
-
-    pct_ok = add_only_text() and '小数' in t_item.toolTip() and '小数' in v_spin.toolTip()
-    s_combo.setCurrentIndex(s_combo.findData(int(StatType.Strength)))
-    num_ok = add_only_text() and '加法' in t_item.toolTip()
-    check(pct_ok and num_ok, '词条类型为只读文本「加法」（无下拉；提示随属性刷新）',
-          f'物理伤害%：文本加法+小数提示={pct_ok}；力量：仍为加法={num_ok}')
-    editor.draft.affixes = saved
-    editor.reload()
-
-    # 1c) 词条删除：× 即删（不弹确认框打断连续编辑）+ 一次性撤销条把该行按原位置放回
-    saved = copy.deepcopy(editor.draft.affixes)
-    editor.affixes.append_row()
-    r = editor.affixes.rowCount() - 1
-    n0 = editor.affixes.rowCount()
-    editor.affixes.cellWidget(r, 3).click()          # 点该行的「×」
-    n1 = editor.affixes.rowCount()
-    pending = editor._undo_state is not None and '已删除' in editor.undo_label.text()
-    editor.undo_btn.click()
-    n2 = editor.affixes.rowCount()
-    check(n1 == n0 - 1 and pending and n2 == n0 and editor._undo_state is None,
-          '词条删除可撤销（× 即删 + 撤销按原位置放回）',
-          f'{n0} 行 → 删后 {n1} 行 → 撤销后 {n2} 行；撤销条就绪={pending}')
-    editor.draft.affixes = saved
-    editor.reload()
-
-    # 2) 面板改动 → 属性表实时刷新
-    spin = win.panel_editor._base_spins[int(StatType.WeaponDamage)]
-    before = stat_final('武器伤害')
-    spin.setValue(37.0)
-    after = stat_final('武器伤害')
-    check(after is not None and abs(after - 37.0) < 1e-9, '面板改动 → 属性表实时刷新',
-          f'武器伤害 最终值 {"（无该行）" if before is None else before} → {after}')
-    spin.setValue(0.0)
-
-    # 2b) 职业主属性下拉写回 profile（DPS 加成因子由 _snapshot_checks 用夹具覆盖）
-    pc = win.panel_editor.primary_combo
-    pc.setCurrentIndex(pc.findData(int(StatType.Strength)))
-    wrote = win.profile.primary_stat == int(StatType.Strength)
-    pc.setCurrentIndex(0)
-    check(wrote and win.profile.primary_stat is None,
-          '职业主属性下拉写回 profile（力量 → 未设置还原）',
-          f'{pc.count()} 个选项；写回={wrote}')
-
-    # 2c) 参考技能卡已迁到对比页「目标基础」正下方，仍是唯一入口（角色页不再持有技能控件）
-    sc = win.compare_page.skill_card
-    te = win.compare_page.target_editor
-    saved_skill, saved_idx = win.profile.skill_name, sc.skill_combo.currentIndex()
-    pos_ok = te.layout().indexOf(sc) == 1
-    idx = sc.skill_combo.findData('WarriorHeavyAttack3')
-    sc.skill_combo.setCurrentIndex(idx if idx >= 0 else sc.skill_combo.count() - 1)
-    wrote_skill = win.profile.skill_name == 'WarriorHeavyAttack3'
-    sc.skill_combo.setCurrentIndex(saved_idx)
-    restored = win.profile.skill_name == saved_skill
-    check(pos_ok and wrote_skill and restored
-          and not hasattr(win.panel_editor, 'skill_combo'),
-          '参考技能卡在对比页目标基础下方（唯一入口，写回 profile）',
-          f'布局序号={te.layout().indexOf(sc)}（应 1）；写回={wrote_skill}；'
-          f'还原={restored}；角色页无技能控件={not hasattr(win.panel_editor, "skill_combo")}')
-
-    # 3) 装配中心：搜索过滤 + 加入/删除（删除有确认对话框，测试里短路为「确认」）
-    ac = win.assembly_center
-    saved_confirm = _ac_mod.confirm_delete
-    _ac_mod.confirm_delete = lambda *a, **k: True       # headless 走通删除全路径
-    try:
-        total = ac.model.rowCount()
-        ac.search_edit.setText('GemAmethyst')
-        filtered = ac.proxy.rowCount()
-        check(0 < filtered < total, '装配中心搜索过滤生效',
-              f'{total} 项中剩余 {filtered} 项')
-        ac.search_edit.setText('')
-
-        n0 = len(win.profile.assembled)
-        ac.table.setCurrentIndex(ac.proxy.index(0, 0))
-        ac._add_selected()
-        n1 = len(win.profile.assembled)
-        check(n1 == n0 + 1, '装配中心「加入构建」生效', f'{n0} → {n1} 项')
-
-        # 3b) 已装配就地改参数：宝石改部位（等级恒 1）、非宝石改等级
-        ac.assembled_list.setCurrentRow(n1 - 1)
-        gem_edit_ok = (win.profile.assembled[n1 - 1].kind == 'gem'
-                       and ac.edit_label.text() == '镶嵌部位')
-        ac.edit_slot_combo.setCurrentIndex(0)               # 武器孔 → 护甲
-        ac._apply_assembled_edit()
-        cat_ok = win.profile.assembled[n1 - 1].category == 0
-        check(gem_edit_ok and cat_ok, '已装配宝石就地改部位',
-              f'标签={ac.edit_label.text()}；category → {win.profile.assembled[n1 - 1].category}')
-
-        ri = next(i for i in range(ac.kind_combo.count())
-                  if ac.kind_combo.itemData(i) == 'rune')
-        ac.kind_combo.setCurrentIndex(ri)
-        ac.table.setCurrentIndex(ac.proxy.index(0, 0))
-        ac._add_selected()
-        n2 = len(win.profile.assembled)
-        ac.assembled_list.setCurrentRow(n2 - 1)
-        rune_edit_ok = (win.profile.assembled[n2 - 1].kind == 'rune'
-                        and ac.edit_label.text() == '符文等级')
-        ac.edit_level_spin.setValue(7)
-        ac._apply_assembled_edit()
-        lvl_ok = win.profile.assembled[n2 - 1].level == 7
-        check(rune_edit_ok and lvl_ok, '已装配符文就地改等级',
-              f'标签={ac.edit_label.text()}；level → {win.profile.assembled[n2 - 1].level}')
-
-        while len(win.profile.assembled) > n0:
-            ac.assembled_list.setCurrentRow(len(win.profile.assembled) - 1)
-            ac._remove_selected()
-        check(len(win.profile.assembled) == n0, '装配中心「删除选中」（含确认）生效',
-              f'回到 {len(win.profile.assembled)} 项')
-    finally:
-        _ac_mod.confirm_delete = saved_confirm
-
-    # 4) 排序表：四列均可排序，且 ΔDPS 按数值而非字符串排
-    table = ac.table
-    model = table.model()       # QSortFilterProxyModel（排序键 UserRole 经由代理透传）
-    head_flips = []
-    for col in (0, 2, 3, 4):
-        table.sortByColumn(col, Qt.DescendingOrder)
-        head_desc = model.index(0, col).data(Qt.UserRole)
-        table.sortByColumn(col, Qt.AscendingOrder)
-        head_asc = model.index(0, col).data(Qt.UserRole)
-        head_flips.append(head_desc != head_asc)
-    check(all(head_flips), '名称/DPS/ΔDPS/Δ% 四列均可排序',
-          f'各列降序/升序首行不同：{head_flips}')
-
-    table.sortByColumn(3, Qt.DescendingOrder)
-    top_desc = float(model.index(0, 3).data(Qt.DisplayRole))
-    low_desc = float(model.index(model.rowCount() - 1, 3).data(Qt.DisplayRole))
-    table.sortByColumn(3, Qt.AscendingOrder)
-    top_asc = float(model.index(0, 3).data(Qt.DisplayRole))
-    check(top_desc > low_desc and abs(low_desc - top_asc) < 1e-6, 'ΔDPS 按数值排序（非字符串）',
-          f'降序 {top_desc:+.1f} … {low_desc:+.1f}；升序首行 {top_asc:+.1f}')
-
-    # 5) 排序表双击 → 加入构建
-    n0 = len(win.profile.assembled)
-    table.doubleClicked.emit(ac.proxy.index(0, 0))
-    n1 = len(win.profile.assembled)
-    check(n1 == n0 + 1, '候选排序表双击加入构建', f'{n0} → {n1} 项')
-    ac.assembled_list.setCurrentRow(n1 - 1)
-    ac._remove_selected()
+    role_panel_checks(win, check)
+    compare_editor_checks(win, check)
+    assembly_table_checks(win, check)
 
     # 6) 导入入口的临时态：读盘中/命中节流要显式改文案并禁用，结束后回到指纹结论
     #    （不真跑导入：那会弹模态框、在非交互环境挂住；这里只验状态机本身）
@@ -521,7 +376,25 @@ def _gui_behavior_checks(win) -> bool:
     check(shown and not toast.isVisible(), '浮层提示（级别属性 + 贴底定位 + 即时收起）',
           f'可见={shown}；level={toast.level()}；rect={geo}；收起={not toast.isVisible()}')
 
-    _ac_mod.confirm_delete = saved_confirm
+    # 8-11) 空候选 / 装配中心 / 输入与过滤 / 导出与导航：需要真实窗口，检查放独立页面模块
+    from .selftest_gui_pages import (affix_and_filter_checks, assembly_checks,
+                                     behavior_export_checks, class_location_checks,
+                                     empty_candidate_checks, help_checks, icon_checks,
+                                     import_worker_checks, library_checks,
+                                     multi_compare_checks, theme_checks, undo_checks)
+
+    empty_candidate_checks(win, check)
+    assembly_checks(win, check)
+    affix_and_filter_checks(win, check)
+    behavior_export_checks(win, check)
+    multi_compare_checks(win, check)
+    undo_checks(win, check)
+    library_checks(win, check)
+    class_location_checks(win, check)
+    help_checks(win, check)
+    icon_checks(win, check)
+    theme_checks(win, check)
+    import_worker_checks(win, check)
     return all(results)
 
 
@@ -870,6 +743,7 @@ def _table_model_checks(rep: Report):
 
     from .core.skill_service import SkillRow
     from .widgets.compare_view import _FLAT_DELTA_PCT, _SkillModel
+    from .widgets.dps_meter import trend_of
 
     def row(pct):
         return SkillRow(name='x', ability_name='旋风斩', level_req=10, current_dps=100.0,
@@ -880,43 +754,83 @@ def _table_model_checks(rep: Report):
     model.set_rows([row(0.0), row(_FLAT_DELTA_PCT * 0.5), row(-1.5), row(3.25)])
     trends = [model.trend(i) for i in range(model.rowCount())]
     texts = [model.data(model.index(i, 3), Qt.DisplayRole) for i in range(model.rowCount())]
-    rep.add(trends == ['flat', 'flat', 'down', 'up'] and texts[3] == '+3.25%',
-            '技能表模型：Δ% 三态阈值与格式（|Δ%|<0.005 归中性）',
-            f'trend={trends}；Δ%={texts}')
+    # 实测框的换装预测走同一语义：Δ=0 必须中性（旧实现 >=0 一律上绿，把「没变」读成「涨了」）
+    meter = [trend_of(0.0), trend_of(0.0002), trend_of(0.02), trend_of(-0.02)]
+    rep.add(trends == ['flat', 'flat', 'down', 'up'] and texts[3] == '▲ +3.25%'
+            and meter == ['', '', 'up', 'down'],
+            '技能表模型：Δ% 三态阈值与格式（|Δ%|<0.005 归中性；涨跌加 ▲▼）+ 实测框零值中性',
+            f'trend={trends}；Δ%={texts}；实测框三态={meter}')
 
 
-def run_selftest() -> int:
-    rep = Report()
-    if not _print_kernel_selftest():
-        print('内核自检未通过，终止。', file=sys.stderr)
-        return 1
-    _engine_ok(rep)
-    _equipment_checks(rep)
-    _name_resolution_checks(rep)
-    _rank_checks(rep)
-    _build_roundtrip(rep)
-    # 夹具/面板口径检查已拆到 selftest_fixture（延迟导入：该模块反向引用本模块的 Report）
+def _check_groups():
+    """自检分组注册表：(组名, 说明, [检查函数])。
+
+    分组只决定「跑哪几组」，不改变执行顺序——无参数时按此顺序全跑，输出与拆分前一致。
+    粒度按「能独立变红的一类断言」切：改公式跑 engine，改导入链跑 import，改表格跑 ui。
+    """
     from .selftest_effects import _conversion_panel_checks, _health_condition_checks
     from .selftest_fixture import _legendary_effect_checks, _panel_checks, _snapshot_checks
     from .selftest_legendary import _legendary_checks
+    from .selftest_robustness import (_build_library_checks, _empty_candidate_checks,
+                                      _export_checks,
+                                      _fingerprint_cache_checks, _heroes_checks,
+                                      _logging_checks, _meter_cache_checks,
+                                      _multi_compare_checks, _rune_cache_checks,
+                                      _stat_metadata_checks, _theme_checks)
     from .selftest_skillmods import (_talent_bonus_checks, _talent_conversion_checks,
                                      _talent_crit_checks, _talent_mod_checks,
                                      _talent_stat_checks)
-    _snapshot_checks(rep)
-    _panel_checks(rep)
-    _legendary_effect_checks(rep)
-    _error_map_check(rep)
-    _session_state_checks(rep)
-    _format_checks(rep)
-    _table_model_checks(rep)
-    _legendary_checks(rep)
-    _talent_mod_checks(rep)
-    _talent_crit_checks(rep)
-    _talent_bonus_checks(rep)
-    _talent_stat_checks(rep)
-    _talent_conversion_checks(rep)
-    _health_condition_checks(rep)
-    _conversion_panel_checks(rep)
+
+    return [
+        ('engine', '引擎对拍 / 输入敏感性 / 装备名解析',
+         [_engine_ok, _equipment_checks, _name_resolution_checks]),
+        ('rank', '候选排序与基线对拍', [_rank_checks]),
+        ('build', '构建存取 / 会话状态 / 数值格式',
+         [_build_roundtrip, _session_state_checks, _format_checks,
+          _build_library_checks]),
+        ('import', '内存导入夹具（α/β）与错误映射（含装备链路/镜像/技能表段）',
+         [_snapshot_checks, _error_map_check]),
+        ('panel', '游戏面板口径复算',
+         [_panel_checks, _conversion_panel_checks, _health_condition_checks]),
+        ('legendary', '传奇特效（A 类建模 + 首批接线）',
+         [_legendary_effect_checks, _legendary_checks]),
+        ('talents', '天赋修正（按技能 / 条件 / 换算）',
+         [_talent_mod_checks, _talent_crit_checks, _talent_bonus_checks,
+          _talent_stat_checks, _talent_conversion_checks]),
+        ('robust', '鲁棒性 / 缓存 / 导出 / 日志',
+         [_empty_candidate_checks, _rune_cache_checks, _export_checks, _heroes_checks,
+          _meter_cache_checks, _fingerprint_cache_checks, _logging_checks,
+          _multi_compare_checks]),
+        ('ui', '表格模型纯逻辑（Δ% 三态与格式）+ 属性元数据 + 主题令牌',
+         [_table_model_checks, _stat_metadata_checks, _theme_checks]),
+    ]
+
+
+def run_selftest(only=None) -> int:
+    """全量或按组运行 GUI 自检；only 为组名列表（None = 全跑，CI 走这条）。
+
+    按组运行时跳过内核 26 项门槛：那 26 项是「公式实现 == 逆向证据」的验收网，改一个
+    widget 时重跑它只是重复打印；全量运行仍必须先过门槛（顺序不变）。
+    """
+    groups = _check_groups()
+    keys = [key for key, _desc, _fns in groups]
+    bad = [g for g in (only or []) if g not in keys]
+    if bad:
+        print(f'未知自检分组 {bad}；可用：{keys}', file=sys.stderr)
+        return 2
+    if only:
+        groups = [g for g in groups if g[0] in set(only)]
+        print(f'（按组运行：{", ".join(g[0] for g in groups)}；跳过内核 26 项门槛）')
+    else:
+        if not _print_kernel_selftest():
+            print('内核自检未通过，终止。', file=sys.stderr)
+            return 1
+
+    rep = Report()
+    for key, desc, fns in groups:
+        print(f'\n== 组 {key}：{desc} ==')
+        for fn in fns:
+            fn(rep)
     print(f'\n自检结果：{"全部通过" if rep.ok() else "存在失败"}'
           f'（{rep.passed}/{len(rep.checks)}）')
     return 0 if rep.ok() else 1

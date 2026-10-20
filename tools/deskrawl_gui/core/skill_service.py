@@ -191,6 +191,22 @@ def _dot_dps(dots: List[dict], sheet, target, *, weapon, primary_stat, casts_per
 
 
 
+@lru_cache(maxsize=4)
+def _rune_rows(gd) -> tuple:
+    """RuneData 行（每个 GameData 只读一次盘）。
+
+    动机：RuneData.json 约 333KB，每次 json.load 实测 4.78ms；而能力等级加成在每次界面刷新都要取
+    （skill_rows 一次、参考技能卡一次），单次编辑成本约 3/4 花在这。行数据随进程不变，按 gd 缓存
+    （与 ability_names_by_pathid 同款；运行中替换数据文件不在支持范围内）。
+    """
+    try:
+        path = os.path.join(getattr(gd, 'dir', ''), 'RuneData.json')
+        with open(path, encoding='utf-8') as f:
+            return tuple(json.load(f))
+    except (OSError, ValueError, TypeError):
+        return ()
+
+
 def ability_level_bonuses(profile, gd) -> dict:
     """已装配符文的「技能等级+N」汇总：{ability_name: bonus}（AllAbilities → '*')。
 
@@ -204,11 +220,8 @@ def ability_level_bonuses(profile, gd) -> dict:
     解析失败返回空表（降级为无加成）。
     """
     out = {}
-    try:
-        path = os.path.join(getattr(gd, 'dir', ''), 'RuneData.json')
-        with open(path, encoding='utf-8') as f:
-            runes = json.load(f)
-    except (OSError, ValueError):
+    runes = _rune_rows(gd)
+    if not runes:
         return out
     for it in getattr(profile, 'assembled', None) or []:
         if it.kind != 'rune':
@@ -235,7 +248,7 @@ def ability_level_bonuses(profile, gd) -> dict:
 
 @lru_cache(maxsize=4)
 def ability_names_by_pathid(gd) -> dict:
-    """AbilityData pathID → _name（gd.dir 直读，与 calc_service.ability_names 同一约定）。"""
+    """AbilityData pathID → _name（gd.dir 直读；GUI 侧唯一的 AbilityData 名字表）。"""
     try:
         path = os.path.join(getattr(gd, 'dir', ''), 'AbilityData.json')
         with open(path, encoding='utf-8') as f:

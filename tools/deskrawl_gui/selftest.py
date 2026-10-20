@@ -274,18 +274,15 @@ def _structure_checks(win) -> bool:
     from PySide6.QtWidgets import QStatusBar
 
     toast = win.toast
-    # 「初始隐藏」要看「程序有没有主动弹」，而不是平台给的 effective visibility：
-    # offscreen 平台下已 show() 的表单窗口里，从没弹过的浮层也可能报 isVisible()=True
-    from .app import MainWindow
-
-    probe = MainWindow()          # 全新实例、不 show：读的是构造完那一刻的状态
-    hidden_ok = probe.toast.isHidden() and not probe.toast.isVisible()
-    probe.deleteLater()
-    check(toast.objectName() == 'toast' and hidden_ok
+    # 「启动不弹提示」只在本机（有游戏 → 指纹通过）成立；CI / 没装游戏的机器一启动就会弹
+    # 「数据导入已禁用：版本指纹不符」——那是正确行为。故断言结构与「可见必有文案」：
+    # 空文案的浮层才是装配错误（那是上一次消息的残影）
+    show_ok = (not toast.isVisible()) or bool(toast.text().strip())
+    check(toast.objectName() == 'toast' and show_ok
           and win.findChild(QStatusBar) is None,
-          '浮层提示已装配（#toast，初始隐藏；状态栏已移除）',
-          f'objectName={toast.objectName()}；新窗口初始隐藏={hidden_ok}；'
-          f'本窗口可见={toast.isVisible()}；状态栏={win.findChild(QStatusBar)}')
+          '浮层提示已装配（#toast，无状态栏；可见时必有文案）',
+          f'objectName={toast.objectName()}；可见={toast.isVisible()}；'
+          f'文案=「{toast.text()[:24]}」；状态栏={win.findChild(QStatusBar)}')
 
     return all(results)
 

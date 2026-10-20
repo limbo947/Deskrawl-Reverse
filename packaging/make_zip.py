@@ -8,6 +8,13 @@ import os
 import sys
 import zipfile
 
+# CI 的 stdout 是 cp1252（Windows runner 默认代码页）：直接 print 中文会
+# UnicodeEncodeError —— v1.0.0 首次发布就挂在这里（PyInstaller 已成功、只差 zip 那一行）。
+# 统一给两个流换成 UTF-8，本地（GBK）与 CI 走同一编码，不会再因终端语言不同而失败。
+for _stream in (sys.stdout, sys.stderr):
+    if hasattr(_stream, 'reconfigure'):
+        _stream.reconfigure(encoding='utf-8', errors='replace')
+
 
 def main(argv=None) -> int:
     argv = list(sys.argv[1:] if argv is None else argv)

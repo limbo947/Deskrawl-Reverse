@@ -98,7 +98,7 @@ cd D:\workspace\Deskrawl-Reverse
 - **路径同构是硬约束**：仓库六处数据定位都是 `__file__` 相对跳转（`gamedata`/`session_state`/`profile`/`memory_snapshot`/`app`/`localization`）。frozen 下「与代码同级的小资源」必须镜像到 `_internal/<pkg>/…` 原位（spec 的 `datas`），`data/` 必须拷到 **exe 同级**（不走 datas）。**不得**设 `--contents-directory "."`，否则六处跳转一起错开一层。
 - 单个 exe 分派四入口：无参=GUI（windowed，无黑框）、`--selftest`/`--smoke`（启动器按需接回控制台，三级阶梯：继承句柄 → AttachConsole → AllocConsole）、`memdump …`。
 - spec 的体积过滤**必须按 `PySide6/` 前缀**（translations/qml/resources 合计约 186 MB）；若用 `\resources\` 之类子串匹配，会连自己的 `deskrawl_gui/resources/style.qss` 一起删掉，GUI 启动即抛 FileNotFoundError。
-- 只读安装兜底：启动器探测 exe 同级不可写时，把 `DESKRAWL_DATA_DIR` 指向 `%LOCALAPPDATA%\Deskrawl\data`。`core/data_dir.py` 是「可写数据根」的单一事实源（`session_state.STATE_PATH` / `profile.BUILDS_DIR` 都经它），改数据根只改这一处。
+- **可写数据根固定走用户目录**：便携版启动器一律把 `DESKRAWL_DATA_DIR` 指向 `%LOCALAPPDATA%\Deskrawl\data`（源码运行不变），首次切换把旧版留在 exe 同级 `data\` 的 `session_state.json` 与个人构建一次性搬过去（哨兵 `.migrated_from_side`）。为什么不再「exe 同级可写就写同级」：PyInstaller `--noconfirm` 重建 `dist\<ExeName>\` 会整目录清空，写在同级的会话与个人构建每次构建都丢（2026-10-20 实测：构建日志 `Removing dir` 后 `data\session_state.json` 消失 → 用户看到「全新窗口」）。`core/data_dir.py` 是「可写数据根」的单一事实源（`session_state.STATE_PATH` / `profile.BUILDS_DIR` 都经它），改数据根只改这一处。
 - 改完必验：`exe --selftest`（期望 76/76）与 `--smoke` 退出码 0；`.github/workflows/build-portable.yml` 已把这两步作为 Release 门禁，本地构建后也应手动跑一遍。
 - **排障开关**：`DESKRAWL_DEBUG_STREAMS=1` 让启动器打印实际走的分支与句柄判定（排查冻结态「没有输出」用）；`DESKRAWL_NO_PAUSE=1` 关掉自建控制台的退出暂停（自动化用）。注意 `pwsh` **不会等待** GUI 子系统 exe，本地验收必须用 `Start-Process -Wait -PassThru` 才拿得到退出码与输出。
 

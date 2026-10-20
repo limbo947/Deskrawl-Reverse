@@ -194,6 +194,9 @@ cd D:\workspace\Deskrawl-Reverse
 
 解压后双击 `Deskrawl计算台.exe` 即开 GUI；同一个 exe 还内置命令行入口：
 
+> **你的会话与个人构建存在** `%LOCALAPPDATA%\Deskrawl\data`（不是 exe 旁边）：重建便携包、覆盖安装、
+> 换解压目录都不会丢。首次运行会把旧版留在 exe 同级 `data\` 的会话/构建一次性搬过来。
+
 ```powershell
 .\Deskrawl计算台.exe --selftest       # 内核 26 项 + GUI 76 项自检（自动接回控制台输出）
 .\Deskrawl计算台.exe --smoke          # 无显示环境骨架冒烟

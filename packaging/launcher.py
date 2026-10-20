@@ -147,34 +147,67 @@ def _env_var() -> str:
     return ENV_VAR
 
 
-def _redirect_writable_data() -> None:
-    """便携包落在只读目录（如 Program Files）时，把可写数据根指向 %LOCALAPPDATA%。
+def _writable_root() -> str:
+    """便携版可写数据根：固定 `%LOCALAPPDATA%\\Deskrawl\\data`（不再跟随 exe 同级）。"""
+    return os.path.join(os.environ.get('LOCALAPPDATA') or os.path.expanduser('~'),
+                        'Deskrawl', 'data')
 
-    判据不是「目录存在」而是「真能建文件」：Program Files 下的目录可读不可写，只有实写一次
-    才分得清。源码运行（非 frozen）直接返回——不建探针、不改环境，行为逐字不变。必须在
+
+def _migrate_legacy(side: str, root: str) -> None:
+    """把旧版留在 exe 同级 `data/` 的会话与个人构建搬到用户目录（一次性，缺才补）。
+
+    为什么用哨兵而不是每次补缺：每次补会把用户主动删掉的示例/构建又搬回来；哨兵把这件事
+    限定成「切换数据根的那一次」。随包只读数据（so_dump/loc）不搬，仍在 exe 侧按 __file__ 读。
+    """
+    marker = os.path.join(root, '.migrated_from_side')
+    if os.path.exists(marker):
+        return
+    old = os.path.join(side, 'data')
+    pairs = [(os.path.join(old, 'session_state.json'), os.path.join(root, 'session_state.json'))]
+    old_builds = os.path.join(old, 'builds')
+    if os.path.isdir(old_builds):
+        pairs += [(os.path.join(old_builds, n), os.path.join(root, 'builds', n))
+                  for n in os.listdir(old_builds) if n.endswith('.json')]
+    moved = 0
+    for src, dst in pairs:
+        if os.path.exists(src) and not os.path.exists(dst):
+            try:
+                shutil.copyfile(src, dst)
+                moved += 1
+                # 搬走而不是复制：旧位置留一份会让人以为「它还在生效」，也让下次排障多一个假线索
+                try:
+                    os.remove(src)
+                except OSError:
+                    pass
+            except OSError:
+                pass
+    try:
+        with open(marker, 'w', encoding='utf-8') as f:
+            f.write(side)
+    except OSError:
+        pass
+    _dbg(f'migrated {moved} file(s) from side data/ -> {root}')
+
+
+def _redirect_writable_data() -> None:
+    """便携版可写数据根**固定**指向 `%LOCALAPPDATA%\\Deskrawl\\data`（不再写 exe 同级）。
+
+    为什么不再「exe 同级可写就用同级」：`build_portable.ps1` 用 PyInstaller `--noconfirm` 重建
+    `dist\\<ExeName>\\` 时会把整目录清掉，于是上次运行写在 exe 同级的 `session_state.json` 与个人
+    构建一起消失——用户每重建一次就丢一次「上次的窗口/构建」，解压新 zip 到新目录同理。放到用户
+    目录后，重建/覆盖/换解压位置都不丢；顺带把旧位置的数据一次性迁移过来（见 `_migrate_legacy`）。
+
+    源码运行（非 frozen）直接返回——不改环境、不建目录，行为逐字不变。必须在
     `import deskrawl_gui.app` 之前调用：session_state/profile 在模块导入时就求值数据根。
     """
     if not getattr(sys, 'frozen', False) or os.environ.get(_env_var()):
         return
     side = os.path.dirname(os.path.abspath(sys.executable))
-    try:
-        probe = os.path.join(side, '.deskrawl_write_probe')
-        with open(probe, 'w'):
-            pass
-        os.remove(probe)
-        return
-    except OSError:
-        pass
-    root = os.path.join(os.environ.get('LOCALAPPDATA') or os.path.expanduser('~'),
-                        'Deskrawl', 'data')
+    root = _writable_root()
     os.makedirs(os.path.join(root, 'builds'), exist_ok=True)
-    # 示例构建只在 exe 侧；重定向后看不到了，补种一次（个人构建不在包内，无需搬运）
-    src = os.path.join(side, 'data', 'builds', 'demo-hunter.json')
-    dst = os.path.join(root, 'builds', 'demo-hunter.json')
-    if os.path.exists(src) and not os.path.exists(dst):
-        shutil.copyfile(src, dst)
+    _migrate_legacy(side, root)
     os.environ[_env_var()] = root
-    _dbg(f'writable data redirected -> {root}')
+    _dbg(f'writable data -> {root}')
 
 
 def main(argv=None) -> int:

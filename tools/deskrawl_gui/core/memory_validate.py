@@ -61,6 +61,25 @@ def _talent_crit_row_ok(rec) -> bool:
         return False
 
 
+def _talent_bonus_row_ok(rec) -> bool:
+    """天赋条件加伤行：指针域 + bool + 有限数值（状态名由 profile 指纹反查，这里只挡垃圾）。"""
+    try:
+        if not isinstance(rec, dict) or not isinstance(rec.get('self'), bool):
+            return False
+        for k in ('status', 'ability'):
+            if int(rec[k]) < 0:
+                return False
+        if not -1 <= int(rec['tag']) <= 9999:
+            return False
+        for k in ('base', 'per', 'value'):
+            v = float(rec[k])
+            if not math.isfinite(v) or abs(v) > 1e3:
+                return False
+        return True
+    except (KeyError, TypeError, ValueError):
+        return False
+
+
 def validate_snapshot(payload: dict, off: dict):
     """硬校验（宁红不脏）：等级/字段/字典键域值域/UID 唯一性；任一失败抛 MemoryImportError。
 
@@ -121,6 +140,9 @@ def validate_snapshot(payload: dict, off: dict):
     for rec in payload.get('talent_crit_effects') or []:
         if not _talent_crit_row_ok(rec):
             raise MemoryImportError(f'天赋条件暴击条目异常：{rec}')
+    for rec in payload.get('talent_bonus_effects') or []:
+        if not _talent_bonus_row_ok(rec):
+            raise MemoryImportError(f'天赋条件加伤条目异常：{rec}')
     for label, rows in payload.get('conditionals', {}).items():
         for r in rows:
             if (r[0] not in (-1, 0, 1, 2, 3, 4, 5) or not klo <= r[2] <= khi

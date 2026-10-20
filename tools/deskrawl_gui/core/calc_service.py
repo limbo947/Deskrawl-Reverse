@@ -167,6 +167,7 @@ def _equipped_effects(gd, profile, *, exclude_slot=None) -> list:
             out.extend(gd.runeset_effects(str(it.name), int(it.level)))
     # 天赋里按目标状态门控的特效（条件暴击/暴伤）：不进面板聚合值，与装备特效同池
     out.extend(getattr(profile, 'talent_effects', None) or [])
+    out.extend(getattr(profile, 'talent_bonus_effects', None) or [])
     return out
 
 
@@ -176,11 +177,15 @@ def _crit_terms(gd, effs, target) -> tuple:
 
 
 def _cond_damage(gd, effs, damage_type, target, ability_name=None) -> float:
-    """特效列表 → 本次伤害类型的条件额外伤害（effects.conditional_damage，加进条件池）。"""
-    return effects.conditional_damage(effs, damage_type, target,
-                                      status_names=gd.status_name_by_pathid(),
-                                      ability_names=gd.ability_name_by_pathid(),
-                                      ability_name=ability_name)
+    """特效列表 → 本次伤害类型的条件额外伤害（装备侧按伤害类型 + 天赋侧按技能，同入条件池）。"""
+    return (effects.conditional_damage(effs, damage_type, target,
+                                       status_names=gd.status_name_by_pathid(),
+                                       ability_names=gd.ability_name_by_pathid(),
+                                       ability_name=ability_name)
+            + effects.conditional_bonus_damage(effs, target,
+                                               status_names=gd.status_name_by_pathid(),
+                                               ability_names=gd.ability_name_by_pathid(),
+                                               ability_name=ability_name))
 
 
 def _apply_conversions(gd, sheet, effs) -> None:

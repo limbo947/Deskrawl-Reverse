@@ -196,6 +196,29 @@ def conditional_damage(effects: List[dict], damage_type: int, target, *,
     return out
 
 
+def conditional_bonus_damage(effects: List[dict], target, *,
+                             status_names: Optional[Dict[int, str]] = None,
+                             ability_names: Optional[Dict[int, str]] = None,
+                             ability_name: Optional[str] = None, tags=None) -> float:
+    """天赋 `ConditionalBonusDamage`：目标带指定状态时给该技能加伤（进条件池 C）。
+
+    与装备侧 `ConditionalDamage` 的区别：没有 `DamageType` 过滤（作用于该技能全部段），
+    且 `RequireOnSelf=True` 表示状态在**自身**身上——静态工具没有自身状态数据，这类条目
+    直接跳过（宁可少算，也不拿目标状态误算）。
+    """
+    out = 0.0
+    for e in effects or []:
+        if not _is(e, 'ConditionalBonusDamage') or e.get('RequireOnSelf'):
+            continue
+        if not _scope_hit(e, ability_name, tags, ability_names):
+            continue
+        sn = _name_of(e.get('RequiredStatus'), status_names)
+        if not sn or status_stacks(target, sn) <= 0:
+            continue
+        out += float(unwrap(e.get('BonusDamage')) or 0.0)
+    return out
+
+
 def enemy_class_multiplier(effects: List[dict], target) -> float:
     """`DivineHelmet3` 的对普通/精英敌人伤害倍率：按目标是否精英取 `Normal`/`Elite`，多条相乘。
 

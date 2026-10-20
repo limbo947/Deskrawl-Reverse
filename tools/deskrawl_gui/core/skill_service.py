@@ -278,10 +278,13 @@ def skill_rows(profile, gd, cur_sheet, cand_sheet, target,
     snames = gd.status_name_by_pathid()
     anames = gd.ability_name_by_pathid()
 
-    def cond_fn(effs, name):
-        """该技能各段的条件额外伤害闭包（DamageType 过滤 + 技能名匹配）。"""
-        return lambda dt: effects.conditional_damage(effs, dt, target, status_names=snames,
-                                                     ability_names=anames, ability_name=name)
+    def cond_fn(effs, name, skill_tags):
+        """该技能各段的条件额外伤害闭包（装备侧按伤害类型、天赋侧按技能/标签）。"""
+        return lambda dt: (effects.conditional_damage(effs, dt, target, status_names=snames,
+                                                      ability_names=anames, ability_name=name)
+                           + effects.conditional_bonus_damage(
+                               effs, target, status_names=snames, ability_names=anames,
+                               ability_name=name, tags=skill_tags))
 
     def atk_speed(sheet, weapon) -> float:
         return weapon.base_speed * (1.0 + sheet.final(StatType.AttackSpeed))
@@ -322,7 +325,7 @@ def skill_rows(profile, gd, cur_sheet, cand_sheet, target,
                            + float(mods_c.get(CRIT_DAMAGE_STAT, 0.0)),
                        damage_mult=(1.0 + float(mods_c.get(DAMAGE_STAT, 0.0)))
                                    * effects.enemy_class_multiplier(eff_c, target),
-                       cond_damage_fn=cond_fn(eff_c, sk['name']),
+                       cond_damage_fn=cond_fn(eff_c, sk['name'], tags),
                       ignore_health=effects.always_health_conditions(eff_c)) * cur_rate
         cand = _per_hit(sk, cand_sheet, target, weapon=w_cand, primary_stat=ps,
                         extra_crit_chance=cc_k + float(mods_k.get(CRIT_CHANCE_STAT, 0.0)),
@@ -331,7 +334,7 @@ def skill_rows(profile, gd, cur_sheet, cand_sheet, target,
                             + float(mods_k.get(CRIT_DAMAGE_STAT, 0.0)),
                         damage_mult=(1.0 + float(mods_k.get(DAMAGE_STAT, 0.0)))
                                     * effects.enemy_class_multiplier(eff_k, target),
-                        cond_damage_fn=cond_fn(eff_k, sk['name']),
+                        cond_damage_fn=cond_fn(eff_k, sk['name'], tags),
                         ignore_health=effects.always_health_conditions(eff_k)) * cand_rate
         # DOT：技能施加的持续伤害折进本行（Bleeding/Burn/HunterPoison 等，见 _dot_dps）
         dots = gd.ability_dot(sk['name'], eff_lv)

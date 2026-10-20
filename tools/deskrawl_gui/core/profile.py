@@ -186,6 +186,39 @@ def _talent_crit_effects(raw, gd) -> List[dict]:
     return out
 
 
+def _talent_bonus_effects(raw, gd) -> List[dict]:
+    """内存读到的条件加伤 → 保真 effect dict（补状态名/技能名）；指纹不唯一就丢弃。
+
+    7 条静态记录里 `Flame Lightning Damage On Burn` 与 `...On Electrostatic` 的
+    (Tag, 有无 Ability, Base, Per) 完全相同、只差 RequiredStatus；内存里状态只有指针，
+    无法区分 → 直接丢弃（宁可少算 6%/级，也不把「焚燃烧」算成「静电」）。
+    """
+    if gd is None or not raw:
+        return []
+    buckets: Dict[tuple, List[dict]] = {}
+    for r in gd.talent_effects():
+        if str(r.get('_class')) != 'TalentEffect_ConditionalBonusDamage':
+            continue
+        base, per = _lf_value(r.get('BonusDamage'))
+        key = (int(r.get('Tag', 9999)), bool(r.get('Ability')), bool(r.get('RequireOnSelf')),
+               round(base, 6), round(per, 6))
+        buckets.setdefault(key, []).append(r)
+    out = []
+    for rec in raw:
+        key = (int(rec.get('tag', 9999)), bool(rec.get('ability')), bool(rec.get('self')),
+               round(float(rec.get('base') or 0.0), 6), round(float(rec.get('per') or 0.0), 6))
+        cand = buckets.get(key) or []
+        if len(cand) != 1:
+            continue
+        r = cand[0]
+        out.append({'_class': 'TalentEffect_ConditionalBonusDamage',
+                    'RequiredStatus': r.get('RequiredStatus'), 'Ability': r.get('Ability'),
+                    'Tag': int(r.get('Tag', 9999)),
+                    'RequireOnSelf': bool(r.get('RequireOnSelf')),
+                    'BonusDamage': float(rec.get('value') or 0.0)})
+    return out
+
+
 @dataclass
 class WeaponDraft:
     """一把武器的可编辑草稿。affixes 用 [stat, type, value] 三元组存，便于 JSON 往返。
@@ -350,6 +383,9 @@ class CharacterProfile:
     # 天赋里「按目标状态门控」的特效（`TalentEffect_ConditionalCrit*` 保真 dict，已补状态/技能名）。
     # 它们只存在于天赋特效力里、不进面板聚合值，故与装备特效同池参与条件暴击乘区。
     talent_effects: List[dict] = field(default_factory=list)
+    # 天赋的「条件加伤」（`TalentEffect_ConditionalBonusDamage` 保真 dict，已补状态/技能名）；
+    # 与条件暴击同源——只存在于天赋特效力里、按目标状态门控，故同池消费
+    talent_bonus_effects: List[dict] = field(default_factory=list)
 
     # --- 计算装配 ---
     def to_sheet(self, gd) -> StatSheet:
@@ -390,6 +426,7 @@ class CharacterProfile:
             'ability_mods': {k: {str(int(s)): float(v) for s, v in vv.items()}
                              for k, vv in self.ability_mods.items()},
             'talent_effects': list(self.talent_effects),
+            'talent_bonus_effects': list(self.talent_bonus_effects),
         }
 
     @classmethod
@@ -420,6 +457,7 @@ class CharacterProfile:
             ability_mods={str(k): {int(s): float(v) for s, v in (vv or {}).items()}
                           for k, vv in (d.get('ability_mods') or {}).items()},
             talent_effects=list(d.get('talent_effects') or []),
+            talent_bonus_effects=list(d.get('talent_bonus_effects') or []),
         )
 
     # --- 出厂示例（照抄 cli.demo 场景，用作锚点对拍与首启动演示）---
@@ -488,6 +526,8 @@ class CharacterProfile:
         # 天赋「按目标状态门控」的特效（条件暴击/暴伤）：同属于技能/面板口径之外的项，
         # 与 ability_mods 一样先于 α/β 早退分支落位（技能表两侧都要用）
         prof.talent_effects = _talent_crit_effects(player.get('talent_crit_effects') or [], gd)
+        prof.talent_bonus_effects = _talent_bonus_effects(
+            player.get('talent_bonus_effects') or [], gd)
         # 巅峰点数分配：面板 base 已含其贡献，这里落 allocation 供展示/编辑，
         # 并把贡献从 base 反向扣除（paragon_modifiers 恒为 Flat，可精确逆运算）——
         # 否则 to_sheet 再叠加一次会重复计伤；用户随后改点数时按新 allocation 全量重算，语义仍正确。

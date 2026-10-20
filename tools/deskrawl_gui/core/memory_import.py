@@ -437,7 +437,9 @@ class SnapshotBuilder:
             per = self.codec.obsc_float(obj + te['modifier'] + te['per_level_stride'])
             if base is None or per is None:
                 continue
-            val = pts * float(base) + float(per) * pts * (pts - 1) / 2.0
+            # LeveledFloat 语义 = Base + (等级-1)×PerLevel（不是「每级累加求和」：
+            # 死神之刃 10/10、0.1/0.1 → 1.0 与 tooltip 的 +100% 一致，求和会得 5.5）
+            val = float(base) + (pts - 1) * float(per)
             ability = self.pr.u64(obj + te['ability'])
             if valid_ptr(ability):
                 out.append([int(stat), ability, val])
@@ -474,6 +476,38 @@ class SnapshotBuilder:
                 if valid_ptr(obj):
                     yield obj, int(pts)
 
+    def _read_talent_bonus_damage(self, player):
+        """读天赋的条件加伤（`TalentEffect_ConditionalBonusDamage`）。
+
+        与条件暴击同源：按目标状态门控、不进面板聚合值，点数只在内存。状态/技能只有指针，
+        名字由 profile 按指纹反查静态表；`RequireOnSelf=True`（自身状态）在消费侧直接跳过。
+        """
+        te = self.off.get('talent_effect_conditional_bonus') or {}
+        if not te:
+            return []
+        stride = offset(self.off['talent_effect_ability_modifier']['per_level_stride'])
+        out = []
+        for obj, pts in self._talent_effect_objs(player):
+            nm, _ = self.il.klass_name(obj)
+            if nm != te['klass']:
+                continue
+            voff = offset(te['value'])
+            base = self.codec.obsc_float(obj + voff)
+            per = self.codec.obsc_float(obj + voff + stride)
+            if base is None or per is None:
+                continue
+            status = self.pr.u64(obj + offset(te['status']))
+            ability = self.pr.u64(obj + offset(te['ability']))
+            raw_self = self.pr.read(obj + offset(te['self']), 1)
+            tag = self.pr.i32(obj + offset(te['tag']))
+            out.append({'status': int(status) if valid_ptr(status) else 0,
+                        'ability': int(ability) if valid_ptr(ability) else 0,
+                        'tag': int(tag) if tag is not None else 9999,
+                        'self': bool(raw_self and raw_self[0]),
+                        'base': float(base), 'per': float(per),
+                        'value': float(base) + (pts - 1) * float(per)})
+        return out
+
     def _read_talent_crit_effects(self, player):
         """读已点天赋的条件暴击率/暴伤（`TalentEffect_ConditionalCrit*`）。
 
@@ -494,21 +528,21 @@ class SnapshotBuilder:
             spec = specs.get(str(nm))
             if not spec:
                 continue
-            voff = int(spec['value'], 16)
+            voff = offset(spec['value'])
             base = self.codec.obsc_float(obj + voff)
             per = self.codec.obsc_float(obj + voff + stride)
             if base is None or per is None:
                 continue
-            status = self.pr.u64(obj + int(spec['status'], 16))
+            status = self.pr.u64(obj + offset(spec['status']))
             rec = {'klass': str(nm),
-                   'condition': self.pr.i32(obj + int(spec['condition'], 16)),
+                   'condition': self.pr.i32(obj + offset(spec['condition'])),
                    'status': int(status) if valid_ptr(status) else 0,
                    'base': float(base), 'per': float(per),
-                   'value': pts * float(base) + float(per) * pts * (pts - 1) / 2.0}
+                   'value': float(base) + (pts - 1) * float(per)}
             if 'ability' in spec:
-                ab = self.pr.u64(obj + int(spec['ability'], 16))
+                ab = self.pr.u64(obj + offset(spec['ability']))
                 rec['ability'] = int(ab) if valid_ptr(ab) else 0
-                rec['tag'] = self.pr.i32(obj + int(spec['tag'], 16))
+                rec['tag'] = self.pr.i32(obj + offset(spec['tag']))
             out.append(rec)
         return out
 
@@ -621,6 +655,7 @@ class SnapshotBuilder:
             'hero_abilities': self._read_hero_abilities(),
             'talent_ability_mods': self._read_talent_ability_mods(player),
             'talent_crit_effects': self._read_talent_crit_effects(player),
+            'talent_bonus_effects': self._read_talent_bonus_damage(player),
             'paragon': self._read_paragon(),
             'runes': self._read_runes(),
             'inventory': self._read_slots(self.pr.u64(self.inv + self.off['inventory']['slots'])),
@@ -712,6 +747,7 @@ def import_snapshot(double_read=True) -> SnapshotResult:
             'hero_abilities': payload['hero_abilities'],
             'talent_ability_mods': payload['talent_ability_mods'],
             'talent_crit_effects': payload['talent_crit_effects'],
+            'talent_bonus_effects': payload['talent_bonus_effects'],
             'paragon': payload['paragon'],
             'runes': payload['runes'],
         },

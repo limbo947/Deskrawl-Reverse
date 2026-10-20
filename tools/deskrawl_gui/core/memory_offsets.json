@@ -55,12 +55,17 @@
   "ability_klass": "AbilityData",
   "talent_data": {"effects": "0x48"},
   "talent_effect_ability_modifier": {
-    "$comment": "TalentEffect_AbilityModifier（TalentData.Effects 里的元素对象）：Ability@0x18 / Tag@0x20 / Stat@0x24 / Modifier(LeveledFloat, Base@0x28+PerLevel@0x38, ObscuredFloat 0x10)@0x28。Stat 枚举（AbilityModifiedStat）：0=Cooldown 2=Damage 5=CritChance 6=CritDamage 8=ChannelSpeed 9=StrikeCount 13=ChannelDuration。作用对象二选一：Ability 指针（按技能）或 Tag（按 AbilityTag，9999=None）。活体实测 2026-10-09：死神之刃(WarriorTalent61, 10/10) 给旋风斩 ChannelSpeed=0.1000/级，按「每级累加」= +100%（与 tooltip 一致）。",
+    "$comment": "TalentEffect_AbilityModifier（TalentData.Effects 里的元素对象）：Ability@0x18 / Tag@0x20 / Stat@0x24 / Modifier(LeveledFloat, Base@0x28+PerLevel@0x3C, ObscuredFloat 0x14)@0x28。Stat 枚举（AbilityModifiedStat）：0=Cooldown 2=Damage 5=CritChance 6=CritDamage 8=ChannelSpeed 9=StrikeCount 13=ChannelDuration。作用对象二选一：Ability 指针（按技能）或 Tag（按 AbilityTag，9999=None）。取值公式 = LeveledFloat 语义 `Base + (等级-1)×PerLevel`（不是每级累加求和）。活体实测：死神之刃(WarriorTalent61, 10/10) 给旋风斩 ChannelSpeed=1.0（0.1+9×0.1，与 tooltip 的 +100% 一致）。",
     "klass": "TalentEffect_AbilityModifier",
-    "ability": "0x18", "tag": "0x20", "stat": "0x24", "modifier": "0x28", "per_level_stride": "0x10"
+    "ability": "0x18", "tag": "0x20", "stat": "0x24", "modifier": "0x28", "per_level_stride": "0x14"
   },
   "ability_mod_stat": {"cooldown": 0, "damage": 2, "crit_chance": 5, "crit_damage": 6,
                        "channel_speed": 8, "strike_count": 9},
+  "talent_effect_conditional_bonus": {
+    "$comment": "天赋条件加伤（TalentEffect_ConditionalBonusDamage 的 TalentData.Effects 元素）：RequiredStatus@0x18 / Ability@0x20 / Tag@0x28 / RequireOnSelf(bool)@0x2C / BonusDamage(LeveledFloat，PerLevel=Base+0x10)@0x30。与条件暴击同源：按目标状态门控、不进面板聚合值；RequireOnSelf=True 指自身状态，静态工具无自身状态数据故跳过。",
+    "klass": "TalentEffect_ConditionalBonusDamage",
+    "status": "0x18", "ability": "0x20", "tag": "0x28", "self": "0x2c", "value": "0x30"
+  },
   "talent_effect_conditional_crit": {
     "$comment": "天赋条件暴击/暴伤（TalentData.Effects 元素）。CritChance：Condition(TargetStateCondition)@0x18 / Ability@0x20 / Tag@0x28 / SpecifiedStatus@0x30 / BonusCritChance(LeveledFloat，PerLevel=Base+0x10)@0x38。CritDamage：Condition@0x18 / SpecifiedStatus@0x20 / BonusCritDamage@0x28（无 Ability/Tag 字段）。两者都不进面板聚合字典（按目标状态门控），漏读等于天赋白点；状态名只能由 profile 侧按 (Condition,Tag,有无Ability,Base,Per) 指纹反查静态表（运行时 SO 指针→名称的索引只覆盖 ItemData）。",
     "crit_chance": {"klass": "TalentEffect_ConditionalCritChance", "condition": "0x18",

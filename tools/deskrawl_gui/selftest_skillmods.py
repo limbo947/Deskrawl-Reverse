@@ -37,6 +37,40 @@ def _talent_mod_checks(rep) -> None:
             f'未命中技能不受影响={neg_ok}；行格式校验={row_ok}')
 
 
+def _talent_bonus_checks(rep) -> None:
+    """天赋条件加伤：指纹反查（含「同指纹必须丢弃」） + 状态门控 + RequireOnSelf 跳过。"""
+    from deskrawl_calc import GameData, Target, effects
+
+    from .core.profile import _talent_bonus_effects
+
+    gd = GameData()
+    snames = gd.status_name_by_pathid()
+    # 唯一指纹：Increase Damage On Dazed（0.15/0.15，无 Ability）
+    raw = [{'status': 111, 'ability': 0, 'tag': 9999, 'self': False,
+            'base': 0.15000000596046448, 'per': 0.15000000596046448, 'value': 0.30}]
+    effs = _talent_bonus_effects(raw, gd)
+    uniq_ok = len(effs) == 1 and abs(effs[0]['BonusDamage'] - 0.30) < 1e-9
+    # Burn / Electrostatic 的 (Tag, 有无 Ability, Base, Per) 完全相同 → 必须丢弃而不是猜
+    dup = [{'status': 222, 'ability': 1, 'tag': 9999, 'self': False,
+            'base': 0.05999999865889549, 'per': 0.05999999865889549, 'value': 0.06}]
+    dup_ok = _talent_bonus_effects(dup, gd) == []
+    # 状态门控：目标带 [恍惚] 才计入
+    sn = snames.get(60551, '')
+    on = effects.conditional_bonus_damage(effs, Target(level=70, statuses={sn: 1}),
+                                          status_names=snames)
+    off = effects.conditional_bonus_damage(effs, Target(level=70), status_names=snames)
+    # RequireOnSelf（嗜血：状态在自身）静态无自身状态数据 → 恒 0
+    self_eff = {'_class': 'TalentEffect_ConditionalBonusDamage', 'RequireOnSelf': True,
+                'RequiredStatus': {'pathID': 60599}, 'BonusDamage': 0.5}
+    self_ok = effects.conditional_bonus_damage(
+        [self_eff], Target(level=70, statuses={snames.get(60599, ''): 1}),
+        status_names=snames) == 0.0
+    rep.add(uniq_ok and dup_ok and abs(on - 0.30) < 1e-9 and off == 0.0 and self_ok,
+            '天赋条件加伤（指纹反查 / 同指纹丢弃 / 目标状态门控 / RequireOnSelf 跳过）',
+            f'唯一指纹={uniq_ok}；同指纹丢弃={dup_ok}；带[恍惚] {on:.2f}、无状态 {off:.2f}；'
+            f'自身状态条目不误算={self_ok}')
+
+
 def _talent_crit_checks(rep) -> None:
     """天赋条件暴击/暴伤：内存行 → 静态表指纹反查 → 目标门控 → 技能限定。
 

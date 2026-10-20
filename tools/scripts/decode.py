@@ -213,6 +213,10 @@ def decode_value(dec, t, r, depth=0):
     if rt[0] == 'enum':
         r.align(4)
         return r.i32()
+    # 内联序列化的 class/struct 前按 4 对齐：bool/byte 只占 1 字节且不补齐，若前一字段是
+    # bool（如 RequireOnSelf/RequireOnSelf 类前置标志）不重对齐会让整个嵌套结构错位——
+    # 实测 9 类 35 条天赋特效的 LeveledFloat 被解成 1e-39 反常量（__tail__ 非零是信号）。
+    r.align(4)
     return decode_struct(dec, t, r, depth+1)
 
 

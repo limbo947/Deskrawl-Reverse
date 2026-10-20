@@ -229,19 +229,19 @@
   "Chance": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": -1895825408,
-    "hiddenValue": -603395774,
-    "cryptoKey": -597320089,
-    "value": 1.2910831171192023e-38,
-    "__tail__": "9ee75a00000000000000000000000000"
+    "hash": 149504655,
+    "hiddenValue": 1704880092,
+    "cryptoKey": 1525128924,
+    "value": 1.0,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": 1627389952,
-    "hiddenValue": 1479222552,
-    "cryptoKey": 1480537445,
-    "value": 2.3986600346218267e-39,
-    "__tail__": "35653f00000000000000000000000000"
+    "hash": 723851361,
+    "hiddenValue": 1060463960,
+    "cryptoKey": 1063597400,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "ChanceToken": {
@@ -253,19 +253,19 @@
   "StacksPerCast": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": -1895825408,
-    "hiddenValue": 369682754,
-    "cryptoKey": 373903644,
-    "value": 1.4725738291545417e-38,
-    "__tail__": "519c7600000000000000000000000000"
+    "hash": 149504655,
+    "hiddenValue": 1230052374,
+    "cryptoKey": 1989955862,
+    "value": 1.0,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": 1627389952,
-    "hiddenValue": -232053480,
-    "cryptoKey": -228083556,
-    "value": 6.114061381634182e-39,
-    "__tail__": "b89c6700000000000000000000000000"
+    "hash": 723851361,
+    "hiddenValue": 1740152050,
+    "cryptoKey": 1738324210,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "StacksPerCastToken": {
@@ -438,19 +438,19 @@
   "BonusDamage": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": -1895825408,
-    "hiddenValue": -1056299804,
-    "cryptoKey": -1049171540,
-    "value": 7.612043834803555e-39,
-    "__tail__": "e9ac4900000000000000000000000000"
+    "hash": 170189967,
+    "hiddenValue": 1995025601,
+    "cryptoKey": 1236068801,
+    "value": 0.5,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": 1627389952,
-    "hiddenValue": -718592744,
-    "cryptoKey": -714824609,
-    "value": 6.020705476642399e-39,
-    "__tail__": "a45f6400000000000000000000000000"
+    "hash": 723851361,
+    "hiddenValue": 1688494037,
+    "cryptoKey": 1683989717,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "BonusDamageToken": {
@@ -587,19 +587,19 @@
   "Chance": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": -1895825408,
-    "hiddenValue": -771167934,
-    "cryptoKey": -764018154,
-    "value": 1.4605548922260277e-38,
-    "__tail__": "02964900000000000000000000000000"
+    "hash": 149504655,
+    "hiddenValue": 1979848402,
+    "cryptoKey": 1234567890,
+    "value": 1.0,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": 1627389952,
-    "hiddenValue": -768924392,
-    "cryptoKey": -766967146,
-    "value": 9.933140598126538e-39,
-    "__tail__": "02964900000000000000000000000000"
+    "hash": 723851361,
+    "hiddenValue": 1224906450,
+    "cryptoKey": 1234567890,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "ChanceToken": {
@@ -611,19 +611,19 @@
   "StacksPerCast": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": -1895825408,
-    "hiddenValue": -771167934,
-    "cryptoKey": -764018154,
-    "value": 1.4605548922260277e-38,
-    "__tail__": "02964900000000000000000000000000"
+    "hash": 149504655,
+    "hiddenValue": 1979848402,
+    "cryptoKey": 1234567890,
+    "value": 1.0,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": 1627389952,
-    "hiddenValue": -768924392,
-    "cryptoKey": -766967146,
-    "value": 9.933140598126538e-39,
-    "__tail__": "02964900000000000000000000000000"
+    "hash": 723851361,
+    "hiddenValue": 1224906450,
+    "cryptoKey": 1234567890,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "StacksPerCastToken": {
@@ -2070,19 +2070,19 @@
   "Distance": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": -520093696,
-    "hiddenValue": 1986733436,
-    "cryptoKey": 1979879129,
-    "value": 3.663965285580849e-39,
-    "__tail__": "8ed94200000000000000000000000000"
+    "hash": 1797618913,
+    "hiddenValue": 42916214,
+    "cryptoKey": 1121554038,
+    "value": 2.0,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": 1627389952,
-    "hiddenValue": -2010438376,
-    "cryptoKey": -2005207889,
-    "value": 8.804625899359512e-39,
-    "__tail__": "f4af7a00000000000000000000000000"
+    "hash": 723851361,
+    "hiddenValue": 2062856072,
+    "cryptoKey": 2058351752,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "DistanceToken": {
@@ -2329,19 +2329,19 @@
   "Distance": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": -1895825408,
-    "hiddenValue": -1123408668,
-    "cryptoKey": -1124014029,
-    "value": 3.38745266480949e-39,
-    "__tail__": "e8333f00000000000000000000000000"
+    "hash": 170189967,
+    "hiddenValue": 15217597,
+    "cryptoKey": 1060366525,
+    "value": 0.5,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": -1895825408,
-    "hiddenValue": 2013930724,
-    "cryptoKey": 2013273017,
-    "value": 3.3123066333616074e-39,
-    "__tail__": "1bb93f00000000000000000000000000"
+    "hash": 170189967,
+    "hiddenValue": 1816952,
+    "cryptoKey": 1069095800,
+    "value": 0.5,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "DistanceToken": {
@@ -2399,19 +2399,19 @@
   "ReductionSeconds": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": -520093696,
-    "hiddenValue": -1670699652,
-    "cryptoKey": -1673723773,
-    "value": 2.2427936064349773e-39,
-    "__tail__": "00837d00000000000000000000000000"
+    "hash": 1797618913,
+    "hiddenValue": 1023443868,
+    "cryptoKey": 2105737372,
+    "value": 2.0,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": 1627389952,
-    "hiddenValue": -1020582632,
-    "cryptoKey": -1017895675,
-    "value": 1.0382473957204612e-38,
-    "__tail__": "25055400000000000000000000000000"
+    "hash": 723851361,
+    "hiddenValue": 1411712451,
+    "cryptoKey": 1409623491,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "ReductionSecondsToken": {
@@ -2423,19 +2423,19 @@
   "ProcChance": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": -1895825408,
-    "hiddenValue": 1577642306,
-    "cryptoKey": 1581534343,
-    "value": 1.5912210694796918e-38,
-    "__tail__": "4c077b00000000000000000000000000"
+    "hash": 149504655,
+    "hiddenValue": 1145866078,
+    "cryptoKey": 2064075870,
+    "value": 1.0,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": 1627389952,
-    "hiddenValue": 1563108632,
-    "cryptoKey": 1566786258,
-    "value": 6.46643469607023e-39,
-    "__tail__": "42d26300000000000000000000000000"
+    "hash": 723851361,
+    "hiddenValue": 1665323613,
+    "cryptoKey": 1674723933,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "ProcChanceToken": {
@@ -2610,19 +2610,19 @@
   "Chance": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": -1895825408,
-    "hiddenValue": 2080958786,
-    "cryptoKey": 2088330161,
-    "value": 1.326303632981235e-38,
-    "__tail__": "63314600000000000000000000000000"
+    "hash": 149504655,
+    "hiddenValue": 2036576636,
+    "cryptoKey": 1177641852,
+    "value": 1.0,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": 1627389952,
-    "hiddenValue": 1294673176,
-    "cryptoKey": 1299739219,
-    "value": 8.572733424289184e-39,
-    "__tail__": "72537800000000000000000000000000"
+    "hash": 723851361,
+    "hiddenValue": 2020758349,
+    "cryptoKey": 2018734669,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "ChanceToken": {
@@ -2634,19 +2634,19 @@
   "StacksPerCast": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": -1895825408,
-    "hiddenValue": -1006048958,
-    "cryptoKey": -998721356,
-    "value": 1.3379628565939569e-38,
-    "__tail__": "b8344700000000000000000000000000"
+    "hash": 149504655,
+    "hiddenValue": 2025370820,
+    "cryptoKey": 1194637508,
+    "value": 1.0,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": 1627389952,
-    "hiddenValue": -1456790248,
-    "cryptoKey": -1451630878,
-    "value": 8.537105410833725e-39,
-    "__tail__": "dee27900000000000000000000000000"
+    "hash": 723851361,
+    "hiddenValue": 2044650153,
+    "cryptoKey": 2044911273,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "StacksPerCastToken": {
@@ -3066,19 +3066,19 @@
   "Chance": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": 1895825408,
-    "hiddenValue": 836404725,
-    "cryptoKey": -1418103315,
-    "value": -1.045076363914065e-22,
-    "__tail__": "ec744700000000000000000000000000"
+    "hash": -628755087,
+    "hiddenValue": 2037771569,
+    "cryptoKey": 1198845099,
+    "value": 0.30000001192092896,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": 1627389952,
-    "hiddenValue": -1121245928,
-    "cryptoKey": -1118172066,
-    "value": 1.1677196666825206e-38,
-    "__tail__": "0c5e5a00000000000000000000000000"
+    "hash": 723851361,
+    "hiddenValue": 1510760125,
+    "cryptoKey": 1516113085,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "ChanceToken": {
@@ -3281,19 +3281,19 @@
   "Chance": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": -1895825408,
-    "hiddenValue": 1158211906,
-    "cryptoKey": 1165390779,
-    "value": 1.464631689848288e-38,
-    "__tail__": "733b4900000000000000000000000000"
+    "hash": 149504655,
+    "hiddenValue": 1987296069,
+    "cryptoKey": 1228632901,
+    "value": 1.0,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": 1627389952,
-    "hiddenValue": 992683288,
-    "cryptoKey": 994904640,
-    "value": 9.562853084122563e-39,
-    "__tail__": "0a404d00000000000000000000000000"
+    "hash": 723851361,
+    "hiddenValue": 1292517435,
+    "cryptoKey": 1296042555,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "ChanceToken": {
@@ -3513,19 +3513,19 @@
   "Chance": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": 1895825408,
-    "hiddenValue": 2111392339,
-    "cryptoKey": -415155660,
-    "value": -2.8928220436607477e-23,
-    "__tail__": "a32d7f00000000000000000000000000"
+    "hash": -649440399,
+    "hiddenValue": 1094333565,
+    "cryptoKey": 2133697511,
+    "value": 0.15000000596046448,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": 1627389952,
-    "hiddenValue": -1356126952,
-    "cryptoKey": -1351497005,
-    "value": 7.795180932404629e-39,
-    "__tail__": "cad37100000000000000000000000000"
+    "hash": 723851361,
+    "hiddenValue": 1909117871,
+    "cryptoKey": 1909705391,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "ChanceToken": {
@@ -3537,19 +3537,19 @@
   "StacksPerCast": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": -1895825408,
-    "hiddenValue": 1762191682,
-    "cryptoKey": 1767004334,
-    "value": 1.720226708053131e-38,
-    "__tail__": "582e6d00000000000000000000000000"
+    "hash": 149504655,
+    "hiddenValue": 1381543529,
+    "cryptoKey": 1831753833,
+    "value": 1.0,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": 1627389952,
-    "hiddenValue": -718592744,
-    "cryptoKey": -713302285,
-    "value": 8.720755383672743e-39,
-    "__tail__": "def37b00000000000000000000000000"
+    "hash": 723851361,
+    "hiddenValue": 2078208981,
+    "cryptoKey": 2079579861,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "StacksPerCastToken": {
@@ -3681,19 +3681,19 @@
   "BonusDamage": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": -16777216,
-    "hiddenValue": -1943915334,
-    "cryptoKey": 50357198,
-    "value": -8.887290997075505e-30,
-    "__tail__": "a1bb3d00000000000000000000000000"
+    "hash": 573881087,
+    "hiddenValue": 6540940,
+    "cryptoKey": 1035706627,
+    "value": 0.05999999865889549,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": -16777216,
-    "hiddenValue": 1226978490,
-    "cryptoKey": -966786165,
-    "value": -1.0458799426497726e-29,
-    "__tail__": "c1fe5d00000000000000000000000000"
+    "hash": 573881087,
+    "hiddenValue": 1610845001,
+    "cryptoKey": 1576976838,
+    "value": 0.05999999865889549,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "BonusDamageToken": {
@@ -3721,19 +3721,19 @@
   "BonusDamage": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": -16777216,
-    "hiddenValue": 1294087354,
-    "cryptoKey": -1032621703,
-    "value": -9.827589428919731e-30,
-    "__tail__": "b30c4e00000000000000000000000000"
+    "hash": 573881087,
+    "hiddenValue": 1936816461,
+    "cryptoKey": 1309455298,
+    "value": 0.05999999865889549,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": -16777216,
-    "hiddenValue": -735955782,
-    "cryptoKey": 1531722334,
-    "value": -1.2232137790927884e-29,
-    "__tail__": "f82b7100000000000000000000000000"
+    "hash": 573881087,
+    "hiddenValue": 1278893780,
+    "cryptoKey": 1898707035,
+    "value": 0.05999999865889549,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "BonusDamageToken": {
@@ -3761,19 +3761,19 @@
   "Chance": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": 1895825408,
-    "hiddenValue": 836404725,
-    "cryptoKey": -1418103315,
-    "value": -1.045076363914065e-22,
-    "__tail__": "ec744700000000000000000000000000"
+    "hash": -628755087,
+    "hiddenValue": 2037771569,
+    "cryptoKey": 1198845099,
+    "value": 0.30000001192092896,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": 1627389952,
-    "hiddenValue": -1121245928,
-    "cryptoKey": -1118172066,
-    "value": 1.1677196666825206e-38,
-    "__tail__": "0c5e5a00000000000000000000000000"
+    "hash": 723851361,
+    "hiddenValue": 1510760125,
+    "cryptoKey": 1516113085,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "ChanceToken": {
@@ -3943,19 +3943,19 @@
   "ProcChance": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": 520093696,
-    "hiddenValue": -950457397,
-    "cryptoKey": -849601480,
-    "value": 1.190577339242879e-32,
-    "__tail__": "cb1b6100000000000000000000000000"
+    "hash": 1496042271,
+    "hiddenValue": 1545353415,
+    "cryptoKey": 1629211597,
+    "value": 0.03999999910593033,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": 520093696,
-    "hiddenValue": 576269259,
-    "cryptoKey": 676457212,
-    "value": 1.2070768718246084e-32,
-    "__tail__": "3ddf6c00000000000000000000000000"
+    "hash": 1496042271,
+    "hiddenValue": 1374354466,
+    "cryptoKey": 1826569512,
+    "value": 0.03999999910593033,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "Target": 1,
@@ -3963,19 +3963,19 @@
   "Radius": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": 1627389952,
-    "hiddenValue": -1876220648,
-    "cryptoKey": -1872991460,
-    "value": 1.1135059514350292e-38,
-    "__tail__": "6b1c5c00000000000000000000000000"
+    "hash": 723851361,
+    "hiddenValue": 1550523536,
+    "cryptoKey": 1545366416,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": 1627389952,
-    "hiddenValue": -1876220648,
-    "cryptoKey": -1872991460,
-    "value": 1.1135059514350292e-38,
-    "__tail__": "6b1c5c00000000000000000000000000"
+    "hash": 723851361,
+    "hiddenValue": 1550523536,
+    "cryptoKey": 1545366416,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "HitIntervalToken": {
@@ -4358,19 +4358,19 @@
   "BonusDamage": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": -16777216,
-    "hiddenValue": -1943996136,
-    "cryptoKey": 56586718,
-    "value": -1.640036176572334e-29,
-    "__tail__": "b32b6200000000000000000000000000"
+    "hash": 553195775,
+    "hiddenValue": 1601298060,
+    "cryptoKey": 1647031043,
+    "value": 0.11999999731779099,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": -16777216,
-    "hiddenValue": -568264424,
-    "cryptoKey": 1366708326,
-    "value": -1.414421909530876e-29,
-    "__tail__": "92934b00000000000000000000000000"
+    "hash": 553195775,
+    "hiddenValue": 1984980702,
+    "cryptoKey": 1267962449,
+    "value": 0.11999999731779099,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "BonusDamageToken": {
@@ -4433,19 +4433,19 @@
   "Chance": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": -1895825408,
-    "hiddenValue": 1577642306,
-    "cryptoKey": 1583496092,
-    "value": 1.2783740406970083e-38,
-    "__tail__": "3b1c5d00000000000000000000000000"
+    "hash": 149504655,
+    "hiddenValue": 1648073822,
+    "cryptoKey": 1562131294,
+    "value": 1.0,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": 1627389952,
-    "hiddenValue": -114612968,
-    "cryptoKey": -110545612,
-    "value": 6.990321337345777e-39,
-    "__tail__": "35346900000000000000000000000000"
+    "hash": 723851361,
+    "hiddenValue": 1765094649,
+    "cryptoKey": 1765029369,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "ChanceToken": {
@@ -4457,19 +4457,19 @@
   "StacksPerCast": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": -1895825408,
-    "hiddenValue": 1762191682,
-    "cryptoKey": 1767004334,
-    "value": 1.720226708053131e-38,
-    "__tail__": "582e6d00000000000000000000000000"
+    "hash": 149504655,
+    "hiddenValue": 1381543529,
+    "cryptoKey": 1831753833,
+    "value": 1.0,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": 1627389952,
-    "hiddenValue": -718592744,
-    "cryptoKey": -713302285,
-    "value": 8.720755383672743e-39,
-    "__tail__": "def37b00000000000000000000000000"
+    "hash": 723851361,
+    "hiddenValue": 2078208981,
+    "cryptoKey": 2079579861,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "StacksPerCastToken": {
@@ -4568,19 +4568,19 @@
   "Chance": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": 1895825408,
-    "hiddenValue": 1406749267,
-    "cryptoKey": -914400991,
-    "value": -3.753368001516641e-23,
-    "__tail__": "c0384100000000000000000000000000"
+    "hash": -649440399,
+    "hiddenValue": 2136547667,
+    "cryptoKey": 1094238409,
+    "value": 0.15000000596046448,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": 1627389952,
-    "hiddenValue": 1076569368,
-    "cryptoKey": 1078977743,
-    "value": 9.809121480138399e-39,
-    "__tail__": "e4cf4f00000000000000000000000000"
+    "hash": 723851361,
+    "hiddenValue": 1340395328,
+    "cryptoKey": 1339024448,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "ChanceToken": {
@@ -4592,19 +4592,19 @@
   "StacksPerCast": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": -1895825408,
-    "hiddenValue": 1762191682,
-    "cryptoKey": 1767004334,
-    "value": 1.720226708053131e-38,
-    "__tail__": "582e6d00000000000000000000000000"
+    "hash": 149504655,
+    "hiddenValue": 1381543529,
+    "cryptoKey": 1831753833,
+    "value": 1.0,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": 1627389952,
-    "hiddenValue": -718592744,
-    "cryptoKey": -713302285,
-    "value": 8.720755383672743e-39,
-    "__tail__": "def37b00000000000000000000000000"
+    "hash": 723851361,
+    "hiddenValue": 2078208981,
+    "cryptoKey": 2079579861,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "StacksPerCastToken": {
@@ -4712,19 +4712,19 @@
   "ProcChance": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": -1895825408,
-    "hiddenValue": 1007216962,
-    "cryptoKey": 1012476137,
-    "value": 1.6174766382863602e-38,
-    "__tail__": "28696600000000000000000000000000"
+    "hash": 149504655,
+    "hiddenValue": 1495853372,
+    "cryptoKey": 1718167612,
+    "value": 1.0,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": 1627389952,
-    "hiddenValue": 1412113688,
-    "cryptoKey": 1415454248,
-    "value": 1.1314846107323166e-38,
-    "__tail__": "1e285e00000000000000000000000000"
+    "hash": 723851361,
+    "hiddenValue": 1579034708,
+    "cryptoKey": 1579687508,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "Target": 2,
@@ -4732,19 +4732,19 @@
   "Radius": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": 1627389952,
-    "hiddenValue": -1876220648,
-    "cryptoKey": -1872991460,
-    "value": 1.1135059514350292e-38,
-    "__tail__": "6b1c5c00000000000000000000000000"
+    "hash": 723851361,
+    "hiddenValue": 1550523536,
+    "cryptoKey": 1545366416,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": 1627389952,
-    "hiddenValue": -1876220648,
-    "cryptoKey": -1872991460,
-    "value": 1.1135059514350292e-38,
-    "__tail__": "6b1c5c00000000000000000000000000"
+    "hash": 723851361,
+    "hiddenValue": 1550523536,
+    "cryptoKey": 1545366416,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "HitIntervalToken": {
@@ -4795,19 +4795,19 @@
   "Chance": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": -1895825408,
-    "hiddenValue": -133633726,
-    "cryptoKey": -126058488,
-    "value": 1.3732380230960983e-38,
-    "__tail__": "80884300000000000000000000000000"
+    "hash": 149504655,
+    "hiddenValue": 2088765688,
+    "cryptoKey": 1133019384,
+    "value": 1.0,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": 1627389952,
-    "hiddenValue": 1764435224,
-    "cryptoKey": 1769892065,
-    "value": 8.381414144954916e-39,
-    "__tail__": "68e17e00000000000000000000000000"
+    "hash": 723851361,
+    "hiddenValue": 2120802665,
+    "cryptoKey": 2128701545,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "ChanceToken": {
@@ -4819,19 +4819,19 @@
   "StacksPerCast": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": -1895825408,
-    "hiddenValue": -133633726,
-    "cryptoKey": -126767348,
-    "value": 1.4019013029241696e-38,
-    "__tail__": "af8c4e00000000000000000000000000"
+    "hash": 149504655,
+    "hiddenValue": 1907297528,
+    "cryptoKey": 1317842936,
+    "value": 1.0,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": 1627389952,
-    "hiddenValue": 2049647896,
-    "cryptoKey": 2052945829,
-    "value": 1.1053527765800481e-38,
-    "__tail__": "77a55d00000000000000000000000000"
+    "hash": 723851361,
+    "hiddenValue": 1568122234,
+    "cryptoKey": 1571125114,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "StacksPerCastToken": {
@@ -5077,19 +5077,19 @@
   "Chance": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": 251658240,
-    "hiddenValue": 224462286,
-    "cryptoKey": -1069380814,
-    "value": -209629120.0,
-    "__tail__": "477e7d00000000000000000000000000"
+    "hash": 1627770383,
+    "hiddenValue": 1116418573,
+    "cryptoKey": 2105427904,
+    "value": 0.800000011920929,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": 1627389952,
-    "hiddenValue": 1210787096,
-    "cryptoKey": 1215008433,
-    "value": 7.222596366896866e-39,
-    "__tail__": "8eb16b00000000000000000000000000"
+    "hash": 723851361,
+    "hiddenValue": 1804513608,
+    "cryptoKey": 1806798408,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "ChanceToken": {
@@ -5119,19 +5119,19 @@
   "Chance": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": -1895825408,
-    "hiddenValue": 1376315714,
-    "cryptoKey": 1383290044,
-    "value": 1.4176025719572363e-38,
-    "__tail__": "543c4c00000000000000000000000000"
+    "hash": 149504655,
+    "hiddenValue": 1934933074,
+    "cryptoKey": 1279022162,
+    "value": 1.0,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": 1627389952,
-    "hiddenValue": -265607912,
-    "cryptoKey": -261789011,
-    "value": 5.901042995579845e-39,
-    "__tail__": "6aad6500000000000000000000000000"
+    "hash": 723851361,
+    "hiddenValue": 1701490160,
+    "cryptoKey": 1705863920,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "ChanceToken": {
@@ -5143,19 +5143,19 @@
   "StacksPerCast": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": -1895825408,
-    "hiddenValue": -1308038846,
-    "cryptoKey": -1304102779,
-    "value": 1.5973915471374997e-38,
-    "__tail__": "f8057b00000000000000000000000000"
+    "hash": 149504655,
+    "hiddenValue": 1157137842,
+    "cryptoKey": 2063988914,
+    "value": 1.0,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": 1627389952,
-    "hiddenValue": 422257944,
-    "cryptoKey": 427397454,
-    "value": 8.515710385880414e-39,
-    "__tail__": "914e7900000000000000000000000000"
+    "hash": 723851361,
+    "hiddenValue": 2039565849,
+    "cryptoKey": 2035192089,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "StacksPerCastToken": {
@@ -5197,19 +5197,19 @@
   "Cooldown": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": -218103808,
-    "hiddenValue": 577452027,
-    "cryptoKey": 573281318,
-    "value": 2.6631803431354938e-39,
-    "__tail__": "94866a00000000000000000000000000"
+    "hash": 1798831091,
+    "hiddenValue": 731129378,
+    "cryptoKey": 1787204642,
+    "value": 20.0,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": 1627389952,
-    "hiddenValue": 539698456,
-    "cryptoKey": 542024323,
-    "value": 9.87576162990783e-39,
-    "__tail__": "a2834e00000000000000000000000000"
+    "hash": 723851361,
+    "hiddenValue": 1319273248,
+    "cryptoKey": 1317249568,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "CooldownToken": {
@@ -5678,19 +5678,19 @@
   "BonusDamage": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": 1895825408,
-    "hiddenValue": -1680258477,
-    "cryptoKey": 25137022,
-    "value": -3.7499534959744825e-23,
-    "__tail__": "16674100000000000000000000000000"
+    "hash": -649440399,
+    "hiddenValue": 2140110491,
+    "cryptoKey": 1097274881,
+    "value": 0.15000000596046448,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": 1895825408,
-    "hiddenValue": 1406749267,
-    "cryptoKey": -915748490,
-    "value": -3.310026595060622e-23,
-    "__tail__": "506f5400000000000000000000000000"
+    "hash": -649440399,
+    "hiddenValue": 1791587923,
+    "cryptoKey": 1416581321,
+    "value": 0.15000000596046448,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "BonusDamageToken": {
@@ -6027,19 +6027,19 @@
   "Chance": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": -352321536,
-    "hiddenValue": -1218590168,
-    "cryptoKey": 2051491819,
-    "value": -295917664.0,
-    "__tail__": "8b277a00000000000000000000000000"
+    "hash": 1573529835,
+    "hiddenValue": 1195895735,
+    "cryptoKey": 2049411962,
+    "value": 0.10000000149011612,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": -352321536,
-    "hiddenValue": 576571944,
-    "cryptoKey": -280782688,
-    "value": -288928000.0,
-    "__tail__": "546c7e00000000000000000000000000"
+    "hash": 1573529835,
+    "hiddenValue": 1134075938,
+    "cryptoKey": 2121028847,
+    "value": 0.10000000149011612,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "ChanceToken": {
@@ -6051,19 +6051,19 @@
   "StacksPerCast": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": -1895825408,
-    "hiddenValue": -1442256574,
-    "cryptoKey": -1436564090,
-    "value": 1.6787875098661175e-38,
-    "__tail__": "c5066000000000000000000000000000"
+    "hash": 149504655,
+    "hiddenValue": 1606780586,
+    "cryptoKey": 1611056554,
+    "value": 1.0,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": 1627389952,
-    "hiddenValue": 1345004824,
-    "cryptoKey": 1348818378,
-    "value": 5.922966310054207e-39,
-    "__tail__": "55ca6500000000000000000000000000"
+    "hash": 723851361,
+    "hiddenValue": 1700121168,
+    "cryptoKey": 1707758928,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "StacksPerCastToken": {
@@ -6086,19 +6086,19 @@
   "DamageBonus": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": 251658240,
-    "hiddenValue": 1700857294,
-    "cryptoKey": -1470028606,
-    "value": -239358144.0,
-    "__tail__": "e88e5e00000000000000000000000000"
+    "hash": 1627770383,
+    "hiddenValue": 1629799013,
+    "cryptoKey": 1586423976,
+    "value": 0.800000011920929,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": 1627389952,
-    "hiddenValue": -1255463656,
-    "cryptoKey": -1251424865,
-    "value": 7.15690069229239e-39,
-    "__tail__": "c59f6800000000000000000000000000"
+    "hash": 723851361,
+    "hiddenValue": 1757781941,
+    "cryptoKey": 1755301301,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "DamageBonusToken": {
@@ -6383,19 +6383,19 @@
   "DamageBonus": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": -1895825408,
-    "hiddenValue": -1257707198,
-    "cryptoKey": -1252539105,
-    "value": 1.752241473418328e-38,
-    "__tail__": "c59f6800000000000000000000000000"
+    "hash": 149504655,
+    "hiddenValue": 1472536501,
+    "cryptoKey": 1755301301,
+    "value": 1.0,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": 1627389952,
-    "hiddenValue": -1255463656,
-    "cryptoKey": -1251424865,
-    "value": 7.15690069229239e-39,
-    "__tail__": "c59f6800000000000000000000000000"
+    "hash": 723851361,
+    "hiddenValue": 1757781941,
+    "cryptoKey": 1755301301,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "DamageBonusToken": {
@@ -6449,19 +6449,19 @@
   "Distance": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": -352321536,
-    "hiddenValue": -883045848,
-    "cryptoKey": 106853540,
-    "value": -310718848.0,
-    "__tail__": "b8686300000000000000000000000000"
+    "hash": 1573529835,
+    "hiddenValue": 1584702667,
+    "cryptoKey": 1667807238,
+    "value": 0.10000000149011612,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": -352321536,
-    "hiddenValue": 73255464,
-    "cryptoKey": -922683360,
-    "value": -424976640.0,
-    "__tail__": "34ec3d00000000000000000000000000"
+    "hash": 1573529835,
+    "hiddenValue": 16261124,
+    "cryptoKey": 1038890185,
+    "value": 0.10000000149011612,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "DistanceToken": {
@@ -6583,19 +6583,19 @@
   "Chance": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": 1828716544,
-    "hiddenValue": 153090327,
-    "cryptoKey": -2041079395,
-    "value": -1.7209547250388714e-29,
-    "__tail__": "5b686b00000000000000000000000000"
+    "hash": 536418157,
+    "hiddenValue": 1469685001,
+    "cryptoKey": 1802001286,
+    "value": 0.029999999329447746,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": 1828716544,
-    "hiddenValue": 656406807,
-    "cryptoKey": -1469396602,
-    "value": -1.4577967106807378e-29,
-    "__tail__": "0b735600000000000000000000000000"
+    "hash": 536418157,
+    "hiddenValue": 1791591975,
+    "cryptoKey": 1450380200,
+    "value": 0.029999999329447746,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "ChanceToken": {
@@ -6607,19 +6607,19 @@
   "StacksPerCast": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": -1895825408,
-    "hiddenValue": 1762191682,
-    "cryptoKey": 1767004334,
-    "value": 1.720226708053131e-38,
-    "__tail__": "582e6d00000000000000000000000000"
+    "hash": 149504655,
+    "hiddenValue": 1381543529,
+    "cryptoKey": 1831753833,
+    "value": 1.0,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": 1627389952,
-    "hiddenValue": -718592744,
-    "cryptoKey": -713302285,
-    "value": 8.720755383672743e-39,
-    "__tail__": "def37b00000000000000000000000000"
+    "hash": 723851361,
+    "hiddenValue": 2078208981,
+    "cryptoKey": 2079579861,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "StacksPerCastToken": {
@@ -6928,19 +6928,19 @@
   "ProcChance": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": -1895825408,
-    "hiddenValue": -1878464190,
-    "cryptoKey": -1872532580,
-    "value": 1.2709124066341715e-38,
-    "__tail__": "6b1c5c00000000000000000000000000"
+    "hash": 149504655,
+    "hiddenValue": 1667996816,
+    "cryptoKey": 1545366416,
+    "value": 1.0,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": 1627389952,
-    "hiddenValue": -1876220648,
-    "cryptoKey": -1872991460,
-    "value": 1.1135059514350292e-38,
-    "__tail__": "6b1c5c00000000000000000000000000"
+    "hash": 723851361,
+    "hiddenValue": 1550523536,
+    "cryptoKey": 1545366416,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "Target": 0,
@@ -6948,19 +6948,19 @@
   "Radius": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": -520093696,
-    "hiddenValue": -2056575620,
-    "cryptoKey": -2062568245,
-    "value": 3.9373446029859775e-39,
-    "__tail__": "b4cb4f00000000000000000000000000"
+    "hash": 1797618913,
+    "hiddenValue": 263506821,
+    "cryptoKey": 1338750085,
+    "value": 2.0,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": 1627389952,
-    "hiddenValue": -1876220648,
-    "cryptoKey": -1872991460,
-    "value": 1.1135059514350292e-38,
-    "__tail__": "6b1c5c00000000000000000000000000"
+    "hash": 723851361,
+    "hiddenValue": 1550523536,
+    "cryptoKey": 1545366416,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "HitIntervalToken": {
@@ -7201,19 +7201,19 @@
   "Chance": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": -1895825408,
-    "hiddenValue": -1878464190,
-    "cryptoKey": -1872532580,
-    "value": 1.2709124066341715e-38,
-    "__tail__": "6b1c5c00000000000000000000000000"
+    "hash": 149504655,
+    "hiddenValue": 1667996816,
+    "cryptoKey": 1545366416,
+    "value": 1.0,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": 1627389952,
-    "hiddenValue": -1154800360,
-    "cryptoKey": -1152897067,
-    "value": 1.0011791277033697e-38,
-    "__tail__": "2fd54800000000000000000000000000"
+    "hash": 723851361,
+    "hiddenValue": 1211094459,
+    "cryptoKey": 1221930939,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "ChanceToken": {
@@ -7675,19 +7675,19 @@
   "BonusDamage": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": -1895825408,
-    "hiddenValue": 1443505380,
-    "cryptoKey": 1447797678,
-    "value": 1.0254469546383933e-38,
-    "__tail__": "a3ae7400000000000000000000000000"
+    "hash": 170189967,
+    "hiddenValue": 1269018198,
+    "cryptoKey": 1957602134,
+    "value": 0.5,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": 1627389952,
-    "hiddenValue": 1160455448,
-    "cryptoKey": 1164597858,
-    "value": 7.295711916869942e-39,
-    "__tail__": "5a626a00000000000000000000000000"
+    "hash": 723851361,
+    "hiddenValue": 1784308293,
+    "cryptoKey": 1784830533,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "BonusDamageToken": {
@@ -7712,19 +7712,19 @@
   "BonusDamage": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": 2097152000,
-    "hiddenValue": -614464052,
-    "cryptoKey": 376574992,
-    "value": -259476928.0,
-    "__tail__": "d85c4c00000000000000000000000000"
+    "hash": 1610992765,
+    "hiddenValue": 1913917659,
+    "cryptoKey": 1281153046,
+    "value": 0.20000000298023224,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": 2097152000,
-    "hiddenValue": 6292940,
-    "cryptoKey": -851397175,
-    "value": -207442000.0,
-    "__tail__": "79857e00000000000000000000000000"
+    "hash": 1610992765,
+    "hiddenValue": 1085655296,
+    "cryptoKey": 2122676685,
+    "value": 0.20000000298023224,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "BonusDamageToken": {
@@ -8082,19 +8082,19 @@
   "ProcChance": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": -1895825408,
-    "hiddenValue": -1878464190,
-    "cryptoKey": -1872532580,
-    "value": 1.2709124066341715e-38,
-    "__tail__": "6b1c5c00000000000000000000000000"
+    "hash": 149504655,
+    "hiddenValue": 1667996816,
+    "cryptoKey": 1545366416,
+    "value": 1.0,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": 1627389952,
-    "hiddenValue": -1876220648,
-    "cryptoKey": -1872991460,
-    "value": 1.1135059514350292e-38,
-    "__tail__": "6b1c5c00000000000000000000000000"
+    "hash": 723851361,
+    "hiddenValue": 1550523536,
+    "cryptoKey": 1545366416,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "Target": 1,
@@ -8102,19 +8102,19 @@
   "Radius": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": 1627389952,
-    "hiddenValue": -1876220648,
-    "cryptoKey": -1872991460,
-    "value": 1.1135059514350292e-38,
-    "__tail__": "6b1c5c00000000000000000000000000"
+    "hash": 723851361,
+    "hiddenValue": 1550523536,
+    "cryptoKey": 1545366416,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": 1627389952,
-    "hiddenValue": -1876220648,
-    "cryptoKey": -1872991460,
-    "value": 1.1135059514350292e-38,
-    "__tail__": "6b1c5c00000000000000000000000000"
+    "hash": 723851361,
+    "hiddenValue": 1550523536,
+    "cryptoKey": 1545366416,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "HitIntervalToken": {
@@ -8391,19 +8391,19 @@
   "Chance": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": -1895825408,
-    "hiddenValue": -133633726,
-    "cryptoKey": -126058488,
-    "value": 1.3732380230960983e-38,
-    "__tail__": "80884300000000000000000000000000"
+    "hash": 149504655,
+    "hiddenValue": 2088765688,
+    "cryptoKey": 1133019384,
+    "value": 1.0,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": 1627389952,
-    "hiddenValue": 1764435224,
-    "cryptoKey": 1769892065,
-    "value": 8.381414144954916e-39,
-    "__tail__": "68e17e00000000000000000000000000"
+    "hash": 723851361,
+    "hiddenValue": 2120802665,
+    "cryptoKey": 2128701545,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "ChanceToken": {
@@ -8415,19 +8415,19 @@
   "StacksPerCast": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": -1895825408,
-    "hiddenValue": -133633726,
-    "cryptoKey": -126767348,
-    "value": 1.4019013029241696e-38,
-    "__tail__": "af8c4e00000000000000000000000000"
+    "hash": 149504655,
+    "hiddenValue": 1907297528,
+    "cryptoKey": 1317842936,
+    "value": 1.0,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": 1627389952,
-    "hiddenValue": 2049647896,
-    "cryptoKey": 2052945829,
-    "value": 1.1053527765800481e-38,
-    "__tail__": "77a55d00000000000000000000000000"
+    "hash": 723851361,
+    "hiddenValue": 1568122234,
+    "cryptoKey": 1571125114,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "StacksPerCastToken": {
@@ -8585,19 +8585,19 @@
   "ReductionSeconds": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": -1895825408,
-    "hiddenValue": 1191766338,
-    "cryptoKey": 1195887762,
-    "value": 1.6049979353317012e-38,
-    "__tail__": "cc127800000000000000000000000000"
+    "hash": 149504655,
+    "hiddenValue": 1204589127,
+    "cryptoKey": 2014497863,
+    "value": 1.0,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": 1627389952,
-    "hiddenValue": -1624562408,
-    "cryptoKey": -1621151626,
-    "value": 1.1213770449091417e-38,
-    "__tail__": "30765f00000000000000000000000000"
+    "hash": 723851361,
+    "hiddenValue": 1597011615,
+    "cryptoKey": 1601581215,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "ReductionSecondsToken": {
@@ -8609,19 +8609,19 @@
   "ProcChance": {
    "Base": {
     "__type__": "ObscuredFloat",
-    "hash": -1895825408,
-    "hiddenValue": -838276798,
-    "cryptoKey": -833060911,
-    "value": 1.6297777967255891e-38,
-    "__tail__": "7f516700000000000000000000000000"
+    "hash": 149504655,
+    "hiddenValue": 1484771790,
+    "cryptoKey": 1733394382,
+    "value": 1.0,
+    "__tail__": "00000000000000000000000000000000"
    },
    "PerLevel": {
     "__type__": "ObscuredFloat",
-    "hash": 1627389952,
-    "hiddenValue": 86713624,
-    "cryptoKey": 90794279,
-    "value": 7.003262328663817e-39,
-    "__tail__": "69276900000000000000000000000000"
+    "hash": 723851361,
+    "hiddenValue": 1768498949,
+    "cryptoKey": 1764190469,
+    "value": 0.0,
+    "__tail__": "00000000000000000000000000000000"
    }
   },
   "ProcChanceToken": {

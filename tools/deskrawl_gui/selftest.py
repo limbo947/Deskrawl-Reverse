@@ -202,12 +202,17 @@ def _structure_checks(win) -> bool:
 
     # 顶部导航：3 个页面链接 + 上下文条的数据源徽标 + 只读承诺（U4/V9 的可见契约；
     # 品牌区与收起按钮已按界面精简要求移除，收起仅走 Ctrl+B）
+    # 展开后再断言：窄窗（CI 的 offscreen 屏只有 800×600）会自动收起侧栏，
+    # 那时徽标本就该隐藏——断言的是展开态，不是「任何窗口尺寸下都可见」
+    was_collapsed = win.nav.collapsed()
+    win.nav.set_collapsed(False)
     nav_ok = (win.nav.currentRow() >= 0 and len(win.nav._keys) == 3
               and bool(win.nav.badge.text())
               and win.nav.safe_badge.isVisible())
     check(nav_ok, '侧栏导航 3 页 + 数据源徽标 + 只读徽标',
           f'页数={len(win.nav._keys)}；徽标=「{win.nav.badge.text().splitlines()[0]}」；'
-          f'只读徽标=「{win.nav.safe_badge.text()}」')
+          f'只读徽标=「{win.nav.safe_badge.text()}」；收起态={was_collapsed}')
+    win.nav.set_collapsed(was_collapsed)
 
     # 装备对比页：候选播种入口 + 词条区间提示位 + α 横幅（可隐）
     check(hasattr(ee, 'seed_btn') and hasattr(ee.candidate_editor, 'range_label')
@@ -269,11 +274,18 @@ def _structure_checks(win) -> bool:
     from PySide6.QtWidgets import QStatusBar
 
     toast = win.toast
-    check(toast.objectName() == 'toast' and not toast.isVisible()
+    # 「初始隐藏」要看「程序有没有主动弹」，而不是平台给的 effective visibility：
+    # offscreen 平台下已 show() 的表单窗口里，从没弹过的浮层也可能报 isVisible()=True
+    from .app import MainWindow
+
+    probe = MainWindow()          # 全新实例、不 show：读的是构造完那一刻的状态
+    hidden_ok = probe.toast.isHidden() and not probe.toast.isVisible()
+    probe.deleteLater()
+    check(toast.objectName() == 'toast' and hidden_ok
           and win.findChild(QStatusBar) is None,
           '浮层提示已装配（#toast，初始隐藏；状态栏已移除）',
-          f'objectName={toast.objectName()}；可见={toast.isVisible()}；'
-          f'状态栏={win.findChild(QStatusBar)}')
+          f'objectName={toast.objectName()}；新窗口初始隐藏={hidden_ok}；'
+          f'本窗口可见={toast.isVisible()}；状态栏={win.findChild(QStatusBar)}')
 
     return all(results)
 

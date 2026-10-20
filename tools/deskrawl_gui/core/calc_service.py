@@ -168,6 +168,8 @@ def _equipped_effects(gd, profile, *, exclude_slot=None) -> list:
     # 天赋里按目标状态门控的特效（条件暴击/暴伤）：不进面板聚合值，与装备特效同池
     out.extend(getattr(profile, 'talent_effects', None) or [])
     out.extend(getattr(profile, 'talent_bonus_effects', None) or [])
+    # 天赋属性换算：面板读取时现算、不在 base 里，故与装备侧共用同一条 `_apply_conversions` 出口
+    out.extend(getattr(profile, 'talent_conversions', None) or [])
     return out
 
 

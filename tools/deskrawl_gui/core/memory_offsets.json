@@ -68,16 +68,22 @@
     "mod_stride": "0x38", "mod_value": "0x8", "mod_per_stride": "0x14"
   },
   "talent_effect_conditional_bonus": {
-    "$comment": "天赋条件加伤（TalentEffect_ConditionalBonusDamage 的 TalentData.Effects 元素）：RequiredStatus@0x18 / Ability@0x20 / Tag@0x28 / RequireOnSelf(bool)@0x2C / BonusDamage(LeveledFloat，PerLevel=Base+0x10)@0x30。与条件暴击同源：按目标状态门控、不进面板聚合值；RequireOnSelf=True 指自身状态，静态工具无自身状态数据故跳过。",
+    "$comment": "天赋条件加伤（TalentEffect_ConditionalBonusDamage 的 TalentData.Effects 元素）：RequiredStatus@0x18 / Ability@0x20 / Tag@0x28 / RequireOnSelf(bool)@0x2C / BonusDamage(LeveledFloat，PerLevel=Base+0x14)@0x30。与条件暴击同源：按目标状态门控、不进面板聚合值；RequireOnSelf=True 指自身状态，静态工具无自身状态数据故跳过。",
     "klass": "TalentEffect_ConditionalBonusDamage",
     "status": "0x18", "ability": "0x20", "tag": "0x28", "self": "0x2c", "value": "0x30"
   },
   "talent_effect_conditional_crit": {
-    "$comment": "天赋条件暴击/暴伤（TalentData.Effects 元素）。CritChance：Condition(TargetStateCondition)@0x18 / Ability@0x20 / Tag@0x28 / SpecifiedStatus@0x30 / BonusCritChance(LeveledFloat，PerLevel=Base+0x10)@0x38。CritDamage：Condition@0x18 / SpecifiedStatus@0x20 / BonusCritDamage@0x28（无 Ability/Tag 字段）。两者都不进面板聚合字典（按目标状态门控），漏读等于天赋白点；状态名只能由 profile 侧按 (Condition,Tag,有无Ability,Base,Per) 指纹反查静态表（运行时 SO 指针→名称的索引只覆盖 ItemData）。",
+    "$comment": "天赋条件暴击/暴伤（TalentData.Effects 元素）。CritChance：Condition(TargetStateCondition)@0x18 / Ability@0x20 / Tag@0x28 / SpecifiedStatus@0x30 / BonusCritChance(LeveledFloat，PerLevel=Base+0x14)@0x38。CritDamage：Condition@0x18 / SpecifiedStatus@0x20 / BonusCritDamage@0x28（无 Ability/Tag 字段）。两者都不进面板聚合字典（按目标状态门控），漏读等于天赋白点；状态名只能由 profile 侧按 (Condition,Tag,有无Ability,Base,Per) 指纹反查静态表（运行时 SO 指针→名称的索引只覆盖 ItemData）。",
     "crit_chance": {"klass": "TalentEffect_ConditionalCritChance", "condition": "0x18",
                     "ability": "0x20", "tag": "0x28", "status": "0x30", "value": "0x38"},
     "crit_damage": {"klass": "TalentEffect_ConditionalCritDamage", "condition": "0x18",
                     "status": "0x20", "value": "0x28"}
+  },
+  "talent_effect_stat_conversion": {
+    "$comment": "天赋属性换算（TalentEffect_StatConversion）：SourceStat@0x18 / TargetStat@0x1C / Fraction(LeveledFloat，Base@0x20 + PerLevel@0x34，ObscuredFloat 0x14)@0x20 / FractionToken@0x48 / RequiredStatus@0x50。取值 = `Base + (点数-1)×PerLevel`。两个换算列表都是 `List<ValueTuple<StatType, StatType, double, StatusEffectData>>`（`Player.ffq` 签名），消费侧与装备侧同一条链：`Player.PanelStat`(bkj@0x503350) 对 `+0x318`/`+0x350` 各调一次 `ffq` 求和，结果**加进平坦层**（乘目标 %加算之前），不写回任何聚合字典 → 换算不存在于导入的 base。RequiredStatus 非空（如 SorcererTalent33 的 IceBlock）在游戏里是消费时按状态门控，静态工具无自身状态流 → profile 侧丢弃并告警。",
+    "klass": "TalentEffect_StatConversion",
+    "source": "0x18", "target": "0x1c", "fraction": "0x20",
+    "status": "0x50", "per_level_stride": "0x14"
   },
   "controller": {"player": "0x20"},
   "player": {

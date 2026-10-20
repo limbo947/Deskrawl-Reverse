@@ -246,6 +246,29 @@ def _talent_bonus_effects(raw, gd) -> List[dict]:
     return out
 
 
+def _talent_conversions(raw, warns=None) -> List[dict]:
+    """内存读到的天赋属性换算 → `effects.stat_conversions` 认得的特效 dict。
+
+    为什么在这里丢掉带 RequiredStatus 的条目：SorcererTalent33（最大生命→生命回复）要「冰封」
+    状态才生效，静态工具没有自身状态流；保留就等于给面板凭空加一条换算（宁缺勿脏）。
+    `_class` 写全类名是为了复用内核那套「去前缀比类名」的判定（装备/天赋同一条消费链）。
+    """
+    out, skipped = [], 0
+    for rec in raw or []:
+        if int(rec.get('status') or 0):
+            skipped += 1
+            continue
+        src, tgt = int(rec.get('source', -1)), int(rec.get('target', -1))
+        val = float(rec.get('value') or 0.0)
+        if src == tgt or not val:            # 与注册侧同一条件：同类换算不存在
+            continue
+        out.append({'_class': 'TalentEffect_StatConversion',
+                    'SourceStat': src, 'TargetStat': tgt, 'Fraction': val})
+    if skipped and warns is not None:
+        warns.append(f'天赋属性换算有 {skipped} 条依赖状态（冰封），未计入')
+    return out
+
+
 @dataclass
 class WeaponDraft:
     """一把武器的可编辑草稿。affixes 用 [stat, type, value] 三元组存，便于 JSON 往返。
@@ -416,6 +439,9 @@ class CharacterProfile:
     # 天赋的「条件属性」（`TalentEffect_ConditionalStat`）：`[{Condition, Modifiers:[{Stat,Type,Value}]}]`
     # 只有 Healthy/None 能静态判；其余是场景条件（无近敌/脱战/被围/单敌），装配时按条件过滤
     talent_stat_mods: List[dict] = field(default_factory=list)
+    # 天赋的「属性换算」（`TalentEffect_StatConversion`）：换算在游戏里是面板**读取时**现算、
+    # 不写回聚合字典（PanelStat 0x503350 → ffq 0x5054B0），所以导入的 base 不含它，须与装备侧同池补上。
+    talent_conversions: List[dict] = field(default_factory=list)
 
     # --- 计算装配 ---
     def to_sheet(self, gd) -> StatSheet:
@@ -465,6 +491,7 @@ class CharacterProfile:
             'talent_effects': list(self.talent_effects),
             'talent_bonus_effects': list(self.talent_bonus_effects),
             'talent_stat_mods': list(self.talent_stat_mods),
+            'talent_conversions': list(self.talent_conversions),
         }
 
     @classmethod
@@ -497,6 +524,7 @@ class CharacterProfile:
             talent_effects=list(d.get('talent_effects') or []),
             talent_bonus_effects=list(d.get('talent_bonus_effects') or []),
             talent_stat_mods=list(d.get('talent_stat_mods') or []),
+            talent_conversions=list(d.get('talent_conversions') or []),
         )
 
     # --- 出厂示例（照抄 cli.demo 场景，用作锚点对拍与首启动演示）---
@@ -568,6 +596,8 @@ class CharacterProfile:
         prof.talent_bonus_effects = _talent_bonus_effects(
             player.get('talent_bonus_effects') or [], gd)
         prof.talent_stat_mods = _talent_stat_mods(player.get('talent_stat_mods') or [])
+        prof.talent_conversions = _talent_conversions(
+            player.get('talent_stat_conversions') or [], warns)
         # 巅峰点数分配：面板 base 已含其贡献，这里落 allocation 供展示/编辑，
         # 并把贡献从 base 反向扣除（paragon_modifiers 恒为 Flat，可精确逆运算）——
         # 否则 to_sheet 再叠加一次会重复计伤；用户随后改点数时按新 allocation 全量重算，语义仍正确。

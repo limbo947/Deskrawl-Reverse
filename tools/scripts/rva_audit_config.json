@@ -43,6 +43,11 @@
       "reason": "`containing()` 判定「内联数据是否属于该方法的跨距阈值」，是搜索窗口宽度不是地址"
     },
     {
+      "file": "tools/deskrawl_gui/selftest_skillmods.py",
+      "tokens": ["0x100000", "0x1234"],
+      "reason": "自检用的**合成指针**：0x100000 只验证「第 i 个技能指针 ↔ 第 i 个名字」的展开位置，0x1234 是非空状态指针的占位（验证「带 RequiredStatus 的换算条目要丢弃」），都不指向游戏里的任何目标"
+    },
+    {
       "file": "tools/scripts/rva_audit.py",
       "token": "0x1000",
       "reason": "本脚本的「微常量上限」判定阈值（低于它的字面量直接归入非地址），是规则参数不是地址"
@@ -264,7 +269,10 @@
       {"path": "talent_effect_ability_modifier", "klass": "TalentEffect_AbilityModifier", "mode": "field",
        "keep": ["ability", "tag", "stat", "modifier"]},
       {"path": "player.conditional_mods", "mode": "const", "expect": {"tuple_stride": "0x20"}},
-      {"path": "talent_effect_ability_modifier", "mode": "const", "expect": {"per_level_stride": "0x10"}},
+      {"path": "talent_effect_conditional_stat", "mode": "const", "expect": {"mod_stride": "0x38", "mod_per_stride": "0x14"}},
+      {"path": "talent_effect_stat_conversion", "klass": "TalentEffect_StatConversion", "mode": "field",
+       "keep": ["source", "target", "fraction", "status"]},
+      {"path": "talent_effect_ability_modifier", "mode": "const", "expect": {"per_level_stride": "0x14"}},
       {"path": "singleton_getters", "mode": "rva", "keys": "rva"},
       {"path": "save_system.anchor_rvas", "mode": "rva"},
       {"path": "generated_items.scan_rvas", "mode": "rva"},

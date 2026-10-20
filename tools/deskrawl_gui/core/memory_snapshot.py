@@ -53,7 +53,7 @@ def _section_diff(a: dict, b: dict) -> List[str]:
     return [k for k in ('level', 'fields', 'dicts', 'inventory', 'storage',
                         'equipment', 'hero', 'town', 'hero_abilities',
                         'talent_ability_mods', 'talent_crit_effects', 'talent_bonus_effects',
-                        'talent_stat_mods', 'paragon', 'runes')
+                        'talent_stat_mods', 'talent_stat_conversions', 'paragon', 'runes')
                if a[k] != b[k]]
 
 

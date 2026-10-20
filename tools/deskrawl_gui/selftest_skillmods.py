@@ -96,6 +96,40 @@ def _talent_bonus_checks(rep) -> None:
             f'自身状态条目不误算={self_ok}')
 
 
+def _talent_conversion_checks(rep) -> None:
+    """天赋属性换算：状态门控条目丢弃 + 经 `_equipped_effects` 出口真正落到平坦层。
+
+    只测 mapper 不够：漏接 `_equipped_effects` 时映射对、DPS 却没变，正是本轮要防的回归。
+    """
+    from deskrawl_calc import GameData
+
+    from .core import calc_service
+    from .core.profile import CharacterProfile, _talent_conversions
+
+    gd = GameData()
+    raw = [{'source': 7, 'target': 39, 'status': 0, 'base': 0.03, 'per': 0.03, 'value': 0.03},
+           {'source': 7, 'target': 36, 'status': 0x1234, 'base': 0.05, 'per': 0.05, 'value': 0.05},
+           {'source': 22, 'target': 22, 'status': 0, 'base': 2.0, 'per': 0.0, 'value': 2.0}]
+    warns = []
+    conv = _talent_conversions(raw, warns)
+    map_ok = (len(conv) == 1 and conv[0]['SourceStat'] == 7 and conv[0]['TargetStat'] == 39
+              and abs(conv[0]['Fraction'] - 0.03) < 1e-9 and len(warns) == 1)
+    # 装配：两侧同底（最大生命 1000 手填，演示构建本身不带生命），差异只来自换算
+    p, p0 = CharacterProfile.demo(), CharacterProfile.demo()
+    p.base[7] = p0.base[7] = 1000.0
+    p.talent_conversions = conv
+    s, s0 = p.to_sheet(gd), p0.to_sheet(gd)
+    calc_service._apply_conversions(gd, s, calc_service._equipped_effects(gd, p))
+    calc_service._apply_conversions(gd, s0, calc_service._equipped_effects(gd, p0))
+    b = s0.breakdown(39)
+    want = s0.final(7) * 0.03 * (1.0 + b['PercentAdd']) * b['PercentMultΠ']
+    got = s.final(39) - s0.final(39)
+    rep.add(map_ok and abs(got - want) < 1e-9,
+            '天赋属性换算（状态门控条目丢弃 / 经特效池落平坦层）',
+            f'映射={len(conv)} 条（丢弃带状态 1 条 + 同类 1 条）={map_ok}；'
+            f'荆棘 Δ={got:.4f}（期望 {want:.4f}=生命 {s0.final(7):.0f}×0.03×缩放）')
+
+
 def _talent_crit_checks(rep) -> None:
     """天赋条件暴击/暴伤：内存行 → 静态表指纹反查 → 目标门控 → 技能限定。
 

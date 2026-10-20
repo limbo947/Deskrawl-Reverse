@@ -501,6 +501,19 @@
         }
       ]
     },
+    "Player.ConversionSum": {
+      "说明": "属性换算求和：对 (SourceStat, TargetStat, Fraction, RequiredStatus) 列表里 TargetStat==入参 的条目累加 Final(SourceStat)×Fraction（带 RequiredStatus 的按状态门控、HashSet 防递归链）；PanelStat 对 +0x318/+0x350 两个列表各调一次并相加，结果进平坦层",
+      "slot": null,
+      "signature": "private double <m>(StatType a, List<ValueTuple<StatType, StatType, double, StatusEffectData>> conversions) { }",
+      "锚定依据": "全 dump 唯一「(StatType, List<ValueTuple<StatType,StatType,double,StatusEffectData>>)→double」签名；Player.PanelStat 内两处调用（+0x318/+0x350）",
+      "current": {
+        "klass": "Player",
+        "name": "ffq",
+        "rva": "0x5054b0",
+        "va": "0x1805054b0"
+      },
+      "history": []
+    },
     "Player.PrimaryStatValue": {
       "说明": "职业主属性面板值（力量/敏捷/智力）",
       "slot": null,
